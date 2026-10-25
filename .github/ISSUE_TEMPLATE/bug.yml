@@ -1,0 +1,51 @@
+name: "Bug report / Signaler un bug"
+description: "Something does not work as described in the user guide. / Quelque chose ne marche pas comme le décrit la notice."
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: "Thank you for taking the time to report it. You can write in English or in French. / Merci de prendre le temps de le signaler. Vous pouvez écrire en anglais ou en français."
+  - type: input
+    id: version
+    attributes:
+      label: "Guru-600 version / Version du Guru-600"
+      description: "Shown on the start screen. / Affichée sur l'écran de démarrage."
+      placeholder: "1.0"
+    validations:
+      required: true
+  - type: dropdown
+    id: where
+    attributes:
+      label: "Where? / Où ?"
+      options:
+        - "On the FM-1 / Sur le FM-1"
+        - "In the Mac application / Dans l'application Mac"
+        - "On the installation or sound sender page / Sur la page d'installation ou d'envoi des sons"
+    validations:
+      required: true
+  - type: textarea
+    id: did
+    attributes:
+      label: "What did you do? / Qu'avez-vous fait ?"
+      description: "The steps, one by one: page, buttons, knobs. / Les étapes, une par une : page, boutons, boutons rotatifs."
+    validations:
+      required: true
+  - type: textarea
+    id: happened
+    attributes:
+      label: "What happened? / Que s'est-il passé ?"
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: "What did you expect? / À quoi vous attendiez-vous ?"
+  - type: input
+    id: message
+    attributes:
+      label: "Message on the screen, if any / Message affiché à l'écran, s'il y en a un"
+  - type: textarea
+    id: more
+    attributes:
+      label: "Anything else / Autre chose"
+      description: "A photo of the screen, a sound, a backup file… / Une photo de l'écran, un son, un fichier de sauvegarde…"

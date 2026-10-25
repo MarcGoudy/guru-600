@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: "Questions and discussions / Questions et discussions"
+    url: https://github.com/MarcGoudy/guru-600/discussions
+    about: "To ask how to do something, or to talk about the Guru-600. / Pour demander comment faire, ou parler du Guru-600."
+  - name: "Felucca (the sequencer, the other engines…) / Felucca (le séquenceur, les autres moteurs…)"
+    url: https://github.com/hugelton/Felucca/issues
+    about: "For what comes from Felucca, by Leo Kuroshita. / Pour ce qui vient de Felucca, de Leo Kuroshita."

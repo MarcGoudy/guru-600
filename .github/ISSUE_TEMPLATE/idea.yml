@@ -1,0 +1,17 @@
+name: "Idea / Proposer une idée"
+description: "A feature or an improvement for the Guru-600. / Une fonctionnalité ou une amélioration pour le Guru-600."
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: "You can write in English or in French. / Vous pouvez écrire en anglais ou en français."
+  - type: textarea
+    id: idea
+    attributes:
+      label: "Your idea / Votre idée"
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: "What would it be useful for? / À quoi servirait-elle ?"
