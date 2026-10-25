@@ -1,0 +1,428 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Guru-600 Sound Sender</title>
+<style>
+  :root { --bg: #0c0b0a; --panel: #1a1816; --line: #34302b; --cream: #eee8d8; --mid: #9a9486; --red: #ff5c48; --orange: #f49638; --ok: #8cd86c; }
+  body { margin: 0; background: var(--bg); color: var(--cream); font: 15px/1.5 -apple-system, "Helvetica Neue", Arial, sans-serif; }
+  main { max-width: 860px; margin: 0 auto; padding: 24px 16px 60px; }
+  h1 { font-weight: 800; letter-spacing: .04em; margin: 0 0 4px; }
+  h1 span { color: var(--red); }
+  .sub { color: var(--mid); margin: 0 0 20px; }
+  .lang { float: right; }
+  button, select, input { font: inherit; color: var(--cream); background: var(--panel); border: 2px solid var(--line); border-radius: 8px; padding: 6px 12px; }
+  button { cursor: pointer; font-weight: 700; }
+  button.main { border-color: var(--orange); color: var(--orange); }
+  button.danger { border-color: var(--red); color: var(--red); }
+  button:disabled { opacity: .4; cursor: default; }
+  .box { border: 2px solid var(--line); border-radius: 10px; padding: 14px 16px; margin: 0 0 16px; }
+  .box h2 { margin: 0 0 8px; font-size: 15px; letter-spacing: .06em; color: var(--orange); }
+  .row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+  table { width: 100%; border-collapse: collapse; }
+  td, th { padding: 6px 8px; border-bottom: 1px solid var(--line); text-align: left; }
+  th { color: var(--mid); font-weight: 600; }
+  td input { width: 70px; }
+  #status { min-height: 1.5em; color: var(--ok); }
+  #status.err { color: var(--red); }
+  .hint { color: var(--mid); font-size: 13px; }
+.langs{float:right;display:flex;gap:4px}.langs button{font:600 12px sans-serif;padding:3px 7px;border:1px solid currentColor;background:none;color:inherit;opacity:.5;cursor:pointer}.langs button.on{opacity:1}@font-face{font-family:'Mong Rong';src:url(webapp/installer/MonRong.ttf)}.logo{font-family:'Mong Rong',serif;font-weight:normal;font-size:56px;line-height:1;margin:0 0 4px}.trib{font:800 12px sans-serif;letter-spacing:.12em;color:#d65440;margin:0 0 24px}</style>
+</head>
+<body>
+<main>
+  <nav class="langs"><button data-l="en">EN</button><button data-l="fr">FR</button><button data-l="de">DE</button><button data-l="es">ES</button><button data-l="it">IT</button></nav>
+  <h1 class="logo">guru-600</h1>
+  <p class="sub" data-t="sub"></p>
+
+  <div class="box">
+    <h2 data-t="s1"></h2>
+    <div class="row">
+      <button class="main" id="connect" data-t="connect"></button>
+      <select id="port" disabled></select>
+    </div>
+    <p class="hint" data-t="h1"></p>
+  </div>
+
+  <div class="box">
+    <h2 data-t="s2"></h2>
+    <div class="row"><input type="file" id="file" accept=".syx"></div>
+    <p class="hint" data-t="h2"></p>
+  </div>
+
+  <div class="box">
+    <h2 data-t="s3"></h2>
+    <p class="hint" data-t="h3"></p>
+    <div class="row" style="margin-bottom:8px">
+      <span data-t="from"></span> <input type="number" id="start" min="1" max="255" value="201" style="width:80px">
+      <button class="main" id="sendall" disabled data-t="sendall"></button>
+    </div>
+    <table><thead><tr><th>#</th><th data-t="name"></th><th data-t="place"></th><th></th></tr></thead><tbody id="list"></tbody></table>
+  </div>
+
+  <div class="box">
+    <h2 data-t="s5"></h2>
+    <p class="hint" data-t="h5"></p>
+    <div class="row" style="margin-bottom:8px">
+      <span data-t="place"></span> <input type="number" id="getplace" min="1" max="255" value="1" style="width:80px">
+      <button class="main" id="get1" disabled data-t="get1"></button>
+    </div>
+    <div class="row">
+      <button class="main" id="getkept" disabled data-t="getkept"></button>
+      <button id="getall" disabled data-t="getall"></button>
+    </div>
+  </div>
+
+  <div class="box">
+    <h2 data-t="s4"></h2>
+    <p class="hint" data-t="h4"></p>
+    <button class="danger" id="reset" disabled data-t="reset"></button>
+  </div>
+  <p id="status"></p>
+</main>
+<script>
+const T = {
+ "en": {
+  "sub": "Send Prophet-600 sounds (.syx) to your FM-1 running Guru-600. They stay in the FM-1, even after it is switched off.",
+  "s1": "1. CONNECT THE FM-1",
+  "connect": "Connect",
+  "h1": "Plug the FM-1 into this computer with a USB data cable and switch it on. Use Chrome, Edge or another Chrome-based browser (Brave, Opera…), and allow MIDI (SysEx) access when the browser asks.",
+  "s2": "2. OPEN A SOUND FILE",
+  "h2": "A Prophet-600 .syx file: an original Sequential program dump, or a GliGli firmware patch file. One file can hold one sound or a whole bank of 100.",
+  "s3": "3. CHOOSE THE PLACES AND SEND",
+  "h3": "Each sound goes to the place you type (1 to 255, as numbered in PRESETS). It replaces the built-in sound of that place until RESET SOUNDS. Up to 55 sounds can be sent in all.",
+  "from": "Send all, from place",
+  "sendall": "Send all",
+  "name": "Sound",
+  "place": "Place",
+  "send": "Send",
+  "s4": "RESET",
+  "h4": "Forget every sent or saved sound: the 255 built-in sounds come back. (The same as MENU > SYSTEM > RESET SOUNDS on the FM-1.)",
+  "reset": "Restore the original sounds",
+  "sure": "Forget every sent or saved sound and restore the 255 original sounds?",
+  "nomidi": "This browser has no Web MIDI. Use Chrome, Edge or another Chrome-based browser (Brave, Opera…).",
+  "denied": "MIDI (SysEx) access was not allowed. Allow it in the site settings and try again.",
+  "noport": "No MIDI output found. Check the USB cable (a data cable) and that the FM-1 is on.",
+  "ready": "Connected to ",
+  "loaded": " sounds in this file.",
+  "none": "No Prophet-600 sound in this file.",
+  "sent": "Sent: ",
+  "done": "Done. The sounds are in the FM-1's PRESETS list.",
+  "resetok": "Reset sent.",
+  "s5": "GET SOUNDS BACK",
+  "h5": "Get sounds from the FM-1 into a .syx file, in the Prophet-600's own format: one place, the sounds you saved or imported, or all 255 places.",
+  "get1": "Get this place",
+  "getkept": "Get the saved and imported sounds",
+  "getall": "Get all 255",
+  "gotone": "Received: ",
+  "got": " sounds saved in the file (Downloads folder).",
+  "noinput": "The FM-1 does not answer. Check that it runs Guru-600 and is connected by USB, then press Connect again.",
+  "nokept": "No saved or imported sound on the FM-1."
+ },
+ "fr": {
+  "sub": "Envoyez des sons Prophet-600 (.syx) à votre FM-1 équipé de Guru-600. Ils restent dans le FM-1, même après extinction.",
+  "s1": "1. BRANCHER LE FM-1",
+  "connect": "Connecter",
+  "h1": "Branchez le FM-1 à cet ordinateur avec un câble USB de données et allumez-le. Utilisez Chrome, Edge ou un autre navigateur basé sur Chrome (Brave, Opera…), et autorisez l’accès MIDI (SysEx) quand le navigateur le demande.",
+  "s2": "2. OUVRIR UN FICHIER DE SONS",
+  "h2": "Un fichier .syx de Prophet-600 : un dump de programmes Sequential d’origine, ou un fichier de patchs du firmware GliGli. Un fichier peut contenir un seul son ou une banque entière de 100.",
+  "s3": "3. CHOISIR LES EMPLACEMENTS ET ENVOYER",
+  "h3": "Chaque son va à la place que vous indiquez (1 à 255, la numérotation de PRESETS). Il remplace le son intégré de cette place jusqu'à RESET SOUNDS. 55 sons au maximum peuvent être envoyés.",
+  "from": "Tout envoyer, à partir de l’emplacement",
+  "sendall": "Tout envoyer",
+  "name": "Son",
+  "place": "Emplacement",
+  "send": "Envoyer",
+  "s4": "RÉINITIALISATION",
+  "h4": "Oublie tous les sons envoyés ou enregistrés : les 255 sons intégrés reviennent. (Comme MENU > SYSTEM > RESET SOUNDS sur le FM-1.)",
+  "reset": "Restaurer les sons d’origine",
+  "sure": "Oublier tous les sons envoyés ou enregistrés et rétablir les 255 sons d'origine ?",
+  "nomidi": "Ce navigateur ne prend pas en charge Web MIDI. Utilisez Chrome, Edge ou un autre navigateur basé sur Chrome (Brave, Opera…).",
+  "denied": "L’accès MIDI (SysEx) n’a pas été autorisé. Autorisez-le dans les paramètres du site et réessayez.",
+  "noport": "Aucune sortie MIDI trouvée. Vérifiez le câble USB (un câble de données) et que le FM-1 est allumé.",
+  "ready": "Connecté à ",
+  "loaded": " sons dans ce fichier.",
+  "none": "Aucun son Prophet-600 dans ce fichier.",
+  "sent": "Envoyé : ",
+  "done": "Terminé. Les sons sont dans la liste PRESETS du FM-1.",
+  "resetok": "Réinitialisation envoyée.",
+  "s5": "RÉCUPÉRER DES SONS",
+  "h5": "Récupérez des sons du FM-1 dans un fichier .syx, au format d'origine du Prophet-600 : une place, les sons que vous avez enregistrés ou importés, ou les 255 places.",
+  "get1": "Récupérer cette place",
+  "getkept": "Récupérer les sons enregistrés et importés",
+  "getall": "Tout récupérer (255)",
+  "gotone": "Reçu : ",
+  "got": " sons enregistrés dans le fichier (dossier Téléchargements).",
+  "noinput": "Le FM-1 ne répond pas. Vérifiez qu'il est en Guru-600 et branché en USB, puis cliquez de nouveau sur Connecter.",
+  "nokept": "Aucun son enregistré ou importé sur le FM-1."
+ },
+ "de": {
+  "sub": "Senden Sie Prophet-600-Sounds (.syx) an Ihren FM-1 mit Guru-600. Sie bleiben im FM-1 gespeichert, auch nach dem Ausschalten.",
+  "s1": "1. FM-1 VERBINDEN",
+  "connect": "Verbinden",
+  "h1": "Schließen Sie den FM-1 mit einem USB-Datenkabel an diesen Computer an und schalten Sie ihn ein. Verwenden Sie Chrome, Edge oder einem anderen Chrome-basierten Browser (Brave, Opera…) und erlauben Sie den MIDI-Zugriff (SysEx), wenn der Browser danach fragt.",
+  "s2": "2. SOUNDDATEI ÖFFNEN",
+  "h2": "Eine Prophet-600-.syx-Datei: ein originaler Sequential-Programm-Dump oder eine Patch-Datei der GliGli-Firmware. Eine Datei kann einen einzelnen Sound oder eine ganze Bank mit 100 Sounds enthalten.",
+  "s3": "3. PLÄTZE WÄHLEN UND SENDEN",
+  "h3": "Jeder Sound kommt auf den Platz, den Sie eingeben (1 bis 255, wie in PRESETS nummeriert). Er ersetzt den eingebauten Sound dieses Platzes bis zu RESET SOUNDS. Insgesamt können bis zu 55 Sounds gesendet werden.",
+  "from": "Alle senden, ab Platz",
+  "sendall": "Alle senden",
+  "name": "Sound",
+  "place": "Platz",
+  "send": "Senden",
+  "s4": "ZURÜCKSETZEN",
+  "h4": "Löscht alle gesendeten oder gespeicherten Sounds: Die 255 eingebauten Sounds kommen zurück. (Wie MENU > SYSTEM > RESET SOUNDS auf dem FM-1.)",
+  "reset": "Originalsounds wiederherstellen",
+  "sure": "Alle gesendeten oder gespeicherten Sounds löschen und die 255 Originalsounds wiederherstellen?",
+  "nomidi": "Dieser Browser unterstützt kein Web MIDI. Verwenden Sie Chrome, Edge oder einem anderen Chrome-basierten Browser (Brave, Opera…).",
+  "denied": "Der MIDI-Zugriff (SysEx) wurde nicht erlaubt. Erlauben Sie ihn in den Website-Einstellungen und versuchen Sie es erneut.",
+  "noport": "Kein MIDI-Ausgang gefunden. Prüfen Sie das USB-Kabel (ein Datenkabel) und ob der FM-1 eingeschaltet ist.",
+  "ready": "Verbunden mit ",
+  "loaded": " Sounds in dieser Datei.",
+  "none": "Kein Prophet-600-Sound in dieser Datei.",
+  "sent": "Gesendet: ",
+  "done": "Fertig. Die Sounds sind in der PRESETS-Liste des FM-1.",
+  "resetok": "Zurücksetzen gesendet.",
+  "s5": "SOUNDS ZURÜCKHOLEN",
+  "h5": "Holen Sie Sounds vom FM-1 in eine .syx-Datei, im Originalformat des Prophet-600: einen Speicherplatz, die gespeicherten oder importierten Sounds oder alle 255 Plätze.",
+  "get1": "Diesen Platz holen",
+  "getkept": "Gespeicherte und importierte Sounds holen",
+  "getall": "Alle 255 holen",
+  "gotone": "Empfangen: ",
+  "got": " Sounds in der Datei gespeichert (Ordner Downloads).",
+  "noinput": "Der FM-1 antwortet nicht. Prüfen Sie, ob Guru-600 läuft und der FM-1 per USB verbunden ist, und klicken Sie erneut auf Verbinden.",
+  "nokept": "Kein gespeicherter oder importierter Sound auf dem FM-1."
+ },
+ "es": {
+  "sub": "Envíe sonidos de Prophet-600 (.syx) a su FM-1 con Guru-600. Permanecen en el FM-1, incluso después de apagarlo.",
+  "s1": "1. CONECTAR EL FM-1",
+  "connect": "Conectar",
+  "h1": "Conecte el FM-1 a este ordenador con un cable USB de datos y enciéndalo. Use Chrome, Edge u otro navegador basado en Chrome (Brave, Opera…) y permita el acceso MIDI (SysEx) cuando el navegador lo solicite.",
+  "s2": "2. ABRIR UN ARCHIVO DE SONIDO",
+  "h2": "Un archivo .syx de Prophet-600: un volcado de programas original de Sequential o un archivo de patches del firmware GliGli. Un archivo puede contener un solo sonido o un banco completo de 100.",
+  "s3": "3. ELEGIR LAS POSICIONES Y ENVIAR",
+  "h3": "Cada sonido va a la posición que indique (1 a 255, según la numeración de PRESETS). Sustituye al sonido integrado de esa posición hasta RESET SOUNDS. Se pueden enviar hasta 55 sonidos en total.",
+  "from": "Enviar todos, desde la posición",
+  "sendall": "Enviar todos",
+  "name": "Sonido",
+  "place": "Posición",
+  "send": "Enviar",
+  "s4": "RESTABLECER",
+  "h4": "Borra todos los sonidos enviados o guardados: vuelven los 255 sonidos integrados. (Igual que MENU > SYSTEM > RESET SOUNDS en el FM-1.)",
+  "reset": "Restaurar los sonidos originales",
+  "sure": "¿Borrar todos los sonidos enviados o guardados y restaurar los 255 sonidos originales?",
+  "nomidi": "Este navegador no admite Web MIDI. Use Chrome, Edge u otro navegador basado en Chrome (Brave, Opera…).",
+  "denied": "No se permitió el acceso MIDI (SysEx). Permítalo en la configuración del sitio e inténtelo de nuevo.",
+  "noport": "No se encontró ninguna salida MIDI. Compruebe el cable USB (un cable de datos) y que el FM-1 esté encendido.",
+  "ready": "Conectado a ",
+  "loaded": " sonidos en este archivo.",
+  "none": "No hay ningún sonido de Prophet-600 en este archivo.",
+  "sent": "Enviado: ",
+  "done": "Listo. Los sonidos están en la lista PRESETS del FM-1.",
+  "resetok": "Restablecimiento enviado.",
+  "s5": "RECUPERAR SONIDOS",
+  "h5": "Recupere sonidos del FM-1 en un archivo .syx, en el formato original del Prophet-600: una posición, los sonidos que guardó o importó, o las 255 posiciones.",
+  "get1": "Recuperar esta posición",
+  "getkept": "Recuperar los sonidos guardados e importados",
+  "getall": "Recuperar las 255",
+  "gotone": "Recibido: ",
+  "got": " sonidos guardados en el archivo (carpeta Descargas).",
+  "noinput": "El FM-1 no responde. Compruebe que tiene Guru-600 y que está conectado por USB, y vuelva a pulsar Conectar.",
+  "nokept": "No hay ningún sonido guardado o importado en el FM-1."
+ },
+ "it": {
+  "sub": "Invii suoni Prophet-600 (.syx) al suo FM-1 con Guru-600. Restano nell’FM-1, anche dopo lo spegnimento.",
+  "s1": "1. COLLEGARE L’FM-1",
+  "connect": "Connetti",
+  "h1": "Colleghi l’FM-1 a questo computer con un cavo USB dati e lo accenda. Usi Chrome, Edge o un altro browser basato su Chrome (Brave, Opera…) e consenta l’accesso MIDI (SysEx) quando il browser lo chiede.",
+  "s2": "2. APRIRE UN FILE DI SUONI",
+  "h2": "Un file .syx del Prophet-600: un dump di programmi originale Sequential o un file di patch del firmware GliGli. Un file può contenere un solo suono o un intero banco di 100.",
+  "s3": "3. SCEGLIERE LE POSIZIONI E INVIARE",
+  "h3": "Ogni suono va nella posizione indicata (da 1 a 255, secondo la numerazione di PRESETS). Sostituisce il suono integrato di quella posizione fino a RESET SOUNDS. Si possono inviare al massimo 55 suoni.",
+  "from": "Invia tutti, dalla posizione",
+  "sendall": "Invia tutti",
+  "name": "Suono",
+  "place": "Posizione",
+  "send": "Invia",
+  "s4": "RIPRISTINO",
+  "h4": "Cancella tutti i suoni inviati o salvati: tornano i 255 suoni integrati. (Come MENU > SYSTEM > RESET SOUNDS sull'FM-1.)",
+  "reset": "Ripristina i suoni originali",
+  "sure": "Cancellare tutti i suoni inviati o salvati e ripristinare i 255 suoni originali?",
+  "nomidi": "Questo browser non supporta Web MIDI. Usi Chrome, Edge o un altro browser basato su Chrome (Brave, Opera…).",
+  "denied": "L’accesso MIDI (SysEx) non è stato consentito. Lo consenta nelle impostazioni del sito e riprovi.",
+  "noport": "Nessuna uscita MIDI trovata. Controlli il cavo USB (un cavo dati) e che l’FM-1 sia acceso.",
+  "ready": "Connesso a ",
+  "loaded": " suoni in questo file.",
+  "none": "Nessun suono Prophet-600 in questo file.",
+  "sent": "Inviato: ",
+  "done": "Fatto. I suoni sono nell’elenco PRESETS dell’FM-1.",
+  "resetok": "Ripristino inviato.",
+  "s5": "RECUPERARE I SUONI",
+  "h5": "Recupera i suoni dall'FM-1 in un file .syx, nel formato originale del Prophet-600: una posizione, i suoni salvati o importati, oppure tutte le 255 posizioni.",
+  "get1": "Recupera questa posizione",
+  "getkept": "Recupera i suoni salvati e importati",
+  "getall": "Recupera tutte le 255",
+  "gotone": "Ricevuto: ",
+  "got": " suoni salvati nel file (cartella Download).",
+  "noinput": "L'FM-1 non risponde. Verificare che abbia Guru-600 e sia collegato via USB, poi premere di nuovo Connetti.",
+  "nokept": "Nessun suono salvato o importato sull'FM-1."
+ }
+};
+let lang=(function(){try{const s=localStorage.getItem("g6lang");if(s)return s}catch(e){}const n=(navigator.language||"en").slice(0,2);return ["en", "fr", "de", "es", "it"].includes(n)?n:"en"})(); let out = null, sounds = [];
+const $ = (id) => document.getElementById(id);
+function tr() {
+  document.documentElement.lang = lang;
+  document.querySelectorAll("[data-t]").forEach((e) => { e.textContent = T[lang][e.dataset.t]; });
+  document.querySelectorAll(".langs button").forEach((b) => b.classList.toggle("on", b.dataset.l === lang));
+  render();
+}
+function say(s, err) { $("status").textContent = s; $("status").className = err ? "err" : ""; }
+document.querySelectorAll(".langs button").forEach((b) => { b.onclick = () => { lang = b.dataset.l; try { localStorage.setItem("g6lang", lang); } catch (e) {} tr(); }; });
+
+// the file's SysEx messages that are Prophet-600 sounds: SCI (F0 01 02 nn .. 35 bytes) or GliGli (F0 00 61 16 01 ..)
+function parse(buf) {
+  const d = new Uint8Array(buf), list = [];
+  for (let i = 0; i < d.length; i++) {
+    if (d[i] !== 0xF0) continue;
+    let j = i + 1;
+    while (j < d.length && d[j] !== 0xF7) j++;
+    const m = d.slice(i + 1, j);
+    if (m.length === 35 && m[0] === 0x01 && m[1] === 0x02) list.push({ body: m, name: "P600 " + String(m[2]).padStart(2, "0") });
+    else if (m.length > 9 && m[0] === 0x00 && m[1] === 0x61 && m[2] === 0x16 && m[3] === 0x01) list.push({ body: m, name: gligliName(m) });
+    i = j;
+  }
+  return list;
+}
+function gligliName(m) {   // descramble (5 -> 4 bytes) and read the v8 name at 1 + 128 (eng_p600.c p6_from_gligli)
+  const g = [];
+  for (let i = 4; i < m.length; i += 5) { const hb = m[i + 4] || 0; for (let j = 0; j < 4 && i + j < m.length; j++) g.push(m[i + j] | (((hb >> j) & 1) << 7)); }
+  let s = "";
+  for (let k = 129; k < 145 && g[k]; k++) s += String.fromCharCode(g[k]);
+  return s.trim() || "GL " + String(g[0] % 100).padStart(2, "0");
+}
+function render() {
+  const tb = $("list");
+  tb.innerHTML = "";
+  sounds.forEach((s, k) => {
+    const tr = document.createElement("tr");
+    tr.innerHTML = `<td>${k + 1}</td><td></td><td><input type="number" min="1" max="255"></td><td><button>${T[lang].send}</button></td>`;
+    tr.children[1].textContent = s.name;
+    const inp = tr.querySelector("input");
+    inp.value = s.place || Math.min(255, (+$("start").value || 201) + k);
+    inp.onchange = () => { s.place = +inp.value; };
+    const b = tr.querySelector("button");
+    b.disabled = !out;
+    b.onclick = () => send([[s, +inp.value]]);
+    tb.appendChild(tr);
+  });
+  $("sendall").disabled = !out || !sounds.length;
+  $("reset").disabled = !out;
+  for (const id of ["get1", "getkept", "getall"]) $(id).disabled = !out;
+}
+$("start").onchange = () => { sounds.forEach((s) => delete s.place); render(); };
+$("file").onchange = async (e) => {
+  const f = e.target.files[0];
+  if (!f) return;
+  sounds = parse(await f.arrayBuffer());
+  say(sounds.length ? sounds.length + T[lang].loaded : T[lang].none, !sounds.length);
+  render();
+};
+$("connect").onclick = async () => {
+  if (!navigator.requestMIDIAccess) return say(T[lang].nomidi, 1);
+  let acc;
+  try { acc = await navigator.requestMIDIAccess({ sysex: true }); } catch (e) { return say(T[lang].denied, 1); }
+  const outs = [...acc.outputs.values()], sel = $("port");
+  if (!outs.length) return say(T[lang].noport, 1);
+  sel.innerHTML = "";
+  outs.forEach((o, k) => { const op = document.createElement("option"); op.value = k; op.textContent = o.name; sel.appendChild(op); });
+  const fm = outs.findIndex((o) => /fm-1|felucca|guru/i.test(o.name));
+  sel.value = fm >= 0 ? fm : 0;
+  sel.disabled = false;
+  out = outs[+sel.value];
+  const pickIn = () => {   // the FM-1's input (its answers): the one named as the output
+    const ins = [...acc.inputs.values()];
+    if (inp) inp.onmidimessage = null;
+    inp = ins.find((i) => i.name === out.name) || ins.find((i) => /fm-1|felucca|guru/i.test(i.name)) || null;
+    if (inp) inp.onmidimessage = onAnswer;
+  };
+  pickIn();
+  sel.onchange = () => { out = outs[+sel.value]; pickIn(); say(T[lang].ready + out.name); };
+  say(T[lang].ready + out.name);
+  render();
+};
+const wait = (ms) => new Promise((r) => setTimeout(r, ms));
+// Guru-600: getting sounds back. F0 7D 47 36 04 dest dest2 F7 asks for a place; the answer: the same 7 bytes, the name
+// (16), Sequential's program dump (01 02 nn + 32 nibbles), F7. F0 7D 47 36 05 F7 asks which places hold a kept sound.
+let inp = null, waiting = null;
+function onAnswer(e) {
+  const d = e.data;
+  if (d[0] !== 0xF0 || d[1] !== 0x7D || d[2] !== 0x47 || d[3] !== 0x36 || !waiting) return;
+  if (d[4] === waiting.cmd) { const w = waiting; waiting = null; clearTimeout(w.t); w.ok(d); }
+}
+function ask(bytes, cmd) {
+  return new Promise((ok, ko) => {
+    waiting = { cmd, ok, t: setTimeout(() => { waiting = null; ko(new Error("timeout")); }, 1500) };
+    out.send(bytes);
+  });
+}
+async function getPlace(dest) {   // dest 0..254 -> {name, sci: [F0 01 02 nn .. F7]}
+  const d = await ask([0xF0, 0x7D, 0x47, 0x36, 0x04, dest & 127, dest >> 7, 0xF7], 4);
+  const name = String.fromCharCode(...d.slice(7, 23).filter((c) => c)).trim();
+  return { name, sci: [0xF0, ...d.slice(23, 58), 0xF7] };
+}
+function saveSyx(list, file) {
+  const bytes = new Uint8Array(list.flatMap((x) => x.sci));
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(new Blob([bytes], { type: "application/octet-stream" }));
+  a.download = file;
+  a.click();
+  setTimeout(() => URL.revokeObjectURL(a.href), 2000);
+}
+async function getMany(dests, file) {
+  if (!inp) return say(T[lang].noinput, 1);
+  const got = [];
+  try {
+    for (const dest of dests) {
+      got.push(await getPlace(dest));
+      say(T[lang].gotone + (dest + 1) + " " + got[got.length - 1].name);
+    }
+  } catch (e) { return say(T[lang].noinput, 1); }
+  saveSyx(got, file);
+  say(got.length + T[lang].got);
+}
+$("get1").onclick = () => {
+  const p = Math.max(1, Math.min(255, +$("getplace").value | 0));
+  getMany([p - 1], "guru-600-place-" + p + ".syx");
+};
+$("getkept").onclick = async () => {
+  if (!inp) return say(T[lang].noinput, 1);
+  let d;
+  try { d = await ask([0xF0, 0x7D, 0x47, 0x36, 0x05, 0xF7], 5); } catch (e) { return say(T[lang].noinput, 1); }
+  const dests = [];
+  for (let k = 0; k < d[5]; k++) dests.push(d[6 + 2 * k] + (d[7 + 2 * k] << 7));
+  if (!dests.length) return say(T[lang].nokept, 1);
+  getMany(dests.sort((a, b) => a - b), "guru-600-sons.syx");
+};
+$("getall").onclick = () => getMany([...Array(255).keys()], "guru-600-255.syx");
+async function send(pairs) {   // F0 7D 47 36 01 dest dest2 <the sound's bytes> F7: into place dest (0..254)
+  for (const [s, place] of pairs) {
+    const dest = Math.max(1, Math.min(255, place | 0)) - 1;
+    out.send([0xF0, 0x7D, 0x47, 0x36, 0x01, dest & 127, dest >> 7, ...s.body, 0xF7]);
+    say(T[lang].sent + s.name + " → " + (dest + 1));
+    await wait(150);   // the FM-1 takes one message at a time
+  }
+  say(T[lang].done);
+}
+$("sendall").onclick = () => {
+  const ins = [...$("list").querySelectorAll("input")];
+  send(sounds.map((s, k) => [s, +ins[k].value]));
+};
+$("reset").onclick = () => {
+  if (!confirm(T[lang].sure)) return;
+  out.send([0xF0, 0x7D, 0x47, 0x36, 0x02, 0xF7]);
+  say(T[lang].resetok);
+};
+tr();
+</script>
+</body>
+</html>
