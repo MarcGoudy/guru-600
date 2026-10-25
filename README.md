@@ -38,7 +38,7 @@ The Guru-600 is a free project, and it can always evolve. If you have an idea fo
 
 ### Source code and licenses
 
-The Guru-600 is free software under the **GNU GPL-3.0** license, like Felucca. This repository holds its full source code (Felucca and the P600 engine), the tools (sound bank, start screen, user guide, site, tests) and the modified FM-1 emulator. See BUILDING.md to build the firmware.
+The Guru-600 is free software under the **GNU GPL-3.0** license, like Felucca. This repository holds its full source code (Felucca and the P600 engine), the tools (sound bank, start screen, user guide, site, tests) and the modified FM-1 emulator. See [firmware/BUILDING.md](firmware/BUILDING.md) to build the firmware.
 
 Prophet-600 is a trademark of its owner; the Guru-600 is not affiliated with Sequential. M-VAVE and FM-1 are trademarks of their respective owners.
 
@@ -80,7 +80,7 @@ Le Guru-600 est un projet libre, qui peut toujours évoluer. Si vous avez une id
 
 ### Code source et licences
 
-Le Guru-600 est un logiciel libre sous licence **GNU GPL-3.0**, comme Felucca. Ce dépôt contient son code source complet (Felucca et le moteur P600), les outils (banque de sons, écran de démarrage, notice, site, tests) et l'émulateur du FM-1 modifié. Voir BUILDING.md pour compiler le firmware.
+Le Guru-600 est un logiciel libre sous licence **GNU GPL-3.0**, comme Felucca. Ce dépôt contient son code source complet (Felucca et le moteur P600), les outils (banque de sons, écran de démarrage, notice, site, tests) et l'émulateur du FM-1 modifié. Voir [firmware/BUILDING.md](firmware/BUILDING.md) pour compiler le firmware.
 
 Prophet-600 est une marque de son propriétaire ; le Guru-600 est sans lien avec Sequential. M-VAVE et FM-1 sont des marques de leurs propriétaires respectifs.
 
@@ -122,7 +122,7 @@ Der Guru-600 ist ein freies Projekt und kann sich immer weiterentwickeln. Wenn S
 
 ### Quellcode und Lizenzen
 
-Der Guru-600 ist freie Software unter der Lizenz **GNU GPL-3.0**, wie Felucca. Dieses Repository enthält den vollständigen Quellcode (Felucca und die P600-Klangerzeugung), die Werkzeuge (Soundbank, Startbildschirm, Anleitung, Website, Tests) und den angepassten FM-1-Emulator. Zum Kompilieren der Firmware siehe BUILDING.md.
+Der Guru-600 ist freie Software unter der Lizenz **GNU GPL-3.0**, wie Felucca. Dieses Repository enthält den vollständigen Quellcode (Felucca und die P600-Klangerzeugung), die Werkzeuge (Soundbank, Startbildschirm, Anleitung, Website, Tests) und den angepassten FM-1-Emulator. Zum Kompilieren der Firmware siehe [firmware/BUILDING.md](firmware/BUILDING.md).
 
 Prophet-600 ist eine Marke ihres Inhabers; der Guru-600 steht in keiner Verbindung zu Sequential. M-VAVE und FM-1 sind Marken ihrer jeweiligen Inhaber.
 
@@ -164,7 +164,7 @@ El Guru-600 es un proyecto libre, que siempre puede evolucionar. Si tiene una id
 
 ### Código fuente y licencias
 
-El Guru-600 es software libre bajo la licencia **GNU GPL-3.0**, como Felucca. Este repositorio contiene su código fuente completo (Felucca y el motor P600), las herramientas (banco de sonidos, pantalla de inicio, manual, sitio, pruebas) y el emulador del FM-1 modificado. Para compilar el firmware, consulte BUILDING.md.
+El Guru-600 es software libre bajo la licencia **GNU GPL-3.0**, como Felucca. Este repositorio contiene su código fuente completo (Felucca y el motor P600), las herramientas (banco de sonidos, pantalla de inicio, manual, sitio, pruebas) y el emulador del FM-1 modificado. Para compilar el firmware, consulte [firmware/BUILDING.md](firmware/BUILDING.md).
 
 Prophet-600 es una marca de su propietario; el Guru-600 no tiene relación con Sequential. M-VAVE y FM-1 son marcas de sus respectivos propietarios.
 
@@ -206,7 +206,7 @@ Il Guru-600 è un progetto libero, che può sempre evolvere. Se avete un'idea pe
 
 ### Codice sorgente e licenze
 
-Il Guru-600 è software libero con licenza **GNU GPL-3.0**, come Felucca. Questo repository contiene il codice sorgente completo (Felucca e il motore P600), gli strumenti (banco di suoni, schermata di avvio, manuale, sito, test) e l'emulatore dell'FM-1 modificato. Per compilare il firmware, vedere BUILDING.md.
+Il Guru-600 è software libero con licenza **GNU GPL-3.0**, come Felucca. Questo repository contiene il codice sorgente completo (Felucca e il motore P600), gli strumenti (banco di suoni, schermata di avvio, manuale, sito, test) e l'emulatore dell'FM-1 modificato. Per compilare il firmware, vedere [firmware/BUILDING.md](firmware/BUILDING.md).
 
 Prophet-600 è un marchio del suo proprietario; il Guru-600 non è affiliato a Sequential. M-VAVE e FM-1 sono marchi dei rispettivi proprietari.
 
@@ -248,7 +248,7 @@ Guru-600 是一个自由项目，可以不断发展。如果您有功能或改�
 
 ### 源代码与许可证
 
-Guru-600 是自由软件，与 Felucca 一样采用 **GNU GPL-3.0** 许可证。本仓库包含其完整源代码（Felucca 和 P600 引擎）、工具（音色库、启动画面、用户指南、网站、测试）以及修改后的 FM-1 模拟器。编译固件请参阅 BUILDING.md。
+Guru-600 是自由软件，与 Felucca 一样采用 **GNU GPL-3.0** 许可证。本仓库包含其完整源代码（Felucca 和 P600 引擎）、工具（音色库、启动画面、用户指南、网站、测试）以及修改后的 FM-1 模拟器。编译固件请参阅 [firmware/BUILDING.md](firmware/BUILDING.md)。
 
 Prophet-600 是其所有者的商标；Guru-600 与 Sequential 无关。M-VAVE 和 FM-1 是其各自所有者的商标。
 
@@ -290,6 +290,6 @@ Guru-600 はフリーなプロジェクトで、これからも進化し続け�
 
 ### ソースコードとライセンス
 
-Guru-600 は Felucca と同じく **GNU GPL-3.0** ライセンスのフリーソフトウェアです。このリポジトリには、完全なソースコード（Felucca と P600 エンジン）、ツール（サウンド・バンク、起動画面、ユーザーガイド、サイト、テスト）、改変した FM-1 エミュレーターが含まれています。ファームウェアのビルド方法は BUILDING.md を参照してください。
+Guru-600 は Felucca と同じく **GNU GPL-3.0** ライセンスのフリーソフトウェアです。このリポジトリには、完全なソースコード（Felucca と P600 エンジン）、ツール（サウンド・バンク、起動画面、ユーザーガイド、サイト、テスト）、改変した FM-1 エミュレーターが含まれています。ファームウェアのビルド方法は [firmware/BUILDING.md](firmware/BUILDING.md) を参照してください。
 
 Prophet-600 はその所有者の商標です。Guru-600 は Sequential とは無関係です。M-VAVE と FM-1 は各所有者の商標です。
