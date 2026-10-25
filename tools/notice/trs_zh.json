@@ -1,0 +1,7 @@
+{
+ "Osc FM: how strongly oscillator B modulates oscillator A (Poly-Mod), from * to *****.": "Osc FM：振荡器 B 对振荡器 A 的调制强度（Poly-Mod），从 * 到 *****。",
+ "Filter FM: how strongly oscillator B modulates the filter (Poly-Mod), from * to *****.": "Filter FM：振荡器 B 对滤波器的调制强度（Poly-Mod），从 * 到 *****。",
+ "ENV: non-standard envelope routing (POLY or GATE).": "ENV：非标准包络路由（POLY 或 GATE）。",
+ "SYNC: oscillator sync on. HARM: harmonic filter (full keyboard tracking, resonance near self-oscillation: the filter plays as a third oscillator). UNI: unison. VEL: plays with more expression from a velocity-sensitive MIDI keyboard.": "SYNC：开启振荡器同步。HARM：谐波滤波器（完全键盘跟踪，共振接近自激振荡：滤波器如同第三个振荡器发声）。UNI：齐奏。VEL：用力度敏感的 MIDI 键盘演奏时更富表现力。",
+ "Z80 Nbr. n: a version of the original factory sound n (number n+1 in Guru 600).": "Z80 Nbr. n：原出厂音色 n 的一个版本（在 Guru 600 中为 n+1 号）。"
+}

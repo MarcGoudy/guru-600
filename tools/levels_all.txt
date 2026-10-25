@@ -1,0 +1,200 @@
+ 0 1 ORGAN I peak 0.157 rms 0.0305 dc -0.0000 cpu 0.004 
+ 1 2 CL. BRASS peak 0.210 rms 0.0467 dc -0.0000 cpu 0.003 
+ 2 3 STRINGS peak 0.242 rms 0.0438 dc +0.0000 cpu 0.004 
+ 3 4 P.GLIDE I peak 0.238 rms 0.0544 dc +0.0000 cpu 0.006 
+ 4 5 METALLIC I peak 0.188 rms 0.0429 dc -0.0000 cpu 0.005 
+ 5 6 TRI OCT REL peak 0.166 rms 0.0279 dc -0.0000 cpu 0.004 
+ 6 7 POWERSYNTH peak 0.189 rms 0.0281 dc -0.0000 cpu 0.003 
+ 7 8 MINI-LEAD peak 0.104 rms 0.0200 dc +0.0000 cpu 0.006 
+ 8 9 P.GLIDE II peak 0.269 rms 0.0514 dc +0.0000 cpu 0.004 
+ 9 10 VIDEOGAMES peak 0.293 rms 0.1129 dc -0.0001 cpu 0.006 
+10 11 ORGAN II peak 0.189 rms 0.0379 dc -0.0001 cpu 0.002 
+11 12 BRASS I peak 0.208 rms 0.0316 dc +0.0000 cpu 0.003 
+12 13 MUTED STR peak 0.253 rms 0.0423 dc -0.0000 cpu 0.004 
+13 14 CLAV I peak 0.145 rms 0.0093 dc -0.0000 cpu 0.002 
+14 15 PERC E.PNO peak 0.212 rms 0.0213 dc +0.0000 cpu 0.003 
+15 16 FLUTE peak 0.078 rms 0.0114 dc -0.0000 cpu 0.003 
+16 17 HARPSI I peak 0.156 rms 0.0085 dc -0.0000 cpu 0.002 
+17 18 SYNC I peak 0.218 rms 0.0372 dc -0.0000 cpu 0.002 
+18 19 CLUB ORGAN peak 0.234 rms 0.0369 dc +0.0000 cpu 0.002 
+19 20 SLEEP ORGS peak 0.283 rms 0.0768 dc +0.0000 cpu 0.003 
+20 21 ORG FLUTE peak 0.131 rms 0.0191 dc +0.0000 cpu 0.002 
+21 22 BRASS II peak 0.253 rms 0.0516 dc -0.0001 cpu 0.004 
+22 23 LIGHT STR peak 0.111 rms 0.0140 dc +0.0000 cpu 0.004 
+23 24 CLAV II peak 0.188 rms 0.0222 dc -0.0000 cpu 0.004 
+24 25 ICE CREAM peak 0.134 rms 0.0055 dc -0.0000 cpu 0.003 
+25 26 MUTED peak 0.186 rms 0.0154 dc +0.0000 cpu 0.003 
+26 27 SYNC II peak 0.127 rms 0.0174 dc +0.0000 cpu 0.003 
+27 28 FULL BASS peak 0.119 rms 0.0286 dc -0.0000 cpu 0.006 
+28 29 MOVIES peak 0.186 rms 0.0230 dc +0.0000 cpu 0.005 
+29 30 LEECHES peak 0.273 rms 0.0932 dc +0.0000 cpu 0.006 
+30 31 ORG CHORUS peak 0.143 rms 0.0231 dc -0.0000 cpu 0.002 
+31 32 BACH TRPT peak 0.182 rms 0.0243 dc +0.0000 cpu 0.002 
+32 33 LOW STR peak 0.202 rms 0.0344 dc -0.0000 cpu 0.004 
+33 34 HARMONICA peak 0.263 rms 0.0459 dc +0.0000 cpu 0.002 
+34 35 WURLIE peak 0.082 rms 0.0111 dc -0.0000 cpu 0.004 
+35 36 DINKITY peak 0.279 rms 0.0211 dc +0.0000 cpu 0.004 
+36 37 BUDDY peak 0.262 rms 0.0536 dc +0.0000 cpu 0.004 
+37 38 CUT BASS peak 0.106 rms 0.0225 dc +0.0000 cpu 0.006 
+38 39 ECHO-REP peak 0.189 rms 0.0386 dc -0.0000 cpu 0.006 
+39 40 SCREAMIN peak 0.203 rms 0.0376 dc -0.0000 cpu 0.007 
+40 41 CHIFFY ORG peak 0.266 rms 0.0541 dc +0.0001 cpu 0.002 
+41 42 BRASS III peak 0.194 rms 0.0330 dc -0.0000 cpu 0.003 
+42 43 ARCO STR peak 0.248 rms 0.0350 dc -0.0000 cpu 0.003 
+43 44 RUNAWAY peak 0.112 rms 0.0198 dc -0.0000 cpu 0.003 
+44 45 HONKYTONK peak 0.220 rms 0.0156 dc -0.0000 cpu 0.002 
+45 46 WHISTLE peak 0.091 rms 0.0186 dc -0.0000 cpu 0.002 
+46 47 ANGELIC peak 0.118 rms 0.0126 dc -0.0000 cpu 0.004 
+47 48 HARD LEAD peak 0.200 rms 0.0402 dc +0.0000 cpu 0.005 
+48 49 HARP  peak 0.243 rms 0.0577 dc -0.0001 cpu 0.006 
+49 50 INDIGEST peak 0.207 rms 0.0355 dc +0.0000 cpu 0.004 
+50 51 DIST ORGAN peak 0.253 rms 0.0269 dc -0.0001 cpu 0.002 
+51 52 DIG BRASS peak 0.253 rms 0.0370 dc +0.0000 cpu 0.005 
+52 53 HIGH STR peak 0.248 rms 0.0333 dc -0.0000 cpu 0.004 
+53 54 PULSEMOD I peak 0.129 rms 0.0241 dc +0.0000 cpu 0.006 
+54 55 HI PLUCKY peak 0.107 rms 0.0028 dc -0.0000 cpu 0.002 
+55 56 DESC BELLS peak 0.168 rms 0.0329 dc -0.0000 cpu 0.006 
+56 57 HARPSISYN peak 0.175 rms 0.0321 dc -0.0000 cpu 0.003 
+57 58 NASAL BASS peak 0.154 rms 0.0166 dc +0.0000 cpu 0.002 
+58 59 XYLOPHONE peak 0.154 rms 0.0068 dc -0.0000 cpu 0.004 
+59 60 OBNOXIOUS peak 0.116 rms 0.0148 dc -0.0000 cpu 0.007 
+60 61 CATHEDRAL peak 0.221 rms 0.0201 dc -0.0000 cpu 0.003 
+61 62 SLOW BRASS peak 0.173 rms 0.0260 dc +0.0000 cpu 0.003 
+62 63 ARCO BASS peak 0.134 rms 0.0167 dc +0.0000 cpu 0.004 
+63 64 FROG CITY peak 0.266 rms 0.0348 dc +0.0000 cpu 0.001 
+64 65 DOG'S BARK peak 0.134 rms 0.0081 dc +0.0000 cpu 0.002 
+65 66 CAT'S MEOW peak 0.089 rms 0.0135 dc +0.0000 cpu 0.003 
+66 67 SUST SYNC peak 0.300 rms 0.0639 dc -0.0001 cpu 0.006 
+67 68 MODOR peak 0.153 rms 0.0341 dc +0.0002 cpu 0.007 
+68 69 TACK SYNTH peak 0.141 rms 0.0133 dc -0.0000 cpu 0.003 
+69 70 STEEL DRUM peak 0.099 rms 0.0113 dc -0.0000 cpu 0.004 
+70 71 ORG PERC I peak 0.266 rms 0.0668 dc +0.0001 cpu 0.002 
+71 72 B.D.L.'S peak 0.255 rms 0.0449 dc -0.0001 cpu 0.004 
+72 73 R.F.M. peak 0.251 rms 0.0360 dc -0.0000 cpu 0.002 
+73 74 HARMONIUM peak 0.257 rms 0.0478 dc -0.0000 cpu 0.003 
+74 75 METAL II peak 0.207 rms 0.0155 dc -0.0000 cpu 0.003 
+75 76 PM P.GLIDE peak 0.270 rms 0.0546 dc +0.0000 cpu 0.003 
+76 77 SYNC III peak 0.210 rms 0.0424 dc -0.0000 cpu 0.003 
+77 78 FAT OCTAVE peak 0.217 rms 0.0428 dc +0.0001 cpu 0.007 
+78 79 LO PLUCKY peak 0.159 rms 0.0318 dc -0.0000 cpu 0.003 
+79 80 SPACE RACE peak 0.033 rms 0.0031 dc -0.0000 cpu 0.004 
+80 81 ORG PERC 2 peak 0.249 rms 0.0539 dc -0.0001 cpu 0.002 
+81 82 DETUNED peak 0.181 rms 0.0294 dc -0.0000 cpu 0.004 
+82 83 VOCAL HARM peak 0.170 rms 0.0196 dc +0.0000 cpu 0.002 
+83 84 SQ BUBBLES peak 0.271 rms 0.0386 dc -0.0000 cpu 0.006 
+84 85 METAL III peak 0.200 rms 0.0182 dc +0.0000 cpu 0.004 
+85 86 JOSEF peak 0.258 rms 0.0543 dc +0.0001 cpu 0.002 
+86 87 PW MOD II peak 0.122 rms 0.0219 dc +0.0000 cpu 0.006 
+87 88 LUCKY MAN peak 0.060 rms 0.0154 dc -0.0000 cpu 0.007 
+88 89 SUPERPERC peak 0.333 rms 0.0681 dc -0.0000 cpu 0.003 
+89 90 NOISESCRM peak 0.290 rms 0.0897 dc -0.0001 cpu 0.008 
+90 91 FULL ORGAN peak 0.222 rms 0.0350 dc +0.0000 cpu 0.002 
+91 92 FILT FUNK peak 0.136 rms 0.0186 dc +0.0000 cpu 0.002 
+92 93 BANJO peak 0.155 rms 0.0053 dc +0.0000 cpu 0.001 
+93 94 CLAV III peak 0.258 rms 0.0131 dc -0.0000 cpu 0.003 
+94 95 PW MOD III peak 0.254 rms 0.0219 dc -0.0000 cpu 0.005 
+95 96 DRUNKEN peak 0.122 rms 0.0169 dc -0.0000 cpu 0.003 
+96 97 TEARS peak 0.252 rms 0.0572 dc -0.0000 cpu 0.002 
+97 98 FIFTHS peak 0.157 rms 0.0298 dc +0.0000 cpu 0.006 
+98 99 OOPS! peak 0.271 rms 0.0320 dc -0.0001 cpu 0.003 
+99 100 ALIEN peak 0.074 rms 0.0186 dc +0.0000 cpu 0.007 
+100 101 GliGli Clav peak 0.293 rms 0.0603 dc -0.0000 cpu 0.003 
+101 102 Chorus EP peak 0.100 rms 0.0174 dc +0.0001 cpu 0.006 
+102 103 Piano 2 peak 0.258 rms 0.0378 dc -0.0000 cpu 0.004 
+103 104 Tap me twic peak 0.212 rms 0.0420 dc +0.0000 cpu 0.006 
+104 105 PWM Piano peak 0.116 rms 0.0181 dc +0.0001 cpu 0.007 
+105 106 Vocal Piano peak 0.056 rms 0.0040 dc -0.0000 cpu 0.007 
+106 107 EP   peak 0.129 rms 0.0147 dc -0.0000 cpu 0.004 
+107 108 Pianorganis peak 0.156 rms 0.0188 dc +0.0000 cpu 0.003 
+108 109 Plain Piano peak 0.265 rms 0.0562 dc -0.0000 cpu 0.006 
+109 110 Pianet peak 0.305 rms 0.0700 dc +0.0003 cpu 0.006 
+110 111 Poly Glide peak 0.221 rms 0.0486 dc +0.0001 cpu 0.007 
+111 112 Soft Poly peak 0.247 rms 0.0591 dc -0.0001 cpu 0.007 
+112 113 Kometenmelo peak 0.169 rms 0.0374 dc +0.0000 cpu 0.007 
+113 114 5th Sweep peak 0.257 rms 0.0407 dc +0.0001 cpu 0.002 
+114 115 Slow Atmo B peak 0.255 rms 0.0439 dc +0.0001 cpu 0.006 
+115 116 Forever 80s peak 0.253 rms 0.0419 dc -0.0001 cpu 0.007 
+116 117 Fly By peak 0.160 rms 0.0285 dc +0.0000 cpu 0.007 
+117 118 Falling Asl peak 0.257 rms 0.0371 dc +0.0000 cpu 0.007 
+118 119 Night Drive peak 0.301 rms 0.0958 dc -0.0001 cpu 0.007 
+119 120 Blade Runne peak 0.210 rms 0.0283 dc -0.0000 cpu 0.006 
+120 121 Center Stag peak 0.199 rms 0.0228 dc +0.0000 cpu 0.004 
+121 122 Common Sync peak 0.216 rms 0.0370 dc +0.0000 cpu 0.002 
+122 123 DCO  peak 0.134 rms 0.0234 dc -0.0000 cpu 0.004 
+123 124 I told you peak 0.124 rms 0.0142 dc +0.0000 cpu 0.004 
+124 125 Fuzz Guitar peak 0.121 rms 0.0263 dc -0.0000 cpu 0.006 
+125 126 Cut  peak 0.075 rms 0.0160 dc -0.0000 cpu 0.006 
+126 127 PW Pad peak 0.096 rms 0.0211 dc -0.0000 cpu 0.007 
+127 128 Moogys peak 0.053 rms 0.0135 dc +0.0000 cpu 0.004 
+128 129 Fusion peak 0.091 rms 0.0151 dc +0.0000 cpu 0.004 
+129 130 Melody peak 0.242 rms 0.0689 dc -0.0000 cpu 0.007 
+130 131 Bread /& Bu peak 0.212 rms 0.0462 dc -0.0000 cpu 0.006 
+131 132 Bread /& Ma peak 0.137 rms 0.0225 dc +0.0000 cpu 0.007 
+132 133 Trombone Se peak 0.173 rms 0.0240 dc +0.0000 cpu 0.007 
+133 134 Attack Bras peak 0.255 rms 0.0517 dc +0.0000 cpu 0.006 
+134 135 Bright Bras peak 0.234 rms 0.0497 dc +0.0001 cpu 0.006 
+135 136 Mild Brass peak 0.179 rms 0.0307 dc -0.0000 cpu 0.007 
+136 137 Elegiac Bra peak 0.241 rms 0.0452 dc +0.0017 cpu 0.007 
+137 138 Orchestral  peak 0.267 rms 0.0355 dc -0.0012 cpu 0.005 
+138 139 Orchestral  peak 0.256 rms 0.0640 dc +0.0002 cpu 0.006 
+139 140 Orchestral  peak 0.263 rms 0.0454 dc +0.0000 cpu 0.004 
+140 141 Attack Bass peak 0.089 rms 0.0162 dc +0.0000 cpu 0.005 
+141 142 Bassically peak 0.221 rms 0.0308 dc +0.0000 cpu 0.006 
+142 143 Double Bass peak 0.147 rms 0.0247 dc +0.0000 cpu 0.006 
+143 144 Funkey peak 0.118 rms 0.0290 dc +0.0000 cpu 0.005 
+144 145 Yaz Bass peak 0.276 rms 0.0425 dc -0.0000 cpu 0.002 
+145 146 Increase Ba peak 0.128 rms 0.0207 dc +0.0000 cpu 0.003 
+146 147 Slap Bass peak 0.165 rms 0.0319 dc -0.0000 cpu 0.007 
+147 148 Unison Full peak 0.129 rms 0.0346 dc +0.0000 cpu 0.006 
+148 149 Deep Square peak 0.175 rms 0.0284 dc -0.0000 cpu 0.004 
+149 150 Performance peak 0.268 rms 0.0617 dc +0.0001 cpu 0.002 
+150 151 Space Oboe peak 0.134 rms 0.0099 dc +0.0000 cpu 0.002 
+151 152 Wind Organ peak 0.261 rms 0.0694 dc -0.0000 cpu 0.002 
+152 153 Totally Tru peak 0.281 rms 0.0597 dc -0.0002 cpu 0.002 
+153 154 My Spinett peak 0.151 rms 0.0181 dc +0.0000 cpu 0.003 
+154 155 Space Oboe  peak 0.068 rms 0.0100 dc +0.0000 cpu 0.004 
+155 156 Wood Block peak 0.226 rms 0.0161 dc -0.0000 cpu 0.003 
+156 157 Club Organ peak 0.207 rms 0.0344 dc +0.0000 cpu 0.002 
+157 158 Chiffy Orga peak 0.258 rms 0.0500 dc +0.0000 cpu 0.002 
+158 159 Harmonica peak 0.252 rms 0.0443 dc +0.0000 cpu 0.002 
+159 160 Reso Flute peak 0.288 rms 0.0865 dc -0.0000 cpu 0.004 
+160 161 Cave peak 0.281 rms 0.1095 dc -0.0001 cpu 0.006 
+161 162 Pulsar peak 0.292 rms 0.0681 dc -0.0001 cpu 0.007 
+162 163 Vox Humana peak 0.229 rms 0.0421 dc +0.0001 cpu 0.006 
+163 164 Moskito peak 0.019 rms 0.0031 dc +0.0000 cpu 0.007 
+164 165 Voice peak 0.184 rms 0.0317 dc +0.0000 cpu 0.004 
+165 166 AW Laser Ha peak 0.287 rms 0.0918 dc -0.0000 cpu 0.006 
+166 167 Beyond Jupi peak 0.294 rms 0.0711 dc -0.0001 cpu 0.005 
+167 168 Comet Stopo peak 0.270 rms 0.0756 dc +0.0005 cpu 0.006 
+168 169 Bubble Bobb peak 0.243 rms 0.0516 dc -0.0001 cpu 0.007 
+169 170 Simmons Tom peak 0.268 rms 0.0449 dc +0.0001 cpu 0.006 
+170 171 Fifths peak 0.271 rms 0.0648 dc +0.0002 cpu 0.007 
+171 172 Wake Up! peak 0.149 rms 0.0221 dc -0.0000 cpu 0.003 
+172 173 One Two Thr peak 0.240 rms 0.0503 dc +0.0000 cpu 0.006 
+173 174 Pulsify peak 0.256 rms 0.0490 dc -0.0001 cpu 0.007 
+174 175 Phase peak 0.152 rms 0.0363 dc +0.0001 cpu 0.007 
+175 176 Noisy Stuff peak 0.271 rms 0.0614 dc +0.0001 cpu 0.004 
+176 177 Harmonic Re peak 0.254 rms 0.0504 dc +0.0000 cpu 0.006 
+177 178 Noisy Stab peak 0.169 rms 0.0254 dc -0.0002 cpu 0.007 
+178 179 Soft Stab peak 0.256 rms 0.0467 dc +0.0001 cpu 0.004 
+179 180 Crispy peak 0.078 rms 0.0132 dc +0.0000 cpu 0.006 
+180 181 Crystal peak 0.172 rms 0.0316 dc +0.0000 cpu 0.007 
+181 182 Snow Bell peak 0.097 rms 0.0117 dc -0.0001 cpu 0.007 
+182 183 Glockenspie peak 0.088 rms 0.0106 dc -0.0000 cpu 0.006 
+183 184 Dew  peak 0.149 rms 0.0347 dc +0.0000 cpu 0.007 
+184 185 Gong peak 0.259 rms 0.0544 dc +0.0000 cpu 0.007 
+185 186 Chime peak 0.287 rms 0.0508 dc +0.0000 cpu 0.007 
+186 187 Tinkerbell peak 0.193 rms 0.0264 dc -0.0000 cpu 0.007 
+187 188 High Bells peak 0.090 rms 0.0127 dc +0.0000 cpu 0.007 
+188 189 Flute Bells peak 0.283 rms 0.0778 dc -0.0001 cpu 0.007 
+189 190 Steel Bars peak 0.215 rms 0.0297 dc -0.0000 cpu 0.007 
+190 191 Cold Wind peak 0.152 rms 0.0307 dc +0.0000 cpu 0.007 
+191 192 Psycho Choi peak 0.277 rms 0.1069 dc -0.0001 cpu 0.007 
+192 193 Strings I peak 0.266 rms 0.0642 dc -0.0001 cpu 0.005 
+193 194 Foggy Strin peak 0.237 rms 0.0498 dc +0.0000 cpu 0.006 
+194 195 Retro Pad peak 0.259 rms 0.0479 dc -0.0001 cpu 0.006 
+195 196 Pulse Mod I peak 0.134 rms 0.0233 dc +0.0000 cpu 0.007 
+196 197 Wobbly Chur peak 0.277 rms 0.0631 dc -0.0003 cpu 0.007 
+197 198 Room String peak 0.267 rms 0.0560 dc +0.0001 cpu 0.005 
+198 199 SH Pad peak 0.267 rms 0.0560 dc -0.0001 cpu 0.006 
+199 200 Shimmer peak 0.267 rms 0.0641 dc +0.0000 cpu 0.007 

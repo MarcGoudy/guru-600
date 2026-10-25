@@ -1,0 +1,100 @@
+ 0 FACT 00  peak 0.165 rms 0.0281 dc -0.0000 cpu 0.003 
+ 1 FACT 01  peak 0.236 rms 0.0491 dc -0.0000 cpu 0.002 
+ 2 FACT 02  peak 0.267 rms 0.0488 dc -0.0000 cpu 0.004 
+ 3 FACT 03  peak 0.215 rms 0.0499 dc +0.0000 cpu 0.005 
+ 4 FACT 04  peak 0.236 rms 0.0516 dc -0.0000 cpu 0.003 
+ 5 FACT 05  peak 0.149 rms 0.0254 dc -0.0000 cpu 0.003 
+ 6 FACT 06  peak 0.140 rms 0.0261 dc -0.0000 cpu 0.002 
+ 7 FACT 07  peak 0.103 rms 0.0224 dc -0.0000 cpu 0.004 
+ 8 FACT 08  peak 0.280 rms 0.0582 dc -0.0001 cpu 0.003 
+ 9 FACT 09  peak 0.295 rms 0.1101 dc -0.0000 cpu 0.005 
+10 FACT 10  peak 0.216 rms 0.0393 dc -0.0000 cpu 0.002 
+11 FACT 11  peak 0.216 rms 0.0310 dc -0.0000 cpu 0.002 
+12 FACT 12  peak 0.272 rms 0.0490 dc -0.0001 cpu 0.003 
+13 FACT 13  peak 0.128 rms 0.0080 dc -0.0000 cpu 0.002 
+14 FACT 14  peak 0.238 rms 0.0193 dc -0.0000 cpu 0.002 
+15 FACT 15  peak 0.075 rms 0.0118 dc -0.0000 cpu 0.002 
+16 FACT 16  peak 0.172 rms 0.0062 dc +0.0000 cpu 0.002 
+17 FACT 17  peak 0.246 rms 0.0445 dc -0.0000 cpu 0.002 
+18 FACT 18  peak 0.254 rms 0.0452 dc +0.0000 cpu 0.002 
+19 FACT 19  peak 0.288 rms 0.0646 dc -0.0000 cpu 0.002 
+20 FACT 20  peak 0.072 rms 0.0161 dc +0.0000 cpu 0.002 
+21 FACT 21  peak 0.255 rms 0.0513 dc -0.0001 cpu 0.003 
+22 FACT 22  peak 0.207 rms 0.0244 dc +0.0000 cpu 0.003 
+23 FACT 23  peak 0.215 rms 0.0210 dc -0.0000 cpu 0.003 
+24 FACT 24  peak 0.130 rms 0.0061 dc -0.0000 cpu 0.002 
+25 FACT 25  peak 0.202 rms 0.0113 dc +0.0000 cpu 0.002 
+26 FACT 26  peak 0.147 rms 0.0195 dc +0.0000 cpu 0.002 
+27 FACT 27  peak 0.150 rms 0.0345 dc +0.0000 cpu 0.004 
+28 FACT 28  peak 0.180 rms 0.0235 dc +0.0000 cpu 0.003 
+29 FACT 29  peak 0.283 rms 0.0763 dc +0.0001 cpu 0.006 
+30 FACT 30  peak 0.126 rms 0.0202 dc -0.0001 cpu 0.002 
+31 FACT 31  peak 0.178 rms 0.0244 dc -0.0000 cpu 0.002 
+32 FACT 32  peak 0.222 rms 0.0384 dc +0.0000 cpu 0.003 
+33 FACT 33  peak 0.273 rms 0.0483 dc +0.0000 cpu 0.002 
+34 FACT 34  peak 0.070 rms 0.0067 dc -0.0000 cpu 0.003 
+35 FACT 35  peak 0.298 rms 0.0193 dc -0.0000 cpu 0.002 
+36 FACT 36  peak 0.272 rms 0.0529 dc -0.0001 cpu 0.003 
+37 FACT 37  peak 0.102 rms 0.0219 dc -0.0000 cpu 0.005 
+38 FACT 38  peak 0.213 rms 0.0428 dc +0.0000 cpu 0.004 
+39 FACT 39  peak 0.250 rms 0.0336 dc -0.0000 cpu 0.005 
+40 FACT 40  peak 0.275 rms 0.0538 dc +0.0000 cpu 0.002 
+41 FACT 41  peak 0.240 rms 0.0317 dc -0.0000 cpu 0.002 
+42 FACT 42  peak 0.250 rms 0.0376 dc -0.0000 cpu 0.002 
+43 FACT 43  peak 0.068 rms 0.0122 dc +0.0000 cpu 0.002 
+44 FACT 44  peak 0.172 rms 0.0154 dc -0.0000 cpu 0.002 
+45 FACT 45  peak 0.124 rms 0.0249 dc -0.0000 cpu 0.002 
+46 FACT 46  peak 0.209 rms 0.0172 dc -0.0000 cpu 0.003 
+47 FACT 47  peak 0.243 rms 0.0448 dc +0.0001 cpu 0.004 
+48 FACT 48  peak 0.244 rms 0.0548 dc -0.0001 cpu 0.004 
+49 FACT 49  peak 0.145 rms 0.0296 dc +0.0000 cpu 0.003 
+50 FACT 50  peak 0.285 rms 0.0336 dc -0.0002 cpu 0.002 
+51 FACT 51  peak 0.199 rms 0.0340 dc -0.0000 cpu 0.003 
+52 FACT 52  peak 0.268 rms 0.0399 dc +0.0000 cpu 0.003 
+53 FACT 53  peak 0.142 rms 0.0247 dc +0.0000 cpu 0.005 
+54 FACT 54  peak 0.147 rms 0.0053 dc -0.0000 cpu 0.002 
+55 FACT 55  peak 0.171 rms 0.0275 dc -0.0000 cpu 0.005 
+56 FACT 56  peak 0.222 rms 0.0379 dc -0.0000 cpu 0.002 
+57 FACT 57  peak 0.116 rms 0.0185 dc +0.0000 cpu 0.002 
+58 FACT 58  peak 0.134 rms 0.0040 dc -0.0000 cpu 0.003 
+59 FACT 59  peak 0.238 rms 0.0207 dc -0.0000 cpu 0.006 
+60 FACT 60  peak 0.292 rms 0.0256 dc -0.0001 cpu 0.002 
+61 FACT 61  peak 0.213 rms 0.0263 dc +0.0000 cpu 0.002 
+62 FACT 62  peak 0.155 rms 0.0178 dc -0.0000 cpu 0.004 
+63 FACT 63  peak 0.281 rms 0.0252 dc -0.0000 cpu 0.001 
+64 FACT 64  peak 0.222 rms 0.0073 dc +0.0000 cpu 0.001 
+65 FACT 65  peak 0.090 rms 0.0128 dc -0.0000 cpu 0.002 
+66 FACT 66  peak 0.294 rms 0.0592 dc +0.0000 cpu 0.005 
+67 FACT 67  peak 0.101 rms 0.0204 dc +0.0000 cpu 0.006 
+68 FACT 68  peak 0.168 rms 0.0116 dc -0.0000 cpu 0.002 
+69 FACT 69  peak 0.107 rms 0.0143 dc -0.0000 cpu 0.003 
+70 FACT 70  peak 0.283 rms 0.0697 dc +0.0002 cpu 0.002 
+71 FACT 71  peak 0.282 rms 0.0459 dc -0.0001 cpu 0.003 
+72 FACT 72  peak 0.245 rms 0.0369 dc -0.0000 cpu 0.002 
+73 FACT 73  peak 0.281 rms 0.0539 dc -0.0000 cpu 0.002 
+74 FACT 74  peak 0.201 rms 0.0111 dc -0.0000 cpu 0.002 
+75 FACT 75  peak 0.266 rms 0.0393 dc +0.0000 cpu 0.002 
+76 FACT 76  peak 0.256 rms 0.0448 dc -0.0000 cpu 0.002 
+77 FACT 77  peak 0.196 rms 0.0379 dc +0.0000 cpu 0.006 
+78 FACT 78  peak 0.223 rms 0.0368 dc +0.0000 cpu 0.002 
+79 FACT 79  peak 0.063 rms 0.0048 dc -0.0000 cpu 0.004 
+80 FACT 80  peak 0.266 rms 0.0556 dc -0.0001 cpu 0.002 
+81 FACT 81  peak 0.193 rms 0.0302 dc -0.0000 cpu 0.003 
+82 FACT 82  peak 0.171 rms 0.0268 dc +0.0000 cpu 0.002 
+83 FACT 83  peak 0.253 rms 0.0212 dc -0.0000 cpu 0.005 
+84 FACT 84  peak 0.154 rms 0.0131 dc +0.0000 cpu 0.003 
+85 FACT 85  peak 0.287 rms 0.0659 dc +0.0001 cpu 0.002 
+86 FACT 86  peak 0.134 rms 0.0218 dc +0.0000 cpu 0.005 
+87 FACT 87  peak 0.058 rms 0.0181 dc -0.0000 cpu 0.006 
+88 FACT 88  peak 0.292 rms 0.0577 dc -0.0000 cpu 0.003 
+89 FACT 89  peak 0.294 rms 0.0731 dc -0.0001 cpu 0.007 
+90 FACT 90  peak 0.204 rms 0.0347 dc -0.0000 cpu 0.002 
+91 FACT 91  peak 0.101 rms 0.0172 dc +0.0000 cpu 0.002 
+92 FACT 92  peak 0.124 rms 0.0031 dc +0.0000 cpu 0.001 
+93 FACT 93  peak 0.178 rms 0.0098 dc -0.0000 cpu 0.002 
+94 FACT 94  peak 0.277 rms 0.0277 dc -0.0001 cpu 0.004 
+95 FACT 95  peak 0.207 rms 0.0185 dc -0.0000 cpu 0.002 
+96 FACT 96  peak 0.264 rms 0.0618 dc +0.0000 cpu 0.002 
+97 FACT 97  peak 0.144 rms 0.0298 dc -0.0000 cpu 0.004 
+98 FACT 98  peak 0.256 rms 0.0271 dc -0.0000 cpu 0.002 
+99 FACT 99  peak 0.068 rms 0.0158 dc -0.0000 cpu 0.006 

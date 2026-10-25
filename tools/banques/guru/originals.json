@@ -1,0 +1,1502 @@
+[
+ {
+  "name": "GLASS BELLS",
+  "family": "Bells",
+  "about": [
+   "Osc B modulates osc A at a non-harmonic ratio: clear, glassy bells. Play high.",
+   "L'oscillateur B module l'oscillateur A à un rapport non harmonique : des cloches claires, de verre. Jouez dans l'aigu."
+  ],
+  "e": [
+   2,
+   24,
+   4,
+   43,
+   115,
+   0,
+   13,
+   0
+  ],
+  "env": [
+   0,
+   108,
+   0,
+   108
+  ],
+  "x": {
+   "fenv": [
+    0,
+    79,
+    0,
+    79
+   ],
+   "pw": [
+    64,
+    64
+   ],
+   "fine": 40,
+   "sync": 0,
+   "pm": [
+    0,
+    70,
+    1
+   ],
+   "kbd": 2,
+   "lfo": [
+    87,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 0,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 12,
+   "wheel": 64
+  },
+  "mono": false
+ },
+ {
+  "name": "GONG",
+  "family": "Bells",
+  "about": [
+   "A metallic hit that rings for seconds. Play low and let it die away.",
+   "Un coup métallique qui résonne plusieurs secondes. Jouez dans le grave et laissez-le s'éteindre."
+  ],
+  "e": [
+   1,
+   24,
+   4,
+   33,
+   99,
+   25,
+   25,
+   51
+  ],
+  "env": [
+   0,
+   120,
+   0,
+   120
+  ],
+  "x": {
+   "fenv": [
+    0,
+    114,
+    0,
+    114
+   ],
+   "pw": [
+    64,
+    64
+   ],
+   "fine": 30,
+   "sync": 0,
+   "pm": [
+    38,
+    110,
+    1
+   ],
+   "kbd": 2,
+   "lfo": [
+    87,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 0,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 12,
+   "wheel": 64
+  },
+  "mono": false
+ },
+ {
+  "name": "SYNC SCREAM",
+  "family": "Lead",
+  "about": [
+   "Osc A synced to B, its pitch swept by the filter envelope through POLY-MOD: the classic sync scream.",
+   "L'oscillateur A synchronisé sur B, sa hauteur balayée par l'enveloppe du filtre via la POLY-MOD : le cri de synchro classique."
+  ],
+  "e": [
+   1,
+   36,
+   1,
+   24,
+   117,
+   0,
+   0,
+   38
+  ],
+  "env": [
+   22,
+   86,
+   108,
+   79
+  ],
+  "x": {
+   "fenv": [
+    22,
+    94,
+    25,
+    83
+   ],
+   "pw": [
+    64,
+    64
+   ],
+   "fine": 0,
+   "sync": 1,
+   "pm": [
+    102,
+    0,
+    1
+   ],
+   "kbd": 2,
+   "lfo": [
+    87,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 56,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 12,
+   "wheel": 64
+  },
+  "mono": true
+ },
+ {
+  "name": "WATER DROP",
+  "family": "Percussion",
+  "about": [
+   "The self-oscillating filter dropping in pitch: a drop of water. Try different notes.",
+   "Le filtre en auto-oscillation qui chute en hauteur : une goutte d'eau. Essayez plusieurs notes."
+  ],
+  "e": [
+   1,
+   24,
+   1,
+   24,
+   47,
+   117,
+   0,
+   89
+  ],
+  "env": [
+   0,
+   81,
+   0,
+   81
+  ],
+  "x": {
+   "fenv": [
+    0,
+    66,
+    0,
+    66
+   ],
+   "pw": [
+    64,
+    64
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 2,
+   "lfo": [
+    87,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 0,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 12,
+   "wheel": 64
+  },
+  "mono": false
+ },
+ {
+  "name": "SYNTH TOM",
+  "family": "Percussion",
+  "about": [
+   "An 80s electronic tom, from the filter alone. Play low to mid.",
+   "Un tom électronique des années 80, fait avec le seul filtre. Jouez du grave au médium."
+  ],
+  "e": [
+   2,
+   24,
+   1,
+   24,
+   28,
+   121,
+   0,
+   57
+  ],
+  "env": [
+   0,
+   86,
+   0,
+   83
+  ],
+  "x": {
+   "fenv": [
+    0,
+    76,
+    0,
+    76
+   ],
+   "pw": [
+    64,
+    64
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 2,
+   "lfo": [
+    87,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 0,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 12,
+   "wheel": 64
+  },
+  "mono": false
+ },
+ {
+  "name": "METAL PLATE",
+  "family": "FX",
+  "about": [
+   "A struck metal sheet: osc B modulates both osc A and the filter.",
+   "Une plaque de métal frappée : l'oscillateur B module à la fois l'oscillateur A et le filtre."
+  ],
+  "e": [
+   4,
+   24,
+   4,
+   30,
+   96,
+   64,
+   51,
+   25
+  ],
+  "env": [
+   0,
+   94,
+   0,
+   94
+  ],
+  "x": {
+   "fenv": [
+    0,
+    79,
+    0,
+    79
+   ],
+   "pw": [
+    38,
+    89
+   ],
+   "fine": 30,
+   "sync": 0,
+   "pm": [
+    0,
+    76,
+    3
+   ],
+   "kbd": 2,
+   "lfo": [
+    87,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 0,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 12,
+   "wheel": 64
+  },
+  "mono": false
+ },
+ {
+  "name": "LASER ZAP",
+  "family": "FX",
+  "about": [
+   "A fast pitch fall from the filter envelope through POLY-MOD: laser shots.",
+   "Une chute de hauteur très rapide, par l'enveloppe du filtre via la POLY-MOD : des tirs de laser."
+  ],
+  "e": [
+   1,
+   24,
+   1,
+   24,
+   113,
+   0,
+   0,
+   13
+  ],
+  "env": [
+   0,
+   76,
+   0,
+   73
+  ],
+  "x": {
+   "fenv": [
+    0,
+    73,
+    0,
+    73
+   ],
+   "pw": [
+    64,
+    64
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    127,
+    0,
+    1
+   ],
+   "kbd": 2,
+   "lfo": [
+    87,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 0,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 12,
+   "wheel": 64
+  },
+  "mono": false
+ },
+ {
+  "name": "SONAR PING",
+  "family": "FX",
+  "about": [
+   "A pure ping that fades slowly, with a slight drift: a submarine sonar.",
+   "Un « ping » pur qui s'éteint lentement, avec une légère dérive : le sonar d'un sous-marin."
+  ],
+  "e": [
+   1,
+   24,
+   1,
+   24,
+   79,
+   122,
+   0,
+   19
+  ],
+  "env": [
+   0,
+   110,
+   0,
+   110
+  ],
+  "x": {
+   "fenv": [
+    0,
+    56,
+    0,
+    56
+   ],
+   "pw": [
+    64,
+    64
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 2,
+   "lfo": [
+    40,
+    0
+   ],
+   "lfod": [
+    4,
+    0,
+    0
+   ],
+   "glide": 0,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 12,
+   "wheel": 0
+  },
+  "mono": false
+ },
+ {
+  "name": "S&H BLEEPS",
+  "family": "Sequence",
+  "about": [
+   "The LFO in Sample & Hold sets the filter at random: computer bleeps. Hold a note or a chord.",
+   "Le LFO en échantillonneur-bloqueur règle le filtre au hasard : des bips d'ordinateur. Tenez une note ou un accord."
+  ],
+  "e": [
+   4,
+   24,
+   1,
+   36,
+   66,
+   102,
+   51,
+   0
+  ],
+  "env": [
+   0,
+   79,
+   114,
+   73
+  ],
+  "x": {
+   "fenv": [
+    0,
+    79,
+    0,
+    79
+   ],
+   "pw": [
+    64,
+    64
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 2,
+   "lfo": [
+    94,
+    4
+   ],
+   "lfod": [
+    0,
+    0,
+    63
+   ],
+   "glide": 0,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 12,
+   "wheel": 0
+  },
+  "mono": false
+ },
+ {
+  "name": "DRONE FIFTHS",
+  "family": "Pad",
+  "about": [
+   "A slow drone in fifths that opens over several seconds. Hold one note.",
+   "Un bourdon lent en quintes qui s'ouvre en plusieurs secondes. Tenez une seule note."
+  ],
+  "e": [
+   1,
+   24,
+   1,
+   31,
+   119,
+   23,
+   64,
+   19
+  ],
+  "env": [
+   110,
+   110,
+   127,
+   117
+  ],
+  "x": {
+   "fenv": [
+    117,
+    117,
+    76,
+    117
+   ],
+   "pw": [
+    64,
+    64
+   ],
+   "fine": 10,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 2,
+   "lfo": [
+    26,
+    1
+   ],
+   "lfod": [
+    0,
+    30,
+    0
+   ],
+   "glide": 0,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 12,
+   "wheel": 0
+  },
+  "mono": false
+ },
+ {
+  "name": "SLOW SWEEP",
+  "family": "Pad",
+  "about": [
+   "A dark pad whose filter rises slowly while the pulse widths shimmer.",
+   "Une nappe sombre dont le filtre s'ouvre lentement pendant que les largeurs d'impulsion scintillent."
+  ],
+  "e": [
+   4,
+   24,
+   4,
+   36,
+   43,
+   57,
+   64,
+   89
+  ],
+  "env": [
+   101,
+   105,
+   127,
+   114
+  ],
+  "x": {
+   "fenv": [
+    114,
+    120,
+    38,
+    117
+   ],
+   "pw": [
+    32,
+    51
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 2,
+   "lfo": [
+    34,
+    1
+   ],
+   "lfod": [
+    0,
+    40,
+    0
+   ],
+   "glide": 0,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 12,
+   "wheel": 0
+  },
+  "mono": false
+ },
+ {
+  "name": "TRILL LEAD",
+  "family": "Lead",
+  "about": [
+   "A square LFO on the pitch makes a fast trill, as the Prophet-600 manual suggests.",
+   "Un LFO carré sur la hauteur produit un trille rapide, comme le suggère le manuel du Prophet-600."
+  ],
+  "e": [
+   1,
+   24,
+   4,
+   36,
+   116,
+   0,
+   38,
+   0
+  ],
+  "env": [
+   22,
+   79,
+   114,
+   73
+  ],
+  "x": {
+   "fenv": [
+    0,
+    79,
+    0,
+    79
+   ],
+   "pw": [
+    64,
+    64
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 2,
+   "lfo": [
+    94,
+    3
+   ],
+   "lfod": [
+    8,
+    0,
+    0
+   ],
+   "glide": 0,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 12,
+   "wheel": 0
+  },
+  "mono": true
+ },
+ {
+  "name": "WOBBLE BASS",
+  "family": "Bass",
+  "about": [
+   "A filter wobbled by the LFO at three beats a second. Turn LFO FREQUENCY to follow the tempo.",
+   "Un filtre secoué par le LFO, trois fois par seconde. Réglez LFO FREQUENCY sur le tempo."
+  ],
+  "e": [
+   1,
+   12,
+   4,
+   12,
+   52,
+   76,
+   64,
+   0
+  ],
+  "env": [
+   0,
+   79,
+   127,
+   69
+  ],
+  "x": {
+   "fenv": [
+    0,
+    79,
+    0,
+    79
+   ],
+   "pw": [
+    64,
+    64
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 2,
+   "lfo": [
+    78,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    50
+   ],
+   "glide": 0,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 12,
+   "wheel": 0
+  },
+  "mono": true
+ },
+ {
+  "name": "HARP PLUCK",
+  "family": "Pluck",
+  "about": [
+   "A bright pluck that rounds off as it fades, close to a harp. Velocity opens it.",
+   "Un son pincé brillant qui s'arrondit en s'éteignant, proche d'une harpe. La vélocité l'ouvre."
+  ],
+  "e": [
+   2,
+   24,
+   1,
+   36,
+   124,
+   19,
+   44,
+   70
+  ],
+  "env": [
+   0,
+   98,
+   0,
+   94
+  ],
+  "x": {
+   "fenv": [
+    0,
+    81,
+    0,
+    83
+   ],
+   "pw": [
+    64,
+    64
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 2,
+   "lfo": [
+    87,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 0,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 30,
+   "detune": 12,
+   "wheel": 64
+  },
+  "mono": false
+ },
+ {
+  "name": "ROBOT VOICE",
+  "family": "FX",
+  "about": [
+   "Osc B moves the resonant filter at audio rate: a talking robot. Play slow melodies.",
+   "L'oscillateur B fait bouger le filtre résonant à vitesse audio : un robot qui parle. Jouez des mélodies lentes."
+  ],
+  "e": [
+   1,
+   24,
+   2,
+   19,
+   69,
+   108,
+   13,
+   0
+  ],
+  "env": [
+   32,
+   83,
+   114,
+   73
+  ],
+  "x": {
+   "fenv": [
+    0,
+    79,
+    0,
+    79
+   ],
+   "pw": [
+    64,
+    64
+   ],
+   "fine": 20,
+   "sync": 0,
+   "pm": [
+    0,
+    70,
+    2
+   ],
+   "kbd": 2,
+   "lfo": [
+    87,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 0,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 12,
+   "wheel": 64
+  },
+  "mono": false
+ },
+ {
+  "name": "SIREN",
+  "family": "FX",
+  "about": [
+   "A big pitch swing from the LFO, with glide: a siren. Hold one note.",
+   "Un grand balancement de hauteur par le LFO, avec glide : une sirène. Tenez une note."
+  ],
+  "e": [
+   1,
+   24,
+   1,
+   24,
+   119,
+   0,
+   64,
+   0
+  ],
+  "env": [
+   32,
+   79,
+   127,
+   86
+  ],
+  "x": {
+   "fenv": [
+    0,
+    79,
+    0,
+    79
+   ],
+   "pw": [
+    64,
+    64
+   ],
+   "fine": 15,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 2,
+   "lfo": [
+    44,
+    1
+   ],
+   "lfod": [
+    60,
+    0,
+    0
+   ],
+   "glide": 92,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 12,
+   "wheel": 0
+  },
+  "mono": true
+ },
+ {
+  "name": "ARP PULSE",
+  "family": "Sequence",
+  "about": [
+   "A short, narrow pulse made for the arpeggiator and the sequencer.",
+   "Une impulsion courte et étroite, faite pour l'arpégiateur et le séquenceur."
+  ],
+  "e": [
+   4,
+   24,
+   4,
+   36,
+   75,
+   51,
+   38,
+   57
+  ],
+  "env": [
+   0,
+   74,
+   0,
+   69
+  ],
+  "x": {
+   "fenv": [
+    0,
+    69,
+    0,
+    69
+   ],
+   "pw": [
+    23,
+    38
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 2,
+   "lfo": [
+    87,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 0,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 12,
+   "wheel": 64
+  },
+  "mono": false
+ },
+ {
+  "name": "CLOCK TICK",
+  "family": "Percussion",
+  "about": [
+   "A tiny high tick, for rhythms in the sequencer.",
+   "Un petit « tic » aigu, pour les rythmes du séquenceur."
+  ],
+  "e": [
+   1,
+   24,
+   1,
+   24,
+   103,
+   119,
+   0,
+   25
+  ],
+  "env": [
+   0,
+   52,
+   0,
+   51
+  ],
+  "x": {
+   "fenv": [
+    0,
+    47,
+    0,
+    47
+   ],
+   "pw": [
+    64,
+    64
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 2,
+   "lfo": [
+    87,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 0,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 12,
+   "wheel": 64
+  },
+  "mono": false
+ },
+ {
+  "name": "BOWED METAL",
+  "family": "Pad",
+  "about": [
+   "A bowed metal bar: inharmonic, slow to start, with a light vibrato.",
+   "Une barre de métal frottée à l'archet : inharmonique, lente à démarrer, avec un léger vibrato."
+  ],
+  "e": [
+   2,
+   24,
+   4,
+   29,
+   93,
+   32,
+   25,
+   0
+  ],
+  "env": [
+   92,
+   105,
+   108,
+   108
+  ],
+  "x": {
+   "fenv": [
+    0,
+    79,
+    0,
+    79
+   ],
+   "pw": [
+    64,
+    64
+   ],
+   "fine": 45,
+   "sync": 0,
+   "pm": [
+    0,
+    57,
+    1
+   ],
+   "kbd": 2,
+   "lfo": [
+    85,
+    0
+   ],
+   "lfod": [
+    3,
+    0,
+    0
+   ],
+   "glide": 0,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 12,
+   "wheel": 0
+  },
+  "mono": false
+ },
+ {
+  "name": "CHIME PAD",
+  "family": "Pad",
+  "about": [
+   "Soft bells that swell in and ring on: a bell pad.",
+   "Des cloches douces qui gonflent et résonnent longtemps : une nappe de cloches."
+  ],
+  "e": [
+   2,
+   24,
+   2,
+   48,
+   107,
+   0,
+   51,
+   0
+  ],
+  "env": [
+   88,
+   110,
+   76,
+   117
+  ],
+  "x": {
+   "fenv": [
+    0,
+    79,
+    0,
+    79
+   ],
+   "pw": [
+    64,
+    64
+   ],
+   "fine": 25,
+   "sync": 0,
+   "pm": [
+    0,
+    44,
+    1
+   ],
+   "kbd": 2,
+   "lfo": [
+    87,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 0,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 12,
+   "wheel": 64
+  },
+  "mono": false
+ },
+ {
+  "name": "UNISON MONSTER",
+  "family": "Lead",
+  "about": [
+   "All six voices stacked and wide apart on one note: a huge bass-lead.",
+   "Les six voix empilées et très désaccordées sur une seule note : une basse-lead énorme."
+  ],
+  "e": [
+   1,
+   12,
+   1,
+   12,
+   123,
+   8,
+   64,
+   32
+  ],
+  "env": [
+   0,
+   83,
+   127,
+   79
+  ],
+  "x": {
+   "fenv": [
+    0,
+    86,
+    38,
+    79
+   ],
+   "pw": [
+    64,
+    64
+   ],
+   "fine": 15,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 2,
+   "lfo": [
+    87,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 51,
+   "unison": 1,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 110,
+   "wheel": 64
+  },
+  "mono": true
+ },
+ {
+  "name": "RAVE HOOVER",
+  "family": "Lead",
+  "about": [
+   "A narrow pulse with a fast pulse-width LFO, unison and a pitch dip: the 90s rave sound.",
+   "Une impulsion étroite avec un LFO rapide sur sa largeur, l'unisson et une petite plongée de hauteur : le son des raves des années 90."
+  ],
+  "e": [
+   4,
+   24,
+   1,
+   12,
+   123,
+   0,
+   64,
+   0
+  ],
+  "env": [
+   0,
+   83,
+   127,
+   83
+  ],
+  "x": {
+   "fenv": [
+    0,
+    88,
+    0,
+    88
+   ],
+   "pw": [
+    15,
+    64
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    32,
+    0,
+    1
+   ],
+   "kbd": 2,
+   "lfo": [
+    91,
+    1
+   ],
+   "lfod": [
+    0,
+    50,
+    0
+   ],
+   "glide": 66,
+   "unison": 1,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 90,
+   "wheel": 0
+  },
+  "mono": true
+ },
+ {
+  "name": "DIGITAL RAIN",
+  "family": "Sequence",
+  "about": [
+   "Sample & Hold on the pitch: random notes at every LFO step. Hold a key.",
+   "L'échantillonneur-bloqueur sur la hauteur : une note au hasard à chaque pas du LFO. Tenez une touche."
+  ],
+  "e": [
+   2,
+   24,
+   4,
+   36,
+   119,
+   23,
+   38,
+   0
+  ],
+  "env": [
+   0,
+   72,
+   0,
+   79
+  ],
+  "x": {
+   "fenv": [
+    0,
+    79,
+    0,
+    79
+   ],
+   "pw": [
+    64,
+    64
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 2,
+   "lfo": [
+    91,
+    4
+   ],
+   "lfod": [
+    30,
+    0,
+    0
+   ],
+   "glide": 0,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 12,
+   "wheel": 0
+  },
+  "mono": false
+ },
+ {
+  "name": "GATED PAD",
+  "family": "Pad",
+  "about": [
+   "A pad chopped by a square LFO on the volume: a rhythmic gate.",
+   "Une nappe hachée par un LFO carré sur le volume : un effet de porte rythmique."
+  ],
+  "e": [
+   1,
+   24,
+   1,
+   36,
+   79,
+   25,
+   57,
+   0
+  ],
+  "env": [
+   73,
+   105,
+   127,
+   101
+  ],
+  "x": {
+   "fenv": [
+    0,
+    79,
+    0,
+    79
+   ],
+   "pw": [
+    64,
+    64
+   ],
+   "fine": 8,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 2,
+   "lfo": [
+    96,
+    3
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 0,
+   "unison": 0,
+   "lfoamp": 63,
+   "vel": 0,
+   "detune": 12,
+   "wheel": 0
+  },
+  "mono": false
+ },
+ {
+  "name": "RING BASS",
+  "family": "Bass",
+  "about": [
+   "Osc B modulates osc A at a low ratio: a grainy, metallic bass.",
+   "L'oscillateur B module l'oscillateur A à un rapport grave : une basse granuleuse et métallique."
+  ],
+  "e": [
+   1,
+   12,
+   2,
+   19,
+   115,
+   14,
+   19,
+   38
+  ],
+  "env": [
+   0,
+   88,
+   89,
+   69
+  ],
+  "x": {
+   "fenv": [
+    0,
+    79,
+    13,
+    73
+   ],
+   "pw": [
+    64,
+    64
+   ],
+   "fine": 10,
+   "sync": 0,
+   "pm": [
+    0,
+    51,
+    1
+   ],
+   "kbd": 2,
+   "lfo": [
+    87,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 0,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 12,
+   "wheel": 64
+  },
+  "mono": true
+ }
+]

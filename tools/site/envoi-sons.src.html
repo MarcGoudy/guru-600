@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Guru 600 Sound Sender</title>
+<style>
+  :root { --bg: #0c0b0a; --panel: #1a1816; --line: #34302b; --cream: #eee8d8; --mid: #9a9486; --red: #ff5c48; --orange: #f49638; --ok: #8cd86c; }
+  body { margin: 0; background: var(--bg); color: var(--cream); font: 15px/1.5 -apple-system, "Helvetica Neue", Arial, sans-serif; }
+  main { max-width: 860px; margin: 0 auto; padding: 24px 16px 60px; }
+  h1 { font-weight: 800; letter-spacing: .04em; margin: 0 0 4px; }
+  h1 span { color: var(--red); }
+  .sub { color: var(--mid); margin: 0 0 20px; }
+  .lang { float: right; }
+  button, select, input { font: inherit; color: var(--cream); background: var(--panel); border: 2px solid var(--line); border-radius: 8px; padding: 6px 12px; }
+  button { cursor: pointer; font-weight: 700; }
+  button.main { border-color: var(--orange); color: var(--orange); }
+  button.danger { border-color: var(--red); color: var(--red); }
+  button:disabled { opacity: .4; cursor: default; }
+  .box { border: 2px solid var(--line); border-radius: 10px; padding: 14px 16px; margin: 0 0 16px; }
+  .box h2 { margin: 0 0 8px; font-size: 15px; letter-spacing: .06em; color: var(--orange); }
+  .row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+  table { width: 100%; border-collapse: collapse; }
+  td, th { padding: 6px 8px; border-bottom: 1px solid var(--line); text-align: left; }
+  th { color: var(--mid); font-weight: 600; }
+  td input { width: 70px; }
+  #status { min-height: 1.5em; color: var(--ok); }
+  #status.err { color: var(--red); }
+  .hint { color: var(--mid); font-size: 13px; }
+</style>
+</head>
+<body>
+<main>
+  <div class="lang"><button id="lang">Français</button></div>
+  <h1>GURU<span>~</span>600</h1>
+  <p class="sub" data-t="sub"></p>
+
+  <div class="box">
+    <h2 data-t="s1"></h2>
+    <div class="row">
+      <button class="main" id="connect" data-t="connect"></button>
+      <select id="port" disabled></select>
+    </div>
+    <p class="hint" data-t="h1"></p>
+  </div>
+
+  <div class="box">
+    <h2 data-t="s2"></h2>
+    <div class="row"><input type="file" id="file" accept=".syx"></div>
+    <p class="hint" data-t="h2"></p>
+  </div>
+
+  <div class="box">
+    <h2 data-t="s3"></h2>
+    <p class="hint" data-t="h3"></p>
+    <div class="row" style="margin-bottom:8px">
+      <span data-t="from"></span> <input type="number" id="start" min="1" max="255" value="201" style="width:80px">
+      <button class="main" id="sendall" disabled data-t="sendall"></button>
+    </div>
+    <table><thead><tr><th>#</th><th data-t="name"></th><th data-t="place"></th><th></th></tr></thead><tbody id="list"></tbody></table>
+  </div>
+
+  <div class="box">
+    <h2 data-t="s5"></h2>
+    <p class="hint" data-t="h5"></p>
+    <div class="row" style="margin-bottom:8px">
+      <span data-t="place"></span> <input type="number" id="getplace" min="1" max="255" value="1" style="width:80px">
+      <button class="main" id="get1" disabled data-t="get1"></button>
+    </div>
+    <div class="row">
+      <button class="main" id="getkept" disabled data-t="getkept"></button>
+      <button id="getall" disabled data-t="getall"></button>
+    </div>
+  </div>
+
+  <div class="box">
+    <h2 data-t="s4"></h2>
+    <p class="hint" data-t="h4"></p>
+    <button class="danger" id="reset" disabled data-t="reset"></button>
+  </div>
+  <p id="status"></p>
+</main>
+<script>
+const T = {
+  en: { sub: "Send Prophet-600 sounds (.syx) to your FM-1 running Guru 600. They stay in the FM-1, even after it is switched off.",
+        s1: "1. CONNECT THE FM-1", connect: "Connect", h1: "Plug the FM-1 into this computer with a USB data cable and switch it on. Use Chrome, Edge or another Chrome-based browser (Brave, Opera…), and allow MIDI (SysEx) access when the browser asks.",
+        s2: "2. OPEN A SOUND FILE", h2: "A Prophet-600 .syx file: an original Sequential program dump, or a GliGli firmware patch file. One file can hold one sound or a whole bank of 100.",
+        s3: "3. CHOOSE THE PLACES AND SEND", h3: "Each sound goes to the place you type (1 to 255, as numbered in PRESETS). Places 201 to 255 are free; places 1 to 200 hold the built-in sounds, which a sent sound replaces until RESET SOUNDS. Up to 55 sounds can be sent in all.",
+        from: "Send all, from place", sendall: "Send all", name: "Sound", place: "Place", send: "Send",
+        s4: "RESET", h4: "Forget every sent sound: the 200 built-in sounds come back and places 201 to 255 are emptied. (The same as MENU > SYSTEM > RESET SOUNDS on the FM-1.)",
+        reset: "Restore the original sounds", sure: "Forget every sent sound and restore the 200 original sounds?",
+        nomidi: "This browser has no Web MIDI. Use Chrome, Edge or another Chrome-based browser (Brave, Opera…).", denied: "MIDI (SysEx) access was not allowed. Allow it in the site settings and try again.",
+        noport: "No MIDI output found. Check the USB cable (a data cable) and that the FM-1 is on.", ready: "Connected to ", loaded: " sounds in this file.",
+        none: "No Prophet-600 sound in this file.", sent: "Sent: ", done: "Done. The sounds are in the FM-1's PRESETS list.", resetok: "Reset sent." },
+  fr: { sub: "Envoyez des sons Prophet-600 (.syx) à votre FM-1 équipé de Guru 600. Ils restent dans le FM-1, même éteint.",
+        s1: "1. BRANCHER LE FM-1", connect: "Connecter", h1: "Branchez le FM-1 sur cet ordinateur avec un câble USB de données, puis allumez-le. Utilisez Chrome, Edge ou un autre navigateur basé sur Chrome (Brave, Opera…), et autorisez l'accès MIDI (SysEx) quand le navigateur le demande.",
+        s2: "2. OUVRIR UN FICHIER DE SONS", h2: "Un fichier .syx de Prophet-600 : une sauvegarde d'origine Sequential, ou un fichier de sons du firmware GliGli. Un fichier peut contenir un seul son ou une banque entière de 100.",
+        s3: "3. CHOISIR LES PLACES ET ENVOYER", h3: "Chaque son va à la place que vous indiquez (1 à 255, la numérotation de PRESETS). Les places 201 à 255 sont libres ; les places 1 à 200 contiennent les sons intégrés, qu'un son envoyé remplace jusqu'à RESET SOUNDS. 55 sons au maximum peuvent être envoyés.",
+        from: "Tout envoyer, à partir de la place", sendall: "Tout envoyer", name: "Son", place: "Place", send: "Envoyer",
+        s4: "RÉINITIALISER", h4: "Oublie tous les sons envoyés : les 200 sons intégrés reviennent et les places 201 à 255 se vident. (Comme MENU > SYSTEM > RESET SOUNDS sur le FM-1.)",
+        reset: "Rétablir les sons d'origine", sure: "Oublier tous les sons envoyés et rétablir les 200 sons d'origine ?",
+        nomidi: "Ce navigateur n'a pas Web MIDI. Utilisez Chrome, Edge ou un autre navigateur basé sur Chrome (Brave, Opera…).", denied: "L'accès MIDI (SysEx) n'a pas été autorisé. Autorisez-le dans les réglages du site et réessayez.",
+        noport: "Aucune sortie MIDI trouvée. Vérifiez le câble USB (un câble de données) et que le FM-1 est allumé.", ready: "Connecté à ", loaded: " sons dans ce fichier.",
+        none: "Aucun son Prophet-600 dans ce fichier.", sent: "Envoyé : ", done: "Terminé. Les sons sont dans la liste PRESETS du FM-1.", resetok: "Réinitialisation envoyée." },
+};
+let lang = (navigator.language || "en").startsWith("fr") ? "fr" : "en", out = null, sounds = [];
+const $ = (id) => document.getElementById(id);
+function tr() {
+  document.documentElement.lang = lang;
+  document.querySelectorAll("[data-t]").forEach((e) => { e.textContent = T[lang][e.dataset.t]; });
+  $("lang").textContent = lang === "fr" ? "English" : "Français";
+  render();
+}
+function say(s, err) { $("status").textContent = s; $("status").className = err ? "err" : ""; }
+$("lang").onclick = () => { lang = lang === "fr" ? "en" : "fr"; try { localStorage.setItem("g6lang", lang); } catch (e) {} tr(); };
+try { const l = localStorage.getItem("g6lang"); if (l) lang = l; } catch (e) {}
+
+// the file's SysEx messages that are Prophet-600 sounds: SCI (F0 01 02 nn .. 35 bytes) or GliGli (F0 00 61 16 01 ..)
+function parse(buf) {
+  const d = new Uint8Array(buf), list = [];
+  for (let i = 0; i < d.length; i++) {
+    if (d[i] !== 0xF0) continue;
+    let j = i + 1;
+    while (j < d.length && d[j] !== 0xF7) j++;
+    const m = d.slice(i + 1, j);
+    if (m.length === 35 && m[0] === 0x01 && m[1] === 0x02) list.push({ body: m, name: "P600 " + String(m[2]).padStart(2, "0") });
+    else if (m.length > 9 && m[0] === 0x00 && m[1] === 0x61 && m[2] === 0x16 && m[3] === 0x01) list.push({ body: m, name: gligliName(m) });
+    i = j;
+  }
+  return list;
+}
+function gligliName(m) {   // descramble (5 -> 4 bytes) and read the v8 name at 1 + 128 (eng_p600.c p6_from_gligli)
+  const g = [];
+  for (let i = 4; i < m.length; i += 5) { const hb = m[i + 4] || 0; for (let j = 0; j < 4 && i + j < m.length; j++) g.push(m[i + j] | (((hb >> j) & 1) << 7)); }
+  let s = "";
+  for (let k = 129; k < 145 && g[k]; k++) s += String.fromCharCode(g[k]);
+  return s.trim() || "GL " + String(g[0] % 100).padStart(2, "0");
+}
+function render() {
+  const tb = $("list");
+  tb.innerHTML = "";
+  sounds.forEach((s, k) => {
+    const tr = document.createElement("tr");
+    tr.innerHTML = `<td>${k + 1}</td><td></td><td><input type="number" min="1" max="255"></td><td><button>${T[lang].send}</button></td>`;
+    tr.children[1].textContent = s.name;
+    const inp = tr.querySelector("input");
+    inp.value = s.place || Math.min(255, (+$("start").value || 201) + k);
+    inp.onchange = () => { s.place = +inp.value; };
+    const b = tr.querySelector("button");
+    b.disabled = !out;
+    b.onclick = () => send([[s, +inp.value]]);
+    tb.appendChild(tr);
+  });
+  $("sendall").disabled = !out || !sounds.length;
+  $("reset").disabled = !out;
+  for (const id of ["get1", "getkept", "getall"]) $(id).disabled = !out;
+}
+$("start").onchange = () => { sounds.forEach((s) => delete s.place); render(); };
+$("file").onchange = async (e) => {
+  const f = e.target.files[0];
+  if (!f) return;
+  sounds = parse(await f.arrayBuffer());
+  say(sounds.length ? sounds.length + T[lang].loaded : T[lang].none, !sounds.length);
+  render();
+};
+$("connect").onclick = async () => {
+  if (!navigator.requestMIDIAccess) return say(T[lang].nomidi, 1);
+  let acc;
+  try { acc = await navigator.requestMIDIAccess({ sysex: true }); } catch (e) { return say(T[lang].denied, 1); }
+  const outs = [...acc.outputs.values()], sel = $("port");
+  if (!outs.length) return say(T[lang].noport, 1);
+  sel.innerHTML = "";
+  outs.forEach((o, k) => { const op = document.createElement("option"); op.value = k; op.textContent = o.name; sel.appendChild(op); });
+  const fm = outs.findIndex((o) => /fm-1|felucca|guru/i.test(o.name));
+  sel.value = fm >= 0 ? fm : 0;
+  sel.disabled = false;
+  out = outs[+sel.value];
+  const pickIn = () => {   // the FM-1's input (its answers): the one named as the output
+    const ins = [...acc.inputs.values()];
+    if (inp) inp.onmidimessage = null;
+    inp = ins.find((i) => i.name === out.name) || ins.find((i) => /fm-1|felucca|guru/i.test(i.name)) || null;
+    if (inp) inp.onmidimessage = onAnswer;
+  };
+  pickIn();
+  sel.onchange = () => { out = outs[+sel.value]; pickIn(); say(T[lang].ready + out.name); };
+  say(T[lang].ready + out.name);
+  render();
+};
+const wait = (ms) => new Promise((r) => setTimeout(r, ms));
+// Guru-600: getting sounds back. F0 7D 47 36 04 dest dest2 F7 asks for a place; the answer: the same 7 bytes, the name
+// (16), Sequential's program dump (01 02 nn + 32 nibbles), F7. F0 7D 47 36 05 F7 asks which places hold a kept sound.
+let inp = null, waiting = null;
+function onAnswer(e) {
+  const d = e.data;
+  if (d[0] !== 0xF0 || d[1] !== 0x7D || d[2] !== 0x47 || d[3] !== 0x36 || !waiting) return;
+  if (d[4] === waiting.cmd) { const w = waiting; waiting = null; clearTimeout(w.t); w.ok(d); }
+}
+function ask(bytes, cmd) {
+  return new Promise((ok, ko) => {
+    waiting = { cmd, ok, t: setTimeout(() => { waiting = null; ko(new Error("timeout")); }, 1500) };
+    out.send(bytes);
+  });
+}
+async function getPlace(dest) {   // dest 0..254 -> {name, sci: [F0 01 02 nn .. F7]}
+  const d = await ask([0xF0, 0x7D, 0x47, 0x36, 0x04, dest & 127, dest >> 7, 0xF7], 4);
+  const name = String.fromCharCode(...d.slice(7, 23).filter((c) => c)).trim();
+  return { name, sci: [0xF0, ...d.slice(23, 58), 0xF7] };
+}
+function saveSyx(list, file) {
+  const bytes = new Uint8Array(list.flatMap((x) => x.sci));
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(new Blob([bytes], { type: "application/octet-stream" }));
+  a.download = file;
+  a.click();
+  setTimeout(() => URL.revokeObjectURL(a.href), 2000);
+}
+async function getMany(dests, file) {
+  if (!inp) return say(T[lang].noinput, 1);
+  const got = [];
+  try {
+    for (const dest of dests) {
+      got.push(await getPlace(dest));
+      say(T[lang].gotone + (dest + 1) + " " + got[got.length - 1].name);
+    }
+  } catch (e) { return say(T[lang].noinput, 1); }
+  saveSyx(got, file);
+  say(got.length + T[lang].got);
+}
+$("get1").onclick = () => {
+  const p = Math.max(1, Math.min(255, +$("getplace").value | 0));
+  getMany([p - 1], "guru-600-place-" + p + ".syx");
+};
+$("getkept").onclick = async () => {
+  if (!inp) return say(T[lang].noinput, 1);
+  let d;
+  try { d = await ask([0xF0, 0x7D, 0x47, 0x36, 0x05, 0xF7], 5); } catch (e) { return say(T[lang].noinput, 1); }
+  const dests = [];
+  for (let k = 0; k < d[5]; k++) dests.push(d[6 + 2 * k] + (d[7 + 2 * k] << 7));
+  if (!dests.length) return say(T[lang].nokept, 1);
+  getMany(dests.sort((a, b) => a - b), "guru-600-sons.syx");
+};
+$("getall").onclick = () => getMany([...Array(255).keys()], "guru-600-255.syx");
+async function send(pairs) {   // F0 7D 47 36 01 dest dest2 <the sound's bytes> F7: into place dest (0..254)
+  for (const [s, place] of pairs) {
+    const dest = Math.max(1, Math.min(255, place | 0)) - 1;
+    out.send([0xF0, 0x7D, 0x47, 0x36, 0x01, dest & 127, dest >> 7, ...s.body, 0xF7]);
+    say(T[lang].sent + s.name + " → " + (dest + 1));
+    await wait(150);   // the FM-1 takes one message at a time
+  }
+  say(T[lang].done);
+}
+$("sendall").onclick = () => {
+  const ins = [...$("list").querySelectorAll("input")];
+  send(sounds.map((s, k) => [s, +ins[k].value]));
+};
+$("reset").onclick = () => {
+  if (!confirm(T[lang].sure)) return;
+  out.send([0xF0, 0x7D, 0x47, 0x36, 0x02, 0xF7]);
+  say(T[lang].resetok);
+};
+tr();
+</script>
+</body>
+</html>

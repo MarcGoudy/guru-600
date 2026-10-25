@@ -1,0 +1,195 @@
+Patch Collection for the 2022 upgraded Prophet-600                                                                                                1
+
+
+
+Patch Collection for the 2022 upgraded Prophet-600
+Preliminary remarks
+
+The idea of MIDI SysEx patches is, of course, that you can transfer patches created on one instrument to a computer and to another instrument
+and in that way archive, manage and share sounds. However, on a VCO synthesizer like the Prophet-600 with its hardware related variations it can
+be difficult to faithfully reproduce the sound of a patch from on a unit. While the VCO differences are handled by the hardware supported tuning
+routine, there are other components which cannot be calibrated and which can have a significant impact on the sound, such as:
+
+
+   • Filter resonance
+
+   • Oscillator cross modulation
+
+   • Pulse width
+
+
+The patches documented below have been tested on a few different units and some care has gone into making them as transferable as possible.
+Still, you should pay particular attention to those patches with a high level of oscillator FM / cross modulation (at least when sync is inactive).
+Generally such patches are highly tuning sensitive. In addition, it may be necessary to adjust either oscillator A frequency or the poly-mod
+oscillator B amount on your instrument in order to achieve a clean sounding patch. This is because, the absolute poly-mod level is not normalized
+and slightly varies from instrument to instrument. Worst of all, there might be variations among the voices. If that is the case with your Prophet-
+600, you may find it difficult to use strong ploy-mod in a clean and consistent way. Please refer to the user manual for more information on how
+to use poly-mod properly.
+
+The following 100 patches are grouped in 10 self-explanatory ”patch types”. For each patch some selected key information is provided. The idea
+is that this is helpful to recognize how the sound of the patch is created and supports using those patches as a starting point for new patches.
+In that sense the collection is not only intended to readily usable but is also to some degree educational about the features of the Prophet-600.
+The additional information is as follows:
+
+
+   • Envelope Routing: This shows if a non-standard routing is used. The comment may indicate why this waa chosen.
+
+   • Oscillator FM: This gives an indication of the strength of poly-mod oscillator modulation, i.e. when target oscillator A is active the number
+     of stars indicate the amount of oscillator B source.
+Patch Collection for the 2022 upgraded Prophet-600                                                                                                              2
+
+
+      • Filter FM: this gives an indication of the strength of poly-mod filter modulation, i.e. when target filter is active the number of stars indicate
+        the amount of oscillator B source.
+
+      • Sync: Indicates whether oscillator sync is active.
+
+      • Harmonic filter: This indicates if full tracking is active with a filter resonance close to self-resonance. Under these conditions the filter serves
+        as chromatically tuned third oscillator.
+
+      • Unison: This indicates if the patch uses unison.
+
+      • Velocity: The default setting is that patch velocity is medium for amplitude and zero for filter cut-off. The velocity information marks patches
+        for which more depth in expression is supported when played via external MIDI.
+
+      • Comments: Any specific useful information about the patch.
+
+
+Note to developers: the patches contain patch names according to the MIDI specification. The Prophet-600 cannot (yet) display patch names, but
+they could be shown in MIDI patch editors.
+
+Piano type patches
+
+ Nbr.     Patch Name          Contributor    Envelope    Oscillator   Filter FM   Sync   Harmonic   Unison   Velocity   Comments
+                                             Routing     FM                              Filter
+ Piano type patches
+ 00       GliGli Clavi        Andy
+ 01       Chorus EP           Jpro600k                                ***
+ 02       Piano 2             imogen                     **                                                  Yes
+ 03       Tap me twice        imogen                                                                         Yes        LFO retrigger on key, increase LFO amount
+ 04       PWM Piano           Jpro600k                                **
+ 05       Vocal Piano         Jpro600k                                ****
+ 06       EP                  imogen                                                                         Yes
+ 07       Pianorganism        imogen
+ 08       Plain Piano         imogen                     *                                                   Yes
+ 09       Pianet              imogen                     *****                    Yes                        Yes        FM adds a little bell-like timbre
+ Pad patches 1
+Patch Collection for the 2022 upgraded Prophet-600                                                                                                           3
+
+
+ Nbr.   Patch Name         Contributor   Envelope    Oscillator   Filter FM   Sync   Harmonic   Unison   Velocity   Comments
+                                         Routing     FM                              Filter
+ 10     Poly Glide         Z80 Nbr. 3
+ 11     Soft Poly          el-folie
+ 12     Kometenmelodie     el-folie
+ 13     5th Sweep          Andy
+ 14     Slow Atmo Brass    Jpro600k                               **
+ 15     Forever 80s        imogen                    **
+ 16     Fly By             el-folie
+ 17     Falling Asleep     imogen                    **
+ 18     Night Drive        imogen                                                    Yes
+ 19     Blade Runner       Matrix12x                              *                                      Yes        LFO retrigger on key
+ Lead and melody patches
+ 20     Center Stage       el-folie                                                             Yes                 Unison note pattern (0-12)
+ 21     Common Sync        imogen        Gate        ****                     Yes                        Yes        LFO targets only oscillator A
+ 22     DCO                imogen                    **           **                            Yes                 Unison note pattern (0-12-24)
+ 23     I told you         el-folie                                                             Yes
+ 24     Fuzz Guitar        Matrix12x                                          Yes               Yes      Yes        Single voice unison
+ 25     Cut                el-folie                                                             Yes
+ 26     PW Pad             Matrix12x                                                            Yes
+ 27     Moogys             imogen        Gate        **           **                            Yes
+ 28     Fusion             el-folie                                                             Yes
+ 29     Melody             Matrix12x                                                            Yes                 Single voice unison
+ Brass type patches
+ 30     Bread & Butter     imogen                                                                        Yes
+ 31     Bread & Marmite    imogen                    ***                                                            Added creamy spectrum compared to 30
+ 32     Trombone Set       imogen                                 *
+ 33     Attack Brass       Jpro600k
+ 34     Bright Brass       imogen                    *            *           Yes                                   This requires a very evenly calibrated poly-mod
+ 35     Mild Brass         Jpro600k
+ 36     Elegiac Brass      el-folie                               *****                                             Effect of strongy filter FM
+Patch Collection for the 2022 upgraded Prophet-600                                                                                                                4
+
+
+ Nbr.   Patch Name            Contributor   Envelope   Oscillator   Filter FM   Sync   Harmonic   Unison   Velocity   Comments
+                                            Routing    FM                              Filter
+ 37     Orchestral 1          Jpro600k                 ****         ****        Yes                                   Poly-mod to for complex timbre and transient
+ 38     Orchestral 2          imogen                                **                                                Filter FM creates brass top end
+ 39     Orchestral 3          Jpro600k                 **           **          Yes                                   Poly-mod to for complex timbre and transient
+ Bass patches
+ 40     Attack Bass           el-folie                                                            Yes
+ 41     Bassically            imogen        Poly       ***                      Yes                                   Filter emulation by envelope sync modulation
+ 42     Double Bass           imogen        Poly       ****                                                           Transient pitch modulation for picking sound
+ 43     Funkey                Matrix12x                                                           Yes
+ 44     Yaz Bass              Matrix12x
+ 45     Unison Dark Bass      imogen                                ****                          Yes
+ 46     Slap Bass             imogen                   **                       Yes               Yes                 FM adds to the timbre of hitting string hard
+ 47     Unison Full-Bass      Z80 Nbr. 27                                                         Yes                 Single voice unison
+ 48     Deep Square Bass      el-folie                                                            Yes
+ 49     Performance           imogen                   *
+ Natural instrument patches
+ 50     Space Oboe            imogen                                *****       Yes
+ 51     Wind Organ            imogen        Gate       **                       Yes                                   LFO targets only oscillator A
+ 52     Totally Trumpet       imogen        Gate       ***                      Yes                                   2nd envelope used to model attack transient
+ 53     My Spinett            imogen                   **
+ 54     Space Oboe Chord      imogen                                *****       Yes               Yes                 Unison pattern (0-3-7-8) with glide, based on 50
+ 55     Wood Block            imogen                   *
+ 56     Club Organ            Z80 Nbr. 18
+ 57     Chiffy Organ          Z80 Nbr. 40
+ 58     Harmonica             Z80 Nbr. 33                                       Yes
+ 59     Reso Flute            Andy                                                     Yes
+ Effect patches
+ 60     Cave                  imogen                   **           **                 Yes                            Artefacts from interference of oscillator and filter FM
+ 61     Pulsar                Andy                                              Yes
+ 62     Vox Humana            Matrix12x                                                                    Yes
+Patch Collection for the 2022 upgraded Prophet-600                                                                                                              5
+
+
+ Nbr.   Patch Name         Contributor   Envelope    Oscillator   Filter FM   Sync   Harmonic   Unison   Velocity   Comments
+                                         Routing     FM                              Filter
+ 63     Moskito            Jpro600k                  ***          ***         Yes
+ 64     Voice              Matrix12x                              *****
+ 65     AW Laser Harp      Andy                                   *****              Yes
+ 66     Beyond Jupiter     imogen        Gate        **           **                            Yes
+ 67     Comet Stopover     el-folie                               *****              Yes
+ 68     Bubble Bobble      imogen                                                                                   LFO retrigger on key, LFO targets only oscillator A
+ 69     Simmons Toms       imogen                    ***
+ Stab patches
+ 70     Fifths             imogen                    **                                                             LFO targets only oscillator A
+ 71     Wake Up!           imogen                    **           **
+ 72     One Two Three      imogen        Poly                                                                       LFO retrigger on key, LFO targets only oscillator A
+ 73     Pulsify            imogen        Poly        ***                      Yes                                   LFO targets only oscillator A
+ 74     Phase              el-folie                  *
+ 75     Noisy Stuff        imogen                                             Yes
+ 76     Harmonic Release   imogen        Poly                                                                       Envelope pitch shift releases 2 oscillators to a fifth
+ 77     Noisy Stab         Matrix12x                              ***                           Yes                 Noise LFO modulates oscillator B for noise emulation
+ 78     Soft Stab          imogen                    **                                                  Yes
+ 79     Crispy             imogen        Poly        ***          ***
+ Bell type patches
+ 80     Crystal            imogen        Poly        ***
+ 81     Snow Bell          Jpro600k                               ***
+ 82     Glockenspiel       imogen        Poly        **           **
+ 83     Dew                imogen                    *
+ 84     Gong               imogen                    *****                                                          Extreme FM
+ 85     Chime              imogen                    *            *
+ 86     Tinkerbell         imogen        Poly        ****
+ 87     High Bells         imogen        Poly        ***
+ 88     Flute Bells        imogen                    **           **                 Yes
+ 89     Steel Bars         imogen        Poly        ***                      Yes
+Patch Collection for the 2022 upgraded Prophet-600                                                                                                  6
+
+
+ Nbr.   Patch Name       Contributor   Envelope      Oscillator   Filter FM   Sync   Harmonic   Unison   Velocity   Comments
+                                       Routing       FM                              Filter
+ Pad patches 2
+ 90     Cold Wind        imogen                      *****
+ 91     Psycho Choir     imogen                                                      Yes                            LFO targets only oscillator A
+ 92     Strings I        Z80 Nbr. 2
+ 93     Foggy Strings    Andy
+ 94     Retro Pad        Jpro600k                                 **
+ 95     Pulse Mod I      Z80 Nbr. 53                              ***
+ 96     Wobbly Church    imogen        Poly          ****                     Yes                                   LFO targets only oscillator A
+ 97     Room Strings     Jpro600k
+ 98     SH Pad           imogen                      *                                                              LFO retrigger on key
+ 99     Shimmer          el-folie                    **
+

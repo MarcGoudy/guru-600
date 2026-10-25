@@ -1,0 +1,10790 @@
+[
+ {
+  "file": "Basses/Attacky.fxp",
+  "name": "Attacky",
+  "family": "Basses",
+  "author": "Claes",
+  "e": [
+   1,
+   12,
+   1,
+   12,
+   38,
+   0,
+   0,
+   113
+  ],
+  "env": [
+   0,
+   95,
+   127,
+   47
+  ],
+  "x": {
+   "fenv": [
+    0,
+    49,
+    0,
+    76
+   ],
+   "pw": [
+    28,
+    28
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 0,
+   "lfo": [
+    0,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 0,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 32,
+   "wheel": 64
+  },
+  "mono": false
+ },
+ {
+  "file": "Basses/Bass%201.fxp",
+  "name": "Bass one",
+  "family": "Basses",
+  "author": "Claes",
+  "e": [
+   4,
+   12,
+   4,
+   12,
+   54,
+   0,
+   0,
+   35
+  ],
+  "env": [
+   0,
+   95,
+   127,
+   47
+  ],
+  "x": {
+   "fenv": [
+    0,
+    80,
+    0,
+    76
+   ],
+   "pw": [
+    67,
+    67
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 2,
+   "lfo": [
+    0,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 0,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 24,
+   "wheel": 64
+  },
+  "mono": false
+ },
+ {
+  "file": "Basses/Bass%202.fxp",
+  "name": "Bass two",
+  "family": "Basses",
+  "author": "Claes",
+  "e": [
+   5,
+   12,
+   5,
+   12,
+   71,
+   38,
+   0,
+   1
+  ],
+  "env": [
+   0,
+   95,
+   127,
+   47
+  ],
+  "x": {
+   "fenv": [
+    0,
+    99,
+    0,
+    76
+   ],
+   "pw": [
+    38,
+    38
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 2,
+   "lfo": [
+    0,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 38,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 72,
+   "wheel": 64
+  },
+  "mono": true
+ },
+ {
+  "file": "Basses/Bass%204.fxp",
+  "name": "Bass four",
+  "family": "Basses",
+  "author": "Claes",
+  "e": [
+   1,
+   12,
+   1,
+   12,
+   55,
+   0,
+   63,
+   28
+  ],
+  "env": [
+   0,
+   71,
+   96,
+   47
+  ],
+  "x": {
+   "fenv": [
+    0,
+    61,
+    0,
+    76
+   ],
+   "pw": [
+    64,
+    64
+   ],
+   "fine": 21,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 1,
+   "lfo": [
+    0,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 0,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 32,
+   "wheel": 64
+  },
+  "mono": false
+ },
+ {
+  "file": "Basses/Behemoth.fxp",
+  "name": "Behemoth",
+  "family": "Basses",
+  "author": "Claes",
+  "e": [
+   1,
+   0,
+   1,
+   0,
+   79,
+   0,
+   0,
+   0
+  ],
+  "env": [
+   0,
+   79,
+   127,
+   93
+  ],
+  "x": {
+   "fenv": [
+    0,
+    36,
+    0,
+    99
+   ],
+   "pw": [
+    61,
+    61
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 2,
+   "lfo": [
+    0,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 43,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 9,
+   "wheel": 64
+  },
+  "mono": true
+ },
+ {
+  "file": "Basses/Deep%20End.fxp",
+  "name": "Deep end",
+  "family": "Basses",
+  "author": "Claes",
+  "e": [
+   1,
+   12,
+   1,
+   12,
+   48,
+   5,
+   56,
+   17
+  ],
+  "env": [
+   0,
+   95,
+   127,
+   47
+  ],
+  "x": {
+   "fenv": [
+    0,
+    70,
+    4,
+    76
+   ],
+   "pw": [
+    64,
+    64
+   ],
+   "fine": 2,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 0,
+   "lfo": [
+    0,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 41,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 32,
+   "wheel": 64
+  },
+  "mono": true
+ },
+ {
+  "file": "Basses/Dist%20Bass%201.fxp",
+  "name": "Distbass",
+  "family": "Basses",
+  "author": "Claes",
+  "e": [
+   1,
+   0,
+   1,
+   12,
+   5,
+   19,
+   64,
+   68
+  ],
+  "env": [
+   0,
+   95,
+   127,
+   57
+  ],
+  "x": {
+   "fenv": [
+    0,
+    95,
+    0,
+    57
+   ],
+   "pw": [
+    64,
+    64
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 1,
+   "lfo": [
+    0,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 42,
+   "unison": 1,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 32,
+   "wheel": 64
+  },
+  "mono": true
+ },
+ {
+  "file": "Basses/Distorted%20Bass.fxp",
+  "name": "Distorted bass 01",
+  "family": "Basses",
+  "author": "Claes",
+  "e": [
+   1,
+   12,
+   1,
+   12,
+   10,
+   112,
+   0,
+   5
+  ],
+  "env": [
+   49,
+   95,
+   127,
+   47
+  ],
+  "x": {
+   "fenv": [
+    73,
+    82,
+    0,
+    76
+   ],
+   "pw": [
+    64,
+    64
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 0,
+   "lfo": [
+    0,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 0,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 32,
+   "wheel": 64
+  },
+  "mono": true
+ },
+ {
+  "file": "Basses/Evilous.fxp",
+  "name": "Evilous",
+  "family": "Basses",
+  "author": "Claes",
+  "e": [
+   2,
+   63,
+   1,
+   24,
+   63,
+   88,
+   64,
+   0
+  ],
+  "env": [
+   0,
+   95,
+   127,
+   59
+  ],
+  "x": {
+   "fenv": [
+    0,
+    76,
+    0,
+    76
+   ],
+   "pw": [
+    14,
+    64
+   ],
+   "fine": 0,
+   "sync": 1,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 1,
+   "lfo": [
+    0,
+    3
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 32,
+   "unison": 1,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 60,
+   "wheel": 64
+  },
+  "mono": true
+ },
+ {
+  "file": "Basses/Helmeto.fxp",
+  "name": "Helmeto",
+  "family": "Basses",
+  "author": "Claes",
+  "e": [
+   4,
+   12,
+   4,
+   12,
+   75,
+   36,
+   0,
+   40
+  ],
+  "env": [
+   0,
+   93,
+   1,
+   47
+  ],
+  "x": {
+   "fenv": [
+    0,
+    76,
+    0,
+    76
+   ],
+   "pw": [
+    55,
+    55
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 0,
+   "lfo": [
+    0,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 0,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 27,
+   "wheel": 64
+  },
+  "mono": false
+ },
+ {
+  "file": "Basses/Lord%20Sawtooth.fxp",
+  "name": "Lord Sawtooth",
+  "family": "Basses",
+  "author": "Claes",
+  "e": [
+   1,
+   12,
+   1,
+   12,
+   25,
+   0,
+   0,
+   52
+  ],
+  "env": [
+   0,
+   108,
+   0,
+   0
+  ],
+  "x": {
+   "fenv": [
+    0,
+    82,
+    0,
+    79
+   ],
+   "pw": [
+    64,
+    64
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 1,
+   "lfo": [
+    0,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 38,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 32,
+   "wheel": 64
+  },
+  "mono": true
+ },
+ {
+  "file": "Basses/Mellow.fxp",
+  "name": "Mellow",
+  "family": "Basses",
+  "author": "Claes",
+  "e": [
+   1,
+   12,
+   1,
+   12,
+   38,
+   85,
+   64,
+   2
+  ],
+  "env": [
+   0,
+   101,
+   127,
+   47
+  ],
+  "x": {
+   "fenv": [
+    39,
+    121,
+    3,
+    76
+   ],
+   "pw": [
+    64,
+    64
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 1,
+   "lfo": [
+    0,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 0,
+   "unison": 1,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 43,
+   "wheel": 64
+  },
+  "mono": true
+ },
+ {
+  "file": "Basses/Metal%20Square.fxp",
+  "name": "Metalsquare",
+  "family": "Basses",
+  "author": "Claes",
+  "e": [
+   4,
+   12,
+   1,
+   24,
+   16,
+   0,
+   64,
+   19
+  ],
+  "env": [
+   0,
+   95,
+   127,
+   47
+  ],
+  "x": {
+   "fenv": [
+    0,
+    77,
+    0,
+    76
+   ],
+   "pw": [
+    64,
+    64
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 1,
+   "lfo": [
+    0,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 0,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 54,
+   "wheel": 64
+  },
+  "mono": false
+ },
+ {
+  "file": "Basses/Mmm...%20Pointy!.fxp",
+  "name": "Mmm.. pointy",
+  "family": "Basses",
+  "author": "Claes",
+  "e": [
+   4,
+   24,
+   4,
+   24,
+   39,
+   0,
+   0,
+   19
+  ],
+  "env": [
+   0,
+   96,
+   0,
+   57
+  ],
+  "x": {
+   "fenv": [
+    0,
+    103,
+    0,
+    57
+   ],
+   "pw": [
+    61,
+    61
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 2,
+   "lfo": [
+    0,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 0,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 6,
+   "wheel": 64
+  },
+  "mono": false
+ },
+ {
+  "file": "Basses/Plain.fxp",
+  "name": "Plain",
+  "family": "Basses",
+  "author": "Claes",
+  "e": [
+   4,
+   12,
+   1,
+   24,
+   48,
+   43,
+   53,
+   2
+  ],
+  "env": [
+   33,
+   95,
+   127,
+   47
+  ],
+  "x": {
+   "fenv": [
+    25,
+    89,
+    0,
+    76
+   ],
+   "pw": [
+    54,
+    62
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 1,
+   "lfo": [
+    0,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 54,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 32,
+   "wheel": 64
+  },
+  "mono": true
+ },
+ {
+  "file": "Basses/Rubber%20Bass.fxp",
+  "name": "Rubber bass",
+  "family": "Basses",
+  "author": "Claes",
+  "e": [
+   1,
+   12,
+   1,
+   12,
+   114,
+   81,
+   0,
+   0
+  ],
+  "env": [
+   0,
+   95,
+   127,
+   47
+  ],
+  "x": {
+   "fenv": [
+    0,
+    76,
+    0,
+    76
+   ],
+   "pw": [
+    64,
+    64
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 0,
+   "lfo": [
+    0,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 39,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 32,
+   "wheel": 64
+  },
+  "mono": true
+ },
+ {
+  "file": "Basses/Saw%20Lo-Fi.fxp",
+  "name": "Saw Lofi",
+  "family": "Basses",
+  "author": "Claes",
+  "e": [
+   5,
+   12,
+   5,
+   12,
+   127,
+   0,
+   0,
+   0
+  ],
+  "env": [
+   0,
+   95,
+   127,
+   47
+  ],
+  "x": {
+   "fenv": [
+    0,
+    76,
+    0,
+    76
+   ],
+   "pw": [
+    55,
+    55
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 2,
+   "lfo": [
+    0,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 34,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 32,
+   "wheel": 64
+  },
+  "mono": true
+ },
+ {
+  "file": "Basses/Schnell.fxp",
+  "name": "Schnell",
+  "family": "Basses",
+  "author": "Claes",
+  "e": [
+   1,
+   12,
+   4,
+   12,
+   20,
+   31,
+   60,
+   59
+  ],
+  "env": [
+   0,
+   122,
+   0,
+   57
+  ],
+  "x": {
+   "fenv": [
+    0,
+    85,
+    0,
+    57
+   ],
+   "pw": [
+    64,
+    59
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 2,
+   "lfo": [
+    0,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 0,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 32,
+   "wheel": 64
+  },
+  "mono": false
+ },
+ {
+  "file": "Basses/Slow.fxp",
+  "name": "Slow",
+  "family": "Basses",
+  "author": "Claes",
+  "e": [
+   2,
+   63,
+   4,
+   12,
+   127,
+   0,
+   56,
+   0
+  ],
+  "env": [
+   0,
+   76,
+   127,
+   47
+  ],
+  "x": {
+   "fenv": [
+    87,
+    98,
+    0,
+    76
+   ],
+   "pw": [
+    14,
+    26
+   ],
+   "fine": 0,
+   "sync": 1,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 2,
+   "lfo": [
+    0,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 47,
+   "unison": 1,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 32,
+   "wheel": 64
+  },
+  "mono": true
+ },
+ {
+  "file": "Basses/Smoothie.fxp",
+  "name": "Smootie",
+  "family": "Basses",
+  "author": "Claes",
+  "e": [
+   4,
+   12,
+   1,
+   24,
+   44,
+   56,
+   64,
+   0
+  ],
+  "env": [
+   0,
+   95,
+   127,
+   51
+  ],
+  "x": {
+   "fenv": [
+    0,
+    76,
+    0,
+    76
+   ],
+   "pw": [
+    58,
+    64
+   ],
+   "fine": 10,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 1,
+   "lfo": [
+    0,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 42,
+   "unison": 1,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 23,
+   "wheel": 64
+  },
+  "mono": true
+ },
+ {
+  "file": "Basses/Square%20Bass.fxp",
+  "name": "Square Bass",
+  "family": "Basses",
+  "author": "Claes",
+  "e": [
+   4,
+   24,
+   4,
+   24,
+   35,
+   0,
+   0,
+   1
+  ],
+  "env": [
+   0,
+   31,
+   116,
+   51
+  ],
+  "x": {
+   "fenv": [
+    0,
+    71,
+    0,
+    76
+   ],
+   "pw": [
+    36,
+    36
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 0,
+   "lfo": [
+    0,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 0,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 32,
+   "wheel": 64
+  },
+  "mono": false
+ },
+ {
+  "file": "Basses/Squared.fxp",
+  "name": "Squared",
+  "family": "Basses",
+  "author": "Claes",
+  "e": [
+   4,
+   26,
+   4,
+   24,
+   22,
+   88,
+   0,
+   18
+  ],
+  "env": [
+   0,
+   95,
+   127,
+   47
+  ],
+  "x": {
+   "fenv": [
+    21,
+    87,
+    6,
+    76
+   ],
+   "pw": [
+    49,
+    49
+   ],
+   "fine": 0,
+   "sync": 1,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 1,
+   "lfo": [
+    5,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 49,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 32,
+   "wheel": 64
+  },
+  "mono": true
+ },
+ {
+  "file": "Basses/Stable.fxp",
+  "name": "Stable",
+  "family": "Basses",
+  "author": "Claes",
+  "e": [
+   4,
+   12,
+   4,
+   12,
+   110,
+   97,
+   0,
+   10
+  ],
+  "env": [
+   0,
+   75,
+   87,
+   47
+  ],
+  "x": {
+   "fenv": [
+    51,
+    104,
+    0,
+    76
+   ],
+   "pw": [
+    54,
+    54
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 2,
+   "lfo": [
+    0,
+    3
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 43,
+   "unison": 1,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 19,
+   "wheel": 64
+  },
+  "mono": true
+ },
+ {
+  "file": "Basses/Sub%203.fxp",
+  "name": "Sub 3",
+  "family": "Basses",
+  "author": "Claes",
+  "e": [
+   2,
+   63,
+   2,
+   12,
+   127,
+   0,
+   0,
+   67
+  ],
+  "env": [
+   0,
+   95,
+   127,
+   53
+  ],
+  "x": {
+   "fenv": [
+    0,
+    76,
+    0,
+    76
+   ],
+   "pw": [
+    14,
+    14
+   ],
+   "fine": 0,
+   "sync": 1,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 0,
+   "lfo": [
+    0,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 26,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 32,
+   "wheel": 64
+  },
+  "mono": true
+ },
+ {
+  "file": "Basses/Sub%204.fxp",
+  "name": "Sub 4",
+  "family": "Basses",
+  "author": "Claes",
+  "e": [
+   2,
+   63,
+   2,
+   12,
+   72,
+   0,
+   0,
+   75
+  ],
+  "env": [
+   0,
+   95,
+   127,
+   56
+  ],
+  "x": {
+   "fenv": [
+    0,
+    78,
+    0,
+    76
+   ],
+   "pw": [
+    14,
+    14
+   ],
+   "fine": 0,
+   "sync": 1,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 0,
+   "lfo": [
+    0,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 45,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 32,
+   "wheel": 64
+  },
+  "mono": true
+ },
+ {
+  "file": "Basses/Sub%20Square.fxp",
+  "name": "Sub Square 1",
+  "family": "Basses",
+  "author": "Claes",
+  "e": [
+   4,
+   12,
+   4,
+   12,
+   25,
+   1,
+   0,
+   36
+  ],
+  "env": [
+   0,
+   79,
+   88,
+   55
+  ],
+  "x": {
+   "fenv": [
+    0,
+    102,
+    0,
+    76
+   ],
+   "pw": [
+    60,
+    60
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 0,
+   "lfo": [
+    0,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 27,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 90,
+   "wheel": 64
+  },
+  "mono": false
+ },
+ {
+  "file": "Basses/Tacky%201.fxp",
+  "name": "Tacky 1",
+  "family": "Basses",
+  "author": "Claes",
+  "e": [
+   1,
+   12,
+   1,
+   12,
+   42,
+   112,
+   0,
+   43
+  ],
+  "env": [
+   0,
+   84,
+   0,
+   47
+  ],
+  "x": {
+   "fenv": [
+    0,
+    34,
+    0,
+    76
+   ],
+   "pw": [
+    59,
+    59
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 2,
+   "lfo": [
+    0,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 51,
+   "unison": 1,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 24,
+   "wheel": 64
+  },
+  "mono": true
+ },
+ {
+  "file": "Basses/Tacky%202.fxp",
+  "name": "Tacky 2",
+  "family": "Basses",
+  "author": "Claes",
+  "e": [
+   1,
+   12,
+   1,
+   12,
+   42,
+   120,
+   0,
+   23
+  ],
+  "env": [
+   0,
+   84,
+   0,
+   47
+  ],
+  "x": {
+   "fenv": [
+    0,
+    61,
+    0,
+    76
+   ],
+   "pw": [
+    59,
+    59
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 2,
+   "lfo": [
+    0,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 51,
+   "unison": 1,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 24,
+   "wheel": 64
+  },
+  "mono": true
+ },
+ {
+  "file": "Basses/Theme.fxp",
+  "name": "Theme",
+  "family": "Basses",
+  "author": "Claes",
+  "e": [
+   1,
+   24,
+   1,
+   24,
+   32,
+   0,
+   0,
+   40
+  ],
+  "env": [
+   0,
+   81,
+   127,
+   42
+  ],
+  "x": {
+   "fenv": [
+    0,
+    55,
+    0,
+    76
+   ],
+   "pw": [
+    40,
+    40
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 1,
+   "lfo": [
+    8,
+    3
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 0,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 32,
+   "wheel": 64
+  },
+  "mono": false
+ },
+ {
+  "file": "Basses/Width.fxp",
+  "name": "Width",
+  "family": "Basses",
+  "author": "Claes",
+  "e": [
+   1,
+   17,
+   1,
+   12,
+   61,
+   0,
+   64,
+   1
+  ],
+  "env": [
+   0,
+   95,
+   127,
+   46
+  ],
+  "x": {
+   "fenv": [
+    41,
+    105,
+    16,
+    33
+   ],
+   "pw": [
+    64,
+    64
+   ],
+   "fine": 0,
+   "sync": 1,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 2,
+   "lfo": [
+    0,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 35,
+   "unison": 1,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 53,
+   "wheel": 64
+  },
+  "mono": true
+ },
+ {
+  "file": "Brass/Buggy%20Brass.fxp",
+  "name": "Buggy Brass",
+  "family": "Brass",
+  "author": "Claes",
+  "e": [
+   1,
+   36,
+   1,
+   24,
+   55,
+   0,
+   68,
+   32
+  ],
+  "env": [
+   86,
+   76,
+   127,
+   57
+  ],
+  "x": {
+   "fenv": [
+    71,
+    84,
+    55,
+    76
+   ],
+   "pw": [
+    64,
+    64
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 0,
+   "lfo": [
+    0,
+    3
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 0,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 16,
+   "wheel": 64
+  },
+  "mono": false
+ },
+ {
+  "file": "Brass/OB-8%20Jump.fxp",
+  "name": "Sawteeth",
+  "family": "Brass",
+  "author": "Claes",
+  "e": [
+   1,
+   12,
+   1,
+   12,
+   92,
+   0,
+   64,
+   20
+  ],
+  "env": [
+   0,
+   127,
+   127,
+   63
+  ],
+  "x": {
+   "fenv": [
+    0,
+    127,
+    127,
+    65
+   ],
+   "pw": [
+    64,
+    64
+   ],
+   "fine": 10,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 2,
+   "lfo": [
+    0,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 0,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 32,
+   "wheel": 64
+  },
+  "mono": false
+ },
+ {
+  "file": "Brass/Reso%20Brassy.fxp",
+  "name": "Sawteeth",
+  "family": "Brass",
+  "author": "Claes",
+  "e": [
+   1,
+   12,
+   1,
+   12,
+   16,
+   44,
+   64,
+   18
+  ],
+  "env": [
+   30,
+   127,
+   127,
+   63
+  ],
+  "x": {
+   "fenv": [
+    86,
+    127,
+    127,
+    65
+   ],
+   "pw": [
+    64,
+    64
+   ],
+   "fine": 17,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 2,
+   "lfo": [
+    0,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 0,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 32,
+   "wheel": 64
+  },
+  "mono": false
+ },
+ {
+  "file": "Brass/Toto%20Brass.fxp",
+  "name": "Sawteeth",
+  "family": "Brass",
+  "author": "Claes",
+  "e": [
+   1,
+   12,
+   1,
+   12,
+   9,
+   44,
+   64,
+   18
+  ],
+  "env": [
+   51,
+   127,
+   127,
+   63
+  ],
+  "x": {
+   "fenv": [
+    49,
+    127,
+    127,
+    65
+   ],
+   "pw": [
+    64,
+    64
+   ],
+   "fine": 17,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 2,
+   "lfo": [
+    0,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 0,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 32,
+   "wheel": 64
+  },
+  "mono": false
+ },
+ {
+  "file": "Chords/Inharmonic%20Stab.fxp",
+  "name": "Inharmonic Stab",
+  "family": "Chords",
+  "author": "Claes",
+  "e": [
+   4,
+   12,
+   4,
+   28,
+   30,
+   35,
+   61,
+   36
+  ],
+  "env": [
+   0,
+   76,
+   127,
+   47
+  ],
+  "x": {
+   "fenv": [
+    0,
+    75,
+    0,
+    76
+   ],
+   "pw": [
+    63,
+    41
+   ],
+   "fine": 37,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 0,
+   "lfo": [
+    26,
+    3
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 0,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 32,
+   "wheel": 64
+  },
+  "mono": false
+ },
+ {
+  "file": "Chords/Maj-Min%20Stab.fxp",
+  "name": "Maj-Min Stab",
+  "family": "Chords",
+  "author": "Claes",
+  "e": [
+   1,
+   40,
+   1,
+   12,
+   90,
+   87,
+   64,
+   112
+  ],
+  "env": [
+   0,
+   95,
+   127,
+   47
+  ],
+  "x": {
+   "fenv": [
+    56,
+    38,
+    0,
+    76
+   ],
+   "pw": [
+    64,
+    64
+   ],
+   "fine": 0,
+   "sync": 1,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 1,
+   "lfo": [
+    0,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 0,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 32,
+   "wheel": 64
+  },
+  "mono": false
+ },
+ {
+  "file": "Chords/Tek%20Stab.fxp",
+  "name": "Tek stab",
+  "family": "Chords",
+  "author": "Claes",
+  "e": [
+   1,
+   24,
+   1,
+   31,
+   99,
+   20,
+   64,
+   32
+  ],
+  "env": [
+   0,
+   90,
+   0,
+   47
+  ],
+  "x": {
+   "fenv": [
+    0,
+    60,
+    0,
+    76
+   ],
+   "pw": [
+    64,
+    64
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 1,
+   "lfo": [
+    0,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 0,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 32,
+   "wheel": 64
+  },
+  "mono": false
+ },
+ {
+  "file": "FX/Busy.fxp",
+  "name": "Busy",
+  "family": "FX",
+  "author": "Claes",
+  "e": [
+   2,
+   35,
+   2,
+   39,
+   127,
+   0,
+   64,
+   0
+  ],
+  "env": [
+   0,
+   95,
+   127,
+   47
+  ],
+  "x": {
+   "fenv": [
+    0,
+    76,
+    0,
+    76
+   ],
+   "pw": [
+    120,
+    120
+   ],
+   "fine": 10,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 0,
+   "lfo": [
+    0,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 0,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 127,
+   "wheel": 64
+  },
+  "mono": false
+ },
+ {
+  "file": "FX/Damage%20Dealer.fxp",
+  "name": "Damage Dealer",
+  "family": "FX",
+  "author": "Claes",
+  "e": [
+   1,
+   12,
+   1,
+   12,
+   62,
+   114,
+   0,
+   12
+  ],
+  "env": [
+   0,
+   95,
+   127,
+   47
+  ],
+  "x": {
+   "fenv": [
+    80,
+    117,
+    0,
+    76
+   ],
+   "pw": [
+    64,
+    64
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 1,
+   "lfo": [
+    0,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 0,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 68,
+   "wheel": 64
+  },
+  "mono": false
+ },
+ {
+  "file": "FX/Evil%20Sucker%20Seq.fxp",
+  "name": "Evil suckerseq",
+  "family": "FX",
+  "author": "Claes",
+  "e": [
+   1,
+   0,
+   1,
+   0,
+   58,
+   120,
+   0,
+   19
+  ],
+  "env": [
+   0,
+   111,
+   0,
+   47
+  ],
+  "x": {
+   "fenv": [
+    0,
+    32,
+    0,
+    76
+   ],
+   "pw": [
+    64,
+    64
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 2,
+   "lfo": [
+    0,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 0,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 32,
+   "wheel": 64
+  },
+  "mono": false
+ },
+ {
+  "file": "Keys/Circus%201.fxp",
+  "name": "Circus",
+  "family": "Keys",
+  "author": "Claes",
+  "e": [
+   1,
+   24,
+   1,
+   24,
+   58,
+   77,
+   0,
+   0
+  ],
+  "env": [
+   0,
+   53,
+   85,
+   47
+  ],
+  "x": {
+   "fenv": [
+    0,
+    76,
+    0,
+    76
+   ],
+   "pw": [
+    64,
+    64
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 2,
+   "lfo": [
+    0,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 0,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 32,
+   "wheel": 64
+  },
+  "mono": false
+ },
+ {
+  "file": "Keys/Digi%20Harpsi.fxp",
+  "name": "Sawteeth",
+  "family": "Keys",
+  "author": "Claes",
+  "e": [
+   4,
+   34,
+   4,
+   24,
+   61,
+   43,
+   64,
+   1
+  ],
+  "env": [
+   0,
+   108,
+   80,
+   98
+  ],
+  "x": {
+   "fenv": [
+    0,
+    109,
+    70,
+    110
+   ],
+   "pw": [
+    64,
+    64
+   ],
+   "fine": 12,
+   "sync": 1,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 2,
+   "lfo": [
+    0,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 0,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 91,
+   "wheel": 64
+  },
+  "mono": false
+ },
+ {
+  "file": "Keys/Organ%202.fxp",
+  "name": "Organ 2",
+  "family": "Keys",
+  "author": "Claes",
+  "e": [
+   4,
+   24,
+   4,
+   24,
+   44,
+   88,
+   0,
+   5
+  ],
+  "env": [
+   0,
+   95,
+   127,
+   47
+  ],
+  "x": {
+   "fenv": [
+    0,
+    26,
+    0,
+    76
+   ],
+   "pw": [
+    54,
+    54
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 2,
+   "lfo": [
+    0,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 0,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 32,
+   "wheel": 64
+  },
+  "mono": false
+ },
+ {
+  "file": "Keys/Soft%20Suitcase.fxp",
+  "name": "Softsuit",
+  "family": "Keys",
+  "author": "Claes",
+  "e": [
+   2,
+   24,
+   2,
+   56,
+   127,
+   0,
+   13,
+   0
+  ],
+  "env": [
+   43,
+   111,
+   6,
+   74
+  ],
+  "x": {
+   "fenv": [
+    0,
+    64,
+    0,
+    101
+   ],
+   "pw": [
+    120,
+    120
+   ],
+   "fine": 12,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 0,
+   "lfo": [
+    0,
+    3
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 0,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 127,
+   "wheel": 64
+  },
+  "mono": false
+ },
+ {
+  "file": "Leads/Acidofil.fxp",
+  "name": "Acidofil",
+  "family": "Leads",
+  "author": "Claes",
+  "e": [
+   4,
+   0,
+   4,
+   0,
+   54,
+   66,
+   0,
+   18
+  ],
+  "env": [
+   0,
+   95,
+   127,
+   57
+  ],
+  "x": {
+   "fenv": [
+    0,
+    97,
+    0,
+    57
+   ],
+   "pw": [
+    61,
+    61
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 1,
+   "lfo": [
+    0,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 53,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 32,
+   "wheel": 64
+  },
+  "mono": true
+ },
+ {
+  "file": "Leads/Bad%20Childhood.fxp",
+  "name": "Bad childhood",
+  "family": "Leads",
+  "author": "Claes",
+  "e": [
+   1,
+   12,
+   1,
+   12,
+   85,
+   36,
+   0,
+   1
+  ],
+  "env": [
+   0,
+   95,
+   127,
+   57
+  ],
+  "x": {
+   "fenv": [
+    0,
+    107,
+    0,
+    57
+   ],
+   "pw": [
+    64,
+    64
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 2,
+   "lfo": [
+    0,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 0,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 32,
+   "wheel": 64
+  },
+  "mono": true
+ },
+ {
+  "file": "Leads/Banter.fxp",
+  "name": "Banter",
+  "family": "Leads",
+  "author": "Claes",
+  "e": [
+   4,
+   24,
+   4,
+   24,
+   95,
+   34,
+   0,
+   0
+  ],
+  "env": [
+   0,
+   95,
+   127,
+   45
+  ],
+  "x": {
+   "fenv": [
+    0,
+    76,
+    0,
+    76
+   ],
+   "pw": [
+    50,
+    50
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 2,
+   "lfo": [
+    5,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 35,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 32,
+   "wheel": 64
+  },
+  "mono": true
+ },
+ {
+  "file": "Leads/Bitten.fxp",
+  "name": "Bitten",
+  "family": "Leads",
+  "author": "Claes",
+  "e": [
+   4,
+   12,
+   1,
+   24,
+   123,
+   53,
+   64,
+   0
+  ],
+  "env": [
+   0,
+   76,
+   127,
+   47
+  ],
+  "x": {
+   "fenv": [
+    0,
+    76,
+    0,
+    76
+   ],
+   "pw": [
+    42,
+    64
+   ],
+   "fine": 14,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 0,
+   "lfo": [
+    22,
+    3
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 34,
+   "unison": 1,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 32,
+   "wheel": 64
+  },
+  "mono": true
+ },
+ {
+  "file": "Leads/Boll.fxp",
+  "name": "Boll",
+  "family": "Leads",
+  "author": "Claes",
+  "e": [
+   5,
+   24,
+   5,
+   24,
+   47,
+   88,
+   0,
+   0
+  ],
+  "env": [
+   32,
+   95,
+   127,
+   47
+  ],
+  "x": {
+   "fenv": [
+    0,
+    76,
+    0,
+    76
+   ],
+   "pw": [
+    14,
+    14
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 1,
+   "lfo": [
+    0,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 40,
+   "unison": 1,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 17,
+   "wheel": 64
+  },
+  "mono": true
+ },
+ {
+  "file": "Leads/Broken%20One.fxp",
+  "name": "Broken one",
+  "family": "Leads",
+  "author": "Claes",
+  "e": [
+   4,
+   28,
+   4,
+   24,
+   83,
+   100,
+   0,
+   33
+  ],
+  "env": [
+   0,
+   95,
+   127,
+   47
+  ],
+  "x": {
+   "fenv": [
+    75,
+    108,
+    0,
+    76
+   ],
+   "pw": [
+    63,
+    63
+   ],
+   "fine": 0,
+   "sync": 1,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 1,
+   "lfo": [
+    0,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 0,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 32,
+   "wheel": 64
+  },
+  "mono": true
+ },
+ {
+  "file": "Leads/Butter.fxp",
+  "name": "Butter",
+  "family": "Leads",
+  "author": "Claes",
+  "e": [
+   4,
+   24,
+   4,
+   24,
+   61,
+   56,
+   0,
+   0
+  ],
+  "env": [
+   0,
+   95,
+   127,
+   38
+  ],
+  "x": {
+   "fenv": [
+    0,
+    76,
+    0,
+    76
+   ],
+   "pw": [
+    58,
+    58
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 2,
+   "lfo": [
+    0,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 42,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 11,
+   "wheel": 64
+  },
+  "mono": true
+ },
+ {
+  "file": "Leads/Chatter.fxp",
+  "name": "Chatter",
+  "family": "Leads",
+  "author": "Claes",
+  "e": [
+   4,
+   24,
+   4,
+   24,
+   95,
+   34,
+   0,
+   0
+  ],
+  "env": [
+   0,
+   95,
+   127,
+   45
+  ],
+  "x": {
+   "fenv": [
+    0,
+    76,
+    0,
+    76
+   ],
+   "pw": [
+    50,
+    50
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 2,
+   "lfo": [
+    5,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 35,
+   "unison": 1,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 12,
+   "wheel": 64
+  },
+  "mono": true
+ },
+ {
+  "file": "Leads/Classic%20Lead%201.fxp",
+  "name": "Classic lead 1",
+  "family": "Leads",
+  "author": "Claes",
+  "e": [
+   1,
+   24,
+   1,
+   24,
+   26,
+   68,
+   59,
+   44
+  ],
+  "env": [
+   0,
+   95,
+   127,
+   63
+  ],
+  "x": {
+   "fenv": [
+    60,
+    79,
+    0,
+    76
+   ],
+   "pw": [
+    64,
+    64
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 2,
+   "lfo": [
+    0,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 41,
+   "unison": 1,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 30,
+   "wheel": 64
+  },
+  "mono": true
+ },
+ {
+  "file": "Leads/Classic%20Lead%202.fxp",
+  "name": "Classic lead 2",
+  "family": "Leads",
+  "author": "Claes",
+  "e": [
+   4,
+   24,
+   1,
+   24,
+   46,
+   104,
+   56,
+   0
+  ],
+  "env": [
+   0,
+   95,
+   127,
+   63
+  ],
+  "x": {
+   "fenv": [
+    0,
+    92,
+    53,
+    76
+   ],
+   "pw": [
+    43,
+    64
+   ],
+   "fine": 5,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 2,
+   "lfo": [
+    0,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 41,
+   "unison": 1,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 28,
+   "wheel": 64
+  },
+  "mono": true
+ },
+ {
+  "file": "Leads/Classical.fxp",
+  "name": "Classical",
+  "family": "Leads",
+  "author": "Claes",
+  "e": [
+   1,
+   24,
+   2,
+   24,
+   39,
+   77,
+   59,
+   23
+  ],
+  "env": [
+   0,
+   95,
+   127,
+   93
+  ],
+  "x": {
+   "fenv": [
+    39,
+    106,
+    52,
+    100
+   ],
+   "pw": [
+    64,
+    14
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 1,
+   "lfo": [
+    0,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 33,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 32,
+   "wheel": 64
+  },
+  "mono": true
+ },
+ {
+  "file": "Leads/Condom.fxp",
+  "name": "Condom",
+  "family": "Leads",
+  "author": "Claes",
+  "e": [
+   1,
+   12,
+   1,
+   12,
+   107,
+   50,
+   0,
+   47
+  ],
+  "env": [
+   0,
+   95,
+   127,
+   47
+  ],
+  "x": {
+   "fenv": [
+    0,
+    76,
+    0,
+    76
+   ],
+   "pw": [
+    64,
+    64
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 0,
+   "lfo": [
+    0,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 47,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 32,
+   "wheel": 64
+  },
+  "mono": true
+ },
+ {
+  "file": "Leads/Cray.fxp",
+  "name": "Cray",
+  "family": "Leads",
+  "author": "Claes",
+  "e": [
+   1,
+   24,
+   1,
+   24,
+   42,
+   0,
+   0,
+   9
+  ],
+  "env": [
+   0,
+   95,
+   127,
+   47
+  ],
+  "x": {
+   "fenv": [
+    0,
+    99,
+    0,
+    76
+   ],
+   "pw": [
+    59,
+    59
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 0,
+   "lfo": [
+    0,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 44,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 32,
+   "wheel": 64
+  },
+  "mono": true
+ },
+ {
+  "file": "Leads/DNA%20Sequencer.fxp",
+  "name": "DNA Sequencer",
+  "family": "Leads",
+  "author": "Claes",
+  "e": [
+   1,
+   24,
+   1,
+   24,
+   52,
+   46,
+   64,
+   11
+  ],
+  "env": [
+   0,
+   95,
+   127,
+   47
+  ],
+  "x": {
+   "fenv": [
+    0,
+    61,
+    0,
+    76
+   ],
+   "pw": [
+    64,
+    64
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 1,
+   "lfo": [
+    0,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 34,
+   "unison": 1,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 10,
+   "wheel": 64
+  },
+  "mono": true
+ },
+ {
+  "file": "Leads/Digi%20It.fxp",
+  "name": "Digi it",
+  "family": "Leads",
+  "author": "Claes",
+  "e": [
+   1,
+   24,
+   1,
+   24,
+   45,
+   13,
+   67,
+   49
+  ],
+  "env": [
+   0,
+   95,
+   127,
+   47
+  ],
+  "x": {
+   "fenv": [
+    78,
+    86,
+    0,
+    76
+   ],
+   "pw": [
+    64,
+    64
+   ],
+   "fine": 2,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 0,
+   "lfo": [
+    0,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 63,
+   "unison": 1,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 28,
+   "wheel": 64
+  },
+  "mono": true
+ },
+ {
+  "file": "Leads/Dome.fxp",
+  "name": "Dome",
+  "family": "Leads",
+  "author": "Claes",
+  "e": [
+   1,
+   12,
+   4,
+   13,
+   122,
+   46,
+   48,
+   41
+  ],
+  "env": [
+   0,
+   59,
+   69,
+   44
+  ],
+  "x": {
+   "fenv": [
+    0,
+    50,
+    0,
+    76
+   ],
+   "pw": [
+    64,
+    44
+   ],
+   "fine": 63,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 0,
+   "lfo": [
+    0,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 0,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 32,
+   "wheel": 64
+  },
+  "mono": true
+ },
+ {
+  "file": "Leads/Eight.fxp",
+  "name": "Eight",
+  "family": "Leads",
+  "author": "Claes",
+  "e": [
+   4,
+   24,
+   4,
+   24,
+   83,
+   7,
+   0,
+   37
+  ],
+  "env": [
+   0,
+   95,
+   127,
+   103
+  ],
+  "x": {
+   "fenv": [
+    0,
+    76,
+    0,
+    76
+   ],
+   "pw": [
+    28,
+    28
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 0,
+   "lfo": [
+    0,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 57,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 32,
+   "wheel": 64
+  },
+  "mono": true
+ },
+ {
+  "file": "Leads/Fluff.fxp",
+  "name": "Fluff",
+  "family": "Leads",
+  "author": "Claes",
+  "e": [
+   4,
+   24,
+   4,
+   24,
+   127,
+   0,
+   0,
+   0
+  ],
+  "env": [
+   0,
+   95,
+   127,
+   47
+  ],
+  "x": {
+   "fenv": [
+    0,
+    36,
+    0,
+    76
+   ],
+   "pw": [
+    17,
+    17
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 2,
+   "lfo": [
+    0,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 24,
+   "unison": 1,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 127,
+   "wheel": 64
+  },
+  "mono": true
+ },
+ {
+  "file": "Leads/Fuji.fxp",
+  "name": "Fuji",
+  "family": "Leads",
+  "author": "Claes",
+  "e": [
+   4,
+   24,
+   4,
+   24,
+   12,
+   29,
+   0,
+   33
+  ],
+  "env": [
+   0,
+   95,
+   127,
+   47
+  ],
+  "x": {
+   "fenv": [
+    0,
+    107,
+    0,
+    76
+   ],
+   "pw": [
+    64,
+    64
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 1,
+   "lfo": [
+    0,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 45,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 16,
+   "wheel": 64
+  },
+  "mono": true
+ },
+ {
+  "file": "Leads/Generic.fxp",
+  "name": "Generic",
+  "family": "Leads",
+  "author": "Claes",
+  "e": [
+   1,
+   24,
+   1,
+   24,
+   47,
+   79,
+   0,
+   18
+  ],
+  "env": [
+   0,
+   95,
+   127,
+   47
+  ],
+  "x": {
+   "fenv": [
+    29,
+    103,
+    0,
+    76
+   ],
+   "pw": [
+    64,
+    64
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 1,
+   "lfo": [
+    0,
+    3
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 50,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 32,
+   "wheel": 64
+  },
+  "mono": true
+ },
+ {
+  "file": "Leads/Harsh.fxp",
+  "name": "Harsh",
+  "family": "Leads",
+  "author": "Claes",
+  "e": [
+   1,
+   24,
+   4,
+   31,
+   61,
+   86,
+   50,
+   0
+  ],
+  "env": [
+   50,
+   95,
+   127,
+   38
+  ],
+  "x": {
+   "fenv": [
+    0,
+    76,
+    0,
+    76
+   ],
+   "pw": [
+    64,
+    47
+   ],
+   "fine": 7,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 1,
+   "lfo": [
+    8,
+    3
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 35,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 32,
+   "wheel": 64
+  },
+  "mono": true
+ },
+ {
+  "file": "Leads/Hippo.fxp",
+  "name": "Hippo",
+  "family": "Leads",
+  "author": "Claes",
+  "e": [
+   4,
+   12,
+   4,
+   12,
+   41,
+   101,
+   0,
+   11
+  ],
+  "env": [
+   0,
+   95,
+   127,
+   47
+  ],
+  "x": {
+   "fenv": [
+    31,
+    103,
+    0,
+    76
+   ],
+   "pw": [
+    61,
+    61
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 0,
+   "lfo": [
+    0,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 39,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 32,
+   "wheel": 64
+  },
+  "mono": true
+ },
+ {
+  "file": "Leads/In%20The%20Distance.fxp",
+  "name": "In the distance",
+  "family": "Leads",
+  "author": "Claes",
+  "e": [
+   1,
+   24,
+   1,
+   24,
+   114,
+   47,
+   0,
+   22
+  ],
+  "env": [
+   0,
+   95,
+   127,
+   47
+  ],
+  "x": {
+   "fenv": [
+    36,
+    83,
+    0,
+    76
+   ],
+   "pw": [
+    64,
+    64
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 0,
+   "lfo": [
+    2,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 36,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 32,
+   "wheel": 64
+  },
+  "mono": true
+ },
+ {
+  "file": "Leads/Koala%201.fxp",
+  "name": "Koala",
+  "family": "Leads",
+  "author": "Claes",
+  "e": [
+   1,
+   32,
+   1,
+   24,
+   45,
+   46,
+   0,
+   46
+  ],
+  "env": [
+   0,
+   95,
+   127,
+   47
+  ],
+  "x": {
+   "fenv": [
+    0,
+    101,
+    0,
+    76
+   ],
+   "pw": [
+    64,
+    64
+   ],
+   "fine": 0,
+   "sync": 1,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 0,
+   "lfo": [
+    0,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 60,
+   "unison": 1,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 1,
+   "wheel": 64
+  },
+  "mono": true
+ },
+ {
+  "file": "Leads/Koala%202.fxp",
+  "name": "Koala 2",
+  "family": "Leads",
+  "author": "Claes",
+  "e": [
+   1,
+   32,
+   1,
+   24,
+   65,
+   82,
+   0,
+   46
+  ],
+  "env": [
+   0,
+   95,
+   127,
+   47
+  ],
+  "x": {
+   "fenv": [
+    0,
+    101,
+    0,
+    76
+   ],
+   "pw": [
+    64,
+    64
+   ],
+   "fine": 0,
+   "sync": 1,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 0,
+   "lfo": [
+    0,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 60,
+   "unison": 1,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 17,
+   "wheel": 64
+  },
+  "mono": true
+ },
+ {
+  "file": "Leads/Kurasu.fxp",
+  "name": "Kurasu",
+  "family": "Leads",
+  "author": "Claes",
+  "e": [
+   4,
+   24,
+   4,
+   24,
+   85,
+   120,
+   0,
+   0
+  ],
+  "env": [
+   0,
+   95,
+   127,
+   47
+  ],
+  "x": {
+   "fenv": [
+    0,
+    76,
+    0,
+    76
+   ],
+   "pw": [
+    57,
+    57
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 1,
+   "lfo": [
+    8,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 48,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 32,
+   "wheel": 64
+  },
+  "mono": true
+ },
+ {
+  "file": "Leads/Labcoat.fxp",
+  "name": "Labcoat",
+  "family": "Leads",
+  "author": "Claes",
+  "e": [
+   1,
+   24,
+   1,
+   24,
+   36,
+   16,
+   0,
+   44
+  ],
+  "env": [
+   0,
+   95,
+   127,
+   47
+  ],
+  "x": {
+   "fenv": [
+    0,
+    51,
+    0,
+    83
+   ],
+   "pw": [
+    64,
+    64
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 1,
+   "lfo": [
+    0,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 55,
+   "unison": 1,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 63,
+   "wheel": 64
+  },
+  "mono": true
+ },
+ {
+  "file": "Leads/Light.fxp",
+  "name": "Light",
+  "family": "Leads",
+  "author": "Claes",
+  "e": [
+   1,
+   12,
+   1,
+   24,
+   25,
+   70,
+   64,
+   68
+  ],
+  "env": [
+   0,
+   95,
+   127,
+   57
+  ],
+  "x": {
+   "fenv": [
+    0,
+    93,
+    0,
+    57
+   ],
+   "pw": [
+    64,
+    64
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 1,
+   "lfo": [
+    0,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 42,
+   "unison": 1,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 32,
+   "wheel": 64
+  },
+  "mono": true
+ },
+ {
+  "file": "Leads/Moogy%20Saw.fxp",
+  "name": "Moogy saw",
+  "family": "Leads",
+  "author": "Claes",
+  "e": [
+   1,
+   24,
+   1,
+   24,
+   78,
+   52,
+   0,
+   28
+  ],
+  "env": [
+   0,
+   95,
+   127,
+   47
+  ],
+  "x": {
+   "fenv": [
+    103,
+    82,
+    63,
+    76
+   ],
+   "pw": [
+    64,
+    64
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 1,
+   "lfo": [
+    2,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 38,
+   "unison": 1,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 10,
+   "wheel": 64
+  },
+  "mono": true
+ },
+ {
+  "file": "Leads/Motion.fxp",
+  "name": "Motion",
+  "family": "Leads",
+  "author": "Claes",
+  "e": [
+   1,
+   12,
+   1,
+   12,
+   60,
+   21,
+   0,
+   21
+  ],
+  "env": [
+   0,
+   114,
+   0,
+   47
+  ],
+  "x": {
+   "fenv": [
+    0,
+    77,
+    22,
+    76
+   ],
+   "pw": [
+    64,
+    64
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 0,
+   "lfo": [
+    0,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 34,
+   "unison": 1,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 9,
+   "wheel": 64
+  },
+  "mono": true
+ },
+ {
+  "file": "Leads/Mundane.fxp",
+  "name": "Mundane",
+  "family": "Leads",
+  "author": "Claes",
+  "e": [
+   1,
+   12,
+   1,
+   12,
+   44,
+   26,
+   0,
+   73
+  ],
+  "env": [
+   0,
+   95,
+   127,
+   47
+  ],
+  "x": {
+   "fenv": [
+    0,
+    79,
+    0,
+    76
+   ],
+   "pw": [
+    64,
+    64
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 1,
+   "lfo": [
+    0,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 54,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 32,
+   "wheel": 64
+  },
+  "mono": true
+ },
+ {
+  "file": "Leads/Not%20Nearly%20As%20Harsh.fxp",
+  "name": "Not nearly as harsh",
+  "family": "Leads",
+  "author": "Claes",
+  "e": [
+   1,
+   12,
+   1,
+   36,
+   93,
+   13,
+   64,
+   24
+  ],
+  "env": [
+   0,
+   76,
+   127,
+   47
+  ],
+  "x": {
+   "fenv": [
+    0,
+    61,
+    0,
+    76
+   ],
+   "pw": [
+    64,
+    64
+   ],
+   "fine": 2,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 1,
+   "lfo": [
+    0,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 0,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 32,
+   "wheel": 64
+  },
+  "mono": true
+ },
+ {
+  "file": "Leads/Oldest%20Trick%20In%20The%20Book%20MW.fxp",
+  "name": "Oldest Trick in the Book MW",
+  "family": "Leads",
+  "author": "Claes",
+  "e": [
+   1,
+   12,
+   1,
+   12,
+   19,
+   107,
+   0,
+   8
+  ],
+  "env": [
+   0,
+   95,
+   127,
+   47
+  ],
+  "x": {
+   "fenv": [
+    0,
+    113,
+    0,
+    76
+   ],
+   "pw": [
+    64,
+    64
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 1,
+   "lfo": [
+    0,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 0,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 32,
+   "wheel": 64
+  },
+  "mono": true
+ },
+ {
+  "file": "Leads/Owl.fxp",
+  "name": "Owl",
+  "family": "Leads",
+  "author": "Claes",
+  "e": [
+   5,
+   12,
+   5,
+   12,
+   125,
+   60,
+   0,
+   0
+  ],
+  "env": [
+   0,
+   76,
+   127,
+   47
+  ],
+  "x": {
+   "fenv": [
+    0,
+    73,
+    0,
+    76
+   ],
+   "pw": [
+    55,
+    55
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 0,
+   "lfo": [
+    2,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 21,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 32,
+   "wheel": 64
+  },
+  "mono": true
+ },
+ {
+  "file": "Leads/Phase%20Pass.fxp",
+  "name": "Phasepass",
+  "family": "Leads",
+  "author": "Claes",
+  "e": [
+   5,
+   24,
+   5,
+   24,
+   118,
+   41,
+   0,
+   39
+  ],
+  "env": [
+   0,
+   95,
+   127,
+   47
+  ],
+  "x": {
+   "fenv": [
+    0,
+    48,
+    0,
+    76
+   ],
+   "pw": [
+    31,
+    31
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 0,
+   "lfo": [
+    0,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 33,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 28,
+   "wheel": 64
+  },
+  "mono": true
+ },
+ {
+  "file": "Leads/Photon.fxp",
+  "name": "Photon",
+  "family": "Leads",
+  "author": "Claes",
+  "e": [
+   1,
+   24,
+   1,
+   24,
+   15,
+   4,
+   0,
+   45
+  ],
+  "env": [
+   103,
+   113,
+   127,
+   108
+  ],
+  "x": {
+   "fenv": [
+    0,
+    127,
+    82,
+    116
+   ],
+   "pw": [
+    65,
+    65
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 1,
+   "lfo": [
+    2,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 35,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 10,
+   "wheel": 64
+  },
+  "mono": false
+ },
+ {
+  "file": "Leads/Play%20Nice.fxp",
+  "name": "Play Nice",
+  "family": "Leads",
+  "author": "Claes",
+  "e": [
+   4,
+   12,
+   4,
+   12,
+   32,
+   0,
+   0,
+   3
+  ],
+  "env": [
+   0,
+   95,
+   127,
+   47
+  ],
+  "x": {
+   "fenv": [
+    0,
+    85,
+    63,
+    76
+   ],
+   "pw": [
+    20,
+    20
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 1,
+   "lfo": [
+    0,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 56,
+   "unison": 1,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 76,
+   "wheel": 64
+  },
+  "mono": true
+ },
+ {
+  "file": "Leads/Probability.fxp",
+  "name": "Probability",
+  "family": "Leads",
+  "author": "Claes",
+  "e": [
+   5,
+   24,
+   5,
+   24,
+   13,
+   0,
+   0,
+   59
+  ],
+  "env": [
+   77,
+   95,
+   127,
+   95
+  ],
+  "x": {
+   "fenv": [
+    98,
+    106,
+    63,
+    76
+   ],
+   "pw": [
+    44,
+    44
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 1,
+   "lfo": [
+    2,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 47,
+   "unison": 1,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 0,
+   "wheel": 64
+  },
+  "mono": true
+ },
+ {
+  "file": "Leads/Qealchee.fxp",
+  "name": "Qealchee",
+  "family": "Leads",
+  "author": "Claes",
+  "e": [
+   4,
+   24,
+   4,
+   24,
+   52,
+   107,
+   0,
+   11
+  ],
+  "env": [
+   0,
+   76,
+   127,
+   47
+  ],
+  "x": {
+   "fenv": [
+    37,
+    84,
+    0,
+    76
+   ],
+   "pw": [
+    57,
+    57
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 1,
+   "lfo": [
+    0,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 49,
+   "unison": 1,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 14,
+   "wheel": 64
+  },
+  "mono": true
+ },
+ {
+  "file": "Leads/Quick%20Basic.fxp",
+  "name": "Quickbasic",
+  "family": "Leads",
+  "author": "Claes",
+  "e": [
+   1,
+   24,
+   1,
+   24,
+   46,
+   45,
+   0,
+   72
+  ],
+  "env": [
+   0,
+   93,
+   67,
+   43
+  ],
+  "x": {
+   "fenv": [
+    0,
+    107,
+    0,
+    105
+   ],
+   "pw": [
+    60,
+    60
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 1,
+   "lfo": [
+    0,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 36,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 17,
+   "wheel": 64
+  },
+  "mono": false
+ },
+ {
+  "file": "Leads/Quirp.fxp",
+  "name": "Quirp",
+  "family": "Leads",
+  "author": "Claes",
+  "e": [
+   4,
+   12,
+   4,
+   12,
+   24,
+   93,
+   0,
+   38
+  ],
+  "env": [
+   0,
+   95,
+   127,
+   0
+  ],
+  "x": {
+   "fenv": [
+    0,
+    76,
+    0,
+    76
+   ],
+   "pw": [
+    15,
+    15
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 1,
+   "lfo": [
+    0,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 50,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 32,
+   "wheel": 64
+  },
+  "mono": true
+ },
+ {
+  "file": "Leads/Quiz.fxp",
+  "name": "Quiz",
+  "family": "Leads",
+  "author": "Claes",
+  "e": [
+   4,
+   24,
+   4,
+   24,
+   29,
+   84,
+   0,
+   69
+  ],
+  "env": [
+   0,
+   95,
+   127,
+   47
+  ],
+  "x": {
+   "fenv": [
+    47,
+    113,
+    0,
+    76
+   ],
+   "pw": [
+    48,
+    48
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 2,
+   "lfo": [
+    5,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 41,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 32,
+   "wheel": 64
+  },
+  "mono": true
+ },
+ {
+  "file": "Leads/Radon.fxp",
+  "name": "Radon",
+  "family": "Leads",
+  "author": "Claes",
+  "e": [
+   1,
+   12,
+   1,
+   12,
+   66,
+   103,
+   0,
+   0
+  ],
+  "env": [
+   0,
+   95,
+   127,
+   41
+  ],
+  "x": {
+   "fenv": [
+    0,
+    47,
+    0,
+    76
+   ],
+   "pw": [
+    52,
+    52
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 0,
+   "lfo": [
+    2,
+    3
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 43,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 32,
+   "wheel": 64
+  },
+  "mono": true
+ },
+ {
+  "file": "Leads/Resofest%201.fxp",
+  "name": "Resofest 1",
+  "family": "Leads",
+  "author": "Claes",
+  "e": [
+   1,
+   12,
+   1,
+   12,
+   0,
+   119,
+   0,
+   42
+  ],
+  "env": [
+   0,
+   95,
+   127,
+   47
+  ],
+  "x": {
+   "fenv": [
+    27,
+    104,
+    0,
+    76
+   ],
+   "pw": [
+    64,
+    64
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 1,
+   "lfo": [
+    0,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 49,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 32,
+   "wheel": 64
+  },
+  "mono": true
+ },
+ {
+  "file": "Leads/Resofest%202.fxp",
+  "name": "Resofest 2",
+  "family": "Leads",
+  "author": "Claes",
+  "e": [
+   4,
+   12,
+   4,
+   12,
+   3,
+   104,
+   0,
+   8
+  ],
+  "env": [
+   0,
+   95,
+   127,
+   47
+  ],
+  "x": {
+   "fenv": [
+    27,
+    104,
+    0,
+    76
+   ],
+   "pw": [
+    64,
+    64
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 1,
+   "lfo": [
+    0,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 49,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 32,
+   "wheel": 64
+  },
+  "mono": true
+ },
+ {
+  "file": "Leads/Resofest%203.fxp",
+  "name": "Resofest 3",
+  "family": "Leads",
+  "author": "Claes",
+  "e": [
+   4,
+   12,
+   4,
+   12,
+   64,
+   102,
+   0,
+   24
+  ],
+  "env": [
+   0,
+   95,
+   127,
+   47
+  ],
+  "x": {
+   "fenv": [
+    0,
+    103,
+    0,
+    76
+   ],
+   "pw": [
+    64,
+    64
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 0,
+   "lfo": [
+    0,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 51,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 32,
+   "wheel": 64
+  },
+  "mono": true
+ },
+ {
+  "file": "Leads/Resofest%204.fxp",
+  "name": "Resofest 4",
+  "family": "Leads",
+  "author": "Claes",
+  "e": [
+   1,
+   12,
+   1,
+   12,
+   0,
+   113,
+   0,
+   42
+  ],
+  "env": [
+   0,
+   95,
+   127,
+   47
+  ],
+  "x": {
+   "fenv": [
+    27,
+    104,
+    0,
+    76
+   ],
+   "pw": [
+    64,
+    64
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 1,
+   "lfo": [
+    0,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 49,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 32,
+   "wheel": 64
+  },
+  "mono": true
+ },
+ {
+  "file": "Leads/Riemann.fxp",
+  "name": "Riemann",
+  "family": "Leads",
+  "author": "Claes",
+  "e": [
+   1,
+   24,
+   1,
+   24,
+   43,
+   69,
+   0,
+   22
+  ],
+  "env": [
+   0,
+   95,
+   127,
+   47
+  ],
+  "x": {
+   "fenv": [
+    39,
+    93,
+    0,
+    76
+   ],
+   "pw": [
+    64,
+    64
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 1,
+   "lfo": [
+    2,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 36,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 32,
+   "wheel": 64
+  },
+  "mono": true
+ },
+ {
+  "file": "Leads/Rough.fxp",
+  "name": "Rough",
+  "family": "Leads",
+  "author": "Claes",
+  "e": [
+   1,
+   12,
+   1,
+   12,
+   30,
+   7,
+   0,
+   41
+  ],
+  "env": [
+   0,
+   64,
+   101,
+   47
+  ],
+  "x": {
+   "fenv": [
+    0,
+    84,
+    0,
+    76
+   ],
+   "pw": [
+    64,
+    64
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 0,
+   "lfo": [
+    0,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 0,
+   "unison": 1,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 43,
+   "wheel": 64
+  },
+  "mono": true
+ },
+ {
+  "file": "Leads/Saw%20Octaves.fxp",
+  "name": "Saw octaves",
+  "family": "Leads",
+  "author": "Claes",
+  "e": [
+   1,
+   12,
+   1,
+   24,
+   36,
+   23,
+   64,
+   1
+  ],
+  "env": [
+   0,
+   95,
+   127,
+   38
+  ],
+  "x": {
+   "fenv": [
+    0,
+    41,
+    0,
+    76
+   ],
+   "pw": [
+    58,
+    64
+   ],
+   "fine": 1,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 2,
+   "lfo": [
+    2,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 23,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 32,
+   "wheel": 64
+  },
+  "mono": true
+ },
+ {
+  "file": "Leads/Scream%20Lead.fxp",
+  "name": "Screamlead",
+  "family": "Leads",
+  "author": "Claes",
+  "e": [
+   1,
+   24,
+   1,
+   24,
+   73,
+   73,
+   0,
+   0
+  ],
+  "env": [
+   0,
+   95,
+   127,
+   47
+  ],
+  "x": {
+   "fenv": [
+    0,
+    76,
+    0,
+    76
+   ],
+   "pw": [
+    64,
+    64
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 0,
+   "lfo": [
+    2,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 47,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 32,
+   "wheel": 64
+  },
+  "mono": true
+ },
+ {
+  "file": "Leads/Screamer.fxp",
+  "name": "Screamer",
+  "family": "Leads",
+  "author": "Claes",
+  "e": [
+   4,
+   24,
+   4,
+   24,
+   68,
+   104,
+   0,
+   0
+  ],
+  "env": [
+   0,
+   95,
+   127,
+   47
+  ],
+  "x": {
+   "fenv": [
+    0,
+    76,
+    0,
+    76
+   ],
+   "pw": [
+    58,
+    58
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 1,
+   "lfo": [
+    0,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 30,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 21,
+   "wheel": 64
+  },
+  "mono": false
+ },
+ {
+  "file": "Leads/Semi-clip.fxp",
+  "name": "Semiclip",
+  "family": "Leads",
+  "author": "Claes",
+  "e": [
+   4,
+   24,
+   4,
+   24,
+   40,
+   51,
+   0,
+   9
+  ],
+  "env": [
+   0,
+   95,
+   127,
+   47
+  ],
+  "x": {
+   "fenv": [
+    42,
+    73,
+    0,
+    76
+   ],
+   "pw": [
+    60,
+    60
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 1,
+   "lfo": [
+    0,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 36,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 12,
+   "wheel": 64
+  },
+  "mono": true
+ },
+ {
+  "file": "Leads/Sheep%20Clothing%20MW.fxp",
+  "name": "Sheep Clothing MW",
+  "family": "Leads",
+  "author": "Claes",
+  "e": [
+   1,
+   12,
+   1,
+   12,
+   62,
+   49,
+   0,
+   0
+  ],
+  "env": [
+   0,
+   95,
+   127,
+   53
+  ],
+  "x": {
+   "fenv": [
+    0,
+    76,
+    0,
+    76
+   ],
+   "pw": [
+    64,
+    64
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 2,
+   "lfo": [
+    2,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 47,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 32,
+   "wheel": 64
+  },
+  "mono": true
+ },
+ {
+  "file": "Leads/Simpler%20Times.fxp",
+  "name": "Simpler times",
+  "family": "Leads",
+  "author": "Claes",
+  "e": [
+   1,
+   24,
+   1,
+   24,
+   27,
+   0,
+   0,
+   45
+  ],
+  "env": [
+   0,
+   95,
+   127,
+   47
+  ],
+  "x": {
+   "fenv": [
+    0,
+    76,
+    0,
+    76
+   ],
+   "pw": [
+    32,
+    32
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 1,
+   "lfo": [
+    0,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 50,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 32,
+   "wheel": 64
+  },
+  "mono": true
+ },
+ {
+  "file": "Leads/Sine%20Lead.fxp",
+  "name": "Sinlead",
+  "family": "Leads",
+  "author": "Claes",
+  "e": [
+   2,
+   63,
+   2,
+   36,
+   127,
+   0,
+   36,
+   0
+  ],
+  "env": [
+   25,
+   95,
+   127,
+   55
+  ],
+  "x": {
+   "fenv": [
+    0,
+    76,
+    0,
+    76
+   ],
+   "pw": [
+    14,
+    14
+   ],
+   "fine": 2,
+   "sync": 1,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 0,
+   "lfo": [
+    0,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 35,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 32,
+   "wheel": 64
+  },
+  "mono": true
+ },
+ {
+  "file": "Leads/Smoothness%20World%20Cup.fxp",
+  "name": "Smoothness World Cup",
+  "family": "Leads",
+  "author": "Claes",
+  "e": [
+   1,
+   36,
+   1,
+   36,
+   30,
+   103,
+   0,
+   0
+  ],
+  "env": [
+   0,
+   95,
+   127,
+   47
+  ],
+  "x": {
+   "fenv": [
+    0,
+    76,
+    0,
+    76
+   ],
+   "pw": [
+    57,
+    57
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 2,
+   "lfo": [
+    0,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 45,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 32,
+   "wheel": 64
+  },
+  "mono": true
+ },
+ {
+  "file": "Leads/Smoothy%20Hollow.fxp",
+  "name": "Smoothy Hollow",
+  "family": "Leads",
+  "author": "Claes",
+  "e": [
+   5,
+   26,
+   5,
+   24,
+   59,
+   97,
+   0,
+   5
+  ],
+  "env": [
+   49,
+   95,
+   127,
+   76
+  ],
+  "x": {
+   "fenv": [
+    41,
+    42,
+    0,
+    85
+   ],
+   "pw": [
+    64,
+    64
+   ],
+   "fine": 0,
+   "sync": 1,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 1,
+   "lfo": [
+    0,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 37,
+   "unison": 1,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 20,
+   "wheel": 64
+  },
+  "mono": true
+ },
+ {
+  "file": "Leads/Square.fxp",
+  "name": "Square",
+  "family": "Leads",
+  "author": "Claes",
+  "e": [
+   4,
+   12,
+   4,
+   12,
+   3,
+   69,
+   0,
+   34
+  ],
+  "env": [
+   0,
+   71,
+   76,
+   47
+  ],
+  "x": {
+   "fenv": [
+    0,
+    79,
+    0,
+    76
+   ],
+   "pw": [
+    63,
+    63
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 1,
+   "lfo": [
+    0,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 34,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 24,
+   "wheel": 64
+  },
+  "mono": true
+ },
+ {
+  "file": "Leads/Stepmother.fxp",
+  "name": "Stepmother",
+  "family": "Leads",
+  "author": "Claes",
+  "e": [
+   1,
+   12,
+   1,
+   12,
+   35,
+   28,
+   0,
+   0
+  ],
+  "env": [
+   0,
+   95,
+   127,
+   70
+  ],
+  "x": {
+   "fenv": [
+    0,
+    101,
+    55,
+    106
+   ],
+   "pw": [
+    68,
+    68
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 1,
+   "lfo": [
+    0,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 53,
+   "unison": 1,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 32,
+   "wheel": 64
+  },
+  "mono": true
+ },
+ {
+  "file": "Leads/Sync%20Harmonics.fxp",
+  "name": "Syncharmonics",
+  "family": "Leads",
+  "author": "Claes",
+  "e": [
+   4,
+   24,
+   4,
+   43,
+   39,
+   31,
+   54,
+   32
+  ],
+  "env": [
+   0,
+   106,
+   77,
+   47
+  ],
+  "x": {
+   "fenv": [
+    0,
+    113,
+    0,
+    76
+   ],
+   "pw": [
+    59,
+    57
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 1,
+   "lfo": [
+    0,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 46,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 56,
+   "wheel": 64
+  },
+  "mono": true
+ },
+ {
+  "file": "Leads/Sync%20Lead.fxp",
+  "name": "Sync Lead 1A",
+  "family": "Leads",
+  "author": "Claes",
+  "e": [
+   4,
+   39,
+   4,
+   24,
+   87,
+   14,
+   0,
+   36
+  ],
+  "env": [
+   0,
+   67,
+   110,
+   47
+  ],
+  "x": {
+   "fenv": [
+    37,
+    99,
+    50,
+    76
+   ],
+   "pw": [
+    53,
+    53
+   ],
+   "fine": 0,
+   "sync": 1,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 0,
+   "lfo": [
+    2,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 32,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 32,
+   "wheel": 64
+  },
+  "mono": true
+ },
+ {
+  "file": "Leads/Tok.fxp",
+  "name": "Tok",
+  "family": "Leads",
+  "author": "Claes",
+  "e": [
+   4,
+   12,
+   4,
+   12,
+   23,
+   41,
+   0,
+   18
+  ],
+  "env": [
+   0,
+   76,
+   127,
+   47
+  ],
+  "x": {
+   "fenv": [
+    0,
+    95,
+    0,
+    76
+   ],
+   "pw": [
+    55,
+    55
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 1,
+   "lfo": [
+    0,
+    3
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 44,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 32,
+   "wheel": 64
+  },
+  "mono": true
+ },
+ {
+  "file": "Leads/Triple.fxp",
+  "name": "Triple",
+  "family": "Leads",
+  "author": "Claes",
+  "e": [
+   4,
+   24,
+   1,
+   12,
+   27,
+   36,
+   67,
+   1
+  ],
+  "env": [
+   0,
+   95,
+   127,
+   47
+  ],
+  "x": {
+   "fenv": [
+    63,
+    103,
+    0,
+    82
+   ],
+   "pw": [
+    61,
+    64
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 1,
+   "lfo": [
+    2,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 41,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 0,
+   "wheel": 64
+  },
+  "mono": true
+ },
+ {
+  "file": "Leads/Turbo%20Solo.fxp",
+  "name": "Turbosolo",
+  "family": "Leads",
+  "author": "Claes",
+  "e": [
+   4,
+   24,
+   4,
+   24,
+   108,
+   90,
+   0,
+   0
+  ],
+  "env": [
+   0,
+   76,
+   127,
+   47
+  ],
+  "x": {
+   "fenv": [
+    0,
+    76,
+    0,
+    76
+   ],
+   "pw": [
+    39,
+    39
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 0,
+   "lfo": [
+    5,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 0,
+   "unison": 1,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 6,
+   "wheel": 64
+  },
+  "mono": true
+ },
+ {
+  "file": "Leads/Turbo.fxp",
+  "name": "Turbo",
+  "family": "Leads",
+  "author": "Claes",
+  "e": [
+   5,
+   24,
+   1,
+   36,
+   52,
+   77,
+   60,
+   22
+  ],
+  "env": [
+   0,
+   83,
+   111,
+   47
+  ],
+  "x": {
+   "fenv": [
+    113,
+    112,
+    0,
+    76
+   ],
+   "pw": [
+    55,
+    64
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 1,
+   "lfo": [
+    0,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 43,
+   "unison": 1,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 25,
+   "wheel": 64
+  },
+  "mono": true
+ },
+ {
+  "file": "Leads/Untamed.fxp",
+  "name": "Untamed",
+  "family": "Leads",
+  "author": "Claes",
+  "e": [
+   1,
+   12,
+   1,
+   12,
+   53,
+   74,
+   0,
+   27
+  ],
+  "env": [
+   0,
+   82,
+   107,
+   65
+  ],
+  "x": {
+   "fenv": [
+    0,
+    93,
+    0,
+    79
+   ],
+   "pw": [
+    55,
+    55
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 0,
+   "lfo": [
+    0,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 42,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 35,
+   "wheel": 64
+  },
+  "mono": true
+ },
+ {
+  "file": "Leads/Up%20Down.fxp",
+  "name": "UpDown",
+  "family": "Leads",
+  "author": "Claes",
+  "e": [
+   1,
+   24,
+   1,
+   36,
+   75,
+   19,
+   54,
+   18
+  ],
+  "env": [
+   0,
+   76,
+   127,
+   47
+  ],
+  "x": {
+   "fenv": [
+    63,
+    90,
+    0,
+    76
+   ],
+   "pw": [
+    64,
+    64
+   ],
+   "fine": 17,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 1,
+   "lfo": [
+    0,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 47,
+   "unison": 1,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 44,
+   "wheel": 64
+  },
+  "mono": true
+ },
+ {
+  "file": "Leads/Very%20Chorus.fxp",
+  "name": "Very chorus",
+  "family": "Leads",
+  "author": "Claes",
+  "e": [
+   1,
+   12,
+   1,
+   24,
+   84,
+   27,
+   69,
+   47
+  ],
+  "env": [
+   0,
+   95,
+   127,
+   83
+  ],
+  "x": {
+   "fenv": [
+    73,
+    102,
+    33,
+    87
+   ],
+   "pw": [
+    64,
+    64
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 1,
+   "lfo": [
+    5,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 49,
+   "unison": 1,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 32,
+   "wheel": 64
+  },
+  "mono": true
+ },
+ {
+  "file": "Leads/Zero%20Zero%20One.fxp",
+  "name": "Zerozeroone",
+  "family": "Leads",
+  "author": "Claes",
+  "e": [
+   2,
+   63,
+   1,
+   48,
+   127,
+   0,
+   54,
+   0
+  ],
+  "env": [
+   0,
+   76,
+   127,
+   47
+  ],
+  "x": {
+   "fenv": [
+    0,
+    76,
+    0,
+    76
+   ],
+   "pw": [
+    14,
+    64
+   ],
+   "fine": 0,
+   "sync": 1,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 0,
+   "lfo": [
+    5,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 44,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 32,
+   "wheel": 64
+  },
+  "mono": true
+ },
+ {
+  "file": "Pads/Alias%20Pornography.fxp",
+  "name": "Alias pornography",
+  "family": "Pads",
+  "author": "Claes",
+  "e": [
+   1,
+   24,
+   1,
+   24,
+   78,
+   68,
+   0,
+   0
+  ],
+  "env": [
+   77,
+   95,
+   127,
+   102
+  ],
+  "x": {
+   "fenv": [
+    0,
+    76,
+    0,
+    76
+   ],
+   "pw": [
+    64,
+    64
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 1,
+   "lfo": [
+    0,
+    3
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 24,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 11,
+   "wheel": 64
+  },
+  "mono": false
+ },
+ {
+  "file": "Pads/Bright.fxp",
+  "name": "Bright",
+  "family": "Pads",
+  "author": "Claes",
+  "e": [
+   1,
+   24,
+   1,
+   24,
+   52,
+   0,
+   0,
+   45
+  ],
+  "env": [
+   103,
+   113,
+   127,
+   94
+  ],
+  "x": {
+   "fenv": [
+    0,
+    127,
+    74,
+    111
+   ],
+   "pw": [
+    65,
+    65
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 1,
+   "lfo": [
+    2,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 35,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 9,
+   "wheel": 64
+  },
+  "mono": false
+ },
+ {
+  "file": "Pads/Burden.fxp",
+  "name": "Burden",
+  "family": "Pads",
+  "author": "Claes",
+  "e": [
+   1,
+   12,
+   1,
+   12,
+   71,
+   120,
+   0,
+   0
+  ],
+  "env": [
+   94,
+   92,
+   127,
+   108
+  ],
+  "x": {
+   "fenv": [
+    87,
+    76,
+    0,
+    76
+   ],
+   "pw": [
+    64,
+    64
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 2,
+   "lfo": [
+    0,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 0,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 66,
+   "wheel": 64
+  },
+  "mono": false
+ },
+ {
+  "file": "Pads/Chowning.fxp",
+  "name": "Chowning",
+  "family": "Pads",
+  "author": "Claes",
+  "e": [
+   1,
+   24,
+   1,
+   24,
+   16,
+   0,
+   0,
+   45
+  ],
+  "env": [
+   75,
+   113,
+   127,
+   94
+  ],
+  "x": {
+   "fenv": [
+    0,
+    127,
+    63,
+    93
+   ],
+   "pw": [
+    64,
+    64
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 1,
+   "lfo": [
+    0,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 35,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 32,
+   "wheel": 64
+  },
+  "mono": false
+ },
+ {
+  "file": "Pads/Death%20To%20Gator.fxp",
+  "name": "Death to Gator",
+  "family": "Pads",
+  "author": "Claes",
+  "e": [
+   5,
+   24,
+   5,
+   24,
+   24,
+   80,
+   0,
+   63
+  ],
+  "env": [
+   0,
+   95,
+   127,
+   106
+  ],
+  "x": {
+   "fenv": [
+    111,
+    117,
+    75,
+    119
+   ],
+   "pw": [
+    50,
+    50
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 1,
+   "lfo": [
+    0,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 0,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 20,
+   "wheel": 64
+  },
+  "mono": false
+ },
+ {
+  "file": "Pads/Distant.fxp",
+  "name": "Distant",
+  "family": "Pads",
+  "author": "Claes",
+  "e": [
+   5,
+   24,
+   5,
+   24,
+   94,
+   15,
+   0,
+   11
+  ],
+  "env": [
+   92,
+   95,
+   127,
+   117
+  ],
+  "x": {
+   "fenv": [
+    84,
+    99,
+    0,
+    120
+   ],
+   "pw": [
+    45,
+    45
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 1,
+   "lfo": [
+    0,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 26,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 23,
+   "wheel": 64
+  },
+  "mono": false
+ },
+ {
+  "file": "Pads/Flux%20Capacitor.fxp",
+  "name": "Flux capacitor",
+  "family": "Pads",
+  "author": "Claes",
+  "e": [
+   4,
+   12,
+   4,
+   12,
+   59,
+   76,
+   0,
+   0
+  ],
+  "env": [
+   89,
+   95,
+   127,
+   102
+  ],
+  "x": {
+   "fenv": [
+    51,
+    93,
+    0,
+    93
+   ],
+   "pw": [
+    57,
+    57
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 1,
+   "lfo": [
+    0,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 48,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 6,
+   "wheel": 64
+  },
+  "mono": false
+ },
+ {
+  "file": "Pads/Growth.fxp",
+  "name": "Growth",
+  "family": "Pads",
+  "author": "Claes",
+  "e": [
+   4,
+   24,
+   1,
+   48,
+   42,
+   0,
+   64,
+   34
+  ],
+  "env": [
+   82,
+   95,
+   127,
+   113
+  ],
+  "x": {
+   "fenv": [
+    109,
+    121,
+    0,
+    123
+   ],
+   "pw": [
+    17,
+    64
+   ],
+   "fine": 12,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 1,
+   "lfo": [
+    2,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 0,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 51,
+   "wheel": 64
+  },
+  "mono": false
+ },
+ {
+  "file": "Pads/Harmonic%20Sweep.fxp",
+  "name": "Harmonics sweep",
+  "family": "Pads",
+  "author": "Claes",
+  "e": [
+   1,
+   12,
+   1,
+   12,
+   74,
+   109,
+   0,
+   34
+  ],
+  "env": [
+   0,
+   95,
+   127,
+   115
+  ],
+  "x": {
+   "fenv": [
+    0,
+    118,
+    0,
+    114
+   ],
+   "pw": [
+    64,
+    64
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 2,
+   "lfo": [
+    0,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 0,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 32,
+   "wheel": 64
+  },
+  "mono": false
+ },
+ {
+  "file": "Pads/Legacy.fxp",
+  "name": "Legacy",
+  "family": "Pads",
+  "author": "Claes",
+  "e": [
+   1,
+   24,
+   1,
+   24,
+   11,
+   13,
+   0,
+   42
+  ],
+  "env": [
+   0,
+   95,
+   127,
+   105
+  ],
+  "x": {
+   "fenv": [
+    91,
+    112,
+    73,
+    127
+   ],
+   "pw": [
+    64,
+    64
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 1,
+   "lfo": [
+    2,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 0,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 24,
+   "wheel": 64
+  },
+  "mono": false
+ },
+ {
+  "file": "Pads/Louder.fxp",
+  "name": "Louder",
+  "family": "Pads",
+  "author": "Claes",
+  "e": [
+   4,
+   24,
+   4,
+   24,
+   127,
+   0,
+   0,
+   0
+  ],
+  "env": [
+   90,
+   95,
+   127,
+   107
+  ],
+  "x": {
+   "fenv": [
+    103,
+    119,
+    0,
+    105
+   ],
+   "pw": [
+    64,
+    64
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 0,
+   "lfo": [
+    0,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 0,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 40,
+   "wheel": 64
+  },
+  "mono": false
+ },
+ {
+  "file": "Pads/Newton%20Was%20Evil.fxp",
+  "name": "Newton was evil",
+  "family": "Pads",
+  "author": "Claes",
+  "e": [
+   1,
+   36,
+   1,
+   36,
+   41,
+   48,
+   0,
+   30
+  ],
+  "env": [
+   109,
+   95,
+   127,
+   112
+  ],
+  "x": {
+   "fenv": [
+    109,
+    125,
+    0,
+    122
+   ],
+   "pw": [
+    72,
+    72
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 0,
+   "lfo": [
+    0,
+    3
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 0,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 18,
+   "wheel": 64
+  },
+  "mono": false
+ },
+ {
+  "file": "Pads/Pad%202%20MW.fxp",
+  "name": "Pad 2 MW",
+  "family": "Pads",
+  "author": "Claes",
+  "e": [
+   1,
+   24,
+   4,
+   36,
+   58,
+   0,
+   58,
+   8
+  ],
+  "env": [
+   110,
+   120,
+   71,
+   111
+  ],
+  "x": {
+   "fenv": [
+    0,
+    117,
+    31,
+    119
+   ],
+   "pw": [
+    64,
+    34
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 1,
+   "lfo": [
+    0,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 0,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 32,
+   "wheel": 64
+  },
+  "mono": false
+ },
+ {
+  "file": "Pads/Pad%203.fxp",
+  "name": "Pad 3",
+  "family": "Pads",
+  "author": "Claes",
+  "e": [
+   5,
+   24,
+   5,
+   24,
+   71,
+   113,
+   0,
+   12
+  ],
+  "env": [
+   103,
+   95,
+   127,
+   102
+  ],
+  "x": {
+   "fenv": [
+    0,
+    121,
+    3,
+    110
+   ],
+   "pw": [
+    25,
+    25
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 1,
+   "lfo": [
+    0,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 0,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 32,
+   "wheel": 64
+  },
+  "mono": false
+ },
+ {
+  "file": "Pads/Pad%204.fxp",
+  "name": "Pad 4",
+  "family": "Pads",
+  "author": "Claes",
+  "e": [
+   1,
+   24,
+   1,
+   48,
+   30,
+   34,
+   59,
+   49
+  ],
+  "env": [
+   92,
+   95,
+   127,
+   115
+  ],
+  "x": {
+   "fenv": [
+    111,
+    121,
+    62,
+    115
+   ],
+   "pw": [
+    64,
+    64
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 1,
+   "lfo": [
+    0,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 0,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 32,
+   "wheel": 64
+  },
+  "mono": false
+ },
+ {
+  "file": "Pads/Safety.fxp",
+  "name": "Safety",
+  "family": "Pads",
+  "author": "Claes",
+  "e": [
+   1,
+   12,
+   1,
+   12,
+   15,
+   4,
+   0,
+   45
+  ],
+  "env": [
+   103,
+   113,
+   127,
+   108
+  ],
+  "x": {
+   "fenv": [
+    0,
+    127,
+    82,
+    116
+   ],
+   "pw": [
+    65,
+    65
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 1,
+   "lfo": [
+    2,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 35,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 10,
+   "wheel": 64
+  },
+  "mono": false
+ },
+ {
+  "file": "Pads/Sawteeth.fxp",
+  "name": "Sawteeth",
+  "family": "Pads",
+  "author": "Claes",
+  "e": [
+   1,
+   24,
+   1,
+   24,
+   21,
+   0,
+   64,
+   11
+  ],
+  "env": [
+   71,
+   95,
+   127,
+   98
+  ],
+  "x": {
+   "fenv": [
+    103,
+    119,
+    84,
+    110
+   ],
+   "pw": [
+    64,
+    64
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 2,
+   "lfo": [
+    0,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 38,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 32,
+   "wheel": 64
+  },
+  "mono": false
+ },
+ {
+  "file": "Pads/Semihaunt.fxp",
+  "name": "Semihaunt",
+  "family": "Pads",
+  "author": "Claes",
+  "e": [
+   4,
+   24,
+   1,
+   40,
+   40,
+   112,
+   53,
+   38
+  ],
+  "env": [
+   78,
+   95,
+   127,
+   105
+  ],
+  "x": {
+   "fenv": [
+    106,
+    117,
+    0,
+    108
+   ],
+   "pw": [
+    64,
+    64
+   ],
+   "fine": 3,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 1,
+   "lfo": [
+    0,
+    3
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 0,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 32,
+   "wheel": 64
+  },
+  "mono": false
+ },
+ {
+  "file": "Pads/Stretch.fxp",
+  "name": "Stretch",
+  "family": "Pads",
+  "author": "Claes",
+  "e": [
+   1,
+   24,
+   4,
+   24,
+   91,
+   58,
+   64,
+   38
+  ],
+  "env": [
+   105,
+   95,
+   127,
+   109
+  ],
+  "x": {
+   "fenv": [
+    88,
+    114,
+    0,
+    76
+   ],
+   "pw": [
+    64,
+    25
+   ],
+   "fine": 24,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 0,
+   "lfo": [
+    0,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 55,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 32,
+   "wheel": 64
+  },
+  "mono": false
+ },
+ {
+  "file": "Pads/Sunday.fxp",
+  "name": "Sunday",
+  "family": "Pads",
+  "author": "Claes",
+  "e": [
+   1,
+   24,
+   1,
+   24,
+   63,
+   65,
+   0,
+   16
+  ],
+  "env": [
+   97,
+   95,
+   127,
+   105
+  ],
+  "x": {
+   "fenv": [
+    107,
+    97,
+    3,
+    76
+   ],
+   "pw": [
+    64,
+    64
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 2,
+   "lfo": [
+    0,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 0,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 15,
+   "wheel": 64
+  },
+  "mono": false
+ },
+ {
+  "file": "Pads/Synth%20Choir%20MW%20O-Ah.fxp",
+  "name": "Synth Choir MW O-Ah",
+  "family": "Pads",
+  "author": "Claes",
+  "e": [
+   1,
+   24,
+   1,
+   24,
+   52,
+   18,
+   64,
+   0
+  ],
+  "env": [
+   55,
+   95,
+   127,
+   76
+  ],
+  "x": {
+   "fenv": [
+    0,
+    76,
+    0,
+    76
+   ],
+   "pw": [
+    64,
+    64
+   ],
+   "fine": 40,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 0,
+   "lfo": [
+    5,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 0,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 62,
+   "wheel": 64
+  },
+  "mono": false
+ },
+ {
+  "file": "Pads/Xbox%201.fxp",
+  "name": "Xbox",
+  "family": "Pads",
+  "author": "Claes",
+  "e": [
+   1,
+   24,
+   1,
+   24,
+   127,
+   0,
+   64,
+   62
+  ],
+  "env": [
+   124,
+   95,
+   127,
+   109
+  ],
+  "x": {
+   "fenv": [
+    101,
+    93,
+    2,
+    76
+   ],
+   "pw": [
+    64,
+    64
+   ],
+   "fine": 6,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 1,
+   "lfo": [
+    0,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 0,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 35,
+   "wheel": 64
+  },
+  "mono": false
+ },
+ {
+  "file": "Pads/Xbox%202.fxp",
+  "name": "Xbox 2",
+  "family": "Pads",
+  "author": "Claes",
+  "e": [
+   1,
+   24,
+   1,
+   24,
+   127,
+   46,
+   64,
+   102
+  ],
+  "env": [
+   124,
+   95,
+   127,
+   109
+  ],
+  "x": {
+   "fenv": [
+    101,
+    93,
+    2,
+    76
+   ],
+   "pw": [
+    64,
+    64
+   ],
+   "fine": 6,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 1,
+   "lfo": [
+    0,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 0,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 35,
+   "wheel": 64
+  },
+  "mono": false
+ },
+ {
+  "file": "Percussion/Kick%20909ish.fxp",
+  "name": "Kick 909ish",
+  "family": "Percussion",
+  "author": "Claes",
+  "e": [
+   1,
+   10,
+   1,
+   10,
+   77,
+   0,
+   0,
+   0
+  ],
+  "env": [
+   0,
+   75,
+   0,
+   47
+  ],
+  "x": {
+   "fenv": [
+    0,
+    50,
+    0,
+    76
+   ],
+   "pw": [
+    64,
+    64
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 0,
+   "lfo": [
+    0,
+    3
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 0,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 32,
+   "wheel": 64
+  },
+  "mono": false
+ },
+ {
+  "file": "Percussion/Kick%20Tech%201.fxp",
+  "name": "Kick Tech 1",
+  "family": "Percussion",
+  "author": "Claes",
+  "e": [
+   2,
+   63,
+   2,
+   0,
+   127,
+   0,
+   0,
+   0
+  ],
+  "env": [
+   0,
+   95,
+   127,
+   57
+  ],
+  "x": {
+   "fenv": [
+    0,
+    76,
+    0,
+    57
+   ],
+   "pw": [
+    14,
+    14
+   ],
+   "fine": 0,
+   "sync": 1,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 0,
+   "lfo": [
+    0,
+    3
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 0,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 32,
+   "wheel": 64
+  },
+  "mono": false
+ },
+ {
+  "file": "Plucks/Agropop.fxp",
+  "name": "Agropop",
+  "family": "Plucks",
+  "author": "Claes",
+  "e": [
+   4,
+   24,
+   4,
+   24,
+   74,
+   72,
+   0,
+   31
+  ],
+  "env": [
+   0,
+   71,
+   0,
+   70
+  ],
+  "x": {
+   "fenv": [
+    0,
+    81,
+    0,
+    101
+   ],
+   "pw": [
+    55,
+    55
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 1,
+   "lfo": [
+    2,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 34,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 32,
+   "wheel": 64
+  },
+  "mono": false
+ },
+ {
+  "file": "Plucks/Asymmetry.fxp",
+  "name": "Assymetry",
+  "family": "Plucks",
+  "author": "Claes",
+  "e": [
+   4,
+   24,
+   4,
+   24,
+   29,
+   65,
+   64,
+   0
+  ],
+  "env": [
+   0,
+   96,
+   63,
+   107
+  ],
+  "x": {
+   "fenv": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "pw": [
+    64,
+    64
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 2,
+   "lfo": [
+    0,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 0,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 84,
+   "wheel": 64
+  },
+  "mono": false
+ },
+ {
+  "file": "Plucks/Bite.fxp",
+  "name": "Bite",
+  "family": "Plucks",
+  "author": "Claes",
+  "e": [
+   1,
+   24,
+   1,
+   24,
+   127,
+   0,
+   0,
+   0
+  ],
+  "env": [
+   0,
+   95,
+   127,
+   107
+  ],
+  "x": {
+   "fenv": [
+    0,
+    76,
+    0,
+    76
+   ],
+   "pw": [
+    64,
+    64
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 0,
+   "lfo": [
+    5,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 0,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 1,
+   "wheel": 64
+  },
+  "mono": false
+ },
+ {
+  "file": "Plucks/Delay%20Pops%203.fxp",
+  "name": "Delay pops 3",
+  "family": "Plucks",
+  "author": "Claes",
+  "e": [
+   1,
+   24,
+   1,
+   24,
+   107,
+   34,
+   0,
+   11
+  ],
+  "env": [
+   0,
+   83,
+   0,
+   47
+  ],
+  "x": {
+   "fenv": [
+    0,
+    79,
+    0,
+    76
+   ],
+   "pw": [
+    64,
+    64
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 1,
+   "lfo": [
+    0,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 0,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 32,
+   "wheel": 64
+  },
+  "mono": false
+ },
+ {
+  "file": "Plucks/Falling%20Down.fxp",
+  "name": "Falling Down",
+  "family": "Plucks",
+  "author": "Claes",
+  "e": [
+   1,
+   12,
+   1,
+   12,
+   127,
+   0,
+   66,
+   4
+  ],
+  "env": [
+   0,
+   95,
+   127,
+   107
+  ],
+  "x": {
+   "fenv": [
+    0,
+    87,
+    0,
+    76
+   ],
+   "pw": [
+    64,
+    64
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 2,
+   "lfo": [
+    2,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 0,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 77,
+   "wheel": 64
+  },
+  "mono": false
+ },
+ {
+  "file": "Plucks/Forever.fxp",
+  "name": "Forever",
+  "family": "Plucks",
+  "author": "Claes",
+  "e": [
+   1,
+   24,
+   1,
+   24,
+   78,
+   75,
+   0,
+   0
+  ],
+  "env": [
+   0,
+   95,
+   127,
+   111
+  ],
+  "x": {
+   "fenv": [
+    0,
+    76,
+    0,
+    76
+   ],
+   "pw": [
+    64,
+    64
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 2,
+   "lfo": [
+    0,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 0,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 32,
+   "wheel": 64
+  },
+  "mono": false
+ },
+ {
+  "file": "Plucks/Friendly.fxp",
+  "name": "Friendly",
+  "family": "Plucks",
+  "author": "Claes",
+  "e": [
+   2,
+   12,
+   4,
+   36,
+   42,
+   33,
+   50,
+   24
+  ],
+  "env": [
+   28,
+   99,
+   0,
+   99
+  ],
+  "x": {
+   "fenv": [
+    0,
+    91,
+    0,
+    95
+   ],
+   "pw": [
+    120,
+    57
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 0,
+   "lfo": [
+    0,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 0,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 127,
+   "wheel": 64
+  },
+  "mono": false
+ },
+ {
+  "file": "Plucks/Good%20Childhood.fxp",
+  "name": "Good childhood",
+  "family": "Plucks",
+  "author": "Claes",
+  "e": [
+   1,
+   24,
+   1,
+   24,
+   49,
+   8,
+   0,
+   0
+  ],
+  "env": [
+   0,
+   95,
+   127,
+   98
+  ],
+  "x": {
+   "fenv": [
+    0,
+    76,
+    0,
+    72
+   ],
+   "pw": [
+    64,
+    64
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 2,
+   "lfo": [
+    0,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 0,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 32,
+   "wheel": 64
+  },
+  "mono": false
+ },
+ {
+  "file": "Plucks/Happy.fxp",
+  "name": "Happy",
+  "family": "Plucks",
+  "author": "Claes",
+  "e": [
+   1,
+   24,
+   1,
+   24,
+   13,
+   8,
+   0,
+   33
+  ],
+  "env": [
+   0,
+   95,
+   127,
+   98
+  ],
+  "x": {
+   "fenv": [
+    0,
+    67,
+    0,
+    72
+   ],
+   "pw": [
+    64,
+    64
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 2,
+   "lfo": [
+    0,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 0,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 32,
+   "wheel": 64
+  },
+  "mono": false
+ },
+ {
+  "file": "Plucks/Icebreaker.fxp",
+  "name": "Icebreaker",
+  "family": "Plucks",
+  "author": "Claes",
+  "e": [
+   5,
+   24,
+   1,
+   24,
+   13,
+   49,
+   57,
+   34
+  ],
+  "env": [
+   0,
+   121,
+   33,
+   111
+  ],
+  "x": {
+   "fenv": [
+    0,
+    90,
+    0,
+    121
+   ],
+   "pw": [
+    64,
+    64
+   ],
+   "fine": 19,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 1,
+   "lfo": [
+    22,
+    3
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 0,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 24,
+   "wheel": 64
+  },
+  "mono": false
+ },
+ {
+  "file": "Plucks/Late%20Fall.fxp",
+  "name": "Late Fall",
+  "family": "Plucks",
+  "author": "Claes",
+  "e": [
+   1,
+   24,
+   1,
+   24,
+   0,
+   57,
+   64,
+   34
+  ],
+  "env": [
+   30,
+   107,
+   127,
+   101
+  ],
+  "x": {
+   "fenv": [
+    0,
+    115,
+    0,
+    111
+   ],
+   "pw": [
+    64,
+    64
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 2,
+   "lfo": [
+    0,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 42,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 32,
+   "wheel": 64
+  },
+  "mono": false
+ },
+ {
+  "file": "Plucks/Lighter.fxp",
+  "name": "Lighter",
+  "family": "Plucks",
+  "author": "Claes",
+  "e": [
+   4,
+   36,
+   4,
+   63,
+   37,
+   54,
+   46,
+   21
+  ],
+  "env": [
+   21,
+   95,
+   127,
+   101
+  ],
+  "x": {
+   "fenv": [
+    0,
+    95,
+    0,
+    127
+   ],
+   "pw": [
+    46,
+    35
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 0,
+   "lfo": [
+    0,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 0,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 56,
+   "wheel": 64
+  },
+  "mono": false
+ },
+ {
+  "file": "Polysynths/1804.fxp",
+  "name": "1804",
+  "family": "Polysynths",
+  "author": "Claes",
+  "e": [
+   1,
+   24,
+   4,
+   24,
+   35,
+   19,
+   56,
+   18
+  ],
+  "env": [
+   0,
+   95,
+   127,
+   31
+  ],
+  "x": {
+   "fenv": [
+    0,
+    115,
+    22,
+    76
+   ],
+   "pw": [
+    64,
+    64
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 1,
+   "lfo": [
+    0,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 0,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 24,
+   "wheel": 64
+  },
+  "mono": false
+ },
+ {
+  "file": "Polysynths/Anthemish%201.fxp",
+  "name": "Anthemish 1",
+  "family": "Polysynths",
+  "author": "Claes",
+  "e": [
+   1,
+   24,
+   4,
+   12,
+   9,
+   62,
+   60,
+   43
+  ],
+  "env": [
+   0,
+   55,
+   94,
+   47
+  ],
+  "x": {
+   "fenv": [
+    0,
+    77,
+    0,
+    76
+   ],
+   "pw": [
+    64,
+    58
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 1,
+   "lfo": [
+    0,
+    3
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 33,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 44,
+   "wheel": 64
+  },
+  "mono": false
+ },
+ {
+  "file": "Polysynths/Anthemish%202.fxp",
+  "name": "Anthemish 2",
+  "family": "Polysynths",
+  "author": "Claes",
+  "e": [
+   4,
+   24,
+   4,
+   24,
+   49,
+   32,
+   60,
+   31
+  ],
+  "env": [
+   0,
+   117,
+   0,
+   116
+  ],
+  "x": {
+   "fenv": [
+    0,
+    113,
+    0,
+    107
+   ],
+   "pw": [
+    65,
+    62
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 1,
+   "lfo": [
+    0,
+    3
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 0,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 54,
+   "wheel": 64
+  },
+  "mono": false
+ },
+ {
+  "file": "Polysynths/Anthemish%203.fxp",
+  "name": "Anthemish 3",
+  "family": "Polysynths",
+  "author": "Claes",
+  "e": [
+   1,
+   24,
+   1,
+   24,
+   27,
+   90,
+   64,
+   15
+  ],
+  "env": [
+   0,
+   95,
+   127,
+   47
+  ],
+  "x": {
+   "fenv": [
+    0,
+    54,
+    0,
+    76
+   ],
+   "pw": [
+    64,
+    64
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 2,
+   "lfo": [
+    0,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 0,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 56,
+   "wheel": 64
+  },
+  "mono": false
+ },
+ {
+  "file": "Polysynths/Boss.fxp",
+  "name": "Boss",
+  "family": "Polysynths",
+  "author": "Claes",
+  "e": [
+   5,
+   12,
+   1,
+   24,
+   127,
+   0,
+   71,
+   25
+  ],
+  "env": [
+   0,
+   76,
+   127,
+   47
+  ],
+  "x": {
+   "fenv": [
+    0,
+    70,
+    0,
+    76
+   ],
+   "pw": [
+    47,
+    64
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 1,
+   "lfo": [
+    0,
+    3
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 28,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 32,
+   "wheel": 64
+  },
+  "mono": false
+ },
+ {
+  "file": "Polysynths/Dirty%20Hole.fxp",
+  "name": "Dirty Hole",
+  "family": "Polysynths",
+  "author": "Claes",
+  "e": [
+   1,
+   0,
+   4,
+   24,
+   77,
+   120,
+   64,
+   11
+  ],
+  "env": [
+   0,
+   95,
+   127,
+   47
+  ],
+  "x": {
+   "fenv": [
+    98,
+    108,
+    0,
+    76
+   ],
+   "pw": [
+    56,
+    64
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 2,
+   "lfo": [
+    16,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 0,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 32,
+   "wheel": 64
+  },
+  "mono": false
+ },
+ {
+  "file": "Polysynths/Disturbing%20Resonance.fxp",
+  "name": "Disturbing Resonance",
+  "family": "Polysynths",
+  "author": "Claes",
+  "e": [
+   1,
+   12,
+   1,
+   12,
+   52,
+   120,
+   0,
+   0
+  ],
+  "env": [
+   0,
+   95,
+   127,
+   97
+  ],
+  "x": {
+   "fenv": [
+    50,
+    93,
+    0,
+    76
+   ],
+   "pw": [
+    64,
+    64
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 0,
+   "lfo": [
+    0,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 0,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 19,
+   "wheel": 64
+  },
+  "mono": false
+ },
+ {
+  "file": "Polysynths/Failure.fxp",
+  "name": "Failure",
+  "family": "Polysynths",
+  "author": "Claes",
+  "e": [
+   1,
+   12,
+   1,
+   12,
+   0,
+   90,
+   64,
+   18
+  ],
+  "env": [
+   0,
+   127,
+   65,
+   85
+  ],
+  "x": {
+   "fenv": [
+    0,
+    117,
+    0,
+    89
+   ],
+   "pw": [
+    64,
+    64
+   ],
+   "fine": 19,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 0,
+   "lfo": [
+    0,
+    3
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 27,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 31,
+   "wheel": 64
+  },
+  "mono": false
+ },
+ {
+  "file": "Polysynths/Filter%20Mod.fxp",
+  "name": "FiltMod",
+  "family": "Polysynths",
+  "author": "Claes",
+  "e": [
+   1,
+   36,
+   1,
+   36,
+   47,
+   50,
+   0,
+   0
+  ],
+  "env": [
+   0,
+   95,
+   127,
+   47
+  ],
+  "x": {
+   "fenv": [
+    0,
+    76,
+    0,
+    76
+   ],
+   "pw": [
+    64,
+    64
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 0,
+   "lfo": [
+    0,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 0,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 20,
+   "wheel": 64
+  },
+  "mono": false
+ },
+ {
+  "file": "Polysynths/Filter%20Sweep.fxp",
+  "name": "Sawteeth",
+  "family": "Polysynths",
+  "author": "Claes",
+  "e": [
+   1,
+   12,
+   1,
+   12,
+   0,
+   67,
+   64,
+   58
+  ],
+  "env": [
+   45,
+   127,
+   127,
+   111
+  ],
+  "x": {
+   "fenv": [
+    98,
+    127,
+    127,
+    108
+   ],
+   "pw": [
+    64,
+    64
+   ],
+   "fine": 10,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 2,
+   "lfo": [
+    0,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 0,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 20,
+   "wheel": 64
+  },
+  "mono": false
+ },
+ {
+  "file": "Polysynths/Fun%20With%20Feedback.fxp",
+  "name": "Fun with Feedback",
+  "family": "Polysynths",
+  "author": "Claes",
+  "e": [
+   1,
+   24,
+   1,
+   24,
+   96,
+   74,
+   0,
+   0
+  ],
+  "env": [
+   0,
+   95,
+   127,
+   47
+  ],
+  "x": {
+   "fenv": [
+    0,
+    76,
+    0,
+    76
+   ],
+   "pw": [
+    64,
+    64
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 2,
+   "lfo": [
+    0,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 0,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 19,
+   "wheel": 64
+  },
+  "mono": false
+ },
+ {
+  "file": "Polysynths/Hugeness.fxp",
+  "name": "Hugeness",
+  "family": "Polysynths",
+  "author": "Claes",
+  "e": [
+   1,
+   24,
+   1,
+   24,
+   8,
+   23,
+   64,
+   56
+  ],
+  "env": [
+   51,
+   95,
+   127,
+   81
+  ],
+  "x": {
+   "fenv": [
+    0,
+    106,
+    65,
+    114
+   ],
+   "pw": [
+    64,
+    64
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 2,
+   "lfo": [
+    22,
+    3
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 0,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 25,
+   "wheel": 64
+  },
+  "mono": false
+ },
+ {
+  "file": "Polysynths/Instant%20Coffee%20PWM.fxp",
+  "name": "Instant Coffee PWM",
+  "family": "Polysynths",
+  "author": "Claes",
+  "e": [
+   4,
+   24,
+   4,
+   24,
+   81,
+   0,
+   64,
+   28
+  ],
+  "env": [
+   0,
+   95,
+   127,
+   41
+  ],
+  "x": {
+   "fenv": [
+    0,
+    105,
+    0,
+    76
+   ],
+   "pw": [
+    64,
+    64
+   ],
+   "fine": 6,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 1,
+   "lfo": [
+    0,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 0,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 32,
+   "wheel": 64
+  },
+  "mono": false
+ },
+ {
+  "file": "Polysynths/Japanese%20Unison.fxp",
+  "name": "Japanese Unison",
+  "family": "Polysynths",
+  "author": "Claes",
+  "e": [
+   1,
+   24,
+   1,
+   24,
+   30,
+   82,
+   60,
+   21
+  ],
+  "env": [
+   0,
+   95,
+   127,
+   47
+  ],
+  "x": {
+   "fenv": [
+    0,
+    55,
+    0,
+    76
+   ],
+   "pw": [
+    64,
+    64
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 1,
+   "lfo": [
+    0,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 32,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 70,
+   "wheel": 64
+  },
+  "mono": false
+ },
+ {
+  "file": "Polysynths/Juno-60%20Strings.fxp",
+  "name": "Sawteeth",
+  "family": "Polysynths",
+  "author": "Claes",
+  "e": [
+   1,
+   24,
+   1,
+   24,
+   58,
+   0,
+   64,
+   111
+  ],
+  "env": [
+   89,
+   95,
+   127,
+   109
+  ],
+  "x": {
+   "fenv": [
+    127,
+    119,
+    84,
+    110
+   ],
+   "pw": [
+    64,
+    64
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 2,
+   "lfo": [
+    0,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 38,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 32,
+   "wheel": 64
+  },
+  "mono": false
+ },
+ {
+  "file": "Polysynths/Jupiter-8.fxp",
+  "name": "Sawteeth",
+  "family": "Polysynths",
+  "author": "Claes",
+  "e": [
+   1,
+   12,
+   1,
+   12,
+   59,
+   0,
+   64,
+   113
+  ],
+  "env": [
+   39,
+   127,
+   0,
+   80
+  ],
+  "x": {
+   "fenv": [
+    127,
+    127,
+    8,
+    91
+   ],
+   "pw": [
+    64,
+    64
+   ],
+   "fine": 7,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 2,
+   "lfo": [
+    0,
+    3
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 38,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 32,
+   "wheel": 64
+  },
+  "mono": false
+ },
+ {
+  "file": "Sequences/Acid%20Seq%201.fxp",
+  "name": "Acid Seq 1",
+  "family": "Sequences",
+  "author": "Claes",
+  "e": [
+   1,
+   12,
+   1,
+   12,
+   19,
+   57,
+   0,
+   0
+  ],
+  "env": [
+   0,
+   95,
+   127,
+   47
+  ],
+  "x": {
+   "fenv": [
+    0,
+    76,
+    0,
+    76
+   ],
+   "pw": [
+    64,
+    64
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 0,
+   "lfo": [
+    0,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 0,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 32,
+   "wheel": 64
+  },
+  "mono": false
+ },
+ {
+  "file": "Sequences/Acid%20Seq%202.fxp",
+  "name": "Acid Seq 2",
+  "family": "Sequences",
+  "author": "Claes",
+  "e": [
+   1,
+   12,
+   1,
+   12,
+   44,
+   91,
+   0,
+   19
+  ],
+  "env": [
+   0,
+   95,
+   127,
+   47
+  ],
+  "x": {
+   "fenv": [
+    0,
+    76,
+    0,
+    76
+   ],
+   "pw": [
+    52,
+    52
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 0,
+   "lfo": [
+    8,
+    3
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 0,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 32,
+   "wheel": 64
+  },
+  "mono": false
+ },
+ {
+  "file": "Sequences/Acid%20Seq%203.fxp",
+  "name": "Acid Seq 3",
+  "family": "Sequences",
+  "author": "Claes",
+  "e": [
+   4,
+   12,
+   4,
+   12,
+   32,
+   86,
+   0,
+   19
+  ],
+  "env": [
+   0,
+   95,
+   127,
+   47
+  ],
+  "x": {
+   "fenv": [
+    0,
+    76,
+    0,
+    76
+   ],
+   "pw": [
+    46,
+    46
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 0,
+   "lfo": [
+    8,
+    3
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 0,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 32,
+   "wheel": 64
+  },
+  "mono": false
+ },
+ {
+  "file": "Sequences/Filter%20Buildup.fxp",
+  "name": "Filter buildup",
+  "family": "Sequences",
+  "author": "Claes",
+  "e": [
+   1,
+   24,
+   1,
+   24,
+   19,
+   120,
+   0,
+   54
+  ],
+  "env": [
+   0,
+   95,
+   127,
+   47
+  ],
+  "x": {
+   "fenv": [
+    124,
+    117,
+    123,
+    76
+   ],
+   "pw": [
+    64,
+    64
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 0,
+   "lfo": [
+    22,
+    3
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 0,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 64,
+   "wheel": 64
+  },
+  "mono": false
+ },
+ {
+  "file": "Sequences/Game%20On%201.fxp",
+  "name": "Game on 1",
+  "family": "Sequences",
+  "author": "Claes",
+  "e": [
+   4,
+   24,
+   4,
+   24,
+   116,
+   55,
+   0,
+   1
+  ],
+  "env": [
+   0,
+   95,
+   127,
+   47
+  ],
+  "x": {
+   "fenv": [
+    0,
+    77,
+    0,
+    76
+   ],
+   "pw": [
+    38,
+    38
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 0,
+   "lfo": [
+    35,
+    3
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 0,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 24,
+   "wheel": 64
+  },
+  "mono": false
+ },
+ {
+  "file": "Sequences/Game%20On%202.fxp",
+  "name": "Game on 2",
+  "family": "Sequences",
+  "author": "Claes",
+  "e": [
+   4,
+   24,
+   4,
+   24,
+   84,
+   26,
+   0,
+   45
+  ],
+  "env": [
+   0,
+   95,
+   127,
+   47
+  ],
+  "x": {
+   "fenv": [
+    0,
+    51,
+    0,
+    76
+   ],
+   "pw": [
+    38,
+    38
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 1,
+   "lfo": [
+    22,
+    3
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 0,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 24,
+   "wheel": 64
+  },
+  "mono": false
+ },
+ {
+  "file": "Sequences/Game%20On%203.fxp",
+  "name": "Game on 3",
+  "family": "Sequences",
+  "author": "Claes",
+  "e": [
+   4,
+   24,
+   4,
+   24,
+   96,
+   0,
+   0,
+   45
+  ],
+  "env": [
+   22,
+   95,
+   127,
+   47
+  ],
+  "x": {
+   "fenv": [
+    0,
+    51,
+    0,
+    76
+   ],
+   "pw": [
+    57,
+    57
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 1,
+   "lfo": [
+    8,
+    3
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 0,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 42,
+   "wheel": 64
+  },
+  "mono": false
+ },
+ {
+  "file": "Sequences/Gate%20Chord.fxp",
+  "name": "Gatechord",
+  "family": "Sequences",
+  "author": "Claes",
+  "e": [
+   1,
+   24,
+   1,
+   24,
+   93,
+   41,
+   0,
+   36
+  ],
+  "env": [
+   0,
+   62,
+   0,
+   47
+  ],
+  "x": {
+   "fenv": [
+    0,
+    76,
+    0,
+    76
+   ],
+   "pw": [
+    64,
+    64
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 1,
+   "lfo": [
+    8,
+    3
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 0,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 16,
+   "wheel": 64
+  },
+  "mono": false
+ },
+ {
+  "file": "Sequences/Hovercar%20Championship.fxp",
+  "name": "Hovercar championship",
+  "family": "Sequences",
+  "author": "Claes",
+  "e": [
+   4,
+   0,
+   4,
+   0,
+   54,
+   19,
+   0,
+   18
+  ],
+  "env": [
+   0,
+   95,
+   127,
+   57
+  ],
+  "x": {
+   "fenv": [
+    0,
+    97,
+    0,
+    57
+   ],
+   "pw": [
+    61,
+    61
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 1,
+   "lfo": [
+    0,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 53,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 32,
+   "wheel": 64
+  },
+  "mono": true
+ },
+ {
+  "file": "Sequences/Multi%20Seq.fxp",
+  "name": "Multiseq 01",
+  "family": "Sequences",
+  "author": "Claes",
+  "e": [
+   1,
+   24,
+   1,
+   36,
+   99,
+   28,
+   62,
+   3
+  ],
+  "env": [
+   0,
+   100,
+   0,
+   47
+  ],
+  "x": {
+   "fenv": [
+    0,
+    75,
+    0,
+    76
+   ],
+   "pw": [
+    64,
+    64
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 0,
+   "lfo": [
+    8,
+    3
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 0,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 32,
+   "wheel": 64
+  },
+  "mono": false
+ },
+ {
+  "file": "Sequences/Noise%20Bass.fxp",
+  "name": "Noisebass",
+  "family": "Sequences",
+  "author": "Claes",
+  "e": [
+   1,
+   14,
+   1,
+   12,
+   63,
+   3,
+   0,
+   0
+  ],
+  "env": [
+   0,
+   95,
+   127,
+   47
+  ],
+  "x": {
+   "fenv": [
+    0,
+    76,
+    0,
+    76
+   ],
+   "pw": [
+    64,
+    64
+   ],
+   "fine": 0,
+   "sync": 1,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 1,
+   "lfo": [
+    8,
+    3
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 42,
+   "unison": 1,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 25,
+   "wheel": 64
+  },
+  "mono": true
+ },
+ {
+  "file": "Sequences/Octave%20Arp.fxp",
+  "name": "Octave Arp",
+  "family": "Sequences",
+  "author": "Claes",
+  "e": [
+   4,
+   0,
+   4,
+   0,
+   127,
+   0,
+   0,
+   127
+  ],
+  "env": [
+   0,
+   58,
+   0,
+   35
+  ],
+  "x": {
+   "fenv": [
+    41,
+    72,
+    0,
+    76
+   ],
+   "pw": [
+    49,
+    49
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 1,
+   "lfo": [
+    8,
+    3
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 0,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 32,
+   "wheel": 64
+  },
+  "mono": false
+ },
+ {
+  "file": "Sequences/Phase%201.fxp",
+  "name": "Phase 3",
+  "family": "Sequences",
+  "author": "Claes",
+  "e": [
+   4,
+   24,
+   4,
+   24,
+   62,
+   120,
+   0,
+   33
+  ],
+  "env": [
+   0,
+   66,
+   6,
+   34
+  ],
+  "x": {
+   "fenv": [
+    0,
+    43,
+    0,
+    76
+   ],
+   "pw": [
+    48,
+    48
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 1,
+   "lfo": [
+    8,
+    3
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 0,
+   "unison": 1,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 38,
+   "wheel": 64
+  },
+  "mono": true
+ },
+ {
+  "file": "Sequences/S%26H%20Classic.fxp",
+  "name": "S&amp;H Classic",
+  "family": "Sequences",
+  "author": "Claes",
+  "e": [
+   1,
+   24,
+   1,
+   24,
+   42,
+   110,
+   0,
+   0
+  ],
+  "env": [
+   0,
+   95,
+   127,
+   47
+  ],
+  "x": {
+   "fenv": [
+    109,
+    105,
+    13,
+    76
+   ],
+   "pw": [
+    64,
+    64
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 0,
+   "lfo": [
+    0,
+    3
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 0,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 32,
+   "wheel": 64
+  },
+  "mono": false
+ },
+ {
+  "file": "Sequences/Step%20Phaser.fxp",
+  "name": "Stepphaser",
+  "family": "Sequences",
+  "author": "Claes",
+  "e": [
+   1,
+   24,
+   1,
+   24,
+   127,
+   0,
+   0,
+   25
+  ],
+  "env": [
+   0,
+   95,
+   127,
+   47
+  ],
+  "x": {
+   "fenv": [
+    0,
+    101,
+    0,
+    76
+   ],
+   "pw": [
+    64,
+    64
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 0,
+   "lfo": [
+    0,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 61,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 14,
+   "wheel": 64
+  },
+  "mono": false
+ },
+ {
+  "file": "Sequences/Sync%20Accident.fxp",
+  "name": "Sync acident",
+  "family": "Sequences",
+  "author": "Claes",
+  "e": [
+   1,
+   17,
+   1,
+   12,
+   26,
+   88,
+   0,
+   65
+  ],
+  "env": [
+   0,
+   95,
+   127,
+   47
+  ],
+  "x": {
+   "fenv": [
+    0,
+    76,
+    0,
+    76
+   ],
+   "pw": [
+    64,
+    64
+   ],
+   "fine": 0,
+   "sync": 1,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 0,
+   "lfo": [
+    8,
+    3
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 0,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 24,
+   "wheel": 64
+  },
+  "mono": false
+ },
+ {
+  "file": "Sequences/Sync%20Arp.fxp",
+  "name": "Sync Arp",
+  "family": "Sequences",
+  "author": "Claes",
+  "e": [
+   4,
+   39,
+   4,
+   24,
+   127,
+   14,
+   0,
+   127
+  ],
+  "env": [
+   0,
+   67,
+   0,
+   47
+  ],
+  "x": {
+   "fenv": [
+    0,
+    67,
+    0,
+    76
+   ],
+   "pw": [
+    53,
+    53
+   ],
+   "fine": 0,
+   "sync": 1,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 0,
+   "lfo": [
+    8,
+    3
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 0,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 32,
+   "wheel": 64
+  },
+  "mono": false
+ },
+ {
+  "file": "Sequences/Wabbit%20MW.fxp",
+  "name": "Wabbit MW",
+  "family": "Sequences",
+  "author": "Claes",
+  "e": [
+   1,
+   24,
+   1,
+   0,
+   124,
+   89,
+   65,
+   55
+  ],
+  "env": [
+   0,
+   59,
+   0,
+   47
+  ],
+  "x": {
+   "fenv": [
+    0,
+    74,
+    0,
+    76
+   ],
+   "pw": [
+    64,
+    64
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 1,
+   "lfo": [
+    8,
+    3
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 0,
+   "unison": 1,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 32,
+   "wheel": 64
+  },
+  "mono": true
+ },
+ {
+  "file": "Sequences/When%20Good%20Combs%20Go%20Bad.fxp",
+  "name": "When good combs go bad",
+  "family": "Sequences",
+  "author": "Claes",
+  "e": [
+   1,
+   24,
+   1,
+   24,
+   56,
+   29,
+   0,
+   0
+  ],
+  "env": [
+   0,
+   96,
+   127,
+   0
+  ],
+  "x": {
+   "fenv": [
+    44,
+    117,
+    75,
+    25
+   ],
+   "pw": [
+    64,
+    64
+   ],
+   "fine": 0,
+   "sync": 0,
+   "pm": [
+    0,
+    0,
+    0
+   ],
+   "kbd": 0,
+   "lfo": [
+    0,
+    1
+   ],
+   "lfod": [
+    0,
+    0,
+    0
+   ],
+   "glide": 30,
+   "unison": 0,
+   "lfoamp": 0,
+   "vel": 0,
+   "detune": 24,
+   "wheel": 64
+  },
+  "mono": false
+ }
+]

@@ -1,0 +1,7 @@
+{
+ "Osc FM: how strongly oscillator B modulates oscillator A (Poly-Mod), from * to *****.": "Osc FM：オシレーター B がオシレーター A を変調する強さ（Poly-Mod）、* 〜 *****。",
+ "Filter FM: how strongly oscillator B modulates the filter (Poly-Mod), from * to *****.": "Filter FM：オシレーター B がフィルターを変調する強さ（Poly-Mod）、* 〜 *****。",
+ "ENV: non-standard envelope routing (POLY or GATE).": "ENV：標準とは異なるエンベロープの割り当て（POLY または GATE）。",
+ "SYNC: oscillator sync on. HARM: harmonic filter (full keyboard tracking, resonance near self-oscillation: the filter plays as a third oscillator). UNI: unison. VEL: plays with more expression from a velocity-sensitive MIDI keyboard.": "SYNC：オシレーター・シンク有効。HARM：ハーモニック・フィルター（キーボード・トラッキング全開、レゾナンスは自己発振寸前：フィルターが第3のオシレーターとして鳴る）。UNI：ユニゾン。VEL：ベロシティ対応の MIDI キーボードで弾くと表現力が増す。",
+ "Z80 Nbr. n: a version of the original factory sound n (number n+1 in Guru 600).": "Z80 Nbr. n：オリジナルのファクトリー・サウンド n のバージョン（Guru 600 では n+1 番）。"
+}

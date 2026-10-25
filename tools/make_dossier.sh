@@ -1,0 +1,38 @@
+#!/bin/zsh
+# Après une modification : met à jour l'app Guru-600, le zip, le site, le dossier de diffusion Guru-600 et sa copie sur 1To.
+#   p600/make_dossier.sh        (le firmware doit être compilé : Felucca/build/felucca.fwsc)
+set -e
+F=~/Documents/FM-1; A=/Applications/Guru-600.app; R=$A/Contents/Resources; G=$F/Guru-600
+FW=$F/Felucca/build/felucca.fwsc
+# 1. l'app : firmware, notice
+pkill -f "Guru-600.app/Contents/Resources/Guru-600" || true
+cp $FW $F/Firmwares/guru-600.fwsc; cp $FW $F/Partage/guru-600.fwsc; cp $FW $R/guru-600.fwsc
+rm -rf $R/Notice; mkdir -p $R/Notice; (cd $F/p600/notice && cp index.html $R/Notice/ && cp -R img shots fonts $R/Notice/)
+codesign --force --deep -s - $A 2>&1 | tail -1
+rm -f $F/Partage/Guru-600.zip; ditto -c -k --keepParent $A $F/Partage/Guru-600.zip
+# 2. le site
+~/Documents/FM-1/venv/bin/python $F/p600/site/make_site_guru.py $FW $F/Partage/site-installation
+# 3. le dossier de diffusion
+mkdir -p "$G/1 Firmware" "$G/2 Application Mac" "$G/3 Notice/Notice HTML" "$G/4 Site web" "$G/5 Sources" "$G/6 Licences"
+cp $FW "$G/1 Firmware/guru-600-1.0.fwsc"
+rm -rf "$G/2 Application Mac/Guru-600.app"; ditto $A "$G/2 Application Mac/Guru-600.app"; cp $F/Partage/Guru-600.zip "$G/2 Application Mac/Guru-600-Mac.zip"
+cp $F/Partage/"Guru-600 - User guide - Notice.pdf" "$G/3 Notice/"
+rm -rf "$G/3 Notice/Notice HTML"; mkdir -p "$G/3 Notice/Notice HTML"; (cd $F/p600/notice && cp index.html "$G/3 Notice/Notice HTML/" && cp -R img shots fonts "$G/3 Notice/Notice HTML/")
+rm -rf "$G/4 Site web"; ditto $F/Partage/site-installation "$G/4 Site web"
+T=$(mktemp -d)
+(cd $F/Felucca && git diff > "$G/5 Sources/guru-600-vs-felucca-63f88ec.patch" && mkdir -p $T/guru-600-firmware &&
+ { git ls-files -co --exclude-standard | grep -v '^build/'; } | while read f; do [ -f "$f" ] && mkdir -p "$T/guru-600-firmware/$(dirname "$f")" && cp "$f" "$T/guru-600-firmware/$f"; done)
+(cd $F/Felucca/firmware/engines && git ls-files | while read f; do mkdir -p "$T/guru-600-firmware/firmware/engines/$(dirname "$f")"; cp "$f" "$T/guru-600-firmware/firmware/engines/$f"; done)
+mkdir -p $T/guru-600-tools; rsync -a --exclude 'build/' --exclude 'dbg/' --exclude 'wav*/' --exclude 'manuels/' --exclude 'American Uncial*' --exclude '*.wav' --exclude 'splash/' --exclude '__pycache__' $F/p600/ $T/guru-600-tools/
+(cd $F/fm1-emu-src && git diff > "$G/5 Sources/fm1-emu-guru-600.patch" && mkdir -p $T/fm1-emu-guru-600 && git ls-files -co --exclude-standard | grep -v '^target/' | while read f; do mkdir -p "$T/fm1-emu-guru-600/$(dirname "$f")"; cp "$f" "$T/fm1-emu-guru-600/$f"; done)
+rm -f "$G/5 Sources/"*.zip
+(cd $T && zip -qr "$G/5 Sources/guru-600-firmware-source.zip" guru-600-firmware && zip -qr "$G/5 Sources/guru-600-tools-source.zip" guru-600-tools && zip -qr "$G/5 Sources/fm1-emu-guru-600-source.zip" fm1-emu-guru-600)
+rm -rf $T
+# 4. la copie sur 1To, puis la vérification
+if [ -d /Volumes/1To ]; then
+  rsync -a --delete "$G/" /Volumes/1To/Guru-600/
+  diff -rq "$G" /Volumes/1To/Guru-600 && echo "1To : copie identique"
+else
+  echo "1To non monté : copie à refaire"
+fi
+cmp -s $FW "$G/1 Firmware/guru-600-1.0.fwsc" && cmp -s $FW "$G/4 Site web/firmware/guru-600-1.0.fwsc" && cmp -s $FW $R/guru-600.fwsc && echo "firmware identique partout"

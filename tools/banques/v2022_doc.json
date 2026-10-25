@@ -1,0 +1,902 @@
+{
+ "0": {
+  "name": "GliGli Clavi",
+  "by": "Andy",
+  "fam": [
+   "Piano",
+   "Piano"
+  ],
+  "rest": ""
+ },
+ "1": {
+  "name": "Chorus EP",
+  "by": "Jpro600k",
+  "fam": [
+   "Piano",
+   "Piano"
+  ],
+  "rest": "***"
+ },
+ "2": {
+  "name": "Piano 2",
+  "by": "imogen",
+  "fam": [
+   "Piano",
+   "Piano"
+  ],
+  "rest": "**                                                  Yes"
+ },
+ "3": {
+  "name": "Tap me twice",
+  "by": "imogen",
+  "fam": [
+   "Piano",
+   "Piano"
+  ],
+  "rest": "Yes        LFO retrigger on key, increase LFO amount"
+ },
+ "4": {
+  "name": "PWM Piano",
+  "by": "Jpro600k",
+  "fam": [
+   "Piano",
+   "Piano"
+  ],
+  "rest": "**"
+ },
+ "5": {
+  "name": "Vocal Piano",
+  "by": "Jpro600k",
+  "fam": [
+   "Piano",
+   "Piano"
+  ],
+  "rest": "****"
+ },
+ "6": {
+  "name": "EP",
+  "by": "imogen",
+  "fam": [
+   "Piano",
+   "Piano"
+  ],
+  "rest": "Yes"
+ },
+ "7": {
+  "name": "Pianorganism",
+  "by": "imogen",
+  "fam": [
+   "Piano",
+   "Piano"
+  ],
+  "rest": ""
+ },
+ "8": {
+  "name": "Plain Piano",
+  "by": "imogen",
+  "fam": [
+   "Piano",
+   "Piano"
+  ],
+  "rest": "*                                                   Yes"
+ },
+ "9": {
+  "name": "Pianet",
+  "by": "imogen",
+  "fam": [
+   "Piano",
+   "Piano"
+  ],
+  "rest": "*****                    Yes                        Yes        FM adds a little bell-like timbre"
+ },
+ "10": {
+  "name": "",
+  "by": "Poly Glide",
+  "fam": [
+   "Pad",
+   "Nappe"
+  ],
+  "rest": "Z80 Nbr. 3"
+ },
+ "11": {
+  "name": "Soft Poly",
+  "by": "el-folie",
+  "fam": [
+   "Pad",
+   "Nappe"
+  ],
+  "rest": ""
+ },
+ "12": {
+  "name": "Kometenmelodie",
+  "by": "el-folie",
+  "fam": [
+   "Pad",
+   "Nappe"
+  ],
+  "rest": ""
+ },
+ "13": {
+  "name": "5th Sweep",
+  "by": "Andy",
+  "fam": [
+   "Pad",
+   "Nappe"
+  ],
+  "rest": ""
+ },
+ "14": {
+  "name": "Slow Atmo Brass",
+  "by": "Jpro600k",
+  "fam": [
+   "Pad",
+   "Nappe"
+  ],
+  "rest": "**"
+ },
+ "15": {
+  "name": "Forever 80s",
+  "by": "imogen",
+  "fam": [
+   "Pad",
+   "Nappe"
+  ],
+  "rest": "**"
+ },
+ "16": {
+  "name": "Fly By",
+  "by": "el-folie",
+  "fam": [
+   "Pad",
+   "Nappe"
+  ],
+  "rest": ""
+ },
+ "17": {
+  "name": "Falling Asleep",
+  "by": "imogen",
+  "fam": [
+   "Pad",
+   "Nappe"
+  ],
+  "rest": "**"
+ },
+ "18": {
+  "name": "Night Drive",
+  "by": "imogen",
+  "fam": [
+   "Pad",
+   "Nappe"
+  ],
+  "rest": "Yes"
+ },
+ "19": {
+  "name": "Blade Runner",
+  "by": "Matrix12x",
+  "fam": [
+   "Pad",
+   "Nappe"
+  ],
+  "rest": "*                                      Yes        LFO retrigger on key"
+ },
+ "20": {
+  "name": "Center Stage",
+  "by": "el-folie",
+  "fam": [
+   "Lead",
+   "Lead / mélodie"
+  ],
+  "rest": "Yes                 Unison note pattern (0-12)"
+ },
+ "21": {
+  "name": "Common Sync",
+  "by": "imogen",
+  "fam": [
+   "Lead",
+   "Lead / mélodie"
+  ],
+  "rest": "Gate        ****                     Yes                        Yes        LFO targets only oscillator A"
+ },
+ "22": {
+  "name": "DCO",
+  "by": "imogen",
+  "fam": [
+   "Lead",
+   "Lead / mélodie"
+  ],
+  "rest": "**           **                            Yes                 Unison note pattern (0-12-24)"
+ },
+ "23": {
+  "name": "I told you",
+  "by": "el-folie",
+  "fam": [
+   "Lead",
+   "Lead / mélodie"
+  ],
+  "rest": "Yes"
+ },
+ "24": {
+  "name": "Fuzz Guitar",
+  "by": "Matrix12x",
+  "fam": [
+   "Lead",
+   "Lead / mélodie"
+  ],
+  "rest": "Yes               Yes      Yes        Single voice unison"
+ },
+ "25": {
+  "name": "Cut",
+  "by": "el-folie",
+  "fam": [
+   "Lead",
+   "Lead / mélodie"
+  ],
+  "rest": "Yes"
+ },
+ "26": {
+  "name": "PW Pad",
+  "by": "Matrix12x",
+  "fam": [
+   "Lead",
+   "Lead / mélodie"
+  ],
+  "rest": "Yes"
+ },
+ "27": {
+  "name": "Moogys",
+  "by": "imogen",
+  "fam": [
+   "Lead",
+   "Lead / mélodie"
+  ],
+  "rest": "Gate        **           **                            Yes"
+ },
+ "28": {
+  "name": "Fusion",
+  "by": "el-folie",
+  "fam": [
+   "Lead",
+   "Lead / mélodie"
+  ],
+  "rest": "Yes"
+ },
+ "29": {
+  "name": "Melody",
+  "by": "Matrix12x",
+  "fam": [
+   "Lead",
+   "Lead / mélodie"
+  ],
+  "rest": "Yes                 Single voice unison"
+ },
+ "30": {
+  "name": "Bread & Butter",
+  "by": "imogen",
+  "fam": [
+   "Brass",
+   "Cuivres"
+  ],
+  "rest": "Yes"
+ },
+ "31": {
+  "name": "Bread & Marmite",
+  "by": "imogen",
+  "fam": [
+   "Brass",
+   "Cuivres"
+  ],
+  "rest": "***                                                            Added creamy spectrum compared to 30"
+ },
+ "32": {
+  "name": "Trombone Set",
+  "by": "imogen",
+  "fam": [
+   "Brass",
+   "Cuivres"
+  ],
+  "rest": "*"
+ },
+ "33": {
+  "name": "Attack Brass",
+  "by": "Jpro600k",
+  "fam": [
+   "Brass",
+   "Cuivres"
+  ],
+  "rest": ""
+ },
+ "34": {
+  "name": "Bright Brass",
+  "by": "imogen",
+  "fam": [
+   "Brass",
+   "Cuivres"
+  ],
+  "rest": "*            *           Yes                                   This requires a very evenly calibrated poly-mod"
+ },
+ "35": {
+  "name": "Mild Brass",
+  "by": "Jpro600k",
+  "fam": [
+   "Brass",
+   "Cuivres"
+  ],
+  "rest": ""
+ },
+ "36": {
+  "name": "Elegiac Brass",
+  "by": "el-folie",
+  "fam": [
+   "Brass",
+   "Cuivres"
+  ],
+  "rest": "*****                                             Effect of strongy filter FM"
+ },
+ "37": {
+  "name": "Orchestral 1",
+  "by": "Jpro600k",
+  "fam": [
+   "Brass",
+   "Cuivres"
+  ],
+  "rest": "****         ****        Yes                                   Poly-mod to for complex timbre and transient"
+ },
+ "38": {
+  "name": "Orchestral 2",
+  "by": "imogen",
+  "fam": [
+   "Brass",
+   "Cuivres"
+  ],
+  "rest": "**                                                Filter FM creates brass top end"
+ },
+ "39": {
+  "name": "Orchestral 3",
+  "by": "Jpro600k",
+  "fam": [
+   "Brass",
+   "Cuivres"
+  ],
+  "rest": "**           **          Yes                                   Poly-mod to for complex timbre and transient"
+ },
+ "40": {
+  "name": "Attack Bass",
+  "by": "el-folie",
+  "fam": [
+   "Bass",
+   "Basse"
+  ],
+  "rest": "Yes"
+ },
+ "41": {
+  "name": "Bassically",
+  "by": "imogen",
+  "fam": [
+   "Bass",
+   "Basse"
+  ],
+  "rest": "Poly       ***                      Yes                                   Filter emulation by envelope sync modulation"
+ },
+ "42": {
+  "name": "Double Bass",
+  "by": "imogen",
+  "fam": [
+   "Bass",
+   "Basse"
+  ],
+  "rest": "Poly       ****                                                           Transient pitch modulation for picking sound"
+ },
+ "43": {
+  "name": "Funkey",
+  "by": "Matrix12x",
+  "fam": [
+   "Bass",
+   "Basse"
+  ],
+  "rest": "Yes"
+ },
+ "44": {
+  "name": "Yaz Bass",
+  "by": "Matrix12x",
+  "fam": [
+   "Bass",
+   "Basse"
+  ],
+  "rest": ""
+ },
+ "45": {
+  "name": "Unison Dark Bass",
+  "by": "imogen",
+  "fam": [
+   "Bass",
+   "Basse"
+  ],
+  "rest": "****                          Yes"
+ },
+ "46": {
+  "name": "Slap Bass",
+  "by": "imogen",
+  "fam": [
+   "Bass",
+   "Basse"
+  ],
+  "rest": "**                       Yes               Yes                 FM adds to the timbre of hitting string hard"
+ },
+ "47": {
+  "name": "Unison Full-Bass      Z80 Nbr. 27",
+  "by": "Yes",
+  "fam": [
+   "Bass",
+   "Basse"
+  ],
+  "rest": "Single voice unison"
+ },
+ "48": {
+  "name": "Deep Square Bass",
+  "by": "el-folie",
+  "fam": [
+   "Bass",
+   "Basse"
+  ],
+  "rest": "Yes"
+ },
+ "49": {
+  "name": "Performance",
+  "by": "imogen",
+  "fam": [
+   "Bass",
+   "Basse"
+  ],
+  "rest": "*"
+ },
+ "50": {
+  "name": "Space Oboe",
+  "by": "imogen",
+  "fam": [
+   "Natural instruments",
+   "Instruments acoustiques"
+  ],
+  "rest": "*****       Yes"
+ },
+ "51": {
+  "name": "Wind Organ",
+  "by": "imogen",
+  "fam": [
+   "Natural instruments",
+   "Instruments acoustiques"
+  ],
+  "rest": "Gate       **                       Yes                                   LFO targets only oscillator A"
+ },
+ "52": {
+  "name": "Totally Trumpet",
+  "by": "imogen",
+  "fam": [
+   "Natural instruments",
+   "Instruments acoustiques"
+  ],
+  "rest": "Gate       ***                      Yes                                   2nd envelope used to model attack transient"
+ },
+ "53": {
+  "name": "My Spinett",
+  "by": "imogen",
+  "fam": [
+   "Natural instruments",
+   "Instruments acoustiques"
+  ],
+  "rest": "**"
+ },
+ "54": {
+  "name": "Space Oboe Chord",
+  "by": "imogen",
+  "fam": [
+   "Natural instruments",
+   "Instruments acoustiques"
+  ],
+  "rest": "*****       Yes               Yes                 Unison pattern (0-3-7-8) with glide, based on 50"
+ },
+ "55": {
+  "name": "Wood Block",
+  "by": "imogen",
+  "fam": [
+   "Natural instruments",
+   "Instruments acoustiques"
+  ],
+  "rest": "*"
+ },
+ "56": {
+  "name": "",
+  "by": "Club Organ",
+  "fam": [
+   "Natural instruments",
+   "Instruments acoustiques"
+  ],
+  "rest": "Z80 Nbr. 18"
+ },
+ "57": {
+  "name": "",
+  "by": "Chiffy Organ",
+  "fam": [
+   "Natural instruments",
+   "Instruments acoustiques"
+  ],
+  "rest": "Z80 Nbr. 40"
+ },
+ "58": {
+  "name": "Harmonica             Z80 Nbr. 33",
+  "by": "Yes",
+  "fam": [
+   "Natural instruments",
+   "Instruments acoustiques"
+  ],
+  "rest": ""
+ },
+ "59": {
+  "name": "Reso Flute",
+  "by": "Andy",
+  "fam": [
+   "Natural instruments",
+   "Instruments acoustiques"
+  ],
+  "rest": "Yes"
+ },
+ "60": {
+  "name": "Cave",
+  "by": "imogen",
+  "fam": [
+   "Effects",
+   "Effets"
+  ],
+  "rest": "**           **                 Yes                            Artefacts from interference of oscillator and filter FM"
+ },
+ "61": {
+  "name": "Pulsar",
+  "by": "Andy",
+  "fam": [
+   "Effects",
+   "Effets"
+  ],
+  "rest": "Yes"
+ },
+ "62": {
+  "name": "Vox Humana",
+  "by": "Matrix12x",
+  "fam": [
+   "Effects",
+   "Effets"
+  ],
+  "rest": "Yes"
+ },
+ "63": {
+  "name": "Moskito",
+  "by": "Jpro600k",
+  "fam": [
+   "Effects",
+   "Effets"
+  ],
+  "rest": "***          ***         Yes"
+ },
+ "64": {
+  "name": "Voice",
+  "by": "Matrix12x",
+  "fam": [
+   "Effects",
+   "Effets"
+  ],
+  "rest": "*****"
+ },
+ "65": {
+  "name": "AW Laser Harp",
+  "by": "Andy",
+  "fam": [
+   "Effects",
+   "Effets"
+  ],
+  "rest": "*****              Yes"
+ },
+ "66": {
+  "name": "Beyond Jupiter",
+  "by": "imogen",
+  "fam": [
+   "Effects",
+   "Effets"
+  ],
+  "rest": "Gate        **           **                            Yes"
+ },
+ "67": {
+  "name": "Comet Stopover",
+  "by": "el-folie",
+  "fam": [
+   "Effects",
+   "Effets"
+  ],
+  "rest": "*****              Yes"
+ },
+ "68": {
+  "name": "Bubble Bobble",
+  "by": "imogen",
+  "fam": [
+   "Effects",
+   "Effets"
+  ],
+  "rest": "LFO retrigger on key, LFO targets only oscillator A"
+ },
+ "69": {
+  "name": "Simmons Toms",
+  "by": "imogen",
+  "fam": [
+   "Effects",
+   "Effets"
+  ],
+  "rest": "***"
+ },
+ "70": {
+  "name": "Fifths",
+  "by": "imogen",
+  "fam": [
+   "Stabs",
+   "Stabs (accords brefs)"
+  ],
+  "rest": "**                                                             LFO targets only oscillator A"
+ },
+ "71": {
+  "name": "Wake Up!",
+  "by": "imogen",
+  "fam": [
+   "Stabs",
+   "Stabs (accords brefs)"
+  ],
+  "rest": "**           **"
+ },
+ "72": {
+  "name": "One Two Three",
+  "by": "imogen",
+  "fam": [
+   "Stabs",
+   "Stabs (accords brefs)"
+  ],
+  "rest": "Poly                                                                       LFO retrigger on key, LFO targets only oscillator A"
+ },
+ "73": {
+  "name": "Pulsify",
+  "by": "imogen",
+  "fam": [
+   "Stabs",
+   "Stabs (accords brefs)"
+  ],
+  "rest": "Poly        ***                      Yes                                   LFO targets only oscillator A"
+ },
+ "74": {
+  "name": "Phase",
+  "by": "el-folie",
+  "fam": [
+   "Stabs",
+   "Stabs (accords brefs)"
+  ],
+  "rest": "*"
+ },
+ "75": {
+  "name": "Noisy Stuff",
+  "by": "imogen",
+  "fam": [
+   "Stabs",
+   "Stabs (accords brefs)"
+  ],
+  "rest": "Yes"
+ },
+ "76": {
+  "name": "Harmonic Release",
+  "by": "imogen",
+  "fam": [
+   "Stabs",
+   "Stabs (accords brefs)"
+  ],
+  "rest": "Poly                                                                       Envelope pitch shift releases 2 oscillators to a fifth"
+ },
+ "77": {
+  "name": "Noisy Stab",
+  "by": "Matrix12x",
+  "fam": [
+   "Stabs",
+   "Stabs (accords brefs)"
+  ],
+  "rest": "***                           Yes                 Noise LFO modulates oscillator B for noise emulation"
+ },
+ "78": {
+  "name": "Soft Stab",
+  "by": "imogen",
+  "fam": [
+   "Stabs",
+   "Stabs (accords brefs)"
+  ],
+  "rest": "**                                                  Yes"
+ },
+ "79": {
+  "name": "Crispy",
+  "by": "imogen",
+  "fam": [
+   "Stabs",
+   "Stabs (accords brefs)"
+  ],
+  "rest": "Poly        ***          ***"
+ },
+ "80": {
+  "name": "Crystal",
+  "by": "imogen",
+  "fam": [
+   "Bells",
+   "Cloches"
+  ],
+  "rest": "Poly        ***"
+ },
+ "81": {
+  "name": "Snow Bell",
+  "by": "Jpro600k",
+  "fam": [
+   "Bells",
+   "Cloches"
+  ],
+  "rest": "***"
+ },
+ "82": {
+  "name": "Glockenspiel",
+  "by": "imogen",
+  "fam": [
+   "Bells",
+   "Cloches"
+  ],
+  "rest": "Poly        **           **"
+ },
+ "83": {
+  "name": "Dew",
+  "by": "imogen",
+  "fam": [
+   "Bells",
+   "Cloches"
+  ],
+  "rest": "*"
+ },
+ "84": {
+  "name": "Gong",
+  "by": "imogen",
+  "fam": [
+   "Bells",
+   "Cloches"
+  ],
+  "rest": "*****                                                          Extreme FM"
+ },
+ "85": {
+  "name": "Chime",
+  "by": "imogen",
+  "fam": [
+   "Bells",
+   "Cloches"
+  ],
+  "rest": "*            *"
+ },
+ "86": {
+  "name": "Tinkerbell",
+  "by": "imogen",
+  "fam": [
+   "Bells",
+   "Cloches"
+  ],
+  "rest": "Poly        ****"
+ },
+ "87": {
+  "name": "High Bells",
+  "by": "imogen",
+  "fam": [
+   "Bells",
+   "Cloches"
+  ],
+  "rest": "Poly        ***"
+ },
+ "88": {
+  "name": "Flute Bells",
+  "by": "imogen",
+  "fam": [
+   "Bells",
+   "Cloches"
+  ],
+  "rest": "**           **                 Yes"
+ },
+ "89": {
+  "name": "Steel Bars",
+  "by": "imogen",
+  "fam": [
+   "Bells",
+   "Cloches"
+  ],
+  "rest": "Poly        ***                      Yes"
+ },
+ "90": {
+  "name": "Cold Wind",
+  "by": "imogen",
+  "fam": [
+   "Pad",
+   "Nappe"
+  ],
+  "rest": "*****"
+ },
+ "91": {
+  "name": "Psycho Choir",
+  "by": "imogen",
+  "fam": [
+   "Pad",
+   "Nappe"
+  ],
+  "rest": "Yes                            LFO targets only oscillator A"
+ },
+ "92": {
+  "name": "",
+  "by": "Strings I",
+  "fam": [
+   "Pad",
+   "Nappe"
+  ],
+  "rest": "Z80 Nbr. 2"
+ },
+ "93": {
+  "name": "Foggy Strings",
+  "by": "Andy",
+  "fam": [
+   "Pad",
+   "Nappe"
+  ],
+  "rest": ""
+ },
+ "94": {
+  "name": "Retro Pad",
+  "by": "Jpro600k",
+  "fam": [
+   "Pad",
+   "Nappe"
+  ],
+  "rest": "**"
+ },
+ "95": {
+  "name": "Pulse Mod I      Z80 Nbr. 53",
+  "by": "***",
+  "fam": [
+   "Pad",
+   "Nappe"
+  ],
+  "rest": ""
+ },
+ "96": {
+  "name": "Wobbly Church",
+  "by": "imogen",
+  "fam": [
+   "Pad",
+   "Nappe"
+  ],
+  "rest": "Poly          ****                     Yes                                   LFO targets only oscillator A"
+ },
+ "97": {
+  "name": "Room Strings",
+  "by": "Jpro600k",
+  "fam": [
+   "Pad",
+   "Nappe"
+  ],
+  "rest": ""
+ },
+ "98": {
+  "name": "SH Pad",
+  "by": "imogen",
+  "fam": [
+   "Pad",
+   "Nappe"
+  ],
+  "rest": "*                                                              LFO retrigger on key"
+ },
+ "99": {
+  "name": "Shimmer",
+  "by": "el-folie",
+  "fam": [
+   "Pad",
+   "Nappe"
+  ],
+  "rest": "**"
+ }
+}

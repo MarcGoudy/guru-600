@@ -1,0 +1,155 @@
+@font-face{font-family:"Inter Tight";src:url(fonts/InterTight.ttf)}
+@font-face{font-family:"Mong Rong";src:url(fonts/MonRong.ttf)}
+:root{--bg:#0c0b0a;--panel:#1a1816;--line:#34302b;--text:#eee8d8;--mid:#b4ad9e;--red:#ff5c48;--orange:#f49638}
+*{box-sizing:border-box}
+body{margin:0;hyphens:manual;-webkit-hyphens:manual;background:var(--bg);color:var(--text);font:15px/1.55 "Inter Tight",-apple-system,Helvetica,Arial,sans-serif}
+section{padding:40px 16px;border-bottom:1px solid var(--line)}
+section>*{margin-left:auto;margin-right:auto}
+h1{font-weight:300;font-size:56px;margin:0 0 12px}
+h2{font-weight:300;font-size:30px;margin:0 0 20px;display:flex;gap:16px;align-items:baseline}
+h2 .num{font-weight:800;color:var(--red);font-size:20px}
+h3{font-weight:800;font-size:16px;margin:24px 0 8px;color:var(--c,var(--orange));letter-spacing:.02em}
+p,li{color:var(--text)}
+a{color:var(--orange)}
+b{font-weight:700}
+.cover{text-align:center;padding:80px 16px}
+.cover .logo{width:min(360px,80vw);image-rendering:pixelated;border-radius:8px}
+.cover p{color:var(--mid)}
+.toc ol{columns:2;column-gap:40px;padding-left:24px}
+.toc .n,.toc .pg{display:none}
+.toc a{color:var(--text);text-decoration:none}
+figure{margin:12px 0;display:inline-block;vertical-align:top}
+figure img{display:block;max-width:100%;border-radius:6px;image-rendering:pixelated}
+figure.wide img{width:100%;image-rendering:auto}
+figure.wide{display:block}
+figcaption{color:var(--mid);font-size:13px;margin-top:6px;max-width:240px}
+.split{display:flex;gap:24px;align-items:flex-start;flex-wrap:wrap}
+.split>div{flex:1;min-width:260px}
+.grid{display:flex;flex-wrap:wrap;gap:16px}
+table{width:100%;border-collapse:collapse;margin:12px 0;font-size:14px}
+th,td{text-align:left;padding:6px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+th{color:var(--mid);font-weight:600}
+.page-block{border-left:3px solid var(--c);padding-left:16px;margin:28px 0}
+.chain,.chips{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0}
+.chain>span,.chips>span{border:2px solid var(--c);color:var(--c);border-radius:8px;padding:4px 12px;font-weight:700}
+.chain>span:not(:last-child)::after{content:" →";color:var(--mid)}
+.note,.key,.warn{border:2px solid var(--line);border-radius:10px;padding:4px 18px;margin:20px 0;background:var(--panel)}
+.key{border-color:var(--orange)}
+.warn{border-color:var(--red)}
+#lang{position:fixed;top:12px;right:12px;z-index:9;display:flex;gap:4px}
+#lang button{font:700 13px "Inter Tight",sans-serif;background:var(--panel);color:var(--mid);border:2px solid var(--line);border-radius:8px;padding:5px 9px;cursor:pointer}
+#lang button.on{color:var(--text);border-color:var(--orange)}
+@page{size:A4;margin:14mm 15mm 16mm}
+@media print{
+#lang{display:none}
+body{background:#fff;color:#1a1816;font-size:10pt;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+p,li,td,.toc a{color:#1a1816}
+th,figcaption,.cover p{color:#5c564c}
+th,td{border-bottom-color:#d8d2c4}
+section{break-inside:auto;padding:10px 0;border-bottom:1px solid #d8d2c4}
+section+section{break-before:auto}   /* (the chapters follow each other: no half-empty pages) */
+h2,h3{break-after:avoid}
+
+h2{display:block}h2 .num{margin-right:14px}h2,h3{break-inside:avoid}.keep{break-inside:avoid}h2::after{content:"";display:block;height:70mm;margin-bottom:-70mm}h3::after{content:"";display:block;height:45mm;margin-bottom:-45mm}   /* (a title needs room under it: else it goes to the next page) */   /* (a title, its first lines and what follows them: together) */
+body{line-height:1.4}p{margin:.45em 0}ul,ol{margin:.45em 0}li{margin:.12em 0}
+.split{break-inside:avoid}   /* (a picture and its text side by side: on one page) */
+.grid figcaption{max-width:none}.grid{gap:12px}   /* (the caption as wide as its picture: 3 a row) */
+.toc,.cover{break-after:avoid}
+h1,h2{color:#1a1816}
+h3{color:color-mix(in srgb,var(--c,#f49638) 72%,#000)}
+.page-block,figure,tr,.key,.warn,.note{break-inside:avoid}
+.chain>span,.chips>span{color:#1a1816;background:#fff}
+.note,.key,.warn{background:#f6f3ec;border-color:#d8d2c4}
+.key{border-color:#f49638}.warn{border-color:#e0442f}
+a{color:#1a1816}
+}
+@media (max-width:600px){h1{font-size:40px}.toc ol{columns:1}}
+.knobs td:first-child,.knobs td:last-child{white-space:nowrap}
+h1,h2,h3,th,.chain,.chips,#lang,td b,figcaption{hyphens:manual;-webkit-hyphens:manual}
+.annex h2{font-size:28px}.annex h2 span[lang],.annex .langs span[lang]{white-space:nowrap}.annex .langs{color:var(--mid)}
+.snd td{font-size:13px}
+body.part-lang .annex{display:none}
+body.part-annex section:not(.annex),body.part-annex #lang{display:none}
+@media print{.snd td{font-size:8.5pt}.ml i{color:#8a8376}}
+.snd{table-layout:fixed}
+.snd th:nth-child(1){width:6%}
+.snd th:nth-child(2){width:17%}
+.snd th:nth-child(3){width:27%}
+.v22t th:nth-child(2){width:15%}.v22t th:nth-child(3){width:11%}.v22t th:nth-child(4){width:13%}.v22t th:nth-child(5){width:13%}
+.ml{display:block;margin:0 0 2px}.ml i{font-style:normal;font-size:.8em;font-weight:700;color:var(--mid);margin-right:4px}
+.ft{white-space:nowrap;font-size:.9em}.legend p{margin:4px 0;font-size:13px}.legend{margin:8px 0 14px}
+.v22{break-before:page}
+.cover .sub{color:var(--mid)}
+.cover .fm1{display:block;width:min(560px,92%);margin:22px auto 8px;border-radius:12px}
+@media print{.cover.lc{padding:0 0 6mm;border-bottom:none;break-after:avoid}.toc{break-after:page}
+.toc ol{columns:1;list-style:none;padding:0;width:120mm}.toc li{display:flex;align-items:baseline;gap:3mm;margin:.15em 0}
+.toc .n{display:inline;width:6mm;text-align:right;color:#d65440;font-weight:800}.toc .pg{display:inline;margin-left:auto}   /* (one column, its page at the right) */   /* (a language: its title and contents on one page) */
+.cover.all{padding:8px 0;border-bottom:none}.cover .fm1{width:122mm;margin:10px auto 2px}.cover.all .golang{gap:5px;margin-top:12px}.cover.all .golang a{padding-top:6px;padding-bottom:6px}}   /* (seven languages and the appendix: one page) */
+.golang{display:flex;flex-direction:column;gap:10px;max-width:480px;margin:28px auto 0}
+.golang a{display:flex;justify-content:space-between;align-items:baseline;gap:16px;border:2px solid var(--line);border-radius:10px;padding:10px 16px;color:var(--text);text-decoration:none}
+.golang a span{color:var(--mid);font-size:14px}
+.golang a:hover{border-color:var(--orange)}
+body:not(.part-lang) .cover.lc{display:none}
+body.part-lang .cover.all,body.part-annex .cover.all{display:none}
+body.part-cover section:not(.all),body.part-cover #lang{display:none}
+@media print{.golang a{border-color:#d8d2c4;color:#1a1816}.golang a span{color:#5c564c}}
+.snd tr{break-inside:auto}.snd .ml{break-inside:avoid}
+@media print{.snd tr{break-inside:auto}}
+.lgb{margin:0 0 10px}.lgb>i{font-style:normal;font-weight:700;font-size:.8em;color:var(--mid)}
+@media print{.lgb>i{color:#8a8376}}
+.lgb p{break-inside:avoid}
+.v22t tr{break-inside:avoid}
+@media print{.v22t tr{break-inside:avoid}}
+.logo-t{display:flex;flex-direction:column;align-items:center;gap:6px;margin:0 auto 28px}
+.logo-t .g6{font-family:"Mong Rong",serif;font-size:min(110px,22vw);line-height:1;color:var(--text);hyphens:none;white-space:nowrap}
+.logo-t .trib{font:800 15px "Inter Tight",sans-serif;letter-spacing:.12em;color:var(--red)}
+@media print{.logo-t .g6{color:#1a1816}.logo-t .trib{color:#d65440}}
+.g6t th:nth-child(1){width:6%}.g6t th:nth-child(2){width:15%}.g6t th:nth-child(3){width:13%}.g6t th:nth-child(4){width:10%}
+.g6t tr{break-inside:avoid}
+/* Chinese, Japanese (24/10): the Latin in Inter Tight, the rest in the system's own font (macOS, Windows, Linux) */
+:lang(zh){font-family:"Inter Tight","PingFang SC","Hiragino Sans GB","Noto Sans SC","Microsoft YaHei",sans-serif}
+:lang(ja){font-family:"Inter Tight","Hiragino Sans","Hiragino Kaku Gothic ProN","Noto Sans JP","Yu Gothic",sans-serif}
+:lang(zh) p,:lang(ja) p,:lang(zh) li,:lang(ja) li{line-break:strict;word-break:normal}
+/* Guru-600: the dedication, under the credits: centred, larger, in italics, in the lower half of the page */
+.ded{text-align:center;font-style:italic;font-size:1.15em;line-height:1.45;margin:48px 0 0}
+.ded p{margin:0;max-width:none}
+.ded p:nth-child(3){margin-top:.6em}
+@media print{.ded{margin-top:42mm;break-inside:avoid}}
+
+/* Guru-600 notice v2: steps, questions, Felucca boxes, tips */
+h4{font-weight:700;font-size:14px;margin:16px 0 6px;color:var(--text)}
+.steps{counter-reset:st;list-style:none;padding-left:0}
+.steps>li{counter-increment:st;position:relative;padding-left:30px;margin:.35em 0}
+.steps>li::before{content:counter(st);position:absolute;left:0;top:.05em;width:21px;height:21px;border-radius:50%;background:var(--orange);color:#1a1816;font-weight:800;font-size:12px;display:flex;align-items:center;justify-content:center}
+.qa dt{font-weight:700;margin-top:.8em}
+.qa dd{margin:.2em 0 0 0;padding-left:14px;border-left:2px solid var(--line)}
+.fel{border:1px dashed var(--line);border-radius:8px;padding:6px 12px;margin:10px 0;font-size:.92em;color:var(--mid)}
+.fel span{color:var(--mid)}
+.tip{border:2px solid #50c8e8;border-radius:10px;padding:4px 18px;margin:16px 0;background:var(--panel)}
+.kbd,.k{display:inline-block;border:1px solid var(--mid);border-radius:4px;padding:0 4px;font-size:.88em;font-weight:700;line-height:1.35}
+.shotrow{display:flex;flex-wrap:wrap;gap:12px;align-items:flex-start}
+.shotrow figure{width:200px}
+.badge{display:inline-block;background:var(--red);color:#fff;border-radius:4px;padding:0 5px;font-size:.75em;font-weight:800;vertical-align:.1em}
+@media print{
+h4{color:#1a1816}
+.steps>li::before{background:#f49638;color:#1a1816}
+.qa dd{border-left-color:#d8d2c4}.qa dt,.qa dd{break-inside:avoid}
+.fel{border-color:#c9c2b2;color:#5c564c}.fel span{color:#5c564c}
+.tip{background:#eef8fb;border-color:#50c8e8}
+.kbd,.k{border-color:#8a8478}
+}
+.thanks p{font-style:italic;font-size:1.1em;line-height:1.5;margin:0 auto 1.2em}
+.thanks{padding:32px 16px 0}@media print{.thanks{padding:6mm 0 0}}
+@media print{.cover.lc .logo-t,.cover.lc p{display:none}}   /* (a language's first page: its title and contents; the rest is on the common cover) */
+figure.scr img{width:min(520px,100%);display:block;margin:0 auto}@media print{figure.scr img{width:105mm}}
+body.part-cover .thanks,body.part-annex .thanks{display:none}   /* (the thank-you: in each language, once, before chapter 1) */
+@media screen{   /* (the guide on screen, from the application's Help menu: one column; the language's own title page, not the
+                    PDF's common cover; the languages on the side) */
+body:not([class*="part-"]) .cover.all{display:none}
+body:not([class*="part-"]) .cover.lc{display:block}
+section,.thanks{max-width:760px;margin-left:auto;margin-right:auto}
+#lang{top:50%;right:14px;transform:translateY(-50%);flex-direction:column}
+#lang button{width:64px;white-space:nowrap}
+body:not([class*="part-"]) .cover.lc p{display:none}
+@media (max-width:900px){#lang{top:auto;bottom:12px;transform:none;flex-direction:row}#lang button{width:auto}}
+}

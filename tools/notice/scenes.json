@@ -1,0 +1,682 @@
+[
+{
+"name": "p6_edit1",
+"keys": [
+"EDIT",
+"wait 900"
+]
+},
+{
+"name": "p6_edit2",
+"keys": [
+"EDIT",
+"wait 300",
+"EDIT",
+"wait 900"
+]
+},
+{
+"name": "p6_edit3",
+"keys": [
+"EDIT",
+"wait 300",
+"EDIT",
+"wait 300",
+"EDIT",
+"wait 900"
+]
+},
+{
+"name": "p6_edit4",
+"keys": [
+"EDIT",
+"wait 300",
+"EDIT",
+"wait 300",
+"EDIT",
+"wait 300",
+"EDIT",
+"wait 900"
+]
+},
+{
+"name": "p6_edit5",
+"keys": [
+"EDIT",
+"wait 300",
+"EDIT",
+"wait 300",
+"EDIT",
+"wait 300",
+"EDIT",
+"wait 300",
+"EDIT",
+"wait 900"
+]
+},
+{
+"name": "p6_edit6",
+"keys": [
+"EDIT",
+"wait 300",
+"EDIT",
+"wait 300",
+"EDIT",
+"wait 300",
+"EDIT",
+"wait 300",
+"EDIT",
+"wait 300",
+"EDIT",
+"wait 900"
+]
+},
+{
+"name": "p6_edit7",
+"keys": [
+"EDIT",
+"wait 300",
+"EDIT",
+"wait 300",
+"EDIT",
+"wait 300",
+"EDIT",
+"wait 300",
+"EDIT",
+"wait 300",
+"EDIT",
+"wait 300",
+"EDIT",
+"wait 900"
+]
+},
+{
+"name": "p6_edit8",
+"keys": [
+"EDIT",
+"wait 300",
+"EDIT",
+"wait 300",
+"EDIT",
+"wait 300",
+"EDIT",
+"wait 300",
+"EDIT",
+"wait 300",
+"EDIT",
+"wait 300",
+"EDIT",
+"wait 300",
+"EDIT",
+"wait 900"
+]
+},
+{
+"name": "p6_edit9",
+"keys": [
+"EDIT",
+"wait 300",
+"EDIT",
+"wait 300",
+"EDIT",
+"wait 300",
+"EDIT",
+"wait 300",
+"EDIT",
+"wait 300",
+"EDIT",
+"wait 300",
+"EDIT",
+"wait 300",
+"EDIT",
+"wait 300",
+"EDIT",
+"wait 900"
+]
+},
+{
+"name": "p6_edit10",
+"keys": [
+"EDIT",
+"wait 300",
+"EDIT",
+"wait 300",
+"EDIT",
+"wait 300",
+"EDIT",
+"wait 300",
+"EDIT",
+"wait 300",
+"EDIT",
+"wait 300",
+"EDIT",
+"wait 300",
+"EDIT",
+"wait 300",
+"EDIT",
+"wait 300",
+"EDIT",
+"wait 900"
+]
+},
+{
+"name": "p6_edit11",
+"keys": [
+"EDIT",
+"wait 300",
+"EDIT",
+"wait 300",
+"EDIT",
+"wait 300",
+"EDIT",
+"wait 300",
+"EDIT",
+"wait 300",
+"EDIT",
+"wait 300",
+"EDIT",
+"wait 300",
+"EDIT",
+"wait 300",
+"EDIT",
+"wait 300",
+"EDIT",
+"wait 300",
+"EDIT",
+"wait 900"
+]
+},
+{
+"name": "pg_env1",
+"keys": [
+"ENV",
+"wait 900"
+]
+},
+{
+"name": "pg_env2",
+"keys": [
+"ENV",
+"wait 300",
+"ENV",
+"wait 900"
+]
+},
+{
+"name": "pg_lfo1",
+"keys": [
+"LFO",
+"wait 900"
+]
+},
+{
+"name": "pg_lfo2",
+"keys": [
+"LFO",
+"wait 300",
+"LFO",
+"wait 900"
+]
+},
+{
+"name": "pg_lfo3",
+"keys": [
+"LFO",
+"wait 300",
+"LFO",
+"wait 300",
+"LFO",
+"wait 900"
+]
+},
+{
+"name": "pg_lfo4",
+"keys": [
+"LFO",
+"wait 300",
+"LFO",
+"wait 300",
+"LFO",
+"wait 300",
+"LFO",
+"wait 900"
+]
+},
+{
+"name": "pg_fx1",
+"keys": [
+"FX",
+"wait 900"
+]
+},
+{
+"name": "pg_fx2",
+"keys": [
+"FX",
+"wait 300",
+"FX",
+"wait 900"
+]
+},
+{
+"name": "pg_fx3",
+"keys": [
+"FX",
+"wait 300",
+"FX",
+"wait 300",
+"FX",
+"wait 900"
+]
+},
+{
+"name": "pg_fx4",
+"keys": [
+"FX",
+"wait 300",
+"FX",
+"wait 300",
+"FX",
+"wait 300",
+"FX",
+"wait 900"
+]
+},
+{
+"name": "pg_fx5",
+"keys": [
+"FX",
+"wait 300",
+"FX",
+"wait 300",
+"FX",
+"wait 300",
+"FX",
+"wait 300",
+"FX",
+"wait 900"
+]
+},
+{
+"name": "pg_fx6",
+"keys": [
+"FX",
+"wait 300",
+"FX",
+"wait 300",
+"FX",
+"wait 300",
+"FX",
+"wait 300",
+"FX",
+"wait 300",
+"FX",
+"wait 900"
+]
+},
+{
+"name": "pg_fx7",
+"keys": [
+"FX",
+"wait 300",
+"FX",
+"wait 300",
+"FX",
+"wait 300",
+"FX",
+"wait 300",
+"FX",
+"wait 300",
+"FX",
+"wait 300",
+"FX",
+"wait 900"
+]
+},
+{
+"name": "pg_scl1",
+"keys": [
+"SCL",
+"wait 900"
+]
+},
+{
+"name": "pg_scl2",
+"keys": [
+"SCL",
+"wait 300",
+"SCL",
+"wait 900"
+]
+},
+{
+"name": "pg_arp1",
+"keys": [
+"ARP",
+"wait 900"
+]
+},
+{
+"name": "pg_arp2",
+"keys": [
+"ARP",
+"wait 300",
+"ARP",
+"wait 900"
+]
+},
+{
+"name": "pg_seq1",
+"keys": [
+"SEQ",
+"wait 900"
+]
+},
+{
+"name": "pg_seq2",
+"keys": [
+"SEQ",
+"wait 300",
+"SEQ",
+"wait 900"
+]
+},
+{
+"name": "pg_seq3",
+"keys": [
+"SEQ",
+"wait 300",
+"SEQ",
+"wait 300",
+"SEQ",
+"wait 900"
+]
+},
+{
+"name": "pg_save1",
+"keys": [
+"SAVE",
+"wait 900"
+]
+},
+{
+"name": "pg_save2",
+"keys": [
+"SAVE",
+"wait 300",
+"SAVE",
+"wait 900"
+]
+},
+{
+"name": "pg_save3",
+"keys": [
+"SAVE",
+"wait 300",
+"SAVE",
+"wait 300",
+"SAVE",
+"wait 900"
+]
+},
+{
+"name": "pg_save4",
+"keys": [
+"SAVE",
+"wait 300",
+"SAVE",
+"wait 300",
+"SAVE",
+"wait 300",
+"SAVE",
+"wait 900"
+]
+},
+{
+"name": "pg_save5",
+"keys": [
+"SAVE",
+"wait 300",
+"SAVE",
+"wait 300",
+"SAVE",
+"wait 300",
+"SAVE",
+"wait 300",
+"SAVE",
+"wait 900"
+]
+},
+{
+"name": "pg_save6",
+"keys": [
+"SAVE",
+"wait 300",
+"SAVE",
+"wait 300",
+"SAVE",
+"wait 300",
+"SAVE",
+"wait 300",
+"SAVE",
+"wait 300",
+"SAVE",
+"wait 900"
+]
+},
+{
+"name": "pg_glo1",
+"keys": [
+"GLO",
+"wait 900"
+]
+},
+{
+"name": "home",
+"keys": [
+"C4",
+"wait 200"
+]
+},
+{
+"name": "pg_mixer",
+"keys": [
+"HOME",
+"wait 900"
+]
+},
+{
+"name": "pg_clock",
+"keys": [
+"HOME",
+"wait 300",
+"HOME",
+"wait 900"
+]
+},
+{
+"name": "scr_parts",
+"keys": [
+"SAVE",
+"wait 500",
+"SAVE",
+"wait 500",
+"SAVE",
+"wait 500",
+"SAVE",
+"wait 500",
+"SAVE",
+"wait 800",
+"K4 +1",
+"wait 600",
+"OCTUP",
+"wait 1200",
+"OCTUP",
+"wait 1500",
+"HOME",
+"wait 900",
+"OCTUP",
+"wait 300",
+"REC",
+"wait 500",
+"ALGO 3",
+"wait 300",
+"ALGO -3",
+"wait 1800"
+]
+},
+{
+"name": "scr_banner",
+"keys": [
+"PRESETS 1",
+"wait 1500",
+"hold SAVE 900",
+"wait 250"
+]
+},
+{
+"name": "scr_help",
+"keys": [
+"down HOME 900",
+"up HOME",
+"ALGO 4",
+"PRESETS 1",
+"OCTUP",
+"HOME",
+"wait 400",
+"EDIT",
+"wait 400"
+],
+"settle": 0
+},
+{
+"name": "eng_anlg",
+"keys": [
+"down EDIT 700",
+"G3",
+"up EDIT",
+"wait 2600",
+"EDIT",
+"wait 900"
+]
+},
+{
+"name": "eng_fm6",
+"keys": [
+"down EDIT 700",
+"A3",
+"up EDIT",
+"wait 2600",
+"EDIT",
+"wait 300",
+"EDIT",
+"wait 300",
+"EDIT",
+"wait 900"
+]
+},
+{
+"name": "eng_slce",
+"keys": [
+"down EDIT 700",
+"D5",
+"up EDIT",
+"wait 2600",
+"EDIT",
+"wait 300",
+"EDIT",
+"wait 300",
+"EDIT",
+"wait 900"
+]
+},
+{
+"name": "eng_drum",
+"keys": [
+"ALGO 4",
+"wait 300",
+"SEQ",
+"wait 900"
+]
+},
+{
+"name": "ly_fx",
+"keys": [
+"down FX 1300"
+]
+},
+{
+"name": "ly_glo",
+"keys": [
+"down GLO 1300"
+]
+},
+{
+"name": "ly_scl",
+"keys": [
+"down SCL 1300"
+]
+},
+{
+"name": "ly_edit",
+"keys": [
+"down EDIT 1300"
+]
+},
+{
+"name": "ly_seq",
+"keys": [
+"down SEQ 1300"
+]
+},
+{
+"name": "ly_rec",
+"keys": [
+"down REC 1300"
+]
+},
+{
+"name": "menu_0",
+"keys": [
+"down HOME 900",
+"up HOME",
+"wait 600"
+]
+},
+{
+"name": "menu_1",
+"keys": [
+"down HOME 900",
+"up HOME",
+"ALGO 1",
+"wait 600"
+]
+},
+{
+"name": "menu_2",
+"keys": [
+"down HOME 900",
+"up HOME",
+"ALGO 2",
+"wait 600"
+]
+},
+{
+"name": "menu_3",
+"keys": [
+"down HOME 900",
+"up HOME",
+"ALGO 3",
+"wait 600"
+]
+},
+{
+"name": "menu_4",
+"keys": [
+"down HOME 900",
+"up HOME",
+"ALGO 4",
+"wait 600"
+]
+}
+]
