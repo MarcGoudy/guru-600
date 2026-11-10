@@ -1,0 +1,9 @@
+{
+  "what": "The FM-1 becomes a Prophet-600: 255 sounds (the 100 factory programs, 100 from the free 2022 collection, 55 of its own), its panel in a web editor in 7 languages, four tracks with sequencer, arpeggiator, morph and two insert effects each. Based on Felucca.",
+  "author": "Marc Massé",
+  "kinds": ["synth"],
+  "editor": "https://marcgoudy.github.io/guru-600/editor/",
+  "cheat": "https://github.com/MarcGoudy/guru-600/releases/download/v1.0/Guru-600-User-guide.pdf",
+  "image": "docs/card.png",
+  "color": "#D65440"
+}
