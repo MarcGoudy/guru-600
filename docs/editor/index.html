@@ -1,0 +1,989 @@
+<!doctype html>
+<!-- SPDX-License-Identifier: GPL-3.0-only
+     Guru-600, the sound editor: the Prophet-600's panel for the P600 engine of the FM-1 (Felucca firmware). -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>guru-600 editor</title>
+<style>
+@font-face { font-family: "MonRong"; src: url("fonts/MonRong.ttf") format("truetype"); font-display: block; }
+@font-face { font-family: "Barlow C"; src: url("fonts/BarlowCondensed-SemiBold.ttf") format("truetype"); font-weight: 600; font-display: block; }
+@font-face { font-family: "Barlow C"; src: url("fonts/BarlowCondensed-Bold.ttf") format("truetype"); font-weight: 700; font-display: block; }
+:root {
+  --bg: #000; --panel: #070707; --cream: #F2EDE0; --dim: #8d8a82; --rule-w: 2px;
+  /* the families' colours as the FM-1's screen has them (firmware ui_draw.c P6_FAM_C); FX SENDS: the editor's */
+  --pm: #A884FF; --lfo: #50C8E8; --osc: #F49638; --flt: #FF5046; --env: #FA7CC4; --ext: #FFE428;
+  --mph: #40E0B4; --vce: #8CD86C; --fx: #4F86FF; --snd: #EDEBE6; --sel: #FFF22E; --kept: #FB8A1A; --red: #FF5046; --led: #2BE84F; --trk: #FF7A22;
+}
+html, body { margin: 0; height: 100%; background: var(--bg); overflow: hidden; }
+body { font-variant-numeric: tabular-nums; color: var(--cream); font: 600 15px/1 "Barlow C", "Arial Narrow", sans-serif; text-transform: uppercase;
+       -webkit-font-smoothing: antialiased; user-select: none; -webkit-user-select: none; }
+#stage { position: absolute; left: 0; top: 0; transform-origin: 0 0; }
+.abs { position: absolute; box-sizing: border-box; }
+
+/* header */
+#logo { left: 22px; top: -12px; font: 400 112px/1 "MonRong"; color: #FBF6EA; text-transform: none; letter-spacing: 0; white-space: nowrap; }
+#tribute { font: 700 17px/1 "Barlow C"; letter-spacing: 3px; margin-right: -3px; color: #F0362A; white-space: nowrap; }   /* (-3: the last letter's spacing) */
+#status { top: 33px; height: 46px; display: flex; align-items: center; gap: 0; white-space: nowrap; }
+#led { width: 16px; height: 16px; border-radius: 50%; margin-right: 11px; cursor: pointer; box-sizing: border-box; border: 1.5px solid color-mix(in srgb, var(--led) 70%, #fff);
+       background: radial-gradient(circle at 38% 32%, rgba(255, 255, 255, .85) 0 2px, transparent 3.5px), radial-gradient(circle at 50% 55%, color-mix(in srgb, var(--led) 40%, #fff), var(--led) 55%, color-mix(in srgb, var(--led) 70%, #000) 100%);
+       box-shadow: 0 0 7px 2px color-mix(in srgb, var(--led) 90%, transparent), 0 0 18px 4px color-mix(in srgb, var(--led) 45%, transparent); }   /* (lit: connected) */
+#conn { font: 700 25px/1 "Barlow C"; letter-spacing: .2px; }
+.hsep { width: 2px; height: 34px; background: var(--cream); opacity: .8; margin: 0 26px; }
+#bpmlbl { font: 700 25px/1 "Barlow C"; margin-right: 14px; }
+/* PLAY STOP REC: unlit buttons; PLAY lit green while the FM-1 plays, REC red while the track is armed */
+.tp { width: 46px; height: 46px; border-radius: 4px; box-sizing: border-box; margin-right: 10px; display: flex; align-items: center; justify-content: center; cursor: pointer;
+      border: 1.5px solid color-mix(in srgb, var(--c) 30%, #333);
+      background: linear-gradient(color-mix(in srgb, var(--c) 22%, #262626), color-mix(in srgb, var(--c) 16%, #0b0b0b));
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, .14), inset 0 -2px 3px rgba(0, 0, 0, .6), 0 2px 3px rgba(0, 0, 0, .7); }   /* (off: its colour, unlit) */
+.tp svg { width: 22px; height: 22px; fill: color-mix(in srgb, var(--c) 45%, #2a2a2a); }
+.tp#t-play { --c: #3BD16F; } .tp#t-rec { --c: var(--red); } .tp#t-stop, .tp#t-full, .tp#t-help { --c: var(--cream); } .tp#t-glow { --c: var(--cream); }
+.tp#t-glow svg { fill: none; stroke: color-mix(in srgb, var(--c) 55%, #2a2a2a); }
+/* lit: the button stays dark, only its bulb glows */
+.tp#t-glow.on { border-color: color-mix(in srgb, var(--cream) 30%, #333) !important;
+  background: linear-gradient(color-mix(in srgb, var(--cream) 10%, #262626), #0b0b0b) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .14), inset 0 -2px 3px rgba(0, 0, 0, .6), 0 2px 3px rgba(0, 0, 0, .7) !important; }
+.tp#t-glow.on svg { stroke: #fffdf4; fill: #fbf7ea;   /* (a white bulb: not EXTRAS' yellow) */
+  filter: drop-shadow(0 0 3px rgba(255, 252, 240, .9)) drop-shadow(0 0 7px rgba(255, 252, 240, .5)); }
+#t-glow { margin: 0; width: 40px; height: 40px; flex: none; }
+/* FLAT (the bulb off): no light at all, the colours plain, as the mockup: no halo, no glow, no lighter centre */
+body.flat *, body.flat *::before, body.flat *::after { box-shadow: none !important; filter: none !important; text-shadow: none !important; }
+body.flat .knob .core { display: none; }
+body.flat .sw.on, body.flat .hsw.on, body.flat .pill:not(.none), body.flat .tp.on { background: var(--c) !important; }
+body.flat .trk.on { background: var(--trk) !important; }
+body.flat .tab.on, body.flat .chip.on { background: var(--cream) !important; }
+body.flat .row.on { background: var(--sel) !important; }
+body.flat .radio .on i { background: var(--red) !important; }
+body.flat #led:not(.off) { background: var(--led) !important; }
+body.flat #slider .rail::before, body.flat #slider .rail::after { display: none; }
+body.flat #bpm.b, body.flat #bpm.b1 { animation: none; }
+body.flat #bpm.b { background: color-mix(in srgb, var(--cream) 25%, transparent); }
+body.flat #bpm.b1 { background: color-mix(in srgb, var(--trk) 45%, transparent); }
+.tp#t-full svg { fill: none; stroke: color-mix(in srgb, var(--c) 55%, #2a2a2a); }
+.tp#t-help span { font: 700 26px/1 "Barlow C"; color: color-mix(in srgb, var(--c) 55%, #2a2a2a); }
+#t-full, #t-help { margin: 0; width: 40px; height: 40px; flex: none; }
+#t-full:active, #t-help:active { border-color: #fff; background: radial-gradient(ellipse at 50% 45%, #fff 0%, var(--cream) 62%, #bdb6a5 100%);
+  box-shadow: 0 0 7px 2px color-mix(in srgb, var(--cream) 90%, transparent), 0 0 18px 3px color-mix(in srgb, var(--cream) 45%, transparent); }
+#t-full:active svg { stroke: #0b0b0b; } #t-help:active span { color: #0b0b0b; }
+.tp.on { border-color: color-mix(in srgb, var(--c) 70%, #fff); background: radial-gradient(ellipse at 50% 45%, color-mix(in srgb, var(--c) 45%, #fff) 0%, var(--c) 62%, color-mix(in srgb, var(--c) 80%, #000) 100%);
+         box-shadow: 0 0 7px 2px color-mix(in srgb, var(--c) 90%, transparent), 0 0 18px 3px color-mix(in srgb, var(--c) 45%, transparent); }
+.tp.on svg { fill: #0b0b0b; }
+.tp:active { transform: translateY(1px); }
+.tp#t-stop:active { border-color: #fff; background: radial-gradient(ellipse at 50% 45%, #fff 0%, var(--cream) 62%, #bdb6a5 100%);   /* (STOP: lit while pressed) */
+  box-shadow: 0 0 7px 2px color-mix(in srgb, var(--cream) 90%, transparent), 0 0 18px 3px color-mix(in srgb, var(--cream) 45%, transparent); }
+.tp#t-stop:active svg { fill: #0b0b0b; }
+/* the BPM's arrows, just above and below its box: one BPM a click (held: on and on); the box itself turns like a knob */
+.bpmw { position: relative; }
+.ba { position: absolute; left: 50%; width: 0; height: 0; margin-left: -7px; border-left: 7px solid transparent; border-right: 7px solid transparent; cursor: pointer; }
+.ba::before { content: ""; position: absolute; left: -14px; right: -14px; top: -8px; bottom: -8px; }   /* (a larger place to click) */
+.ba.up { top: -12px; border-bottom: 8px solid var(--cream); }
+.ba.dn { bottom: -12px; border-top: 8px solid var(--cream); }
+.ba:active { filter: drop-shadow(0 0 4px var(--cream)); }
+/* the beat: the BPM box flashes on each beat and fades before the next, brighter on the bar's first (the track's orange) */
+@keyframes beat { from { border-color: #fff; background: color-mix(in srgb, var(--cream) 22%, transparent); box-shadow: 0 0 9px 3px color-mix(in srgb, var(--cream) 85%, transparent), 0 0 22px 5px color-mix(in srgb, var(--cream) 40%, transparent),
+                        inset 0 0 10px color-mix(in srgb, var(--cream) 45%, transparent); } }
+@keyframes beat1 { from { border-color: color-mix(in srgb, var(--trk) 60%, #fff); color: #fff; background: color-mix(in srgb, var(--trk) 40%, transparent);
+                         box-shadow: 0 0 12px 4px color-mix(in srgb, var(--trk) 95%, transparent), 0 0 30px 8px color-mix(in srgb, var(--trk) 55%, transparent),
+                         inset 0 0 14px color-mix(in srgb, var(--trk) 65%, transparent); } }
+#bpm.b { animation: beat var(--bt, .4s) ease-out; }
+#bpm.b1 { animation: beat1 var(--bt, .4s) ease-out; }
+#bpm { min-width: 66px; height: 46px; border: 2px solid var(--cream); border-radius: 4px; box-sizing: border-box; display: flex; align-items: center;
+       justify-content: center; font: 700 27px/1 "Barlow C"; cursor: ns-resize; touch-action: none; padding: 0 8px; }
+#trklbl { font: 700 25px/1 "Barlow C"; margin-right: 18px; }
+.trk { width: 46px; height: 46px; border: 2px solid var(--cream); border-radius: 4px; display: flex; align-items: center; justify-content: center;
+       font: 700 27px/1 "Barlow C"; margin-left: 10px; box-sizing: border-box; cursor: pointer; }
+.trk.on { background: var(--trk); border-color: var(--trk); color: #140600; }
+
+/* tabs */
+#tabs { display: flex; gap: 8px; }
+.tab { flex: 1; border: 2px solid var(--cream); border-radius: 4px; display: flex; align-items: center; justify-content: center;
+       font: 600 22px/1 "Barlow C"; letter-spacing: .3px; cursor: pointer; }
+.tab.on { background: var(--cream); color: #000; }
+.tab.later { cursor: default; }
+
+/* sections */
+.sec { border: var(--rule-w) solid var(--c); border-radius: 7px; background: var(--panel); display: flex; flex-direction: column; overflow: hidden; }
+.sec .bd, .sec .grp, .sec .items { overflow: visible; }
+.sec > .ttl { flex: none; height: 34px; border-bottom: var(--rule-w) solid var(--c); color: var(--c); font: 700 25px/34px "Barlow C";
+              letter-spacing: .4px; padding-left: 10px; white-space: nowrap; }
+.sec > .bd { flex: 1; display: flex; min-height: 0; }
+.grp { display: flex; flex-direction: column; align-items: center; flex: 1 1 auto; min-width: 0; padding-top: var(--pt, 16px); }
+.grp + .grp { border-left: var(--rule-w) solid var(--c); }
+.grp.flat { border-left: 0 !important; }
+.grp > .gt { font: 600 16px/1.1 "Barlow C"; text-align: center; height: var(--gth, 26px); display: flex; align-items: center; justify-content: center; white-space: nowrap; }
+.grp > .gt:empty { height: 0; }
+.grp > .items { display: flex; justify-content: space-evenly; align-items: flex-start; width: 100%; }
+.item { display: flex; flex-direction: column; align-items: center; }
+.item > .tl { font: 600 16px/1.1 "Barlow C"; height: var(--tlh, 26px); display: flex; align-items: center; text-align: center; white-space: nowrap; }
+.item > .sl { font: 600 var(--slf, 17px)/1 "Barlow C"; margin-top: 6px; white-space: nowrap; }
+.item > .v { font: 600 19px/1 "Barlow C"; margin-top: 4px; white-space: nowrap; text-transform: none; }
+.knob { width: var(--kn, 66px); height: var(--kn, 66px); cursor: ns-resize; touch-action: none; display: block; }
+.sw { width: 26px; height: 46px; border-radius: 5px; box-sizing: border-box; position: relative; cursor: pointer; margin-top: 8px; }
+
+.radio { display: flex; flex-direction: column; gap: 9px; margin-top: 2px; }
+.radio > div { display: flex; align-items: center; gap: 10px; font: 600 17px/1 "Barlow C"; cursor: pointer; }
+.radio i { width: 18px; height: 18px; border-radius: 50%; box-sizing: border-box; }
+/* a one-shot button lights while it is pressed (MUTATE in its green, the cream ones cream, RESET red), as STOP */
+.gbtn:active, .btn:active:not(.dis), .oct:active { color: #0b0b0b;
+  background: radial-gradient(ellipse at 50% 45%, color-mix(in srgb, var(--c, var(--cream)) 40%, #fff) 0%, var(--c, var(--cream)) 62%, color-mix(in srgb, var(--c, var(--cream)) 78%, #000) 100%);
+  box-shadow: 0 0 7px 2px color-mix(in srgb, var(--c, var(--cream)) 90%, transparent), 0 0 18px 3px color-mix(in srgb, var(--c, var(--cream)) 45%, transparent); }
+#sounds .btn:active:not(.dis), .oct:active { --c: var(--cream); }
+#sounds .btn.red:active { --c: var(--red); }
+.arr:active { filter: drop-shadow(0 0 4px var(--cream)) drop-shadow(0 0 9px color-mix(in srgb, var(--cream) 60%, transparent)); }
+/* the same light on the cream buttons: what is lit glows, an outline glows faintly */
+.tab, .btn, .chip, .oct, .trk, #bpm { box-shadow: 0 0 5px color-mix(in srgb, var(--cream) 35%, transparent), inset 0 0 4px color-mix(in srgb, var(--cream) 15%, transparent); }
+.tab.on, .chip.on { background: radial-gradient(ellipse at 50% 45%, #fff 0%, var(--cream) 70%, #d9d2c1 100%);
+  box-shadow: 0 0 7px 2px color-mix(in srgb, var(--cream) 85%, transparent), 0 0 18px 3px color-mix(in srgb, var(--cream) 40%, transparent); }
+.trk.on { background: radial-gradient(ellipse at 50% 45%, color-mix(in srgb, var(--trk) 45%, #fff) 0%, var(--trk) 65%, color-mix(in srgb, var(--trk) 80%, #000) 100%);
+  box-shadow: 0 0 7px 2px color-mix(in srgb, var(--trk) 90%, transparent), 0 0 18px 3px color-mix(in srgb, var(--trk) 45%, transparent); }
+.btn.red { box-shadow: 0 0 6px color-mix(in srgb, var(--red) 55%, transparent), inset 0 0 4px color-mix(in srgb, var(--red) 25%, transparent); }
+/* a lit button as if a lamp were behind it: a bright centre, the colour, the edges a little darker */
+.row.on { background: radial-gradient(ellipse 50% 80% at 50% 50%, #fffdf0 0%, color-mix(in srgb, var(--sel) 45%, #fff) 25%,
+            var(--sel) 62%, color-mix(in srgb, var(--sel) 72%, #8a5a00) 100%);
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, .28), 0 0 7px 2px color-mix(in srgb, var(--sel) 85%, transparent), 0 0 18px 3px color-mix(in srgb, var(--sel) 40%, transparent); }
+.row .n { box-shadow: 0 0 4px color-mix(in srgb, var(--cream) 30%, transparent); }
+.row.kept .nm { text-shadow: 0 0 6px color-mix(in srgb, var(--kept) 70%, transparent); }
+#list { padding: 6px 4px 0 4px; }
+/* off: the same button and LED, unlit (a dark tint of its colour, its relief, a dull dot; a dark glass lens with a glint) */
+.sw, .hsw, .pill.none {
+  border: 1.5px solid color-mix(in srgb, var(--c) 30%, #333);
+  background: linear-gradient(color-mix(in srgb, var(--c) 18%, #2a2a2a), color-mix(in srgb, var(--c) 14%, #0d0d0d));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .14), inset 0 -2px 3px rgba(0, 0, 0, .6), 0 2px 3px rgba(0, 0, 0, .7); }
+.sw::after, .hsw::after { content: ""; position: absolute; border-radius: 50%; background: radial-gradient(circle at 40% 35%, #5a5a5a, #2c2c2c 70%);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, .6); }
+.sw::after { left: 50%; bottom: 7px; width: 12px; height: 12px; margin-left: -6px; }
+.hsw::after { top: 50%; right: 6px; width: 11px; height: 11px; margin-top: -5.5px; }
+.pill.none::after { display: block; background: radial-gradient(circle at 40% 35%, #5a5a5a, #2c2c2c 70%); }
+.sw.on, .hsw.on { border-color: color-mix(in srgb, var(--c) 70%, #fff); }
+.sw.on::after, .hsw.on::after { background: radial-gradient(circle at 40% 35%, #fff, #f1efe8 70%); box-shadow: 0 0 4px rgba(255, 255, 255, .8); }
+.radio i { border: 1.5px solid #3a2523; background: radial-gradient(circle at 38% 32%, rgba(255, 255, 255, .35) 0 2px, transparent 3px),
+  radial-gradient(circle at 50% 55%, color-mix(in srgb, var(--red) 30%, #1a0b0a), #120707 75%);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, .8), 0 1px 0 rgba(255, 255, 255, .08); }
+#led.off { background: radial-gradient(circle at 38% 32%, rgba(255, 255, 255, .3) 0 2px, transparent 3px), radial-gradient(circle at 50% 55%, #1d3a22, #0a140c 75%);
+  border: 1.5px solid #203024; box-sizing: border-box; box-shadow: inset 0 1px 2px rgba(0, 0, 0, .8); }
+.radio .on i { background: radial-gradient(circle at 40% 35%, #ff8a80, var(--red) 55%, #c4221a); border-color: #ff6a60; box-shadow: 0 0 7px rgba(255, 80, 70, .7); }
+.shape { display: flex; flex-direction: column; align-items: center; gap: 8px; margin-top: 4px; }
+.shape .ic { display: flex; gap: 14px; }
+.pill { width: 38px; height: 24px; border-radius: 5px; background: var(--c); position: relative; cursor: pointer; }
+.pill::after { content: ""; position: absolute; top: 6px; width: 12px; height: 12px; border-radius: 50%; background: #fff; left: 6px; transition: left .08s; }
+.pill.r::after { left: 20px; }
+.pill.none { box-sizing: border-box; }
+
+/* low sections (VOICE, FX SENDS): one line */
+.sec.low { flex-direction: row; align-items: center; }
+.sec.low > .ttl { border-bottom: 0; border-right: var(--rule-w) solid var(--c); height: 100%; display: flex; align-items: center; padding: 0 10px; line-height: 1.05; font-size: 21px; box-sizing: border-box; }
+.sec.low > .bd { align-items: center; justify-content: space-evenly; height: 100%; }
+.sec.low .item > .tl { height: auto; margin-bottom: 4px; font-size: 15px; }
+.sec.low .kv { display: flex; align-items: center; gap: 4px; }
+.sec.low .kv .v { margin-top: 0; font-size: 16px; width: 38px; text-transform: none; white-space: nowrap; }
+.sec.low { --kn: 32px; }
+#fxs > .ttl { padding: 0 9px; font-size: 19px; }
+#fxs > .bd { padding: 0 8px; }
+.sec.low > .bd { padding: 0 10px; justify-content: space-between; }
+#vce > .bd, #fxs > .bd { justify-content: space-evenly; }
+#vce > .bd { justify-content: space-evenly; padding: 0 4px; }
+#vce .item:first-child .kv .v { width: 50px; }   /* (LEVEL: "-4,0 dB" clear of PAN) */
+#vce .item:nth-child(2) .kv .v { width: 22px; }
+
+/* MIXER column */
+.mix { display: flex; flex-direction: column; align-items: center; flex: 1; justify-content: space-evenly; }
+.mix > .part { display: flex; flex-direction: column; align-items: center; width: 100%; padding-top: 12px; }
+.mix > .part + .part { border-top: var(--rule-w) solid var(--c); padding-top: 22px; }
+.mix > .part { padding-bottom: 14px; }
+.mix .pt { color: var(--c); font: 700 24px/1 "Barlow C"; margin-bottom: 12px; }
+.mix .ab { display: flex; gap: 10px; font: 600 19px/1 "Barlow C"; margin-top: 6px; text-transform: none; }
+.mix .ab b { font-weight: 600; text-transform: uppercase; }
+.hsw { width: 42px; height: 27px; border-radius: 4px; box-sizing: border-box; position: relative; cursor: pointer; }
+
+/* EXTRAS column */
+.col { display: flex; flex-direction: column; flex: 1; justify-content: space-evenly; }
+.col > .item { padding: 7px 0 7px; }
+.col > .item + .item { border-top: var(--rule-w) solid var(--c); margin: 0 6px; }
+
+/* SOUNDS */
+#sounds { --c: var(--snd); }
+#sounds > .ttl { color: #fff; border-bottom: 0; font-size: 26px; }
+#chips { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px 5px; padding: 0 8px 10px; }
+.chip { height: 25px; border: 1.5px solid var(--cream); border-radius: 3px; display: flex; align-items: center; justify-content: center; font: 600 14px/1 "Barlow C"; cursor: pointer; }
+.chip.on { color: #000; }
+#list { position: relative; margin: 0 8px; flex: 1; min-height: 0; overflow-y: scroll; scrollbar-width: thin; scrollbar-color: #8a8a8a transparent; }
+#list::-webkit-scrollbar { width: 6px; }
+#list::-webkit-scrollbar-thumb { background: #8a8a8a; border-radius: 3px; }
+.row { display: flex; align-items: center; height: 31px; margin: 0 8px 6px 0; cursor: pointer; border: 1.5px solid #2c2c2c; border-radius: 3px; background: #0c0c0c; }
+.row .n { width: 30px; height: 31px; border-right: 1.5px solid #2c2c2c; display: flex; align-items: center; justify-content: center; font: 700 21px/1 "Barlow C"; flex: none; margin-left: -1.5px; border: 1.5px solid var(--cream); border-radius: 3px; box-sizing: border-box; }
+.row .nm { padding-left: 14px; font: 600 18px/1 "Barlow C"; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.row.kept .nm { color: var(--kept); }
+.row.on { border-color: var(--sel); color: #000; }   /* (its light: above, with the others) */
+.row.on .nm { color: #000; }
+.row.kept { --sel: var(--kept); }   /* (a place you saved, chosen: lit in its orange, not the yellow (Marc, 10/11)) */
+.row.on .n { border-color: #000; }
+.row.hide { display: none; }
+#sbtn { display: flex; flex-direction: column; gap: 6px; padding: 8px 8px 12px; }
+.btn { height: 30px; border: 2px solid var(--cream); border-radius: 4px; display: flex; align-items: center; justify-content: center; font: 600 17px/1 "Barlow C"; cursor: pointer; box-sizing: border-box; white-space: nowrap; }
+.btn.red { border-color: var(--red); color: var(--red); margin-top: 6px; }
+.btn.dis { opacity: .35; cursor: default; pointer-events: none; }
+.oct.on { color: #0b0b0b; background: var(--cream); box-shadow: 0 0 10px color-mix(in srgb, var(--cream) 60%, transparent); }
+body.flat .oct.on { box-shadow: none; }
+
+/* MORPH band */
+#morph > .ttl { height: 30px; line-height: 30px; }
+#morph > .bd { align-items: stretch; }
+#morph .grp { padding-top: 9px; align-items: flex-start; padding-left: 20px; padding-right: 20px; }
+#morph .gt { height: auto; margin-bottom: 9px; font-size: 19px; }
+.field { height: 36px; border: 2px solid var(--c); border-radius: 4px; display: block; padding: 0 10px; line-height: 32px; text-align: center;
+         font: 600 22px/32px "Barlow C"; box-sizing: border-box; white-space: nowrap; width: 166px; overflow: hidden; text-overflow: ellipsis; }   /* (a fixed width: a name never moves the band) */
+.arrows { display: flex; align-items: center; gap: 12px; }
+.arr { width: 0; height: 0; border-top: 11px solid transparent; border-bottom: 11px solid transparent; cursor: pointer; }
+.arr.l { border-right: 16px solid var(--cream); }
+.arr.r { border-left: 16px solid var(--cream); }
+.srow { display: flex; align-items: center; gap: 14px; width: 100%; height: 26px; font: 600 19px/1 "Barlow C"; margin-top: -2px; }
+#slider { position: relative; height: 26px; flex: 1; cursor: pointer; touch-action: none; }
+#mpos { margin-left: 10px; text-transform: none; display: inline-block; width: 50px; }
+#slider .rail { position: absolute; left: 0; right: 0; top: 7px; height: 12px; border-radius: 6px;
+  background: linear-gradient(90deg, color-mix(in srgb, var(--c) var(--ga), #5d5d5d), color-mix(in srgb, var(--c) var(--gb), #5d5d5d)); }
+#slider .rail::before { content: ""; position: absolute; inset: -3px; border-radius: 9px; filter: blur(7px);
+  background: linear-gradient(90deg, color-mix(in srgb, var(--c), transparent var(--ta)), color-mix(in srgb, var(--c), transparent var(--tb))); }
+#slider .rail::after { content: ""; position: absolute; left: 4px; right: 4px; top: 4px; height: 4px; border-radius: 2px; filter: blur(.6px);
+  background: linear-gradient(90deg, color-mix(in srgb, color-mix(in srgb, var(--c) 45%, #fff), transparent var(--ta)),
+                                     color-mix(in srgb, color-mix(in srgb, var(--c) 45%, #fff), transparent var(--tb))); }
+#slider .fill { position: absolute; left: 0; top: 7px; height: 12px; border-radius: 6px; background: var(--c); }
+#slider .thumb { position: absolute; top: 1px; width: 24px; height: 24px; margin-left: -12px; border-radius: 50%; background: var(--c); border: 3px solid #fff; box-sizing: border-box; box-shadow: 0 0 6px rgba(64, 224, 180, .6); }
+.ends { display: flex; justify-content: space-between; width: 100%; font: 600 19px/1 "Barlow C"; margin-top: 2px; }
+.ends span:nth-child(2) { text-transform: none; }
+#mut { display: flex; align-items: flex-start; gap: 8px; }   /* (the value and MUTATE on the fields' line, the knob centred on it) */
+#mut > .v { height: 36px; display: flex; align-items: center; justify-content: flex-end; margin-left: 10px; width: 54px; }   /* (a fixed width: a value never moves the band) */
+#mut .knobw { margin-left: 0; }
+
+#mut .knobw { display: flex; flex-direction: column; align-items: center; margin-top: -27px; --kn: 46px; }
+#mut .knobw .tl { font: 600 16px/1 "Barlow C"; margin-bottom: 6px; }
+#mut .v { font: 600 21px/1 "Barlow C"; text-transform: none; }
+.gbtn { height: 36px; border: 2px solid var(--c); border-radius: 4px; color: var(--c); display: flex; align-items: center; padding: 0 14px; font: 600 21px/1 "Barlow C"; cursor: pointer; box-sizing: border-box; }
+
+/* SEQUENCER */
+.sqgrp { flex: 0 0 auto !important; padding: 10px 18px 0 !important; }
+.sqgrp .gt { height: 22px !important; }
+.pages { display: flex; gap: 6px; margin-top: 10px; }
+.pages .btn { width: 58px; height: 34px; font-size: 16px; }
+/* a chosen button: lit in the page's colour (--onc; the track's orange by default) */
+.btn.on { --o: var(--onc, var(--trk)); color: #000; background: radial-gradient(ellipse at 50% 45%, color-mix(in srgb, var(--o) 45%, #fff) 0%, var(--o) 62%, color-mix(in srgb, var(--o) 80%, #000) 100%) !important;
+  border-color: var(--o); box-shadow: 0 0 7px 2px color-mix(in srgb, var(--o) 90%, transparent), 0 0 18px 3px color-mix(in srgb, var(--o) 45%, transparent) !important; }
+body.flat .btn.on { background: var(--o) !important; }
+.tools { display: grid; grid-template-columns: repeat(5, auto); gap: 6px; margin-top: 2px; }
+.tools .btn { height: 30px; padding: 0 10px; font-size: 15px; }
+#sqsteps > .bd { padding: 6px 8px 8px 0; }
+#rollkeys { width: 78px; flex: none; display: flex; flex-direction: column; margin-top: 26px; padding-left: 34px; box-sizing: border-box; }
+.rk { flex: 1; background: linear-gradient(90deg, #d9d5cb, #f2efe8); border-bottom: 1px solid #a9a598; position: relative; }
+.rk.b { background: linear-gradient(90deg, #050505, #262626); border-bottom-color: #111; margin-right: 16px; }
+.rk[data-c]::after { content: attr(data-c) " –"; position: absolute; right: calc(100% + 6px); top: 50%; transform: translateY(-50%); font: 600 15px/1 "Barlow C"; color: var(--cream); white-space: nowrap; }
+#roll { flex: 1; display: flex; flex-direction: column; min-width: 0; margin-left: 8px; }
+#rollhead { height: 26px; display: grid; grid-template-columns: repeat(16, 1fr); }
+.rh { display: flex; align-items: center; justify-content: center; font: 600 16px/1 "Barlow C"; cursor: pointer; border-left: 1px solid #2a2a2a; }
+.rh.bar { border-left-color: #6b675e; }
+.rh.out { opacity: .3; }
+.rh.ph { color: #000; background: var(--cream); border-radius: 3px; box-shadow: 0 0 8px color-mix(in srgb, var(--cream) 80%, transparent); }
+#rollgrid { flex: 1; position: relative; cursor: crosshair; border: 1px solid #2a2a2a; overflow: hidden; border-left: 2px solid #6b675e;   /* (step 1's light line, as 5, 9, 13: Marc, 10/11) */
+  background: repeating-linear-gradient(90deg, transparent 0 calc(25% - 2px), #6b675e calc(25% - 2px) 25%),
+              repeating-linear-gradient(90deg, transparent 0 calc(6.25% - 1px), #262626 calc(6.25% - 1px) 6.25%), linear-gradient(var(--rows)); }
+#rollph { position: absolute; top: 0; bottom: 0; width: 6.25%; background: color-mix(in srgb, var(--cream) 14%, transparent);
+  border-left: 1.5px solid color-mix(in srgb, var(--cream) 55%, transparent); border-right: 1.5px solid color-mix(in srgb, var(--cream) 55%, transparent);
+  box-shadow: 0 0 14px color-mix(in srgb, var(--cream) 30%, transparent); pointer-events: none; }
+#rollnotes { position: absolute; inset: 0; pointer-events: none; }
+.nt { position: absolute; border-radius: 4px; background: color-mix(in srgb, var(--trk) calc(var(--v) * 100%), #3a2414);
+  box-shadow: 0 0 6px 1px color-mix(in srgb, var(--trk) 75%, transparent), inset 0 1px 0 rgba(255, 255, 255, .35); }
+.nt[data-tie]::before { content: attr(data-tie); position: absolute; left: 50%; bottom: 100%; transform: translateX(-50%); font: 600 13px/1.6 "Barlow C"; color: var(--cream); }
+.rest { position: absolute; top: 50%; width: 6.25%; transform: translateY(-50%); text-align: center; font: 600 15px/1 "Barlow C"; color: #8d8a82; }
+#sqdet > .bd { padding: 4px 8px 6px 0; }
+#detlabels { width: 70px; flex: none; display: grid; grid-template-rows: 2.2fr repeat(6, 1fr); padding-left: 10px; font: 600 14px/1 "Barlow C"; }
+#detlabels > div { flex: 1; display: flex; align-items: center; border-bottom: 1px solid #3a3833; cursor: pointer; user-select: none; }
+#detgrid { flex: 1; display: grid; grid-template-columns: repeat(16, 1fr); margin-left: 0; }
+.dc { display: grid; grid-template-rows: 2.2fr repeat(6, 1fr); border-left: 1px solid #262626; }   /* (the rows as the labels'): one grid, the rules in line) */
+.dc.bar { border-left-color: #6b675e; }
+.dc.out { opacity: .25; pointer-events: none; }
+.dc.ph { background: color-mix(in srgb, var(--cream) 8%, transparent); }
+.ln { flex: 1; display: flex; align-items: center; justify-content: center; font: 600 15px/1 "Barlow C"; text-transform: none; border-bottom: 1px solid #3a3833; cursor: pointer; }   /* (each row ruled across, from its label: Marc, 10/11) */
+.ln.vel { align-items: flex-end; padding: 4px 30% 2px; cursor: ns-resize; background: #23211d content-box; }   /* (its rail, shown empty too: Marc, 10/11) */
+.ln.vel { background-color: #34312b; } .ln.vel.nn { background-color: #1a1916; cursor: default; }   /* (a step without notes: no velocity, its rail dim) */
+.ln.vel i { display: block; width: 100%; background: linear-gradient(color-mix(in srgb, var(--trk) 60%, #fff), var(--trk)); border-radius: 2px 2px 0 0;
+  box-shadow: 0 0 6px color-mix(in srgb, var(--trk) 70%, transparent); }
+.ln.num { cursor: ns-resize; }
+.ln[data-k="rat"], .ln[data-k="cond"] { cursor: pointer; }
+.led { width: 14px; height: 14px; border-radius: 50%; box-sizing: border-box; border: 1.5px solid #3a2a1c;
+  background: radial-gradient(circle at 38% 32%, rgba(255, 255, 255, .3) 0 1.5px, transparent 2.5px), radial-gradient(circle at 50% 55%, color-mix(in srgb, var(--trk) 25%, #160c05), #0d0704 75%); }
+.led.on { border-color: color-mix(in srgb, var(--trk) 70%, #fff); background: radial-gradient(circle at 45% 40%, color-mix(in srgb, var(--trk) 35%, #fff), var(--trk) 65%);
+  box-shadow: 0 0 6px 2px color-mix(in srgb, var(--trk) 85%, transparent), 0 0 14px 3px color-mix(in srgb, var(--trk) 40%, transparent); }
+body.flat .led.on { background: var(--trk) !important; }
+#auto > .ttl { color: #fff; border-bottom: 0; font-size: 26px; }
+.autoplay { display: flex; align-items: center; justify-content: center; gap: 16px; font: 600 19px/1 "Barlow C"; padding: 4px 0 12px; --c: var(--trk); }
+#autolist { flex: 1; overflow-y: auto; margin: 0 8px; padding: 4px; }
+.arow { height: 34px; }
+.arow .n { width: 32px; }
+.arow .nm { flex: 1; padding-left: 10px; font-size: 16px; }
+.arow .av { padding-right: 8px; font: 600 16px/1 "Barlow C"; text-transform: none; white-space: nowrap; }
+.arow.on .av { color: #000; }
+.arow .lk { width: 13px; height: 15px; margin: 0 6px 0 4px; fill: var(--cream); stroke: var(--cream); flex: none; }
+.arow.on .lk { fill: #000; stroke: #000; }
+.autobtn { display: flex; flex-direction: column; gap: 8px; padding: 8px 8px 12px; }
+.autobtn .btn { height: 36px; font-size: 18px; }
+
+/* SONG */
+#songsec > .bd { padding: 8px 14px 10px; }
+#songtab { flex: 1; display: flex; flex-direction: column; gap: 4px; }
+.sr { flex: 1; display: grid; grid-template-columns: 70px repeat(4, 1fr) 150px; align-items: center; border-radius: 4px; }
+.sr > div { display: flex; justify-content: center; align-items: center; }
+.sr.hd { flex: none; height: 22px; font: 600 15px/1 "Barlow C"; color: var(--cream); }
+.sr .n { width: 30px; height: 27px; border: 1.5px solid var(--cream); border-radius: 3px; display: flex; align-items: center; justify-content: center; font: 700 18px/1 "Barlow C"; box-sizing: border-box; }
+.sr .slot { width: 64%; height: 27px; border-radius: 4px; display: flex; align-items: center; justify-content: center; font: 700 20px/1 "Barlow C"; cursor: pointer;
+  color: var(--sc, #2f2d29); border: 1.5px solid color-mix(in srgb, var(--sc, #2f2d29) 85%, #222);
+  box-shadow: 0 0 6px color-mix(in srgb, var(--sc, transparent) 45%, transparent), inset 0 0 6px color-mix(in srgb, var(--sc, transparent) 25%, transparent);
+  background: linear-gradient(color-mix(in srgb, var(--sc, #2f2d29) 22%, #1a1a1a), color-mix(in srgb, var(--sc, #2f2d29) 12%, #0a0a0a));
+  text-shadow: 0 0 8px color-mix(in srgb, var(--sc, transparent) 80%, transparent); }
+.sr.empty .slot { color: #3a3832; border-color: #1f1f1f; background: #0b0b0b; text-shadow: none; cursor: default; }
+.sr .rep { width: 46px; text-align: center; font: 600 19px/1 "Barlow C"; text-transform: none; }
+.sr .rep.dim { color: #3a3832; }
+.rb { width: 26px; height: 24px; margin-left: 5px; border: 1.5px solid var(--cream); border-radius: 3px; box-sizing: border-box; display: flex; align-items: center; justify-content: center;
+  font-size: 12px; cursor: pointer; box-shadow: 0 0 4px color-mix(in srgb, var(--cream) 30%, transparent); }
+.rb:active { background: var(--cream); color: #000; }
+.ba2 { width: 0; height: 0; border-left: 6px solid transparent; border-right: 6px solid transparent; cursor: pointer; }
+.ba2.up { border-bottom: 7px solid var(--cream); } .ba2.dn { border-top: 7px solid var(--cream); }
+.sr.play { background: color-mix(in srgb, var(--cream) 14%, transparent); box-shadow: 0 0 14px color-mix(in srgb, var(--cream) 30%, transparent), inset 0 0 0 1.5px color-mix(in srgb, var(--cream) 60%, transparent); }
+.sr.play .n { background: var(--cream); color: #000; box-shadow: 0 0 8px var(--cream); }
+.sr.sel .n { border-color: var(--sel); color: #000; background: radial-gradient(ellipse at 50% 50%, #fffdf0 0%, var(--sel) 70%); box-shadow: 0 0 8px 2px color-mix(in srgb, var(--sel) 80%, transparent); }
+body.flat .sr.play .n, body.flat .sr.sel .n { background: var(--sel) !important; }
+#songcol { display: flex; flex-direction: column; }
+#songcol > .ttl { color: #fff; border-bottom: 0; font-size: 26px; }
+.songtp { display: flex; gap: 6px; padding: 4px 8px; }
+.songtp .btn { flex: 1; height: 44px; font-size: 17px; }
+#sg-play { --c: #3BD16F; } #sg-play.on { color: #062010; background: radial-gradient(ellipse at 50% 45%, color-mix(in srgb, #3BD16F 45%, #fff) 0%, #3BD16F 62%, color-mix(in srgb, #3BD16F 80%, #000) 100%) !important;
+  border-color: #3BD16F; box-shadow: 0 0 7px 2px color-mix(in srgb, #3BD16F 90%, transparent), 0 0 18px 3px color-mix(in srgb, #3BD16F 45%, transparent) !important; }
+body.flat #sg-play.on { background: #3BD16F !important; }
+.songst { padding: 12px 10px; font: 700 23px/1.35 "Barlow C"; text-align: center; }
+.songops { display: flex; flex-direction: column; gap: 7px; padding: 4px 8px; }
+.songops .btn { height: 34px; font-size: 17px; }
+.songslots { margin-top: auto; padding: 8px 8px 12px; text-align: center; }
+.songslots .gt { font: 600 16px/1 "Barlow C"; margin-bottom: 8px; }
+.songslots .sl { display: flex; justify-content: space-around; font: 700 18px/1 "Barlow C"; }
+.songslots .sl span { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+.songslots .led { width: 24px; height: 24px; }
+.songslots .hint { font: 600 12px/1 "Barlow C"; color: #8d8a82; margin-top: 8px; }
+
+/* ARP */
+.grp.chg { flex: 0 0 auto; padding: 12px 16px 0; }
+.chb { display: grid; gap: 6px; margin-top: 4px; }
+.btn.ch { height: 32px; padding: 0 10px; font-size: 16px; min-width: 52px; }
+.root .btn.ch { min-width: 40px; padding: 0 4px; }
+.bd.stack { flex-direction: column; }
+.bd.stack > .grp, .srow2 > .grp { border-left: 0 !important; padding-top: 8px; align-items: flex-start; }
+.bd.stack { padding-left: 8px; }
+/* SCALE, CHORD: each group's title on its left, a rule between the groups (the mockup's) */
+#scl .bd.stack > .grp.chg, #chd .bd.stack > .grp.chg, #scl .srow2 { flex-direction: row; align-items: center; gap: 0; padding: 12px 10px; }
+#scl .bd.stack > * + *, #chd .bd.stack > * + * { border-top: 1.5px solid color-mix(in srgb, var(--c) 35%, transparent); }
+#scl .grp.chg > .gt, #chd .grp.chg > .gt { width: 96px; flex: none; justify-content: flex-start; height: auto; }
+#scl .grp.chg > .chb, #chd .grp.chg > .chb { margin-top: 0; }
+#scl .srow2 > .grp.chg { padding: 0; }
+#scl .srow2 > .grp.chg:first-child { flex-direction: row; align-items: center; }
+#scl .srow2 > .grp:last-child { margin-left: auto; padding-right: 24px; flex-direction: column; }
+.srow2 { display: flex; align-items: flex-start; gap: 20px; }
+.grp.col2 { display: flex; flex-direction: column; gap: 6px; }
+.grp.col2 > .grp { border-left: 0 !important; padding: 0; }
+#arp .grp > .items { gap: 6px; }
+#keycol > .ttl { color: #fff; border-bottom: 0; font-size: 26px; }
+#keyv { flex: 1; display: flex; flex-direction: column; margin: 6px 22px 6px 52px; }
+.ky { flex: 1; position: relative; border: 1px solid #8f8b80; border-bottom: 0; background: linear-gradient(90deg, #d9d5cb, #f2efe8); }
+.ky:last-child { border-bottom: 1px solid #8f8b80; }
+.ky.b { background: linear-gradient(90deg, #050505, #262626); margin-right: 34%; border-color: #000; }
+.ky span { position: absolute; right: calc(100% + 8px); top: 50%; transform: translateY(-50%); font: 600 15px/1 "Barlow C"; }
+.ky.b span { right: calc(100% + 8px); }
+.ky.on { background: radial-gradient(ellipse at 45% 50%, color-mix(in srgb, var(--trk) 40%, #fff), var(--trk) 75%); border-color: color-mix(in srgb, var(--trk) 60%, #000);
+  box-shadow: inset 0 0 6px color-mix(in srgb, var(--trk) 60%, #fff), 0 0 5px color-mix(in srgb, var(--trk) 55%, transparent); }
+.ky.root::after { content: ""; position: absolute; right: 10px; top: 50%; width: 8px; height: 8px; margin-top: -4px; border-radius: 50%; background: #000; }
+body.flat .ky.on { background: var(--trk) !important; }
+#keyname { text-align: center; font: 600 15px/1 "Barlow C"; padding: 4px 0 14px; }
+
+/* FX */
+.fxlab { font: 600 15px/18px "Barlow C"; color: var(--cream); letter-spacing: .5px; }
+.bd.grid2 { flex-direction: column; justify-content: space-evenly; }
+.bd.grid2 > .grp { border-left: 0 !important; padding-top: 6px; }
+#fxm .bd > .grp { padding-top: 26px; }
+.fxhint { font: 600 12px/1.4 "Barlow C"; color: #8d8a82; text-align: center; padding: 0 10px 14px; margin-top: auto; }
+
+/* MOD */
+.bd.mxb { flex-direction: column; padding: 6px 14px 8px; }
+.mxr { flex: 1; display: grid; grid-template-columns: 50px 190px 40px 220px 120px 1fr; align-items: center; border-top: 1px solid color-mix(in srgb, var(--c) 25%, transparent); }
+.mxr.hd { flex: none; height: 24px; border-top: 0; font: 600 15px/1 "Barlow C"; }
+.mxr.hd > div { text-align: center; }
+.mxr > div { display: flex; justify-content: center; align-items: center; }
+.mxr .n { width: 30px; height: 27px; border: 1.5px solid var(--cream); border-radius: 3px; display: flex; align-items: center; justify-content: center; font: 700 18px/1 "Barlow C"; }
+.mxr .to { font: 700 24px/1 "Barlow C"; color: var(--c); }
+.mxk .kv { display: flex; align-items: center; gap: 6px; }
+.mxk .kv .v { margin-top: 0; width: 52px; font-size: 18px; text-transform: none; }
+#lfo2 .bd.stack > .grp.chg { flex-direction: row; align-items: center; gap: 14px; }
+#lfo2 .srow2 { padding-left: 16px; }
+.mxr .tag { justify-content: flex-start; font: 600 13px/1 "Barlow C"; color: #8d8a82; padding-left: 10px; }
+.fldw { gap: 8px; }
+.fldw .field { width: auto; font-size: 19px; }
+.bd.vcb { justify-content: space-evenly; align-items: center; }
+.bd.vcb > .grp { border-left: 0 !important; padding-top: 0; }
+#env2 .bd { align-items: center; }
+#active > .ttl { color: #fff; border-bottom: 0; font-size: 26px; }
+#actlist { padding: 4px 10px; display: flex; flex-direction: column; gap: 6px; }
+#actlist .arow .nm { padding-left: 8px; font-size: 15px; }
+#actlist .hint { text-align: center; color: #6b675e; padding-top: 20px; }
+
+/* TRACKS */
+.strip { display: flex; flex-direction: column; }
+.strip > .ttl { font-size: 26px; }
+.strip.selt { box-shadow: 0 0 12px color-mix(in srgb, var(--trk) 45%, transparent); }
+.strip.muted .sbd > :not(.ms) { opacity: .45; }
+.sbd { flex: 1; display: flex; flex-direction: column; align-items: center; padding: 10px 14px 12px; gap: 8px; }
+.strip .eng { display: flex; align-items: center; gap: 10px; }
+.strip .ef { width: 150px; color: var(--c); }
+.strip .snd { font: 600 20px/1 "Barlow C"; height: 24px; color: var(--cream); }
+.sends { display: grid; grid-template-columns: repeat(4, 1fr); width: 100%; border-top: 1.5px solid color-mix(in srgb, var(--cream) 25%, transparent); padding-top: 8px; }
+.sk, .pan { display: flex; flex-direction: column; align-items: center; gap: 2px; --c: var(--fx); }
+.pan { --c: var(--vce); }
+.sk .tl, .pan .tl { font: 600 14px/1 "Barlow C"; }
+.knob.small { width: 44px; height: 44px; }
+.sk .v, .pan .v { font: 600 15px/1 "Barlow C"; text-transform: none; }
+.mixr { flex: 1; display: flex; align-items: center; justify-content: space-around; width: 100%; border-top: 1.5px solid color-mix(in srgb, var(--cream) 25%, transparent); padding-top: 8px; }
+.fader { display: flex; flex-direction: column; align-items: center; gap: 8px; height: 100%; }
+.fdr { position: relative; width: 14px; flex: 1; border-radius: 7px; background: #1d1d1d; border: 1.5px solid #333; cursor: ns-resize; touch-action: none; margin: 6px 0; }
+.fdr i { position: absolute; left: 0; right: 0; bottom: 0; border-radius: 6px; background: linear-gradient(var(--trk), color-mix(in srgb, var(--trk) 40%, #000));
+  box-shadow: 0 0 8px color-mix(in srgb, var(--trk) 60%, transparent); }
+.fdr b { position: absolute; left: 50%; width: 46px; height: 22px; margin: 0 0 -11px -23px; border-radius: 4px; border: 1.5px solid #6b675e;
+  background: linear-gradient(#5a5a5a, #1a1a1a 45%, #101010 55%, #3a3a3a); box-shadow: 0 3px 6px rgba(0,0,0,.7), inset 0 1px 0 rgba(255,255,255,.3); }
+.fdr b::after { content: ""; position: absolute; left: 6px; right: 6px; top: 50%; height: 2px; margin-top: -1px; background: var(--cream); }
+.fv { font: 600 17px/1 "Barlow C"; text-transform: none; }
+.ms, .selrow { display: flex; gap: 8px; width: 100%; align-items: center; }
+.ms .btn, .selrow .btn { flex: 1; height: 36px; font-size: 18px; }
+.ms .mute { --onc: var(--red); }
+.ms .solo { --onc: var(--sel); }
+.selrow .led.arm { --trk: var(--red); width: 18px; height: 18px; flex: none; }
+body.flat .fdr i { box-shadow: none; }
+
+/* PROJECTS */
+.bd.projbd { flex-direction: column; gap: 10px; padding: 12px 14px; }
+.pj { flex: 1; display: flex; align-items: center; gap: 18px; border: 1.5px solid color-mix(in srgb, var(--sc) 40%, #222); border-radius: 6px; padding: 0 16px;
+  background: linear-gradient(color-mix(in srgb, var(--sc) 10%, #121212), #080808); }
+.pj .pl { font: 700 54px/1 "Barlow C"; color: color-mix(in srgb, var(--sc) 45%, #2a2a2a); width: 46px; text-align: center; }
+.pj.used { border-color: var(--sc); box-shadow: 0 0 10px color-mix(in srgb, var(--sc) 35%, transparent); }
+.pj.used .pl { color: var(--sc); text-shadow: 0 0 12px color-mix(in srgb, var(--sc) 80%, transparent); }
+.pj .ps { flex: 1; font: 600 20px/1 "Barlow C"; color: #8d8a82; }
+.pj.used .ps { color: var(--cream); }
+.pj .pb { display: flex; gap: 8px; }
+.pj .btn { width: 86px; height: 38px; font-size: 18px; }
+.phint { font: 600 12px/1.5 "Barlow C"; color: #8d8a82; padding: 0 14px 12px; }
+.bd.userbd { flex-direction: column; padding: 10px 14px; gap: 10px; }
+#userlist { flex: 1; min-height: 0; display: grid; grid-template-columns: 1fr 1fr; grid-auto-flow: column; grid-template-rows: repeat(16, minmax(0, 1fr)); gap: 3px 14px; }
+.urow { height: auto; min-height: 0; margin: 0; }
+.urow .n { height: 100%; font-size: 17px; }
+.urow .nm { font-size: 16px; }
+.urow .n { width: 34px; }
+.urow .ue { width: 66px; padding-left: 10px; font: 600 14px/1 "Barlow C"; color: #8d8a82; }
+.urow.on .ue { color: #000; }
+.urow .nm { padding-left: 6px; }
+.urow.empty .nm { color: #3a3832; }
+.ub { display: flex; gap: 10px; }
+.ub .btn { height: 38px; font-size: 18px; flex: 1; }
+.ub #u-store { flex: 2; }
+
+/* SAMPLES */
+.smpsec .sbd { flex: 1; display: flex; flex-direction: column; align-items: stretch; gap: 12px; padding: 14px 16px; min-height: 0; }
+.sst { display: flex; align-items: center; gap: 10px; font: 600 18px/1 "Barlow C"; }
+.sst .snm { flex: 1; }
+.sbar { width: 160px; height: 10px; border-radius: 5px; background: #1d1d1d; border: 1px solid #333; overflow: hidden; }
+.sbar i { display: block; height: 100%; background: var(--c); box-shadow: 0 0 6px var(--c); }
+.skb { font: 600 14px/1 "Barlow C"; color: #8d8a82; text-transform: none; }
+.sname { display: flex; align-items: center; gap: 10px; font: 600 16px/1 "Barlow C"; }
+.sname input, .froot { background: #0b0b0b; color: var(--cream); border: 1.5px solid color-mix(in srgb, var(--c) 60%, #333); border-radius: 4px; font: 600 20px/1 "Barlow C";
+  text-transform: uppercase; padding: 6px 10px; width: 140px; outline: none; }
+.smpsec .sname input { flex: 1; width: auto; }
+.drop { border: 2px dashed color-mix(in srgb, var(--c) 55%, #333); border-radius: 8px; padding:  28px 18px; text-align: center; font: 600 18px/1.6 "Barlow C"; color: var(--cream); }
+.drop span { display: block; font-size: 13px; color: #8d8a82; }
+.drop.over { background: color-mix(in srgb, var(--c) 15%, transparent); border-color: var(--c); }
+.drop .btn { display: inline-flex; margin-top: 6px; padding: 0 18px; height: 34px; }
+.flist { flex: 1; min-height: 0; overflow-y: auto; display: flex; flex-direction: column; gap: 5px; }
+.flist .hint { margin: auto; text-align: center; font: 600 14px/1.4 "Barlow C"; color: #6b675e; padding: 0 20px; }
+.frow { display: grid; grid-template-columns: 1fr 58px 76px 52px 30px 30px; gap: 6px; align-items: center; font: 600 15px/1 "Barlow C"; text-transform: none; }
+.frow .fn { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.frow .froot { width: 100%; font-size: 15px; padding: 3px 4px; box-sizing: border-box; }
+.frow .froot.bad { border-color: var(--red); }
+.frow .btn { height: 26px; padding: 0; font-size: 13px; }
+.ssize { font: 600 14px/1 "Barlow C"; color: #8d8a82; text-transform: none; }
+.ssize.bad { color: var(--red); }
+.sprog { height: 6px; border-radius: 3px; background: #141414; overflow: hidden; }
+.sprog i { display: block; height: 100%; width: 0; background: var(--c); box-shadow: 0 0 6px var(--c); transition: width .1s; }
+.sbtn { display: flex; gap: 8px; }
+.sbtn .btn { flex: 1; height: 40px; font-size: 18px; }
+.sbtn .up { flex: 2; }
+.drop.dis { opacity: .4; pointer-events: none; }
+.bksec .sbd { flex: 1; display: flex; flex-direction: column; align-items: stretch; gap: 12px; padding: 14px 16px; min-height: 0; }
+.bkhd { font: 600 16px/1.2 "Barlow C"; color: #b5b1a6; min-height: 20px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.bklist { flex: 1; min-height: 0; display: grid; grid-template-columns: 1fr 1fr; grid-auto-rows: 34px; grid-auto-flow: column; grid-template-rows: repeat(8, 34px); gap: 6px 10px; align-content: start; }
+.bkrow { display: grid; grid-template-columns: 14px 1fr 90px; gap: 10px; align-items: center; height: 34px; box-sizing: border-box; margin: 0; padding: 0 10px; font: 600 16px/1 "Barlow C"; }
+.bkrow .sz { text-align: right; color: #b5b1a6; }
+.bkrow.empty .nm, .bkrow.empty .sz { color: #5d5a53; }
+.bktot { font: 600 14px/1 "Barlow C"; color: #8d8a82; text-align: right; min-height: 14px; }
+.bksec .sbtn .btn { flex: 1; }
+.setsec .sbd { flex: 1; display: flex; flex-direction: column; align-items: stretch; justify-content: flex-start; gap: 6px; padding: 12px 16px; min-height: 0; }
+.setr { display: grid; grid-template-columns: 132px 1fr; align-items: center; gap: 10px; min-height: 32px; }
+.setr .nm { font: 600 16px/1.1 "Barlow C"; color: var(--cream); }
+.setr .chs { display: grid; grid-template-columns: repeat(4, 76px); gap: 6px; justify-content: end; }
+.setr .chs .btn.ch { min-width: 0; padding: 0 4px; font-size: 15px; text-transform: none; }
+.setr .fldw { justify-self: end; }
+.setr .fldw .field { width: 210px; text-transform: none; }
+.sethint { margin-top: auto; font: 600 13px/1.4 "Barlow C"; color: #6b675e; }
+.bklist .hint { grid-column: 1 / -1; grid-row: 1 / -1; margin: auto; font: 600 14px/1.4 "Barlow C"; color: #6b675e; }
+.bksec .drop { display: flex; align-items: center; justify-content: center; gap: 14px; padding: 12px; }
+.bksec .drop span { display: inline; }
+.bksec .drop .btn { margin-top: 0; }
+.bkhd b { text-transform: none; color: var(--cream); }
+
+/* keyboard */
+#kbd { border: 2px solid #262626; border-radius: 6px; background: #050505; display: flex; }
+#wheels { flex: none; width: 168px; border-right: 2px solid #262626; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; }
+#wheels .ws { display: flex; gap: 32px; }
+.wheel { display: flex; flex-direction: column; align-items: center; gap: 8px; font: 600 20px/1 "Barlow C"; }
+.slot { width: 42px; height: 108px; border-radius: 4px; background: #1a1a1a; border: 2px solid #333; box-sizing: border-box; position: relative; overflow: hidden; cursor: ns-resize; touch-action: none;
+        background-image: repeating-linear-gradient(#2e2e2e 0 7px, #121212 7px 10px); }
+.slot .ind { position: absolute; left: 6px; right: 6px; height: 8px; background: #19B6E8; box-shadow: 0 0 5px rgba(25, 182, 232, .8); }
+#wheels .octs { display: flex; gap: 22px; }
+.oct { width: 66px; height: 36px; border: 2px solid var(--cream); border-radius: 4px; display: flex; align-items: center; justify-content: center; font: 600 20px/1 "Barlow C"; cursor: pointer; box-sizing: border-box; }
+#keys { position: relative; flex: 1; margin: 6px 10px 8px 10px; }
+.wk { position: absolute; top: 0; bottom: 0; background: linear-gradient(#f4f1ea, #fbfaf6 70%, #e9e6dd); border-radius: 0 0 6px 6px; box-shadow: inset 0 -5px 0 #d8d4ca; cursor: pointer; }
+.bk { position: absolute; top: 0; background: linear-gradient(90deg, #050505, #1b1b1b 45%, #070707); border: 1.5px solid #000; border-top: 0; border-radius: 0 0 4px 4px; box-shadow: inset 0 -6px 0 #2a2a2a, 0 3px 4px rgba(0,0,0,.6); cursor: pointer; z-index: 2; }
+/* the light: an arc's halo (and its lighter core), a lit switch's */
+.knob .arc { filter: drop-shadow(0 0 3px var(--c)) drop-shadow(0 0 7px color-mix(in srgb, var(--c) 85%, transparent)) drop-shadow(0 0 14px color-mix(in srgb, var(--c) 50%, transparent)); }
+.knob .core { filter: blur(.6px); }
+.knob, .sw, .hsw, .pill, .wk, .bk, #slider { will-change: transform; }   /* (each on its own layer: a change repaints it alone) */
+.sw.on, .hsw.on, .pill:not(.none) {
+  background: radial-gradient(ellipse at 50% 45%, color-mix(in srgb, var(--c) 45%, #fff) 0%, var(--c) 62%, color-mix(in srgb, var(--c) 80%, #000) 100%);
+  box-shadow: 0 0 7px 2px color-mix(in srgb, var(--c) 90%, transparent), 0 0 18px 3px color-mix(in srgb, var(--c) 45%, transparent); }
+.radio .on i { box-shadow: 0 0 7px 2px color-mix(in srgb, var(--red) 90%, transparent), 0 0 16px 3px color-mix(in srgb, var(--red) 45%, transparent); }
+/* a key held: it goes down (its lip flattens, 2 px lower), a little darker, a white line (2.5 px) inside it, for as long as it is held */
+.wk, .bk { transition: transform .04s, box-shadow .04s, background .04s; }
+.wk.dn { transform: translateY(2px); z-index: 1; background: linear-gradient(#b9b4a9, #cbc7bd 55%, #c1bcb1);
+         box-shadow: inset 0 0 0 2.5px #fff, inset 0 5px 9px rgba(0, 0, 0, .32); }
+.bk.dn { transform: translateY(2px); z-index: 4; background: linear-gradient(90deg, #3f3e3b, #5c5a55 45%, #44423f);   /* (a black key: much lighter */
+         border-color: #fff;                                                                                        /* held, a white line round it) */
+         box-shadow: inset 0 0 0 1.5px #fff; }
+.later { opacity: .55; }
+#stage.other .sec[data-page="sound"]:not(#sounds) { opacity: .22; }
+#stage.other #morph { pointer-events: none; }   /* (MORPH and MUTATE: Guru-600 sounds only, dimmed too: Marc, 10/11) */
+#notice { display: none; z-index: 5; justify-content: center; align-items: center; text-align: center; font: 700 24px/1.35 "Barlow C"; color: var(--cream); pointer-events: none; }
+#notice .nbox { max-width: 760px; padding: 26px 34px; background: rgba(8, 8, 8, .92); border: 2px solid var(--cream); border-radius: 12px; box-shadow: 0 10px 40px rgba(0, 0, 0, .8); }
+#stage.other #notice { display: flex; }
+#conn { cursor: pointer; }
+#autolist .ahint { padding: 10px 8px; font: 500 15px/1.3 "Barlow C"; color: #b5b1a6; text-transform: none; text-align: center; }
+#toast { left: 0; right: 0; bottom: 18px; display: flex; justify-content: center; pointer-events: none; z-index: 9; }
+#toast span { background: #111; border: 2px solid var(--cream); border-radius: 5px; padding: 9px 18px; font: 600 20px/1 "Barlow C"; text-transform: none; opacity: 0; transition: opacity .2s; }
+#toast span.on { opacity: 1; }
+</style>
+</head>
+<body>
+<div id="stage"></div>
+<script src="guru-families.js"></script>
+<script src="guru-link.js"></script>
+<script>
+"use strict";
+/* ------------------------------------------------------------------ the parameters (core.h P_*, params.c) --- */
+const PE0 = 108;   // P_E0 (INFO says it; 103 since 1.5, 108 with INSERT 2: Guru-600 10/11)
+const P = { LEVEL: 0, DIST: 33, CHOR: 34, DLY: 35, REV: 36, PAN: 39, SPRD: 95, ATK: 1, DEC: 2, SUS: 3, REL: 4, LRATE: 9, LWAVE: 10, LD_PIT: 13, LD_FLT: 14, LD_SHP: 15, VOICE: 37, GLIDE: 38, DETUNE: 44,
+  VEL: 57, WHEEL: 60, FATK: 61, FDEC: 62, FSUS: 63, FREL: 64, APW: 66, BPW: 67, BFIN: 68, SYNC: 69, PMENV: 71, PMB: 72, PMDST: 73,
+  KBD: 74, VINT: 76, AWAV: PE0, AFRQ: PE0 + 1, BWAV: PE0 + 2, BFRQ: PE0 + 3, CUT: PE0 + 4, RES: PE0 + 5, MIX: PE0 + 6, FENV: PE0 + 7 };
+const F = { INT: 0, PCT: 1, BIPCT: 2, TIME: 3, LFOHZ: 4, CUTOFF: 5, DB: 6, ENUM: 8, ONOFF: 11, PAN: 100 };
+const D = {};   // descriptors: {fmt, min, max, def, unit}
+const dsc = (fmt, min, max, def, unit = "") => ({ fmt, min, max, def, unit });
+Object.assign(D, {
+  [P.ATK]: dsc(F.TIME, 0, 127, 10), [P.DEC]: dsc(F.TIME, 0, 127, 70), [P.SUS]: dsc(F.PCT, 0, 127, 90), [P.REL]: dsc(F.TIME, 0, 127, 60),
+  [P.LRATE]: dsc(F.LFOHZ, 0, 127, 60), [P.LWAVE]: dsc(F.ENUM, 0, 4, 0), [P.LD_PIT]: dsc(F.BIPCT, -64, 63, 0), [P.LD_FLT]: dsc(F.BIPCT, -64, 63, 0),
+  [P.LD_SHP]: dsc(F.BIPCT, -64, 63, 0), [P.VOICE]: dsc(F.ENUM, 0, 3, 0), [P.GLIDE]: dsc(F.TIME, 0, 127, 0), [P.DETUNE]: dsc(F.INT, 0, 127, 40),
+  [P.VEL]: dsc(F.BIPCT, -64, 63, 0), [P.WHEEL]: dsc(F.PCT, 0, 63, 0),
+  [P.FATK]: dsc(F.TIME, 0, 127, 0), [P.FDEC]: dsc(F.TIME, 0, 127, 70), [P.FSUS]: dsc(F.PCT, 0, 127, 64), [P.FREL]: dsc(F.TIME, 0, 127, 60),
+  [P.APW]: dsc(F.PCT, 0, 127, 64), [P.BPW]: dsc(F.PCT, 0, 127, 64), [P.BFIN]: dsc(F.INT, 0, 127, 0), [P.SYNC]: dsc(F.ONOFF, 0, 1, 0),
+  [P.PMENV]: dsc(F.PCT, 0, 127, 0), [P.PMB]: dsc(F.PCT, 0, 127, 0), [P.PMDST]: dsc(F.ENUM, 0, 3, 0), [P.KBD]: dsc(F.ENUM, 0, 2, 2),
+  [P.VINT]: dsc(F.PCT, 0, 127, 24), [P.AWAV]: dsc(F.ENUM, 0, 7, 1), [P.AFRQ]: dsc(F.INT, 0, 63, 24, "st"), [P.BWAV]: dsc(F.ENUM, 0, 7, 1),
+  [P.BFRQ]: dsc(F.INT, 0, 63, 24, "st"), [P.CUT]: dsc(F.CUTOFF, 0, 127, 90), [P.RES]: dsc(F.PCT, 0, 127, 0), [P.MIX]: dsc(F.PCT, 0, 127, 64),
+  [P.FENV]: dsc(F.PCT, 0, 127, 40),
+  [P.LEVEL]: dsc(F.DB, 0, 127, 104), [P.PAN]: dsc(F.PAN, -64, 63, 0), [P.SPRD]: dsc(F.PCT, 0, 127, 0),
+  [P.DIST]: dsc(F.PCT, 0, 127, 0), [P.CHOR]: dsc(F.PCT, 0, 127, 0), [P.DLY]: dsc(F.PCT, 0, 127, 0), [P.REV]: dsc(F.PCT, 0, 127, 0),
+});
+// the values shown (the device's, once connected); the drawing starts from the mockup's sound
+const val = {};
+for (const id in D) val[id] = D[id].def;
+Object.assign(val, { [P.PMENV]: 53, [P.PMB]: 86, [P.PMDST]: 2, [P.LRATE]: 98, [P.LWAVE]: 3, [P.LD_PIT]: 63, [P.WHEEL]: 17, [P.AFRQ]: 24,
+  [P.SYNC]: 0, [P.AWAV]: 1, [P.APW]: 61, [P.BFRQ]: 12, [P.BFIN]: 6, [P.BWAV]: 1, [P.BPW]: 77, [P.MIX]: 99, [P.GLIDE]: 46, [P.VOICE]: 0,
+  [P.CUT]: 37, [P.RES]: 36, [P.FENV]: 93, [P.KBD]: 2, [P.FATK]: 46, [P.FDEC]: 75, [P.FSUS]: 119, [P.FREL]: 92, [P.ATK]: 0, [P.DEC]: 90,
+  [P.SUS]: 114, [P.REL]: 85, [P.VINT]: 46, [P.VEL]: 33, [P.DETUNE]: 22, [P.SPRD]: 38, [P.CHOR]: 30, [P.DLY]: 22, [P.REV]: 45 });
+
+const LANGS = ["en", "fr", "de", "es", "it", "zh", "ja"];   // (the messages: guru-app.js and each page in en, fr; guru-tx.js the others)
+const lang = (() => {   // (SETTINGS > EDITOR > MESSAGES: kept in this browser; AUTO: the browser's language)
+  let s = "auto"; try { s = localStorage.getItem("guru600-lang") || "auto"; } catch (e) {}
+  const q = new URLSearchParams(location.search).get("lang"); if (LANGS.includes(q)) return q;   // (?lang=xx: that language, not kept; the guide's captures)
+  const n = (navigator.language || "en").slice(0, 2);
+  return LANGS.includes(s) ? s : LANGS.includes(n) ? n : "en";
+})();
+const dec = (s) => (["fr", "de", "es", "it"].includes(lang) ? s.replace(".", ",") : s);
+function fmt(id, v) {
+  const d = D[id];
+  switch (d.fmt) {
+    case F.PCT: return Math.trunc(((v - d.min) * 100 + (d.max - d.min) / 2) / (d.max - d.min)) + " %";
+    case F.BIPCT: return Math.trunc(v * 100 / (v > 0 ? 63 : 64)) + " %";
+    case F.TIME: {
+      const ms10 = Math.round(10 * Math.pow(10000, (v & 127) / 127));
+      if (ms10 < 100) return dec((ms10 / 10).toFixed(1)) + " ms";
+      if (ms10 < 10000) return Math.round(ms10 / 10) + " ms";
+      return dec((ms10 / 10000).toFixed(1)) + " s";
+    }
+    case F.LFOHZ: { const h = 0.05 * Math.pow(800, (v & 127) / 127); return dec(h < 10 ? h.toFixed(1) : h.toFixed(0)) + " Hz"; }
+    case F.DB: return v <= 0 ? "OFF" : dec(((v - 112) / 2).toFixed(1)) + " dB";
+    case F.PAN: { const n = Math.trunc(Math.abs(v) * 100 / (v > 0 ? 63 : 64)); return v ? (v < 0 ? "L " : "R ") + n : "C"; }
+    case F.CUTOFF: { const h = 30 * Math.pow(16000 / 30, (v & 127) / 127); return h < 1000 ? Math.round(h) + " Hz" : dec((h / 1000).toFixed(1)) + " kHz"; }
+    default: return d.names ? d.names[v - d.min] ?? String(v) : String(v) + (d.unit ? " " + d.unit : "");
+  }
+}
+
+/* -------------------------------------------------------------------------------- the panel (layout) --- */
+// the mockup's 1536 x 1024: x in it (stretched to the window's width), y fixed down to the keyboard, which takes the rest
+const DW = 1536, DH = 1024;   // the mockup's size: the stage keeps it, scaled as one (Marc: always the same proportions)
+const K = (id, o = {}) => ({ k: "knob", id, ...o });          // a knob (tl: its label above, sl: below)
+const S = (id, bit, o = {}) => ({ k: "sw", id, bit, ...o });   // a switch: bit of id (or id == 1 when bit is 0)
+const SECTIONS = [
+  { id: "pm", t: "POLY-MOD", c: "pm", box: [12, 155, 386, 358], groups: [
+    { t: "SOURCE AMOUNT", items: [K(P.PMENV, { sl: "FIL ENV" }), K(P.PMB, { sl: "OSC B" })] },
+    { t: "DESTINATION", items: [S(P.PMDST, 1, { sl: "FREQ A" }), S(P.PMDST, 2, { sl: "FILTER" })] }] },
+  { id: "lfo", t: "LFO", c: "lfo", box: [12, 366, 386, 569], groups: [
+    { t: "FREQUENCY", items: [K(P.LRATE)] }, { t: "SHAPE", items: [{ k: "shape" }] },
+    { t: "INITIAL<br>AMOUNT", items: [K(P.WHEEL, { inv: true })] },
+    { t: "DESTINATION", items: [S(P.LD_PIT, 0, { sl: "FREQ A-B", lfo: 1 }), S(P.LD_SHP, 0, { sl: "PW A-B", lfo: 1 }), S(P.LD_FLT, 0, { sl: "FILTER", lfo: 1 })] }] },
+  { id: "osca", t: "OSCILLATOR A", c: "osc", box: [394, 155, 746, 358], groups: [
+    { t: "FREQUENCY", items: [K(P.AFRQ)] }, { t: "SYNC", items: [S(P.SYNC, 0)] },
+    { t: "", items: [S(P.AWAV, 1, { tl: "SAW" }), S(P.AWAV, 2, { tl: "TRI" }), S(P.AWAV, 4, { tl: "PULSE" })], waves: 1 },
+    { t: "PULSE WIDTH", items: [K(P.APW)], flat: 1 }] },
+  { id: "oscb", t: "OSCILLATOR B", c: "osc", box: [394, 366, 746, 569], groups: [
+    { t: "", items: [K(P.BFRQ, { tl: "FREQUENCY" }), K(P.BFIN, { tl: "FINE" })] },
+    { t: "", items: [S(P.BWAV, 1, { tl: "SAW" }), S(P.BWAV, 2, { tl: "TRI" }), S(P.BWAV, 4, { tl: "PULSE" })], waves: 1 },
+    { t: "PULSE WIDTH", items: [K(P.BPW)], flat: 1 }] },
+  { id: "mixer", t: "MIXER", c: "osc", box: [754, 155, 852, 648], mixer: 1 },
+  { id: "flt", t: "FILTER", c: "flt", box: [860, 155, 1206, 332], groups: [
+    { t: "", items: [K(P.CUT, { tl: "CUTOFF" }), K(P.RES, { tl: "RESONANCE" }), K(P.FENV, { tl: "ENVELOPE<br>AMOUNT" })] },
+    { t: "KEYBOARD", items: [{ k: "radio", id: P.KBD, names: ["OFF", "HALF", "FULL"] }], narrow: 1 }] },
+  { id: "fenv", t: "FILTER ENVELOPE", c: "env", box: [860, 339, 1206, 491], adsr: [P.FATK, P.FDEC, P.FSUS, P.FREL] },
+  { id: "amp", t: "AMPLIFIER", c: "env", box: [860, 498, 1206, 648], adsr: [P.ATK, P.DEC, P.SUS, P.REL] },
+  { id: "vce", t: "VOICE", c: "vce", box: [12, 577, 336, 648], row: [[P.LEVEL, "LEVEL"], [P.PAN, "PAN"], [P.SPRD, "SPREAD"]] },
+  { id: "fxs", t: "FX<br>SENDS", c: "fx", box: [344, 577, 746, 648], row: [[P.DIST, "DIST"], [P.CHOR, "CHORUS"], [P.DLY, "DELAY"], [P.REV, "REVERB"]] },
+  { id: "ext", t: "EXTRAS", c: "ext", box: [1214, 155, 1314, 648], col: [[P.VINT, "VINTAGE"], [P.WHEEL, "WHEEL"], [P.VEL, "VEL &gt; FLT"], [P.DETUNE, "DETUNE"]] },
+];
+const TABS = ["SOUND", "SEQUENCER", "SONG", "ARP", "FX", "MOD", "TRACKS", "PROJECTS", "SAMPLES", "BACKUP", "SETTINGS"];
+const PAGES = ["sound", "seq", "song", "arp", "fx", "mod", "tracks", "projects", "samples", "backup", "settings"];   // (data-page)
+const SOUND_NAMES = ["ORGAN I", "CL. BRASS", "STRINGS", "P.GLIDE I", "METALLIC I", "TRI OCT REL", "POWERSYNTH", "MINI-LEAD", "P.GLIDE II", "VIDEOGAMES", "ORGAN II", "BRASS I", "MUTED STR", "CLAV I", "PERC E.PNO", "FLUTE", "HARPSI I", "SYNC I", "CLUB ORGAN", "SLEEP ORGS", "ORG FLUTE", "BRASS II", "LIGHT STR", "CLAV II", "ICE CREAM", "MUTED", "SYNC II", "FULL BASS", "MOVIES", "LEECHES", "ORG CHORUS", "BACH TRPT", "LOW STR", "HARMONICA", "WURLIE", "DINKITY", "BUDDY", "CUT BASS", "ECHO-REP", "SCREAMIN", "CHIFFY ORG", "BRASS III", "ARCO STR", "RUNAWAY", "HONKYTONK", "WHISTLE", "ANGELIC", "HARD LEAD", "HARP", "INDIGEST", "DIST ORGAN", "DIG BRASS", "HIGH STR", "PULSEMOD I", "HI PLUCKY", "DESC BELLS", "HARPSISYN", "NASAL BASS", "XYLOPHONE", "OBNOXIOUS", "CATHEDRAL", "SLOW BRASS", "ARCO BASS", "FROG CITY", "DOG'S BARK", "CAT'S MEOW", "SUST SYNC", "MODOR", "TACK SYNTH", "STEEL DRUM", "ORG PERC I", "B.D.L.'S", "R.F.M.", "HARMONIUM", "METAL II", "PM P.GLIDE", "SYNC III", "FAT OCTAVE", "LO PLUCKY", "SPACE RACE", "ORG PERC 2", "DETUNED", "VOCAL HARM", "SQ BUBBLES", "METAL III", "JOSEF", "PW MOD II", "LUCKY MAN", "SUPERPERC", "NOISESCRM", "FULL ORGAN", "FILT FUNK", "BANJO", "CLAV III", "PW MOD III", "DRUNKEN", "TEARS", "FIFTHS", "OOPS!", "ALIEN", "GliGli Clav", "Chorus EP", "Piano 2", "Tap me twic", "PWM Piano", "Vocal Piano", "EP", "Pianorganis", "Plain Piano", "Pianet", "Poly Glide", "Soft Poly", "Kometenmelo", "5th Sweep", "Slow Atmo B", "Forever 80s", "Fly By", "Falling Asl", "Night Drive", "Blade Runne", "Center Stag", "Common Sync", "DCO", "I told you", "Fuzz Guitar", "Cut", "PW Pad", "Moogys", "Fusion", "Melody", "Bread /& Bu", "Bread /& Ma", "Trombone Se", "Attack Bras", "Bright Bras", "Mild Brass", "Elegiac Bra", "Orch. 1", "Orch. 2", "Orch. 3", "Attack Bass", "Bassically", "Double Bass", "Funkey", "Yaz Bass", "Increase Ba", "Slap Bass", "Unison Full", "Deep Square", "Performance", "Space Oboe", "Wind Organ", "Totally Tru", "My Spinett", "Sp.Oboe Ch.", "Wood Block", "Club Organ", "Chiffy Orga", "Harmonica", "Reso Flute", "Cave", "Pulsar", "Vox Humana", "Moskito", "Voice", "AW Laser Ha", "Beyond Jupi", "Comet Stopo", "Bubble Bobb", "Simmons Tom", "Fifths", "Wake Up!", "One Two Thr", "Pulsify", "Phase", "Noisy Stuff", "Harmonic Re", "Noisy Stab", "Soft Stab", "Crispy", "Crystal", "Snow Bell", "Glockenspie", "Dew", "Gong", "Chime", "Tinkerbell", "High Bells", "Flute Bells", "Steel Bars", "Cold Wind", "Psycho Choi", "Strings I", "Foggy Strin", "Retro Pad", "Pulse Mod I", "Wobbly Chur", "Room String", "SH Pad", "Shimmer", "BASS TWO", "SAW LOFI", "SQUARED", "SUB 4", "TACKY 2", "INHARM STAB", "MAJMIN STAB", "DAMAGE", "EVIL SEQ", "SOFTSUIT", "BANTER", "BITTEN", "CRAY", "HARSH", "SMOOTHNESS", "SQUARE", "TRIPLE", "BURDEN", "HARM SWEEP", "NEWTON EVIL", "KICK TECH 1", "BITE", "LATE FALL", "LIGHTER", "DIRTY HOLE", "FAILURE", "FILTMOD", "JP UNISON", "ACID SEQ 1", "PHASE 3", "GLASS BELLS", "GONG", "SYNC SCREAM", "WATER DROP", "SYNTH TOM", "METAL PLATE", "LASER ZAP", "SONAR PING", "S&H BLEEPS", "DRONE 5THS", "SLOW SWEEP", "TRILL LEAD", "WOBBLE BASS", "HARP PLUCK", "ROBOT VOICE", "SIREN", "ARP PULSE", "CLOCK TICK", "BOWED METAL", "CHIME PAD", "UNI MONSTER", "RAVE HOOVER", "DIGI RAIN", "GATED PAD", "RING BASS"];   // (the 255 factory names, firmware p600_bank.h: offline too)
+
+const stage = document.getElementById("stage");
+const ctl = [];   // {id, el, kind, ...}: what a value change redraws
+function h(tag, cls, html) { const e = document.createElement(tag); if (cls) e.className = cls; if (html != null) e.innerHTML = html; return e; }
+function abs(e, x0, y0, x1, y1) { e.classList.add("abs"); e.dataset.box = [x0, y0, x1, y1].join(","); stage.appendChild(e); return e; }
+
+// a knob: the arc from 7:30 to 4:30, the body, the pointer (SVG, 74 x 74)
+const NS = "http://www.w3.org/2000/svg";
+let gid = 0;
+function knobSvg() {
+  const s = document.createElementNS(NS, "svg");
+  s.setAttribute("viewBox", "0 0 74 74"); s.setAttribute("class", "knob"); s.setAttribute("overflow", "visible");
+  const g = "kg" + gid++;
+  s.innerHTML = `<defs><radialGradient id="${g}" cx="45%" cy="38%" r="65%"><stop offset="0" stop-color="#3c3c3c"/><stop offset=".55" stop-color="#151515"/>` +
+    `<stop offset="1" stop-color="#050505"/></radialGradient></defs>` +
+    `<path class="trk" fill="none" stroke="#2f2f2f" stroke-width="6.5" stroke-linecap="butt"/>` +
+    `<path class="arc" fill="none" stroke="var(--c)" stroke-width="6.5" stroke-linecap="butt"/>` +
+    `<path class="core" fill="none" stroke="color-mix(in srgb, var(--c) 45%, #fff)" stroke-width="2.2" stroke-linecap="round"/>` +
+    `<circle cx="37" cy="37" r="26.5" fill="url(#${g})" stroke="#4a4a4a" stroke-width="1.5"/>` +
+    `<line class="ptr" x1="37" y1="37" x2="37" y2="20" stroke="#fff" stroke-width="3.6" stroke-linecap="round"/>`;
+  return s;
+}
+const R = 32.5;
+const pt = (a) => [37 + R * Math.sin(a * Math.PI / 180), 37 - R * Math.cos(a * Math.PI / 180)];
+function arcPath(a0, a1) {
+  if (a1 - a0 < 0.5) return "";
+  const [x0, y0] = pt(a0), [x1, y1] = pt(a1);
+  return `M${x0.toFixed(2)} ${y0.toFixed(2)}A${R} ${R} 0 ${a1 - a0 > 180 ? 1 : 0} 1 ${x1.toFixed(2)} ${y1.toFixed(2)}`;
+}
+function drawKnob(svg, f, bip = false) {   // f 0..1; bip: the arc from the top (a bipolar amount)
+  if (svg._f === f) return;   // (unchanged: nothing repainted)
+  svg._f = f;
+  const a = -135 + 270 * f, a0 = bip ? Math.min(0, a) : -135, a1 = bip ? Math.max(0, a) : a;
+  svg.querySelector(".trk").setAttribute("d", arcPath(-135, 135));
+  svg.querySelector(".arc").setAttribute("d", arcPath(a0, a1));
+  svg.querySelector(".core").setAttribute("d", arcPath(a0 + 2, a1 - 2));
+  const r0 = 7, r1 = 19, s = Math.sin(a * Math.PI / 180), c = Math.cos(a * Math.PI / 180);
+  const l = svg.querySelector(".ptr");
+  l.setAttribute("x1", (37 + r0 * s).toFixed(2)); l.setAttribute("y1", (37 - r0 * c).toFixed(2));
+  l.setAttribute("x2", (37 + r1 * s).toFixed(2)); l.setAttribute("y2", (37 - r1 * c).toFixed(2));
+}
+
+function makeItem(it) {
+  const e = h("div", "item");
+  if (it.tl) e.appendChild(h("div", "tl", it.tl));
+  if (it.k === "knob") {
+    const s = knobSvg(); e.appendChild(s);
+    if (it.sl) e.appendChild(h("div", "sl", it.sl));
+    const v = h("div", "v"); e.appendChild(v);
+    ctl.push({ kind: "knob", id: it.id, svg: s, v, inv: it.inv, bip: it.bip });
+  } else if (it.k === "sw") {
+    const s = h("div", "sw"); e.appendChild(s);
+    if (it.sl) e.appendChild(h("div", "sl", it.sl));
+    ctl.push({ kind: "sw", id: it.id, bit: it.bit, el: s, lfo: it.lfo });
+  } else if (it.k === "radio") {
+    const r = h("div", "radio");
+    it.names.forEach((n, i) => { const o = h("div", "", "<i></i>" + n); r.appendChild(o); ctl.push({ kind: "radio", id: it.id, v: i, el: o }); });
+    e.appendChild(r);
+  } else if (it.k === "shape") {
+    const s = h("div", "shape");
+    s.innerHTML = `<div class="ic"><svg width="17" height="15" viewBox="0 0 17 15"><path d="M8.5 1.5 15.5 13.5H1.5Z" fill="none" stroke="var(--c)" stroke-width="2.2" stroke-linejoin="round"/></svg>` +
+      `<svg width="15" height="15" viewBox="0 0 15 15"><rect x="1.5" y="1.5" width="12" height="12" fill="none" stroke="var(--c)" stroke-width="2.2"/></svg></div>`;
+    const p = h("div", "pill"); s.appendChild(p); e.appendChild(s);
+    ctl.push({ kind: "shape", id: P.LWAVE, el: p });
+  }
+  return e;
+}
+function makeGroup(g) {
+  const e = h("div", "grp" + (g.flat ? " flat" : ""));
+  e.appendChild(h("div", "gt", g.t));
+  const its = h("div", "items");
+  g.items.forEach((it) => its.appendChild(makeItem(it)));
+  e.appendChild(its);
+  if (g.waves) { e.style.flex = "0 0 auto"; e.style.paddingLeft = e.style.paddingRight = "10px"; its.style.gap = "10px"; }   // (SAW TRI PULSE on the titles' line)
+  if (g.narrow) { e.style.flex = "0 0 auto"; e.style.paddingLeft = e.style.paddingRight = "16px"; }
+  return e;
+}
+const METRICS = {   // per section: knob size, space above, title heights (the mockup's)
+  pm: { kn: 68, gth: 26 }, lfo: { kn: 62, gth: 36, slf: 13 }, osca: { kn: 62, gth: 24, tlh: 24 },
+  oscb: { kn: 62, gth: 24, tlh: 24 }, mixer: { kn: 62 }, flt: { kn: 58, gth: 34, tlh: 36 },
+  fenv: { kn: 56, tlh: 22 }, amp: { kn: 56, tlh: 22 }, ext: { kn: 54, tlh: 20 } };
+function makeSection(s) {
+  const e = h("div", "sec"); e.style.setProperty("--c", `var(--${s.c})`);
+  for (const [k, v] of Object.entries(METRICS[s.id] || {})) e.style.setProperty("--" + k, v + "px");
+  e.appendChild(h("div", "ttl", s.t));
+  const bd = h("div", "bd"); e.appendChild(bd);
+  if (s.groups) s.groups.forEach((g) => bd.appendChild(makeGroup(g)));
+  if (s.adsr) {
+    const g = h("div", "grp");
+    const its = h("div", "items");
+    ["ATTACK", "DECAY", "SUSTAIN", "RELEASE"].forEach((n, i) => its.appendChild(makeItem(K(s.adsr[i], { tl: n }))));
+    g.appendChild(its); bd.appendChild(g);
+  }
+  if (s.col) {
+    const c = h("div", "col");
+    s.col.forEach(([id, n]) => c.appendChild(makeItem(K(id, { tl: n }))));
+    bd.appendChild(c);
+  }
+  if (s.row) {   // a low section: its title on the left, each knob with its label above and its value on its right
+    e.classList.add("low"); const t = e.querySelector(".ttl"); bd.before(t); 
+    s.row.forEach(([id, n]) => { const it = makeItem(K(id, { tl: n })); const v = it.querySelector(".v"); const w = h("div", "kv"); w.append(it.querySelector(".knob"), v); it.appendChild(w); bd.appendChild(it); });
+  }
+  if (s.mixer) {
+    e.querySelector(".ttl").remove();
+    const m = h("div", "mix");
+    const p1 = h("div", "part"); p1.appendChild(h("div", "pt", "MIXER"));
+    const k1 = makeItem(K(P.MIX)); const v1 = k1.querySelector(".v"); const ab = h("div", "ab"); ab.innerHTML = "<b>A</b>"; ab.appendChild(v1);
+    ab.insertAdjacentHTML("beforeend", "<b>B</b>"); k1.appendChild(ab); p1.appendChild(k1);
+    const p2 = h("div", "part"); p2.appendChild(h("div", "pt", "GLIDE")); p2.appendChild(makeItem(K(P.GLIDE)));
+    const p3 = h("div", "part"); p3.appendChild(h("div", "pt", "UNISON"));
+    const u = h("div", "hsw"); p3.appendChild(u); ctl.push({ kind: "unison", id: P.VOICE, el: u });
+    m.append(p1, p2, p3); bd.appendChild(m);
+  }
+  e.id = s.id;
+  e.dataset.page = "sound";
+  return abs(e, ...s.box);
+}
+
+function build() {
+  abs(h("div", "", "guru-600"), 22, -12, 480, 80).id = "logo";
+  abs(h("div", "", "A PROPHET-600 TRIBUTE"), 22, 80, 480, 100).id = "tribute";   // (under the logo, right-aligned on its 600: layout)
+  const st = abs(h("div", ""), 760, 33, 1524, 79); st.id = "status";
+  st.innerHTML = `<div class="tp" id="t-play" title="PLAY"><svg viewBox="0 0 20 20"><path d="M6 4 16 10 6 16Z"/></svg></div>` +
+    `<div class="tp" id="t-stop" title="STOP"><svg viewBox="0 0 20 20"><rect x="5" y="5" width="10" height="10"/></svg></div>` +
+    `<div class="tp" id="t-rec" title="REC"><svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="5.5"/></svg></div><div class="hsep"></div><div id="bpmlbl">BPM</div><div class="bpmw"><div class="ba up" id="bpm+"></div><div id="bpm">120</div><div class="ba dn" id="bpm-"></div></div><div class="hsep"></div><div id="led" class="off"></div><div id="conn">CONNECT FM-1</div>` +
+    `<div class="hsep"></div><div id="trklbl">TRACK</div>`;
+  for (let i = 0; i < 4; i++) { const t = h("div", "trk" + (i ? "" : " on"), String(i + 1)); t.dataset.t = i; st.appendChild(t); }
+
+  const tabs = abs(h("div", ""), 12, 107, 1524, 147); tabs.id = "tabs";
+  TABS.forEach((t, i) => { const e = h("div", "tab" + (i ? " later" : " on"), t); e.dataset.tab = PAGES[i]; tabs.appendChild(e); });
+  tabs.insertAdjacentHTML("beforeend",   // full screen, the guide: at the tabs' end
+    `<div class="tp on" id="t-glow" title="LIT / FLAT"><svg viewBox="0 0 20 20"><path d="M10 2.5a5.5 5.5 0 0 0-3.2 10c.6.5.9 1 .9 1.7V15h4.6v-.8c0-.7.3-1.2.9-1.7A5.5 5.5 0 0 0 10 2.5ZM7.8 16.5h4.4M8.6 18h2.8" stroke-width="1.6"/></svg></div>` +
+    `<div class="tp" id="t-full" title="FULL SCREEN"><svg viewBox="0 0 20 20"><path d="M3 8V3h5M12 3h5v5M17 12v5h-5M8 17H3v-5" fill="none" stroke-width="2.2"/></svg></div>` +
+    `<div class="tp" id="t-help" title="HELP"><span>?</span></div>`);
+  SECTIONS.forEach(makeSection);
+
+  // SOUNDS
+  const so = h("div", "sec"); so.id = "sounds";
+  so.appendChild(h("div", "ttl", "SOUNDS"));
+  const chips = h("div", ""); chips.id = "chips";
+  ["ALL", ...FAMILIES].forEach((f, i) => { const c = h("div", "chip" + (i ? "" : " on"), f); c.dataset.f = i - 1; chips.appendChild(c); });
+  const list = h("div", ""); list.id = "list";
+  for (let i = 0; i < 255; i++) {
+    const r = h("div", "row" + (i === 0 ? " on" : "") + (i === 2 ? " kept" : ""));
+    r.innerHTML = `<div class="n">${i + 1}</div><div class="nm">${SOUND_NAMES[i] || "SOUND " + (i + 1)}</div>`;
+    r.dataset.place = i; list.appendChild(r);
+  }
+  const sb = h("div", ""); sb.id = "sbtn";
+  [["save", "SAVE TO THIS PLACE"], ["orig", "BACK TO ORIGINAL"], ["export", "EXPORT .SYX"], ["import", "IMPORT .SYX"]].forEach(([id, t]) => {
+    const b = h("div", "btn", t); b.id = "b-" + id; sb.appendChild(b); });
+  const rs = h("div", "btn red", "RESET ALL SOUNDS"); rs.id = "b-reset"; sb.appendChild(rs);
+  so.append(chips, list, sb);
+  abs(so, 1322, 155, 1524, 773).dataset.page = "sound";
+
+  // MORPH
+  const mo = h("div", "sec"); mo.id = "morph"; mo.style.setProperty("--c", "var(--mph)");
+  mo.appendChild(h("div", "ttl", "MORPH"));
+  const bd = h("div", "bd"); mo.appendChild(bd);
+  const g1 = h("div", "grp flat"); g1.style.flex = "0 0 auto";
+  g1.innerHTML = `<div class="gt">SOUND A</div><div class="arrows"><div class="arr l" id="fa-"></div><div class="field" id="fa">1 ORGAN I</div><div class="arr r" id="fa+"></div></div>`;   // (A: the track's sound; its arrows load the one before / after)
+  const g2 = h("div", "grp"); g2.style.flex = "1 1 auto";
+  g2.innerHTML = `<div class="gt">MORPH<span id="mpos">40 %</span></div><div class="srow"><span>A</span><div id="slider"><div class="rail"></div>` +
+    `<div class="fill"></div><div class="thumb"></div></div><span>B</span></div>`;   // (Marc: A and B at the rail's ends, the value after the title)
+  const g3 = h("div", "grp"); g3.style.flex = "0 0 auto";
+  g3.innerHTML = `<div class="gt">SOUND B</div><div class="arrows"><div class="arr l" id="fb-"></div><div class="field" id="fb">12 BRASS I</div><div class="arr r" id="fb+"></div></div>`;
+  const g4 = h("div", "grp"); g4.style.flex = "0 0 auto"; g4.style.paddingRight = "30px";
+  g4.innerHTML = `<div class="gt">MUTATE</div>`;
+  const mut = h("div", ""); mut.id = "mut";
+  const mv = h("div", "v", "30 %"); mv.id = "mamt"; const kw = h("div", "knobw"); kw.appendChild(h("div", "tl", "AMOUNT"));
+  const ms = knobSvg(); ms.id = "mknob"; kw.appendChild(ms); drawKnob(ms, 0.3);
+  const mb = h("div", "gbtn", "MUTATE"); mb.id = "b-mutate";
+  mut.append(mb, mv, kw); g4.appendChild(mut);   // (Marc: the button under its title)
+  bd.append(g1, g2, g3, g4);
+  abs(mo, 12, 657, 1314, 773).dataset.page = "sound";
+  setMorph(0.4);
+
+  // keyboard
+  const kb = h("div", ""); kb.id = "kbd";
+  const wh = h("div", ""); wh.id = "wheels";
+  wh.innerHTML = `<div class="ws"><div class="wheel"><div class="slot" id="pitch"><div class="ind" style="top:20px"></div></div>PITCH</div>` +
+    `<div class="wheel"><div class="slot" id="modw"><div class="ind" style="top:62px"></div></div>MOD</div></div>` +
+    `<div class="octs"><div class="oct" id="oct-">OCT −</div><div class="oct" id="oct+">OCT +</div></div>`;
+  const keys = h("div", ""); keys.id = "keys";
+  kb.append(wh, keys);
+  abs(kb, 12, 783, 1524, 1012).dataset.kb = 1;
+}
+
+function setMorph(f) {
+  const s = document.getElementById("slider");
+  // the rail's green on the side of the sound that leads, all of it at the end the thumb is nearer, and it glows as much
+  // (the nearer end at full from a third of the way out, half lit at the middle; the farther one as much less as it is farther)
+  const near = Math.min(1, 0.5 + 1.5 * Math.abs(f - 0.5)), far = near * Math.min(f, 1 - f) / Math.max(f, 1 - f, 1e-6);
+  const ga = Math.round((f <= 0.5 ? near : far) * 100), gb = Math.round((f >= 0.5 ? near : far) * 100);
+  const rail = s.querySelector(".rail");
+  rail.style.setProperty("--ga", ga + "%"); rail.style.setProperty("--gb", gb + "%");
+  rail.style.setProperty("--ta", (100 - ga) + "%"); rail.style.setProperty("--tb", (100 - gb) + "%");
+  s.querySelector(".fill").style.width = "0";
+  s.querySelector(".thumb").style.left = f * 100 + "%";
+  document.getElementById("mpos").textContent = Math.round(f * 100) + " %";   // (after the title, where it stays)
+}
+
+// 22 white keys: C to C, three octaves
+function drawKeys() {
+  const k = document.getElementById("keys"), w = k.clientWidth, hh = k.clientHeight;
+  k.replaceChildren();
+  const nw = 22, ww = w / nw, gap = 3;
+  const BL = [1, 1, 0, 1, 1, 1, 0];   // a black key after these white keys (C D _ F G A _)
+  const WN = [0, 2, 4, 5, 7, 9, 11];
+  for (let i = 0; i < nw; i++) {
+    const e = h("div", "wk"); e.style.left = (i * ww + gap / 2) + "px"; e.style.width = (ww - gap) + "px";
+    e.dataset.n = 12 * Math.floor(i / 7) + WN[i % 7]; k.appendChild(e);
+  }
+  for (let i = 0; i < nw - 1; i++) {
+    if (!BL[i % 7]) continue;
+    const bw = ww * 0.58, e = h("div", "bk");
+    e.style.left = ((i + 1) * ww - bw / 2) + "px"; e.style.width = bw + "px"; e.style.height = (hh * 0.63) + "px";
+    e.dataset.n = 12 * Math.floor(i / 7) + WN[i % 7] + 1; k.appendChild(e);
+  }
+  if (typeof keysDrawn === "function") keysDrawn();
+}
+
+/* --------------------------------------------------------------------------------------------- drawing --- */
+function render(only) {   // only: one parameter's controls (a change redraws only them: the halos are costly to paint)
+  for (const c of ctl) {
+    if (only != null && c.id !== +only) continue;
+    const v = val[c.id], d = D[c.id];
+    if (c.kind === "knob") {
+      let f = (d.order ? d.order.indexOf(v - d.min) : v - d.min) / (d.max - d.min);   // (order: the device's shown order)
+      if (c.inv) f = 1 - f;
+      drawKnob(c.svg, Math.max(0, Math.min(1, f)), c.bip);
+      c.v.textContent = c.inv ? Math.round(f * 100) + " %" : fmt(c.id, v);
+    } else if (c.kind === "sw") {
+      c.el.classList.toggle("on", c.lfo ? v !== 0 : c.bit ? !!(v & c.bit) : v === 1);
+    } else if (c.kind === "radio") {
+      c.el.classList.toggle("on", v === c.v);
+    } else if (c.kind === "shape") {
+      c.el.classList.toggle("r", v === 3); c.el.classList.toggle("none", v !== 1 && v !== 3);
+    } else if (c.kind === "unison") {
+      c.el.classList.toggle("on", v === 3);
+    } else if (c.kind === "fld") {   // a value shown in a field (its arrows step it)
+      c.el.textContent = d.names ? d.names[v - d.min] ?? String(v) : fmt(c.id, v);
+    } else if (c.kind === "selb") {   // a button of a choice (ARP MODE, SCALE ...): lit when it is the value
+      c.el.classList.toggle("on", v === c.v);
+    }
+  }
+}
+
+// the stage fills the window: scale from the height (the keyboard at its least) or the width, whichever is less; the
+// width left over stretches the columns, the height left over the keyboard
+function layout() {
+  // the whole stage scaled to the window, centred; what the window has more is left black
+  const vw = innerWidth, vh = innerHeight, s = Math.min(vw / DW, vh / DH), kx = 1;
+  stage.style.width = DW + "px"; stage.style.height = DH + "px";
+  stage.style.transform = `translate(${(vw - DW * s) / 2}px, ${(vh - DH * s) / 2}px) scale(${s})`;
+  for (const e of stage.querySelectorAll("[data-box]")) {
+    let [x0, y0, x1, y1] = e.dataset.box.split(",").map(Number);
+    if (e.id === "logo") { e.style.left = x0 + "px"; e.style.top = y0 + "px"; continue; }
+    if (e.id === "tribute") {   // its right edge on the logo's ink (the 0 of 600)
+      const lg = document.getElementById("logo"), c = document.createElement("canvas").getContext("2d");
+      c.font = getComputedStyle(lg).font; const m = c.measureText(lg.textContent);
+      e.style.left = "auto"; e.style.width = "auto"; e.style.top = y0 + "px";
+      e.style.right = (DW - (x0 + m.actualBoundingBoxRight)) + "px"; continue;
+    }
+    if (e.id === "status") { e.style.right = (DW - x1) * kx + "px"; e.style.top = y0 + "px"; continue; }
+    e.style.left = x0 * kx + "px"; e.style.top = y0 + "px"; e.style.width = (x1 - x0) * kx + (kx - 1) * 0 + "px"; e.style.height = (y1 - y0) + "px";
+  }
+  for (const sec of stage.querySelectorAll(".sec")) {
+    const bd = sec.querySelector(".bd"), gs = !bd ? [] : [...bd.children].filter((g) => g.classList.contains("grp"));
+    if (!gs.length || sec.id === "morph" || (METRICS[sec.id] || {}).pt != null) continue;   // (pt: the mockup's place)
+    sec.style.setProperty("--pt", "0px");
+    const hmax = Math.max(...gs.map((g) => [...g.children].reduce((n, c) => n + c.offsetHeight, 0)));
+    sec.style.setProperty("--pt", Math.max(4, (bd.clientHeight - hmax) / 2) + "px");
+  }
+  const kb = document.getElementById("kbd"), slot = Math.max(50, Math.min(130, kb.clientHeight - 112));
+  for (const e of kb.querySelectorAll(".slot")) e.style.height = slot + "px";
+  drawKeys();
+}
+
+build();
+{ const n = abs(h("div", "", ""), 12, 155, 1314, 648); n.id = "notice"; n.dataset.page = "sound"; }
+abs(h("div", "", "<span></span>"), 0, 960, 1536, 1010).id = "toast";
+render();
+document.fonts.ready.then(layout);
+layout();
+addEventListener("resize", layout);
+</script>
+<script src="guru-dialog.js"></script>
+<script src="guru-app.js"></script>
+<script src="guru-seq.js"></script>
+<script src="guru-song.js"></script>
+<script src="guru-arp.js"></script>
+<script src="guru-fx.js"></script>
+<script src="guru-mod.js"></script>
+<script src="guru-tracks.js"></script>
+<script src="guru-projects.js"></script>
+<script src="guru-allsounds.js"></script>
+<script src="guru-sampleio.js"></script>
+<script src="guru-samples.js"></script>
+<script src="guru-backupio.js"></script>
+<script src="guru-backup.js"></script>
+<script src="guru-settings.js"></script>
+<script src="guru-tx.js"></script>
+<script src="guru-guide-ch.js"></script>
+<script src="guru-tips.js"></script>
+<script src="guru-gloss.js"></script>
+<script src="guru-labels.js"></script>
+<script src="guru-i18n.js"></script>
+<script>showPage(new URLSearchParams(location.search).get("tab") || "sound");   // (?tab=seq: a page at once)</script>
+</body>
+</html>

@@ -25,7 +25,9 @@ SIZE_FILES = ["ui.c", "favorites.c", "menu_items.c", "icons.c", "ui_graph.c", "u
               "ui_layer.c", "ui_name.c", "ui_slice.c", "ui_events.c", "main.c", "libc.c", "storage_hw.c", "engines.c", "fm4_convert.c",
               # Guru-600: the rest of the main-loop-only code (tools, help, the P600 store, MIDI learn, the editor's
               # learn and palette, categories); not ui_graph3d.c, whose drawing speed is the animations'
-              "ui_tools.c", "ui_help.c", "p600_store.c", "midi_learn.c", "editor_learn.c", "editor_palette.c", "category.c"]
+              "ui_tools.c", "ui_help.c", "p600_store.c", "midi_learn.c", "editor_learn.c", "editor_palette.c", "category.c",
+              # Guru-600 (10/11): P600's import, export, places and SysEx (its voice and render: reached by the ISR, -Os kept)
+              "eng_p600.c"]
 ISR_ROOTS = ("fm1_alnk0_irq", "fm1_timer5_irq")      # hal/fm1_isr.S: the audio ISR, the key / LED scan (+ USB poll)
 DEF = re.compile(r"^(?:static|void|int|uint\w*|int\w*|const)\b[^;=(]*?\b([A-Za-z_]\w*)\s*\(", re.M)
 IR_DEF = re.compile(r"^(define [^\n]*?@\"?([\w.]+)\"?\([^\n]*\)(?: unnamed_addr| local_unnamed_addr)?)( #\d+[^\n]*\{)$",

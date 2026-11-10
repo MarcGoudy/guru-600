@@ -636,3 +636,31 @@ static const char *tl_do(track_t *t, uint32_t p, uint32_t l)
     tl_unlock(t, was, len);
     return msg;
 }
+
+/* Guru-600 (editor.c ed_p6, frame 16): a tool on the selected track from the editor, as SEQ TOOLS does it (tl_do; EUCLID
+ * written at once from its HITS STEPS ROT, as OCT+ applies it). 0 done, 1 nothing done */
+#define ED_TOOLS 1
+static int ed_tool(uint32_t p, uint32_t hits, uint32_t steps, uint32_t rot)
+{
+    track_t *t = TSEL;
+    if (p >= TL_N || chain_busy())
+        return 1;
+    if (p == TL_EUCLID) {
+        memcpy(eu_from, t->step, sizeof eu_from);
+        tl_undo_take(t);
+        eu.trk = (uint8_t)song.sel;
+        eu.steps = (uint8_t)steps;
+        eu.hits = (uint8_t)hits;
+        eu.rot = (uint8_t)rot;
+        eu_fit(t);
+        eu_render(t);
+        eu.on = 0;
+        ui.force = 1;
+        return 0;
+    }
+    if (!tl_do(t, p, ui.lane))
+        return 1;
+    ui.force = 1;
+    return 0;
+}
+

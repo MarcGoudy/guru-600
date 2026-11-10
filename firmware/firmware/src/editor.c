@@ -908,6 +908,165 @@ static void ed_handle(const uint8_t *f, uint32_t n)   /* f: the bytes between F0
     ed_send();
 }
 
+#if FELUCCA_P600
+/* Guru-600: the P600 editor's frames, F0 7D 47 36 cmd .. F7 (p600/editeur). The places are 0..254 in two 7-bit bytes,
+ * which the Felucca frames (PRESET, NAMES: one byte, 12-letter names, a 664-byte reply) cannot carry:
+ *   6 dest dest2       SAVE: the selected track's sound into the place (SAVE > PLACE) -> 6 dest dest2 rc (0 kept,
+ *                      1 memory full, 2 the track is not P600)
+ *   7 dest dest2 name  RENAME: a kept place's name (ASCII, 11 letters at most) -> 7 dest dest2 rc (0 renamed, 1 memory
+ *                      full, 3 a factory sound: save it first)
+ *   8 start start2 k   NAMES: k (1..16) places from start -> 8 start start2 k, per place kept (0 / 1) and its name
+ *   9 dest dest2       LOAD: the place's sound on the selected track (P600 first if it is not) -> 9 dest dest2 0
+ *   10                 STATE -> 10 selected track, engine, preset preset2 (P600's place), kept (0 / 1)
+ *   11 b b2 pos        MORPH (EDIT > MORPH): the selected track's sound from A to place b's, pos 0..100 -> 11 b b2 pos rc
+ *                      (0, 2 not P600)
+ *   12 amt             MUTATE: its amount (1..127, 40 at first), then a variant of the sound -> 12 amt rc (0, 2 not P600)
+ *   13                 MORPH's state -> 13 b b2 pos amt
+ *   14 (push)          the beat while watched: 14 playing beat armed step (ed_p6_beat)
+ *   17 R E S E T        FACTORY: everything of the user's erased, the chip restarts (no answer; project.c factory_reset)
+ *   16 tool h s r      TOOL: SEQ TOOLS' action on the selected track (ui_tools.c TL_*: 0 CLEAR, 1 REVERSE, 2 SHIFT <, 3 SHIFT >,
+ *                      4 RANDOM, 5 COOK, 6 BEAT, 7 EUCLID with h hits over s steps turned by r, 12 DOUBLE, 13 HALF) -> 16 tool rc (0 done,
+ *                      1 nothing done, 2 no tools in this build); then the editor reads the steps (and LEN) again
+ *   15 op              TRANSPORT: 0 query, 1 PLAY (as the button: stops what plays), 2 STOP, 3 REC (as a tap: the
+ *                      selected track armed or not) -> 15 playing (0 / 1) armed (the tracks armed, bit per track)
+ * 1 (import into a place), 2 (RESET SOUNDS) and 3 (forget a place) answer 1 / 2 / 3 dest dest2 rc (ed_service). 1 = handled */
+static uint8_t ed_p6o[16u + 16u * 17u];
+static uint32_t ed_p6h(uint32_t c)                          /* the answer's head F0 7D 47 36 c into ed_p6o: its length */
+{
+    ed_p6o[0] = 0xF0; ed_p6o[1] = 0x7D; ed_p6o[2] = 0x47; ed_p6o[3] = 0x36; ed_p6o[4] = (uint8_t)c;
+    return 5u;
+}
+static void ed_p6s(uint32_t k)                              /* ... F7 and sent */
+{
+    ed_p6o[k++] = 0xF7;
+    (void)ota_wire_send(ed_p6o, k);
+}
+static int ed_p6(const uint8_t *f, uint32_t n)
+{
+    uint8_t *o = ed_p6o;
+    uint32_t c = f[3], d = n >= 6u ? (uint32_t)f[4] | (uint32_t)f[5] << 7 : 0u, k, i, r = 0, p6 = ed_eng(TSEL) == ENGI_P600;
+    if (c < 6u || c == 14u || c > 17u)
+        return 0;
+    if (c == 17u) {                                        /* FACTORY: MENU > SYSTEM > RESET GURU-600 (project.c), only */
+        if (n >= 9u && !memcmp(f + 4, "RESET", 5))         /* with its word (the editor asked twice); the chip restarts */
+            factory_reset();
+        return 1;
+    }
+    if (c == 16u ? n < 8u : c == 15u ? n < 5u || f[4] > 3u : c == 12u ? n < 5u || !f[4] : c != 10u && c != 13u && (n < 6u || d > 254u || (c == 8u && (n < 7u || !f[6] || f[6] > 16u)) ||
+                                                    (c == 11u && (n < 7u || f[6] > 100u))))
+        return 1;                                          /* (malformed: no answer, as the Felucca frames) */
+    k = ed_p6h(c);
+    if (c == 10u) {
+        o[k++] = (uint8_t)song.sel;
+        o[k++] = (uint8_t)ed_eng(TSEL);
+        d = TSEL->preset;
+        r = p6 && p6_find(d) >= 0;
+    } else if (c == 13u) {
+        d = ui.mph_b;
+    } else if (c >= 12u) {
+        o[k++] = f[4];
+        if (c == 12u) {                                    /* MUTATE */
+            ui.mph_amt = f[4];
+            if (p6) mph_mutate(); else r = 2;
+        } else if (c == 16u) {                             /* TOOL */
+#ifdef ED_TOOLS
+            r = (uint32_t)ed_tool(f[4], f[5], f[6], f[7]);
+#else
+            r = 2;
+#endif
+        } else {                                           /* TRANSPORT */
+            if (f[4] == 1u)
+                transport_req = song.playing || chain_busy() || seq_counting() ? 2u : 1u;
+            else if (f[4] == 2u)
+                transport_req = 2u;
+            else if (f[4] == 3u && !chain_busy()) {    /* REC as the button's tap (ui_input.c rec_tap): arming while */
+                song.rec ^= (uint8_t)(1u << song.sel); /* stopped starts the transport (live recording) */
+                ui.force = 1;
+                if ((song.rec >> song.sel) & 1u && !song.playing && !seq_counting())
+                    transport_req = 1;
+            }
+            o[k - 1u] = song.playing ? 1u : 0u;        /* (what was asked lands with the next audio block) */
+            r = song.rec & 0x7Fu;
+        }
+        o[k++] = (uint8_t)r;
+        ed_p6s(k);
+        return 1;
+    }
+    o[k++] = (uint8_t)(d & 0x7Fu);
+    o[k++] = (uint8_t)(d >> 7);
+    if (c == 13u) {
+        o[k++] = ui.mph_trk == song.sel + 1u && TSEL->preset == ui.mph_apre ? ui.mph_pos : 0u;
+        r = ui.mph_amt ? ui.mph_amt : 40u;
+    } else if (c == 11u) {                                 /* MORPH */
+        o[k++] = f[6];
+        if (p6) { mph_set(d, f[6]); ui.force = 1; } else r = 2;
+    } else if (c == 8u) {                                  /* NAMES */
+        uint32_t cnt = d + f[6] > 255u ? 255u - d : f[6];
+        o[k++] = (uint8_t)cnt;
+        for (i = d; i < d + cnt; i++) {
+            const char *s = p6_ram[i].name ? p6_ram[i].name : "";
+            uint32_t j;
+            o[k++] = p6_find(i) >= 0 ? 1u : 0u;
+            for (j = 0; s[j] && j < 15u; j++)
+                o[k++] = (uint8_t)(s[j] & 0x7F);
+            o[k++] = 0;
+        }
+        ed_p6s(k);
+        return 1;
+    } else if (c == 9u) {                                  /* LOAD */
+        ed_load_t b;
+        ed_load_before(&b);
+        if (!p6)
+            set_engine(ENGI_P600);
+        apply_preset(d);
+        ed_load_after(&b);
+        ui.force = 1;
+    } else if (c == 7u) {                                  /* RENAME */
+        r = p600_rename(d, f + 6, n - 6u);
+        ui.force = 1;
+    } else if (c == 6u) {                                  /* SAVE */
+        if (!p6) {
+            r = 2;
+        } else if ((p600_store_track(TSEL, d) & 0xF00u) == P6SX_KEPT) {
+            TSEL->preset = (uint8_t)d;
+            ed_w.preset = (uint8_t)d;                  /* (the editor knows: no RELOAD echoes back) */
+            ui_say("SAVED ", p6_ram[d].name ? p6_ram[d].name : "");
+        } else {
+            r = 1;
+        }
+    }
+    o[k++] = (uint8_t)r;
+    ed_p6s(k);
+    return 1;
+}
+#endif
+
+#if FELUCCA_P600
+/* Guru-600: the beat, pushed while watched (the editor's BPM pulse, its PLAY and REC, its playhead): F0 7D 47 36 14 playing
+ * (0 / 1) beat (0..3: the bar's beats as the metronome and the ARP LED count them, seq.c beat_n) armed (song.rec) step (the
+ * one the selected track plays, 0..63) F7, when one of them changes */
+static uint8_t ed_p6b[4] = {0xFFu};
+static void ed_p6_beat(void)
+{
+    uint8_t v[4];
+    uint32_t k;
+    if (!ed_w.on) {
+        ed_p6b[0] = 0xFFu;
+        return;
+    }
+    v[0] = song.playing ? 1u : 0u;
+    v[1] = v[0] ? (uint8_t)(beat_n & 3u) : 0u;
+    v[2] = (uint8_t)(song.rec & 0x7Fu);
+    v[3] = v[0] ? (uint8_t)(TSEL->seq_idx & 0x3Fu) : 0u;
+    if (!memcmp(v, ed_p6b, 4u) || !ed_room())
+        return;
+    memcpy(ed_p6b, v, 4u);
+    k = ed_p6h(14u);
+    memcpy(ed_p6o + k, v, 4u);
+    ed_p6s(k + 4u);
+}
+#endif
+
 /* main loop: editor frames first; anything else stays for ota_service() */
 static void ed_service(void)
 {
@@ -915,10 +1074,26 @@ static void ed_service(void)
     uint32_t n;
     ed_sync();                                             /* v2 pushes (while watched) */
 #if FELUCCA_P600
+    ed_p6_beat();                                          /* (Guru-600: the beat) */
+#endif
+#if FELUCCA_P600
+    if (ota_frame_get(&p, &n) && n >= 4u && p[0] == 0x7Du && p[1] == 0x47u && p[2] == 0x36u && ed_p6(p, n)) {
+        ed_w.last_ms = fm1_ms;                             /* (they keep WATCH alive too) */
+        ota_frame_done();                                  /* Guru-600: the editor's P600 frames (ed_p6) */
+        return;
+    }
     if (ota_frame_get(&p, &n) && n >= 4u && !(p[0] == ED_HDR0 && p[1] == ED_HDR1 && p[2] == ED_HDR2)) {
         uint32_t s = p600_sysex(p, n);                     /* a Prophet-600 program: into P600's IMPORT bank */
         if (s) {
+            uint32_t c = p[0] == 0x7Du && p[1] == 0x47u && p[2] == 0x36u ? p[3] : 0u;
             ota_frame_done();
+            if (c == 1u || c == 2u || c == 3u) {           /* Guru-600: the editor's import, reset, forget get an answer */
+                uint32_t d = (s & 0xF00u) == P6SX_FULL ? 255u : s & 0xFFu, k = ed_p6h(c);
+                ed_p6o[k++] = (uint8_t)(d & 0x7Fu);
+                ed_p6o[k++] = (uint8_t)(d >> 7);
+                ed_p6o[k++] = d == 255u;
+                ed_p6s(k);
+            }
             if ((s & 0xF00u) == P6SX_EXPORT || (s & 0xF00u) == P6SX_LIST) {   /* Guru-600: the answer, to the page */
                 static uint8_t o[6u + 2u * P6_NIMP + 1u > 60u ? 6u + 2u * P6_NIMP + 1u : 60u];
                 (void)ota_wire_send(o, (s & 0xF00u) == P6SX_EXPORT ? p600_export(s & 0xFFu, o) : p600_list(o));

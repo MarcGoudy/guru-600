@@ -1644,25 +1644,39 @@ static void splash_band(uint32_t y, uint32_t h, int32_t ly, const char *const *l
 /* P600's power-on screen: « Guru~600 » after the Prophet-600's nameplate, cream on the panel's black, and a line for
  * Felucca (p600_splash.h, p600/make_splash.py). Drawn a row at a time from its 4-bit alpha through the ramps */
 #include "p600_splash.h"
-static void splash_area(uint32_t x0, uint32_t y0, uint32_t w, uint32_t h, const uint8_t *a, const uint16_t *ramp)
+/* the areas' alpha, LZ4 blocks (p600_splash.h, 10/11: 4 KB less in flash, the same pixels) unpacked into the canvas:
+ * nothing draws there until the splash ends (the UI's first frame, after it); the splash draws straight to the LCD */
+static void splash_unpack(void)
 {
-    static uint16_t row[240];
-    uint32_t x, y, i;
-    for (y = 0; y < h; y++) {
-        for (x = 0; x < w; x++) {
-            i = y * w + x;
-            row[x] = ramp[(a[i >> 1] >> ((i & 1u) << 2)) & 15u];
+    uint8_t *d = (uint8_t *)cv_px;
+    uint32_t k;
+    _Static_assert(4725 + 1309 + 735 + 888 <= sizeof cv_px, "the splash's areas fit the canvas");
+    for (k = 0; k < 4u; k++) {
+        const uint8_t *s = SPL_Z[k], *e = s + SPL_ZN[k][0];
+        spl_a[k] = d;
+        while (s < e) {                                 /* a sequence: literals, then a match (none at the end) */
+            uint32_t t = *s++, n = t >> 4, b;
+            const uint8_t *r;
+            if (n == 15u)
+                do { b = *s++; n += b; } while (b == 255u);
+            while (n--)
+                *d++ = *s++;
+            if (s >= e)
+                break;
+            r = d - (s[0] | (uint32_t)s[1] << 8);
+            s += 2;
+            n = t & 15u;
+            if (n == 15u)
+                do { b = *s++; n += b; } while (b == 255u);
+            n += 4u;
+            while (n--)
+                *d++ = *r++;
         }
-        lcd_blit(x0, y0 + y, w, 1, row);
     }
 }
-static void draw_splash(void)                          /* the last frame of the animation, all at once */
-{
+static void draw_splash(void)                          /* at power-on, while the boot loads: the panel's black only, */
+{                                                       /* the name comes with the animation (Marc, 10/11: not twice) */
     lcd_fill(0, 0, 240, 240, SPL_BG);
-    splash_area(SPL_LOGO_X, SPL_LOGO_Y, SPL_LOGO_W, SPL_LOGO_H, SPL_LOGO_A, SPL_LOGO_RAMP);
-    splash_area(SPL_SUB_X, SPL_SUB_Y, SPL_SUB_W, SPL_SUB_H, SPL_SUB_A, SPL_SUB_RAMP);
-    splash_area(SPL_VER_X, SPL_VER_Y, SPL_VER_W, SPL_VER_H, SPL_VER_A, SPL_VER_RAMP);
-    splash_area(SPL_CRED_X, SPL_CRED_Y, SPL_CRED_W, SPL_CRED_H, SPL_CRED_A, SPL_CRED_RAMP);
     lcd_sync();
 }
 
@@ -1757,6 +1771,11 @@ static void splash_anim(uint32_t ms)
 {
     static uint16_t row[240];
     static int16_t wy[240];                             /* the trace's offset from the centre, per column (1/16 px) */
+    static uint8_t unpacked;
+    if (!unpacked) {                                    /* (again at its start: the boot's loads came in between) */
+        unpacked = 1;
+        splash_unpack();
+    }
     uint32_t grow = spa_lin(ms, 0, 250), swell = spa_lin(ms, 250, 450);
     int32_t m = (int32_t)spa_ease(spa_lin(ms, 1160, 1860));             /* the morph, 0..256 */
     int32_t amp = (int32_t)swell * 26 / 256;            /* 0 .. 26 px */

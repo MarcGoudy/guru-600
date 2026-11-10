@@ -13,12 +13,17 @@ rm -f $F/Partage/Guru-600.zip; ditto -c -k --keepParent $A $F/Partage/Guru-600.z
 # 2. le site
 ~/Documents/FM-1/venv/bin/python $F/p600/site/make_site_guru.py $FW $F/Partage/site-installation
 # 3. le dossier de diffusion
-mkdir -p "$G/1 Firmware" "$G/2 Application Mac" "$G/3 Notice/Notice HTML" "$G/4 Site web" "$G/5 Sources" "$G/6 Licences"
+mkdir -p "$G/1 Firmware" "$G/2 Application Mac" "$G/3 Notice/Notice HTML" "$G/4 Site web" "$G/5 Sources" "$G/6 Licences" "$G/7 Éditeur"
 cp $FW "$G/1 Firmware/guru-600-1.0.fwsc"
 rm -rf "$G/2 Application Mac/Guru-600.app"; ditto $A "$G/2 Application Mac/Guru-600.app"; cp $F/Partage/Guru-600.zip "$G/2 Application Mac/Guru-600-Mac.zip"
 cp $F/Partage/"Guru-600 - User guide - Notice.pdf" "$G/3 Notice/"
 rm -rf "$G/3 Notice/Notice HTML"; mkdir -p "$G/3 Notice/Notice HTML"; (cd $F/p600/notice && cp index.html "$G/3 Notice/Notice HTML/" && cp -R img shots fonts "$G/3 Notice/Notice HTML/")
 rm -rf "$G/4 Site web"; ditto $F/Partage/site-installation "$G/4 Site web"
+# l'éditeur web et son guide, côte à côte (son « ? » ouvre ../guide/), comme sur le site, avec le PDF du guide
+E="$G/7 Éditeur/Guru-600 Editor"; rm -rf "$G/7 Éditeur"; mkdir -p "$E"
+ditto $F/Partage/site-installation/editor "$E/editor"; ditto $F/Partage/site-installation/guide "$E/guide"
+cp $F/Partage/"Guru-600 Editor - Guide.pdf" "$E/"
+(cd "$G/7 Éditeur" && ditto -c -k --keepParent "Guru-600 Editor" "Guru-600-Editor.zip")
 T=$(mktemp -d)
 (cd $F/Felucca && git diff > "$G/5 Sources/guru-600-vs-felucca-63f88ec.patch" && mkdir -p $T/guru-600-firmware &&
  { git ls-files -co --exclude-standard | grep -v '^build/'; } | while read f; do [ -f "$f" ] && mkdir -p "$T/guru-600-firmware/$(dirname "$f")" && cp "$f" "$T/guru-600-firmware/$f"; done)

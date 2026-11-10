@@ -3,10 +3,10 @@
   "intro": "Connect the FM-1 by USB, in a MIDI-compatible browser: Chrome, Edge, Brave, Opera…",
   "warn": "Do not unplug the USB cable while writing.",
   "install": "Install",
-  "editor": "Felucca editor (sequences, settings and backups; the P600 sounds are edited on the FM-1)",
+  "editor": "Felucca editor (the original firmware's: sequences, settings and backups)",
   "direct": "Connect the USB cable directly to the computer.",
   "brick": "If an install fails and the FM-1 no longer starts, recovering it needs a Transporter:",
-  "beta": "Guru-600 1.0 is a first release. The author accepts no responsibility if your FM-1 is damaged or misbehaves because of this custom firmware. Use it at your own risk.",
+  "beta": "The Guru-600 has been tested on the FM-1: the sound, the sequencer, the saving and the installation work, and no fault is known to date. It replaces the official M-VAVE firmware, which you can put back at any time. Like all free software, it comes as it is, without warranty: back up your projects before installing.",
   "back": "Get official FM-1 V15 from M-VAVE and select the unmodified FM-1.fwsc. The browser validates it locally; it is not sent to a server.",
   "stockTitle": "Return to official V15",
   "stockFile": "Official FM-1.fwsc",
@@ -42,7 +42,8 @@
   "send": "Send Prophet-600 sounds (.syx) to the FM-1",
   "title": "Install Guru-600 on the M-VAVE FM-1",
   "credit": "Guru-600 by Marc Massé, based on Felucca by Leo Kuroshita.",
-  "feedback": "The Guru-600 is a free project, and it can always evolve. An idea for a feature or an improvement, or a bug: write to us at guru600fm1@gmail.com or on GitHub (Issues for bugs, Discussions for ideas):"
+  "feedback": "The Guru-600 is a free project, and it can always evolve. An idea for a feature or an improvement, or a bug: write to us at guru600fm1@gmail.com or on GitHub (Issues for bugs, Discussions for ideas):",
+  "geditor": "Guru-600 editor: the whole FM-1 on the computer, the P600 sounds included (its guide is linked from it)"
  },
  "sender": {
   "sub": "Send Prophet-600 sounds (.syx) to your FM-1 running Guru-600. They stay in the FM-1, even after it is switched off.",

@@ -649,7 +649,7 @@ typedef struct {
     int32_t px[PH_ST], py[PH_ST], fb;   /* PHASR: each stage's last input and output, the fed back */
     int16_t line[IL_LEN];               /* FLANG / CHOR, at a quarter (headroom) */
 } ins_t;
-static ins_t ins[NTRK] __attribute__((section(".pool")));
+static ins_t ins[2][NTRK] __attribute__((section(".pool")));   /* (Guru-600: INSERT 1 and 2) */
 
 static inline int32_t ins_mixq(int32_t m) { return m >= 127 ? 32768 : m <= 0 ? 0 : m * 258; }   /* MIX -> Q15 */
 /* the one-pole low-pass (topology-preserving) coefficient of cutoff index c, Q16: G = g / (1 + g), g = tan(pi fc / FS) */
@@ -683,12 +683,12 @@ static inline int32_t ins_shape(uint32_t ty, int32_t v, uint32_t sh)
 static inline uint32_t ins_bits_sh(int32_t a) { return 15u - (uint32_t)(clamp(a, 0, 127) >> 3); }   /* BITS 1..16 */
 
 /* SOFT .. FUZZ: low cut -> DRIVE -> shape -> TONE -> LEVEL -> DC blocker; CRUSH: held sample -> bits -> LPF */
-static __attribute__((noinline)) void ins_drive(ins_t *s, const track_t *t, int32_t *b, uint32_t n, int32_t tw)
+static __attribute__((noinline)) void ins_drive(ins_t *s, const int16_t *q, int32_t *b, uint32_t n, int32_t tw)
 {
-    uint32_t i, ty = s->type, crush = ty == IT_CRUSH, sh = ins_bits_sh(t->p[P_IA]);
-    uint32_t hold = INS_HOLD[clamp(t->p[P_IB], 0, 127) >> 3];
-    int32_t a = t->p[P_IA], g = 4096 + a * a * 3;       /* DRIVE, Q12: 1x .. 12.8x, gentle at first */
-    int32_t k = ins_lpk(crush ? t->p[P_IC] : t->p[P_IB]), lvl = crush ? 4096 : LEVEL_Q12[t->p[P_IC] & 127];
+    uint32_t i, ty = s->type, crush = ty == IT_CRUSH, sh = ins_bits_sh(q[1]);
+    uint32_t hold = INS_HOLD[clamp(q[2], 0, 127) >> 3];
+    int32_t a = q[1], g = 4096 + a * a * 3;       /* DRIVE, Q12: 1x .. 12.8x, gentle at first */
+    int32_t k = ins_lpk(crush ? q[3] : q[2]), lvl = crush ? 4096 : LEVEL_Q12[q[3] & 127];
     for (i = 0; i < n; i++) {
         int32_t x = b[i], y, v;
         s->w += clamp(tw - s->w, -SL_SLOPE, SL_SLOPE);
@@ -722,10 +722,10 @@ static __attribute__((noinline)) void ins_drive(ins_t *s, const track_t *t, int3
 }
 
 /* PHASR, FLANG, CHOR: the sweep at RATE (one LFO per track), DEPTH, FDBK */
-static __attribute__((noinline)) void ins_swept(ins_t *s, const track_t *t, int32_t *b, uint32_t n, int32_t tw)
+static __attribute__((noinline)) void ins_swept(ins_t *s, const int16_t *q, int32_t *b, uint32_t n, int32_t tw)
 {
-    uint32_t i, inc = LFO_INC[clamp(t->p[P_IA], 0, 127)] / CTL, dep = (uint32_t)clamp(t->p[P_IB], 0, 127);
-    int32_t c = clamp(t->p[P_IC], 0, 127);
+    uint32_t i, inc = LFO_INC[clamp(q[1], 0, 127)] / CTL, dep = (uint32_t)clamp(q[2], 0, 127);
+    int32_t c = clamp(q[3], 0, 127);
     if (s->type == IT_PHASER) {                         /* the coefficients a block at a time (at its middle) */
         uint32_t tr = pf_tri(s->ph + (n >> 1) * inc), q = 32768u + (uint32_t)(((int32_t)tr - 32768) * (int32_t)dep / 127);
         int32_t a = PH_A[q >> 11] + (((PH_A[(q >> 11) + 1u] - PH_A[q >> 11]) * (int32_t)(q & 2047u)) >> 11);
@@ -775,33 +775,44 @@ static __attribute__((noinline)) void ins_swept(ins_t *s, const track_t *t, int3
 }
 
 /* the INSERT at rest at once (mix_part: TYPE turned OFF while the part was silent, its fade never ran) */
-static __attribute__((noinline)) void ins_rest(track_t *t)
+static __attribute__((noinline)) void ins_rest(track_t *t)   /* (an INSERT whose TYPE is OFF: no fade left) */
 {
-    memset(&ins[(uint32_t)(t - trk) % NTRK], 0, sizeof(ins_t));
-    t->ins_run = 0;
+    uint32_t k;
+    for (k = 0; k < 2u; k++)
+        if (!t->p[k ? P_JTYPE : P_ITYPE]) {
+            memset(&ins[k][(uint32_t)(t - trk) % NTRK], 0, sizeof(ins_t));
+            t->ins_run &= (uint8_t)~(1u << k);
+        }
 }
 
 /* the track's INSERT on its block b (mix_part, mix_spread): nothing while TYPE is OFF or MIX is 0 and faded */
 static __attribute__((noinline)) void track_insert(track_t *t, int32_t *b, uint32_t n)
 {
-    ins_t *s = &ins[(uint32_t)(t - trk) % NTRK];
-    int32_t ty = clamp(t->p[P_ITYPE], 0, IT_N - 1), tw;
-    if (s->type != ty && !s->w)                         /* faded out: the new type from rest */
-        s->type = (uint8_t)ty;
-    tw = s->type == ty && ty ? ins_mixq(t->p[P_IMIX]) : 0;
-    if (!s->w) {
-        if (!tw) {
-            t->ins_run = 0;
-            return;                                     /* dry: bit for bit */
+    uint32_t k;
+    for (k = 0; k < 2u; k++) {                          /* (Guru-600: INSERT 1, then INSERT 2 on its output) */
+        ins_t *s = &ins[k][(uint32_t)(t - trk) % NTRK];
+        const int16_t *q = &t->p[k ? P_JTYPE : P_ITYPE];   /* TYPE A B C MIX */
+        int32_t ty = clamp(q[0], 0, IT_N - 1), tw;
+        if (s->type != ty && !s->w)                     /* faded out: the new type from rest */
+            s->type = (uint8_t)ty;
+        tw = s->type == ty && ty ? ins_mixq(q[4]) : 0;
+        if (!s->w) {
+            if (!tw) {
+                t->ins_run &= (uint8_t)~(1u << k);
+                continue;                               /* dry: bit for bit */
+            }
+            memset(s, 0, sizeof *s);                    /* starting: no stale line or filter */
+            s->type = (uint8_t)ty;
         }
-        memset(s, 0, sizeof *s);                        /* starting: no stale line or filter */
-        s->type = (uint8_t)ty;
+        if (s->type >= IT_PHASER)
+            ins_swept(s, q, b, n, tw);
+        else
+            ins_drive(s, q, b, n, tw);
+        if (s->w)
+            t->ins_run |= (uint8_t)(1u << k);           /* (mix_part calls again while it fades) */
+        else
+            t->ins_run &= (uint8_t)~(1u << k);
     }
-    if (s->type >= IT_PHASER)
-        ins_swept(s, t, b, n, tw);
-    else
-        ins_drive(s, t, b, n, tw);
-    t->ins_run = s->w != 0;                             /* (mix_part calls again while it fades) */
 }
 
 /* one block of the whole mix (shared with hostsim.c): events -> each part (with its modulation matrix)
@@ -837,7 +848,7 @@ static __attribute__((noinline)) void mix_spread(track_t *t, int32_t *b, uint32_
     for (i = 0; i < n; i++)
         d[i] = (d[i] << 1) - b[i];                      /* left - right */
     track_dist(t, b, n);
-    if (t->p[P_ITYPE] | t->ins_run)
+    if (t->p[P_ITYPE] | t->p[P_JTYPE] | t->ins_run)
         track_insert(t, b, n);                          /* (the mono sum, as DIST) */
     slicer_track_sd(t, b, d, n);
     if ((pf.mute >> (t - trk)) & 1u)
@@ -894,11 +905,11 @@ static void mix_part(track_t *t, uint32_t n SM_DECL)
 #else
     if (track_render(t, b, n))
 #endif
-        t->tail = t->p[P_ITYPE] ? 64 : 16;              /* blocks of DIST / INSERT state to run out after the last
+        t->tail = (t->p[P_ITYPE] | t->p[P_JTYPE]) ? 64 : 16;              /* blocks of DIST / INSERT state to run out after the last
                                                          * voice (the INSERT's: 46 ms, a flanger's feedback) */
-    else if ((!t->tail || !(t->p[P_DIST] | t->p[P_ITYPE]) || !--t->tail) && !slicer_busy(t)) {
+    else if ((!t->tail || !(t->p[P_DIST] | t->p[P_ITYPE] | t->p[P_JTYPE]) || !--t->tail) && !slicer_busy(t)) {
         slicer_track(t, 0, n);                          /* (the SLICER's step clock runs on) */
-        if (t->ins_run && !t->p[P_ITYPE])
+        if (t->ins_run && !(t->p[P_ITYPE] && t->p[P_JTYPE]))
             ins_rest(t);                                /* TYPE OFF while silent: no fade-out left for the next note */
         if (MOD(t).on)
             mod_end(t);
@@ -908,7 +919,7 @@ static void mix_part(track_t *t, uint32_t n SM_DECL)
         mix_spread(t, b, n SM_ARG(sm));
     else {
         track_dist(t, b, n);
-        if (t->p[P_ITYPE] | t->ins_run)
+        if (t->p[P_ITYPE] | t->p[P_JTYPE] | t->ins_run)
             track_insert(t, b, n);                      /* the INSERT (1.5): off, nothing */
         slicer_track(t, b, n);                          /* slicer.c: before the level, pan and sends */
         if ((pf.mute >> (t - trk)) & 1u)

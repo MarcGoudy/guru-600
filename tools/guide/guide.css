@@ -1,0 +1,6 @@
+/* the guide's own (after notice.css) */
+figure.ed{margin:14px auto 18px;max-width:100%}figure.ed img{display:block;max-width:100%;height:auto;border-radius:6px;border:1px solid #2b2925}
+figure.ed figcaption{text-align:center;font-size:.88em;margin-top:6px}
+table.ctl td:first-child{white-space:nowrap}
+kbd{font:600 .9em "Inter Tight",sans-serif;border:1px solid #9c9585;border-bottom-width:2px;border-radius:4px;padding:0 5px;white-space:nowrap}
+@media print{figure.ed{break-inside:avoid}figure.ed img{max-width:170mm}}

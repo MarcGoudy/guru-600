@@ -273,7 +273,14 @@ typedef struct {
     p600_ext_t x;
     char name[16];
 } p6imp_t;
-static p6imp_t p6_imp[P6_NIMP] __attribute__((section(".pool")));
+#define P6ST_MAGIC 0x4D493650u                         /* "P6IM" */
+typedef struct {                                       /* the imports as kept in flash (p600_store.c, OBJ_P600) */
+    uint32_t magic;
+    uint16_t ver, n;                                   /* 1, P6_NIMP */
+    p6imp_t imp[P6_NIMP];
+} p6st_t;
+static p6st_t p6st __attribute__((section(".pool")));   /* (Guru-600 10/11: one copy, worked on and kept: 2.9 KB less) */
+#define p6_imp (p6st.imp)
 static preset_t p6_ram[255] __attribute__((section(".pool")));   /* the presets shown (after p600_boot) */
 static uint8_t p6_booted, p6_dirty;                    /* p6_dirty: to be kept in flash (p600_store.c) */
 static uint32_t p6_dirty_ms;
@@ -625,6 +632,21 @@ static void p6_bare_name(uint32_t dest, char *nm)
     for (; i < 15u && s[i]; i++)
         nm[i] = s[i];
     nm[i] = 0;
+}
+
+/* Guru-600 (the editor's RENAME, 10/11): a kept place's name (letters, digits, signs; 11 at most: the place number goes
+ * first). 0 renamed, 1 memory full, 3 the place holds a factory sound (save it first) */
+static uint32_t p600_rename(uint32_t dest, const uint8_t *s, uint32_t n)
+{
+    static p6imp_t m;
+    int32_t at = p6_find(dest);
+    uint32_t i;
+    if (at < 0)
+        return 3u;
+    m = p6_imp[at];
+    for (i = 0; i < 16u; i++)
+        m.name[i] = i < n && i < 11u ? (char)(s[i] >= 0x20u && s[i] < 0x7Fu ? s[i] : '?') : 0;
+    return (p6_put(dest, &m) & 0xF00u) == P6SX_KEPT ? 0u : 1u;
 }
 
 /* Guru-600 (SAVE > PLACE): the selected track's sound into place dest, with the name of the sound it came from (its

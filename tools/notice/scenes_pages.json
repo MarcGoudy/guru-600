@@ -1,496 +1,540 @@
 [
-{
-"name": "p6_edit1",
-"keys": [
-"EDIT",
-"wait 700"
-]
-},
-{
-"name": "p6_edit2",
-"keys": [
-"EDIT",
-"wait 300",
-"EDIT",
-"wait 700"
-]
-},
-{
-"name": "p6_edit3",
-"keys": [
-"EDIT",
-"wait 300",
-"EDIT",
-"wait 300",
-"EDIT",
-"wait 700"
-]
-},
-{
-"name": "p6_edit4",
-"keys": [
-"EDIT",
-"wait 300",
-"EDIT",
-"wait 300",
-"EDIT",
-"wait 300",
-"EDIT",
-"wait 700"
-]
-},
-{
-"name": "p6_edit5",
-"keys": [
-"EDIT",
-"wait 300",
-"EDIT",
-"wait 300",
-"EDIT",
-"wait 300",
-"EDIT",
-"wait 300",
-"EDIT",
-"wait 700"
-]
-},
-{
-"name": "p6_edit6",
-"keys": [
-"EDIT",
-"wait 300",
-"EDIT",
-"wait 300",
-"EDIT",
-"wait 300",
-"EDIT",
-"wait 300",
-"EDIT",
-"wait 300",
-"EDIT",
-"wait 700"
-]
-},
-{
-"name": "p6_edit7",
-"keys": [
-"EDIT",
-"wait 300",
-"EDIT",
-"wait 300",
-"EDIT",
-"wait 300",
-"EDIT",
-"wait 300",
-"EDIT",
-"wait 300",
-"EDIT",
-"wait 300",
-"EDIT",
-"wait 700"
-]
-},
-{
-"name": "p6_edit8",
-"keys": [
-"EDIT",
-"wait 300",
-"EDIT",
-"wait 300",
-"EDIT",
-"wait 300",
-"EDIT",
-"wait 300",
-"EDIT",
-"wait 300",
-"EDIT",
-"wait 300",
-"EDIT",
-"wait 300",
-"EDIT",
-"wait 700"
-]
-},
-{
-"name": "p6_edit9",
-"keys": [
-"EDIT",
-"wait 300",
-"EDIT",
-"wait 300",
-"EDIT",
-"wait 300",
-"EDIT",
-"wait 300",
-"EDIT",
-"wait 300",
-"EDIT",
-"wait 300",
-"EDIT",
-"wait 300",
-"EDIT",
-"wait 300",
-"EDIT",
-"wait 700"
-]
-},
-{
-"name": "p6_edit10",
-"keys": [
-"EDIT",
-"wait 300",
-"EDIT",
-"wait 300",
-"EDIT",
-"wait 300",
-"EDIT",
-"wait 300",
-"EDIT",
-"wait 300",
-"EDIT",
-"wait 300",
-"EDIT",
-"wait 300",
-"EDIT",
-"wait 300",
-"EDIT",
-"wait 300",
-"EDIT",
-"wait 700"
-]
-},
-{
-"name": "p6_edit11",
-"keys": [
-"EDIT",
-"wait 300",
-"EDIT",
-"wait 300",
-"EDIT",
-"wait 300",
-"EDIT",
-"wait 300",
-"EDIT",
-"wait 300",
-"EDIT",
-"wait 300",
-"EDIT",
-"wait 300",
-"EDIT",
-"wait 300",
-"EDIT",
-"wait 300",
-"EDIT",
-"wait 300",
-"EDIT",
-"wait 700"
-]
-},
-{
-"name": "pg_env1",
-"keys": [
-"ENV",
-"wait 700"
-]
-},
-{
-"name": "pg_env2",
-"keys": [
-"ENV",
-"wait 300",
-"ENV",
-"wait 700"
-]
-},
-{
-"name": "pg_lfo1",
-"keys": [
-"LFO",
-"wait 700"
-]
-},
-{
-"name": "pg_lfo2",
-"keys": [
-"LFO",
-"wait 300",
-"LFO",
-"wait 700"
-]
-},
-{
-"name": "pg_lfo3",
-"keys": [
-"LFO",
-"wait 300",
-"LFO",
-"wait 300",
-"LFO",
-"wait 700"
-]
-},
-{
-"name": "pg_lfo4",
-"keys": [
-"LFO",
-"wait 300",
-"LFO",
-"wait 300",
-"LFO",
-"wait 300",
-"LFO",
-"wait 700"
-]
-},
-{
-"name": "pg_fx1",
-"keys": [
-"FX",
-"wait 700"
-]
-},
-{
-"name": "pg_fx2",
-"keys": [
-"FX",
-"wait 300",
-"FX",
-"wait 700"
-]
-},
-{
-"name": "pg_fx3",
-"keys": [
-"FX",
-"wait 300",
-"FX",
-"wait 300",
-"FX",
-"wait 700"
-]
-},
-{
-"name": "pg_fx4",
-"keys": [
-"FX",
-"wait 300",
-"FX",
-"wait 300",
-"FX",
-"wait 300",
-"FX",
-"wait 700"
-]
-},
-{
-"name": "pg_fx5",
-"keys": [
-"FX",
-"wait 300",
-"FX",
-"wait 300",
-"FX",
-"wait 300",
-"FX",
-"wait 300",
-"FX",
-"wait 700"
-]
-},
-{
-"name": "pg_fx6",
-"keys": [
-"FX",
-"wait 300",
-"FX",
-"wait 300",
-"FX",
-"wait 300",
-"FX",
-"wait 300",
-"FX",
-"wait 300",
-"FX",
-"wait 700"
-]
-},
-{
-"name": "pg_fx7",
-"keys": [
-"FX",
-"wait 300",
-"FX",
-"wait 300",
-"FX",
-"wait 300",
-"FX",
-"wait 300",
-"FX",
-"wait 300",
-"FX",
-"wait 300",
-"FX",
-"wait 700"
-]
-},
-{
-"name": "pg_scl1",
-"keys": [
-"SCL",
-"wait 700"
-]
-},
-{
-"name": "pg_scl2",
-"keys": [
-"SCL",
-"wait 300",
-"SCL",
-"wait 700"
-]
-},
-{
-"name": "pg_arp1",
-"keys": [
-"ARP",
-"wait 700"
-]
-},
-{
-"name": "pg_arp2",
-"keys": [
-"ARP",
-"wait 300",
-"ARP",
-"wait 700"
-]
-},
-{
-"name": "pg_seq1",
-"keys": [
-"SEQ",
-"wait 700"
-]
-},
-{
-"name": "pg_seq2",
-"keys": [
-"SEQ",
-"wait 300",
-"SEQ",
-"wait 700"
-]
-},
-{
-"name": "pg_seq3",
-"keys": [
-"SEQ",
-"wait 300",
-"SEQ",
-"wait 300",
-"SEQ",
-"wait 700"
-]
-},
-{
-"name": "pg_save1",
-"keys": [
-"SAVE",
-"wait 700"
-]
-},
-{
-"name": "pg_save2",
-"keys": [
-"SAVE",
-"wait 300",
-"SAVE",
-"wait 700"
-]
-},
-{
-"name": "pg_save3",
-"keys": [
-"SAVE",
-"wait 300",
-"SAVE",
-"wait 300",
-"SAVE",
-"wait 700"
-]
-},
-{
-"name": "pg_save4",
-"keys": [
-"SAVE",
-"wait 300",
-"SAVE",
-"wait 300",
-"SAVE",
-"wait 300",
-"SAVE",
-"wait 700"
-]
-},
-{
-"name": "pg_save5",
-"keys": [
-"SAVE",
-"wait 300",
-"SAVE",
-"wait 300",
-"SAVE",
-"wait 300",
-"SAVE",
-"wait 300",
-"SAVE",
-"wait 700"
-]
-},
-{
-"name": "pg_save6",
-"keys": [
-"SAVE",
-"wait 300",
-"SAVE",
-"wait 300",
-"SAVE",
-"wait 300",
-"SAVE",
-"wait 300",
-"SAVE",
-"wait 300",
-"SAVE",
-"wait 700"
-]
-},
-{
-"name": "pg_glo1",
-"keys": [
-"GLO",
-"wait 700"
-]
-},
-{
-"name": "pg_home",
-"keys": [
-"wait 3000"
-]
-},
-{
-"name": "pg_mixer",
-"keys": [
-"HOME",
-"wait 700"
-]
-},
-{
-"name": "pg_clock",
-"keys": [
-"HOME",
-"wait 300",
-"HOME",
-"wait 700"
-]
-}
+ {
+  "name": "p6_edit1",
+  "keys": [
+   "EDIT",
+   "wait 700"
+  ]
+ },
+ {
+  "name": "p6_edit2",
+  "keys": [
+   "EDIT",
+   "wait 300",
+   "EDIT",
+   "wait 700"
+  ]
+ },
+ {
+  "name": "p6_edit3",
+  "keys": [
+   "EDIT",
+   "wait 300",
+   "EDIT",
+   "wait 300",
+   "EDIT",
+   "wait 700"
+  ]
+ },
+ {
+  "name": "p6_edit4",
+  "keys": [
+   "EDIT",
+   "wait 300",
+   "EDIT",
+   "wait 300",
+   "EDIT",
+   "wait 300",
+   "EDIT",
+   "wait 700"
+  ]
+ },
+ {
+  "name": "p6_edit5",
+  "keys": [
+   "EDIT",
+   "wait 300",
+   "EDIT",
+   "wait 300",
+   "EDIT",
+   "wait 300",
+   "EDIT",
+   "wait 300",
+   "EDIT",
+   "wait 700"
+  ]
+ },
+ {
+  "name": "p6_edit6",
+  "keys": [
+   "EDIT",
+   "wait 300",
+   "EDIT",
+   "wait 300",
+   "EDIT",
+   "wait 300",
+   "EDIT",
+   "wait 300",
+   "EDIT",
+   "wait 300",
+   "EDIT",
+   "wait 700"
+  ]
+ },
+ {
+  "name": "p6_edit7",
+  "keys": [
+   "EDIT",
+   "wait 300",
+   "EDIT",
+   "wait 300",
+   "EDIT",
+   "wait 300",
+   "EDIT",
+   "wait 300",
+   "EDIT",
+   "wait 300",
+   "EDIT",
+   "wait 300",
+   "EDIT",
+   "wait 700"
+  ]
+ },
+ {
+  "name": "p6_edit8",
+  "keys": [
+   "EDIT",
+   "wait 300",
+   "EDIT",
+   "wait 300",
+   "EDIT",
+   "wait 300",
+   "EDIT",
+   "wait 300",
+   "EDIT",
+   "wait 300",
+   "EDIT",
+   "wait 300",
+   "EDIT",
+   "wait 300",
+   "EDIT",
+   "wait 700"
+  ]
+ },
+ {
+  "name": "p6_edit9",
+  "keys": [
+   "EDIT",
+   "wait 300",
+   "EDIT",
+   "wait 300",
+   "EDIT",
+   "wait 300",
+   "EDIT",
+   "wait 300",
+   "EDIT",
+   "wait 300",
+   "EDIT",
+   "wait 300",
+   "EDIT",
+   "wait 300",
+   "EDIT",
+   "wait 300",
+   "EDIT",
+   "wait 700"
+  ]
+ },
+ {
+  "name": "p6_edit10",
+  "keys": [
+   "EDIT",
+   "wait 300",
+   "EDIT",
+   "wait 300",
+   "EDIT",
+   "wait 300",
+   "EDIT",
+   "wait 300",
+   "EDIT",
+   "wait 300",
+   "EDIT",
+   "wait 300",
+   "EDIT",
+   "wait 300",
+   "EDIT",
+   "wait 300",
+   "EDIT",
+   "wait 300",
+   "EDIT",
+   "wait 700"
+  ]
+ },
+ {
+  "name": "p6_edit11",
+  "keys": [
+   "EDIT",
+   "wait 300",
+   "EDIT",
+   "wait 300",
+   "EDIT",
+   "wait 300",
+   "EDIT",
+   "wait 300",
+   "EDIT",
+   "wait 300",
+   "EDIT",
+   "wait 300",
+   "EDIT",
+   "wait 300",
+   "EDIT",
+   "wait 300",
+   "EDIT",
+   "wait 300",
+   "EDIT",
+   "wait 300",
+   "EDIT",
+   "wait 700"
+  ]
+ },
+ {
+  "name": "pg_env1",
+  "keys": [
+   "ENV",
+   "wait 700"
+  ]
+ },
+ {
+  "name": "pg_env2",
+  "keys": [
+   "ENV",
+   "wait 300",
+   "ENV",
+   "wait 700"
+  ]
+ },
+ {
+  "name": "pg_lfo1",
+  "keys": [
+   "LFO",
+   "wait 700"
+  ]
+ },
+ {
+  "name": "pg_lfo2",
+  "keys": [
+   "LFO",
+   "wait 300",
+   "LFO",
+   "wait 700"
+  ]
+ },
+ {
+  "name": "pg_lfo3",
+  "keys": [
+   "LFO",
+   "wait 300",
+   "LFO",
+   "wait 300",
+   "LFO",
+   "wait 700"
+  ]
+ },
+ {
+  "name": "pg_lfo4",
+  "keys": [
+   "LFO",
+   "wait 300",
+   "LFO",
+   "wait 300",
+   "LFO",
+   "wait 300",
+   "LFO",
+   "wait 700"
+  ]
+ },
+ {
+  "name": "pg_fx1",
+  "keys": [
+   "FX",
+   "wait 700"
+  ]
+ },
+ {
+  "name": "pg_fx2",
+  "keys": [
+   "FX",
+   "wait 300",
+   "FX",
+   "wait 700"
+  ]
+ },
+ {
+  "name": "pg_fx3",
+  "keys": [
+   "FX",
+   "wait 300",
+   "FX",
+   "wait 300",
+   "FX",
+   "wait 700"
+  ]
+ },
+ {
+  "name": "pg_fx4",
+  "keys": [
+   "FX",
+   "wait 300",
+   "FX",
+   "wait 300",
+   "FX",
+   "wait 300",
+   "FX",
+   "wait 700"
+  ]
+ },
+ {
+  "name": "pg_fx5",
+  "keys": [
+   "FX",
+   "wait 300",
+   "FX",
+   "wait 300",
+   "FX",
+   "wait 300",
+   "FX",
+   "wait 300",
+   "FX",
+   "wait 700"
+  ]
+ },
+ {
+  "name": "pg_fx6",
+  "keys": [
+   "FX",
+   "wait 300",
+   "FX",
+   "wait 300",
+   "FX",
+   "wait 300",
+   "FX",
+   "wait 300",
+   "FX",
+   "wait 300",
+   "FX",
+   "wait 700"
+  ]
+ },
+ {
+  "name": "pg_fx7",
+  "keys": [
+   "FX",
+   "wait 300",
+   "FX",
+   "wait 300",
+   "FX",
+   "wait 300",
+   "FX",
+   "wait 300",
+   "FX",
+   "wait 300",
+   "FX",
+   "wait 300",
+   "FX",
+   "wait 700"
+  ]
+ },
+ {
+  "name": "pg_fx8",
+  "keys": [
+   "FX",
+   "wait 300",
+   "FX",
+   "wait 300",
+   "FX",
+   "wait 300",
+   "FX",
+   "wait 300",
+   "FX",
+   "wait 300",
+   "FX",
+   "wait 300",
+   "FX",
+   "wait 300",
+   "FX",
+   "wait 700"
+  ]
+ },
+ {
+  "name": "pg_fx9",
+  "keys": [
+   "FX",
+   "wait 300",
+   "FX",
+   "wait 300",
+   "FX",
+   "wait 300",
+   "FX",
+   "wait 300",
+   "FX",
+   "wait 300",
+   "FX",
+   "wait 300",
+   "FX",
+   "wait 300",
+   "FX",
+   "wait 300",
+   "FX",
+   "wait 700"
+  ]
+ },
+ {
+  "name": "pg_scl1",
+  "keys": [
+   "SCL",
+   "wait 700"
+  ]
+ },
+ {
+  "name": "pg_scl2",
+  "keys": [
+   "SCL",
+   "wait 300",
+   "SCL",
+   "wait 700"
+  ]
+ },
+ {
+  "name": "pg_arp1",
+  "keys": [
+   "ARP",
+   "wait 700"
+  ]
+ },
+ {
+  "name": "pg_arp2",
+  "keys": [
+   "ARP",
+   "wait 300",
+   "ARP",
+   "wait 700"
+  ]
+ },
+ {
+  "name": "pg_seq1",
+  "keys": [
+   "SEQ",
+   "wait 700"
+  ]
+ },
+ {
+  "name": "pg_seq2",
+  "keys": [
+   "SEQ",
+   "wait 300",
+   "SEQ",
+   "wait 700"
+  ]
+ },
+ {
+  "name": "pg_seq3",
+  "keys": [
+   "SEQ",
+   "wait 300",
+   "SEQ",
+   "wait 300",
+   "SEQ",
+   "wait 700"
+  ]
+ },
+ {
+  "name": "pg_save1",
+  "keys": [
+   "SAVE",
+   "wait 700"
+  ]
+ },
+ {
+  "name": "pg_save2",
+  "keys": [
+   "SAVE",
+   "wait 300",
+   "SAVE",
+   "wait 700"
+  ]
+ },
+ {
+  "name": "pg_save3",
+  "keys": [
+   "SAVE",
+   "wait 300",
+   "SAVE",
+   "wait 300",
+   "SAVE",
+   "wait 700"
+  ]
+ },
+ {
+  "name": "pg_save4",
+  "keys": [
+   "SAVE",
+   "wait 300",
+   "SAVE",
+   "wait 300",
+   "SAVE",
+   "wait 300",
+   "SAVE",
+   "wait 700"
+  ]
+ },
+ {
+  "name": "pg_save5",
+  "keys": [
+   "SAVE",
+   "wait 300",
+   "SAVE",
+   "wait 300",
+   "SAVE",
+   "wait 300",
+   "SAVE",
+   "wait 300",
+   "SAVE",
+   "wait 700"
+  ]
+ },
+ {
+  "name": "pg_save6",
+  "keys": [
+   "SAVE",
+   "wait 300",
+   "SAVE",
+   "wait 300",
+   "SAVE",
+   "wait 300",
+   "SAVE",
+   "wait 300",
+   "SAVE",
+   "wait 300",
+   "SAVE",
+   "wait 700"
+  ]
+ },
+ {
+  "name": "pg_glo1",
+  "keys": [
+   "GLO",
+   "wait 700"
+  ]
+ },
+ {
+  "name": "pg_home",
+  "keys": [
+   "wait 3000"
+  ]
+ },
+ {
+  "name": "pg_mixer",
+  "keys": [
+   "HOME",
+   "wait 700"
+  ]
+ },
+ {
+  "name": "pg_clock",
+  "keys": [
+   "HOME",
+   "wait 300",
+   "HOME",
+   "wait 700"
+  ]
+ }
 ]

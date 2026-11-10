@@ -12,7 +12,7 @@
  * voice bank (fm6_vbank.c, read from the flash as it is), 12 SLICE's MAN slices of the three user slots (slice_store.c
  * records, put back once the samples are). A build without one of them lists it empty and refuses it (1).
  */
-#ifdef P6ST_MAGIC                               /* (p600_store.c: a P600 flash build's) */
+#ifdef P6ST_STORE                               /* (p600_store.c: a P600 flash build's) */
 #define ED_BK_P6 1
 #else
 #define ED_BK_P6 0
@@ -100,7 +100,6 @@ static uint32_t ed_bk_capture(void)
     settings_export(&ed_bk_settings);
 #if ED_BK_P6
     p6st.magic = P6ST_MAGIC; p6st.ver = 1u; p6st.n = P6_NIMP;   /* the places as they are now (p600_store_poll) */
-    for (uint32_t i = 0; i < P6_NIMP; i++) p6st.imp[i] = p6_imp[i];
 #endif
 #if FELUCCA_FLASH && FELUCCA_SLICE
     for (uint32_t k = 0; k < SMP_USER_SLOTS; k++) {
@@ -147,10 +146,8 @@ static uint32_t ed_bk_p600(const uint8_t *raw, uint32_t len)
         memset(&p6st, 0, sizeof p6st);
         p6st.magic = P6ST_MAGIC; p6st.ver = 1u; p6st.n = P6_NIMP;
     }
-    for (i = 0; i < P6_NIMP; i++) {
-        p6_imp[i] = p6st.imp[i];
+    for (i = 0; i < P6_NIMP; i++)                      /* (p6_imp is p6st.imp: the places as restored) */
         p6_imp[i].name[15] = 0;
-    }
     p600_apply();
     p6_dirty = 0;
     p6st_ok = !(h->magic == SMP_USER_MAGIC && h->data_len > SMP_SLOT_END(2u) - SMP_USER_DATA);   /* (p600_boot) */

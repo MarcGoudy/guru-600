@@ -23,8 +23,8 @@ CH("reset", "Resets, calibration and rescue", "Réinitialisations, calibrage et 
          "ARE YOU SURE? / ALL WILL BE ERASED : <b>OCT+</b> confirme, OCT− annule."),
         ("The Guru-600 restarts as new.",
          "Le Guru-600 redémarre comme neuf.")]) +
- P2("First back up what you want to keep (the Felucca web editor's backup, chapter {ch:install}). The Mac application works the same way.",
-    "Sauvegardez d'abord ce que vous voulez conserver (la sauvegarde de l'éditeur web Felucca, chapitre {ch:install}). L'application Mac fonctionne de la même façon.") +
+ P2("First back up what you want to keep (the BACKUP page of the Guru-600 editor, chapter {ch:editor}). The Mac application works the same way.",
+    "Sauvegardez d'abord ce que vous voulez conserver (la page BACKUP de l'éditeur Guru-600, chapitre {ch:editor}). L'application Mac fonctionne de la même façon.") +
  H3("CALIBRATION: when a button or knob responds incorrectly", "CALIBRATION : quand un bouton répond mal") +
  P2("If a button acts like another one, or a knob turns the wrong way, teach the FM-1 its controls again:",
     "Si un bouton agit comme un autre, ou si un bouton rotatif tourne à l'envers, réapprenez ses commandes au FM-1 :") +

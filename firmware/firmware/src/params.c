@@ -168,6 +168,11 @@ static const param_desc_t TP[P_COUNT] = {
     [P_IMIX] = PD("MIX", F_PCT, 0, 127, 127),
     [P_FTYPE] = PE("TYPE", N_FTYPE, 0),           /* 1.5 (#104): ANALOG's filter, LP = as before (eng_analog.c) */
     [P_ESYNC] = PE("ESYNC", N_ONOFF, 0),          /* 1.5 (#175): OFF = ATK DEC REL in ms, as before (voice.c esync) */
+    [P_JTYPE] = PE("INSR2", N_ITYPE, 0),           /* Guru-600: INSERT 2, as the first (OFF: as before) */
+    [P_JA] = PD("INS A", F_PCT, 0, 127, 64),
+    [P_JB] = PD("INS B", F_PCT, 0, 127, 96),
+    [P_JC] = PD("INS C", F_PCT, 0, 127, 96),
+    [P_JMIX] = PD("MIX", F_PCT, 0, 127, 127),
 };
 
 /* the INSERT's A B C as its TYPE means them (TP's ranges and defaults): the drives DRIVE TONE LEVEL, CRUSH BITS RATE
@@ -258,6 +263,8 @@ static const param_desc_t *track_desc(const track_t *t, uint32_t id)
     }
     if (id >= P_IA && id <= P_IC)                     /* the INSERT's values as its TYPE names them */
         return ins_desc(t->p[P_ITYPE], id - P_IA);
+    if (id >= P_JA && id <= P_JC)                     /* (INSERT 2's alike) */
+        return ins_desc(t->p[P_JTYPE], id - P_JA);
     if (t->p[P_ESYNC] && (id == P_ATK || id == P_DEC || id == P_REL))   /* ENV SYNC: note values (1.5, #175) */
         return &ESYNC_DESC[id == P_ATK ? 0 : id == P_DEC ? 1 : 2];
     return &TP[id];
@@ -482,6 +489,8 @@ static const page_t PAGES[] = {
     {"SLICER", FAM_FX, SC_TRACK, GR_SLCR, {P_SLCR, P_SLPAT, P_SLRATE, P_SLDEPTH}},
     {"INSERT", FAM_FX, SC_TRACK, GR_INS, {P_ITYPE, P_IA, P_IB, P_IC}},   /* 1.5: the track's INSERT (fx.c) */
     {"INSERT 2", FAM_FX, SC_TRACK, GR_INS, {P_IMIX, 0xFF, 0xFF, 0xFF}},  /* .. its dry / wet */
+    {"INSERT B", FAM_FX, SC_TRACK, GR_INS, {P_JTYPE, P_JA, P_JB, P_JC}},   /* Guru-600: the second INSERT, after the first */
+    {"INSERT B 2", FAM_FX, SC_TRACK, GR_INS, {P_JMIX, 0xFF, 0xFF, 0xFF}},
     {"DLY", FAM_FX, SC_GLOBAL, GR_NONE, {G_DTIME, G_DFDBK, G_DCOLOR, G_DMIX}},
     {"REVERB", FAM_FX, SC_GLOBAL, GR_NONE, {G_RTYPE, G_RSIZE, G_RDAMP, 0xFF}},   /* TYPE: ROOM / SPRING / HALL */
     {"CHORUS", FAM_FX, SC_GLOBAL, GR_NONE, {G_CRATE, G_CDEPTH, 0xFF, 0xFF}},

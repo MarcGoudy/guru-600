@@ -1,7 +1,10 @@
 """Écran d'accueil « Guru~600 » du firmware (240 x 240) : aperçu PNG + en-tête C (alpha 4 bits, rampe de couleurs).
     venv/bin/python p600/make_splash.py p600/fonts/vimongrong/MONRON1T.TTF p600/splash ../Felucca/firmware/src/p600_splash.h"""
+import os
 import sys
 from PIL import Image, ImageDraw, ImageFont
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "Felucca", "tools"))
+import lz4blk                                                  # (10/11 : les images compressées sans perte, LZ4)
 
 BG, FG, SUB = (12, 11, 10), (238, 232, 216), (214, 84, 64)    # noir du panneau, crème du logo, rouge de la mention
 CREDC = (168, 162, 150)                                        # le crédit Felucca : plus discret, lisible
@@ -27,7 +30,7 @@ def text_direct(font_path, text, px, pad=2):   # drawn at its size by FreeType (
     return im
 
 
-INTER = "/Users/marcmasse/Documents/FM-1/Felucca/assets/fonts/InterTight[wght].ttf"
+INTER = os.path.expanduser("~/Documents/FM-1/Felucca/assets/fonts/InterTight[wght].ttf")
 
 
 def tracked(text, px, weight, track):       # du texte Inter Tight à la graisse donnée, lettres espacées de track px
@@ -76,7 +79,10 @@ def main(font, outdir, header):
 
     L = ["/* SPDX-License-Identifier: GPL-3.0-only */",
          "/* The power-on screen « Guru~600 » (ui_draw.c draw_splash): made by p600/make_splash.py, do not edit. Alpha 4 bits a",
-         " * pixel (two a byte, low nibble first), coloured through a 16-step ramp from the panel's black (byte-swapped RGB565) */"]
+         " * pixel (two a byte, low nibble first), coloured through a 16-step ramp from the panel's black (byte-swapped RGB565).",
+         " * Each area's alpha is kept LZ4-compressed (SPL_x_Z, lossless; its size unpacked SPL_x_N) and unpacked at power-on",
+         " * into the canvas, free while the splash runs (ui_draw.c splash_unpack): SPL_x_A points there */"]
+    Z = []
     v = ramp(FG)[0]
     L.append("static const uint16_t SPL_BG = 0x%04X;   /* (lcd_fill takes it as the theme's colours: in order) */" %
              (((v & 255) << 8) | (v >> 8)))
@@ -93,11 +99,22 @@ def main(font, outdir, header):
                      ", ".join("0x%04X" % v for v in ramp((255, 252, 244))))
             L.append("static const uint16_t SPL_WAVE_RAMP[16] = {%s};" % ", ".join("0x%04X" % v for v in ramp(WAVE)))
         d = packed(im)
-        L.append("static const uint8_t SPL_%s_A[%d] = {" % (name, len(d)))
-        for i in range(0, len(d), 24):
-            L.append("    " + ", ".join(str(b) for b in d[i:i + 24]) + ",")
+        z = lz4blk.compress(bytes(d))
+        assert lz4blk.decompress(z) == bytes(d)                # (sans perte : vérifié)
+        Z.append((name, len(d), len(z)))
+        L.append("#define SPL_%s_N %d" % (name, len(d)))
+        L.append("static const uint8_t SPL_%s_Z[%d] = {" % (name, len(z)))
+        for i in range(0, len(z), 24):
+            L.append("    " + ", ".join(str(b) for b in z[i:i + 24]) + ",")
         L.append("};")
+    L.append("static const uint8_t *const SPL_Z[%d] = {%s};" % (len(Z), ", ".join("SPL_%s_Z" % n for n, _, _ in Z)))
+    L.append("static const uint16_t SPL_ZN[%d][2] = {%s};   /* packed, unpacked */" %
+             (len(Z), ", ".join("{%d, %d}" % (b, a) for _, a, b in Z)))
+    L.append("static const uint8_t *spl_a[%d];   /* the unpacked areas (in the canvas, during the splash) */" % len(Z))
+    for k, (n, _, _) in enumerate(Z):
+        L.append("#define SPL_%s_A (spl_a[%d])" % (n, k))
     open(header, "w").write("\n".join(L) + "\n")
+    print("compressé :", ", ".join("%s %d -> %d" % z for z in Z))
     print("logo", logo.size, "mention", sub.size, "->", header)
 
 

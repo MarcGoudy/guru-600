@@ -2,7 +2,7 @@
 import math, os, subprocess, sys
 from PIL import Image, ImageDraw, ImageFont, ImageFilter
 
-UNC = "/Users/marcmasse/Documents/FM-1/p600/fonts/American Uncial MN.otf"
+UNC = os.path.expanduser("~/Documents/FM-1/p600/fonts/American Uncial MN.otf")
 N = 1024
 BG, CREAM, RED = (14, 13, 12), (238, 232, 216), (255, 64, 48)
 

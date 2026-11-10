@@ -1,0 +1,830 @@
+{
+ "sound": {
+  "SOURCE AMOUNT": {
+   "fr": "QTÉ SOURCE",
+   "de": "QUELLE INT.",
+   "es": "CANT. FUENTE",
+   "it": "QTÀ SORGENTE",
+   "zh": "源调制量",
+   "ja": "ソース量"
+  },
+  "DESTINATION": {
+   "fr": "DESTINATION",
+   "de": "ZIEL",
+   "es": "DESTINO",
+   "it": "DESTINAZIONE",
+   "zh": "目标",
+   "ja": "変調先"
+  },
+  "FILTER": {
+   "fr": "FILTRE",
+   "de": "FILTER",
+   "es": "FILTRO",
+   "it": "FILTRO",
+   "zh": "滤波器",
+   "ja": "フィルタ"
+  },
+  "FREQUENCY": {
+   "fr": "FRÉQUENCE",
+   "de": "FREQUENZ",
+   "es": "FRECUENCIA",
+   "it": "FREQUENZA",
+   "zh": "频率",
+   "ja": "周波数"
+  },
+  "SHAPE": {
+   "fr": "FORME",
+   "de": "FORM",
+   "es": "FORMA",
+   "it": "FORMA",
+   "zh": "波形",
+   "ja": "波形"
+  },
+  "INITIAL AMOUNT": {
+   "fr": "QTÉ INITIALE",
+   "de": "ANFANGS-INT.",
+   "es": "CANT. INICIAL",
+   "it": "QTÀ INIZIALE",
+   "zh": "初始量",
+   "ja": "初期量"
+  },
+  "OSCILLATOR A": {
+   "fr": "OSCILLATEUR A",
+   "de": "OSZILLATOR A",
+   "es": "OSCILADOR A",
+   "it": "OSCILLATORE A",
+   "zh": "振荡器A",
+   "ja": "オシレータA"
+  },
+  "OSCILLATOR B": {
+   "fr": "OSCILLATEUR B",
+   "de": "OSZILLATOR B",
+   "es": "OSCILADOR B",
+   "it": "OSCILLATORE B",
+   "zh": "振荡器B",
+   "ja": "オシレータB"
+  },
+  "FINE": {
+   "fr": "PRÉCIS",
+   "de": "FEIN",
+   "es": "FINO",
+   "it": "FINE",
+   "zh": "微调",
+   "ja": "微調整"
+  },
+  "MIXER": {
+   "fr": "MÉLANGE",
+   "de": "MISCHER",
+   "es": "MEZCLA",
+   "it": "MIXER",
+   "zh": "混音器",
+   "ja": "ミキサー"
+  },
+  "ENVELOPE AMOUNT": {
+   "fr": "QTÉ ENVELOPPE",
+   "de": "HÜLLK. INT.",
+   "es": "CANT. ENVOLVENTE",
+   "it": "QTÀ INVILUPPO",
+   "zh": "包络量",
+   "ja": "EG量"
+  },
+  "KEYBOARD": {
+   "fr": "CLAVIER",
+   "de": "TASTATUR",
+   "es": "TECLADO",
+   "it": "TASTIERA",
+   "zh": "键盘跟随",
+   "ja": "鍵盤追従"
+  },
+  "OFF": {
+   "fr": "NON",
+   "de": "AUS",
+   "es": "NO",
+   "it": "NO",
+   "zh": "关",
+   "ja": "オフ"
+  },
+  "HALF": {
+   "fr": "MOITIÉ",
+   "de": "HALB",
+   "es": "MITAD",
+   "it": "METÀ",
+   "zh": "一半",
+   "ja": "ハーフ"
+  },
+  "FULL": {
+   "fr": "TOTAL",
+   "de": "VOLL",
+   "es": "TOTAL",
+   "it": "PIENO",
+   "zh": "全部",
+   "ja": "フル"
+  },
+  "FILTER ENVELOPE": {
+   "fr": "ENV. FILTRE",
+   "de": "FILTER-HÜLLK.",
+   "es": "ENV. FILTRO",
+   "it": "INV. FILTRO",
+   "zh": "滤波包络",
+   "ja": "フィルタEG"
+  },
+  "AMPLIFIER": {
+   "fr": "AMPLI",
+   "de": "VERSTÄRKER",
+   "es": "AMPLIFICADOR",
+   "it": "AMPLI",
+   "zh": "放大器",
+   "ja": "アンプ"
+  },
+  "VOICE": {
+   "fr": "VOIX",
+   "de": "STIMME",
+   "es": "VOZ",
+   "it": "VOCE",
+   "zh": "声部",
+   "ja": "ボイス"
+  },
+  "LEVEL": {
+   "fr": "NIVEAU",
+   "de": "PEGEL",
+   "es": "NIVEL",
+   "it": "LIVELLO",
+   "zh": "电平",
+   "ja": "レベル"
+  },
+  "SPREAD": {
+   "fr": "ÉCART",
+   "de": "BREITE",
+   "es": "APERTURA",
+   "it": "APERTURA",
+   "zh": "扩展",
+   "ja": "広がり"
+  },
+  "EXTRAS": {
+   "fr": "OPTIONS",
+   "de": "EXTRAS",
+   "es": "EXTRAS",
+   "it": "EXTRA",
+   "zh": "附加",
+   "ja": "追加設定"
+  },
+  "WHEEL": {
+   "fr": "MOLETTE",
+   "de": "MOD-RAD",
+   "es": "RUEDA",
+   "it": "ROTELLA",
+   "zh": "滚轮",
+   "ja": "ホイール"
+  },
+  "BASS": {
+   "fr": "BASSE",
+   "de": "BASS",
+   "es": "BAJO",
+   "it": "BASSO",
+   "zh": "贝斯",
+   "ja": "ベース"
+  },
+  "LEAD": {
+   "fr": "LEAD",
+   "de": "LEAD",
+   "es": "LEAD",
+   "it": "LEAD",
+   "zh": "LEAD",
+   "ja": "LEAD"
+  },
+  "PAD": {
+   "fr": "PAD",
+   "de": "PAD",
+   "es": "PAD",
+   "it": "PAD",
+   "zh": "PAD",
+   "ja": "PAD"
+  },
+  "PLUCK": {
+   "fr": "PLUCK",
+   "de": "PLUCK",
+   "es": "PLUCK",
+   "it": "PLUCK",
+   "zh": "PLUCK",
+   "ja": "PLUCK"
+  },
+  "KEYS": {
+   "fr": "CLAVIERS",
+   "de": "TASTEN",
+   "es": "TECLAS",
+   "it": "TASTIERE",
+   "zh": "键盘",
+   "ja": "鍵盤"
+  },
+  "DRUM": {
+   "fr": "PERCUS.",
+   "de": "PERK.",
+   "es": "PERC.",
+   "it": "PERC.",
+   "zh": "打击",
+   "ja": "DRUM"
+  }
+ },
+ "seq": {
+  "LEN": {
+   "fr": "LONG.",
+   "de": "LÄNGE",
+   "es": "LONG.",
+   "it": "LUNG.",
+   "zh": "长度",
+   "ja": "長さ"
+  },
+  "DIV": {
+   "fr": "DIV.",
+   "de": "TEILER",
+   "es": "DIV.",
+   "it": "DIV.",
+   "zh": "分割",
+   "ja": "分割"
+  },
+  "TRANSPOSE": {
+   "fr": "TRANSPOS.",
+   "de": "TRANSPON.",
+   "es": "TRANSPONER",
+   "it": "TRASPORTO",
+   "zh": "移调",
+   "ja": "移調"
+  },
+  "CLEAR": {
+   "fr": "EFFACER",
+   "de": "LÖSCHEN",
+   "es": "BORRAR",
+   "it": "CANCELLA",
+   "zh": "清除",
+   "ja": "クリア"
+  },
+  "REVERSE": {
+   "fr": "INVERSER",
+   "de": "UMKEHREN",
+   "es": "INVERTIR",
+   "it": "INVERTI",
+   "zh": "反转",
+   "ja": "反転"
+  },
+  "SHIFT ◀": {
+   "fr": "DÉCAL. ◀",
+   "de": "VERSCH. ◀",
+   "es": "DESPL. ◀",
+   "it": "SPOSTA ◀",
+   "zh": "移位◀",
+   "ja": "シフト◀"
+  },
+  "SHIFT ▶": {
+   "fr": "DÉCAL. ▶",
+   "de": "VERSCH. ▶",
+   "es": "DESPL. ▶",
+   "it": "SPOSTA ▶",
+   "zh": "移位▶",
+   "ja": "シフト▶"
+  },
+  "RANDOM": {
+   "fr": "ALÉATOIRE",
+   "de": "ZUFALL",
+   "es": "ALEATORIO",
+   "it": "CASUALE",
+   "zh": "随机",
+   "ja": "ランダム"
+  },
+  "COOK": {
+   "fr": "VARIER",
+   "de": "VARIAT.",
+   "es": "VARIAR",
+   "it": "VARIA",
+   "zh": "变奏",
+   "ja": "変奏"
+  },
+  "DOUBLE": {
+   "fr": "DOUBLER",
+   "de": "VERDOPP.",
+   "es": "DOBLAR",
+   "it": "RADDOPPIA",
+   "zh": "加倍",
+   "ja": "2倍"
+  },
+  "HALF": {
+   "fr": "MOITIÉ",
+   "de": "HALB",
+   "es": "MITAD",
+   "it": "METÀ",
+   "zh": "减半",
+   "ja": "半分"
+  },
+  "VELOCITY": {
+   "fr": "VÉLOCITÉ",
+   "de": "ANSCHLAG",
+   "es": "VELOCIDAD",
+   "it": "VELOCITÀ",
+   "zh": "力度",
+   "ja": "ベロシティ"
+  },
+  "CHANCE": {
+   "fr": "PROBA.",
+   "de": "W'KEIT",
+   "es": "PROB.",
+   "it": "PROB.",
+   "zh": "概率",
+   "ja": "確率"
+  },
+  "COND": {
+   "fr": "COND.",
+   "de": "BED.",
+   "es": "COND.",
+   "it": "COND.",
+   "zh": "条件",
+   "ja": "条件"
+  },
+  "PLAY": {
+   "fr": "LECTURE",
+   "de": "ABSPIEL",
+   "es": "REPROD.",
+   "it": "RIPROD.",
+   "zh": "播放",
+   "ja": "再生"
+  }
+ },
+ "arp": {
+  "ARPEGGIATOR": {
+   "fr": "ARPÉGIATEUR",
+   "de": "ARPEGGIATOR",
+   "es": "ARPEGIADOR",
+   "it": "ARPEGGIATORE",
+   "zh": "琶音器",
+   "ja": "アルペジオ"
+  },
+  "MODE": {
+   "fr": "MODE",
+   "de": "MODUS",
+   "es": "MODO",
+   "it": "MODO",
+   "zh": "模式",
+   "ja": "モード"
+  },
+  "REPEAT": {
+   "fr": "RÉPÉT.",
+   "de": "WIEDERH.",
+   "es": "REPETIR",
+   "it": "RIPETI",
+   "zh": "重复",
+   "ja": "リピート"
+  },
+  "CHORD": {
+   "fr": "ACCORD",
+   "de": "AKKORD",
+   "es": "ACORDE",
+   "it": "ACCORDO",
+   "zh": "和弦",
+   "ja": "コード"
+  },
+  "RATE": {
+   "fr": "VITESSE",
+   "de": "GESCHW.",
+   "es": "VELOC.",
+   "it": "VELOC.",
+   "zh": "速率",
+   "ja": "レート"
+  },
+  "PROB": {
+   "fr": "PROBA.",
+   "de": "W'KEIT",
+   "es": "PROB.",
+   "it": "PROB.",
+   "zh": "概率",
+   "ja": "確率"
+  },
+  "HOLD": {
+   "fr": "TENUE",
+   "de": "HALTEN",
+   "es": "RETENER",
+   "it": "TENUTA",
+   "zh": "保持",
+   "ja": "ホールド"
+  },
+  "ORDER": {
+   "fr": "ORDRE",
+   "de": "REIHENF.",
+   "es": "ORDEN",
+   "it": "ORDINE",
+   "zh": "顺序",
+   "ja": "順番"
+  },
+  "NOTE": {
+   "fr": "HAUTEUR",
+   "de": "TONHÖHE",
+   "es": "ALTURA",
+   "it": "ALTEZZA",
+   "zh": "音高",
+   "ja": "音高"
+  },
+  "SCALE": {
+   "fr": "GAMME",
+   "de": "SKALA",
+   "es": "ESCALA",
+   "it": "SCALA",
+   "zh": "音阶",
+   "ja": "スケール"
+  },
+  "ROOT": {
+   "fr": "TONIQUE",
+   "de": "TONIKA",
+   "es": "TÓNICA",
+   "it": "TONICA",
+   "zh": "根音",
+   "ja": "ルート"
+  },
+  "SNAP": {
+   "fr": "AJUSTER",
+   "de": "ANPASS.",
+   "es": "AJUSTAR",
+   "it": "ADATTA",
+   "zh": "吸附",
+   "ja": "スナップ"
+  },
+  "WHITE": {
+   "fr": "BLANCHES",
+   "de": "WEISSE",
+   "es": "BLANCAS",
+   "it": "BIANCHI",
+   "zh": "白键",
+   "ja": "白鍵"
+  },
+  "TRANSPOSE": {
+   "fr": "TRANSPOS.",
+   "de": "TRANSPON.",
+   "es": "TRANSPONER",
+   "it": "TRASPORTO",
+   "zh": "移调",
+   "ja": "移調"
+  },
+  "MEM": {
+   "fr": "MÉM.",
+   "de": "MEM.",
+   "es": "MEM.",
+   "it": "MEM.",
+   "zh": "记忆",
+   "ja": "メモリ"
+  },
+  "VOICING": {
+   "fr": "DISPOSIT.",
+   "de": "LAGE",
+   "es": "DISPOSIC.",
+   "it": "DISPOSIZ.",
+   "zh": "排列",
+   "ja": "和音配置"
+  },
+  "CLOSE": {
+   "fr": "SERRÉE",
+   "de": "ENG",
+   "es": "CERRADA",
+   "it": "STRETTA",
+   "zh": "密集",
+   "ja": "密集"
+  },
+  "OPEN": {
+   "fr": "LARGE",
+   "de": "WEIT",
+   "es": "ABIERTA",
+   "it": "APERTA",
+   "zh": "开放",
+   "ja": "開離"
+  }
+ },
+ "fx": {
+  "TYPE": {
+   "fr": "TYPE",
+   "de": "TYP",
+   "es": "TIPO",
+   "it": "TIPO",
+   "zh": "类型",
+   "ja": "タイプ"
+  },
+  "TONE": {
+   "fr": "TIMBRE",
+   "de": "KLANG",
+   "es": "TONO",
+   "it": "TONO",
+   "zh": "音色",
+   "ja": "トーン"
+  },
+  "DEPTH": {
+   "fr": "PROFOND.",
+   "de": "TIEFE",
+   "es": "PROFUND.",
+   "it": "PROFOND.",
+   "zh": "深度",
+   "ja": "深さ"
+  },
+  "PATTERN": {
+   "fr": "MOTIF",
+   "de": "MUSTER",
+   "es": "PATRÓN",
+   "it": "MOTIVO",
+   "zh": "节奏型",
+   "ja": "パターン"
+  },
+  "SENDS": {
+   "fr": "ENVOIS",
+   "de": "FX-WEGE",
+   "es": "ENVÍOS",
+   "it": "MANDATE",
+   "zh": "发送",
+   "ja": "センド"
+  },
+  "TIME": {
+   "fr": "TEMPS",
+   "de": "ZEIT",
+   "es": "TIEMPO",
+   "it": "TEMPO",
+   "zh": "时间",
+   "ja": "タイム"
+  },
+  "COLOR": {
+   "fr": "COULEUR",
+   "de": "FARBE",
+   "es": "COLOR",
+   "it": "COLORE",
+   "zh": "色彩",
+   "ja": "カラー"
+  },
+  "SIZE": {
+   "fr": "TAILLE",
+   "de": "GRÖSSE",
+   "es": "TAMAÑO",
+   "it": "DIMENS.",
+   "zh": "大小",
+   "ja": "サイズ"
+  },
+  "DAMP": {
+   "fr": "AMORTI",
+   "de": "DÄMPF.",
+   "es": "AMORT.",
+   "it": "SMORZ.",
+   "zh": "阻尼",
+   "ja": "ダンプ"
+  },
+  "MASTER": {
+   "fr": "GÉNÉRAL",
+   "de": "GESAMT",
+   "es": "GENERAL",
+   "it": "GENERALE",
+   "zh": "总控",
+   "ja": "マスター"
+  },
+  "TUNE": {
+   "fr": "ACCORD.",
+   "de": "STIMMEN",
+   "es": "AFINAR",
+   "it": "ACCORDA",
+   "zh": "调音",
+   "ja": "チューン"
+  },
+  "GROOVE": {
+   "fr": "GROOVE",
+   "de": "GROOVE",
+   "es": "GROOVE",
+   "it": "GROOVE",
+   "zh": "律动",
+   "ja": "グルーヴ"
+  }
+ },
+ "mod": {
+  "MOD MATRIX": {
+   "fr": "MATRICE MOD.",
+   "de": "MOD-MATRIX",
+   "es": "MATRIZ MOD.",
+   "it": "MATRICE MOD.",
+   "zh": "调制矩阵",
+   "ja": "マトリクス"
+  },
+  "SOURCE": {
+   "fr": "SOURCE",
+   "de": "QUELLE",
+   "es": "FUENTE",
+   "it": "SORGENTE",
+   "zh": "源",
+   "ja": "ソース"
+  },
+  "DESTINATION": {
+   "fr": "DESTINATION",
+   "de": "ZIEL",
+   "es": "DESTINO",
+   "it": "DESTINAZIONE",
+   "zh": "目标",
+   "ja": "変調先"
+  },
+  "AMOUNT": {
+   "fr": "QUANTITÉ",
+   "de": "INTENS.",
+   "es": "CANTIDAD",
+   "it": "QUANTITÀ",
+   "zh": "调制量",
+   "ja": "変調量"
+  },
+  "DEPTH": {
+   "fr": "PROFOND.",
+   "de": "TIEFE",
+   "es": "PROFUND.",
+   "it": "PROFOND.",
+   "zh": "深度",
+   "ja": "深さ"
+  },
+  "NOTE": {
+   "fr": "NOTE",
+   "de": "NOTE",
+   "es": "NOTA",
+   "it": "NOTA",
+   "zh": "按音符",
+   "ja": "ノート"
+  },
+  "FREE": {
+   "fr": "LIBRE",
+   "de": "FREI",
+   "es": "LIBRE",
+   "it": "LIBERO",
+   "zh": "自由",
+   "ja": "フリー"
+  },
+  "POLARITY": {
+   "fr": "POLARITÉ",
+   "de": "POLARITÄT",
+   "es": "POLARIDAD",
+   "it": "POLARITÀ",
+   "zh": "极性",
+   "ja": "極性"
+  },
+  "BI": {
+   "fr": "BI",
+   "de": "BI",
+   "es": "BI",
+   "it": "BI",
+   "zh": "双极",
+   "ja": "両極"
+  },
+  "UNI": {
+   "fr": "UNI",
+   "de": "UNI",
+   "es": "UNI",
+   "it": "UNI",
+   "zh": "单极",
+   "ja": "単極"
+  },
+  "PHASE": {
+   "fr": "PHASE",
+   "de": "PHASE",
+   "es": "FASE",
+   "it": "FASE",
+   "zh": "相位",
+   "ja": "位相"
+  },
+  "FADE": {
+   "fr": "FONDU",
+   "de": "EINBL.",
+   "es": "FUNDIDO",
+   "it": "DISSOL.",
+   "zh": "渐入",
+   "ja": "フェード"
+  },
+  "VOICE": {
+   "fr": "VOIX",
+   "de": "STIMME",
+   "es": "VOZ",
+   "it": "VOCE",
+   "zh": "声部",
+   "ja": "ボイス"
+  },
+  "MODE": {
+   "fr": "MODE",
+   "de": "MODUS",
+   "es": "MODO",
+   "it": "MODO",
+   "zh": "模式",
+   "ja": "モード"
+  },
+  "RATE": {
+   "fr": "VITESSE",
+   "de": "GESCHW.",
+   "es": "VELOC.",
+   "it": "VELOC.",
+   "zh": "速率",
+   "ja": "レート"
+  },
+  "TIME": {
+   "fr": "TEMPS",
+   "de": "ZEIT",
+   "es": "TIEMPO",
+   "it": "TEMPO",
+   "zh": "时间",
+   "ja": "タイム"
+  },
+  "PRIORITY": {
+   "fr": "PRIORITÉ",
+   "de": "PRIORITÄT",
+   "es": "PRIORIDAD",
+   "it": "PRIORITÀ",
+   "zh": "优先",
+   "ja": "優先"
+  },
+  "LAST": {
+   "fr": "DERNIÈRE",
+   "de": "LETZTE",
+   "es": "ÚLTIMA",
+   "it": "ULTIMA",
+   "zh": "最后",
+   "ja": "最後"
+  },
+  "LOW": {
+   "fr": "GRAVE",
+   "de": "TIEF",
+   "es": "GRAVE",
+   "it": "GRAVE",
+   "zh": "最低",
+   "ja": "最低"
+  },
+  "HIGH": {
+   "fr": "AIGUË",
+   "de": "HOCH",
+   "es": "AGUDA",
+   "it": "ACUTA",
+   "zh": "最高",
+   "ja": "最高"
+  },
+  "VOICES": {
+   "fr": "ATTRIB.",
+   "de": "ZUWEIS.",
+   "es": "ASIGN.",
+   "it": "ASSEGN.",
+   "zh": "分配",
+   "ja": "割当"
+  },
+  "ROTATE": {
+   "fr": "ROTATION",
+   "de": "ROTIEREN",
+   "es": "ROTAR",
+   "it": "ROTAZIONE",
+   "zh": "轮换",
+   "ja": "循環"
+  },
+  "REUSE": {
+   "fr": "RÉUTIL.",
+   "de": "WIEDERV.",
+   "es": "REUSAR",
+   "it": "RIUSO",
+   "zh": "复用",
+   "ja": "再利用"
+  },
+  "ENVELOPE": {
+   "fr": "ENVELOPPE",
+   "de": "HÜLLKURVE",
+   "es": "ENVOLVENTE",
+   "it": "INVILUPPO",
+   "zh": "包络",
+   "ja": "EG"
+  },
+  "TO FILTER": {
+   "fr": "→ FILTRE",
+   "de": "ZUM FILTER",
+   "es": "AL FILTRO",
+   "it": "AL FILTRO",
+   "zh": "至滤波器",
+   "ja": "フィルタへ"
+  },
+  "TO PITCH": {
+   "fr": "→ HAUTEUR",
+   "de": "ZUR TONH.",
+   "es": "A ALTURA",
+   "it": "ALL'ALTEZZA",
+   "zh": "至音高",
+   "ja": "音高へ"
+  },
+  "TO SHAPE": {
+   "fr": "→ FORME",
+   "de": "ZUR FORM",
+   "es": "A FORMA",
+   "it": "ALLA FORMA",
+   "zh": "至波形",
+   "ja": "波形へ"
+  }
+ },
+ "tracks": {
+  "ENGINE": {
+   "fr": "MOTEUR",
+   "de": "KLANGERZ.",
+   "es": "MOTOR",
+   "it": "MOTORE",
+   "zh": "引擎",
+   "ja": "エンジン"
+  },
+  "SELECT": {
+   "fr": "SÉLECT.",
+   "de": "WÄHLEN",
+   "es": "ELEGIR",
+   "it": "SCEGLI",
+   "zh": "选择",
+   "ja": "選択"
+  }
+ }
+}

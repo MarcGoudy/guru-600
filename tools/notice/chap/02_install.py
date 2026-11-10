@@ -1,9 +1,7 @@
 # 2 · Installing the Guru-600 on an FM-1
 CH("install", "Installing the Guru-600 on an FM-1", "Installer le Guru-600 sur un FM-1",
- BOX("warn", ("The Guru-600 1.0 is a first release, installed at your own risk: the author accepts no responsibility if your FM-1 is "
-              "damaged or misbehaves. The Guru-600 replaces the official M-VAVE firmware, which you can put back at any time.",
-              "Le Guru-600 1.0 est une première version, installée à vos risques : l'auteur décline toute responsabilité si votre FM-1 "
-              "est endommagé ou fonctionne mal. Le Guru-600 remplace le firmware officiel de M-VAVE, que vous pouvez remettre à tout moment.")) +
+ BOX("note", ("The Guru-600 has been tested on the FM-1: the sound, the sequencer, the saving and the installation work, and no fault is known to date. It replaces the official M-VAVE firmware, which you can put back at any time. Like all free software, it comes as it is, without warranty: back up your projects before installing.",
+              "Le Guru-600 a été testé sur le FM-1 : le son, le séquenceur, les sauvegardes et l'installation fonctionnent, et aucun défaut n'est connu à ce jour. Il remplace le firmware officiel de M-VAVE, que vous pouvez remettre à tout moment. Comme tout logiciel libre, il est fourni tel quel, sans garantie : sauvegardez vos projets avant d'installer.")) +
  H3("What you need", "Ce qu'il vous faut") +
  LI([("The FM-1.",
       "Le FM-1."),
@@ -36,20 +34,20 @@ CH("install", "Installing the Guru-600 on an FM-1", "Installer le Guru-600 sur u
    [("The FM-1 in update mode was not found.", "Le FM-1 en mode mise à jour est introuvable."), ("Replug the USB cable and press Install again.", "Rebranchez le câble USB et cliquez de nouveau sur Installer.")],
    [("The FM-1 did not come back.", "Le FM-1 n'est pas revenu."), ("Switch it off and on again.", "Éteignez-le puis rallumez-le.")],
    [("The file to install is damaged.", "Le fichier à installer est endommagé."), ("Reload the page and start again.", "Rechargez la page et recommencez.")]]) +
- P2("If the FM-1 runs a firmware from another author that the installation page does not find, first put back the official M-VAVE firmware with M-VAVE's updater, then install the Guru-600.",
-    "Si le FM-1 utilise un firmware d'un autre auteur que la page d'installation ne trouve pas, remettez d'abord le firmware officiel avec l'outil de mise à jour de M-VAVE, puis installez le Guru-600.") +
+ P2("From the official firmware, Felucca or another version of the Guru-600, the installation is direct. Only a firmware from another author, which the page would not recognise, needs the official M-VAVE firmware put back first (with M-VAVE's updater).",
+    "Depuis le firmware officiel, Felucca ou une autre version du Guru-600, l'installation est directe. Seul un firmware d'un autre auteur, que la page ne reconnaîtrait pas, demande de remettre d'abord le firmware officiel de M-VAVE (avec son outil de mise à jour).") +
  P2("If the FM-1 no longer starts and the computer sees a USB device named <b>WL80UBOOT</b>: try another USB data cable, close the other applications that use MIDI and run the installation again. If the FM-1 stays in this mode, recover it with the FM-1 Transporter (link on the installation page).",
     "Si le FM-1 ne démarre plus et que l'ordinateur voit un périphérique USB nommé <b>WL80UBOOT</b> : essayez un autre câble USB de données, fermez les autres applications qui utilisent le MIDI et relancez l'installation. Si le FM-1 reste dans ce mode, récupérez-le avec le FM-1 Transporter (lien sur la page d'installation).") +
  H3("Updating the Guru-600", "Mettre à jour le Guru-600") +
- P2("A new version installs the same way, from the installation page. First back up with the Felucca web editor.",
-    "Une nouvelle version s'installe de la même façon, depuis la page d'installation. Sauvegardez d'abord avec l'éditeur web Felucca.") +
+ P2("A new version installs the same way, from the installation page. First back up with the BACKUP page of the Guru-600 editor (chapter {ch:editor}).",
+    "Une nouvelle version s'installe de la même façon, depuis la page d'installation. Sauvegardez d'abord avec la page BACKUP de l'éditeur Guru-600 (chapitre {ch:editor}).") +
  H3("Switching to another firmware, then coming back", "Passer à un autre firmware, puis revenir") +
- STEPS([("In the Felucca web editor (link on the installation page), click <b>Save backup</b>: a file is saved to the computer.",
-         "Dans l'éditeur web Felucca (lien sur la page d'installation), cliquez sur <b>Save backup</b> : un fichier est enregistré sur l'ordinateur."),
+ STEPS([("In the Guru-600 editor (link on the installation page), on the BACKUP page, click <b>SAVE A BACKUP TO THIS COMPUTER</b>: a file is saved to the computer.",
+         "Dans l'éditeur Guru-600 (lien sur la page d'installation), sur la page BACKUP, cliquez sur <b>SAVE A BACKUP TO THIS COMPUTER</b> : un fichier est enregistré sur l'ordinateur."),
         ("Install the other firmware with its own tool. For the official M-VAVE firmware: M-VAVE's updater, on M-VAVE's site.",
          "Installez l'autre firmware avec son propre outil. Pour le firmware officiel : l'outil de mise à jour de M-VAVE, sur le site de M-VAVE."),
-        ("To come back, install the Guru-600 from the installation page, then in the Felucca web editor click <b>Restore backup</b> and choose the file.",
-         "Pour revenir, installez le Guru-600 depuis la page d'installation, puis, dans l'éditeur web Felucca, cliquez sur <b>Restore backup</b> et choisissez le fichier.")]) +
+        ("To come back, install the Guru-600 from the installation page, then in the Guru-600 editor, on the BACKUP page, choose the file and click <b>RESTORE IT ON THE FM-1</b>.",
+         "Pour revenir, installez le Guru-600 depuis la page d'installation, puis, dans l'éditeur Guru-600, sur la page BACKUP, choisissez le fichier et cliquez sur <b>RESTORE IT ON THE FM-1</b>.")]) +
  P2("The FM-1 comes back exactly as you left it: the current music, the projects, the USER sounds, the P600 sounds kept in the places, the samples and their slices, the FM6 voice bank and the settings.",
     "Le FM-1 revient exactement tel que vous l'aviez laissé : la musique en cours, les projets, les sons USER, les sons P600 rangés dans les places, les échantillons et leurs découpes, la banque de voix FM6 et les réglages.") +
  felucca("Installation", "The Felucca installation guide also explains the Transporter and the recovery tools.",

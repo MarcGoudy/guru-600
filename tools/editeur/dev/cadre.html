@@ -1,0 +1,8 @@
+<!doctype html><meta charset="utf-8"><title>cadre</title>
+<style>html,body{margin:0;background:#222;height:100%;overflow:hidden}iframe{border:0;transform-origin:0 0;position:absolute;left:0;top:0}</style>
+<iframe id="f"></iframe>
+<script>
+const q=new URLSearchParams(location.search), w=+(q.get('w')||1536), h=+(q.get('h')||1024), f=document.getElementById('f');
+f.src='../index.html'+(q.get('q')?'?'+q.get('q'):''); f.width=w; f.height=h;
+const fit=()=>{const s=Math.min(innerWidth/w,innerHeight/h); f.style.transform=`scale(${s})`}; fit(); addEventListener('resize',fit);
+</script>

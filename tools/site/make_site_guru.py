@@ -1,6 +1,6 @@
-"""La page d'installation du Guru-600 (d'après Felucca/web/make_site.py) et la page d'envoi des sons, en cinq langues.
+"""La page d'installation du Guru-600 (d'après Felucca/web/make_site.py) et la page d'envoi des sons, en sept langues.
     venv/bin/python p600/site/make_site_guru.py ../Felucca/build/felucca.fwsc ../Partage/site-installation
-Les textes : strings_en.json (anglais) et strings_tr.json (fr, de, es, it)."""
+Les textes : strings_en.json (anglais) et strings_tr.json (fr, de, es, it, zh, ja)."""
 import json, re, shutil, sys
 from pathlib import Path
 
@@ -8,8 +8,8 @@ HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE.parents[1] / "Felucca" / "web"))
 import make_site                                             # noqa: E402
 
-LANGS = ["en", "fr", "de", "es", "it"]
-NAMES = {"en": "EN", "fr": "FR", "de": "DE", "es": "ES", "it": "IT"}
+LANGS = ["en", "fr", "de", "es", "it", "zh", "ja"]   # (zh, ja: 10/11, Marc: the seven languages of the editor)
+NAMES = {"en": "EN", "fr": "FR", "de": "DE", "es": "ES", "it": "IT", "zh": "中文", "ja": "日本語"}
 VERSION = "1.0"
 
 
@@ -44,6 +44,7 @@ def installer(out):
                   '  <p><b data-t="title"></b></p>', 1)
     h = h.replace('  <p><a href="../editor/" style="color:inherit" data-t="editor"></a></p>',
                   '  <p><a href="../../envoi-sons.html" style="color:inherit" data-t="send"></a></p>\n'
+                  '  <p><a href="../../editor/" style="color:inherit" data-t="geditor"></a></p>\n'
                   '  <p class="small"><a href="../editor/" style="color:inherit" data-t="editor"></a></p>\n'
                   '  <p class="small" style="border:1px solid currentColor;border-radius:8px;padding:8px 12px">'
                   '<span data-t="feedback"></span> <a href="https://github.com/MarcGoudy/guru-600" style="color:inherit">'
@@ -62,7 +63,7 @@ def installer(out):
     h = h.replace("say(`Felucca ${meta.version}`);", "say(`Guru-600 ${meta.version}`);", 1)
     h = h.replace('<details style="margin-top:24px">', '<details style="display:none">', 1)   # (Guru-600: no return to V15 here: M-VAVE's own updater, the guide)
     h = h.replace("`Felucca-backup-", "`Guru-600-backup-", 1)
-    assert "Felucca 1.0" not in h and '"ja"' not in h, "installer: some text left untouched"
+    assert "Felucca 1.0" not in h and h.count('"ja": {') == 1, "installer: some text left untouched"   # (ja: ours only, Felucca's replaced)
     inst.write_text(h, encoding="utf-8")
     shutil.copy(HERE / "MonRong.ttf", inst.parent / "MonRong.ttf")
     shutil.copy(HERE / "MonRong-licence.txt", inst.parent / "MonRong-licence.txt")
@@ -89,6 +90,17 @@ def sender(out):
     (out / "envoi-sons.html").write_text(h, encoding="utf-8")
 
 
+def editor(out):   # the Guru-600 editor (p600/editeur) and its guide (p600/guide), side by side: its ? opens ../guide/
+    P = HERE.parent
+    for d in ("editor", "guide"):
+        shutil.rmtree(out / d, ignore_errors=True)
+    shutil.copytree(P / "editeur", out / "editor", ignore=shutil.ignore_patterns("dev", "sim", "*.md", ".DS_Store"))
+    (out / "guide").mkdir()
+    shutil.copy(P / "guide" / "index.html", out / "guide" / "index.html")
+    for d in ("shots", "fonts"):
+        shutil.copytree(P / "guide" / d, out / "guide" / d)
+
+
 def main(pkg, out):
     out = Path(out)
     make_site.main(pkg, VERSION, str(out))
@@ -102,6 +114,7 @@ def main(pkg, out):
     inst.write_text(h, encoding="utf-8")
     installer(out)
     sender(out)
+    editor(out)
     (out / "index.html").write_text('<!doctype html><meta charset="utf-8"><title>Guru-600</title>'
                                     '<meta http-equiv="refresh" content="0; url=webapp/installer/">'
                                     '<a href="webapp/installer/">Guru-600 installer</a>\n', encoding="utf-8")

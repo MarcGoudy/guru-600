@@ -17,7 +17,8 @@ The Guru-600 turns the M-VAVE FM-1 into an emulator of the Sequential Circuits P
 - **55 places of your own** for P600 sounds, in addition to the 32 USER places.
 - **Prophet-600 sounds sent from a computer** (.syx), and back.
 - **A chord memory**, a MIDI map that follows the GliGli firmware's, a new look and easier navigation.
-- **A complete backup** of the FM-1 with the Felucca web editor: switch to another firmware, come back, and find the machine exactly as you left it.
+- **A complete backup** of the FM-1 with the Guru-600 editor: switch to another firmware, come back, and find the machine exactly as you left it.
+- **The Guru-600 editor**, in the browser: the whole FM-1 on the computer's screen, as a panel inspired by the Prophet-600 with a keyboard: the P600 sounds, the sequencer, the song, the effects, the mix, the projects, the samples, the backup and the settings, with its own guide in 7 languages: **https://marcgoudy.github.io/guru-600/editor/**
 - **A Mac application** (Apple silicon): the whole Guru-600 on the computer's screen, to discover it, prepare sounds or play without the FM-1. Its backups move to and from a FM-1.
 
 Everything Felucca does remains: four tracks, thirteen other sound engines, a 64-step sequencer, an arpeggiator, effects, scales and chords, songs and projects.
@@ -28,7 +29,7 @@ Everything Felucca does remains: four tracks, thirteen other sound engines, a 64
 2. Open the installation page in a MIDI-compatible browser (Chrome, Edge, Brave, Opera…): **https://marcgoudy.github.io/guru-600/**
 3. Press **Install**, and do not unplug the cable or close the page during the installation.
 
-The user guide (PDF, 7 languages) and the Mac application are in the [Releases](https://github.com/MarcGoudy/guru-600/releases).
+The user guide (PDF, 7 languages), the editor for use without internet and its guide, and the Mac application are in the [Releases](https://github.com/MarcGoudy/guru-600/releases).
 
 > **Guru-600 1.0 is a first release, installed at your own risk**: the author accepts no responsibility if your FM-1 is damaged or misbehaves. The official M-VAVE firmware can be put back at any time with M-VAVE's own updater.
 
@@ -59,7 +60,8 @@ Le Guru-600 transforme le M-VAVE FM-1 en émulateur du Prophet-600 de Sequential
 - **55 places à vous** pour les sons P600, en plus des 32 emplacements USER.
 - **Des sons Prophet-600 envoyés depuis un ordinateur** (.syx), et récupérés.
 - **Une mémoire d'accords**, une table MIDI qui suit celle du firmware GliGli, un nouveau visage et une navigation plus simple.
-- **Une sauvegarde complète** du FM-1 avec l'éditeur web Felucca : passez à un autre firmware, revenez, et retrouvez la machine exactement telle que vous l'aviez laissée.
+- **Une sauvegarde complète** du FM-1 avec l'éditeur Guru-600 : passez à un autre firmware, revenez, et retrouvez la machine exactement telle que vous l'aviez laissée.
+- **L'éditeur Guru-600**, dans le navigateur : tout le FM-1 sur l'écran de l'ordinateur, sous la forme d'une façade inspirée du Prophet-600, avec un clavier : les sons P600, le séquenceur, le morceau, les effets, le mixage, les projets, les échantillons, la sauvegarde et les réglages, avec son propre guide en 7 langues : **https://marcgoudy.github.io/guru-600/editor/**
 - **Une application pour Mac** (puce Apple) : tout le Guru-600 sur l'écran de l'ordinateur, pour le découvrir, préparer des sons ou jouer sans le FM-1. Ses sauvegardes passent d'un FM-1 à l'application, et inversement.
 
 Tout ce que fait Felucca demeure : quatre pistes, treize autres moteurs sonores, un séquenceur de 64 pas, un arpégiateur, des effets, des gammes et des accords, des morceaux et des projets.
@@ -70,7 +72,7 @@ Tout ce que fait Felucca demeure : quatre pistes, treize autres moteurs sonores,
 2. Ouvrez la page d'installation dans un navigateur compatible MIDI (Chrome, Edge, Brave, Opera…) : **https://marcgoudy.github.io/guru-600/**
 3. Cliquez sur **Installer**, et ne débranchez pas le câble ni ne fermez la page pendant l'installation.
 
-La notice (PDF, 7 langues) et l'application pour Mac sont dans les [Releases](https://github.com/MarcGoudy/guru-600/releases).
+La notice (PDF, 7 langues), l'éditeur à utiliser sans internet et son guide, et l'application pour Mac sont dans les [Releases](https://github.com/MarcGoudy/guru-600/releases).
 
 > **Le Guru-600 1.0 est une première version, installée à vos risques** : l'auteur décline toute responsabilité si votre FM-1 est endommagé ou fonctionne mal. Le firmware officiel de M-VAVE peut être remis à tout moment avec l'outil de mise à jour de M-VAVE.
 
@@ -101,7 +103,8 @@ Der Guru-600 verwandelt den M-VAVE FM-1 in einen Emulator des Sequential Circuit
 - **55 eigene Plätze** für P600-Sounds, zusätzlich zu den 32 USER-Plätzen.
 - **Prophet-600-Sounds vom Computer** (.syx) senden und zurückholen.
 - **Ein Akkordspeicher**, eine MIDI-Belegung wie bei der GliGli-Firmware, ein neues Aussehen und eine einfachere Navigation.
-- **Ein vollständiges Backup** des FM-1 mit dem Felucca-Webeditor: Wechseln Sie zu einer anderen Firmware, kehren Sie zurück, und das Gerät ist genau so, wie Sie es verlassen haben.
+- **Ein vollständiges Backup** des FM-1 mit dem Guru-600-Editor: Wechseln Sie zu einer anderen Firmware, kehren Sie zurück, und das Gerät ist genau so, wie Sie es verlassen haben.
+- **Der Guru-600-Editor** im Browser: der ganze FM-1 auf dem Bildschirm, als ein vom Prophet-600 inspiriertes Bedienfeld mit Tastatur: die P600-Sounds, der Sequencer, der Song, die Effekte, der Mix, die Projekte, die Samples, das Backup und die Einstellungen, mit eigener Anleitung in 7 Sprachen: **https://marcgoudy.github.io/guru-600/editor/**
 - **Eine Mac-Anwendung** (Apple Silicon): der ganze Guru-600 auf dem Bildschirm, um ihn kennenzulernen, Sounds vorzubereiten oder ohne den FM-1 zu spielen. Ihre Backups lassen sich zwischen FM-1 und Anwendung austauschen.
 
 Alles, was Felucca kann, bleibt erhalten: vier Spuren, dreizehn weitere Klangerzeugungen, ein 64-Schritt-Sequenzer, ein Arpeggiator, Effekte, Skalen und Akkorde, Songs und Projekte.
@@ -112,7 +115,7 @@ Alles, was Felucca kann, bleibt erhalten: vier Spuren, dreizehn weitere Klangerz
 2. Öffnen Sie die Installationsseite in einem MIDI-fähigen Browser (Chrome, Edge, Brave, Opera…): **https://marcgoudy.github.io/guru-600/**
 3. Klicken Sie auf **Installieren**, und ziehen Sie während der Installation weder das Kabel ab noch schließen Sie die Seite.
 
-Die Bedienungsanleitung (PDF, 7 Sprachen) und die Mac-Anwendung finden Sie unter [Releases](https://github.com/MarcGoudy/guru-600/releases).
+Die Bedienungsanleitung (PDF, 7 Sprachen), der Editor zur Nutzung ohne Internet mit seiner Anleitung und die Mac-Anwendung finden Sie unter [Releases](https://github.com/MarcGoudy/guru-600/releases).
 
 > **Der Guru-600 1.0 ist eine erste Version, die Installation erfolgt auf eigene Gefahr**: Der Autor übernimmt keine Verantwortung, wenn Ihr FM-1 beschädigt wird oder nicht richtig funktioniert. Die offizielle M-VAVE-Firmware lässt sich jederzeit mit dem Update-Programm von M-VAVE wieder aufspielen.
 
@@ -143,7 +146,8 @@ El Guru-600 convierte el M-VAVE FM-1 en un emulador del Sequential Circuits Prop
 - **55 lugares propios** para sonidos P600, además de las 32 posiciones USER.
 - **Sonidos del Prophet-600 enviados desde un ordenador** (.syx), y recuperados.
 - **Una memoria de acordes**, un mapa MIDI que sigue el del firmware GliGli, un nuevo aspecto y una navegación más sencilla.
-- **Una copia de seguridad completa** del FM-1 con el editor web Felucca: cambie a otro firmware, vuelva, y encuentre la máquina exactamente como la dejó.
+- **Una copia de seguridad completa** del FM-1 con el editor Guru-600: cambie a otro firmware, vuelva, y encuentre la máquina exactamente como la dejó.
+- **El editor Guru-600**, en el navegador: todo el FM-1 en la pantalla del ordenador, como un panel inspirado en el Prophet-600, con un teclado: los sonidos P600, el secuenciador, la canción, los efectos, la mezcla, los proyectos, las muestras, la copia de seguridad y los ajustes, con su propia guía en 7 idiomas: **https://marcgoudy.github.io/guru-600/editor/**
 - **Una aplicación para Mac** (Apple silicon): todo el Guru-600 en la pantalla del ordenador, para descubrirlo, preparar sonidos o tocar sin el FM-1. Sus copias de seguridad pasan del FM-1 a la aplicación, y al revés.
 
 Todo lo que hace Felucca se mantiene: cuatro pistas, otros trece motores de sonido, un secuenciador de 64 pasos, un arpegiador, efectos, escalas y acordes, canciones y proyectos.
@@ -154,7 +158,7 @@ Todo lo que hace Felucca se mantiene: cuatro pistas, otros trece motores de soni
 2. Abra la página de instalación en un navegador compatible con MIDI (Chrome, Edge, Brave, Opera…): **https://marcgoudy.github.io/guru-600/**
 3. Pulse **Instalar**, y no desconecte el cable ni cierre la página durante la instalación.
 
-El manual (PDF, 7 idiomas) y la aplicación para Mac están en las [Releases](https://github.com/MarcGoudy/guru-600/releases).
+El manual (PDF, 7 idiomas), el editor para usar sin internet y su guía, y la aplicación para Mac están en las [Releases](https://github.com/MarcGoudy/guru-600/releases).
 
 > **El Guru-600 1.0 es una primera versión, instalada bajo su propio riesgo**: el autor no se hace responsable si su FM-1 resulta dañado o funciona mal. El firmware oficial de M-VAVE puede volver a instalarse en cualquier momento con el actualizador de M-VAVE.
 
@@ -185,7 +189,8 @@ Il Guru-600 trasforma l'M-VAVE FM-1 in un emulatore del Sequential Circuits Prop
 - **55 posti tutti vostri** per i suoni P600, oltre alle 32 posizioni USER.
 - **Suoni del Prophet-600 inviati da un computer** (.syx), e recuperati.
 - **Una memoria degli accordi**, una mappa MIDI che segue quella del firmware GliGli, un nuovo aspetto e una navigazione più semplice.
-- **Un backup completo** dell'FM-1 con l'editor web Felucca: passate a un altro firmware, tornate indietro, e ritrovate la macchina esattamente come l'avevate lasciata.
+- **Un backup completo** dell'FM-1 con l'editor Guru-600: passate a un altro firmware, tornate indietro, e ritrovate la macchina esattamente come l'avevate lasciata.
+- **L'editor Guru-600**, nel browser: tutto l'FM-1 sullo schermo del computer, come un pannello ispirato al Prophet-600, con una tastiera: i suoni P600, il sequencer, la song, gli effetti, il mix, i progetti, i campioni, il backup e le impostazioni, con la sua guida in 7 lingue: **https://marcgoudy.github.io/guru-600/editor/**
 - **Un'applicazione per Mac** (Apple silicon): tutto il Guru-600 sullo schermo del computer, per scoprirlo, preparare suoni o suonare senza l'FM-1. I suoi backup passano dall'FM-1 all'applicazione, e viceversa.
 
 Tutto ciò che fa Felucca resta: quattro tracce, altri tredici motori sonori, un sequencer a 64 passi, un arpeggiatore, effetti, scale e accordi, brani e progetti.
@@ -196,7 +201,7 @@ Tutto ciò che fa Felucca resta: quattro tracce, altri tredici motori sonori, un
 2. Aprire la pagina di installazione in un browser compatibile MIDI (Chrome, Edge, Brave, Opera…): **https://marcgoudy.github.io/guru-600/**
 3. Premere **Installa**, e non scollegare il cavo né chiudere la pagina durante l'installazione.
 
-Il manuale (PDF, 7 lingue) e l'applicazione per Mac sono nelle [Releases](https://github.com/MarcGoudy/guru-600/releases).
+Il manuale (PDF, 7 lingue), l'editor da usare senza internet con la sua guida e l'applicazione per Mac sono nelle [Releases](https://github.com/MarcGoudy/guru-600/releases).
 
 > **Il Guru-600 1.0 è una prima versione, installata a proprio rischio**: l'autore declina ogni responsabilità se l'FM-1 viene danneggiato o non funziona bene. Il firmware ufficiale di M-VAVE si può rimettere in qualsiasi momento con lo strumento di aggiornamento di M-VAVE.
 
@@ -227,7 +232,8 @@ Guru-600 将 M-VAVE FM-1 变成 Sequential Circuits Prophet-600（1982 年）的
 - **55 个属于您的位置**，用于存放 P600 音色，另有 32 个 USER 位置。
 - **从电脑发送 Prophet-600 音色**（.syx），也可以取回。
 - **和弦记忆**、沿用 GliGli 固件的 MIDI 对应表、全新的外观和更简便的操作。
-- **FM-1 的完整备份**（使用 Felucca 网页编辑器）：换用其他固件后再换回来，设备会完全恢复到您离开时的状态。
+- **FM-1 的完整备份**（使用 Guru-600 编辑器）：换用其他固件后再换回来，设备会完全恢复到您离开时的状态。
+- **Guru-600 编辑器**（在浏览器中）：在电脑屏幕上呈现完整的 FM-1，形式为一块受 Prophet-600 启发、带键盘的面板：P600 音色、音序器、歌曲、效果、混音、工程、采样、备份和设置，并附有 7 种语言的专属指南：**https://marcgoudy.github.io/guru-600/editor/**
 - **Mac 应用程序**（Apple 芯片）：在电脑屏幕上使用完整的 Guru-600，用来熟悉它、准备音色或在没有 FM-1 时演奏。其备份可以在 FM-1 和应用程序之间互相传递。
 
 Felucca 的所有功能都保留：四条音轨、另外十三个音色引擎、64 步音序器、琶音器、效果器、音阶与和弦、乐曲和工程。
@@ -238,7 +244,7 @@ Felucca 的所有功能都保留：四条音轨、另外十三个音色引擎、
 2. 在支持 MIDI 的浏览器（Chrome、Edge、Brave、Opera……）中打开安装页面：**https://marcgoudy.github.io/guru-600/**
 3. 点击 **安装**，安装过程中请勿拔下数据线，也不要关闭页面。
 
-用户指南（PDF，7 种语言）和 Mac 应用程序位于 [Releases](https://github.com/MarcGoudy/guru-600/releases)。
+用户指南（PDF，7 种语言）、无网络时使用的编辑器及其指南，以及 Mac 应用程序位于 [Releases](https://github.com/MarcGoudy/guru-600/releases)。
 
 > **Guru-600 1.0 是首个版本，安装风险自负**：如果您的 FM-1 损坏或工作异常，作者概不负责。您可以随时用 M-VAVE 的更新工具装回 M-VAVE 官方固件。
 
@@ -269,7 +275,8 @@ Guru-600 は、M-VAVE FM-1 を、MIDI を搭載した最初期のシンセサイ
 - **P600 サウンド用の自分の枠 55**。USER 枠 32 とは別にあります。
 - **コンピューターから Prophet-600 のサウンドを送信**（.syx）し、取り戻すこともできます。
 - **コード・メモリー**、GliGli ファームウェアと同じ MIDI マップ、新しい外観、よりシンプルな操作。
-- **Felucca ウェブ・エディターによる FM-1 の完全バックアップ**：別のファームウェアに切り替えて戻しても、機器は離れたときとまったく同じ状態に戻ります。
+- **Guru-600 エディターによる FM-1 の完全バックアップ**：別のファームウェアに切り替えて戻しても、機器は離れたときとまったく同じ状態に戻ります。
+- **Guru-600 エディター**（ブラウザーで使用）：FM-1 のすべてを、Prophet-600 にインスパイアされた鍵盤付きのパネルとしてコンピューターの画面に表示します。P600 サウンド、シーケンサー、ソング、エフェクト、ミックス、プロジェクト、サンプル、バックアップ、設定。7 言語の専用ガイド付き：**https://marcgoudy.github.io/guru-600/editor/**
 - **Mac 用アプリケーション**（Apple シリコン）：Guru-600 のすべてをコンピューターの画面で使えます。試したり、サウンドを準備したり、FM-1 なしで演奏したりできます。バックアップは FM-1 とアプリケーションの間でやり取りできます。
 
 Felucca の機能はすべてそのまま使えます：4 トラック、ほかの 13 のサウンド・エンジン、64 ステップのシーケンサー、アルペジエーター、エフェクト、スケールとコード、ソングとプロジェクト。
@@ -280,7 +287,7 @@ Felucca の機能はすべてそのまま使えます：4 トラック、ほか�
 2. MIDI 対応のブラウザー（Chrome、Edge、Brave、Opera など）でインストール・ページを開きます：**https://marcgoudy.github.io/guru-600/**
 3. **インストール** を押します。インストール中はケーブルを抜いたり、ページを閉じたりしないでください。
 
-ユーザーガイド（PDF、7 言語）と Mac 用アプリケーションは [Releases](https://github.com/MarcGoudy/guru-600/releases) にあります。
+ユーザーガイド（PDF、7 言語）、インターネットなしで使えるエディターとそのガイド、Mac 用アプリケーションは [Releases](https://github.com/MarcGoudy/guru-600/releases) にあります。
 
 > **Guru-600 1.0 は最初のバージョンで、インストールは自己責任でお願いします**：FM-1 が損傷したり正常に動作しなくなったりしても、作者は一切責任を負いません。M-VAVE の公式ファームウェアは、M-VAVE のアップデーターでいつでも元に戻せます。
 

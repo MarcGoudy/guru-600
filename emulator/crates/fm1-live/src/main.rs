@@ -757,7 +757,7 @@ fn piano(k: Key) -> Option<u8> {
 
 fn button(k: Key) -> Option<u8> {
     Some(match k {
-        Key::Z => 0, Key::X => 1, Key::Space => 12, Key::R => 13,
+        Key::Left => 0, Key::Right => 1, Key::Space => 12, Key::R => 13,   // (OCT- OCT+ on the arrows: Guru-600, 10/11)
         Key::Key1 => 2, Key::Key2 => 3, Key::Key3 => 4, Key::Key4 => 5, Key::Key5 => 6,
         Key::Key6 => 7, Key::Key7 => 8, Key::Key8 => 9, Key::Key9 => 10, Key::Key0 => 11,
         _ => return None,
@@ -804,6 +804,33 @@ fn midi_inputs(o: &Opts, tx: &mpsc::Sender<Action>) -> Vec<midir::MidiInputConne
         eprintln!("MIDI in: no inputs{}", if o.midi == "all" { String::new() } else { format!(" matching {:?}", o.midi) });
     }
     conns
+}
+
+/// Guru-600: the port a MIDI program sends to (a CoreMIDI destination named "Guru-600"): each message as USB-MIDI
+/// packets for the emulated cable. Lives as long as the returned value.
+fn usb_port_in(tx: mpsc::Sender<Vec<u8>>) -> Option<midir::MidiInputConnection<()>> {
+    use midir::os::unix::VirtualInput;
+    let mut input = midir::MidiInput::new("Guru-600").ok()?;
+    input.ignore(midir::Ignore::None);
+    match input.create_virtual("Guru-600", move |_, msg, _| { let _ = tx.send(fm1_soc::usb::packets(msg)); }, ()) {
+        Ok(c) => Some(c),
+        Err(e) => {
+            eprintln!("USB MIDI in: {e}");
+            None
+        }
+    }
+}
+
+/// Guru-600: the port a MIDI program listens to (a CoreMIDI source named "Guru-600"): what the firmware sends over USB.
+fn usb_port_out() -> Option<midir::MidiOutputConnection> {
+    use midir::os::unix::VirtualOutput;
+    match midir::MidiOutput::new("Guru-600").ok()?.create_virtual("Guru-600") {
+        Ok(c) => Some(c),
+        Err(e) => {
+            eprintln!("USB MIDI out: {e}");
+            None
+        }
+    }
 }
 
 /// Pixels of vertical mouse drag per encoder click.
@@ -892,6 +919,10 @@ fn main() {
     let quit = Arc::new(AtomicBool::new(false));
     let (tx, rx) = mpsc::channel::<Action>();
     let _midi = midi_inputs(&o, &tx);
+    // Guru-600: a MIDI port "Guru-600", the emulated FM-1's USB cable: what a MIDI program sends to it reaches the
+    // firmware over its USB-MIDI (fm1-soc usb.rs), what the firmware sends goes back out of it (the editor's link)
+    let (utx, urx) = mpsc::channel::<Vec<u8>>();
+    let _usb_in = usb_port_in(utx);
     let (btx, brx) = mpsc::channel::<Bk>();             // Guru-600: the backup menu's requests, for the machine's thread
 
     let audio_ok = _stream.is_some();
@@ -900,6 +931,8 @@ fn main() {
         let flash = o.flash.clone();
         std::thread::spawn(move || {
             high_priority();
+            let mut usb_out = usb_port_out();
+            let mut usb_sx = Vec::new();
             let start = Instant::now();
             let mut offset_ms = 0.0f64; // wall-clock time given up after falling behind
             let mut last_lcd = Instant::now();
@@ -916,6 +949,19 @@ fn main() {
                 }
                 while let Ok(a) = rx.try_recv() {
                     m.soc.periph.apply(&a);
+                }
+                while let Ok(p) = urx.try_recv() {             // Guru-600: the USB cable, from the computer
+                    if m.soc.usb.out_q.len() < 1 << 16 {
+                        m.soc.usb.out_q.extend(p);
+                    }
+                }
+                if !m.soc.usb.in_q.is_empty() {                 // and to it
+                    let pk = std::mem::take(&mut m.soc.usb.in_q);
+                    for msg in fm1_soc::usb::messages(&pk, &mut usb_sx) {
+                        if let Some(c) = usb_out.as_mut() {
+                            let _ = c.send(&msg);
+                        }
+                    }
                 }
                 while let Ok(b) = brx.try_recv() {          // Guru-600: Backup > Export / Import
                     match b {
@@ -1172,10 +1218,10 @@ fn main() {
         }
         for k in win.get_keys_pressed(KeyRepeat::Yes) {
             match k {
-                Key::Left => turn(0, -1, &mut enc_clicks, &mut turning),
-                Key::Right => turn(0, 1, &mut enc_clicks, &mut turning),
-                Key::Down => turn(1, -1, &mut enc_clicks, &mut turning),
-                Key::Up => turn(1, 1, &mut enc_clicks, &mut turning),
+                Key::LeftBracket => turn(0, -1, &mut enc_clicks, &mut turning),   // ([ ]: SELECT; - =: PRESETS)
+                Key::RightBracket => turn(0, 1, &mut enc_clicks, &mut turning),
+                Key::Minus => turn(1, -1, &mut enc_clicks, &mut turning),
+                Key::Equal => turn(1, 1, &mut enc_clicks, &mut turning),
                 Key::Comma => turn(2, -1, &mut enc_clicks, &mut turning),
                 Key::Period => turn(2, 1, &mut enc_clicks, &mut turning),
                 _ => {}
@@ -1306,7 +1352,7 @@ fn window_smk(o: &Opts, tx: &mpsc::Sender<Action>, lcd: &Mutex<Vec<u16>>, leds: 
             if let Some(id) = piano(k) {
                 want[(id - 21 + 12) as usize] = true; // (piano() gives the FM-1's ids, C4 = 21)
             }
-            let b = match k { Key::Z => Some(4), Key::X => Some(5), Key::Space => Some(16), Key::R => Some(17), _ => None };
+            let b = match k { Key::Left => Some(4), Key::Right => Some(5), Key::Space => Some(16), Key::R => Some(17), _ => None };
             if let Some(b) = b {
                 want[(btn0 + b) as usize] = true;
             }
@@ -1335,10 +1381,10 @@ fn window_smk(o: &Opts, tx: &mpsc::Sender<Action>, lcd: &Mutex<Vec<u16>>, leds: 
         }
         for k in win.get_keys_pressed(KeyRepeat::Yes) {
             match k {
-                Key::Left => turn(0, -1, &mut enc_clicks, &mut turning),
-                Key::Right => turn(0, 1, &mut enc_clicks, &mut turning),
-                Key::Down => turn(1, -1, &mut enc_clicks, &mut turning),
-                Key::Up => turn(1, 1, &mut enc_clicks, &mut turning),
+                Key::LeftBracket => turn(0, -1, &mut enc_clicks, &mut turning),   // ([ ]: SELECT; - =: PRESETS)
+                Key::RightBracket => turn(0, 1, &mut enc_clicks, &mut turning),
+                Key::Minus => turn(1, -1, &mut enc_clicks, &mut turning),
+                Key::Equal => turn(1, 1, &mut enc_clicks, &mut turning),
                 Key::Comma => turn(2, -1, &mut enc_clicks, &mut turning),
                 Key::Period => turn(2, 1, &mut enc_clicks, &mut turning),
                 _ => {}

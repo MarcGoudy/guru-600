@@ -31,7 +31,7 @@
 </head>
 <body>
 <main>
-  <nav class="langs"><button data-l="en">EN</button><button data-l="fr">FR</button><button data-l="de">DE</button><button data-l="es">ES</button><button data-l="it">IT</button></nav>
+  <nav class="langs"><button data-l="en">EN</button><button data-l="fr">FR</button><button data-l="de">DE</button><button data-l="es">ES</button><button data-l="it">IT</button><button data-l="zh">中文</button><button data-l="ja">日本語</button></nav>
   <h1 class="logo">guru-600</h1>
   <p class="sub" data-t="sub"></p>
 
@@ -266,9 +266,83 @@ const T = {
   "got": " suoni salvati nel file (cartella Download).",
   "noinput": "L'FM-1 non risponde. Verificare che abbia Guru-600 e sia collegato via USB, poi premere di nuovo Connetti.",
   "nokept": "Nessun suono salvato o importato sull'FM-1."
+ },
+ "zh": {
+  "sub": "将 Prophet-600 音色（.syx）发送到运行 Guru-600 的 FM-1。即使关机，音色也会保留在 FM-1 中。",
+  "s1": "1. 连接 FM-1",
+  "connect": "连接",
+  "h1": "用 USB 数据线将 FM-1 连接到这台电脑并开机。请使用 Chrome、Edge 或其他基于 Chrome 的浏览器（Brave、Opera…），并在浏览器请求时允许 MIDI（SysEx）访问。",
+  "s2": "2. 打开音色文件",
+  "h2": "Prophet-600 的 .syx 文件：Sequential 原版程序转储，或 GliGli 固件的音色文件。一个文件可以包含一个音色，也可以包含整个 100 个音色的音色库。",
+  "s3": "3. 选择位置并发送",
+  "h3": "每个音色都会存入您输入的位置（1 至 255，与 PRESETS 中的编号一致），并替换该位置的内置音色，直到执行 RESET SOUNDS。总共最多可发送 55 个音色。",
+  "from": "全部发送，起始位置",
+  "sendall": "全部发送",
+  "name": "音色",
+  "place": "位置",
+  "send": "发送",
+  "s4": "重置",
+  "h4": "清除所有已发送或已保存的音色：恢复 255 个内置音色。（与 FM-1 上的 MENU > SYSTEM > RESET SOUNDS 相同。）",
+  "reset": "恢复原始音色",
+  "sure": "清除所有已发送或已保存的音色，并恢复 255 个原始音色？",
+  "nomidi": "此浏览器不支持 Web MIDI。请使用 Chrome、Edge 或其他基于 Chrome 的浏览器（Brave、Opera…）。",
+  "denied": "未获准访问 MIDI（SysEx）。请在网站设置中允许访问，然后重试。",
+  "noport": "未找到 MIDI 输出。请检查 USB 线（须为数据线），并确认 FM-1 已开机。",
+  "ready": "已连接到 ",
+  "loaded": " 个音色在此文件中。",
+  "none": "此文件中没有 Prophet-600 音色。",
+  "sent": "已发送：",
+  "done": "完成。这些音色已在 FM-1 的 PRESETS 列表中。",
+  "resetok": "重置指令已发送。",
+  "s5": "取回音色",
+  "h5": "从 FM-1 取回音色，保存为 Prophet-600 原生格式的 .syx 文件：可取回一个位置、您保存或导入的音色，或全部 255 个位置。",
+  "get1": "取回此位置",
+  "getkept": "取回已保存和导入的音色",
+  "getall": "全部取回（255）",
+  "gotone": "已接收：",
+  "got": " 个音色已保存到文件中（“下载”文件夹）。",
+  "noinput": "FM-1 没有响应。请确认它运行的是 Guru-600 并已通过 USB 连接，然后再次点击“连接”。",
+  "nokept": "FM-1 上没有已保存或导入的音色。"
+ },
+ "ja": {
+  "sub": "Guru-600 を搭載した FM-1 に Prophet-600 のサウンド（.syx）を送信します。サウンドは電源を切っても FM-1 に残ります。",
+  "s1": "1. FM-1 を接続する",
+  "connect": "接続",
+  "h1": "USB データ・ケーブルで FM-1 をこのコンピューターに接続し、電源を入れてください。Chrome、Edge、またはその他の Chrome ベースのブラウザー（Brave、Opera…）を使用し、ブラウザーから求められたら MIDI（SysEx）へのアクセスを許可してください。",
+  "s2": "2. サウンド・ファイルを開く",
+  "h2": "Prophet-600 の .syx ファイル：Sequential オリジナルのプログラム・ダンプ、または GliGli ファームウェアのパッチ・ファイル。1つのファイルには、1サウンドまたは100サウンドのバンク全体を収められます。",
+  "s3": "3. 枠を選んで送信する",
+  "h3": "各サウンドは入力した枠（1〜255、PRESETS の番号どおり）に送られ、RESET SOUNDS を実行するまで、その枠の内蔵サウンドと置き換わります。送信できるのは合計55サウンドまでです。",
+  "from": "すべて送信、開始枠",
+  "sendall": "すべて送信",
+  "name": "サウンド",
+  "place": "枠",
+  "send": "送信",
+  "s4": "リセット",
+  "h4": "送信または保存したサウンドをすべて消去し、255の内蔵サウンドに戻します。（FM-1 の MENU > SYSTEM > RESET SOUNDS と同じです。）",
+  "reset": "元のサウンドに戻す",
+  "sure": "送信または保存したサウンドをすべて消去し、255の元のサウンドに戻しますか？",
+  "nomidi": "このブラウザーは Web MIDI に対応していません。Chrome、Edge、またはその他の Chrome ベースのブラウザー（Brave、Opera…）を使用してください。",
+  "denied": "MIDI（SysEx）へのアクセスが許可されませんでした。サイトの設定で許可してから、もう一度お試しください。",
+  "noport": "MIDI 出力が見つかりません。USB ケーブル（データ・ケーブルであること）と、FM-1 の電源が入っていることを確認してください。",
+  "ready": "接続先：",
+  "loaded": " サウンドがこのファイルにあります。",
+  "none": "このファイルには Prophet-600 のサウンドがありません。",
+  "sent": "送信済み：",
+  "done": "完了しました。サウンドは FM-1 の PRESETS リストにあります。",
+  "resetok": "リセットを送信しました。",
+  "s5": "サウンドを取得する",
+  "h5": "FM-1 からサウンドを取得し、Prophet-600 本来のフォーマットの .syx ファイルにします。1つの枠、保存またはインポートしたサウンド、または255枠すべてを取得できます。",
+  "get1": "この枠を取得",
+  "getkept": "保存・インポートしたサウンドを取得",
+  "getall": "255枠すべてを取得",
+  "gotone": "受信：",
+  "got": " サウンドをファイルに保存しました（ダウンロード・フォルダー）。",
+  "noinput": "FM-1 が応答しません。Guru-600 が動作していて USB で接続されていることを確認してから、もう一度「接続」を押してください。",
+  "nokept": "FM-1 に保存またはインポートしたサウンドはありません。"
  }
 };
-let lang=(function(){try{const s=localStorage.getItem("g6lang");if(s)return s}catch(e){}const n=(navigator.language||"en").slice(0,2);return ["en", "fr", "de", "es", "it"].includes(n)?n:"en"})(); let out = null, sounds = [];
+let lang=(function(){try{const s=localStorage.getItem("g6lang");if(s)return s}catch(e){}const n=(navigator.language||"en").slice(0,2);return ["en", "fr", "de", "es", "it", "zh", "ja"].includes(n)?n:"en"})(); let out = null, sounds = [];
 const $ = (id) => document.getElementById(id);
 function tr() {
   document.documentElement.lang = lang;

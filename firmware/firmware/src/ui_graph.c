@@ -476,9 +476,11 @@ static void graph_fx(const track_t *t, uint16_t c)
  * triangle). OFF: the dry diagonal, dim */
 static void graph_insert(const track_t *t, uint16_t c)
 {
-    int32_t x, cy = graph_ht / 2, a = 38 * graph_ht / 100, py = cy, ty = clamp(t->p[P_ITYPE], 0, IT_N - 1);
-    int32_t m = ins_mixq(t->p[P_IMIX]), g = 4096 + t->p[P_IA] * t->p[P_IA] * 3, lvl = LEVEL_Q12[t->p[P_IC] & 127];
-    uint32_t sh = ins_bits_sh(t->p[P_IA]);
+    uint32_t p0 = cur_page()->id[0];                    /* (INSERT B's pages: the second INSERT's values) */
+    const int16_t *q = &t->p[p0 == P_JTYPE || p0 == P_JMIX ? P_JTYPE : P_ITYPE];   /* TYPE A B C MIX */
+    int32_t x, cy = graph_ht / 2, a = 38 * graph_ht / 100, py = cy, ty = clamp(q[0], 0, IT_N - 1);
+    int32_t m = ins_mixq(q[4]), g = 4096 + q[1] * q[1] * 3, lvl = LEVEL_Q12[q[3] & 127];
+    uint32_t sh = ins_bits_sh(q[1]);
     cv_rect(PANEL_X0, cy, PANEL_W, 1, T_RAISE);
     cv_line(PANEL_X0 + PANEL_W / 2, cy - a, PANEL_X0 + PANEL_W / 2, cy + a, T_RAISE);
     if (ty == IT_OFF || ty >= IT_PHASER || !m)
@@ -490,7 +492,7 @@ static void graph_insert(const track_t *t, uint16_t c)
         if (ty >= IT_PHASER) {                       /* the sweep, two cycles */
             uint32_t ph = (uint32_t)x * (0xFFFFFFFFu / (PANEL_W / 2u)), tr = pf_tri(ph);
             w = ty == IT_CHORUS ? osc_sine(ph) * 2 : ty == IT_FLANGER ? (int32_t)((tr * tr) >> 16) * 2 - 65536 : (int32_t)tr * 2 - 65536;
-            y = cy - (w >> 1) * a / 32768 * t->p[P_IB] / 127;
+            y = cy - (w >> 1) * a / 32768 * q[2] / 127;
         } else {                                     /* the curve: v in, dry v, wet shaped */
             int32_t v = (x - PANEL_W / 2) * 49152 / (PANEL_W / 2), o;
             o = ty == IT_CRUSH ? ins_shape(IT_CRUSH, v, sh) : (ins_shape((uint32_t)ty, ((v >> 3) * g) >> 9, 0) * lvl) >> 12;

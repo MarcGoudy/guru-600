@@ -1,0 +1,2330 @@
+[
+ {
+  "en": "The Guru-600 editor shows the FM-1 on the computer's screen, as a panel inspired by the Prophet-600, with a keyboard: every sound setting, the sequencer, the song, the arpeggiator, the effects, the mixer, the projects, the samples, the backup and the settings, all at a glance. Every change is heard at once on the FM-1, and every change made on the FM-1 shows in the editor.",
+  "fr": "L'éditeur du Guru-600 affiche le FM-1 sur l'écran de l'ordinateur, sous la forme d'une façade inspirée du Prophet-600, avec un clavier : chaque réglage de son, le séquenceur, le morceau, l'arpégiateur, les effets, le mixage, les projets, les échantillons, la sauvegarde et les réglages, d'un seul coup d'œil. Chaque changement s'entend aussitôt sur le FM-1, et chaque changement fait sur le FM-1 s'affiche dans l'éditeur."
+ },
+ {
+  "en": "The editor, SOUND page.",
+  "fr": "L'éditeur, page SOUND."
+ },
+ {
+  "en": "The editor's pages do not follow the FM-1's screen, and the FM-1 does not follow the editor's: each keeps its own page. You can, for example, write a sequence on the editor's SEQUENCER page while you shape a sound on the FM-1.",
+  "fr": "Les pages de l'éditeur ne suivent pas l'écran du FM-1, et inversement : chacun garde sa page. Vous pouvez par exemple écrire une séquence sur la page SEQUENCER de l'éditeur pendant que vous réglez un son sur le FM-1."
+ },
+ {
+  "en": "What you need",
+  "fr": "Ce qu'il faut"
+ },
+ {
+  "en": "An M-VAVE FM-1 with the Guru-600 firmware.",
+  "fr": "Un M-VAVE FM-1 avec le firmware Guru-600."
+ },
+ {
+  "en": "A USB data cable.",
+  "fr": "Un câble USB de données."
+ },
+ {
+  "en": "A computer with a MIDI-compatible browser: Chrome, Edge, Brave or Opera.",
+  "fr": "Un ordinateur avec un navigateur compatible MIDI : Chrome, Edge, Brave ou Opera."
+ },
+ {
+  "en": "This guide",
+  "fr": "Ce guide"
+ },
+ {
+  "en": "It describes the editor page by page, in the order of its tabs. The FM-1 itself, its buttons and its screens are described in the Guru-600 user guide. The editor speaks the language chosen in SETTINGS › EDITOR › LANGUAGE (chapter {ch:settings}): its pages, buttons and messages, and the FM-1's menu. The names of the sound and sequencer settings stay in English, as on the FM-1's screen; a tooltip translates them and says what they do.",
+  "fr": "Il décrit l'éditeur page par page, dans l'ordre de ses onglets. Le FM-1 lui-même, ses boutons et ses écrans sont décrits dans la notice du Guru-600. L'éditeur parle la langue choisie dans SETTINGS › EDITOR › LANGUAGE (chapitre {ch:settings}) : ses pages, ses boutons et ses messages, et le menu du FM-1. Les noms des réglages du son et du séquenceur restent en anglais, comme sur l'écran du FM-1 ; une infobulle les traduit et dit à quoi ils servent."
+ },
+ {
+  "en": "The screenshots in this guide show the editor in English. On your screen, it appears in the language you choose (chapter {ch:settings}).",
+  "fr": "Les captures de ce guide montrent l'éditeur en anglais. Sur votre écran, il s'affiche dans la langue que vous choisissez (chapitre {ch:settings})."
+ },
+ {
+  "en": "In French, Spanish and Italian, the notes keep their letter (C, D, E…), as on the FM-1, and also show their name in solfège (do, ré, mi…).",
+  "fr": "En français, en espagnol et en italien, les notes gardent leur lettre (C, D, E…), comme sur le FM-1, et affichent aussi leur nom en solfège (do, ré, mi…)."
+ },
+ {
+  "en": "The <b>?</b> button at the top right of the editor opens this guide at the chapter of the page you are on.",
+  "fr": "Le bouton <b>?</b> en haut à droite de l'éditeur ouvre ce guide au chapitre de la page où vous êtes."
+ },
+ {
+  "en": "Opening it",
+  "fr": "L'ouvrir"
+ },
+ {
+  "en": "<b>Online</b>: go to <b><a href='https://marcgoudy.github.io/guru-600/editor/'>marcgoudy.github.io/guru-600/editor/</a></b> with Chrome, Edge, Brave or Opera.",
+  "fr": "<b>En ligne</b> : allez sur <b><a href='https://marcgoudy.github.io/guru-600/editor/'>marcgoudy.github.io/guru-600/editor/</a></b> avec Chrome, Edge, Brave ou Opera."
+ },
+ {
+  "en": "<b>Without internet</b>: in the <b>Guru-600 Editor</b> folder, open <b>editor › index.html</b> with one of these browsers (right-click › Open With). Keep the <b>editor</b> and <b>guide</b> folders side by side.",
+  "fr": "<b>Sans internet</b> : dans le dossier <b>Guru-600 Editor</b>, ouvrez <b>editor › index.html</b> avec l'un de ces navigateurs (clic droit › Ouvrir avec). Gardez les dossiers <b>editor</b> et <b>guide</b> côte à côte."
+ },
+ {
+  "en": "Connecting the FM-1",
+  "fr": "Brancher le FM-1"
+ },
+ {
+  "en": "Connect the FM-1 to the computer with the USB cable and switch it on.",
+  "fr": "Branchez le FM-1 à l'ordinateur avec le câble USB et allumez-le."
+ },
+ {
+  "en": "Click <b>CONNECT FM-1</b> at the top of the editor (or its LED).",
+  "fr": "Cliquez sur <b>CONNECT FM-1</b> en haut de l'éditeur (ou sur son voyant)."
+ },
+ {
+  "en": "The first time, the browser asks to use your MIDI devices: click <b>Allow</b>.",
+  "fr": "La première fois, le navigateur demande à utiliser vos appareils MIDI : cliquez sur <b>Autoriser</b>."
+ },
+ {
+  "en": "The LED lights green and the label says <b>FM-1 CONNECTED</b>. The editor reads the FM-1: the page shows its sounds and its music.",
+  "fr": "Le voyant s'allume en vert et l'étiquette indique <b>FM-1 CONNECTED</b>. L'éditeur lit le FM-1 : la page affiche ses sons et sa musique."
+ },
+ {
+  "en": "Afterwards, the editor connects by itself when it opens and when you plug the FM-1 in. Unplugged, the LED goes out and the label comes back to CONNECT FM-1; the values stay on screen.",
+  "fr": "Ensuite, l'éditeur se connecte tout seul à l'ouverture et quand vous branchez le FM-1. Débranché, le voyant s'éteint et l'étiquette revient à CONNECT FM-1 ; les valeurs restent affichées."
+ },
+ {
+  "en": "With the Guru-600 application on a Mac",
+  "fr": "Avec l'application Guru-600 sur Mac"
+ },
+ {
+  "en": "Open <b>Guru-600.app</b>: the editor connects to it as to an FM-1, and you hear it on the Mac. Everything in this guide works with it, the FM-1 left aside.",
+  "fr": "Ouvrez <b>Guru-600.app</b> : l'éditeur s'y connecte comme à un FM-1, et vous l'entendez sur le Mac. Tout ce que décrit ce guide fonctionne avec elle, sans le FM-1."
+ },
+ {
+  "en": "Without the FM-1",
+  "fr": "Sans le FM-1"
+ },
+ {
+  "en": "Every page can be explored without the FM-1: it shows example values, and the knobs, switches and lists move. Nothing is kept: what needs the FM-1 (saving, loading, playing, sending) says <b>Connect the FM-1 first.</b>",
+  "fr": "Chaque page peut être découverte sans le FM-1 : elle affiche des valeurs d'exemple, et les boutons, interrupteurs et listes bougent. Rien n'est gardé : ce qui demande le FM-1 (enregistrer, charger, jouer, envoyer) indique <b>Branchez d'abord le FM-1.</b>"
+ },
+ {
+  "en": "If it does not connect",
+  "fr": "Si la connexion ne se fait pas"
+ },
+ {
+  "en": "This browser has no MIDI.",
+  "fr": "Ce navigateur n'a pas le MIDI."
+ },
+ {
+  "en": "Open the editor with Chrome, Edge, Brave or Opera.",
+  "fr": "Ouvrez l'éditeur avec Chrome, Edge, Brave ou Opera."
+ },
+ {
+  "en": "MIDI access was refused.",
+  "fr": "L'accès au MIDI a été refusé."
+ },
+ {
+  "en": "Allow MIDI for this page in the browser's site settings (the icon at the left of the address bar), then reload the page.",
+  "fr": "Autorisez le MIDI pour cette page dans les réglages du site du navigateur (l'icône à gauche de la barre d'adresse), puis rechargez la page."
+ },
+ {
+  "en": "No FM-1 found.",
+  "fr": "Aucun FM-1 trouvé."
+ },
+ {
+  "en": "Check that the FM-1 is on, that the cable carries data (try another one), and that no other program uses the FM-1 (another editor, a music program): close it and click CONNECT FM-1 again.",
+  "fr": "Vérifiez que le FM-1 est allumé, que le câble transporte les données (essayez-en un autre), et qu'aucun autre programme n'utilise le FM-1 (un autre éditeur, un logiciel de musique) : fermez-le et cliquez de nouveau sur CONNECT FM-1."
+ },
+ {
+  "en": "This FM-1 needs the Guru-600 firmware.",
+  "fr": "Ce FM-1 doit avoir le firmware Guru-600."
+ },
+ {
+  "en": "The FM-1 runs another firmware: install the Guru-600 (see the Guru-600 user guide).",
+  "fr": "Le FM-1 a un autre firmware : installez le Guru-600 (voir la notice du Guru-600)."
+ },
+ {
+  "en": "The FM-1 does not answer.",
+  "fr": "Le FM-1 ne répond pas."
+ },
+ {
+  "en": "Unplug the FM-1, plug it in again and wait for FM-1 CONNECTED.",
+  "fr": "Débranchez le FM-1, rebranchez-le et attendez FM-1 CONNECTED."
+ },
+ {
+  "en": "The top (header and tabs) and the bottom (keyboard) never change; the page in between is the one of the tab chosen. The editor keeps the proportions of the panel whatever the size of the window: the rest of the window stays black.",
+  "fr": "Le haut (en-tête et onglets) et le bas (clavier) ne changent jamais ; entre les deux, la page de l'onglet choisi. L'éditeur garde les proportions de la façade quelle que soit la taille de la fenêtre : le reste de la fenêtre reste noir."
+ },
+ {
+  "en": "The header and the tabs.",
+  "fr": "L'en-tête et les onglets."
+ },
+ {
+  "en": "The header",
+  "fr": "L'en-tête"
+ },
+ {
+  "en": "Control",
+  "fr": "Commande"
+ },
+ {
+  "en": "What it does",
+  "fr": "Ce qu'elle fait"
+ },
+ {
+  "en": "PLAY: starts the four tracks together. Lit green while the FM-1 plays.",
+  "fr": "PLAY : lance les quatre pistes ensemble. Éclairé en vert pendant la lecture."
+ },
+ {
+  "en": "STOP: stops them.",
+  "fr": "STOP : les arrête."
+ },
+ {
+  "en": "REC: arms the selected track for recording. Lit red while it is armed.",
+  "fr": "REC : arme la piste choisie pour l'enregistrement. Éclairé en rouge tant qu'elle est armée."
+ },
+ {
+  "en": "The tempo, 40 to 240. Click ▲ or ▼ (held: it runs); or drag up or down on the box (<kbd>Shift</kbd>: finer), or scroll over it; a double click: 120. The box flashes on each beat while the FM-1 plays, the first of the bar in orange.",
+  "fr": "Le tempo, de 40 à 240. Cliquez sur ▲ ou ▼ (maintenu : il défile) ; ou glissez vers le haut ou le bas sur le cadre (<kbd>Maj</kbd> : plus fin), ou faites défiler au-dessus ; un double clic : 120. Le cadre clignote à chaque temps pendant la lecture, le premier de la mesure en orange."
+ },
+ {
+  "en": "The connection (chapter {ch:connect}). FM-1 CONNECTED with its LED lit green: connected.",
+  "fr": "La connexion (chapitre {ch:connect}). FM-1 CONNECTED avec son voyant vert allumé : connecté."
+ },
+ {
+  "en": "The selected track, lit orange: the pages show and change it, and the keyboard plays it.",
+  "fr": "La piste choisie, éclairée en orange : les pages la montrent et la modifient, et le clavier la joue."
+ },
+ {
+  "en": "The tabs and the buttons beside them",
+  "fr": "Les onglets et les boutons à côté"
+ },
+ {
+  "en": "SOUND, SEQUENCER, SONG, ARP, FX, MOD, TRACKS, PROJECTS, SAMPLES, BACKUP, SETTINGS: click one to show its page. Each has its chapter in this guide.",
+  "fr": "SOUND, SEQUENCER, SONG, ARP, FX, MOD, TRACKS, PROJECTS, SAMPLES, BACKUP, SETTINGS : cliquez sur l'un d'eux pour afficher sa page. Chacun a son chapitre dans ce guide."
+ },
+ {
+  "en": "The bulb button. LIT or FLAT: the lights glow as on a lit panel, or plain colors. Kept by the browser (also SETTINGS › EDITOR › LIGHTING).",
+  "fr": "Le bouton ampoule. LIT ou FLAT : les voyants brillent comme sur une façade éclairée, ou des couleurs unies. Gardé par le navigateur (aussi SETTINGS › EDITOR › LIGHTING)."
+ },
+ {
+  "en": "The button with four corners: full screen, and back. Also <kbd>F11</kbd>, <kbd>Alt</kbd>+<kbd>Enter</kbd> or a double click on the logo; <kbd>Esc</kbd> leaves it.",
+  "fr": "Le bouton aux quatre coins : plein écran, et retour. Aussi <kbd>F11</kbd>, <kbd>Alt</kbd>+<kbd>Entrée</kbd> ou un double clic sur le logo ; <kbd>Échap</kbd> en sort."
+ },
+ {
+  "en": "Opens this guide at the chapter of the page shown.",
+  "fr": "Ouvre ce guide au chapitre de la page affichée."
+ },
+ {
+  "en": "The speech-bubble button, left of the bulb: switches the tooltips on or off. Hovering a setting shows, in the language chosen, its translation and what it does; hovering a button of the editor, what it does. Kept by the browser.",
+  "fr": "Le bouton bulle, à gauche de l'ampoule : active ou coupe les infobulles. Au survol d'un réglage, l'infobulle donne, dans la langue choisie, sa traduction et à quoi il sert ; au survol d'un bouton de l'éditeur, à quoi il sert. Gardé par le navigateur."
+ },
+ {
+  "en": "The keyboard",
+  "fr": "Le clavier"
+ },
+ {
+  "en": "The wheels, OCT − / OCT + and the keyboard.",
+  "fr": "Les molettes, OCT − / OCT + et le clavier."
+ },
+ {
+  "en": "<b>Click a key</b> to play it on the selected track; drag across the keys for a glissando. Three octaves, C3 to C6; the notes play at velocity 100.",
+  "fr": "<b>Cliquez sur une touche</b> pour la jouer sur la piste choisie ; glissez sur les touches pour un glissando. Trois octaves, de C3 à C6 ; les notes jouent à la vélocité 100."
+ },
+ {
+  "en": "<b>OCT − / OCT +</b>: two octaves down or up at most. Lit while the keyboard is shifted.",
+  "fr": "<b>OCT − / OCT +</b> : deux octaves plus bas ou plus haut au plus. Allumé tant que le clavier est décalé."
+ },
+ {
+  "en": "<b>PITCH</b>: bends the pitch; it springs back to the middle. <b>MOD</b>: the mod wheel; it stays where you leave it.",
+  "fr": "<b>PITCH</b> : infléchit la hauteur ; elle revient au milieu. <b>MOD</b> : la molette de modulation ; elle reste où vous la laissez."
+ },
+ {
+  "en": "Track 1 plays on MIDI channel 1, track 2 on channel 2, and so on.",
+  "fr": "La piste 1 joue sur le canal MIDI 1, la piste 2 sur le canal 2, et ainsi de suite."
+ },
+ {
+  "en": "Computer key",
+  "fr": "Touche de l'ordinateur"
+ },
+ {
+  "en": "Plays",
+  "fr": "Joue"
+ },
+ {
+  "en": "the notes, from C4 (A) up to E5 (;)",
+  "fr": "les notes, du C4 (A) au E5 (;)"
+ },
+ {
+  "en": "OCT − / OCT +",
+  "fr": "OCT − / OCT +"
+ },
+ {
+  "en": "SOUND page: the sound before / after in SOUNDS (the family shown), loaded at once",
+  "fr": "page SOUND : le son précédent / suivant dans SOUNDS (la famille affichée), chargé aussitôt"
+ },
+ {
+  "en": "The letters are positions on a QWERTY keyboard; on an AZERTY keyboard, use the keys in the same positions: Q Z S E D… for the notes. They do not play while you type in a field.",
+  "fr": "Les lettres suivent la position des touches d'un clavier QWERTY ; sur un clavier AZERTY, ce sont les touches situées aux mêmes endroits : Q Z S E D… pour les notes. Elles ne jouent pas pendant la saisie dans un champ."
+ },
+ {
+  "en": "The gestures",
+  "fr": "Les gestes"
+ },
+ {
+  "en": "Gesture",
+  "fr": "Geste"
+ },
+ {
+  "en": "<b>Knob</b>",
+  "fr": "<b>Bouton rotatif</b>"
+ },
+ {
+  "en": "Drag up (more) or down (less); <kbd>Shift</kbd> held: finer. Or scroll over it. Double click: its usual value.",
+  "fr": "Glissez vers le haut (plus) ou le bas (moins) ; <kbd>Maj</kbd> maintenue : plus fin. Ou faites défiler au-dessus. Double clic : sa valeur habituelle."
+ },
+ {
+  "en": "<b>Switch, option, button</b>",
+  "fr": "<b>Interrupteur, option, bouton</b>"
+ },
+ {
+  "en": "Click. A lit one is on, or chosen.",
+  "fr": "Cliquez. Allumé : activé, ou choisi."
+ },
+ {
+  "en": "<b>Field ◀ value ▶</b>",
+  "fr": "<b>Champ ◀ valeur ▶</b>"
+ },
+ {
+  "en": "Click an arrow, or scroll over the field.",
+  "fr": "Cliquez sur une flèche, ou faites défiler au-dessus du champ."
+ },
+ {
+  "en": "<b>Grey button</b>",
+  "fr": "<b>Bouton gris</b>"
+ },
+ {
+  "en": "Not available now (nothing to do, or the FM-1 is needed).",
+  "fr": "Indisponible pour l'instant (rien à faire, ou le FM-1 est nécessaire)."
+ },
+ {
+  "en": "Messages and questions",
+  "fr": "Messages et questions"
+ },
+ {
+  "en": "A short message at the bottom of the page says what was done, or why it was not (it goes away by itself). Before anything that replaces or erases, the browser asks for a confirmation: <b>OK</b> goes on, <b>Cancel</b> changes nothing.",
+  "fr": "Un court message en bas de la page dit ce qui a été fait, ou pourquoi ce ne l'a pas été (il disparaît de lui-même). Avant tout ce qui remplace ou efface, le navigateur demande confirmation : <b>OK</b> continue, <b>Annuler</b> ne change rien."
+ },
+ {
+  "en": "The SOUND page shows the sound of the selected track on a panel inspired by the Prophet-600: every knob and switch of the original, plus what the Guru-600 adds (VOICE, FX SENDS, EXTRAS, MORPH). A change is heard at once on the FM-1. On the right, SOUNDS holds every sound the FM-1 can play, and saves and exchanges the 255 P600 sounds.",
+  "fr": "La page SOUND présente le son de la piste choisie sur une façade inspirée du Prophet-600 : chaque bouton et chaque interrupteur de l'original, plus ce qu'ajoute le Guru-600 (VOICE, FX SENDS, EXTRAS, MORPH). Un changement s'entend aussitôt sur le FM-1. À droite, SOUNDS contient tous les sons que peut jouer le FM-1, et enregistre et échange les 255 sons P600."
+ },
+ {
+  "en": "The SOUND page.",
+  "fr": "La page SOUND."
+ },
+ {
+  "en": "A change affects the track's sound, not the saved sound. To keep it: SAVE TO THIS PLACE (below), or STORE THE TRACK'S SOUND on the PROJECTS page (chapter {ch:projects}).",
+  "fr": "Un changement modifie le son de la piste, pas le son enregistré. Pour le garder : SAVE TO THIS PLACE (plus bas), ou STORE THE TRACK'S SOUND sur la page PROJECTS (chapitre {ch:projects})."
+ },
+ {
+  "en": "When the track does not play P600",
+  "fr": "Quand la piste ne joue pas P600"
+ },
+ {
+  "en": "When the track plays a sound of the FM-1 (another engine than P600), the panel, MORPH and MUTATE dim and stay still, and a message says which engine the track plays: they set the Guru-600 sounds only. Click a Guru-600 sound (1 to 255) in SOUNDS: the track switches to P600 and plays it. The keyboard still shows the keys played on the FM-1, and the other pages work with every engine.",
+  "fr": "Quand la piste joue un son du FM-1 (un autre moteur que P600), la façade, MORPH et MUTATE s'assombrissent et restent inactifs, et un message indique le moteur que joue la piste : ils ne règlent que les sons Guru-600. Cliquez sur un son Guru-600 (1 à 255) dans SOUNDS : la piste passe en P600 et le joue. Le clavier montre toujours les touches jouées sur le FM-1, et les autres pages fonctionnent avec tous les moteurs."
+ },
+ {
+  "en": "POLY-MOD",
+  "fr": "POLY-MOD"
+ },
+ {
+  "en": "In each voice, two sources modulate oscillator A's pitch and/or the filter.",
+  "fr": "Dans chaque voix, deux sources modulent la hauteur de l'oscillateur A et/ou le filtre."
+ },
+ {
+  "en": "Values",
+  "fr": "Valeurs"
+ },
+ {
+  "en": "FILTER ENV: how much the filter envelope modulates the destination.",
+  "fr": "FILTER ENV : quantité de modulation par l'enveloppe du filtre."
+ },
+ {
+  "en": "OSC B: how much oscillator B modulates the destination, at audio speed: metallic, bell-like sounds.",
+  "fr": "OSC B : quantité de modulation par l'oscillateur B, à vitesse audio : sons métalliques, cloches."
+ },
+ {
+  "en": "DESTINATION: where the modulation goes. Both lit: both; both unlit: nowhere.",
+  "fr": "DESTINATION : où va la modulation. Les deux allumés : les deux ; les deux éteints : nulle part."
+ },
+ {
+  "en": "OFF / ON",
+  "fr": "OFF / ON"
+ },
+ {
+  "en": "LFO",
+  "fr": "LFO"
+ },
+ {
+  "en": "The LFO's speed.",
+  "fr": "La vitesse du LFO."
+ },
+ {
+  "en": "0.1 … 40 Hz",
+  "fr": "0,1 … 40 Hz"
+ },
+ {
+  "en": "Click to choose the triangle (left) or the square (right). Unlit: a shape the Prophet-600 does not have, set on the FM-1.",
+  "fr": "Cliquez pour choisir le triangle (à gauche) ou le carré (à droite). Éteint : une forme que le Prophet-600 n'a pas, réglée sur le FM-1."
+ },
+ {
+  "en": "How much of the LFO plays with the mod wheel down. The rest, the wheel adds it. It is EXTRAS' WHEEL seen the other way round: the two knobs move together.",
+  "fr": "La part du LFO qui joue molette en bas. Le reste, la molette l'ajoute. C'est le WHEEL d'EXTRAS vu dans l'autre sens : les deux boutons bougent ensemble."
+ },
+ {
+  "en": "DESTINATION: what the LFO moves: the pitch of both oscillators, their pulse widths, the filter. Any combination.",
+  "fr": "DESTINATION : ce que fait bouger le LFO : la hauteur des deux oscillateurs, leurs largeurs d'impulsion, le filtre. Toute combinaison."
+ },
+ {
+  "en": "OSCILLATOR A, OSCILLATOR B",
+  "fr": "OSCILLATOR A, OSCILLATOR B"
+ },
+ {
+  "en": "FREQ A: oscillator A's pitch in semitones. 24 plays the note as written, 12 an octave lower, 36 an octave higher.",
+  "fr": "FREQ A : hauteur de l'oscillateur A en demi-tons. 24 joue la note telle quelle, 12 une octave plus bas, 36 une octave plus haut."
+ },
+ {
+  "en": "0–63 st",
+  "fr": "0–63 st"
+ },
+ {
+  "en": "FREQ B: oscillator B's pitch, the same way.",
+  "fr": "FREQ B : hauteur de l'oscillateur B, de la même façon."
+ },
+ {
+  "en": "FINE B: raises B slightly, up to a semitone: a fuller, beating sound.",
+  "fr": "FINE B : élève légèrement la hauteur de B, jusqu'à un demi-ton : un son plus épais, qui bat."
+ },
+ {
+  "en": "A restarts with each cycle of B: a hard, biting tone, which changes when FREQ A moves.",
+  "fr": "A redémarre à chaque cycle de B : un son dur et mordant, qui change quand FREQ A bouge."
+ },
+ {
+  "en": "The waveforms of the oscillator: light one, two or three to combine them; all unlit: the oscillator is silent.",
+  "fr": "Les formes d'onde de l'oscillateur : allumez-en une, deux ou trois pour les combiner ; toutes éteintes : l'oscillateur se tait."
+ },
+ {
+  "en": "PW A: pulse width of A (heard when its shape includes PLS). 50 %: square, hollow; narrow: thin, nasal.",
+  "fr": "PW A : largeur d'impulsion de A (audible quand sa forme contient PLS). 50 % : carré, creux ; étroit : fin, nasal."
+ },
+ {
+  "en": "PW B: pulse width of B.",
+  "fr": "PW B : largeur d'impulsion de B."
+ },
+ {
+  "en": "MIXER, GLIDE, UNISON",
+  "fr": "MIXER, GLIDE, UNISON"
+ },
+ {
+  "en": "MIXER: 0 % only A, 50 % both equally, 100 % only B.",
+  "fr": "MIXER : 0 % seulement A, 50 % les deux à égalité, 100 % seulement B."
+ },
+ {
+  "en": "GLIDE: time to slide from one note to the next (0: no glide).",
+  "fr": "GLIDE : temps de glissement d'une note à l'autre (0 : pas de glide)."
+ },
+ {
+  "en": "1 ms – 10 s",
+  "fr": "1 ms – 10 s"
+ },
+ {
+  "en": "All the voices on one note, huge. Unlit: the track plays chords (POLY). The other voice modes (MONO, LEGATO) are on the MOD page (chapter {ch:mod}).",
+  "fr": "Toutes les voix sur une note, énorme. Éteint : la piste joue des accords (POLY). Les autres modes de voix (MONO, LEGATO) sont sur la page MOD (chapitre {ch:mod})."
+ },
+ {
+  "en": "FILTER, FILTER ENVELOPE",
+  "fr": "FILTER, FILTER ENVELOPE"
+ },
+ {
+  "en": "CUTOFF: the brightness. The same as KNOB 1 on HOME.",
+  "fr": "CUTOFF : la brillance. La même chose que KNOB 1 sur HOME."
+ },
+ {
+  "en": "30 Hz – 16 kHz",
+  "fr": "30 Hz – 16 kHz"
+ },
+ {
+  "en": "RESONANCE: boosts the frequencies at the cutoff; past about 70 % the filter whistles on its own.",
+  "fr": "RESONANCE : renforce les fréquences à la coupure ; au-delà d'environ 70 %, le filtre siffle tout seul."
+ },
+ {
+  "en": "ENV AMT: how much the filter envelope (page 6) opens the filter.",
+  "fr": "ENV AMT : à quel point l'enveloppe du filtre (page 6) ouvre celui-ci."
+ },
+ {
+  "en": "Higher notes open the filter: OFF, HALF, FULL (the filter follows the keyboard note for note). Click an option.",
+  "fr": "Les notes aiguës ouvrent le filtre : OFF, HALF, FULL (le filtre suit le clavier note pour note). Cliquez sur une option."
+ },
+ {
+  "en": "OFF, HALF, FULL",
+  "fr": "OFF, HALF, FULL"
+ },
+ {
+  "en": "ATTACK: time for the filter to open.",
+  "fr": "ATTACK : temps d'ouverture du filtre."
+ },
+ {
+  "en": "DECAY: time to fall back to the sustain level.",
+  "fr": "DECAY : temps de redescente vers le niveau de maintien."
+ },
+ {
+  "en": "SUSTAIN: the level held while the key is down.",
+  "fr": "SUSTAIN : le niveau tenu tant que la touche est enfoncée."
+ },
+ {
+  "en": "RELEASE: time to close after the key is released.",
+  "fr": "RELEASE : temps de fermeture après le relâchement."
+ },
+ {
+  "en": "AMPLIFIER",
+  "fr": "AMPLIFIER"
+ },
+ {
+  "en": "Time for the sound to reach its full level.",
+  "fr": "Temps pour que le son atteigne son plein niveau."
+ },
+ {
+  "en": "1 ms … 10 s",
+  "fr": "1 ms … 10 s"
+ },
+ {
+  "en": "Time to fall back to the sustain level.",
+  "fr": "Temps de redescente vers le niveau de maintien."
+ },
+ {
+  "en": "The level held while the key is down.",
+  "fr": "Le niveau tenu tant que la touche est enfoncée."
+ },
+ {
+  "en": "Time for the sound to die away after the key is released.",
+  "fr": "Temps d'extinction du son après le relâchement de la touche."
+ },
+ {
+  "en": "VOICE, FX SENDS",
+  "fr": "VOICE, FX SENDS"
+ },
+ {
+  "en": "The track's volume (the same as its fader on TRACKS).",
+  "fr": "Le volume de la piste (le même que son fader sur TRACKS)."
+ },
+ {
+  "en": "OFF, −55.5 … +7.5 dB",
+  "fr": "OFF, −55,5 … +7,5 dB"
+ },
+ {
+  "en": "The track's position, left / right.",
+  "fr": "La position de la piste, gauche / droite."
+ },
+ {
+  "en": "L 100 … C … R 100",
+  "fr": "L 100 … C … R 100"
+ },
+ {
+  "en": "The voices alternate left and right of the track's PAN: chords open up in stereo.",
+  "fr": "Les voix alternent à gauche et à droite du PAN de la piste : les accords s'ouvrent en stéréo."
+ },
+ {
+  "en": "How much of the track goes to each effect (chapter {ch:fx}).",
+  "fr": "La part de la piste envoyée à chaque effet (chapitre {ch:fx})."
+ },
+ {
+  "en": "EXTRAS",
+  "fr": "EXTRAS"
+ },
+ {
+  "en": "Features the Prophet-600 did not have, set per sound.",
+  "fr": "Ce que le Prophet-600 n'avait pas, réglé par chaque son."
+ },
+ {
+  "en": "Each voice drifts slightly, in pitch (up to ±20 cents) and in brightness, like an old analog synthesizer. 0 %: perfectly stable.",
+  "fr": "Chaque voix dérive légèrement, en hauteur (jusqu'à ±20 cents) et en brillance, comme un vieux synthétiseur analogique. 0 % : parfaitement stable."
+ },
+ {
+  "en": "How much of the LFO the mod wheel controls. 0 %: the LFO always plays fully and the wheel does nothing. 100 %: no LFO until you push the wheel. The LFO's INITIAL AMOUNT shows the same thing the other way round.",
+  "fr": "La part du LFO que commande la molette. 0 % : le LFO joue toujours en entier et la molette ne fait rien. 100 % : pas de LFO tant que vous ne poussez pas la molette. L'INITIAL AMOUNT du LFO montre la même chose dans l'autre sens."
+ },
+ {
+  "en": "Playing harder opens the filter (negative: closes it). Requires velocity: a MIDI keyboard, or SELECT = VEL.",
+  "fr": "Jouer plus fort ouvre le filtre (négatif : le ferme). Il faut une vélocité : un clavier MIDI, ou SELECT = VEL."
+ },
+ {
+  "en": "The spread of the voices in unison (VOICES = UNI).",
+  "fr": "L'écart des voix en unisson (VOICES = UNI)."
+ },
+ {
+  "en": "Turning the knobs",
+  "fr": "Tourner les boutons"
+ },
+ {
+  "en": "Drag up or down on a knob; hold <kbd>Shift</kbd> for finer steps. Or scroll over it.",
+  "fr": "Glissez vers le haut ou le bas sur un bouton ; maintenez <kbd>Maj</kbd> pour des pas plus fins. Ou faites défiler au-dessus de lui."
+ },
+ {
+  "en": "A double click puts it back to its usual value.",
+  "fr": "Un double clic le remet à sa valeur habituelle."
+ },
+ {
+  "en": "Switches and options: click.",
+  "fr": "Interrupteurs et options : cliquez."
+ },
+ {
+  "en": "SOUNDS: every sound",
+  "fr": "SOUNDS : tous les sons"
+ },
+ {
+  "en": "SOUNDS.",
+  "fr": "SOUNDS."
+ },
+ {
+  "en": "<b>1 to 255</b>: the Guru-600 sounds (P600). <b>From 256, number on a grey-blue ground</b>: the sounds of the FM-1's other engines. <b>U1, U2…</b>: your USER sounds (chapter {ch:projects}).",
+  "fr": "<b>1 à 255</b> : les sons Guru-600 (P600). <b>À partir de 256, numéro sur fond gris-bleu</b> : les sons des autres moteurs du FM-1. <b>U1, U2…</b> : vos sons USER (chapitre {ch:projects})."
+ },
+ {
+  "en": "<b>Click a sound</b> to load it on the track; a sound of another engine switches the track to that engine. If you changed the sound without saving it, the editor asks first.",
+  "fr": "<b>Cliquez sur un son</b> pour le charger sur la piste ; un son d'un autre moteur fait passer la piste sur ce moteur. Si vous avez modifié le son sans l'enregistrer, l'éditeur demande d'abord."
+ },
+ {
+  "en": "<b>Right-click a Guru-600 sound</b> to rename it (11 characters at most): the name is kept on the FM-1.",
+  "fr": "<b>Clic droit sur un son Guru-600</b> pour le renommer (11 caractères au plus) : le nom est gardé dans le FM-1."
+ },
+ {
+  "en": "<b>ALL, BASS, LEAD, PAD, PLUCK, KEYS, DRUM, FX</b>: show only that family, among all the sounds. DRUM holds the percussion sounds and the drum kits.",
+  "fr": "<b>ALL, BASS, LEAD, PAD, PLUCK, KEYS, DRUM, FX</b> : n'affiche que cette famille, parmi tous les sons. DRUM regroupe les sons de percussion et les kits de batterie."
+ },
+ {
+  "en": "<b>Lit yellow</b>: the track's sound. <b>Orange name</b>: one of your sounds (a place you saved or imported, or a USER sound).",
+  "fr": "<b>Éclairé en jaune</b> : le son de la piste. <b>Nom orange</b> : l'un de vos sons (une place enregistrée ou importée, ou un son USER)."
+ },
+ {
+  "en": "Saves the track's sound in the place lit yellow, after a confirmation: it replaces the sound there. To save it elsewhere, click that place first, then SAVE TO THIS PLACE.",
+  "fr": "Enregistre le son de la piste dans la place éclairée en jaune, après confirmation : il remplace le son qui s'y trouve. Pour l'enregistrer ailleurs, cliquez d'abord sur cette place, puis sur SAVE TO THIS PLACE."
+ },
+ {
+  "en": "On a place in orange: brings back the sound the place had at first, after a confirmation. Grey on a place that still holds its original.",
+  "fr": "Sur une place en orange : rétablit le son d'origine de la place, après confirmation. Gris sur une place qui a encore son son d'origine."
+ },
+ {
+  "en": "Saves the sound of the place as a Prophet-600 file (<i>number name</i>.syx) in the browser's downloads, under the name you give it: the Prophet-600 SysEx format, which other Prophet-600 tools read. It holds the sound as saved in the place: save your changes first.",
+  "fr": "Enregistre le son de la place dans un fichier Prophet-600 (<i>numéro nom</i>.syx), dans les téléchargements du navigateur, sous le nom que vous lui donnez : le format SysEx du Prophet-600, que lisent d'autres outils du Prophet-600. Il contient le son tel qu'il est enregistré dans la place : enregistrez d'abord vos changements."
+ },
+ {
+  "en": "Puts a Prophet-600 sound from a file (.syx or .mid, Sequential's format or GliGli's) in the place lit yellow, after a confirmation, with its name (the one given on export, else the file's). With several sounds in the file, the first one.",
+  "fr": "Met un son de Prophet-600 tiré d'un fichier (.syx ou .mid, au format de Sequential ou de GliGli) dans la place éclairée en jaune, après confirmation, avec son nom (celui donné à l'export, sinon celui du fichier). Si le fichier en contient plusieurs, le premier."
+ },
+ {
+  "en": "Brings back the 255 original sounds, after a confirmation: every sound you saved or imported is erased. Make a backup first (chapter {ch:backup}).",
+  "fr": "Rétablit les 255 sons d'origine, après confirmation : tous les sons enregistrés ou importés sont effacés. Faites d'abord une sauvegarde (chapitre {ch:backup})."
+ },
+ {
+  "en": "SAVE TO THIS PLACE, BACK TO ORIGINAL and EXPORT .SYX act on a Guru-600 sound: they are grey while the track plays a sound of the FM-1.",
+  "fr": "SAVE TO THIS PLACE, BACK TO ORIGINAL et EXPORT .SYX agissent sur un son Guru-600 : ils sont gris quand la piste joue un son du FM-1."
+ },
+ {
+  "en": "What a place keeps",
+  "fr": "Ce que garde une place"
+ },
+ {
+  "en": "<b>Saved with the sound</b>: the oscillators, the mixer, the filter and its envelope, the Poly-Mod, the amplifier envelope, the glide, UNI on or off (with its DETUNE), the LFO's rate, shape and destinations, WHEEL and VEL>FLT. <b>Not saved</b>: VINTAGE (back to 24 at each load), the effect sends (a kept sound plays dry, all sends at 0), the INSERT, MONO and LEG (a kept sound always plays POLY, or UNI if its unison was on), the LFO's PHASE and FADE and the other LFO settings of the MOD page, the ENVELOPE settings of the MOD page, MOD MATRIX slots 1–2, the VOICE settings of the MOD page and SPREAD.",
+  "fr": "<b>Enregistrés avec le son</b> : les oscillateurs, le mixeur, le filtre et son enveloppe, la Poly-Mod, l'enveloppe d'amplitude, le glide, UNI actif ou non (avec son DETUNE), la vitesse, la forme et les destinations du LFO, WHEEL et VEL>FLT. <b>Non enregistrés</b> : VINTAGE (revient à 24 à chaque chargement), les envois d'effets (un son gardé joue sec, tous les envois à 0), l'INSERT, MONO et LEG (un son gardé joue toujours en POLY, ou en UNI si son unisson était actif), PHASE et FADE du LFO et les autres réglages du LFO de la page MOD, les réglages ENVELOPE de la page MOD, les emplacements 1 et 2 de MOD MATRIX, les réglages VOICE de la page MOD et SPREAD."
+ },
+ {
+  "en": "To keep everything, use STORE THE TRACK'S SOUND on the PROJECTS page (a USER sound), or save the project. The places of your own are 55 at most, shared by the sounds you save and the sounds you import. Beyond: the message <b>The memory of the places is full</b>; free some with BACK TO ORIGINAL.",
+  "fr": "Pour tout garder, utilisez STORE THE TRACK'S SOUND sur la page PROJECTS (un son USER), ou enregistrez le projet. Les places à vous sont 55 au plus, partagées entre les sons enregistrés et les sons importés. Au-delà : le message <b>La mémoire des places est pleine</b> ; libérez-en avec BACK TO ORIGINAL."
+ },
+ {
+  "en": "MORPH",
+  "fr": "MORPH"
+ },
+ {
+  "en": "MORPH, under the panel.",
+  "fr": "MORPH, sous la façade."
+ },
+ {
+  "en": "MORPH turns the track's sound (SOUND A) into another one (SOUND B), little by little, and MUTATE makes a variation of it.",
+  "fr": "MORPH transforme peu à peu le son de la piste (SOUND A) en un autre (SOUND B), et MUTATE en fait une variante."
+ },
+ {
+  "en": "The track's sound. The arrows load the previous or next place (after 255 comes 1), as a click in SOUNDS.",
+  "fr": "Le son de la piste. Les flèches chargent la place précédente ou suivante (après 255 vient 1), comme un clic dans SOUNDS."
+ },
+ {
+  "en": "The sound to reach. Choosing another B puts the slider back at A.",
+  "fr": "Le son à atteindre. Choisir un autre B ramène le curseur sur A."
+ },
+ {
+  "en": "Click or drag on the rail, from A (0 %) to B (100 %). The value shows after the title. The sound changes as you move.",
+  "fr": "Cliquez ou glissez sur le rail, de A (0 %) à B (100 %). La valeur s'affiche après le titre. Le son change à mesure."
+ },
+ {
+  "en": "Changes the sound at random, by the AMOUNT shown. Click again for another variation.",
+  "fr": "Modifie le son au hasard, de la quantité AMOUNT indiquée. Cliquez de nouveau pour une autre variante."
+ },
+ {
+  "en": "How far MUTATE goes: a little (1 %) to a lot (100 %).",
+  "fr": "Jusqu'où va MUTATE : un peu (1 %) à beaucoup (100 %)."
+ },
+ {
+  "en": "A morphed or mutated sound is a changed sound: keep it with SAVE TO THIS PLACE or STORE THE TRACK'S SOUND. Load SOUND A again to come back to it.",
+  "fr": "Un son morphé ou muté est un son modifié : gardez-le avec SAVE TO THIS PLACE ou STORE THE TRACK'S SOUND. Rechargez SOUND A pour y revenir."
+ },
+ {
+  "en": "No sound?",
+  "fr": "Pas de son ?"
+ },
+ {
+  "en": "Check SAW, TRI, PULSE (at least one lit on an oscillator heard), the MIXER, CUTOFF and ENVELOPE AMOUNT (not both at the bottom), the LEVEL, and that the track is not muted (TRACKS).",
+  "fr": "Vérifiez SAW, TRI, PULSE (au moins un allumé sur un oscillateur entendu), le MIXER, CUTOFF et ENVELOPE AMOUNT (pas tous les deux en bas), le LEVEL, et que la piste n'est pas coupée (TRACKS)."
+ },
+ {
+  "en": "My saved sound sounds dry.",
+  "fr": "Mon son enregistré sonne sec."
+ },
+ {
+  "en": "A saved P600 sound loads with its effect sends at 0 (see What a place keeps): turn FX SENDS up again, or keep the sound as a USER sound.",
+  "fr": "Un son P600 enregistré se charge avec ses envois d'effets à 0 (voir Ce que garde une place) : remontez FX SENDS, ou gardez le son comme son USER."
+ },
+ {
+  "en": "The memory of the places is full (55 sounds).",
+  "fr": "La mémoire des places est pleine (55 sons)."
+ },
+ {
+  "en": "Bring some places back to their original sound (BACK TO ORIGINAL), or keep sounds as USER sounds.",
+  "fr": "Rétablissez le son d'origine de quelques places (BACK TO ORIGINAL), ou gardez des sons comme sons USER."
+ },
+ {
+  "en": "No Prophet-600 sound in this file.",
+  "fr": "Aucun son de Prophet-600 dans ce fichier."
+ },
+ {
+  "en": "The file is not a Prophet-600 SysEx file (a bank of another synthesizer, for instance).",
+  "fr": "Le fichier n'est pas un fichier SysEx de Prophet-600 (une banque d'un autre synthétiseur, par exemple)."
+ },
+ {
+  "en": "I changed a sound and loaded another one.",
+  "fr": "J'ai modifié un son puis chargé un autre."
+ },
+ {
+  "en": "On the FM-1, hold SAVE for 1 s: it undoes the track's last sound load, and the changed sound comes back.",
+  "fr": "Sur le FM-1, maintenez SAVE 1 s : cela annule le dernier chargement de son de la piste, et le son modifié revient."
+ },
+ {
+  "en": "Each track has its own sequence of up to 64 steps, with chords, ties, accents, slides, chance, velocity and repeats. The SEQUENCER page shows the selected track's: its settings at the top, the notes in the middle (STEPS), the details of each step below (DETAIL), and the automation on the right. ▶ at the top starts the four tracks together.",
+  "fr": "Chaque piste a sa propre séquence, jusqu'à 64 pas, avec accords, liaisons, accents, glissés, probabilité, vélocité et répétitions. La page SEQUENCER montre celle de la piste choisie : ses réglages en haut, les notes au milieu (STEPS), le détail de chaque pas en dessous (DETAIL), et l'automation à droite. ▶ en haut lance les quatre pistes ensemble."
+ },
+ {
+  "en": "The SEQUENCER page.",
+  "fr": "La page SEQUENCER."
+ },
+ {
+  "en": "SEQUENCE",
+  "fr": "SEQUENCE"
+ },
+ {
+  "en": "The number of steps of the sequence. The steps beyond it are dimmed.",
+  "fr": "Le nombre de pas de la séquence. Les pas au-delà sont assombris."
+ },
+ {
+  "en": "The length of a step, in note values of the tempo.",
+  "fr": "La durée d'un pas, en valeurs de notes du tempo."
+ },
+ {
+  "en": "4BAR … 1/32",
+  "fr": "4BAR … 1/32"
+ },
+ {
+  "en": "Delays every other step: a shuffle.",
+  "fr": "Retarde un pas sur deux : un balancement."
+ },
+ {
+  "en": "How long each note lasts, in part of its step.",
+  "fr": "La durée de chaque note, en part de son pas."
+ },
+ {
+  "en": "Lit: the steps play on the grid. Unlit: they play their NUDGE (early or late, as recorded).",
+  "fr": "Allumé : les pas jouent sur la grille. Éteint : ils jouent leur NUDGE (en avance ou en retard, comme enregistrés)."
+ },
+ {
+  "en": "Transposes what the keys play, in semitones; the sequence too when QUANTIZE on the ARP page is SEQ+T. The same as TRANSPOSE on the ARP page.",
+  "fr": "Transpose ce que jouent les touches, en demi-tons ; la séquence aussi quand le QUANTIZE de la page ARP est sur SEQ+T. Le même que TRANSPOSE sur la page ARP."
+ },
+ {
+  "en": "−24 … +24 st",
+  "fr": "−24 … +24 st"
+ },
+ {
+  "en": "<b>STEPS</b> 1-16, 17-32, 33-48, 49-64: the 16 steps shown. They change only the view.",
+  "fr": "<b>STEPS</b> 1-16, 17-32, 33-48, 49-64 : les 16 pas affichés. Ils ne changent que l'affichage."
+ },
+ {
+  "en": "STEPS: writing notes",
+  "fr": "STEPS : écrire des notes"
+ },
+ {
+  "en": "<b>Click in the grid</b>: puts a note in that step at that pitch, or takes it away. A step holds up to 4 notes (a chord). A new note sounds on the FM-1 as you write it.",
+  "fr": "<b>Cliquez dans la grille</b> : met une note dans ce pas à cette hauteur, ou la retire. Un pas contient jusqu'à 4 notes (un accord). Une nouvelle note sonne sur le FM-1 quand vous l'écrivez."
+ },
+ {
+  "en": "<b>Scroll</b> over the grid to see higher or lower notes. The keyboard on the left names each C.",
+  "fr": "<b>Faites défiler</b> au-dessus de la grille pour voir des notes plus aiguës ou plus graves. Le clavier à gauche nomme chaque do (C)."
+ },
+ {
+  "en": "<b>Click a step's number</b> to change it: NOTE, then TIE (the previous note lasts through this step), then REST (silence).",
+  "fr": "<b>Cliquez sur le numéro d'un pas</b> pour le changer : NOTE, puis TIE (la note précédente dure pendant ce pas), puis REST (silence)."
+ },
+ {
+  "en": "The step playing is lit as the music plays.",
+  "fr": "Le pas joué s'éclaire pendant la lecture."
+ },
+ {
+  "en": "DETAIL: each step",
+  "fr": "DETAIL : chaque pas"
+ },
+ {
+  "en": "How hard the step plays: click at the height you want, or drag up or down. Only on a step with notes.",
+  "fr": "La force du pas : cliquez à la hauteur voulue, ou glissez vers le haut ou le bas. Seulement sur un pas qui a des notes."
+ },
+ {
+  "en": "Click: the step plays louder.",
+  "fr": "Cliquez : le pas joue plus fort."
+ },
+ {
+  "en": "Click: the note glides into the next one.",
+  "fr": "Cliquez : la note glisse vers la suivante."
+ },
+ {
+  "en": "How often the step plays: drag up or down. Hidden when the step has a condition (COND).",
+  "fr": "La fréquence de jeu du pas : glissez vers le haut ou le bas. Masqué quand le pas a une condition (COND)."
+ },
+ {
+  "en": "Click: the step plays 1 to 4 times within its length.",
+  "fr": "Cliquez : le pas joue 1 à 4 fois dans sa durée."
+ },
+ {
+  "en": "Early or late, in sixteenths of a step: drag up or down. Heard only with QUANTIZE unlit.",
+  "fr": "En avance ou en retard, en seizièmes de pas : glissez vers le haut ou le bas. Entendu seulement avec QUANTIZE éteint."
+ },
+ {
+  "en": "Click to choose when the step plays: 1:2 (the first of every 2 loops), 2:2, 1:3 … 4:4, FILL (only while a fill is held on the FM-1: GLO + E4), !FILL (only when it is not). Choosing a condition puts CHANCE back to 100 %; dragging CHANCE removes the condition.",
+  "fr": "Cliquez pour choisir quand le pas joue : 1:2 (la première de chaque série de 2 boucles), 2:2, 1:3 … 4:4, FILL (seulement pendant un fill tenu sur le FM-1 : GLO + E4), !FILL (seulement en dehors). Choisir une condition remet CHANCE à 100 % ; glisser CHANCE retire la condition."
+ },
+ {
+  "en": "—, 1:2 … 4:4, FILL, !FILL",
+  "fr": "—, 1:2 … 4:4, FILL, !FILL"
+ },
+ {
+  "en": "A double click on a detail's name (VELOCITY, ACCENT…) puts that row back to its usual value on every step of the sequence: velocity 96, ACCENT and SLIDE off, CHANCE 100 %, RATCH ×1, NUDGE 0, no COND.",
+  "fr": "Un double clic sur le nom d'un détail (VELOCITY, ACCENT…) remet cette ligne à sa valeur habituelle sur tous les pas de la séquence : vélocité 96, ACCENT et SLIDE éteints, CHANCE 100 %, RATCH ×1, NUDGE 0, aucune COND."
+ },
+ {
+  "en": "TOOLS",
+  "fr": "TOOLS"
+ },
+ {
+  "en": "They change the whole sequence of the track. On the FM-1, holding SAVE for 1 s undoes the last one.",
+  "fr": "Ils modifient toute la séquence de la piste. Sur le FM-1, maintenir SAVE 1 s annule le dernier."
+ },
+ {
+  "en": "Clears the steps, after a confirmation.",
+  "fr": "Efface les pas, après confirmation."
+ },
+ {
+  "en": "Plays the sequence backwards.",
+  "fr": "Met la séquence à l'envers."
+ },
+ {
+  "en": "Moves every step one step earlier or later (the last comes back at the start).",
+  "fr": "Décale tous les pas d'un pas plus tôt ou plus tard (le dernier revient au début)."
+ },
+ {
+  "en": "New notes taken from the track's scale (ARP page), on the same rhythm. On a DRUM track: a new beat.",
+  "fr": "De nouvelles notes prises dans la gamme de la piste (page ARP), sur le même rythme. Sur une piste DRUM : un nouveau rythme."
+ },
+ {
+  "en": "A musical variation of the sequence; click again for more.",
+  "fr": "Une variation musicale de la séquence ; un nouveau clic l'accentue."
+ },
+ {
+  "en": "Spreads a number of hits as evenly as possible over a cycle of steps, turned by a rotation, through the whole LEN. Type the hits, the steps and the rotation (for example <b>5 16 0</b>) and confirm. A hit keeps the step's note (or takes the scale's root); the other steps are emptied.",
+  "fr": "Répartit un nombre de coups aussi régulièrement que possible sur un cycle de pas, décalé d'une rotation, sur toute la longueur LEN. Tapez les coups, les pas et le décalage (par exemple <b>5 16 0</b>) et confirmez. Un coup garde la note du pas (ou prend la tonique de la gamme) ; les autres pas sont vidés."
+ },
+ {
+  "en": "Doubles LEN (64 at most): the steps are copied after themselves, ready to be changed.",
+  "fr": "Double LEN (64 au plus) : les pas sont recopiés à leur suite, prêts à être modifiés."
+ },
+ {
+  "en": "Halves LEN: only the first half plays.",
+  "fr": "Divise LEN par deux : seule la première moitié joue."
+ },
+ {
+  "en": "SOUND: the track's sound",
+  "fr": "SOUND : le son de la piste"
+ },
+ {
+  "en": "At the top right, the selected track's sound: its engine, then ◀ its name ▶. The arrows load the previous or the next sound on the track without leaving the page; the steps stay. On a P600 track they go through the 255 places, as the list of the SOUND page does (a changed sound asks first); on another engine, through that engine's sounds. With the TRACK buttons at the top, you change both the track and its sound from here.",
+  "fr": "En haut à droite, le son de la piste choisie : son moteur, puis ◀ son nom ▶. Les flèches chargent le son précédent ou suivant sur la piste sans quitter la page ; les pas restent. Sur une piste P600, elles parcourent les 255 places, comme la liste de la page SOUND (un son modifié demande d'abord) ; sur un autre moteur, les sons de ce moteur. Avec les boutons TRACK en haut, vous changez d'ici la piste et son son."
+ },
+ {
+  "en": "AUTOMATION",
+  "fr": "AUTOMATION"
+ },
+ {
+  "en": "The list of the knob moves recorded on the track's steps and of the parameter locks (a padlock): each row gives the step, the setting and its value. Record them on the FM-1: arm the track (●) and turn knobs while it plays.",
+  "fr": "La liste des mouvements de boutons enregistrés sur les pas de la piste et des verrous de paramètres (un cadenas) : chaque ligne donne le pas, le réglage et sa valeur. Enregistrez-les sur le FM-1 : armez la piste (●) et tournez des boutons pendant la lecture."
+ },
+ {
+  "en": "Switches the whole automation of the track on or off.",
+  "fr": "Active ou coupe toute l'automation de la piste."
+ },
+ {
+  "en": "Deletes the row chosen (click it first: it lights yellow).",
+  "fr": "Supprime la ligne choisie (cliquez d'abord dessus : elle s'éclaire en jaune)."
+ },
+ {
+  "en": "Deletes all the automation of the track, after a confirmation.",
+  "fr": "Supprime toute l'automation de la piste, après confirmation."
+ },
+ {
+  "en": "A step holds 4 notes at most.",
+  "fr": "Un pas tient 4 notes au plus."
+ },
+ {
+  "en": "Take a note away before adding another.",
+  "fr": "Retirez une note avant d'en ajouter une autre."
+ },
+ {
+  "en": "A step does not play.",
+  "fr": "Un pas ne joue pas."
+ },
+ {
+  "en": "Check that it is within LEN, its CHANCE, its COND and its VELOCITY.",
+  "fr": "Vérifiez qu'il est dans LEN, son CHANCE, son COND et sa VELOCITY."
+ },
+ {
+  "en": "The tools need the Guru-600 firmware of the FM-1.",
+  "fr": "Les outils demandent le firmware Guru-600 du FM-1."
+ },
+ {
+  "en": "Install the Guru-600 firmware again.",
+  "fr": "Réinstallez le firmware Guru-600."
+ },
+ {
+  "en": "STOP TO EDIT on the FM-1.",
+  "fr": "STOP TO EDIT sur le FM-1."
+ },
+ {
+  "en": "A song is playing (chapter {ch:song}): stop it to edit the steps.",
+  "fr": "Un morceau est en lecture (chapitre {ch:song}) : arrêtez-le pour modifier les pas."
+ },
+ {
+  "en": "A song is a list of up to 16 <b>sections</b>. Each section says, for each of the four tracks, which project's part it plays (A, B, C or D, saved on the PROJECTS page, chapter {ch:projects}) or that it is silent (–), and how many times the section repeats.",
+  "fr": "Un morceau est une liste de 16 <b>sections</b> au plus. Chaque section indique, pour chacune des quatre pistes, la partie de quel projet elle joue (A, B, C ou D, enregistrés sur la page PROJECTS, chapitre {ch:projects}) ou qu'elle se tait (–), et combien de fois la section se répète."
+ },
+ {
+  "en": "The SONG page.",
+  "fr": "La page SONG."
+ },
+ {
+  "en": "Before you start",
+  "fr": "Avant de commencer"
+ },
+ {
+  "en": "Make a first part of the music on the four tracks and save it as project A (PROJECTS page).",
+  "fr": "Faites une première partie de la musique sur les quatre pistes et enregistrez-la comme projet A (page PROJECTS)."
+ },
+ {
+  "en": "Change it into a second part (a chorus, a break…) and save it as B; then C and D if you need them.",
+  "fr": "Transformez-la en une deuxième partie (un refrain, un pont…) et enregistrez-la comme B ; puis C et D si besoin."
+ },
+ {
+  "en": "The SLOTS LEDs on the right show which projects are saved.",
+  "fr": "Les voyants SLOTS à droite montrent quels projets sont enregistrés."
+ },
+ {
+  "en": "SECTIONS",
+  "fr": "SECTIONS"
+ },
+ {
+  "en": "<b>ADD</b>: adds a section at the end, a copy of the last one.",
+  "fr": "<b>ADD</b> : ajoute une section à la fin, copie de la dernière."
+ },
+ {
+  "en": "Click a track's letter to change it: A, B, C, D, then – (the track is silent in that section).",
+  "fr": "Cliquez sur la lettre d'une piste pour la changer : A, B, C, D, puis – (la piste se tait dans cette section)."
+ },
+ {
+  "en": "<b>▲ ▼</b> beside ×<i>n</i>: how many times the section plays (1 to 16).",
+  "fr": "<b>▲ ▼</b> à côté de ×<i>n</i> : combien de fois la section joue (1 à 16)."
+ },
+ {
+  "en": "Click a row to choose it (its number lights yellow), then:",
+  "fr": "Cliquez sur une ligne pour la choisir (son numéro s'éclaire en jaune), puis :"
+ },
+ {
+  "en": "Inserts a new section (A A A A ×1) at the chosen row.",
+  "fr": "Insère une nouvelle section (A A A A ×1) à la ligne choisie."
+ },
+ {
+  "en": "Deletes the chosen section.",
+  "fr": "Supprime la section choisie."
+ },
+ {
+  "en": "Moves the chosen section one row up or down.",
+  "fr": "Monte ou descend la section choisie d'une ligne."
+ },
+ {
+  "en": "Deletes every section, after a confirmation.",
+  "fr": "Supprime toutes les sections, après confirmation."
+ },
+ {
+  "en": "Each change is sent to the FM-1 at once.",
+  "fr": "Chaque changement est envoyé aussitôt au FM-1."
+ },
+ {
+  "en": "Playing the song",
+  "fr": "Jouer le morceau"
+ },
+ {
+  "en": "Plays the sections from the first one. Lit green while the song plays. The section playing is lit in the list; the panel shows SECTION <i>n</i> / <i>total</i> and REPEAT <i>n</i> / <i>total</i>.",
+  "fr": "Joue les sections depuis la première. Éclairé en vert pendant le morceau. La section jouée s'éclaire dans la liste ; le panneau indique SECTION <i>n</i> / <i>total</i> et REPEAT <i>n</i> / <i>total</i>."
+ },
+ {
+  "en": "Stops the song.",
+  "fr": "Arrête le morceau."
+ },
+ {
+  "en": "While a song plays, the steps cannot be edited: stop it first.",
+  "fr": "Pendant le morceau, les pas ne peuvent pas être modifiés : arrêtez-le d'abord."
+ },
+ {
+  "en": "Slot A is empty: save a pattern in it (PROJECTS) first.",
+  "fr": "L'emplacement A est vide : enregistrez-y d'abord un motif (PROJECTS)."
+ },
+ {
+  "en": "A section uses a project that is not saved. Save it on PROJECTS, or change the letter.",
+  "fr": "Une section utilise un projet qui n'est pas enregistré. Enregistrez-le sur PROJECTS, ou changez la lettre."
+ },
+ {
+  "en": "The FM-1 is busy: try again.",
+  "fr": "Le FM-1 est occupé : réessayez."
+ },
+ {
+  "en": "Wait a moment and do it again.",
+  "fr": "Attendez un instant et recommencez."
+ },
+ {
+  "en": "Is the song kept?",
+  "fr": "Le morceau est-il gardé ?"
+ },
+ {
+  "en": "Yes, with the music of the moment, and in a project when you save one (PROJECTS) and in a backup (BACKUP).",
+  "fr": "Oui, avec la musique du moment, et dans un projet quand vous en enregistrez un (PROJECTS) et dans une sauvegarde (BACKUP)."
+ },
+ {
+  "en": "The ARP page gathers what turns the keys you play into music: the arpeggiator, the scale the keys play in, and the chord keys. These settings belong to the selected track, with any engine: they stay when you change sounds.",
+  "fr": "La page ARP rassemble ce qui transforme les touches jouées en musique : l'arpégiateur, la gamme dans laquelle jouent les touches, et les accords. Ces réglages appartiennent à la piste choisie, quel que soit son moteur : ils restent quand vous changez de son."
+ },
+ {
+  "en": "The ARP page.",
+  "fr": "La page ARP."
+ },
+ {
+  "en": "ARPEGGIATOR",
+  "fr": "ARPEGGIATOR"
+ },
+ {
+  "en": "The arpeggiator plays the notes you hold one after the other, in time with the tempo. Set MODE to OFF to play normally again.",
+  "fr": "L'arpégiateur joue l'une après l'autre les notes tenues, en rythme avec le tempo. Réglez MODE sur OFF pour revenir au jeu normal."
+ },
+ {
+  "en": "OFF, UP, DN, UPDN, RND, ORD (the order you pressed them), REPEAT, and for chords DNUP, UP+8, CONV, DIVG, PINKY, THUMB, WALK, CHORD.",
+  "fr": "OFF, UP, DN, UPDN, RND, ORD (l'ordre d'appui), REPEAT, et pour les accords DNUP, UP+8, CONV, DIVG, PINKY, THUMB, WALK, CHORD."
+ },
+ {
+  "en": "15 modes",
+  "fr": "15 modes"
+ },
+ {
+  "en": "The note value of each step, 4 bars to 1/32.",
+  "fr": "La valeur de chaque note, de 4 mesures à 1/32."
+ },
+ {
+  "en": "10 values",
+  "fr": "10 valeurs"
+ },
+ {
+  "en": "How many octaves it climbs.",
+  "fr": "Le nombre d'octaves parcourues."
+ },
+ {
+  "en": "The length of each note.",
+  "fr": "La longueur de chaque note."
+ },
+ {
+  "en": "Swing.",
+  "fr": "Swing."
+ },
+ {
+  "en": "The chance that each note plays.",
+  "fr": "La probabilité que chaque note joue."
+ },
+ {
+  "en": "ON: the notes keep playing after you let go (latch); a new chord replaces them.",
+  "fr": "ON : les notes continuent après le relâchement (verrouillage) ; un nouvel accord les remplace."
+ },
+ {
+  "en": "NOTE: by pitch. PLAY: in the order you played.",
+  "fr": "NOTE : par hauteur. PLAY : dans l'ordre joué."
+ },
+ {
+  "en": "2 choices",
+  "fr": "2 choix"
+ },
+ {
+  "en": "SCALE",
+  "fr": "SCALE"
+ },
+ {
+  "en": "The scale's root note, C to B.",
+  "fr": "La note de départ de la gamme, de C à B."
+ },
+ {
+  "en": "12 notes",
+  "fr": "12 notes"
+ },
+ {
+  "en": "The scale: CHR (chromatic: no scale), MAJ, MIN, DOR, MIX, PEN, MPEN, HARM, PHRY, LYD, LOC, MEL, BLUES, WHOLE, DIMHW, DIMWH.",
+  "fr": "La gamme : CHR (chromatique : pas de gamme), MAJ, MIN, DOR, MIX, PEN, MPEN, HARM, PHRY, LYD, LOC, MEL, BLUES, WHOLE, DIMHW, DIMWH."
+ },
+ {
+  "en": "16 scales",
+  "fr": "16 gammes"
+ },
+ {
+  "en": "How the keys follow the scale: OFF (every key plays its own note), SNAP (a note outside the scale is moved down into it), WHITE (the scale on the white keys only: C4 plays ROOT, the black keys are silent), SEQ (like SNAP, and the sequence also plays in the scale), SEQ+T (like SEQ, and TRANSPOSE transposes the sequence too).",
+  "fr": "Comment les touches suivent la gamme : OFF (chaque touche joue sa note), SNAP (une note hors gamme est ramenée dans la gamme, vers le bas), WHITE (la gamme sur les seules touches blanches : C4 joue ROOT, les noires sont muettes), SEQ (comme SNAP, et la séquence joue aussi dans la gamme), SEQ+T (comme SEQ, et TRANSPOSE transpose aussi la séquence)."
+ },
+ {
+  "en": "5 modes",
+  "fr": "5 modes"
+ },
+ {
+  "en": "Transposes what the keys play, in semitones.",
+  "fr": "Transpose ce que jouent les touches, en demi-tons."
+ },
+ {
+  "en": "−24 / +24 st",
+  "fr": "−24 / +24 st"
+ },
+ {
+  "en": "<b>KEY</b>, on the right: the notes of the scale, lit on one octave (the root marked with a dot), and their number.",
+  "fr": "<b>KEY</b>, à droite : les notes de la gamme, allumées sur une octave (la note de départ marquée d'un point), et leur nombre."
+ },
+ {
+  "en": "CHORD",
+  "fr": "CHORD"
+ },
+ {
+  "en": "One finger plays a chord.",
+  "fr": "Un doigt joue un accord."
+ },
+ {
+  "en": "The chord keys: OFF, DIA3 (the scale's triads: every chord is in key), DIA7 (the scale's sevenths), MAJ, MIN, DOM7, MAJ7, MIN7, SUS4, POW (fixed shapes on every key), MEM (your own chord, learned on the FM-1).",
+  "fr": "Les accords : OFF, DIA3 (les triades de la gamme : chaque accord est dans la tonalité), DIA7 (les septièmes de la gamme), MAJ, MIN, DOM7, MAJ7, MIN7, SUS4, POW (des formes fixes sur chaque touche), MEM (votre propre accord, appris sur le FM-1)."
+ },
+ {
+  "en": "11 choices",
+  "fr": "11 choix"
+ },
+ {
+  "en": "The voicing: CLOSE, OPEN (spread out), INV1, INV2 (inversions), +OCT (the root added an octave below; a seventh then drops its fifth).",
+  "fr": "La disposition : CLOSE (serré), OPEN (écarté), INV1, INV2 (renversements), +OCT (la fondamentale ajoutée à l'octave inférieure ; une septième perd alors sa quinte)."
+ },
+ {
+  "en": "5 choices",
+  "fr": "5 choix"
+ },
+ {
+  "en": "DIA3 and DIA7 follow the scale set above (with SCALE on CHR, the major scale of ROOT); a key outside the scale takes the scale note below it. A chord uses as many voices as it has notes. In MONO, LEGATO or UNISON, the track plays only the chord's root; DRUM and SLICE tracks ignore the chord keys.",
+  "fr": "DIA3 et DIA7 suivent la gamme réglée plus haut (avec SCALE sur CHR, la gamme majeure de ROOT) ; une touche hors gamme prend la note de la gamme juste en dessous. Un accord utilise autant de voix qu'il a de notes. En MONO, LEGATO ou UNISON, la piste ne joue que la fondamentale de l'accord ; les pistes DRUM et SLICE ignorent les accords."
+ },
+ {
+  "en": "It plays by itself?",
+  "fr": "Il joue tout seul ?"
+ },
+ {
+  "en": "HOLD is ON: set it to OFF, or set MODE to OFF.",
+  "fr": "HOLD est sur ON : repassez-le sur OFF, ou réglez MODE sur OFF."
+ },
+ {
+  "en": "The keys play strange notes?",
+  "fr": "Les touches jouent des notes étranges ?"
+ },
+ {
+  "en": "SCALE is not on CHR, QUANTIZE is not OFF, TRANSPOSE is not 0, or CHORD is not OFF: reset them.",
+  "fr": "SCALE n'est pas sur CHR, QUANTIZE pas sur OFF, TRANSPOSE pas à 0, ou CHORD pas sur OFF : rétablissez ces réglages."
+ },
+ {
+  "en": "Recording your own chord (MEM).",
+  "fr": "Enregistrer votre propre accord (MEM)."
+ },
+ {
+  "en": "It is learned on the FM-1: SCL › CHORD, LEARN (see the Guru-600 user guide).",
+  "fr": "Il s'apprend sur le FM-1 : SCL › CHORD, LEARN (voir la notice du Guru-600)."
+ },
+ {
+  "en": "The FX page follows the sound's path. Under <b>TRACK</b> <i>n</i>, the selected track's own effects: DIST and INSERT, then the SLICER, then the SENDS. Under <b>ALL TRACKS</b>, the effects the four tracks share, in the order of the sends (CHORUS, DELAY, REVERB), and MASTER on the right. A shared effect the track sends nothing to is dimmed and says <b>TRACK</b> <i>n</i> <b>· SEND 0 %</b>: its knobs still work for the other tracks.",
+  "fr": "La page FX suit le trajet du son. Sous <b>TRACK</b> <i>n</i>, les effets propres à la piste choisie : DIST et INSERT, puis le SLICER, puis les SENDS. Sous <b>ALL TRACKS</b>, les effets communs aux quatre pistes, dans l'ordre des envois (CHORUS, DELAY, REVERB), et MASTER à droite. Un effet commun auquel la piste n'envoie rien est estompé et indique <b>TRACK</b> <i>n</i> <b>· SEND 0 %</b> : ses boutons agissent toujours pour les autres pistes."
+ },
+ {
+  "en": "The FX page.",
+  "fr": "La page FX."
+ },
+ {
+  "en": "INSERT",
+  "fr": "INSERT"
+ },
+ {
+  "en": "<b>DIST</b>, the first knob: the track's own distortion, at the very start of its path. It is part of the sound: loading a sound sets it again.",
+  "fr": "<b>DIST</b>, le premier bouton : la distorsion propre à la piste, au tout début de son trajet. Elle fait partie du son : charger un son la redéfinit."
+ },
+ {
+  "en": "An effect inserted on the track. Choose its <b>TYPE</b>; its three knobs take the names of that type. <b>MIX</b>: how much of the effect is heard against the dry sound.",
+  "fr": "Un effet inséré sur la piste. Choisissez son <b>TYPE</b> ; ses trois boutons prennent les noms de ce type. <b>MIX</b> : la part d'effet entendue par rapport au son direct."
+ },
+ {
+  "en": "Two INSERTs follow each other on the track: the sound goes through INSERT 1, then INSERT 2 (for example a phaser then a flanger). The buttons <b>1</b> and <b>2</b> above DIST choose which one the TYPE grid and the knobs set. In the grid, the type of the INSERT chosen is lit, the other's dimmer, each marked with its number.",
+  "fr": "Deux INSERT se suivent sur la piste : le son passe par l'INSERT 1, puis par l'INSERT 2 (par exemple un phaser puis un flanger). Les boutons <b>1</b> et <b>2</b> au-dessus de DIST choisissent celui que règlent la grille TYPE et les boutons. Dans la grille, le type de l'INSERT choisi est allumé, celui de l'autre plus faiblement, chacun marqué de son numéro."
+ },
+ {
+  "en": "TYPE",
+  "fr": "TYPE"
+ },
+ {
+  "en": "What it is",
+  "fr": "Ce que c'est"
+ },
+ {
+  "en": "Knobs",
+  "fr": "Boutons"
+ },
+ {
+  "en": "No insert effect.",
+  "fr": "Pas d'effet inséré."
+ },
+ {
+  "en": "Distortions, from the gentlest to the harshest.",
+  "fr": "Des saturations, de la plus douce à la plus dure."
+ },
+ {
+  "en": "Fewer bits and a lower sample rate: a lo-fi sound.",
+  "fr": "Moins de bits et une fréquence d'échantillonnage plus basse : un son lo-fi."
+ },
+ {
+  "en": "BITS (1 … 16), RATE (689 Hz … 44k), LPF",
+  "fr": "BITS (1 … 16), RATE (689 Hz … 44k), LPF"
+ },
+ {
+  "en": "Phaser, flanger, chorus on the track alone.",
+  "fr": "Phaser, flanger, chorus sur la piste seule."
+ },
+ {
+  "en": "SLICER",
+  "fr": "SLICER"
+ },
+ {
+  "en": "A rhythmic gate or stutter, in time with the tempo.",
+  "fr": "Un hachage ou un bégaiement rythmique, calé sur le tempo."
+ },
+ {
+  "en": "OFF, GATE (cuts the sound in rhythm), STUT (repeats it).",
+  "fr": "OFF, GATE (coupe le son en rythme), STUT (le répète)."
+ },
+ {
+  "en": "OFF, GATE, STUT",
+  "fr": "OFF, GATE, STUT"
+ },
+ {
+  "en": "One of 16 rhythmic patterns.",
+  "fr": "L'un des 16 motifs rythmiques."
+ },
+ {
+  "en": "How deep it cuts.",
+  "fr": "La profondeur du hachage."
+ },
+ {
+  "en": "The length of each slice.",
+  "fr": "La durée de chaque tranche."
+ },
+ {
+  "en": "1/8, 8T, 1/16, 16T, 1/32, 32T",
+  "fr": "1/8, 8T, 1/16, 16T, 1/32, 32T"
+ },
+ {
+  "en": "SENDS",
+  "fr": "SENDS"
+ },
+ {
+  "en": "How much of the track goes to CHORUS, DELAY and REVERB, the shared effects below. The same knobs as FX SENDS on the SOUND page and on the TRACKS page. They are part of the sound: loading a sound sets them again.",
+  "fr": "La part de la piste envoyée vers CHORUS, DELAY et REVERB, les effets communs du dessous. Les mêmes boutons que FX SENDS sur la page SOUND et sur la page TRACKS. Ils font partie du son : charger un son les redéfinit."
+ },
+ {
+  "en": "CHORUS, DELAY, REVERB (all tracks)",
+  "fr": "CHORUS, DELAY, REVERB (toutes les pistes)"
+ },
+ {
+  "en": "The speed of the chorus.",
+  "fr": "La vitesse du chorus."
+ },
+ {
+  "en": "Hz",
+  "fr": "Hz"
+ },
+ {
+  "en": "Its depth.",
+  "fr": "Sa profondeur."
+ },
+ {
+  "en": "The time between repeats, in note values of the tempo (D: dotted, T: triplet).",
+  "fr": "Le temps entre les répétitions, en valeurs de notes du tempo (D : pointée, T : triolet)."
+ },
+ {
+  "en": "How long the repeats last: the higher, the more of them. They always fade away in the end.",
+  "fr": "La durée des répétitions : plus il est haut, plus elles sont nombreuses. Elles finissent toujours par s'éteindre."
+ },
+ {
+  "en": "The tone of the repeats: darker to brighter.",
+  "fr": "Le timbre des répétitions : plus sombre à plus clair."
+ },
+ {
+  "en": "The level of the delay.",
+  "fr": "Le niveau du delay."
+ },
+ {
+  "en": "ROOM, SPRING or HALL.",
+  "fr": "ROOM, SPRING ou HALL."
+ },
+ {
+  "en": "ROOM, SPRING, HALL",
+  "fr": "ROOM, SPRING, HALL"
+ },
+ {
+  "en": "The size of the space.",
+  "fr": "La taille de l'espace."
+ },
+ {
+  "en": "How quickly the high frequencies fade.",
+  "fr": "La vitesse à laquelle les aigus s'éteignent."
+ },
+ {
+  "en": "These settings are kept with the project, not with the sounds.",
+  "fr": "Ces réglages sont enregistrés avec le projet, pas avec les sons."
+ },
+ {
+  "en": "MASTER",
+  "fr": "MASTER"
+ },
+ {
+  "en": "The tuning of all the tracks, in cents. The same as TUNE on the SETTINGS page (chapter {ch:settings}).",
+  "fr": "L'accord de toutes les pistes, en cents. Le même que TUNE sur la page SETTINGS (chapitre {ch:settings})."
+ },
+ {
+  "en": "−50 … +50 ct",
+  "fr": "−50 … +50 ct"
+ },
+ {
+  "en": "The swing of the whole song.",
+  "fr": "Le swing de tout le morceau."
+ },
+ {
+  "en": "The knobs of CHORUS, DELAY or REVERB do nothing?",
+  "fr": "Les boutons de CHORUS, DELAY ou REVERB ne font rien ?"
+ },
+ {
+  "en": "The box is dimmed: the track sends nothing to it (SEND 0 %). Turn its send up under SENDS.",
+  "fr": "Le cadre est estompé : la piste ne lui envoie rien (SEND 0 %). Montez son envoi dans SENDS."
+ },
+ {
+  "en": "No reverb?",
+  "fr": "Pas de réverbération ?"
+ },
+ {
+  "en": "The track's REVERB send is at 0 %: turn it up under SENDS.",
+  "fr": "L'envoi REVERB de la piste est à 0 % : montez-le dans SENDS."
+ },
+ {
+  "en": "No delay?",
+  "fr": "Pas de delay ?"
+ },
+ {
+  "en": "The track's DELAY send or DELAY's MIX is at 0 %.",
+  "fr": "L'envoi DELAY de la piste ou le MIX du DELAY est à 0 %."
+ },
+ {
+  "en": "The MOD page gathers what moves the sound beyond the Prophet-600's panel: the modulation matrix, the LFO's other settings, the voice modes and the envelope's destinations. ACTIVE, on the right, lists everything that modulates the sound now.",
+  "fr": "La page MOD rassemble ce qui fait bouger le son au-delà de la façade du Prophet-600 : la matrice de modulation, les autres réglages du LFO, les modes de voix et les destinations de l'enveloppe. ACTIVE, à droite, liste tout ce qui module le son en ce moment."
+ },
+ {
+  "en": "The MOD page.",
+  "fr": "La page MOD."
+ },
+ {
+  "en": "Loading a P600 sound resets this page, except TO AMP and the amounts of slots 3 and 4. Keep your settings with STORE THE TRACK'S SOUND (a USER sound) or a project (chapter {ch:projects}).",
+  "fr": "Charger un son P600 réinitialise cette page, sauf TO AMP et les quantités des emplacements 3 et 4. Gardez vos réglages avec STORE THE TRACK'S SOUND (un son USER) ou un projet (chapitre {ch:projects})."
+ },
+ {
+  "en": "MOD MATRIX",
+  "fr": "MOD MATRIX"
+ },
+ {
+  "en": "The modulation matrix: four slots per track, each sending a source to a destination, in addition to the routings above.",
+  "fr": "La matrice de modulation : quatre emplacements par piste, chacun envoyant une source vers une destination, en plus des liaisons ci-dessus."
+ },
+ {
+  "en": "The source: OFF, LFO, ENV, VEL (velocity), KEY (the note), RAND (random per note), MODW (mod wheel), AT (aftertouch), EXPR (expression pedal), S&H, SLEW (a smoothed S&H).",
+  "fr": "La source : OFF, LFO, ENV, VEL (vélocité), KEY (la note), RAND (au hasard à chaque note), MODW (molette), AT (aftertouch), EXPR (pédale d'expression), S&H, SLEW (un S&H adouci)."
+ },
+ {
+  "en": "The destination: PITCH, CUT, SHP, AMP, PAN, the effect sends DIST CHO DLY REV, RATE (the LFO's speed), VIB (vibrato depth), the P600's own settings (WAVE A, FREQ A, WAVE B, FREQ B, CUTOFF, RESONANCE, MIXER, ENV AMOUNT), DEPTH (the LFO's depth), VEL (the note's velocity), TIME (a step plays slightly late).",
+  "fr": "La destination : PITCH, CUT, SHP, AMP, PAN, les envois d'effets DIST CHO DLY REV, RATE (vitesse du LFO), VIB (profondeur du vibrato), les réglages propres au P600 (WAVE A, FREQ A, WAVE B, FREQ B, CUTOFF, RESONANCE, MIXER, ENV AMOUNT), DEPTH (profondeur du LFO), VEL (vélocité de la note), TIME (un pas joue légèrement en retard)."
+ },
+ {
+  "en": "23 choices",
+  "fr": "23 choix"
+ },
+ {
+  "en": "The amount, positive or negative. A double click: 0.",
+  "fr": "La quantité, positive ou négative. Un double clic : 0."
+ },
+ {
+  "en": "Fields ◀ ▶: click an arrow, or scroll over the field. After the last value comes the first.",
+  "fr": "Champs ◀ ▶ : cliquez sur une flèche, ou faites défiler au-dessus du champ. Après la dernière valeur revient la première."
+ },
+ {
+  "en": "<b>On a P600 track, slots 3 and 4 belong to the sound</b>: VEL › CUT (EXTRAS › VEL > FLT on the SOUND page) and MODW › DEPTH (EXTRAS › WHEEL). Their amounts are those knobs. Slots 1 and 2 are free for your own modulations.",
+  "fr": "<b>Sur une piste P600, les emplacements 3 et 4 appartiennent au son</b> : VEL › CUT (EXTRAS › VEL > FLT sur la page SOUND) et MODW › DEPTH (EXTRAS › WHEEL). Leurs quantités sont ces boutons. Les emplacements 1 et 2 sont libres pour les vôtres."
+ },
+ {
+  "en": "MODW, AT and EXPR come from a MIDI keyboard (or SELECT = MODW for the mod wheel). Until a value is received, MODW and AT are at 0 and EXPR at full.",
+  "fr": "MODW, AT et EXPR viennent d'un clavier MIDI (ou de SELECT = MODW pour la molette). Tant que rien n'est reçu, MODW et AT valent 0 et EXPR le maximum."
+ },
+ {
+  "en": "The editor's MOD wheel, under the keyboard, also drives MODW.",
+  "fr": "La molette MOD de l'éditeur, sous le clavier, pilote aussi MODW."
+ },
+ {
+  "en": "OFF (FREQUENCY on the SOUND page sets the speed) or a note value, 4BAR to 1/32, that follows the tempo.",
+  "fr": "OFF (FREQUENCY sur la page SOUND règle la vitesse) ou une valeur de note, de 4BAR à 1/32, qui suit le tempo."
+ },
+ {
+  "en": "NOTE: the wave restarts at each note. FREE: it runs freely.",
+  "fr": "NOTE : l'onde repart à chaque note. FREE : elle tourne librement."
+ },
+ {
+  "en": "BI: up and down around the setting. UNI: only above it.",
+  "fr": "BI : au-dessus et au-dessous du réglage. UNI : seulement au-dessus."
+ },
+ {
+  "en": "Where the wave starts at each note.",
+  "fr": "Où l'onde commence à chaque note."
+ },
+ {
+  "en": "Time for the LFO to come in after the note starts: a delayed vibrato.",
+  "fr": "Temps d'arrivée du LFO après le début de la note : un vibrato retardé."
+ },
+ {
+  "en": "Volume: tremolo.",
+  "fr": "Volume : trémolo."
+ },
+ {
+  "en": "VOICE",
+  "fr": "VOICE"
+ },
+ {
+  "en": "POLY (up to six notes), MONO (one note, each note restarts the envelopes), LEGATO (one note, the envelopes restart only after a gap), UNISON (all the voices on one note: the SOUND page's UNISON).",
+  "fr": "POLY (jusqu'à six notes), MONO (une note, chaque note relance les enveloppes), LEGATO (une note, les enveloppes ne repartent qu'après un silence), UNISON (toutes les voix sur une note : l'UNISON de la page SOUND)."
+ },
+ {
+  "en": "4 modes",
+  "fr": "4 modes"
+ },
+ {
+  "en": "How the glide is timed: RATE (a constant speed: a wide interval takes longer) or TIME (always the same time).",
+  "fr": "Mode du glide : RATE (vitesse constante : un grand intervalle prend plus de temps) ou TIME (toujours le même temps)."
+ },
+ {
+  "en": "In MONO and LEGATO, which note sounds when you hold several: LAST, LOW or HIGH.",
+  "fr": "En MONO et LEGATO, la note qui sonne quand vous en tenez plusieurs : LAST (la dernière), LOW (la plus grave) ou HIGH (la plus aiguë)."
+ },
+ {
+  "en": "3 choices",
+  "fr": "3 choix"
+ },
+ {
+  "en": "How notes take voices: ROTATE (in rotation, so a note's release keeps ringing) or REUSE (a repeated note takes its own voice back).",
+  "fr": "Attribution des voix : ROTATE (à tour de rôle : la fin d'une note continue ainsi de sonner) ou REUSE (une note répétée reprend sa propre voix)."
+ },
+ {
+  "en": "The four tracks share the FM-1's eight voices: a P600 track takes six at most, fewer if the other tracks are playing many notes.",
+  "fr": "Les quatre pistes se partagent les huit voix du FM-1 : une piste P600 en prend six au plus, moins si les autres pistes jouent beaucoup de notes."
+ },
+ {
+  "en": "ENVELOPE",
+  "fr": "ENVELOPE"
+ },
+ {
+  "en": "The amplifier's envelope (AMPLIFIER on the SOUND page) also moves other settings, by a positive or negative amount.",
+  "fr": "L'enveloppe de l'amplificateur (AMPLIFIER sur la page SOUND) fait aussi bouger d'autres réglages, d'une quantité positive ou négative."
+ },
+ {
+  "en": "ON: ATTACK, DECAY and RELEASE become note values (1/16, 1/4, 2BAR…) that follow the tempo.",
+  "fr": "ON : ATTACK, DECAY et RELEASE deviennent des valeurs de notes (1/16, 1/4, 2BAR…) qui suivent le tempo."
+ },
+ {
+  "en": "To the cutoff, on top of the filter's own envelope.",
+  "fr": "Vers la coupure, en plus de l'enveloppe propre au filtre."
+ },
+ {
+  "en": "To the pitch.",
+  "fr": "Vers la hauteur."
+ },
+ {
+  "en": "To the pulse widths.",
+  "fr": "Vers les largeurs d'impulsion."
+ },
+ {
+  "en": "ACTIVE",
+  "fr": "ACTIVE"
+ },
+ {
+  "en": "Every modulation at work, as <i>source</i> → <i>destination</i> and its amount: the matrix slots in use, the LFO's destinations (SOUND page and TO AMP), the POLY-MOD and the envelope's destinations. — : none.",
+  "fr": "Chaque modulation à l'œuvre, sous la forme <i>source</i> → <i>destination</i> et sa quantité : les emplacements de la matrice utilisés, les destinations du LFO (page SOUND et TO AMP), la POLY-MOD et les destinations de l'enveloppe. — : aucune."
+ },
+ {
+  "en": "A modulation does nothing.",
+  "fr": "Une modulation ne fait rien."
+ },
+ {
+  "en": "Its SOURCE, DESTINATION or AMOUNT is at OFF or 0; MODW, AT and EXPR need a MIDI keyboard or the editor's MOD wheel.",
+  "fr": "Sa SOURCE, sa DESTINATION ou son AMOUNT est sur OFF ou 0 ; MODW, AT et EXPR demandent un clavier MIDI ou la molette MOD de l'éditeur."
+ },
+ {
+  "en": "My modulations are gone.",
+  "fr": "Mes modulations ont disparu."
+ },
+ {
+  "en": "A P600 sound was loaded: it resets the page. Keep them in a USER sound or a project.",
+  "fr": "Un son P600 a été chargé : il réinitialise la page. Gardez-les dans un son USER ou un projet."
+ },
+ {
+  "en": "The FM-1 plays four tracks at once. The TRACKS page shows them side by side, like the channels of a mixer: each one's engine and sound, its effect sends, its pan and level, MUTE and SOLO.",
+  "fr": "Le FM-1 joue quatre pistes à la fois. La page TRACKS les montre côte à côte, comme les voies d'une table de mixage : le moteur et le son de chacune, ses envois d'effets, son panoramique et son niveau, MUTE et SOLO."
+ },
+ {
+  "en": "The TRACKS page; the selected track is lit in orange.",
+  "fr": "La page TRACKS ; la piste choisie est éclairée en orange."
+ },
+ {
+  "en": "The track's engine. ◀ or ▶ moves to the previous or next one, after a confirmation: the track then plays the new engine's first sound.",
+  "fr": "Le moteur de la piste. ◀ ou ▶ passe au précédent ou au suivant, après confirmation : la piste joue alors le premier son du nouveau moteur."
+ },
+ {
+  "en": "P600, ANALOG, FM6, PHASE, LOFI, SAMPLE, VOICE, TRIO, WHEEL, GRAIN, PHYS, NOISE, SLICE, DRUM",
+  "fr": "P600, ANALOG, FM6, PHASE, LOFI, SAMPLE, VOICE, TRIO, WHEEL, GRAIN, PHYS, NOISE, SLICE, DRUM"
+ },
+ {
+  "en": "The track's sound (for P600, its place and name). ◀ or ▶ loads the previous or next sound of its engine (P600: the 255 places).",
+  "fr": "Le son de la piste (pour P600, sa place et son nom). ◀ ou ▶ charge le son précédent ou suivant de son moteur (P600 : les 255 places)."
+ },
+ {
+  "en": "How much of the track goes to each shared effect (chapter {ch:fx}).",
+  "fr": "La part de la piste envoyée à chaque effet commun (chapitre {ch:fx})."
+ },
+ {
+  "en": "The track's own distortion, above PAN (chapter {ch:fx}).",
+  "fr": "La distorsion propre à la piste, au-dessus de PAN (chapitre {ch:fx})."
+ },
+ {
+  "en": "The track's place between left and right.",
+  "fr": "La place de la piste entre gauche et droite."
+ },
+ {
+  "en": "The track's volume: click or drag on the fader. Double click: −4 dB.",
+  "fr": "Le volume de la piste : cliquez ou glissez sur le fader. Double clic : −4 dB."
+ },
+ {
+  "en": "Silences the track; click again to hear it.",
+  "fr": "Coupe la piste ; cliquez de nouveau pour l'entendre."
+ },
+ {
+  "en": "Plays this track alone: the others are muted. Click again to hear them all.",
+  "fr": "Fait jouer cette piste seule : les autres sont coupées. Cliquez de nouveau pour les entendre toutes."
+ },
+ {
+  "en": "Selects the track, like TRACK 1 to 4 at the top: the other pages then show and change this track.",
+  "fr": "Choisit la piste, comme TRACK 1 à 4 en haut : les autres pages montrent et modifient alors cette piste."
+ },
+ {
+  "en": "Lit: the track is armed for recording (● at the top).",
+  "fr": "Allumée : la piste est armée pour l'enregistrement (● en haut)."
+ },
+ {
+  "en": "Knobs: drag up or down, or scroll over them; a double click puts them back to 0 (PAN: center).",
+  "fr": "Boutons rotatifs : glissez vers le haut ou le bas, ou faites défiler au-dessus d'eux ; un double clic les remet à 0 (PAN : au centre)."
+ },
+ {
+  "en": "SOLO belongs to the editor: before closing it, click SOLO again, or the other tracks stay muted on the FM-1 (their MUTE brings them back).",
+  "fr": "SOLO appartient à l'éditeur : avant de le fermer, cliquez de nouveau sur SOLO, sinon les autres pistes restent coupées sur le FM-1 (leur MUTE les rétablit)."
+ },
+ {
+  "en": "Changing the engine erased my sound.",
+  "fr": "Changer de moteur a effacé mon son."
+ },
+ {
+  "en": "The track takes the new engine's first sound. Keep a sound you like before: SAVE TO THIS PLACE (P600, chapter {ch:sound}) or STORE THE TRACK'S SOUND (chapter {ch:projects}).",
+  "fr": "La piste prend le premier son du nouveau moteur. Gardez avant un son qui vous plaît : SAVE TO THIS PLACE (P600, chapitre {ch:sound}) ou STORE THE TRACK'S SOUND (chapitre {ch:projects})."
+ },
+ {
+  "en": "Only P600 tracks have a SOUND page.",
+  "fr": "Seules les pistes P600 ont une page SOUND."
+ },
+ {
+  "en": "The editor edits the P600's sounds. The other engines are played and mixed here, and edited on the FM-1.",
+  "fr": "L'éditeur modifie les sons du P600. Les autres moteurs se jouent et se mixent ici, et se modifient sur le FM-1."
+ },
+ {
+  "en": "The PROJECTS page keeps your music in the FM-1: four <b>projects</b>, A to D, and 32 <b>USER sounds</b>.",
+  "fr": "La page PROJECTS garde votre musique dans le FM-1 : quatre <b>projets</b>, A à D, et 32 <b>sons USER</b>."
+ },
+ {
+  "en": "The PROJECTS page: the projects on the left, the USER sounds on the right.",
+  "fr": "La page PROJECTS : les projets à gauche, les sons USER à droite."
+ },
+ {
+  "en": "The projects A to D",
+  "fr": "Les projets A à D"
+ },
+ {
+  "en": "A project holds the whole music: the four tracks with their sounds, steps and automation, the mix and the song. Each slot shows SAVED or EMPTY. The SONG page plays its sections from these four slots (chapter {ch:song}).",
+  "fr": "Un projet contient toute la musique : les quatre pistes avec leurs sons, leurs pas et leurs automations, le mixage et le morceau. Chaque emplacement indique SAVED ou EMPTY. La page SONG joue ses sections depuis ces quatre emplacements (chapitre {ch:song})."
+ },
+ {
+  "en": "<b>SAVE</b>: saves the music as it is now in that slot. A slot already SAVED asks before it is replaced.",
+  "fr": "<b>SAVE</b> : enregistre la musique telle qu'elle est dans cet emplacement. Un emplacement déjà SAVED demande confirmation avant d'être remplacé."
+ },
+ {
+  "en": "<b>LOAD</b>: replaces the music of the moment with that project, after a confirmation. Grey on an EMPTY slot.",
+  "fr": "<b>LOAD</b> : remplace la musique du moment par ce projet, après confirmation. Gris sur un emplacement EMPTY."
+ },
+ {
+  "en": "The music of the moment is kept by the FM-1 at power-off (RESTORE LAST, chapter {ch:settings}), but a project is the safe copy: save it before trying something new.",
+  "fr": "La musique du moment est gardée par le FM-1 à l'extinction (RESTORE LAST, chapitre {ch:settings}), mais un projet en est la copie sûre : enregistrez-le avant d'essayer autre chose."
+ },
+ {
+  "en": "The USER sounds",
+  "fr": "Les sons USER"
+ },
+ {
+  "en": "A USER sound is one track's sound with its 16-step pattern, kept under a name, whatever its engine. The list shows the 32 places: number, engine and name; — is an empty place. Click a place to choose it.",
+  "fr": "Un son USER est le son d'une piste avec son motif de 16 pas, gardé sous un nom, quel que soit son moteur. La liste montre les 32 places : numéro, moteur et nom ; — est une place vide. Cliquez sur une place pour la choisir."
+ },
+ {
+  "en": "Keeps the sound of the selected track (TRACK 1 to 4, at the top) in the chosen place. Type its name (12 characters at most) and confirm. A place in use asks before it is replaced.",
+  "fr": "Garde le son de la piste choisie (TRACK 1 à 4, en haut) dans la place choisie. Tapez son nom (12 caractères au plus) et confirmez. Une place occupée demande confirmation avant d'être remplacée."
+ },
+ {
+  "en": "Loads the chosen USER sound on the selected track. A double click on a place does the same. If the track's sound was changed and not saved, the editor asks first.",
+  "fr": "Charge le son USER choisi sur la piste choisie. Un double clic sur une place fait de même. Si le son de la piste a été modifié sans être enregistré, l'éditeur demande d'abord."
+ },
+ {
+  "en": "Empties the chosen place, after a confirmation.",
+  "fr": "Vide la place choisie, après confirmation."
+ },
+ {
+  "en": "For a P600 sound, SAVE TO THIS PLACE on the SOUND page (chapter {ch:sound}) keeps it among the 255 P600 places; a USER sound keeps it with its pattern, for any engine.",
+  "fr": "Pour un son P600, SAVE TO THIS PLACE sur la page SOUND (chapitre {ch:sound}) le garde parmi les 255 places du P600 ; un son USER le garde avec son motif, quel que soit le moteur."
+ },
+ {
+  "en": "The FM-1 could not save (stop the music first).",
+  "fr": "Le FM-1 n'a pas pu enregistrer (arrêtez d'abord la musique)."
+ },
+ {
+  "en": "Click ■, then SAVE again.",
+  "fr": "Cliquez sur ■, puis de nouveau sur SAVE."
+ },
+ {
+  "en": "Loaded the wrong project.",
+  "fr": "Mauvais projet chargé."
+ },
+ {
+  "en": "The music of the moment is replaced: if it was saved in a project, load that project again. Otherwise it is lost.",
+  "fr": "La musique du moment est remplacée : si elle était enregistrée dans un projet, rechargez ce projet. Sinon, elle est perdue."
+ },
+ {
+  "en": "Do the projects leave the FM-1?",
+  "fr": "Les projets peuvent-ils sortir du FM-1 ?"
+ },
+ {
+  "en": "Yes: a backup holds all four, with everything else (chapter {ch:backup}).",
+  "fr": "Oui : une sauvegarde contient les quatre, avec tout le reste (chapitre {ch:backup})."
+ },
+ {
+  "en": "The FM-1 has three slots for your own samples: <b>USR1</b>, <b>USR2</b> and <b>USR3</b>. The SAMPLE, GRAIN and SLICE engines play them. The SAMPLES page fills them from sound files on the computer.",
+  "fr": "Le FM-1 a trois emplacements pour vos propres échantillons : <b>USR1</b>, <b>USR2</b> et <b>USR3</b>. Les moteurs SAMPLE, GRAIN et SLICE les jouent. La page SAMPLES les remplit à partir de fichiers son de l'ordinateur."
+ },
+ {
+  "en": "The SAMPLES page: one column per slot.",
+  "fr": "La page SAMPLES : une colonne par emplacement."
+ },
+ {
+  "en": "What a slot holds",
+  "fr": "Ce que contient un emplacement"
+ },
+ {
+  "en": "Up to 16 files, each one a <b>zone</b>: it plays from its <b>root note</b>, on the keys around it.",
+  "fr": "Jusqu'à 16 fichiers, chacun une <b>zone</b> : il joue depuis sa <b>note de base</b>, sur les touches autour d'elle."
+ },
+ {
+  "en": "A name of 8 characters at most.",
+  "fr": "Un nom de 8 caractères au plus."
+ },
+ {
+  "en": "USR1 and USR2: 79.5 KiB each, about 7 seconds of sound. USR3: 67.5 KiB, about 6 seconds (the Guru-600 keeps the P600 sounds you saved at the end of USR3).",
+  "fr": "USR1 et USR2 : 79,5 Kio chacun, environ 7 secondes de son. USR3 : 67,5 Kio, environ 6 secondes (le Guru-600 garde à la fin de USR3 les sons P600 que vous avez enregistrés)."
+ },
+ {
+  "en": "The top line of each column shows what the slot holds now on the FM-1: its name and number of zones (or EMPTY), and how full it is.",
+  "fr": "La ligne du haut de chaque colonne montre ce que contient l'emplacement sur le FM-1 : son nom et son nombre de zones (ou EMPTY), et son remplissage."
+ },
+ {
+  "en": "Sending samples",
+  "fr": "Envoyer des échantillons"
+ },
+ {
+  "en": "Drop one or more sound files on the frame <b>DROP WAV FILES HERE</b> of the slot, or click <b>CHOOSE FILES</b>. WAV files are best; most other sound files the browser can play work too.",
+  "fr": "Déposez un ou plusieurs fichiers son sur le cadre <b>DROP WAV FILES HERE</b> de l'emplacement, ou cliquez sur <b>CHOOSE FILES</b>. Les fichiers WAV conviennent le mieux ; la plupart des autres fichiers son que le navigateur sait lire marchent aussi."
+ },
+ {
+  "en": "Check the list: for each file, its root note, the keys it plays (from–to) and its length. Click <b>▶</b> to hear it as the FM-1 will store it; <b>✕</b> removes it.",
+  "fr": "Vérifiez la liste : pour chaque fichier, sa note de base, les touches qu'il joue (de–à) et sa durée. Cliquez sur <b>▶</b> pour l'écouter tel que le FM-1 le gardera ; <b>✕</b> le retire."
+ },
+ {
+  "en": "Change a root note if needed: click it, type the note (<b>C4</b>, <b>F#3</b>, <b>Bb2</b>…) and press Enter. The keys of every zone follow.",
+  "fr": "Changez une note de base si besoin : cliquez dessus, tapez la note (<b>C4</b>, <b>F#3</b>, <b>Bb2</b>…) et appuyez sur Entrée. Les touches de chaque zone suivent."
+ },
+ {
+  "en": "Check the <b>NAME</b> (it takes the first file's name), then click <b>SEND TO USR</b><i>n</i> and confirm.",
+  "fr": "Vérifiez le <b>NAME</b> (il reprend le nom du premier fichier), puis cliquez sur <b>SEND TO USR</b><i>n</i> et confirmez."
+ },
+ {
+  "en": "The bar shows the progress, then the message <b>Sent to USR</b><i>n</i>. The top line shows the new contents.",
+  "fr": "La barre montre l'avancement, puis le message <b>Envoyé dans USR</b><i>n</i>. La ligne du haut affiche le nouveau contenu."
+ },
+ {
+  "en": "Sending replaces everything the slot held. A sound that played that slot now plays the new samples.",
+  "fr": "L'envoi remplace tout ce que contenait l'emplacement. Un son qui jouait cet emplacement joue désormais les nouveaux échantillons."
+ },
+ {
+  "en": "Root notes and keys",
+  "fr": "Notes de base et touches"
+ },
+ {
+  "en": "A file named with a note, such as <b>piano_C4.wav</b> or <b>F#3.wav</b>, takes that note as its root (C4 = middle C). Any other file takes <b>C4</b>.",
+  "fr": "Un fichier dont le nom contient une note, comme <b>piano_C4.wav</b> ou <b>F#3.wav</b>, prend cette note comme note de base (C4 = do du milieu). Tout autre fichier prend <b>C4</b>."
+ },
+ {
+  "en": "The keys are shared out between the zones: each one plays up to halfway to the next root. The lowest goes down to the bottom of the keyboard, the highest up to the top.",
+  "fr": "Les touches sont réparties entre les zones : chacune joue jusqu'à mi-chemin de la note de base suivante. La plus grave descend jusqu'en bas du clavier, la plus aiguë monte jusqu'en haut."
+ },
+ {
+  "en": "Two files cannot share a root note: their notes turn red, the line under the list says TWO FILES ON ONE ROOT NOTE and SEND stays grey. Change one of them.",
+  "fr": "Deux fichiers ne peuvent pas avoir la même note de base : leurs notes passent en rouge, la ligne sous la liste indique TWO FILES ON ONE ROOT NOTE et SEND reste gris. Changez l'une des deux."
+ },
+ {
+  "en": "Size",
+  "fr": "Taille"
+ },
+ {
+  "en": "The line under the list shows the size of the files against the slot's room. The files are stored at 22,050 Hz, in mono. Over the slot's room, the line turns red (TOO LONG FOR THE SLOT) and SEND stays grey: remove a file, or shorten your files on the computer.",
+  "fr": "La ligne sous la liste montre la taille des fichiers par rapport à la place de l'emplacement. Les fichiers sont gardés à 22 050 Hz, en mono. Au-delà de la place disponible, la ligne passe en rouge (TOO LONG FOR THE SLOT) et SEND reste gris : retirez un fichier, ou raccourcissez vos fichiers sur l'ordinateur."
+ },
+ {
+  "en": "Erasing a slot",
+  "fr": "Effacer un emplacement"
+ },
+ {
+  "en": "Click <b>ERASE</b> and confirm. The slot becomes EMPTY; a sound that played it plays a plain sine wave, and the FM-1 shows NO SAMPLE.",
+  "fr": "Cliquez sur <b>ERASE</b> et confirmez. L'emplacement devient EMPTY ; un son qui le jouait joue une simple sinusoïde, et le FM-1 affiche NO SAMPLE."
+ },
+ {
+  "en": "Playing your samples",
+  "fr": "Jouer vos échantillons"
+ },
+ {
+  "en": "On the FM-1, choose the SAMPLE, GRAIN or SLICE engine for a track (on the TRACKS page, chapter {ch:tracks}, or on the device), then its sound USR1, USR2 or USR3.",
+  "fr": "Sur le FM-1, choisissez le moteur SAMPLE, GRAIN ou SLICE pour une piste (sur la page TRACKS, chapitre {ch:tracks}, ou sur l'appareil), puis son son USR1, USR2 ou USR3."
+ },
+ {
+  "en": "This file could not be read.",
+  "fr": "Ce fichier n'a pas pu être lu."
+ },
+ {
+  "en": "The browser cannot decode it. Save it as WAV on the computer and drop it again.",
+  "fr": "Le navigateur ne sait pas le décoder. Enregistrez-le en WAV sur l'ordinateur et déposez-le de nouveau."
+ },
+ {
+  "en": "16 files at most: the others were left out.",
+  "fr": "16 fichiers au plus : les autres ont été laissés de côté."
+ },
+ {
+  "en": "A slot holds 16 zones. Use another slot for the rest.",
+  "fr": "Un emplacement contient 16 zones. Utilisez un autre emplacement pour le reste."
+ },
+ {
+  "en": "SEND stays grey.",
+  "fr": "SEND reste gris."
+ },
+ {
+  "en": "It needs at least one file, a NAME, no root note twice and a size that fits; the FM-1 must be connected.",
+  "fr": "Il faut au moins un fichier, un NAME, aucune note de base en double et une taille qui tient ; le FM-1 doit être branché."
+ },
+ {
+  "en": "The samples are not in the backup file.",
+  "fr": "Les échantillons ne sont pas dans le fichier de sauvegarde."
+ },
+ {
+  "en": "They are: SAMPLE USR1 to USR3 in the BACKUP list (chapter {ch:backup}). Keep your original files too.",
+  "fr": "Si : SAMPLE USR1 à USR3 dans la liste de BACKUP (chapitre {ch:backup}). Gardez aussi vos fichiers d'origine."
+ },
+ {
+  "en": "The BACKUP page saves everything the FM-1 holds in one file on the computer, and puts it back: the music of the moment, the projects A to D, the 32 USER sounds, the three samples and their slices, the P600's places and the settings.",
+  "fr": "La page BACKUP enregistre tout ce que contient le FM-1 dans un seul fichier sur l'ordinateur, et le remet en place : la musique du moment, les projets A à D, les 32 sons USER, les trois échantillons et leurs découpes, les places du P600 et les réglages."
+ },
+ {
+  "en": "The BACKUP page: the FM-1 on the left, a file on the right.",
+  "fr": "La page BACKUP : le FM-1 à gauche, un fichier à droite."
+ },
+ {
+  "en": "Make a backup before installing another firmware, before RESET ALL SOUNDS, and from time to time.",
+  "fr": "Faites une sauvegarde avant d'installer un autre firmware, avant RESET ALL SOUNDS, et de temps en temps."
+ },
+ {
+  "en": "ON THE FM-1: what it holds",
+  "fr": "ON THE FM-1 : ce qu'il contient"
+ },
+ {
+  "en": "The list shows each part of the FM-1 and its size. A lit LED: the part holds something; EMPTY: nothing to save. TOTAL: the size of the whole.",
+  "fr": "La liste montre chaque partie du FM-1 et sa taille. LED allumée : la partie contient quelque chose ; EMPTY : rien à enregistrer. TOTAL : la taille de l'ensemble."
+ },
+ {
+  "en": "Line",
+  "fr": "Ligne"
+ },
+ {
+  "en": "The music as it is now: the four tracks, their sounds, steps and automation, the mix, the song.",
+  "fr": "La musique telle qu'elle est : les quatre pistes, leurs sons, pas et automations, le mixage, le morceau."
+ },
+ {
+  "en": "The settings of the MENU (chapter {ch:settings}).",
+  "fr": "Les réglages du MENU (chapitre {ch:settings})."
+ },
+ {
+  "en": "The four saved projects (chapter {ch:projects}).",
+  "fr": "Les quatre projets enregistrés (chapitre {ch:projects})."
+ },
+ {
+  "en": "The 32 USER sounds.",
+  "fr": "Les 32 sons USER."
+ },
+ {
+  "en": "The FM6 patches of the USER sounds made with the FM6 engine.",
+  "fr": "Les patchs FM6 des sons USER faits avec le moteur FM6."
+ },
+ {
+  "en": "The three user samples (chapter {ch:samples}).",
+  "fr": "Les trois échantillons de l'utilisateur (chapitre {ch:samples})."
+ },
+ {
+  "en": "The P600 sounds you saved over the 255 places (SAVE TO THIS PLACE, chapter {ch:sound}).",
+  "fr": "Les sons P600 enregistrés sur les 255 places (SAVE TO THIS PLACE, chapitre {ch:sound})."
+ },
+ {
+  "en": "The FM6 voice bank loaded in the FM-1.",
+  "fr": "La banque de voix FM6 chargée dans le FM-1."
+ },
+ {
+  "en": "The slices you set by hand on each sample (the SLICE engine, MAN mode).",
+  "fr": "Les découpes réglées à la main sur chaque échantillon (moteur SLICE, mode MAN)."
+ },
+ {
+  "en": "Saving a backup",
+  "fr": "Enregistrer une sauvegarde"
+ },
+ {
+  "en": "Stop the music (■).",
+  "fr": "Arrêtez la musique (■)."
+ },
+ {
+  "en": "Click <b>SAVE A BACKUP TO THIS COMPUTER</b>. The bar under the list shows the progress.",
+  "fr": "Cliquez sur <b>SAVE A BACKUP TO THIS COMPUTER</b>. La barre sous la liste montre l'avancement."
+ },
+ {
+  "en": "The browser saves <b>Guru-600-backup-</b><i>year-month-day</i><b>.json</b> in its downloads folder. Keep it somewhere safe.",
+  "fr": "Le navigateur enregistre <b>Guru-600-backup-</b><i>année-mois-jour</i><b>.json</b> dans son dossier de téléchargements. Rangez-le en lieu sûr."
+ },
+ {
+  "en": "The file is the same as the one saved by the Guru-600 application on the Mac and by the installer: each of them can put it back.",
+  "fr": "Le fichier est le même que celui qu'enregistrent l'application Guru-600 sur Mac et l'installateur : chacun d'eux peut le remettre en place."
+ },
+ {
+  "en": "FROM A FILE: restoring a backup",
+  "fr": "FROM A FILE : restaurer une sauvegarde"
+ },
+ {
+  "en": "Drop the backup file on the frame <b>DROP A BACKUP FILE HERE</b>, or click <b>CHOOSE A FILE</b>.",
+  "fr": "Déposez le fichier de sauvegarde sur le cadre <b>DROP A BACKUP FILE HERE</b>, ou cliquez sur <b>CHOOSE A FILE</b>."
+ },
+ {
+  "en": "Check the file: its name, its date and where it comes from appear above the frame, and what it holds below it. Nothing is sent yet.",
+  "fr": "Vérifiez le fichier : son nom, sa date et sa provenance s'affichent au-dessus du cadre, et ce qu'il contient en dessous. Rien n'est encore envoyé."
+ },
+ {
+  "en": "Stop the music (■), then click <b>RESTORE IT ON THE FM-1</b> and confirm.",
+  "fr": "Arrêtez la musique (■), puis cliquez sur <b>RESTORE IT ON THE FM-1</b> et confirmez."
+ },
+ {
+  "en": "Keep the FM-1 connected until the message <b>Backup restored</b>. The editor then reads the FM-1 again.",
+  "fr": "Gardez le FM-1 branché jusqu'au message <b>Sauvegarde restaurée</b>. L'éditeur relit alors le FM-1."
+ },
+ {
+  "en": "Restoring replaces everything on the FM-1: its music, projects, USER sounds, samples and settings. Save a backup of the FM-1 first if you may want it back.",
+  "fr": "La restauration remplace tout sur le FM-1 : sa musique, ses projets, ses sons USER, ses échantillons et ses réglages. Enregistrez d'abord une sauvegarde du FM-1 si vous pouvez en avoir besoin."
+ },
+ {
+  "en": "The FM-1 keeps its own CALIBRATION (how its buttons and knobs are wired), whatever the file holds. A file saved by the Mac application before it saved any music or settings leaves the FM-1's own in place.",
+  "fr": "Le FM-1 garde sa propre CALIBRATION (le câblage de ses boutons et de ses boutons rotatifs), quel que soit le fichier. Un fichier de l'application Mac enregistré avant qu'elle ait de la musique ou des réglages laisse ceux du FM-1 en place."
+ },
+ {
+  "en": "If it does not work",
+  "fr": "Si ça ne marche pas"
+ },
+ {
+  "en": "The buttons stay grey.",
+  "fr": "Les boutons restent gris."
+ },
+ {
+  "en": "Connect the FM-1 (chapter {ch:connect}). RESTORE also needs a file chosen. If the left column says THIS FIRMWARE CANNOT BE BACKED UP FROM HERE, install the Guru-600 firmware again.",
+  "fr": "Branchez le FM-1 (chapitre {ch:connect}). RESTORE demande aussi un fichier choisi. Si la colonne de gauche indique THIS FIRMWARE CANNOT BE BACKED UP FROM HERE, réinstallez le firmware Guru-600."
+ },
+ {
+  "en": "Stop the music first.",
+  "fr": "Arrêtez d'abord la musique."
+ },
+ {
+  "en": "Click ■, then try again.",
+  "fr": "Cliquez sur ■, puis recommencez."
+ },
+ {
+  "en": "Not a complete backup.",
+  "fr": "Ce n'est pas une sauvegarde complète."
+ },
+ {
+  "en": "The file is not a backup of the FM-1, or it was damaged. Choose another one.",
+  "fr": "Le fichier n'est pas une sauvegarde du FM-1, ou il est abîmé. Choisissez-en un autre."
+ },
+ {
+  "en": "Backup stopped: The device changed during backup.",
+  "fr": "Sauvegarde interrompue : The device changed during backup."
+ },
+ {
+  "en": "Something changed on the FM-1 while it was being saved. Leave it alone, music stopped, and save again.",
+  "fr": "Quelque chose a changé sur le FM-1 pendant l'enregistrement. N'y touchez pas, musique arrêtée, et recommencez."
+ },
+ {
+  "en": "The cable came out during a restore.",
+  "fr": "Le câble s'est débranché pendant une restauration."
+ },
+ {
+  "en": "Connect the FM-1 again and restore the same file once more: it puts everything back from the start.",
+  "fr": "Rebranchez le FM-1 et restaurez de nouveau le même fichier : il remet tout en place depuis le début."
+ },
+ {
+  "en": "The SETTINGS page shows the settings of the FM-1's MENU, grouped by its tabs (DISPLAY, CONTROL, AUDIO, MIDI, SYSTEM), and the editor's own (EDITOR). The FM-1 describes its settings itself: the page always shows those of the firmware installed.",
+  "fr": "La page SETTINGS présente les réglages du MENU du FM-1, groupés selon ses onglets (DISPLAY, CONTROL, AUDIO, MIDI, SYSTEM), et ceux de l'éditeur (EDITOR). Le FM-1 décrit lui-même ses réglages : la page montre toujours ceux du firmware installé."
+ },
+ {
+  "en": "The SETTINGS page.",
+  "fr": "La page SETTINGS."
+ },
+ {
+  "en": "Changing a setting",
+  "fr": "Changer un réglage"
+ },
+ {
+  "en": "<b>Buttons</b>: click the value. The lit button is the current one.",
+  "fr": "<b>Boutons</b> : cliquez sur la valeur. Le bouton allumé est la valeur actuelle."
+ },
+ {
+  "en": "<b>Field with arrows</b> (◀ value ▶): click ◀ or ▶, or scroll over the field. At the end of the list it starts again from the other end; TUNE stops at −50 and +50.",
+  "fr": "<b>Champ à flèches</b> (◀ valeur ▶) : cliquez sur ◀ ou ▶, ou faites défiler au-dessus du champ. Au bout de la liste, il repart de l'autre bout ; TUNE s'arrête à −50 et +50."
+ },
+ {
+  "en": "The FM-1 applies it at once and keeps it: nothing else to do, no menu to close.",
+  "fr": "Le FM-1 l'applique aussitôt et le garde : rien d'autre à faire, aucun menu à fermer."
+ },
+ {
+  "en": "MIDI IN, T1 … T4 CHANNEL and TUNE belong to the music: they are kept with the project (chapter {ch:projects}). TUNE is also the FX page's MASTER TUNE (chapter {ch:fx}).",
+  "fr": "MIDI IN, T1 … T4 CHANNEL et TUNE appartiennent à la musique : ils sont enregistrés avec le projet (chapitre {ch:projects}). TUNE est aussi le MASTER TUNE de la page FX (chapitre {ch:fx})."
+ },
+ {
+  "en": "Set: the FM-1 keeps it once the music stops.",
+  "fr": "Réglé : le FM-1 le garde dès que la musique s'arrête."
+ },
+ {
+  "en": "The setting applies now; the FM-1 saves it when you stop the music (■).",
+  "fr": "Le réglage s'applique tout de suite ; le FM-1 l'enregistre quand vous arrêtez la musique (■)."
+ },
+ {
+  "en": "Set, but the FM-1 could not keep it.",
+  "fr": "Réglé, mais le FM-1 n'a pas pu le garder."
+ },
+ {
+  "en": "The setting applies, but it is lost at power-off. Change it again later; if the message comes back, make a backup (chapter {ch:backup}).",
+  "fr": "Le réglage s'applique, mais il sera perdu à l'extinction. Changez-le de nouveau plus tard ; si le message revient, faites une sauvegarde (chapitre {ch:backup})."
+ },
+ {
+  "en": "This FM-1 does not have that setting.",
+  "fr": "Ce FM-1 n'a pas ce réglage."
+ },
+ {
+  "en": "The firmware installed is older than the editor. Reload the page with the FM-1 connected: the page then shows its own settings.",
+  "fr": "Le firmware installé est plus ancien que l'éditeur. Rechargez la page, FM-1 branché : elle affiche alors ses propres réglages."
+ },
+ {
+  "en": "The rows that run something stay on the FM-1's menu: CALIBRATION, RESET SOUNDS, RESET GURU-600, INFO, ABOUT and LEARN CLEAR.",
+  "fr": "Les lignes qui lancent une action restent dans le menu du FM-1 : CALIBRATION, RESET SOUNDS, RESET GURU-600, INFO, ABOUT et LEARN CLEAR."
+ },
+ {
+  "en": "DISPLAY",
+  "fr": "DISPLAY"
+ },
+ {
+  "en": "Setting",
+  "fr": "Réglage"
+ },
+ {
+  "en": "Values (default in bold)",
+  "fr": "Valeurs (réglage d'origine en gras)"
+ },
+ {
+  "en": "The screen's palette. CUSTOM appears only when a palette was made in the Felucca web editor.",
+  "fr": "La palette de l'écran. CUSTOM n'apparaît que si une palette a été créée dans l'éditeur web Felucca."
+ },
+ {
+  "en": "FLAT: filled cards. LINE: dark areas separated by thin lines.",
+  "fr": "FLAT : cartes pleines. LINE : zones sombres séparées par des filets."
+ },
+ {
+  "en": "Larger names and values on the pages.",
+  "fr": "Noms et valeurs plus grands sur les pages."
+ },
+ {
+  "en": "OFF: no animation (values change at once, no light sweep at power-on). IDLE: like ON, and the lights animate after a minute of inactivity.",
+  "fr": "OFF : aucune animation (les valeurs changent d'un coup, pas de balayage lumineux à l'allumage). IDLE : comme ON, et les voyants s'animent après une minute sans manipulation."
+ },
+ {
+  "en": "The lights' style: DIM: unused lights glow faintly; OFF: they are dark; INV: the reverse (like the M-VAVE firmware).",
+  "fr": "Le style des voyants : DIM : les voyants inutilisés luisent faiblement ; OFF : ils sont éteints ; INV : l'inverse (comme le firmware M-VAVE)."
+ },
+ {
+  "en": "Turns the screen off after that much inactivity; the sound keeps playing.",
+  "fr": "Éteint l'écran après ce délai sans manipulation ; le son continue."
+ },
+ {
+  "en": "Where the visuals pick up the sound: after MASTER (OUT) or before (MIX).",
+  "fr": "Où les images captent le son : après MASTER (OUT) ou avant (MIX)."
+ },
+ {
+  "en": "CONTROL",
+  "fr": "CONTROL"
+ },
+ {
+  "en": "How long a quick-screen button is held before its screen opens.",
+  "fr": "Durée de maintien d'un bouton d'écran rapide avant que l'écran s'ouvre."
+ },
+ {
+  "en": "A fast turn moves faster on long ranges.",
+  "fr": "Un tour rapide avance plus vite sur les grandes plages."
+ },
+ {
+  "en": "FX quick screen: keys switch effects on and off instead of working only while held.",
+  "fr": "Écran rapide FX : les touches allument et éteignent les effets au lieu de les maintenir."
+ },
+ {
+  "en": "SELECT changes the tempo only with GLO held.",
+  "fr": "SELECT ne change le tempo qu'avec GLO maintenu."
+ },
+ {
+  "en": "The keys of the scale light up.",
+  "fr": "Les touches de la gamme s'allument."
+ },
+ {
+  "en": "On SEQ › STEP, the step under the cursor sounds when you move to it (sequencer stopped).",
+  "fr": "Sur SEQ › STEP, le pas sous le curseur sonne quand vous l'atteignez (séquenceur arrêté)."
+ },
+ {
+  "en": "Step recording: HOLD writes the keys held together; ADD adds or removes each key in the step.",
+  "fr": "Enregistrement pas à pas : HOLD écrit les touches tenues ensemble ; ADD ajoute ou retire chaque touche dans le pas."
+ },
+ {
+  "en": "What SELECT does: the tempo, the pages, the mod wheel (also sent as MIDI CC 1), or the keys' velocity.",
+  "fr": "Ce que fait SELECT : le tempo, les pages, la molette de modulation (aussi envoyée en MIDI CC 1), ou la vélocité des touches."
+ },
+ {
+  "en": "AUDIO",
+  "fr": "AUDIO"
+ },
+ {
+  "en": "A tone correction for the small speaker; it also affects headphones and USB audio.",
+  "fr": "Une correction de timbre pour le petit haut-parleur ; elle s'applique aussi au casque et l'audio USB."
+ },
+ {
+  "en": "FIXED: the USB audio stays at full level regardless of MASTER.",
+  "fr": "FIXED : l'audio USB reste à plein niveau quel que soit MASTER."
+ },
+ {
+  "en": "The metronome; REC: only while recording.",
+  "fr": "Le métronome ; REC : seulement pendant l'enregistrement."
+ },
+ {
+  "en": "The metronome's volume.",
+  "fr": "Le volume du métronome."
+ },
+ {
+  "en": "A count before recording starts.",
+  "fr": "Un décompte avant le début de l'enregistrement."
+ },
+ {
+  "en": "The overall tuning, in cents. Kept with the project, not with the settings.",
+  "fr": "L'accord général, en cents. Enregistré avec le projet, pas avec les réglages."
+ },
+ {
+  "en": "MIDI",
+  "fr": "MIDI"
+ },
+ {
+  "en": "Which MIDI channels play which track: CH1-4 = channels 1 to 4 on tracks 1 to 4 (same for the other blocks); SEL = every channel on the selected track; TRACK = the channels set below. Kept with the project.",
+  "fr": "Quels canaux MIDI jouent quelle piste : CH1-4 = canaux 1 à 4 sur les pistes 1 à 4 (de même pour les autres blocs) ; SEL = tous les canaux sur la piste choisie ; TRACK = les canaux réglés ci-dessous. Enregistré avec le projet."
+ },
+ {
+  "en": "Each track's channel, used only with MIDI IN = TRACK (grayed out otherwise). Kept with the project.",
+  "fr": "Le canal de chaque piste, utilisé seulement avec MIDI IN = TRACK (grisé sinon). Enregistré avec le projet."
+ },
+ {
+  "en": "A MIDI note for another track selects that track.",
+  "fr": "Une note MIDI destinée à une autre piste sélectionne cette piste."
+ },
+ {
+  "en": "What wakes a dark screen: the panel and MIDI notes, or the panel only.",
+  "fr": "Ce qui rallume l'écran : la façade et les notes MIDI, ou la façade seulement."
+ },
+ {
+  "en": "SYSTEM",
+  "fr": "SYSTEM"
+ },
+ {
+  "en": "ON: the music and the sounds are kept when you switch off and come back at power-on. OFF: the FM-1 starts fresh each time.",
+  "fr": "ON : la musique et les sons sont conservés à l'extinction et reviennent à l'allumage. OFF : le FM-1 démarre comme neuf à chaque fois."
+ },
+ {
+  "en": "Hints at the bottom of each page and quick screen of the FM-1.",
+  "fr": "Des astuces en bas de chaque page et de chaque écran rapide du FM-1."
+ },
+ {
+  "en": "Uses the chip's second core, starting at the next power-on (2ND CORE ON: RESTART). It switches itself off if it misbehaves.",
+  "fr": "Utilise le second cœur de la puce, au prochain allumage (2ND CORE ON: RESTART). Il se désactive de lui-même en cas de problème."
+ },
+ {
+  "en": "Erases everything of yours on the FM-1 (projects, USER sounds, samples, P600 places, settings), after two confirmations; it restarts as new. Make a backup first (chapter {ch:backup}). As MENU › SYSTEM › RESET GURU-600.",
+  "fr": "Efface tout ce qui est à vous sur le FM-1 (projets, sons USER, échantillons, places P600, réglages), après deux confirmations ; il redémarre comme neuf. Faites d'abord une sauvegarde (chapitre {ch:backup}). Comme MENU › SYSTEM › RESET GURU-600."
+ },
+ {
+  "en": "EDITOR",
+  "fr": "EDITOR"
+ },
+ {
+  "en": "The editor's own settings, kept by this browser on this computer.",
+  "fr": "Les réglages de l'éditeur, gardés par ce navigateur sur cet ordinateur."
+ },
+ {
+  "en": "LIT: the lights glow as on a lit panel. FLAT: plain colors. The same as the bulb button at the end of the tabs (chapter {ch:layout}).",
+  "fr": "LIT : les voyants brillent comme sur une façade éclairée. FLAT : des couleurs unies. Comme le bouton ampoule au bout des onglets (chapitre {ch:layout})."
+ },
+ {
+  "en": "The editor's language: its pages, buttons and messages, the FM-1's menu (this page), the tooltips, and this guide when ? opens it. The names of the sound and sequencer settings stay in English, as on the FM-1's screen. AUTO: the browser's language (English if it is another one). Click ◀ or ▶: the page reloads in the language chosen. The screenshots of this guide show the editor in English.",
+  "fr": "La langue de l'éditeur : ses pages, ses boutons et ses messages, le menu du FM-1 (cette page), les infobulles, et ce guide quand ? l'ouvre. Les noms des réglages du son et du séquenceur restent en anglais, comme sur l'écran du FM-1. AUTO : la langue du navigateur (l'anglais si c'en est une autre). Cliquez sur ◀ ou ▶ : la page se recharge dans la langue choisie. Les captures de ce guide montrent l'éditeur en anglais."
+ },
+ {
+  "en": "Does the editor work on a tablet or a phone?",
+  "fr": "L'éditeur marche-t-il sur une tablette ou un téléphone ?"
+ },
+ {
+  "en": "It needs a computer with Chrome, Edge, Brave or Opera.",
+  "fr": "Il lui faut un ordinateur avec Chrome, Edge, Brave ou Opera."
+ },
+ {
+  "en": "Can I play the FM-1 while the editor is open?",
+  "fr": "Puis-je jouer sur le FM-1 pendant que l'éditeur est ouvert ?"
+ },
+ {
+  "en": "Yes. What you change on the FM-1 shows in the editor, and the other way round.",
+  "fr": "Oui. Ce que vous changez sur le FM-1 s'affiche dans l'éditeur, et inversement."
+ },
+ {
+  "en": "Does the editor keep my sounds?",
+  "fr": "L'éditeur garde-t-il mes sons ?"
+ },
+ {
+  "en": "No: everything is in the FM-1. The editor keeps only its own settings (LIGHTING, MESSAGES). To keep a copy on the computer: BACKUP (chapter {ch:backup}), or EXPORT .SYX for one sound (chapter {ch:sound}).",
+  "fr": "Non : tout est dans le FM-1. L'éditeur ne garde que ses propres réglages (LIGHTING, MESSAGES). Pour garder une copie sur l'ordinateur : BACKUP (chapitre {ch:backup}), ou EXPORT .SYX pour un son (chapitre {ch:sound})."
+ },
+ {
+  "en": "Does it need the internet?",
+  "fr": "Faut-il internet ?"
+ },
+ {
+  "en": "Not with the Guru-600 Editor folder (chapter {ch:connect}).",
+  "fr": "Pas avec le dossier Guru-600 Editor (chapitre {ch:connect})."
+ },
+ {
+  "en": "Two windows of the editor?",
+  "fr": "Deux fenêtres de l'éditeur ?"
+ },
+ {
+  "en": "Open only one at a time: close the others.",
+  "fr": "N'en ouvrez qu'une à la fois : fermez les autres."
+ },
+ {
+  "en": "The editor and the FM-1 show different values.",
+  "fr": "L'éditeur et le FM-1 n'affichent pas les mêmes valeurs."
+ },
+ {
+  "en": "Reload the page: the editor reads the FM-1 again.",
+  "fr": "Rechargez la page : l'éditeur relit le FM-1."
+ },
+ {
+  "en": "The editor is too small or too large.",
+  "fr": "L'éditeur est trop petit ou trop grand."
+ },
+ {
+  "en": "Resize the window, or go full screen (chapter {ch:layout}): the editor always fills it, keeping its proportions.",
+  "fr": "Redimensionnez la fenêtre, ou passez en plein écran (chapitre {ch:layout}) : l'éditeur la remplit toujours, en gardant ses proportions."
+ },
+ {
+  "en": "Where can I report a bug or suggest an idea?",
+  "fr": "Où signaler un bug ou proposer une idée ?"
+ },
+ {
+  "en": "On <a href='https://github.com/MarcGoudy/guru-600'>github.com/MarcGoudy/guru-600</a>: Issues for bugs, Discussions for ideas. Without a GitHub account: <a href='mailto:guru600fm1@gmail.com'>guru600fm1@gmail.com</a>.",
+  "fr": "Sur <a href='https://github.com/MarcGoudy/guru-600'>github.com/MarcGoudy/guru-600</a> : « Issues » pour les bugs, « Discussions » pour les idées. Sans compte GitHub : <a href='mailto:guru600fm1@gmail.com'>guru600fm1@gmail.com</a>."
+ },
+ {
+  "en": "Guru-600 and its editor: Marc Massé, 2026, GPL-3 license.",
+  "fr": "Guru-600 et son éditeur : Marc Massé, 2026, licence GPL-3."
+ },
+ {
+  "en": "Felucca: Leo Kuroshita (hugelton), GPL-3 license: the firmware the Guru-600 is built on, and the backup and sample code of the editor. Its wiki, in English: <a href=\"https://github.com/hugelton/Felucca/wiki\">github.com/hugelton/Felucca/wiki</a>.",
+  "fr": "Felucca : Leo Kuroshita (hugelton), licence GPL-3 : le firmware sur lequel repose le Guru-600, et le code de sauvegarde et d'échantillons de l'éditeur. Son wiki, en anglais : <a href=\"https://github.com/hugelton/Felucca/wiki\">github.com/hugelton/Felucca/wiki</a>."
+ },
+ {
+  "en": "Prophet-600 factory programs: Sequential Circuits, 1982. Prophet-600 is a trademark of its owner; the Guru-600 is not affiliated with Sequential.",
+  "fr": "Programmes d'usine du Prophet-600 : Sequential Circuits, 1982. Prophet-600 est une marque de son propriétaire ; le Guru-600 est sans lien avec Sequential."
+ },
+ {
+  "en": "Fonts: Barlow Condensed (The Barlow Project Authors, SIL Open Font License); Inter Tight (SIL Open Font License); VI Mong Rong (VN-Fonts Team, 1994).",
+  "fr": "Polices : Barlow Condensed (The Barlow Project Authors, licence SIL Open Font) ; Inter Tight (licence SIL Open Font) ; VI Mong Rong (VN-Fonts Team, 1994)."
+ },
+ {
+  "en": "Editor guide",
+  "fr": "Guide de l'éditeur"
+ },
+ {
+  "en": "The web editor of the Guru-600 for the M-VAVE FM-1 · version 1.0",
+  "fr": "L'éditeur web du Guru-600 pour le M-VAVE FM-1 · version 1.0"
+ },
+ {
+  "en": "by Marc Massé · based on Felucca by Leo Kuroshita",
+  "fr": "par Marc Massé · d'après Felucca de Leo Kuroshita"
+ },
+ {
+  "en": "Contents",
+  "fr": "Sommaire"
+ },
+ {
+  "en": "The Guru-600 editor",
+  "fr": "L'éditeur du Guru-600"
+ },
+ {
+  "en": "Opening the editor",
+  "fr": "Ouvrir l'éditeur"
+ },
+ {
+  "en": "The editor at a glance",
+  "fr": "L'éditeur d'un coup d'œil"
+ },
+ {
+  "en": "SOUND: a panel inspired by the Prophet-600",
+  "fr": "SOUND : une façade inspirée du Prophet-600"
+ },
+ {
+  "en": "SEQUENCER: the track's steps",
+  "fr": "SEQUENCER : les pas de la piste"
+ },
+ {
+  "en": "SONG: building a song",
+  "fr": "SONG : construire un morceau"
+ },
+ {
+  "en": "ARP: arpeggiator, scale and chords",
+  "fr": "ARP : arpégiateur, gamme et accords"
+ },
+ {
+  "en": "FX: the effects",
+  "fr": "FX : les effets"
+ },
+ {
+  "en": "MOD: modulations",
+  "fr": "MOD : les modulations"
+ },
+ {
+  "en": "TRACKS: the mixer",
+  "fr": "TRACKS : la table de mixage"
+ },
+ {
+  "en": "PROJECTS: projects and USER sounds",
+  "fr": "PROJECTS : projets et sons USER"
+ },
+ {
+  "en": "SAMPLES: your own samples",
+  "fr": "SAMPLES : vos propres échantillons"
+ },
+ {
+  "en": "BACKUP: the whole FM-1 in one file",
+  "fr": "BACKUP : tout le FM-1 dans un fichier"
+ },
+ {
+  "en": "SETTINGS: the FM-1's menu and the editor's own",
+  "fr": "SETTINGS : le menu du FM-1 et les réglages de l'éditeur"
+ },
+ {
+  "en": "Questions",
+  "fr": "Questions"
+ },
+ {
+  "en": "Credits and licenses",
+  "fr": "Crédits et licences"
+ }
+]

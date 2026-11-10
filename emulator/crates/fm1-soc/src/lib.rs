@@ -33,6 +33,7 @@ pub mod machine;
 pub mod p33;
 pub mod periph;
 mod ram;
+pub mod usb;
 pub mod smk;
 mod spiflash;
 
@@ -223,6 +224,8 @@ pub struct Soc {
     pub p33: p33::P33,
     /// Exact skipping of cpu0's polling loops (`machine::run_blocks`).
     pub loop_skip: machine::LoopSkip,
+    /// Guru-600: USB0 and a host behind it (usb.rs: the editor over USB-MIDI)
+    pub usb: usb::Usb,
 }
 
 fn dbg_line(addr: u32) -> &'static str {
@@ -295,6 +298,7 @@ impl Soc {
             unknown_log: Vec::new(),
             flaky_core1: None,
             p33: Default::default(),
+            usb: Default::default(),
             // (FM1_TRACE: a trace shows every instruction as it runs, not a probe's)
             loop_skip: machine::LoopSkip::new(std::env::var_os("FM1_NO_LOOPSKIP").is_none() && std::env::var_os("FM1_TRACE").is_none()),
         }
@@ -892,6 +896,7 @@ impl Soc {
                 }
                 self.sfr_set(addr, value)
             }
+            Region::Usb if addr == usb::CON1 && self.board == Board::Fm1 => self.usb_sie(value),
             Region::Usb => {
                 if addr == 0x16a0c && self.board == Board::Smk37 {
                     self.periph.smk.commons = value;

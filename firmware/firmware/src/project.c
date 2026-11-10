@@ -617,6 +617,34 @@ static void proj_midi_unpack(project_t *q, const uint8_t *b)
 
 /* A stable serialized schema: first header retains FUN6's fields; at byte66
  * np, format flags, then four byte-param tracks and nine-byte steps; FUN8: the patches at PROJ_FM6_OFF. */
+/* Guru-600 (10/11): INSERT 2 (P_JTYPE .. P_JMIX) in a FUN10 as it was. The record keeps 1.5's 111 parameters (byte 66:
+ * PROJ_NP_KEPT, INSERT 2's ids left out, the engine values after ESYNC as before) and INSERT 2's five values go in
+ * bit 7 of steps 0..31's meta byte (n | time | flags: 7 bits, the 8th always 0 until now), 32 bits a track: TYPE (4)
+ * then A B C MIX (7 each), each XOR its default, so 0 bits = INSERT 2 OFF at its defaults: every project before plays
+ * as it did. Its motion records name INSERT 2 as ids PROJ_NP_KEPT + 0..4 (beyond the record's count: none before) and
+ * the engine values as 1.5 did (P_E0 - 5 ..). A firmware before refuses only a project that uses INSERT 2 */
+#define PROJ_J_N 5u
+#define PROJ_NP_KEPT (P_COUNT - PROJ_J_N)
+static const int16_t PROJ_J_DEF[PROJ_J_N] = {0, 64, 96, 96, 127};
+static uint32_t proj_j_bits(const int16_t *p)        /* a track's INSERT 2 -> its 32 bits */
+{
+    uint32_t i, x = (uint32_t)(clamp(p[P_JTYPE], 0, 15) ^ PROJ_J_DEF[0]);
+    for (i = 1; i < PROJ_J_N; i++)
+        x |= (uint32_t)((clamp(p[P_JTYPE + i], 0, 127) ^ PROJ_J_DEF[i]) & 127) << (4u + 7u * (i - 1u));
+    return x;
+}
+static void proj_j_set(int16_t *p, uint32_t x)        /* .. and back */
+{
+    uint32_t i;
+    p[P_JTYPE] = (int16_t)((x & 15u) ^ (uint32_t)PROJ_J_DEF[0]);
+    for (i = 1; i < PROJ_J_N; i++)
+        p[P_JTYPE + i] = (int16_t)(((x >> (4u + 7u * (i - 1u))) & 127u) ^ (uint32_t)PROJ_J_DEF[i]);
+}
+static uint32_t proj_j_id(uint32_t id)                /* today's id -> the one a record names (proj_motion_ids: back) */
+{
+    return id >= P_JTYPE && id <= P_JMIX ? PROJ_NP_KEPT + id - P_JTYPE : id > P_JMIX ? id - PROJ_J_N : id;
+}
+_Static_assert(P_JMIX + 1u == P_E0 && P_JMIX - P_JTYPE + 1u == PROJ_J_N, "INSERT 2 just before the engine values");
 static int proj_pack(project_store_t *out, const project_t *q)
 {
     uint8_t *b = out->raw; uint32_t pos = 68u, t, i; uint32_t magic = PROJ_MAGIC, size = PROJ_STORE_SIZE, sum;
@@ -625,11 +653,13 @@ static int proj_pack(project_store_t *out, const project_t *q)
             if (q->fm6[t][i] > 127u) return 0;
     if (!chain_valid(&q->chain) || !motion_valid(&q->motion) || P_COUNT > 127u) return 0;
     memset(out, 0, sizeof *out); memcpy(b, &magic, 4); memcpy(b + 4, &size, 4);
-    memcpy(b + 8, q->g, sizeof q->g); b[62] = q->sel; b[63] = q->parts; b[64] = q->phys; b[66] = P_COUNT;
+    memcpy(b + 8, q->g, sizeof q->g); b[62] = q->sel; b[63] = q->parts; b[64] = q->phys; b[66] = PROJ_NP_KEPT;
     for (t = 0; t < NTRK; t++) {
+        uint32_t jx = proj_j_bits(q->t[t].p);
         for (i = 0; i < P_COUNT; i++) {
             if (q->t[t].p[i] < -64 || q->t[t].p[i] > 127) return 0;
-            b[pos++] = (uint8_t)(q->t[t].p[i] + 64);
+            if (i < P_JTYPE || i > P_JMIX)              /* (INSERT 2: in the steps, below) */
+                b[pos++] = (uint8_t)(q->t[t].p[i] + 64);
         }
         b[pos++] = q->t[t].engine; b[pos++] = q->t[t].preset;
         for (i = 0; i < NSTEP; i++) {
@@ -641,7 +671,7 @@ static int proj_pack(project_store_t *out, const project_t *q)
             for (uint32_t j = 0; j < 4u; j++)           /* what proj_unpack checks, so a saved project always loads: */
                 b[pos++] = (uint8_t)((s->note[j] > 127u ? 127u : s->note[j]) | (nd >> j & 1u) << 7);   /* notes and
                                                          * velocity 0..127, accents */
-            b[pos++] = (uint8_t)(s->n | s->time << 3 | (s->flags & 3u) << 5);   /* only on hits */
+            b[pos++] = (uint8_t)(s->n | s->time << 3 | (s->flags & 3u) << 5 | (i < 32u ? (jx >> i & 1u) << 7 : 0u));   /* only on hits */
             b[pos++] = (uint8_t)((s->vel > 127u ? 127u : s->vel) | (r & 1u) << 7); b[pos++] = s->hit;
             b[pos++] = s->acc & s->hit;
             b[pos++] = (uint8_t)(s->probability | (r >> 1) << 7);
@@ -649,7 +679,12 @@ static int proj_pack(project_store_t *out, const project_t *q)
     }
     if (pos + sizeof q->chain + sizeof q->motion > PROJ_MIDI_OFF) return 0;
     memcpy(b + pos, &q->chain, sizeof q->chain); pos += sizeof q->chain;
-    memcpy(b + pos, &q->motion, sizeof q->motion);
+    {   /* (INSERT 2 and the engine values: the ids the record names) */
+        motion_store_t m = q->motion;
+        for (i = 0; i < m.count && i < MOTION_MAX; i++)
+            m.event[i].param = (uint8_t)((m.event[i].param & MOTION_LOCK) | proj_j_id(MOTION_ID(&m.event[i])));
+        memcpy(b + pos, &m, sizeof m);
+    }
     proj_midi_pack(b, q);
     memcpy(b + PROJ_FM6_OFF, q->fm6, sizeof q->fm6);
     {   /* the name (0-padded; stops at the first 0) */
@@ -669,6 +704,10 @@ static int proj_motion_ids(motion_store_t *m, uint32_t np)
     uint32_t i;
     for (i = 0; i < m->count && i < MOTION_MAX; i++) {
         uint32_t id = MOTION_ID(&m->event[i]);
+        if (np == PROJ_NP_KEPT && id >= np && id < np + PROJ_J_N) {   /* (INSERT 2) */
+            m->event[i].param = (uint8_t)((m->event[i].param & MOTION_LOCK) | (P_JTYPE + id - np));
+            continue;
+        }
         if (id >= np) return 0;
         if (np < P_COUNT && id >= np - 8u)
             m->event[i].param = (uint8_t)((m->event[i].param & MOTION_LOCK) | (id + P_COUNT - np));
@@ -714,6 +753,7 @@ static int proj_unpack(project_t *q, const uint8_t *b, uint32_t st)
         proj_rtype_room(q->g);
     for (t = 0; t < NTRK; t++) {
         int16_t values[P_COUNT], def[P_COUNT];
+        uint32_t jx = 0;
         for (i = 0; i < np; i++) { if (b[pos] > 191u) return 0; values[i] = (int16_t)b[pos++] - 64; }
         q->t[t].engine = b[pos++]; q->t[t].preset = b[pos++];
         if (q->t[t].engine >= NENGINES) return 0;
@@ -727,6 +767,10 @@ static int proj_unpack(project_t *q, const uint8_t *b, uint32_t st)
                 s->note[j] = b[pos++] & 127u;
             }
             meta = b[pos++];
+            if (v10 && i < 32u) {                       /* (INSERT 2's bit, see proj_j_bits) */
+                jx |= (meta >> 7) << i;
+                meta &= 127u;
+            }
             s->n = meta & 7u; s->time = (meta >> 3) & 3u; s->flags = (meta >> 5) & 3u;
             s->vel = b[pos] & 127u; meta |= (b[pos++] & 128u) << 1;      /* (RATCH bit 0 at bit 8 of meta) */
             s->hit = b[pos++]; s->acc = b[pos++];
@@ -736,6 +780,8 @@ static int proj_unpack(project_t *q, const uint8_t *b, uint32_t st)
             step_set_ratchet(s, (meta >> 8) + 1u);
             step_set_nudge(s, (int32_t)(nd ^ 8u) - 8);
         }
+        if (v10)
+            proj_j_set(q->t[t].p, jx);                  /* INSERT 2 (0 bits: OFF at its defaults, every project before) */
     }
     if (v10)                                            /* (FUN10: sections, a slot per track; before: rows) */
         memcpy(&q->chain, b + pos, sizeof q->chain);

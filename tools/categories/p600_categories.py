@@ -26,6 +26,9 @@ for n in range(101, 201):
 for i, x in enumerate(gx):
     n = 201 + i
     cat[n] = SEQ.get(n) or FAM[x['fam'][0]]
+# (10/11, Marc) none of P600's sounds is a real drum: those classed D (SUPERPERC, Wood Block, Simmons Tom, KICK TECH 1,
+# WATER DROP, SYNTH TOM, CLOCK TICK) are synth sounds and effects: FX. DRUM lists the DRUM engine's kits.
+cat = {n: ('F' if c == 'D' else c) for n, c in cat.items()}
 assert len(cat) == 255 and all(c in 'BLPUKDFO' for c in cat.values())
 s = ''.join(cat[n] for n in range(1, 256))
 print(s)

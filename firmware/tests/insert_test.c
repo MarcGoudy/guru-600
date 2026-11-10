@@ -171,11 +171,11 @@ static void test_identity(void)
         mixb(FS / 4u / CTL);
         trk_note_off(t, 60);
         mixb(4u * FS / CTL);                          /* silent, the tail run out */
-        int stale = ins[0].w != 0 && t->ins_run;
+        int stale = ins[0][0].w != 0 && t->ins_run;
         t->p[P_ITYPE] = IT_OFF;
         mixb(1);
         ck("TYPE OFF while silent: the INSERT at rest at once (no stale fade on the next note)",
-           stale && !ins[0].w && !t->ins_run);
+           stale && !ins[0][0].w && !t->ins_run);
     }
 }
 
@@ -245,7 +245,7 @@ static void test_types(void)
                                 lin &= abs(sig_b[i] - want) <= 1;
                             }
                             run_ins((int32_t)ty, COR[ia], COR[ib], COR[ic], 0, sig_b);
-                            same0 &= !memcmp(sig_b, sig_in, sizeof sig_in) && !ins[0].w;
+                            same0 &= !memcmp(sig_b, sig_in, sizeof sig_in) && !ins[0][0].w;
                         }
                     }
         }
@@ -286,30 +286,30 @@ static void test_glide(void)
     set_ins(t, IT_SOFT, 64, 96, 96, 127);
     memcpy(sig_a, sig_in, sizeof sig_in);
     track_insert(t, sig_a, CTL);
-    w1 = ins[0].w;
+    w1 = ins[0][0].w;
     for (i = 1; i < 4u; i++)
         track_insert(t, sig_a + i * CTL, CTL);
-    w4 = ins[0].w;
+    w4 = ins[0][0].w;
     ck("MIX 0 -> 100 %: the wet share glides in over 2.9 ms (128 samples)", w1 == CTL * SL_SLOPE && w4 == 32768);
     t->p[P_IMIX] = 0;
     track_insert(t, sig_a + 4u * CTL, CTL);
-    wm = ins[0].w;
+    wm = ins[0][0].w;
     for (i = 5; i < 9u; i++)
         track_insert(t, sig_a + i * CTL, CTL);
-    ck("  and out again; then nothing runs (the input as it is)", wm == 32768 - CTL * SL_SLOPE && !ins[0].w &&
+    ck("  and out again; then nothing runs (the input as it is)", wm == 32768 - CTL * SL_SLOPE && !ins[0][0].w &&
        !memcmp(sig_a + 8u * CTL, sig_in + 8u * CTL, CTL * sizeof(int32_t)));
     /* a TYPE change while it plays: SOFT fades out, FLANG fades in from rest */
     t->p[P_IMIX] = 127;
     for (i = 9; i < 16u; i++)
         track_insert(t, sig_a + i * CTL, CTL);
     t->p[P_ITYPE] = IT_FLANGER;
-    ok = ins[0].type == IT_SOFT;
+    ok = ins[0][0].type == IT_SOFT;
     for (i = 16; i < 20u; i++) {
         track_insert(t, sig_a + i * CTL, CTL);
-        ok &= i < 19u ? ins[0].type == IT_SOFT && ins[0].w > 0 : 1;
+        ok &= i < 19u ? ins[0][0].type == IT_SOFT && ins[0][0].w > 0 : 1;
     }
     track_insert(t, sig_a + 20u * CTL, CTL);
-    ok &= ins[0].type == IT_FLANGER && ins[0].w == CTL * SL_SLOPE;
+    ok &= ins[0][0].type == IT_FLANGER && ins[0][0].w == CTL * SL_SLOPE;
     for (i = 21; i < 24u; i++)
         track_insert(t, sig_a + i * CTL, CTL);
     {   /* no click: the largest step of the output over the change against the input's own */
@@ -347,12 +347,12 @@ static void test_motion(void)
         mixb(1);
         idx = t->seq_idx;
         if (idx < 8u)
-            ok_a &= t->p[P_IMIX] == 0 && !ins[0].w;
+            ok_a &= t->p[P_IMIX] == 0 && !ins[0][0].w;
         else if (idx < 16u && t->p[P_IMIX] == 127) {
             if (!step_s)
                 step_s = k;
             if (k >= step_s + 4u)
-                seen_w |= ins[0].w == 32768;
+                seen_w |= ins[0][0].w == 32768;
         }
         if (idx == 4u)
             seen_c |= t->p[P_ITYPE] == IT_CRUSH;
@@ -381,12 +381,12 @@ static void test_stored(void)
     motion_set_event(&trk[1], 3, P_IMIX, 77);
     motion_set_lock(&trk[2], 5, P_IA, 9);
     project_capture(&a);
-    ok = proj_pack(&st, &a) && st.raw[66] == P_COUNT && P_COUNT == 111u && proj_import(&b, &st, sizeof st) &&
+    ok = proj_pack(&st, &a) && st.raw[66] == PROJ_NP_KEPT && PROJ_NP_KEPT == 111u && proj_import(&b, &st, sizeof st) &&
          !memcmp(&a, &b, sizeof a);
     for (k = 0; k < NTRK; k++)
         ok &= b.t[k].p[P_ITYPE] == (int16_t)(k * 2u + 1u) && b.t[k].p[P_IMIX] == (int16_t)(100 + k) &&
               b.t[k].p[P_IC] == (int16_t)(30 + k);
-    ok &= 68u + NTRK * (P_COUNT + 2u + NSTEP * 9u) + sizeof(chain_config_t) + sizeof(motion_store_t) + 16u == PROJ_FM6_OFF;
+    ok &= 68u + NTRK * (PROJ_NP_KEPT + 2u + NSTEP * 9u) + sizeof(chain_config_t) + sizeof(motion_store_t) + 16u == PROJ_FM6_OFF;
     ck("project: FUN10 round trip of the INSERT (111 parameters, its motion), 16 spare bytes before the patches", ok);
     /* user presets: a record of 111 keeps them; one of 104 (1.2 .. 1.4) gets the INSERT OFF */
     memset(&r, 0, sizeof r);
@@ -403,7 +403,7 @@ static void test_stored(void)
     ck("user presets: 111 parameters kept; one of 104 (1.2 .. 1.4): the INSERT OFF, its engine values in place", ok);
     /* the pages: INSERT and INSERT 2 after SLICER, the labels and values per TYPE */
     {
-        uint32_t p, ps = 0, pi = 0, pi2 = 0, pd = 0;
+        uint32_t p, ps = 0, pi = 0, pi2 = 0, pd = 0, pj = 0, pj2 = 0;
         char val[16];
         const char *u;
         track_t *t = &trk[0];
@@ -412,9 +412,11 @@ static void test_stored(void)
             if (str_eq(PAGES[p].title, "INSERT")) pi = p;
             if (str_eq(PAGES[p].title, "INSERT 2")) pi2 = p;
             if (str_eq(PAGES[p].title, "DLY")) pd = p;
+            if (str_eq(PAGES[p].title, "INSERT B")) pj = p;      /* (Guru-600: INSERT 2's pages, after the first's) */
+            if (str_eq(PAGES[p].title, "INSERT B 2")) pj2 = p;
         }
-        ok = pi == ps + 1u && pi2 == pi + 1u && pd == pi2 + 1u && PAGES[pi].fam == FAM_FX && PAGES[pi].id[0] == P_ITYPE &&
-             PAGES[pi2].id[0] == P_IMIX;
+        ok = pi == ps + 1u && pi2 == pi + 1u && pj == pi2 + 1u && pj2 == pj + 1u && pd == pj2 + 1u && PAGES[pi].fam == FAM_FX &&
+             PAGES[pi].id[0] == P_ITYPE && PAGES[pi2].id[0] == P_IMIX && PAGES[pj].id[0] == P_JTYPE && PAGES[pj2].id[0] == P_JMIX;
         set_ins(t, IT_CRUSH, 64, 96, 96, 127);
         ok &= str_eq(track_desc(t, P_IA)->label, "BITS") && str_eq(track_desc(t, P_IB)->label, "RATE") &&
               str_eq(track_desc(t, P_IC)->label, "LPF");
@@ -433,8 +435,11 @@ static void test_stored(void)
         t->p[P_ITYPE] = IT_OFF;
         ok &= str_eq(track_desc(t, P_IA)->label, "INS A") && str_eq(param_desc_of(0, P_IB)->label, "INS B");
         for (i = P_ITYPE; i <= P_IMIX; i++)
-            ok &= motion_param(i) && !param_kept(i);
-        ck("pages: SLICER, INSERT (TYPE A B C), INSERT 2 (MIX), DLY; A B C named by TYPE; recordable; part of the sound", ok);
+            ok &= motion_param(i) && !param_kept(i) && motion_param(i - P_ITYPE + P_JTYPE) && !param_kept(i - P_ITYPE + P_JTYPE);
+        t->p[P_JTYPE] = IT_CRUSH;
+        ok &= str_eq(track_desc(t, P_JA)->label, "BITS") && str_eq(track_desc(t, P_JC)->label, "LPF");
+        t->p[P_JTYPE] = IT_OFF;
+        ck("pages: SLICER, INSERT (TYPE A B C), INSERT 2 (MIX), INSERT B, INSERT B 2, DLY; A B C named by TYPE; recordable; part of the sound", ok);
     }
 }
 
@@ -552,6 +557,73 @@ static int demos(const char *dir)
     return (int)n;
 }
 
+/* Guru-600 (10/11): INSERT 2, after the first, as it (P_JTYPE .. P_JMIX); in a project, bit 7 of steps 0..31's meta */
+static void test_ins2(void)
+{
+    static int32_t o1[NS], o2[NS], o3[NS];
+    static project_t a, b;
+    static project_store_t st, st0;
+    track_t *t = &trk[0];
+    uint32_t ty, i, k;
+    int ok = 1;
+    fresh(0, 0);
+    for (ty = 1; ty < IT_N; ty++) {                       /* alone, INSERT 2 sounds as INSERT 1 does, bit for bit */
+        run_ins((int32_t)ty, 70, 90, 50, 100, o1);
+        memset(ins, 0, sizeof ins);
+        set_ins(t, 0, 64, 96, 96, 127);
+        t->p[P_JTYPE] = (int16_t)ty; t->p[P_JA] = 70; t->p[P_JB] = 90; t->p[P_JC] = 50; t->p[P_JMIX] = 100;
+        memcpy(o2, sig_in, sizeof sig_in);
+        for (i = 0; i < NS; i += CTL)
+            track_insert(t, o2 + i, CTL);
+        ok &= !memcmp(o1, o2, sizeof o1);
+        t->p[P_JTYPE] = 0;
+    }
+    ck("INSERT 2 alone: each TYPE the same output as INSERT 1 alone, bit for bit", ok);
+    /* both: INSERT 2 takes INSERT 1's output (PHASR then FLANG = PHASR's output through FLANG) */
+    run_ins(IT_PHASER, 64, 96, 60, 127, o1);
+    memcpy(o3, o1, sizeof o1);
+    memset(ins, 0, sizeof ins);
+    set_ins(t, IT_FLANGER, 50, 80, 40, 127);
+    for (i = 0; i < NS; i += CTL)
+        track_insert(t, o3 + i, CTL);                     /* (INSERT 1 = FLANG alone on PHASR's output) */
+    memset(ins, 0, sizeof ins);
+    set_ins(t, IT_PHASER, 64, 96, 60, 127);
+    t->p[P_JTYPE] = IT_FLANGER; t->p[P_JA] = 50; t->p[P_JB] = 80; t->p[P_JC] = 40; t->p[P_JMIX] = 127;
+    memcpy(o2, sig_in, sizeof sig_in);
+    for (i = 0; i < NS; i += CTL)
+        track_insert(t, o2 + i, CTL);
+    ck("INSERT 1 then INSERT 2: PHASR then FLANG, as FLANG on PHASR's output", !memcmp(o2, o3, sizeof o2));
+    set_ins(t, 0, 64, 96, 96, 127);
+    t->p[P_JTYPE] = 0; t->p[P_JA] = 64; t->p[P_JB] = 96; t->p[P_JC] = 96; t->p[P_JMIX] = 127;
+    /* a project: INSERT 2 OFF packs as 1.5 did (every meta byte below 128); set, it comes back, its motion too */
+    fresh(0, 0);
+    project_capture(&a);
+    ok = proj_pack(&st0, &a) && st0.raw[66] == 111u;
+    for (k = 0; k < NTRK; k++)
+        for (i = 0; i < NSTEP; i++)
+            ok &= st0.raw[68u + k * (111u + 2u + NSTEP * 9u) + 111u + 2u + i * 9u + 4u] < 128u;
+    ok &= proj_import(&b, &st0, sizeof st0) && !memcmp(&a, &b, sizeof a) && b.t[2].p[P_JTYPE] == 0 && b.t[2].p[P_JMIX] == 127;
+    ck("project: INSERT 2 OFF packs as 1.5 did (111 values, every meta byte below 128), loads OFF", ok);
+    for (k = 0; k < NTRK; k++) {
+        trk[k].p[P_JTYPE] = (int16_t)(8u - k); trk[k].p[P_JA] = (int16_t)(k * 30u); trk[k].p[P_JB] = (int16_t)(127u - k);
+        trk[k].p[P_JC] = (int16_t)(1u + k); trk[k].p[P_JMIX] = (int16_t)(50u + k);
+    }
+    motion_set_event(&trk[1], 4, P_JMIX, 33);
+    motion_set_lock(&trk[3], 9, P_JA, 5);
+    motion_set_event(&trk[2], 7, P_E2, 44);
+    project_capture(&a);
+    ok = proj_pack(&st, &a) && st.raw[66] == 111u && proj_import(&b, &st, sizeof st) && !memcmp(&a, &b, sizeof a);
+    for (k = 0; k < NTRK; k++)
+        ok &= b.t[k].p[P_JTYPE] == (int16_t)(8u - k) && b.t[k].p[P_JA] == (int16_t)(k * 30u) && b.t[k].p[P_JB] == (int16_t)(127u - k) &&
+              b.t[k].p[P_JC] == (int16_t)(1u + k) && b.t[k].p[P_JMIX] == (int16_t)(50u + k);
+    for (i = 0; i < b.motion.count; i++) {                /* (its motion with today's ids) */
+        uint32_t id = MOTION_ID(&b.motion.event[i]), pl = b.motion.event[i].place;
+        if (pl == (1u << 6 | 4u)) ok &= id == P_JMIX && b.motion.event[i].value == 33;
+        if (pl == (3u << 6 | 9u)) ok &= id == P_JA && (b.motion.event[i].param & MOTION_LOCK);
+        if (pl == (2u << 6 | 7u)) ok &= id == P_E2 && b.motion.event[i].value == 44;
+    }
+    ck("project: INSERT 2 round trip (in the steps' bit 7), its automation and lock, the engine values' motion in place", ok);
+}
 int main(int argc, char **argv)
 {
     test_identity();
@@ -559,6 +631,7 @@ int main(int argc, char **argv)
     test_glide();
     test_motion();
     test_stored();
+    test_ins2();
     test_cost();
     if (argc > 1)
         printf("insert: %d demos in %s (each TYPE on a loop: two bars dry, two with it)\n", demos(argv[1]), argv[1]);

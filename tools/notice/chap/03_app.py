@@ -1,9 +1,9 @@
 # 3 · The Guru-600 application on a Mac
 APPKEYS = [("A W S E D F T G Y H U J K O L P ; '", "the keys, from C4 (A) up to F5 (')", "les touches, du C4 (A) au F5 (')"),
-           ("Z / X", "OCT− / OCT+", "OCT− / OCT+"), ("Space", "PLAY", "PLAY"), ("R", "REC", "REC"),
+           ("← / →", "OCT− / OCT+", "OCT− / OCT+"), ("Space", "PLAY", "PLAY"), ("R", "REC", "REC"),
            ("1 2 3 4 5", "FX, SCL, ENV, LFO, EDIT", "FX, SCL, ENV, LFO, EDIT"),
            ("6 7 8 9 0", "GLO, HOME, SAVE, ARP, SEQ", "GLO, HOME, SAVE, ARP, SEQ"),
-           ("← / →", "turn SELECT", "tourner SELECT"), ("↓ / ↑", "turn PRESETS", "tourner PRESETS"),
+           ("[ / ]", "turn SELECT", "tourner SELECT"), ("- / =", "turn PRESETS", "tourner PRESETS"),
            (", / .", "turn ALGORITHM", "tourner ALGORITHM"), ("Esc", "quit (the memory is kept)", "quitter (la mémoire est gardée)")]
 CH("app", "The Guru-600 application on a Mac", "L'application Guru-600 sur Mac",
  P2("<b>Guru-600.app</b> runs the Guru-600 firmware in an FM-1 emulator on the Mac. Everything in this guide works in it: "
@@ -55,20 +55,23 @@ CH("app", "The Guru-600 application on a Mac", "L'application Guru-600 sur Mac",
  H4("From the application to the FM-1", "De l'application au FM-1") +
  STEPS([("In the application: <b>Backup \u203a Export Backup\u2026</b>, and choose where to save the file.",
          "Dans l'application : <b>Sauvegarde › Exporter une sauvegarde…</b>, et choisissez où enregistrer le fichier."),
-        ("Connect the FM-1, open the Felucca web editor (link on the installation page), click <b>Restore backup</b> and choose that file.",
-         "Branchez le FM-1, ouvrez l'éditeur web Felucca (lien sur la page d'installation), cliquez sur <b>Restore backup</b> et choisissez ce fichier.")]) +
+        ("Connect the FM-1, open the Guru-600 editor (link on the installation page), and on its BACKUP page choose that file and click <b>RESTORE IT ON THE FM-1</b>.",
+         "Branchez le FM-1, ouvrez l'éditeur Guru-600 (lien sur la page d'installation) et, sur sa page BACKUP, choisissez ce fichier et cliquez sur <b>RESTORE IT ON THE FM-1</b>.")]) +
  H4("From the FM-1 to the application", "Du FM-1 à l'application") +
- STEPS([("In the Felucca web editor, click <b>Save backup</b>.",
-         "Dans l'éditeur web Felucca, cliquez sur <b>Save backup</b>."),
+ STEPS([("In the Guru-600 editor, on the BACKUP page, click <b>SAVE A BACKUP TO THIS COMPUTER</b>.",
+         "Dans l'éditeur Guru-600, sur la page BACKUP, cliquez sur <b>SAVE A BACKUP TO THIS COMPUTER</b>."),
         ("In the application: <b>Backup \u203a Import Backup\u2026</b>, and choose that file. The application starts again with the FM-1's memory.",
          "Dans l'application : <b>Sauvegarde › Importer une sauvegarde…</b>, et choisissez ce fichier. L'application redémarre avec la mémoire du FM-1.")]) +
  LI([("Everything goes across: the music, the projects, the USER sounds, the P600 places, the samples and their slices, the FM6 voice bank and the settings. What the other machine held is replaced.",
       "Tout passe : la musique, les projets, les sons USER, les places P600, les échantillons et leurs découpes, la banque de voix FM6 et les réglages. Ce que contenait l'autre machine est remplacé."),
      ("The application saves the current music by itself, at most a little over a minute after your last change. To be sure of it, save it in a project before exporting (chapter {ch:song}).",
       "L'application enregistre la musique en cours d'elle-même, au plus un peu plus d'une minute après votre dernier changement. Pour en être sûr, rangez-la dans un projet avant d'exporter (chapitre {ch:song}).")]) +
+ H3("With the Guru-600 editor", "Avec l'éditeur Guru-600") +
+ P2("Open the application, then the Guru-600 editor (chapter {ch:editor}): the editor connects to the application as to an FM-1, and you hear everything you do in it. The Sound Sender page sends sounds to the application the same way. Their MIDI port is named <b>Guru-600</b>.",
+    "Ouvrez l'application, puis l'éditeur Guru-600 (chapitre {ch:editor}) : l'éditeur se connecte à l'application comme à un FM-1, et vous entendez tout ce que vous y faites. La page d'envoi des sons envoie de même des sons à l'application. Leur port MIDI s'appelle <b>Guru-600</b>.") +
  H3("What the application cannot do", "Ce que l'application ne sait pas faire") +
- LI([("Receive sounds from the Sound Sender page or the Felucca editor.",
-      "Recevoir des sons de la page d'envoi ou de l'éditeur Felucca."),
-     ("Send MIDI or audio to other applications.", "Envoyer du MIDI ou de l'audio vers d'autres applications.")]) +
+ LI([("Work with the Felucca web editor: use the Guru-600 editor.",
+      "Fonctionner avec l'éditeur web Felucca : utilisez l'éditeur Guru-600."),
+     ("Send audio to other applications.", "Envoyer de l'audio vers d'autres applications.")]) +
  BOX("tip", ("<b>RESET GURU-600</b> (chapter {ch:reset}) also works in the application.",
              "<b>RESET GURU-600</b> (chapitre {ch:reset}) fonctionne aussi dans l'application.")))

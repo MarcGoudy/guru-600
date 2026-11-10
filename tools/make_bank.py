@@ -3,6 +3,8 @@ Entrée : factory_bank.json (decode_factory.py). Les conversions suivent gligli 
 quand il en donne une ; sinon ce sont des approximations, à régler à l'oreille.
     python3 make_bank.py factory_bank.json ../Felucca/firmware/src/p600_bank.h [banques/v2022_bank.json [banques/guru/guru_extras.json]]"""
 import json, math, sys
+# (10/11, Marc) les noms que la coupure à 11 caractères rendrait identiques à un autre : abrégés pour rester distincts
+ABBR = {"Orchestral 1": "Orch. 1", "Orchestral 2": "Orch. 2", "Orchestral 3": "Orch. 3", "Space Oboe Chord": "Sp.Oboe Ch."}
 
 FACTORY_NAMES = json.load(open(__file__.rsplit("/", 1)[0] + "/factory_names.json"))   # le manuel CM600A, figure 11-0
 Z80_ENV_CV = [0, 55, 86, 101, 111, 124, 135, 139, 143, 148, 154, 164, 176, 185, 191, 210]   # import.c z80EnvCV
@@ -100,7 +102,7 @@ def convert_gligli(p):      # un programme GliGli v8 (decode_gligli.py) -> le mo
     tg = p["LFOTargets"]
     depth = (p["LFOAmt"] >> 8) * (p["LFOAmt"] >> 8) * 63 // 65025
     preset = {
-        "name": p["name"][:15],
+        "name": ABBR.get(p["name"], p["name"])[:15],   # (ABBR: a name the cut would make another's)
         "e": [wave(p["ASaw"], p["ATri"], p["ASqr"]), clamp((p["FreqA"] + 512) >> 10, 0, 63),
               wave(p["BSaw"], p["BTri"], p["BSqr"]), clamp(fbi, 0, 63),
               cutoff(p["Cutoff"] >> 8), clamp((p["Resonance"] >> 10) * 2, 0, 127), mix, amt(p["FilEnvAmt"], 137)],
