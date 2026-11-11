@@ -4,7 +4,9 @@ quand il en donne une ; sinon ce sont des approximations, à régler à l'oreill
     python3 make_bank.py factory_bank.json ../Felucca/firmware/src/p600_bank.h [banques/v2022_bank.json [banques/guru/guru_extras.json]]"""
 import json, math, sys
 # (10/11, Marc) les noms que la coupure à 11 caractères rendrait identiques à un autre : abrégés pour rester distincts
-ABBR = {"Orchestral 1": "Orch. 1", "Orchestral 2": "Orch. 2", "Orchestral 3": "Orch. 3", "Space Oboe Chord": "Sp.Oboe Ch."}
+ABBR = {"Orchestral 1": "Orch. 1", "Orchestral 2": "Orch. 2", "Orchestral 3": "Orch. 3", "Space Oboe Chord": "Sp.Oboe Ch.",
+        # the v2022 versions of factory sounds (Z80 Nbr.) take a 2, as the factory's keep their name
+        "Club Organ": "ClubOrgan 2", "Chiffy Organ": "ChiffyOrg 2", "Harmonica": "Harmonica 2", "Pulse Mod I": "PulseModI 2"}
 
 FACTORY_NAMES = json.load(open(__file__.rsplit("/", 1)[0] + "/factory_names.json"))   # le manuel CM600A, figure 11-0
 Z80_ENV_CV = [0, 55, 86, 101, 111, 124, 135, 139, 143, 148, 154, 164, 176, 185, 191, 210]   # import.c z80EnvCV
@@ -147,7 +149,7 @@ def main(src, dst, gligli=None, extras=None):
         out.append("    /* the v2022 Patch Collection 1 (image-et-son.com, GPL v3): Matrix12x, el-folie, Jpro600k, Andy W., imogen */")
         for p in json.load(open(gligli)):
             pr, ex = convert_gligli(p)
-            nm = ("%d %s" % (len(exts) + 1, pr["name"])).replace("\\", "/").replace('"', "'")[:15]
+            nm = ("%d %s" % (len(exts) + 1, pr["name"])).replace("\\", "").replace('"', "'")[:15].upper()   # (11/11 : tous les noms en majuscules)
             out.append('    {"%s", %s, %s, 0, 0, FX(0, 0, 0, 0)},' % (nm, c_list(pr["e"]), c_list(pr["env"])))
             exts.append(ex)
     if extras:                              # Guru-600 : places 201 .. 255, des sons Surge XT adaptés (GPL-3) et des originaux

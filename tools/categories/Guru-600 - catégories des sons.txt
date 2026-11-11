@@ -10,16 +10,16 @@ BASS — basses (24 sons)
    63 ARCO BASS
    68 MODOR
    92 FILT FUNK
-   141 Attack Bass
-   142 Bassically
-   143 Double Bass
-   144 Funkey
-   145 Yaz Bass
-   146 Increase Ba
-   147 Slap Bass
-   148 Unison Full
-   149 Deep Square
-   150 Performance
+   141 ATTACK BASS
+   142 BASSICALLY
+   143 DOUBLE BASS
+   144 FUNKEY
+   145 YAZ BASS
+   146 INCREASE BA
+   147 SLAP BASS
+   148 UNISON FULL
+   149 DEEP SQUARE
+   150 PERFORMANCE
    201 BASS TWO
    202 SAW LOFI
    203 SQUARED
@@ -57,31 +57,31 @@ LEAD — solos, cuivres, flûtes (63 sons)
    86 JOSEF
    88 LUCKY MAN
    97 TEARS
-   98 FIFTHS
-   121 Center Stag
-   122 Common Sync
+   98 FIFTHS LEAD
+   121 CENTER STAG
+   122 COMMON SYNC
    123 DCO
-   124 I told you
-   125 Fuzz Guitar
-   126 Cut
-   128 Moogys
-   129 Fusion
-   130 Melody
-   131 Bread /& Bu
-   132 Bread /& Ma
-   133 Trombone Se
-   134 Attack Bras
-   135 Bright Bras
-   136 Mild Brass
-   137 Elegiac Bra
-   138 Orchestral 
-   139 Orchestral 
-   140 Orchestral 
-   151 Space Oboe
-   153 Totally Tru
-   155 Space Oboe 
-   159 Harmonica
-   160 Reso Flute
+   124 I TOLD YOU
+   125 FUZZ GUITAR
+   126 CUT
+   128 MOOGYS
+   129 FUSION
+   130 MELODY
+   131 BREAD & BUT
+   132 BREAD & MAR
+   133 TROMBONE SE
+   134 ATTACK BRAS
+   135 BRIGHT BRAS
+   136 MILD BRASS
+   137 ELEGIAC BRA
+   138 ORCHESTRAL 
+   139 ORCHESTRAL 
+   140 ORCHESTRAL 
+   151 SPACE OBOE
+   153 TOTALLY TRU
+   155 SPACE OBOE 
+   159 HARMONICA 2
+   160 RESO FLUTE
    211 BANTER
    212 BITTEN
    213 CRAY
@@ -110,28 +110,28 @@ PAD — nappes, cordes (49 sons)
    83 VOCAL HARM
    87 PW MOD II
    95 PW MOD III
-   111 Poly Glide
-   112 Soft Poly
-   113 Kometenmelo
-   114 5th Sweep
-   115 Slow Atmo B
-   116 Forever 80s
-   117 Fly By
-   118 Falling Asl
-   119 Night Drive
-   120 Blade Runne
-   127 PW Pad
-   163 Vox Humana
-   191 Cold Wind
-   192 Psycho Choi
-   193 Strings I
-   194 Foggy Strin
-   195 Retro Pad
-   196 Pulse Mod I
-   197 Wobbly Chur
-   198 Room String
-   199 SH Pad
-   200 Shimmer
+   111 POLY GLIDE
+   112 SOFT POLY
+   113 KOMETENMELO
+   114 5TH SWEEP
+   115 SLOW ATMO B
+   116 FOREVER 80S
+   117 FLY BY
+   118 FALLING ASL
+   119 NIGHT DRIVE
+   120 BLADE RUNNE
+   127 PW PAD
+   163 VOX HUMANA
+   191 COLD WIND
+   192 PSYCHO CHOI
+   193 STRINGS I
+   194 FOGGY STRIN
+   195 RETRO PAD
+   196 PULSEMODI 2
+   197 WOBBLY CHUR
+   198 ROOM STRING
+   199 SH PAD
+   200 SHIMMER
    218 BURDEN
    219 HARM SWEEP
    220 NEWTON EVIL
@@ -158,26 +158,26 @@ PLUCK — sons pincés, cloches, stabs (43 sons)
    79 LO PLUCKY
    85 METAL III
    93 BANJO
-   171 Fifths
-   172 Wake Up!
-   173 One Two Thr
-   174 Pulsify
-   175 Phase
-   176 Noisy Stuff
-   177 Harmonic Re
-   178 Noisy Stab
-   179 Soft Stab
-   180 Crispy
-   181 Crystal
-   182 Snow Bell
-   183 Glockenspie
-   184 Dew
-   185 Gong
-   186 Chime
-   187 Tinkerbell
-   188 High Bells
-   189 Flute Bells
-   190 Steel Bars
+   171 FIFTHS
+   172 WAKE UP!
+   173 ONE TWO THR
+   174 PULSIFY
+   175 PHASE
+   176 NOISY STUFF
+   177 HARMONIC RE
+   178 NOISY STAB
+   179 SOFT STAB
+   180 CRISPY
+   181 CRYSTAL
+   182 SNOW BELL
+   183 GLOCKENSPIE
+   184 DEW
+   185 GONG
+   186 CHIME
+   187 TINKERBELL
+   188 HIGH BELLS
+   189 FLUTE BELLS
+   190 STEEL BARS
    206 INHARM STAB
    207 MAJMIN STAB
    222 BITE
@@ -185,7 +185,7 @@ PLUCK — sons pincés, cloches, stabs (43 sons)
    224 LIGHTER
    230 PHASE 3
    231 GLASS BELLS
-   232 GONG
+   232 GONG 2
    244 HARP PLUCK
    247 ARP PULSE
    253 DIGI RAIN
@@ -214,26 +214,26 @@ KEYS — pianos, orgues, clavecins (38 sons)
    82 DETUNED
    91 FULL ORGAN
    94 CLAV III
-   101 GliGli Clav
-   102 Chorus EP
-   103 Piano 2
-   104 Tap me twic
-   105 PWM Piano
-   106 Vocal Piano
+   101 GLIGLI CLAV
+   102 CHORUS EP
+   103 PIANO 2
+   104 TAP ME TWIC
+   105 PWM PIANO
+   106 VOCAL PIANO
    107 EP
-   108 Pianorganis
-   109 Plain Piano
-   110 Pianet
-   152 Wind Organ
-   154 My Spinett
-   157 Club Organ
-   158 Chiffy Orga
+   108 PIANORGANIS
+   109 PLAIN PIANO
+   110 PIANET
+   152 WIND ORGAN
+   154 MY SPINETT
+   157 CLUBORGAN 2
+   158 CHIFFYORG 2
    210 SOFTSUIT
 
 DRUM — percussions (7 sons)
    89 SUPERPERC
-   156 Wood Block
-   170 Simmons Tom
+   156 WOOD BLOCK
+   170 SIMMONS TOM
    221 KICK TECH 1
    234 WATER DROP
    235 SYNTH TOM
@@ -255,14 +255,14 @@ FX — bruitages, effets (31 sons)
    96 DRUNKEN
    99 OOPS!
    100 ALIEN
-   161 Cave
-   162 Pulsar
-   164 Moskito
-   165 Voice
-   166 AW Laser Ha
-   167 Beyond Jupi
-   168 Comet Stopo
-   169 Bubble Bobb
+   161 CAVE
+   162 PULSAR
+   164 MOSKITO
+   165 VOICE
+   166 AW LASER HA
+   167 BEYOND JUPI
+   168 COMET STOPO
+   169 BUBBLE BOBB
    208 DAMAGE
    209 EVIL SEQ
    236 METAL PLATE

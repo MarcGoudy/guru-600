@@ -11,7 +11,7 @@ CREDC = (168, 162, 150)                                        # le crédit Felu
 VERC = (206, 200, 186)                                         # le numéro de version : gris crème, lisible
 WAVE = (255, 64, 48)                                           # l'onde : le rouge de l'afficheur LED du Prophet
 SS = 4                                                         # suréchantillonnage
-VERSION = "1.0.1"                                              # la version de Guru 600, sous la mention
+VERSION = "1.0.2"                                              # la version de Guru 600, sous la mention
 
 
 def text_img(font_path, text, px, pad=2):
@@ -44,6 +44,64 @@ def tracked(text, px, weight, track):       # du texte Inter Tight à la graisse
         d.text((x, 2 * SS - t), c, font=f, fill=255)
         x += f.getlength(c) + track * SS
     return im.resize((im.width // SS, im.height // SS), Image.LANCZOS)
+
+
+
+def lz4_optimal(src):
+    """Le même format de bloc LZ4 que lz4blk.compress (le décodeur du firmware, ui_draw.c splash_unpack, le lit tel
+    quel), mais au découpage optimal (programmation dynamique) au lieu du découpage glouton : quelques dizaines
+    d'octets de moins pour les mêmes pixels (11/11 : la version 1.0.2 tient ainsi dans la mémoire)."""
+    n = len(src); lim = n - 12
+    ext = lambda k: 0 if k < 15 else (k - 15) // 255 + 1
+    pos, M, O = {}, [0] * (n + 1), [0] * (n + 1)          # la plus longue reprise possible à chaque place
+    for j in range(n - 3):
+        key = src[j:j + 4]
+        if j < lim:
+            for c in pos.get(key, ()):
+                if j - c > 65535: continue
+                L = 4
+                while j + L < n - 5 and src[c + L] == src[j + L]: L += 1
+                if L > M[j]: M[j], O[j] = L, j - c
+        pos.setdefault(key, []).append(j)
+    INF = float("inf"); dp = [INF] * (n + 1); dp[0] = 0; frm = [None] * (n + 1)
+    g = [INF] * (n + 1)
+    for j in range(n + 1):
+        if dp[j] < INF: g[j] = dp[j] - j
+        best, ba, k, hi = INF, 0, 0, j
+        while hi >= 0:                                     # ancres à j - a < 15, puis par tranches de 255
+            lo = max(0, j - 14) if k == 0 else max(0, j - 14 - 255 * k)
+            seg = g[lo:hi + 1]
+            if seg:
+                m = min(seg)
+                if m + k < best: best, ba = m + k, lo + seg.index(m)
+            hi = lo - 1; k += 1
+            if lo == 0: break
+        lit = best + j                                      # dp[ba] + (j - ba) + ext(j - ba)
+        if j == n:
+            fin, fa = lit + 1, ba; break
+        if M[j] >= 4 and lit < INF:
+            for L in range(4, M[j] + 1):
+                c = lit + 3 + ext(L - 4)
+                if c < dp[j + L]: dp[j + L], frm[j + L] = c, (ba, j, L, O[j])
+    seqs, e = [], fa
+    while e:
+        a, j, L, o = frm[e]; seqs.append((a, j, L, o)); e = a
+    out = bytearray()
+    def run(nb):
+        r = bytearray()
+        while nb >= 255: r.append(255); nb -= 255
+        r.append(nb); return r
+    for a, j, L, o in reversed(seqs):
+        lit = src[a:j]
+        out.append((min(len(lit), 15) << 4) | min(L - 4, 15))
+        if len(lit) >= 15: out += run(len(lit) - 15)
+        out += lit; out += bytes((o & 0xFF, o >> 8))
+        if L - 4 >= 15: out += run(L - 4 - 15)
+    lit = src[fa:]
+    out.append(min(len(lit), 15) << 4)
+    if len(lit) >= 15: out += run(len(lit) - 15)
+    out += lit
+    return bytes(out)
 
 
 def main(font, outdir, header):
@@ -99,7 +157,7 @@ def main(font, outdir, header):
                      ", ".join("0x%04X" % v for v in ramp((255, 252, 244))))
             L.append("static const uint16_t SPL_WAVE_RAMP[16] = {%s};" % ", ".join("0x%04X" % v for v in ramp(WAVE)))
         d = packed(im)
-        z = lz4blk.compress(bytes(d))
+        z = min(lz4blk.compress(bytes(d)), lz4_optimal(bytes(d)), key=len)
         assert lz4blk.decompress(z) == bytes(d)                # (sans perte : vérifié)
         Z.append((name, len(d), len(z)))
         L.append("#define SPL_%s_N %d" % (name, len(d)))

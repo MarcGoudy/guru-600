@@ -33,7 +33,7 @@ S = [
  snd('GLASS BELLS', 'Bells', a=TRI, b=PLS, fb=19, fine=40, cut=9000, mix=10, amp=(1, 2500, 0, 2500), pm_b=55, pm_dst=FA,
      about=('Osc B modulates osc A at a non-harmonic ratio: clear, glassy bells. Play high.',
             "L'oscillateur B module l'oscillateur A à un rapport non harmonique : des cloches claires, de verre. Jouez dans l'aigu.")),
- snd('GONG', 'Bells', a=SAW, b=PLS, fb=7, fine=70, cut=4000, res=20, mix=20, fenv=40, amp=(1, 6000, 0, 6000),
+ snd('GONG 2', 'Bells', a=SAW, b=PLS, fb=7, fine=70, cut=4000, res=20, mix=20, fenv=40, amp=(1, 6000, 0, 6000),
      fe=(1, 4000, 0, 4000), pm_b=75, pm_env=30, pm_dst=FA,
      about=('A metallic hit that rings for seconds. Play low and let it die away.',
             'Un coup métallique qui résonne plusieurs secondes. Jouez dans le grave et laissez-le s\'éteindre.')),

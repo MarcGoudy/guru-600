@@ -305,7 +305,7 @@ for i in range(100):
     by = c["by"]
     if by.startswith("Z80 Nbr."):
         by = f'{by} (= {int(by.split()[-1]) + 1})'
-    v22r.append(f'<tr><td><b>{101+i}</b></td><td>{e(x["name"])}</td><td>{e(by)}</td><td>{ml(x["fam"][0])}</td>'
+    v22r.append(f'<tr><td><b>{101+i}</b></td><td>{e(x["name"].upper())}</td><td>{e(by)}</td><td>{ml(x["fam"][0])}</td>'
                 f'<td class="ft">{feats(c)}</td><td>{ml(fixc(c["comment"]))}</td></tr>')
 ML = lambda *w: " · ".join(w)
 LEG = ["Osc FM: how strongly oscillator B modulates oscillator A (Poly-Mod), from * to *****.",
@@ -328,7 +328,7 @@ for i, x in enumerate(GX):
     else:
         about = bi2(*x["about"])
         orig = "Guru-600"
-    gr.append(f'<tr><td><b>{201 + i}</b></td><td>{e(x["name"])}</td><td>{bi2(*x["fam"]) if x["fam"][0] != x["fam"][1] else typo(e(x["fam"][0]), "en")}</td>'
+    gr.append(f'<tr><td><b>{201 + i}</b></td><td>{e(x["full"].upper())}</td><td>{bi2(*x["fam"]) if x["fam"][0] != x["fam"][1] else typo(e(x["fam"][0]), "en")}</td>'
               f'<td>{orig}</td><td>{about}</td></tr>')
 GURU_T = ('<h3 class="v22">201–255 · Guru-600</h3><table class="snd g6t"><thead><tr><th>No.</th><th>Name</th>'
           '<th>Family</th><th>Origin</th><th>About</th></tr></thead><tbody>' + "".join(gr) + '</tbody></table>')

@@ -19,7 +19,7 @@ static const uint32_t ABOUT_QR[29] = {
     0x05F3D75Du, 0x1E0D095Du, 0x0FF3955Du, 0x0B99D841u, 0x04ABFD7Fu,
 };
 #ifndef GURU_VERSION
-#define GURU_VERSION "1.0.1"
+#define GURU_VERSION "1.0.2"
 #endif
 #include "p600_about.h"                                 /* Guru-600: the logo at the top of ABOUT */
 

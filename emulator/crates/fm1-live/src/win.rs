@@ -10,7 +10,7 @@ use std::path::PathBuf;
 use std::process::Command;
 
 /// the version shown in Help > About
-pub const VERSION: &str = "1.0.1";
+pub const VERSION: &str = "1.0.2";
 
 const CREATE_NO_WINDOW: u32 = 0x0800_0000;
 

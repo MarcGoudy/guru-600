@@ -90,7 +90,7 @@
   "rest": "*****                    Yes                        Yes        FM adds a little bell-like timbre"
  },
  "10": {
-  "name": "",
+  "name": "Poly Glide",
   "by": "Poly Glide",
   "fam": [
    "Pad",
@@ -405,7 +405,7 @@
   "rest": ""
  },
  "45": {
-  "name": "Unison Dark Bass",
+  "name": "Increase Bass A",
   "by": "imogen",
   "fam": [
    "Bass",
@@ -423,7 +423,7 @@
   "rest": "**                       Yes               Yes                 FM adds to the timbre of hitting string hard"
  },
  "47": {
-  "name": "Unison Full-Bass      Z80 Nbr. 27",
+  "name": "Unison Full-Bass",
   "by": "Yes",
   "fam": [
    "Bass",
@@ -504,7 +504,7 @@
   "rest": "*"
  },
  "56": {
-  "name": "",
+  "name": "Club Organ 2",
   "by": "Club Organ",
   "fam": [
    "Natural instruments",
@@ -513,7 +513,7 @@
   "rest": "Z80 Nbr. 18"
  },
  "57": {
-  "name": "",
+  "name": "Chiffy Organ 2",
   "by": "Chiffy Organ",
   "fam": [
    "Natural instruments",
@@ -522,7 +522,7 @@
   "rest": "Z80 Nbr. 40"
  },
  "58": {
-  "name": "Harmonica             Z80 Nbr. 33",
+  "name": "Harmonica 2",
   "by": "Yes",
   "fam": [
    "Natural instruments",
@@ -828,7 +828,7 @@
   "rest": "Yes                            LFO targets only oscillator A"
  },
  "92": {
-  "name": "",
+  "name": "Strings I",
   "by": "Strings I",
   "fam": [
    "Pad",
@@ -855,7 +855,7 @@
   "rest": "**"
  },
  "95": {
-  "name": "Pulse Mod I      Z80 Nbr. 53",
+  "name": "Pulse Mod I 2",
   "by": "***",
   "fam": [
    "Pad",
