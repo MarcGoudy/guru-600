@@ -4,8 +4,8 @@ CH("editor", "The Guru-600 editor", "L'éditeur Guru-600",
     "Every change is heard at once on the FM-1, and what you change on the FM-1 shows in the editor.",
     "L'éditeur Guru-600 affiche le FM-1 sur l'écran d'un ordinateur, sous la forme d'une façade inspirée du Prophet-600, avec un clavier : chaque réglage des sons P600, le séquenceur, le morceau, l'arpégiateur, les effets, le mixage, les projets, les échantillons, la sauvegarde et les réglages. "
     "Chaque changement s'entend aussitôt sur le FM-1, et ce que vous changez sur le FM-1 s'affiche dans l'éditeur.") +
- LI([("<b>Online</b>: <a href='https://marcgoudy.github.io/guru-600/editor/'>marcgoudy.github.io/guru-600/editor/</a>, with Chrome, Edge, Brave or Opera (also the link on the installation page).",
-      "<b>En ligne</b> : <a href='https://marcgoudy.github.io/guru-600/editor/'>marcgoudy.github.io/guru-600/editor/</a>, avec Chrome, Edge, Brave ou Opera (aussi le lien sur la page d'installation)."),
+ LI([("<b>Online</b>: <a href='https://guru-600.com/editor/'>guru-600.com/editor/</a>, with Chrome, Edge, Brave or Opera (also the link on the installation page).",
+      "<b>En ligne</b> : <a href='https://guru-600.com/editor/'>guru-600.com/editor/</a>, avec Chrome, Edge, Brave ou Opera (aussi le lien sur la page d'installation)."),
      ("<b>Without internet</b>: the <b>Guru-600 Editor</b> folder, <b>editor › index.html</b>.",
       "<b>Sans internet</b> : le dossier <b>Guru-600 Editor</b>, <b>editor › index.html</b>."),
      ("Connect the FM-1 by USB and click <b>CONNECT FM-1</b>; the first time, allow MIDI in the browser. It also connects to the Mac application (chapter {ch:app}).",

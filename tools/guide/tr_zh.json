@@ -123,7 +123,7 @@
  "This guide": "本指南",
  "The <b>?</b> button at the top right of the editor opens this guide at the chapter of the page you are on.": "编辑器右上角的 <b>?</b> 按钮会打开本指南中您当前所在页面的章节。",
  "Opening it": "打开编辑器",
- "<b>Online</b>: go to <b><a href='https://marcgoudy.github.io/guru-600/editor/'>marcgoudy.github.io/guru-600/editor/</a></b> with Chrome, Edge, Brave or Opera.": "<b>在线</b>：用 Chrome、Edge、Brave 或 Opera 访问 <b><a href='https://marcgoudy.github.io/guru-600/editor/'>marcgoudy.github.io/guru-600/editor/</a></b>。",
+ "<b>Online</b>: go to <b><a href='https://guru-600.com/editor/'>guru-600.com/editor/</a></b> with Chrome, Edge, Brave or Opera.": "<b>在线</b>：用 Chrome、Edge、Brave 或 Opera 访问 <b><a href='https://guru-600.com/editor/'>guru-600.com/editor/</a></b>。",
  "<b>Without internet</b>: in the <b>Guru-600 Editor</b> folder, open <b>editor › index.html</b> with one of these browsers (right-click › Open With). Keep the <b>editor</b> and <b>guide</b> folders side by side.": "<b>离线</b>：在 <b>Guru-600 Editor</b> 文件夹中，用上述浏览器之一打开 <b>editor › index.html</b>（右键点击 › 打开方式）。请将 <b>editor</b> 和 <b>guide</b> 两个文件夹放在一起。",
  "Connecting the FM-1": "连接 FM-1",
  "Connect the FM-1 to the computer with the USB cable and switch it on.": "用 USB 线将 FM-1 连接到电脑，然后打开 FM-1。",

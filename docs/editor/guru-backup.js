@@ -112,3 +112,14 @@ Object.assign(TX.fr, { bkstop: "Arrêtez d'abord la musique.", bkfail: "Sauvegar
   bkbad: "Ce n'est pas une sauvegarde complète : %s",
   bkconfirm: "Restaurer cette sauvegarde sur le FM-1 ? Sa musique, ses projets, ses sons USER, ses échantillons et ses réglages sont remplacés. Gardez-le branché.",
   bkrestored: "Sauvegarde restaurée" });
+
+// (Guru-600 1.0.2) depuis la fenêtre de mise à jour : la même sauvegarde que le bouton de la page, vrai si elle a réussi
+window.majSauvegarder = async () => {
+  let fait = false;
+  showPage("backup");
+  await bkWork(bkSecs.dev, async () => {
+    const file = await BK.captureBackup(bkRequest, dev.info.version, bkProg(bkSecs.dev));
+    bkSaveFile(file); toast(tx("bkdone")); fait = true;
+  });
+  return fait;
+};

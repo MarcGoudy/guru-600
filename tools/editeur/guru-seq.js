@@ -283,8 +283,9 @@ function drawAuto() {
   auto.list.forEach((m, k) => {
     const v = D[m.id] ? fmt(m.id, m.v) : String(m.v);
     const r = h("div", "row arow" + (k === autoSel ? " on" : "") + (m.lock ? " lock" : ""),
+      `<div class="n">${m.step + 1}</div>` +
       `${m.lock ? '<svg class="lk" viewBox="0 0 12 14"><rect x="1" y="6" width="10" height="7.5" rx="1.5"/><path d="M3.5 6V4a2.5 2.5 0 0 1 5 0v2" fill="none" stroke-width="1.6"/></svg>' : ""}` +
-      `<div class="n">${m.step + 1}</div><div class="nm">${PNAME[m.id] || "PARAM " + m.id}</div><div class="av">${v}</div>`);
+      `<div class="nm">${PNAME[m.id] || "PARAM " + m.id}</div><div class="av">${v}</div>`);
     r.addEventListener("pointerdown", () => { autoSel = k; drawAuto(); });
     autoList.appendChild(r);
   });
@@ -321,8 +322,8 @@ async function seqRead() {   // the selected track's LEN and the rest (DUMP), it
 /* ------------------------------------------------- the SOUND box (above AUTOMATION): the selected track's sound --- */
 // a P600 track: its place (1..255, as SOUND's list); another engine: its presets (Felucca's PRESET 8, names: NAMES 10)
 let sqEng = 14, sqPre = 0;
-document.head.insertAdjacentHTML("beforeend", "<style>#sqsound > .ttl { color: #fff; border-bottom: 0; font-size: 26px; }" +
-  ".sqeng { text-align: center; font: 600 17px/1 'Barlow C'; color: var(--c); padding: 2px 0 8px; }" +
+document.head.insertAdjacentHTML("beforeend", "<style>#sqsound > .ttl { color: #fff; border-bottom: 0; font-size: 21px; text-align: center; padding-left: 0; }" +
+  ".sqeng { text-align: center; font: 600 17px/1 'Barlow C'; color: var(--c); padding: 14px 0 8px; }" +
   ".sqsnd { display: flex; align-items: center; justify-content: center; gap: 8px; padding: 0 8px; }" +
   ".sqsnd .field { height: 34px; line-height: 30px; width: 136px; padding: 0 6px; font-size: 18px; color: var(--cream); overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }</style>");
 document.getElementById("sqs-").addEventListener("pointerdown", () => sqSoundStep(-1));

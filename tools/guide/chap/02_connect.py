@@ -1,8 +1,8 @@
 # 02 · Opening the editor and connecting the FM-1
 CH("connect", "Opening the editor", "Ouvrir l'éditeur",
  H3("Opening it", "L'ouvrir", EDC["sound"]) +
- LI([("<b>Online</b>: go to <b><a href='https://marcgoudy.github.io/guru-600/editor/'>marcgoudy.github.io/guru-600/editor/</a></b> with Chrome, Edge, Brave or Opera.",
-      "<b>En ligne</b> : allez sur <b><a href='https://marcgoudy.github.io/guru-600/editor/'>marcgoudy.github.io/guru-600/editor/</a></b> avec Chrome, Edge, Brave ou Opera."),
+ LI([("<b>Online</b>: go to <b><a href='https://guru-600.com/editor/'>guru-600.com/editor/</a></b> with Chrome, Edge, Brave or Opera.",
+      "<b>En ligne</b> : allez sur <b><a href='https://guru-600.com/editor/'>guru-600.com/editor/</a></b> avec Chrome, Edge, Brave ou Opera."),
      ("<b>Without internet</b>: in the <b>Guru-600 Editor</b> folder, open <b>editor › index.html</b> with one of these browsers (right-click › Open With). Keep the <b>editor</b> and <b>guide</b> folders side by side.",
       "<b>Sans internet</b> : dans le dossier <b>Guru-600 Editor</b>, ouvrez <b>editor › index.html</b> avec l'un de ces navigateurs (clic droit › Ouvrir avec). Gardez les dossiers <b>editor</b> et <b>guide</b> côte à côte.")]) +
  H3("Connecting the FM-1", "Brancher le FM-1", EDC["sound"]) +

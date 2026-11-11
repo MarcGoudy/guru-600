@@ -160,8 +160,8 @@
   "fr": "Un navigateur compatible MIDI : Chrome, Edge, Brave, Opera…"
  },
  {
-  "en": "The Guru-600 installation page: <a href='https://marcgoudy.github.io/guru-600/'>marcgoudy.github.io/guru-600</a>.",
-  "fr": "La page d'installation du Guru-600 : <a href='https://marcgoudy.github.io/guru-600/'>marcgoudy.github.io/guru-600</a>."
+  "en": "The Guru-600 installation page: <a href='https://guru-600.com/installer/'>guru-600.com/installer</a>.",
+  "fr": "La page d'installation du Guru-600 : <a href='https://guru-600.com/installer/'>guru-600.com/installer</a>."
  },
  {
   "en": "Installing, step by step",
@@ -508,8 +508,8 @@
   "fr": "L'éditeur Guru-600 affiche le FM-1 sur l'écran d'un ordinateur, sous la forme d'une façade inspirée du Prophet-600, avec un clavier : chaque réglage des sons P600, le séquenceur, le morceau, l'arpégiateur, les effets, le mixage, les projets, les échantillons, la sauvegarde et les réglages. Chaque changement s'entend aussitôt sur le FM-1, et ce que vous changez sur le FM-1 s'affiche dans l'éditeur."
  },
  {
-  "en": "<b>Online</b>: <a href='https://marcgoudy.github.io/guru-600/editor/'>marcgoudy.github.io/guru-600/editor/</a>, with Chrome, Edge, Brave or Opera (also the link on the installation page).",
-  "fr": "<b>En ligne</b> : <a href='https://marcgoudy.github.io/guru-600/editor/'>marcgoudy.github.io/guru-600/editor/</a>, avec Chrome, Edge, Brave ou Opera (aussi le lien sur la page d'installation)."
+  "en": "<b>Online</b>: <a href='https://guru-600.com/editor/'>guru-600.com/editor/</a>, with Chrome, Edge, Brave or Opera (also the link on the installation page).",
+  "fr": "<b>En ligne</b> : <a href='https://guru-600.com/editor/'>guru-600.com/editor/</a>, avec Chrome, Edge, Brave ou Opera (aussi le lien sur la page d'installation)."
  },
  {
   "en": "<b>Without internet</b>: the <b>Guru-600 Editor</b> folder, <b>editor › index.html</b>.",
@@ -2688,8 +2688,8 @@
   "fr": "Un projet (SAVE › PROJECT) conserve les sons des quatre pistes avec la musique, tels qu'ils sont (chapitre {ch:song})."
  },
  {
-  "en": "The <b>Guru-600 Sound Sender</b> page (<a href='https://marcgoudy.github.io/guru-600/envoi-sons.html'>marcgoudy.github.io/guru-600/envoi-sons.html</a>) sends Prophet-600 sounds to the FM-1 and brings them back to the computer. The sounds stay in the FM-1 after power-off.",
-  "fr": "La page <b>Guru-600 Sound Sender</b> (<a href='https://marcgoudy.github.io/guru-600/envoi-sons.html'>marcgoudy.github.io/guru-600/envoi-sons.html</a>) envoie des sons Prophet-600 au FM-1 et les rapatrie sur l'ordinateur. Les sons restent dans le FM-1 après extinction."
+  "en": "The <b>Guru-600 Sound Sender</b> page (<a href='https://guru-600.com/envoi-sons.html'>guru-600.com/envoi-sons.html</a>) sends Prophet-600 sounds to the FM-1 and brings them back to the computer. The sounds stay in the FM-1 after power-off.",
+  "fr": "La page <b>Guru-600 Sound Sender</b> (<a href='https://guru-600.com/envoi-sons.html'>guru-600.com/envoi-sons.html</a>) envoie des sons Prophet-600 au FM-1 et les rapatrie sur l'ordinateur. Les sons restent dans le FM-1 après extinction."
  },
  {
   "en": "What it accepts",

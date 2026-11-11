@@ -71,5 +71,5 @@ for i in range(1, n):
     w.pages[i].merge_page(num.pages[i])
 w.write(out); print("total", n)
 PY
-[ -z "$G6_PASS2" ] && G6_PASS2=1 exec zsh "$0"    # (a second pass: the contents with the pages just found)
+[ -z "$G6_PASS2" ] && G6_PASS2=1 exec zsh "${0:A}"    # (a second pass: the contents with the pages just found)
 [ -z "$G6_OUT" ] && cp "$OUT" ~/Desktop/

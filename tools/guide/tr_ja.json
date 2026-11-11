@@ -123,7 +123,7 @@
  "This guide": "このガイド",
  "The <b>?</b> button at the top right of the editor opens this guide at the chapter of the page you are on.": "エディター右上の <b>?</b> ボタンを押すと、表示中のページの章でこのガイドが開きます。",
  "Opening it": "エディターを開く",
- "<b>Online</b>: go to <b><a href='https://marcgoudy.github.io/guru-600/editor/'>marcgoudy.github.io/guru-600/editor/</a></b> with Chrome, Edge, Brave or Opera.": "<b>オンライン</b>：Chrome、Edge、Brave、Opera のいずれかで <b><a href='https://marcgoudy.github.io/guru-600/editor/'>marcgoudy.github.io/guru-600/editor/</a></b> を開きます。",
+ "<b>Online</b>: go to <b><a href='https://guru-600.com/editor/'>guru-600.com/editor/</a></b> with Chrome, Edge, Brave or Opera.": "<b>オンライン</b>：Chrome、Edge、Brave、Opera のいずれかで <b><a href='https://guru-600.com/editor/'>guru-600.com/editor/</a></b> を開きます。",
  "<b>Without internet</b>: in the <b>Guru-600 Editor</b> folder, open <b>editor › index.html</b> with one of these browsers (right-click › Open With). Keep the <b>editor</b> and <b>guide</b> folders side by side.": "<b>インターネットなし</b>：<b>Guru-600 Editor</b> フォルダーの <b>editor › index.html</b> を、これらのブラウザーのいずれかで開きます（右クリック › このアプリケーションで開く）。<b>editor</b> フォルダーと <b>guide</b> フォルダーは同じ場所に並べて置いてください。",
  "Connecting the FM-1": "FM-1 を接続する",
  "Connect the FM-1 to the computer with the USB cable and switch it on.": "FM-1 を USB ケーブルでコンピューターに接続し、電源を入れます。",

@@ -43,6 +43,9 @@ static void ed_v(int32_t v)
     ed_b(u);
     ed_b(u >> 7);
 }
+#ifndef GURU_VERSION
+#define GURU_VERSION "?"
+#endif
 static void ed_str(const char *s, uint32_t max)   /* ASCII, 0-terminated */
 {
     uint32_t i;
@@ -467,7 +470,8 @@ static void ed_handle(const uint8_t *f, uint32_t n)   /* f: the bytes between F0
         break;
     }
     case ED_INFO:
-        ed_str("FELUCCA " FELUCCA_VERSION, 24);
+        ed_str("GURU-600 " GURU_VERSION " (" FELUCCA_VERSION ")", 24);   /* Guru-600 1.0.2: its own version first, for the
+                                                                    * editor's update notice ("FELUCCA ..." before 1.0.2) */
         ed_b(NENGINES);
         ed_b(P_COUNT);
         ed_b(G_COUNT);

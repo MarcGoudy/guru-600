@@ -11,8 +11,8 @@ CH("install", "Installing the Guru-600 on an FM-1", "Installer le Guru-600 sur u
       "Un Mac, un PC ou un ordinateur Linux."),
      ("A MIDI-compatible browser: Chrome, Edge, Brave, Opera…",
       "Un navigateur compatible MIDI : Chrome, Edge, Brave, Opera…"),
-     ("The Guru-600 installation page: <a href='https://marcgoudy.github.io/guru-600/'>marcgoudy.github.io/guru-600</a>.",
-      "La page d'installation du Guru-600 : <a href='https://marcgoudy.github.io/guru-600/'>marcgoudy.github.io/guru-600</a>.")]) +
+     ("The Guru-600 installation page: <a href='https://guru-600.com/installer/'>guru-600.com/installer</a>.",
+      "La page d'installation du Guru-600 : <a href='https://guru-600.com/installer/'>guru-600.com/installer</a>.")]) +
  H3("Installing, step by step", "Installer, pas à pas") +
  STEPS([("Switch the FM-1 on and connect it to the computer with the USB data cable.",
          "Allumez le FM-1 et branchez-le à l'ordinateur avec le câble USB de données."),

@@ -418,6 +418,16 @@ const TX = {
         unsavedexp: "Les modifications de ce son ne sont pas enregistrées : le fichier contiendra le son tel qu'il est enregistré à la place %s. Exporter quand même ?",
         other: "La piste %s joue un son du FM-1 (%s).<br>Cette façade règle les sons Guru-600 (1 à 255) : choisissez-en un dans la liste pour le régler ici." },
 };
+// (Guru-600 1.0.2) la mise à jour : un FM-1 plus ancien que la dernière version publiée sur GitHub
+const TX_MAJ = {   // [la nouvelle version, la version du FM-1 connue ; ... inconnue (avant la 1.0.2) ; le bouton]
+  en: ["A new version of the Guru-600 is out: %s.\nYour FM-1 has %s.", "A new version of the Guru-600 is out: %s.\nYour FM-1 has an older one.", "Install", "An update does not erase your content or your settings,\nbut a backup first is the safer way.", "Back up", "Backup saved: you can install the update now.", "No, thanks"],
+  fr: ["Une nouvelle version du Guru-600 est sortie : %s.\nVotre FM-1 a la %s.", "Une nouvelle version du Guru-600 est sortie : %s.\nVotre FM-1 a une version plus ancienne.", "Installer", "Une mise à jour n'écrase ni votre contenu ni vos réglages,\nmais une sauvegarde est plus prudente.", "Sauvegarder", "Sauvegarde enregistrée : vous pouvez installer la mise à jour.", "Non, merci"],
+  de: ["Eine neue Version des Guru-600 ist da: %s.\nIhr FM-1 hat %s.", "Eine neue Version des Guru-600 ist da: %s.\nIhr FM-1 hat eine ältere.", "Installieren", "Ein Update überschreibt weder Ihre Inhalte noch Ihre Einstellungen,\naber eine Sicherung ist vorsichtiger.", "Sichern", "Sicherung gespeichert: Sie können das Update jetzt installieren.", "Nein, danke"],
+  es: ["Hay una nueva versión del Guru-600: %s.\nSu FM-1 tiene la %s.", "Hay una nueva versión del Guru-600: %s.\nSu FM-1 tiene una anterior.", "Instalar", "Una actualización no borra su contenido ni sus ajustes,\npero una copia de seguridad es más prudente.", "Hacer copia", "Copia guardada: ya puede instalar la actualización.", "No, gracias"],
+  it: ["È uscita una nuova versione del Guru-600: %s.\nIl FM-1 ha la %s.", "È uscita una nuova versione del Guru-600: %s.\nIl FM-1 ne ha una precedente.", "Installa", "Un aggiornamento non cancella né i contenuti né le impostazioni,\nma un backup è più prudente.", "Backup", "Backup salvato: ora potete installare l’aggiornamento.", "No, grazie"],
+  zh: ["Guru-600 已推出新版本：%s。\n您的 FM-1 当前为 %s。\n", "Guru-600 已推出新版本：%s。\n您的 FM-1 是旧版本。", "安装", "更新不会覆盖您的内容和设置，\n但先备份更稳妥。", "备份", "备份已保存：现在可以安装更新。", "不用了"],
+  ja: ["Guru-600 の新しいバージョン %s が出ました。\nお使いの FM-1 は %s です。", "Guru-600 の新しいバージョン %s が出ました。\nお使いの FM-1 は以前のバージョンです。", "インストール", "アップデートで内容や設定が上書きされることはありませんが、\n先にバックアップを取るとより安心です。", "バックアップ", "バックアップを保存しました。アップデートをインストールできます。", "今はしない"],
+};
 const tx = (k, ...a) => { let s = (TX[lang] || TX.en)[k] || TX.en[k] || k; for (const x of a) s = s.replace("%s", x); return s; };
 let toastT = 0;
 function toast(s) {
@@ -497,10 +507,38 @@ async function connect(quiet = false) {   // quiet: at the opening, nothing said
   } catch (e) { console.warn(e); }
   dirty = false;
   showConn(true); toast(tx("connected"));
+  majVerifier(dev.info.version);
   if (page !== "sound" && pageOpen[page]) pageOpen[page]();   // (the page shown read from the FM-1 now)
   pinger = setInterval(() => { if (dev) dev.watch(true).catch(() => lost()); }, 1000);   // (WATCH lasts 3 s without a request: asked
                                                                                          // again each second, it never lapses)
   morphPoller = setInterval(pollMorph, 30);     // (an MSTATE answer takes 1-2 ms on the FM-1)
+}
+// (Guru-600 1.0.2) le FM-1 annonce « GURU-600 1.0.2 (v1.6.1) » ; avant la 1.0.2 : « FELUCCA v1.6.1 », une version plus ancienne.
+// La dernière version publiée : la Release « Latest » de GitHub (sans réseau, ou sans réponse : rien n'est dit).
+const vnum = (v) => (v || "").split(".").map((x) => parseInt(x, 10) || 0);
+const plusRecente = (a, b) => { const x = vnum(a), y = vnum(b); for (let i = 0; i < 3; i++) if ((x[i] || 0) !== (y[i] || 0)) return (x[i] || 0) > (y[i] || 0); return false; };
+async function majVerifier(info) {
+  const m = /GURU-600 (\d+\.\d+(?:\.\d+)?)/.exec(info || ""), ici = m ? m[1] : "1.0.1";
+  let derniere;
+  try {
+    const r = await fetch("https://api.github.com/repos/MarcGoudy/guru-600/releases/latest", { cache: "no-store" });
+    derniere = ((await r.json()).tag_name || "").replace(/^v/, "");
+  } catch (e) { return; }
+  const el = document.getElementById("maj");
+  if (!el || !derniere || !plusRecente(derniere, ici)) { if (el) el.classList.remove("on"); return; }
+  const t = TX_MAJ[lang] || TX_MAJ.en;
+  el.querySelector("span").textContent = m ? t[0].replace("%s", derniere).replace("%s", ici) : t[1].replace("%s", derniere);
+  el.querySelector("a").textContent = t[2];
+  el.querySelector("small").textContent = t[3];
+  const bs = el.querySelector("[data-act=save]"), bl = el.querySelector("[data-act=later]");
+  bs.textContent = t[4]; bl.textContent = t[6]; bs.hidden = false;
+  // (Sauvegarder : la sauvegarde complète, page SAUVEGARDE, puis la fenêtre revient pour proposer l'installation)
+  bs.onclick = async () => {
+    el.classList.remove("on");
+    if (window.majSauvegarder && await window.majSauvegarder()) { el.querySelector("small").textContent = t[5]; bs.hidden = true; }
+    el.classList.add("on");
+  };
+  el.classList.add("on");
 }
 function lost() {
   if (!dev) return;

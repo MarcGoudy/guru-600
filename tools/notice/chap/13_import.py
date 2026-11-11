@@ -1,7 +1,7 @@
 # 13 · Sending and getting back sounds with a computer
 CH("import", "Sending sounds from a computer, and getting them back", "Envoyer des sons depuis un ordinateur, et les récupérer",
- P2("The <b>Guru-600 Sound Sender</b> page (<a href='https://marcgoudy.github.io/guru-600/envoi-sons.html'>marcgoudy.github.io/guru-600/envoi-sons.html</a>) sends Prophet-600 sounds to the FM-1 and brings them back to the computer. The sounds stay in the FM-1 after power-off.",
-    "La page <b>Guru-600 Sound Sender</b> (<a href='https://marcgoudy.github.io/guru-600/envoi-sons.html'>marcgoudy.github.io/guru-600/envoi-sons.html</a>) envoie des sons Prophet-600 au FM-1 et les rapatrie sur l'ordinateur. Les sons restent dans le FM-1 après extinction.") +
+ P2("The <b>Guru-600 Sound Sender</b> page (<a href='https://guru-600.com/envoi-sons.html'>guru-600.com/envoi-sons.html</a>) sends Prophet-600 sounds to the FM-1 and brings them back to the computer. The sounds stay in the FM-1 after power-off.",
+    "La page <b>Guru-600 Sound Sender</b> (<a href='https://guru-600.com/envoi-sons.html'>guru-600.com/envoi-sons.html</a>) envoie des sons Prophet-600 au FM-1 et les rapatrie sur l'ordinateur. Les sons restent dans le FM-1 après extinction.") +
  '<div class="split">' + T('<img src="img/envoi_en.png" style="width:360px" alt="">', '<img src="img/envoi_fr.png" style="width:360px" alt="">', "figure") + '<div>' +
  H4("What it accepts", "Ce qu'elle accepte") +
  LI([("A <b>.syx</b> file of Prophet-600 sounds: an original Sequential program dump, or a GliGli firmware patch file.",
