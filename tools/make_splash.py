@@ -11,7 +11,7 @@ CREDC = (168, 162, 150)                                        # le crédit Felu
 VERC = (206, 200, 186)                                         # le numéro de version : gris crème, lisible
 WAVE = (255, 64, 48)                                           # l'onde : le rouge de l'afficheur LED du Prophet
 SS = 4                                                         # suréchantillonnage
-VERSION = "1.0"                                                # la version de Guru 600, sous la mention
+VERSION = "1.0.1"                                              # la version de Guru 600, sous la mention
 
 
 def text_img(font_path, text, px, pad=2):

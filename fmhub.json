@@ -5,7 +5,7 @@
     "synth"
   ],
   "editor": "https://marcgoudy.github.io/guru-600/editor/",
-  "cheat": "https://github.com/MarcGoudy/guru-600/releases/download/v1.0/Guru-600-User-guide.pdf",
+  "cheat": "https://github.com/MarcGoudy/guru-600/releases/latest/download/Guru-600-User-guide.pdf",
   "image": "docs/card.png",
   "color": "#D65440"
 }

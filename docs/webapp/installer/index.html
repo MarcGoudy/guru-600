@@ -1073,7 +1073,7 @@ const say = (txt) => { lastKey = null; $("status").textContent = txt; };
 const log = (t) => { $("log").textContent += t + "\n"; };
 const pct = () => { $("status").textContent += ` · ${Math.round($("bar").value)} %`; };   // (the bar's value, after the step's name)
 let image = null;
-const meta = {"version": "1.0", "product": "FM-1_600600", "pkg": "../../firmware/guru-600-1.0.fwsc"};
+const meta = {"version": "1.0.1", "product": "FM-1_600600", "pkg": "../../firmware/guru-600-1.0.1.fwsc"};
 
 let writing = false, stock = null, stockFileEpoch = 0;
 const lockInstaller = (on) => { writing = on; $("go").disabled = on || !image; $("stock-go").disabled = on || !stock; $("stock-file").disabled = on; $("stock-recovery").disabled = on; };
