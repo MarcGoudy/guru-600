@@ -7,6 +7,8 @@
 
 **A Prophet-600 emulator firmware for the M-VAVE FM-1**, by Marc Massé, based on [Felucca](https://github.com/hugelton/Felucca) by Leo Kuroshita.
 
+**Website: https://guru-600.com** (the sounds, the emulator to try in the browser, the downloads, in 7 languages)
+
 The Guru-600 turns the M-VAVE FM-1 into an emulator of the Sequential Circuits Prophet-600 (1982), one of the very first synthesizers with MIDI. It replaces the FM-1's original firmware and can be removed at any time.
 
 ### What it adds
@@ -49,6 +51,8 @@ Prophet-600 is a trademark of its owner; the Guru-600 is not affiliated with Seq
 ## Français
 
 **Un firmware émulateur du Prophet-600 pour le M-VAVE FM-1**, par Marc Massé, d'après [Felucca](https://github.com/hugelton/Felucca) de Leo Kuroshita.
+
+**Site : https://guru-600.com** (les sons, l'émulateur à essayer dans le navigateur, les téléchargements, en 7 langues)
 
 Le Guru-600 transforme le M-VAVE FM-1 en émulateur du Prophet-600 de Sequential Circuits (1982), l'un des tout premiers synthétiseurs MIDI. Il remplace le firmware d'origine du FM-1 et peut être retiré à tout moment.
 
@@ -93,6 +97,8 @@ Prophet-600 est une marque de son propriétaire ; le Guru-600 est sans lien avec
 
 **Eine Prophet-600-Emulator-Firmware für den M-VAVE FM-1**, von Marc Massé, basierend auf [Felucca](https://github.com/hugelton/Felucca) von Leo Kuroshita.
 
+**Website: https://guru-600.com** (die Klänge, der Emulator zum Ausprobieren im Browser, die Downloads, in 7 Sprachen)
+
 Der Guru-600 verwandelt den M-VAVE FM-1 in einen Emulator des Sequential Circuits Prophet-600 (1982), einen der allerersten Synthesizer mit MIDI. Er ersetzt die Original-Firmware des FM-1 und lässt sich jederzeit wieder entfernen.
 
 ### Was er hinzufügt
@@ -135,6 +141,8 @@ Prophet-600 ist eine Marke ihres Inhabers; der Guru-600 steht in keiner Verbindu
 ## Español
 
 **Un firmware emulador del Prophet-600 para el M-VAVE FM-1**, de Marc Massé, basado en [Felucca](https://github.com/hugelton/Felucca) de Leo Kuroshita.
+
+**Sitio web: https://guru-600.com** (los sonidos, el emulador para probar en el navegador, las descargas, en 7 idiomas)
 
 El Guru-600 convierte el M-VAVE FM-1 en un emulador del Sequential Circuits Prophet-600 (1982), uno de los primeros sintetizadores con MIDI. Sustituye el firmware original del FM-1 y puede quitarse en cualquier momento.
 
@@ -179,6 +187,8 @@ Prophet-600 es una marca de su propietario; el Guru-600 no tiene relación con S
 
 **Un firmware emulatore del Prophet-600 per l'M-VAVE FM-1**, di Marc Massé, basato su [Felucca](https://github.com/hugelton/Felucca) di Leo Kuroshita.
 
+**Sito: https://guru-600.com** (i suoni, l'emulatore da provare nel browser, i download, in 7 lingue)
+
 Il Guru-600 trasforma l'M-VAVE FM-1 in un emulatore del Sequential Circuits Prophet-600 (1982), uno dei primissimi sintetizzatori dotati di MIDI. Sostituisce il firmware originale dell'FM-1 e si può rimuovere in qualsiasi momento.
 
 ### Cosa aggiunge
@@ -222,6 +232,8 @@ Prophet-600 è un marchio del suo proprietario; il Guru-600 non è affiliato a S
 
 **一款用于 M-VAVE FM-1 的 Prophet-600 模拟器固件**，作者 Marc Massé，基于 Leo Kuroshita 的 [Felucca](https://github.com/hugelton/Felucca)。
 
+**网站：https://guru-600.com**（音色、可在浏览器中试用的模拟器、下载，共 7 种语言）
+
 Guru-600 将 M-VAVE FM-1 变成 Sequential Circuits Prophet-600（1982 年）的模拟器，Prophet-600 是最早配备 MIDI 的合成器之一。它会取代 FM-1 的原厂固件，可随时卸载。
 
 ### 新增功能
@@ -264,6 +276,8 @@ Prophet-600 是其所有者的商标；Guru-600 与 Sequential 无关。M-VAVE �
 ## 日本語
 
 **M-VAVE FM-1 用の Prophet-600 エミュレーター・ファームウェア**。作者は Marc Massé、Leo Kuroshita による [Felucca](https://github.com/hugelton/Felucca) をベースにしています。
+
+**ウェブサイト：https://guru-600.com**（サウンド、ブラウザで試せるエミュレーター、ダウンロード、7 言語）
 
 Guru-600 は、M-VAVE FM-1 を、MIDI を搭載した最初期のシンセサイザーの一つである Sequential Circuits Prophet-600（1982年）のエミュレーターに変えます。FM-1 の純正ファームウェアと置き換わり、いつでも元に戻せます。
 
