@@ -30,6 +30,9 @@ use fm1_core::{Bus, Cpu};
 use fm1_soc::{machine, Action, Soc, VEC_BASE};
 use minifb::{Key, KeyRepeat, MouseButton, MouseMode, Window, WindowOptions};
 use panel::{Ctl, ENCS, H, W};
+/// Guru-600: on the Mac, the FM-1 panel drawn twice as fine as its window (panel.rs), sharp on a
+/// Retina screen; on Windows at the window's size (GDI's stretch would spoil the halving)
+const PANEL_SCALE: usize = if cfg!(windows) { 1 } else { 2 };
 
 mod backup;
 #[path = "../../fm1-emu/src/buildinfo.rs"]
@@ -57,6 +60,16 @@ fn target_ms() -> f64 { TARGET_MS.load(std::sync::atomic::Ordering::Relaxed) as 
 fn lead_ms() -> f64 { LEAD_MS - AUDIO_TARGET_MS + target_ms() }
 fn latency_file(o: &Opts) -> Option<std::path::PathBuf> {
     o.flash.as_ref().and_then(|f| std::path::Path::new(f).parent().map(|d| d.join("latency")))
+}
+/// Guru-600: the panel's colour (the menu Color: M-VAVE's six, panel::COLOURS), kept in the file
+/// `colour` next to the flash file
+fn colour_file(o: &Opts) -> Option<std::path::PathBuf> {
+    o.flash.as_ref().and_then(|f| std::path::Path::new(f).parent().map(|d| d.join("colour")))
+}
+fn load_colour(o: &Opts) {
+    if let Some(i) = colour_file(o).and_then(|f| std::fs::read_to_string(f).ok()).and_then(|s| s.trim().parse::<usize>().ok()) {
+        panel::set_colour(i);
+    }
 }
 
 #[derive(Clone)]
@@ -113,10 +126,51 @@ fn catalog() -> Vec<(String, String, String, String)> {
     }).collect()
 }
 
+/// Guru-600 on the Mac: the program is the app's executable itself (Contents/MacOS/Guru-600), so that macOS's
+/// "Open Anyway" covers it: a shell launcher that exec'd a second program got that one blocked with no way to allow
+/// it. Started with no arguments, it makes the options the launcher gave: the firmware and the user guide in
+/// Contents/Resources, the flash memory kept in ~/Library/Application Support/Guru-600/flash.bin, the menus in the
+/// user's language.
+#[cfg(target_os = "macos")]
+fn mac_default_args() -> Option<Vec<String>> {
+    use std::path::PathBuf;
+    let exe = std::env::current_exe().ok()?;
+    let res: PathBuf = exe.parent()?.parent()?.join("Resources");
+    let fwsc = res.join("guru-600.fwsc");
+    if !fwsc.exists() {
+        return None;
+    }
+    let data = PathBuf::from(std::env::var_os("HOME")?).join("Library/Application Support/Guru-600");
+    let _ = std::fs::create_dir_all(&data);
+    let loc = std::process::Command::new("/usr/bin/defaults").args(["read", "-g", "AppleLocale"]).output()
+        .map(|o| String::from_utf8_lossy(&o.stdout).to_lowercase()).unwrap_or_default();
+    let w: [&str; 7] = match loc.get(..2).unwrap_or("") {
+        "fr" => ["Aide", "Notice d'utilisation du Guru-600", "Sauvegarde", "Exporter une sauvegarde…", "Importer une sauvegarde…", "Fenêtre", "À propos du Guru-600"],
+        "de" => ["Hilfe", "Guru-600 Bedienungsanleitung", "Backup", "Backup exportieren…", "Backup importieren…", "Fenster", "Über Guru-600"],
+        "es" => ["Ayuda", "Manual de usuario del Guru-600", "Copia de seguridad", "Exportar copia de seguridad…", "Importar copia de seguridad…", "Ventana", "Acerca de Guru-600"],
+        "it" => ["Aiuto", "Manuale d'uso del Guru-600", "Backup", "Esporta backup…", "Importa backup…", "Finestra", "Informazioni su Guru-600"],
+        _ => ["Help", "Guru-600 User Guide", "Backup", "Export Backup…", "Import Backup…", "Window", "About Guru-600"],
+    };
+    let s = |p: PathBuf| p.to_string_lossy().into_owned();
+    let f = res.join("Notice").join("fonts");
+    Some(vec![
+        "Guru-600".into(),
+        "--fwsc".into(), s(fwsc),
+        "--flash".into(), s(data.join("flash.bin")),
+        "--help-menu".into(), w[0].into(), w[1].into(), s(res.join("Notice").join("index.html")),
+        "--backup-menu".into(), w[2].into(), w[3].into(), w[4].into(),
+        "--window-menu".into(), w[5].into(),
+        "--about".into(), w[6].into(), "guru-600".into(), "A PROPHET-600 TRIBUTE".into(), "by Marc Massé, v1.0.2".into(),
+        "based on Felucca by Leo Kuroshita".into(), s(f.join("MonRong.ttf")), s(f.join("InterTight.ttf")),
+    ])
+}
+
 fn parse() -> Option<Opts> {
     let a: Vec<String> = std::env::args().collect();
     #[cfg(windows)]
     let a = if a.len() == 1 { win::default_args().unwrap_or(a) } else { a };   // Guru-600: a double-click on Guru-600.exe
+    #[cfg(target_os = "macos")]
+    let a = if a.len() == 1 { mac_default_args().unwrap_or(a) } else { a };   // Guru-600: the app's own executable, double-clicked
     let mut o = Opts { bin: "work/felucca_xip.bin".into(), entry: 0x0200_0120, mhz: 240, bench: None, shot: None,
                        name: "Felucca".into(), fwsc: None, syx: None, midi: "all".into(), midi_ch: 0,
                        flaky_core1: None, seed: None, flash: None, help: None, backup: None, window_menu: None };
@@ -606,6 +660,7 @@ fn script_keys(m: &mut Machine) -> bool {
 }
 
 fn shot(o: &Opts, ms: u64) {
+    load_colour(o);
     let mut m = match Machine::new(o) {
         Ok(m) => m,
         Err(e) => return eprintln!("cannot read {}: {e}", o.bin),
@@ -1081,7 +1136,7 @@ fn main() {
         let _ = emu.join();
         return;
     }
-    let mut win = match Window::new(&format!("{} (emulated)", title_head(&o.name)), W, H, WindowOptions::default()) {
+    let mut win = match Window::new(&format!("{} (emulated)", title_head(&o.name)), W / PANEL_SCALE, H / PANEL_SCALE, WindowOptions::default()) {
         Ok(w) => w,
         Err(e) => {
             eprintln!("window: {e}");
@@ -1109,6 +1164,14 @@ fn main() {
         menu.add_item("Latency 50 ms (safest)", 50).build();
         win.add_menu(&menu);
     }
+    load_colour(&o);
+    {                                                    // Guru-600: Color > M-VAVE's six colours of the FM-1
+        let mut menu = minifb::Menu::new("Color").unwrap();
+        for (i, c) in panel::COLOURS.iter().enumerate() {
+            menu.add_item(c.name, 301 + i).build();
+        }
+        win.add_menu(&menu);
+    }
     if let Some(title) = o.window_menu.as_ref() {
         win.add_menu(&minifb::Menu::new(title).unwrap());
     }
@@ -1119,7 +1182,7 @@ fn main() {
         menu.add_item(&win::about_title(), 2).build();   // (on the Mac, About is in the application's menu)
         win.add_menu(&menu);
     }
-    let base = panel::base();
+    let mut base = panel::base();
     let mut buf = vec![0u32; W * H];
     let mut down = [false; 41];
     let mut enc_clicks = [0i32; 7];
@@ -1150,6 +1213,13 @@ fn main() {
                     let _ = btx.send(if id == 201 { Bk::Export(path) } else { Bk::Import(path) });
                 }
             }
+            Some(id @ 301..=306) => {                    // Guru-600: Color > one of the six
+                panel::set_colour(id - 301);
+                base = panel::base();
+                if let Some(f) = colour_file(&o) {
+                    let _ = std::fs::write(f, (id - 301).to_string());
+                }
+            }
             Some(ms @ (20 | 35 | 50)) => {
                 TARGET_MS.store(ms as u32, Ordering::Relaxed);
                 if let Some(f) = latency_file(&o) {
@@ -1168,6 +1238,10 @@ fn main() {
         let pos = win.get_mouse_pos(MouseMode::Clamp);
         let pressed = win.get_mouse_down(MouseButton::Left);
         if let Some((mx, my)) = pos {
+            // (the window shows the panel at 1 / PANEL_SCALE: back to panel coordinates; drags in window points)
+            let (ww, wh) = win.get_size();
+            let (mx, my) = (mx * W as f32 / ww.max(1) as f32, my * H as f32 / wh.max(1) as f32);
+            let ps = PANEL_SCALE as f32;
             if pressed && !was_pressed {
                 grab = panel::hit(mx, my);
                 last_y = my;
@@ -1181,7 +1255,7 @@ fn main() {
                         }
                     }
                     Some(Ctl::Enc(i)) => {
-                        drag_acc += last_y - my;
+                        drag_acc += (last_y - my) / ps;
                         while drag_acc >= DRAG_PER_CLICK {
                             drag_acc -= DRAG_PER_CLICK;
                             turn(i, 1, &mut enc_clicks, &mut turning);
@@ -1192,7 +1266,7 @@ fn main() {
                         }
                     }
                     Some(Ctl::Pot) => {
-                        let v = (pot as f32 + (last_y - my) * 4.0).clamp(0.0, 1023.0) as u16;
+                        let v = (pot as f32 + (last_y - my) / ps * 4.0).clamp(0.0, 1023.0) as u16;
                         if v != pot {
                             pot = v;
                             turning[7] = 10;

@@ -14,10 +14,14 @@ CH("app", "The Guru-600 application on a Mac", "L'application Guru-600 sur Mac",
  BOX("note", ("It needs a Mac with Apple silicon (M1 or later).",
               "Il faut un Mac à puce Apple (M1 ou plus récent).")) +
  H3("Installing and opening it", "L'installer et l'ouvrir") +
- STEPS([("Unzip <b>Guru-600-Mac.zip</b>.",
-         "Décompressez <b>Guru-600-Mac.zip</b>."),
-        ("Double-click <b>Guru-600.app</b>. The first time, the Mac blocks it: open System Settings › Privacy & Security and click <b>Open Anyway</b>.",
-         "Double-cliquez sur <b>Guru-600.app</b>. La première fois, le Mac la bloque : ouvrez Réglages Système › Confidentialité et sécurité et cliquez sur <b>Ouvrir quand même</b>.")]) +
+ STEPS([('Download <b>Guru-600-Installer-Mac.dmg</b> from guru-600.com and open it.',
+         'Téléchargez <b>Guru-600-Installer-Mac.dmg</b> sur guru-600.com et ouvrez-le.'),
+        ('Double-click <b>Installer Guru-600</b>. The Mac warns that this file comes from the Internet: click <b>Open Anyway</b>.',
+         "Double-cliquez sur <b>Installer Guru-600</b>. Le Mac prévient que ce fichier vient d'Internet : cliquez sur <b>Ouvrir quand même</b>."),
+        ('In the window that opens, click <b>▶</b> at the top right, then <b>Install</b>: the Guru-600 is downloaded, installed in the Applications folder and opened.',
+         "Dans la fenêtre qui s'ouvre, cliquez sur <b>▶</b> en haut à droite, puis sur <b>Installer</b> : le Guru-600 est téléchargé, installé dans le dossier Applications et ouvert.")]) +
+ BOX("note", ('The Guru-600 is free and not certified by Apple, which is why it goes through this small installer. Afterwards, open it from the Applications folder like any other application.',
+              "Le Guru-600 est gratuit et n'est pas certifié par Apple : c'est pour cela qu'il passe par ce petit installateur. Ensuite, ouvrez-le depuis le dossier Applications, comme toute autre application.")) +
  H3("Playing with the mouse", "Jouer à la souris") +
  LI([("<b>Buttons and keys</b>: click. Hold the mouse button down to hold them; drag across the keys for a glissando.",
       "<b>Boutons et touches</b> : cliquez. Gardez le bouton de la souris enfoncé pour les maintenir ; glissez sur les touches pour un glissando."),

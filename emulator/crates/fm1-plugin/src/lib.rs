@@ -20,6 +20,8 @@ pub mod savefile;
 #[path = "../../fm1-live/src/panel.rs"]
 #[allow(dead_code)]
 mod panel;
+/// Guru-600: the FM-1 panel at its own size (panel.rs)
+const PANEL_SCALE: usize = 1;
 #[path = "../../fm1-live/src/panel_smk.rs"]
 #[allow(dead_code)]
 mod panel_smk;

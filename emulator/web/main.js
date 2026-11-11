@@ -97,6 +97,19 @@ for (const f of catalog.firmwares) fwSel.add(new Option(`${f.name} ${f.version}`
 for (const c of new Set([...CLOCKS, mhz].sort((a, b) => a - b))) mhzSel.add(new Option(`${c} MHz`, c));
 fwSel.value = fw.id;
 mhzSel.value = mhz;
+// Guru-600: the FM-1's colour, one of M-VAVE's six (panel.rs), kept for next time (?colour=0..5)
+const colourSel = document.getElementById("colour");
+if (colourSel && ui.panel_colour) {
+  ["Black", "Purple", "Orange", "Black-Green", "Cool Gray", "White-Blue"].forEach((n, i) => colourSel.add(new Option(n, i)));
+  const c = Math.min(5, Math.max(0, Math.trunc(Number(params.get("colour") ?? stored("fm1.colour") ?? 0)) || 0));
+  colourSel.value = c;
+  ui.panel_colour(c);
+  colourSel.addEventListener("change", () => {
+    ui.panel_colour(Number(colourSel.value));
+    store("fm1.colour", colourSel.value);
+    colourSel.blur();             // back to playing from the keyboard
+  });
+}
 
 // the guide's firmware list, one card per catalog entry; "Play" picks it like the select does
 const NO_NOTE = "MIDI: no sound from a plain note-on";
@@ -338,11 +351,14 @@ stage.addEventListener("drop", (e) => {
 function draw() {
   const mem = () => ui.memory.buffer;
   if (frame) {
+    // (the address first: a call may grow the wasm memory, which detaches the buffer taken before it)
     if (frame.lcd) {
-      new Uint16Array(mem(), ui.panel_lcd(), 240 * 240).set(frame.lcd);
+      const at = ui.panel_lcd();
+      new Uint16Array(mem(), at, 240 * 240).set(frame.lcd);
       frame.lcd = null;
     }
-    new Float32Array(mem(), ui.panel_leds(), 41).set(frame.leds);
+    const at = ui.panel_leds();
+    new Float32Array(mem(), at, 41).set(frame.leds);
     if (frame.pads) for (let p = 0; p < 16; p++) ui.panel_set(5, p, frame.pads[p]);
   }
   for (let i = 0; i < 64; i++) ui.panel_set(0, i, down[i]);

@@ -316,12 +316,20 @@
   "fr": "L'installer et l'ouvrir"
  },
  {
-  "en": "Unzip <b>Guru-600-Mac.zip</b>.",
-  "fr": "Décompressez <b>Guru-600-Mac.zip</b>."
+  "en": "Download <b>Guru-600-Installer-Mac.dmg</b> from guru-600.com and open it.",
+  "fr": "Téléchargez <b>Guru-600-Installer-Mac.dmg</b> sur guru-600.com et ouvrez-le."
  },
  {
-  "en": "Double-click <b>Guru-600.app</b>. The first time, the Mac blocks it: open System Settings › Privacy & Security and click <b>Open Anyway</b>.",
-  "fr": "Double-cliquez sur <b>Guru-600.app</b>. La première fois, le Mac la bloque : ouvrez Réglages Système › Confidentialité et sécurité et cliquez sur <b>Ouvrir quand même</b>."
+  "en": "Double-click <b>Installer Guru-600</b>. The Mac warns that this file comes from the Internet: click <b>Open Anyway</b>.",
+  "fr": "Double-cliquez sur <b>Installer Guru-600</b>. Le Mac prévient que ce fichier vient d'Internet : cliquez sur <b>Ouvrir quand même</b>."
+ },
+ {
+  "en": "In the window that opens, click <b>▶</b> at the top right, then <b>Install</b>: the Guru-600 is downloaded, installed in the Applications folder and opened.",
+  "fr": "Dans la fenêtre qui s'ouvre, cliquez sur <b>▶</b> en haut à droite, puis sur <b>Installer</b> : le Guru-600 est téléchargé, installé dans le dossier Applications et ouvert."
+ },
+ {
+  "en": "The Guru-600 is free and not certified by Apple, which is why it goes through this small installer. Afterwards, open it from the Applications folder like any other application.",
+  "fr": "Le Guru-600 est gratuit et n'est pas certifié par Apple : c'est pour cela qu'il passe par ce petit installateur. Ensuite, ouvrez-le depuis le dossier Applications, comme toute autre application."
  },
  {
   "en": "Playing with the mouse",

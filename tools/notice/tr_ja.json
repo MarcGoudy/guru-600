@@ -1850,5 +1850,9 @@
  "Press <b>FX</b>. The first six pages belong to the selected track (its sends, SLICER and its two INSERTs). DLY, REVERB and CHORUS are shared by the four tracks; each track sets its own send. Hold FX for the performance effects (chapter {ch:layers}).": "<b>FX</b> を押します。最初の 6 ページは選択中のトラックのものです（センド、SLICER、2 つの INSERT）。DLY、REVERB、CHORUS は 4 トラックで共通で、各トラックが自分のセンドを設定します。FX を長押しするとパフォーマンスエフェクトになります（{ch:layers} 章）。",
  "INSERT B 5/9: a second insert effect, after the first, with the same types and settings.": "INSERT B 5/9：1 つ目の後に入る 2 つ目のインサートエフェクトで、タイプと設定は同じです。",
  "INSERT B 2 6/9: its dry / wet MIX.": "INSERT B 2 6/9：そのドライ / ウェットの割合（MIX）。",
- "The sound goes through DIST, INSERT, then INSERT B: for example a phaser then a flanger. INSERT B OFF changes nothing.": "音は DIST、INSERT、INSERT B の順に通ります（例：フェイザーの後にフランジャー）。INSERT B が OFF なら何も変わりません。"
+ "The sound goes through DIST, INSERT, then INSERT B: for example a phaser then a flanger. INSERT B OFF changes nothing.": "音は DIST、INSERT、INSERT B の順に通ります（例：フェイザーの後にフランジャー）。INSERT B が OFF なら何も変わりません。",
+ "Download <b>Guru-600-Installer-Mac.dmg</b> from guru-600.com and open it.": "guru-600.com から <b>Guru-600-Installer-Mac.dmg</b> をダウンロードして開きます。",
+ "Double-click <b>Installer Guru-600</b>. The Mac warns that this file comes from the Internet: click <b>Open Anyway</b>.": "<b>Installer Guru-600</b> をダブルクリックします。このファイルがインターネットから来たものだと Mac が警告するので、<b>このまま開く</b>をクリックします。",
+ "In the window that opens, click <b>▶</b> at the top right, then <b>Install</b>: the Guru-600 is downloaded, installed in the Applications folder and opened.": "開いたウインドウで右上の <b>▶</b> をクリックし、続けて<b>インストール</b>をクリックします。Guru-600 がダウンロードされ、「アプリケーション」フォルダにインストールされて開きます。",
+ "The Guru-600 is free and not certified by Apple, which is why it goes through this small installer. Afterwards, open it from the Applications folder like any other application.": "Guru-600 は無料で Apple の認証を受けていないため、この小さなインストーラーを使います。その後は、ほかのアプリと同じように「アプリケーション」フォルダから開きます。"
 }

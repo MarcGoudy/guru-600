@@ -18,6 +18,8 @@ use std::collections::VecDeque;
 
 #[path = "../../fm1-live/src/panel.rs"]
 mod panel;
+/// Guru-600: the FM-1 panel at its own size in the page (panel.rs)
+const PANEL_SCALE: usize = 1;
 #[path = "../../fm1-live/src/panel_smk.rs"]
 mod panel_smk;
 
@@ -543,6 +545,21 @@ pub extern "C" fn panel_board(b: u32) {
             if b == 1 {
                 PANEL_ANALOG[fm1_soc::smk::ANALOG_PITCH as usize] = fm1_soc::smk::PITCH_REST;
                 PANEL_ANALOG[fm1_soc::smk::ANALOG_MOD as usize] = fm1_soc::smk::MOD_REST;
+            }
+        }
+    }
+}
+
+/// Guru-600: draw the FM-1 in colour `i` (0..5: M-VAVE's Black, Purple, Orange, Black-Green,
+/// Cool Gray, White-Blue; panel::COLOURS) from now on.
+#[no_mangle]
+#[allow(static_mut_refs)]
+pub extern "C" fn panel_colour(i: u32) {
+    if i as usize != panel::colour() {
+        panel::set_colour(i as usize);
+        unsafe {
+            if PANEL_BOARD == 0 {
+                PANEL_BASE = Vec::new();
             }
         }
     }

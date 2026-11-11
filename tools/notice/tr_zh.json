@@ -1850,5 +1850,9 @@
  "Press <b>FX</b>. The first six pages belong to the selected track (its sends, SLICER and its two INSERTs). DLY, REVERB and CHORUS are shared by the four tracks; each track sets its own send. Hold FX for the performance effects (chapter {ch:layers}).": "按 <b>FX</b>。前六页属于所选音轨（其发送、SLICER 和两个 INSERT）。DLY、REVERB 和 CHORUS 由四个音轨共用；每个音轨设置自己的发送量。按住 FX 可使用演奏效果（第 {ch:layers} 章）。",
  "INSERT B 5/9: a second insert effect, after the first, with the same types and settings.": "INSERT B 5/9：第二个插入效果，位于第一个之后，类型和设置相同。",
  "INSERT B 2 6/9: its dry / wet MIX.": "INSERT B 2 6/9：其干 / 湿比例（MIX）。",
- "The sound goes through DIST, INSERT, then INSERT B: for example a phaser then a flanger. INSERT B OFF changes nothing.": "声音依次经过 DIST、INSERT，然后是 INSERT B：例如先移相器再镶边。INSERT B 为 OFF 时没有任何改变。"
+ "The sound goes through DIST, INSERT, then INSERT B: for example a phaser then a flanger. INSERT B OFF changes nothing.": "声音依次经过 DIST、INSERT，然后是 INSERT B：例如先移相器再镶边。INSERT B 为 OFF 时没有任何改变。",
+ "Download <b>Guru-600-Installer-Mac.dmg</b> from guru-600.com and open it.": "从 guru-600.com 下载 <b>Guru-600-Installer-Mac.dmg</b> 并打开。",
+ "Double-click <b>Installer Guru-600</b>. The Mac warns that this file comes from the Internet: click <b>Open Anyway</b>.": "双击 <b>Installer Guru-600</b>。Mac 会提示此文件来自互联网：点击<b>仍要打开</b>。",
+ "In the window that opens, click <b>▶</b> at the top right, then <b>Install</b>: the Guru-600 is downloaded, installed in the Applications folder and opened.": "在打开的窗口中，点击右上角的 <b>▶</b>，然后点击<b>安装</b>：Guru-600 将被下载、安装到“应用程序”文件夹并打开。",
+ "The Guru-600 is free and not certified by Apple, which is why it goes through this small installer. Afterwards, open it from the Applications folder like any other application.": "Guru-600 是免费的，没有经过 Apple 认证，因此需要通过这个小安装程序。之后，像其他应用一样从“应用程序”文件夹打开它。"
 }
