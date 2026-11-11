@@ -336,7 +336,7 @@
  "The keys play strange notes?": "琴键演奏出奇怪的音？",
  "SCALE is not on CHR, QUANTIZE is not OFF, TRANSPOSE is not 0, or CHORD is not OFF: reset them.": "SCALE 不是 CHR、QUANTIZE 不是 OFF、TRANSPOSE 不是 0，或 CHORD 不是 OFF：请将它们复位。",
  "Recording your own chord (MEM).": "录制您自己的和弦（MEM）。",
- "It is learned on the FM-1: SCL › CHORD, LEARN (see the Guru-600 user guide).": "在 FM-1 上学习：SCL › CHORD，LEARN（参阅 Guru-600 用户指南）。",
+ "It is learned on the FM-1: SEL › CHORD, LEARN (see the Guru-600 user guide).": "在 FM-1 上学习：SEL › CHORD，LEARN（参阅 Guru-600 用户指南）。",
  "The FX page has two parts. Under <b>TRACK</b> <i>n</i>: the effects of the selected track (INSERT, SLICER, SENDS). Under <b>ALL TRACKS</b>: the effects the four tracks share (DELAY, CHORUS, REVERB), and MASTER on the right. Each track sends what it wants to the shared effects with its own SENDS.": "FX 页面分为两部分。<b>TRACK</b> <i>n</i> 下：所选音轨的效果（INSERT、SLICER、SENDS）。<b>ALL TRACKS</b> 下：四个音轨共用的效果（DELAY、CHORUS、REVERB），以及右侧的 MASTER。每个音轨通过自己的 SENDS 向共用效果发送所需的量。",
  "INSERT": "INSERT",
  "An effect inserted on the track. Choose its <b>TYPE</b>; its three knobs take the names of that type. <b>MIX</b>: how much of the effect is heard against the dry sound.": "插入在音轨上的效果。选择其 <b>TYPE</b>；三个旋钮的名称随该类型而变。<b>MIX</b>：效果声相对于干声的比例。",

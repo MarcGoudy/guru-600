@@ -29,7 +29,7 @@ CH("screen", "Reading the screen: pages, colors, messages, help", "Lire l'écran
    ["<b>ENV</b>", ("ENV, ENV DEST", "ENV, ENV DEST"), "{ch:envlfo}"],
    ["<b>LFO</b>", ("LFO, LFO 2, LFO DEST, MOD", "LFO, LFO 2, LFO DEST, MOD"), "{ch:envlfo}"],
    ["<b>FX</b>", ("FX, SLICER, INSERT, INSERT 2, INSERT B, INSERT B 2, DLY, REVERB, CHORUS", "FX, SLICER, INSERT, INSERT 2, INSERT B, INSERT B 2, DLY, REVERB, CHORUS"), "{ch:fx}"],
-   ["<b>SCL</b>", ("SCL, CHORD", "SCL, CHORD"), "{ch:chords}"],
+   ["<b>SEL</b>", ("SCL, CHORD", "SCL, CHORD"), "{ch:chords}"],
    ["<b>ARP</b>", ("ARP, ARP 2", "ARP, ARP 2"), "{ch:arp}"],
    ["<b>SEQ</b>", ("STEP, DETAIL, AUTOMATION", "STEP, DETAIL, AUTOMATION"), "{ch:seq}"],
    ["<b>GLO</b>", ("SONG", "SONG"), "{ch:song}"],

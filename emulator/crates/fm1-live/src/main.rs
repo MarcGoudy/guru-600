@@ -14,7 +14,7 @@
 //! LEDs follow the firmware's LED lines.
 //!
 //! Keyboard: A W S E D F T G Y H U J K O L P ; ' = C4..F5 (piano layout),
-//! Z / X = OCT- / OCT+, Space = PLAY, R = REC, 1..0 = FX SCL ENV LFO EDIT
+//! Z / X = OCT- / OCT+, Space = PLAY, R = REC, 1..0 = FX SEL ENV LFO EDIT
 //! GLO HOME SAVE ARP SEQ, Left/Right = SELECT, Up/Down = PRESETS,
 //! , / . = ALGORITHM, Esc quits.
 //!

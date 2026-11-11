@@ -16,6 +16,6 @@ CH("arp", "The arpeggiator", "L'arpégiateur",
       "The ARP 2 page.", "La page ARP 2.") +
  LI([("<b>It plays by itself?</b> HOLD is ON: set it to OFF, or set MODE to OFF. REC › CLEAR also clears a latched chord.",
       "<b>Il joue tout seul ?</b> HOLD est sur ON : repassez-le sur OFF, ou réglez MODE sur OFF. REC › CLEAR oublie aussi un accord verrouillé."),
-     ("With the chord keys (SCL › CHORD), one finger plays a whole arpeggiated chord.", "Avec les accords (SCL › CHORD), un seul doigt produit un accord entier arpégé."),
+     ("With the chord keys (SEL › CHORD), one finger plays a whole arpeggiated chord.", "Avec les accords (SEL › CHORD), un seul doigt produit un accord entier arpégé."),
      ("The arpeggiator's settings belong to the track: they stay when you change sounds.", "Les réglages de l'arpégiateur appartiennent à la piste : ils restent quand vous changez de son.")]) +
  felucca("Features", "Felucca's features page lists the arpeggiator's modes.", "La page des fonctions de Felucca liste les modes de l'arpégiateur."))

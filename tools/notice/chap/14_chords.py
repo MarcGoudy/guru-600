@@ -1,7 +1,7 @@
 # 14 · Scales, chords and the chord memory
 CH("chords", "Scales, chords and the chord memory", "Gammes, accords et mémoire d'accords",
- P2("Press <b>SCL</b>: two pages, SCL (the scale) and CHORD (the chord keys). Both act on the selected track; on a DRUM track the keys keep their drum mapping.",
-    "Appuyez sur <b>SCL</b> : deux pages, SCL (la gamme) et CHORD (les accords). Les deux agissent sur la piste choisie ; sur une piste DRUM, les touches gardent leur répartition de batterie.") +
+ P2("Press <b>SEL</b>: two pages, SCL (the scale) and CHORD (the chord keys). Both act on the selected track; on a DRUM track the keys keep their drum mapping.",
+    "Appuyez sur <b>SEL</b> : deux pages, SCL (la gamme) et CHORD (les accords). Les deux agissent sur la piste choisie ; sur une piste DRUM, les touches gardent leur répartition de batterie.") +
  page("osc", "shots/pg_scl1.png", "SCL 1/2", "SCL 1/2", "The scale the keys play in.", "La gamme dans laquelle jouent les touches.",
       [("ROOT", "The scale's root note, C to B.", "La note de départ de la gamme, de C à B.", "12 notes", "12 notes"),
        ("SCL", "The scale: CHR (chromatic: no scale), MAJ, MIN, DOR, MIX, PEN, MPEN, HARM, PHRY, LYD, LOC, MEL, BLUES, WHOLE, DIMHW, DIMWH.", "La gamme : CHR (chromatique : pas de gamme), MAJ, MIN, DOR, MIX, PEN, MPEN, HARM, PHRY, LYD, LOC, MEL, BLUES, WHOLE, DIMHW, DIMWH.", "16 scales", "16 gammes"),
@@ -10,8 +10,8 @@ CH("chords", "Scales, chords and the chord memory", "Gammes, accords et mémoire
       "The SCL page.", "La page SCL.") +
  LI([("MENU › CONTROL › <b>SCALE LEDS</b> ON lights the keys of the scale.", "MENU › CONTROL › <b>SCALE LEDS</b> sur ON éclaire les touches de la gamme."),
      ("<b>The keys play strange notes?</b> SCL is not on CHR, QNT is not OFF, or TRN is not 0: reset them.", "<b>Les touches jouent des notes étranges ?</b> SCL n'est pas sur CHR, QNT pas sur OFF, ou TRN pas à 0 : rétablissez ces réglages."),
-     ("Hold SCL to open a quick screen where a key sets the root instantly (chapter {ch:layers}).", "Maintenu, SCL ouvre un écran rapide où une touche règle aussitôt la note de départ (chapitre {ch:layers}).")]) +
- page("osc", "shots/pg_scl2.png", "CHORD 2/2", "CHORD 2/2", "One finger plays a chord. Press SCL again.", "Un doigt joue un accord. Appuyez de nouveau sur SCL.",
+     ("Hold SEL to open a quick screen where a key sets the root instantly (chapter {ch:layers}).", "Maintenu, SEL ouvre un écran rapide où une touche règle aussitôt la note de départ (chapitre {ch:layers}).")]) +
+ page("osc", "shots/pg_scl2.png", "CHORD 2/2", "CHORD 2/2", "One finger plays a chord. Press SEL again.", "Un doigt joue un accord. Appuyez de nouveau sur SEL.",
       [("CHRD", "The chord keys: OFF, DIA3 (the scale's triads: every chord is in key), DIA7 (the scale's sevenths), MAJ, MIN, DOM7, MAJ7, MIN7, SUS4, POW (fixed shapes on every key), MEM (your own chord, below).", "Les accords : OFF, DIA3 (les triades de la gamme : chaque accord est dans la tonalité), DIA7 (les septièmes de la gamme), MAJ, MIN, DOM7, MAJ7, MIN7, SUS4, POW (des formes fixes sur chaque touche), MEM (votre propre accord, ci-dessous).", "11 choices", "11 choix"),
        ("VOIC", "The voicing: CLOSE, OPEN (spread out), INV1, INV2 (inversions), +OCT (the root added an octave below; a seventh then drops its fifth).", "La disposition : CLOSE (serré), OPEN (écarté), INV1, INV2 (renversements), +OCT (la fondamentale ajoutée à l'octave inférieure ; une septième perd alors sa quinte).", "5 choices", "5 choix"),
        ("LEARN", "The chord memory: turn right to select LEARN, then press OCT+.", "La mémoire d'accords : tournez à droite pour choisir LEARN, puis OCT+.", "action", "action")],

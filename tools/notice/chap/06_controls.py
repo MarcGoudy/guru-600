@@ -6,7 +6,7 @@ CTL2 = [("1", "MASTER", "Overall volume (speaker, headphones and USB audio, unle
         ("5", "OCT− / OCT+", "Octave down / up. On action pages, in dialogs and in the menu: back or cancel / confirm.", "Octave inférieure / supérieure. Sur les pages qui exécutent une action, dans les dialogues et dans le menu : retour ou annuler / confirmer."),
         ("6", "KNOB 1–4", "The four settings shown at the top of the screen.", "Les quatre réglages affichés en haut de l'écran."),
         ("7", "FX", "The effects pages. Held: the FX quick screen (performance effects).", "Les pages d'effets. Maintenu : l'écran rapide FX (effets de jeu)."),
-        ("8", "SCL", "The scale and chord pages. Held: the SCL quick screen.", "Les pages de gamme et d'accords. Maintenu : l'écran rapide SCL."),
+        ("8", "SEL", "The scale and chord pages. Held: the SEL quick screen.", "Les pages de gamme et d'accords. Maintenu : l'écran rapide SEL."),
         ("9", "ENV", "The amplifier envelope pages.", "Les pages de l'enveloppe d'amplitude."),
         ("10", "LFO", "The LFO pages and the modulation matrix. Held while turning the knobs: MOMENTARY changes.", "Les pages du LFO et la matrice de modulation. Maintenu avec les boutons rotatifs : changements MOMENTARY."),
         ("11", "EDIT", "The sound engine's pages (for P600: its eleven pages). Held: the EDIT quick screen (engines).", "Les pages du moteur sonore (pour P600 : ses onze pages). Maintenu : l'écran rapide EDIT (moteurs)."),
@@ -41,7 +41,7 @@ CH("controls", "The FM-1's controls and gestures", "Les commandes du FM-1 et les
  table([("Gesture", "Geste"), ("On a page button", "Sur un bouton de page")], [
    [("<b>Tap</b>", "<b>Appui</b>"), ("Acts when you let go. From another family: opens that family on the page you last viewed. Already in the family: the next page.", "Agit au relâchement. Depuis une autre famille : ouvre la famille sur la page vue en dernier. Déjà dans la famille : la page suivante.")],
    [("<b>Double tap</b>", "<b>Double appui</b>"), ("Two taps within a third of a second: one page back. On GLO (a single page) and REC: locks their quick screen open.", "Deux appuis en moins d'un tiers de seconde : une page en arrière. Sur GLO (une seule page) et REC : garde leur écran rapide ouvert.")],
-   [("<b>Hold</b> (FX, SCL, EDIT, GLO, SEQ, REC)", "<b>Maintien</b> (FX, SCL, EDIT, GLO, SEQ, REC)"), ("After 0.4 s (MENU › CONTROL › HOLD): the quick screen, as long as you hold.", "Après 0,4 s (MENU › CONTROL › HOLD) : l'écran rapide, tant que vous maintenez.")],
+   [("<b>Hold</b> (FX, SEL, EDIT, GLO, SEQ, REC)", "<b>Maintien</b> (FX, SEL, EDIT, GLO, SEQ, REC)"), ("After 0.4 s (MENU › CONTROL › HOLD): the quick screen, as long as you hold.", "Après 0,4 s (MENU › CONTROL › HOLD) : l'écran rapide, tant que vous maintenez.")],
    [("<b>Hold for more than 1 s</b> without touching anything else", "<b>Maintien de plus de 1 s</b>, sans rien toucher d'autre"), ("Let go: the quick screen stays open. A tap on its button closes it.", "Relâchez : l'écran rapide reste ouvert. Un appui sur son bouton le ferme.")],
    [("<b>HOME held 1 s</b>", "<b>HOME maintenu 1 s</b>"), ("Opens the menu (it stays open).", "Ouvre le menu (il reste ouvert).")],
    [("<b>SAVE held 1 s</b>", "<b>SAVE maintenu 1 s</b>"), ("Undo; held again: redo.", "Annuler ; maintenu de nouveau : rétablir.")]]) +
@@ -62,8 +62,8 @@ CH("controls", "The FM-1's controls and gestures", "Les commandes du FM-1 et les
       "<b>Pages qui exécutent une action</b> (enregistrer, charger, effacer, MUTATE de MORPH, LEARN…) : <b>OCT+</b> fait l'action ; <b>OCT−</b> l'abandonne, et un second appui ramène à HOME (sur PHRASES, SONG et AUTOMATION, OCT− ramène directement à HOME). Sur ces pages, l'octave ne change pas."),
      ("<b>Dialogs</b> (ERASE U01?, SAVE IN PLACE 5?…): <b>OCT+</b> = YES, <b>OCT−</b> = NO. Until you answer, only the keys respond (they play).",
       "<b>Dialogues</b> (ERASE U01?, SAVE IN PLACE 5?…) : <b>OCT+</b> = OUI, <b>OCT−</b> = NON. Tant que vous n'avez pas répondu, seules les touches répondent (elles jouent)."),
-     ("<b>Quick screens</b> GLO, SCL, EDIT, SEQ and REC: <b>OCT−</b> undoes everything changed in the quick screen since it opened.",
-      "<b>Écrans rapides</b> GLO, SCL, EDIT, SEQ et REC : <b>OCT−</b> annule tout ce que l'écran rapide a modifié depuis son ouverture."),
+     ("<b>Quick screens</b> GLO, SEL, EDIT, SEQ and REC: <b>OCT−</b> undoes everything changed in the quick screen since it opened.",
+      "<b>Écrans rapides</b> GLO, SEL, EDIT, SEQ et REC : <b>OCT−</b> annule tout ce que l'écran rapide a modifié depuis son ouverture."),
      ("<b>Menu</b>: moves the value one step down / up.", "<b>Menu</b> : diminue / augmente la valeur d'un cran."),
      ("A <b>breathing</b> OCT+ light means OCT+ would do something now.", "Un voyant OCT+ qui <b>respire</b> signifie qu'OCT+ ferait quelque chose maintenant.")]) +
  H3("The knobs", "Les boutons rotatifs") +

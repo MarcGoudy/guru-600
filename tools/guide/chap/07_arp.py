@@ -40,5 +40,5 @@ CH("arp", "ARP: arpeggiator, scale and chords", "ARP : arpégiateur, gamme et ac
       "SCALE is not on CHR, QUANTIZE is not OFF, TRANSPOSE is not 0, or CHORD is not OFF: reset them.",
       "SCALE n'est pas sur CHR, QUANTIZE pas sur OFF, TRANSPOSE pas à 0, ou CHORD pas sur OFF : rétablissez ces réglages."),
      ("Recording your own chord (MEM).", "Enregistrer votre propre accord (MEM).",
-      "It is learned on the FM-1: SCL › CHORD, LEARN (see the Guru-600 user guide).",
-      "Il s'apprend sur le FM-1 : SCL › CHORD, LEARN (voir la notice du Guru-600).")]))
+      "It is learned on the FM-1: SEL › CHORD, LEARN (see the Guru-600 user guide).",
+      "Il s'apprend sur le FM-1 : SEL › CHORD, LEARN (voir la notice du Guru-600).")]))

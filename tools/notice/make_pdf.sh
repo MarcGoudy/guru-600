@@ -1,6 +1,6 @@
 #!/bin/zsh
 # PDF de la notice : les sept langues, puis l'annexe des 255 sons (une seule fois)
-cd "${0:A:h}"
+SELF=${0:A}; cd "${0:A:h}"
 C="/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
 T=$(mktemp -d)
 ~/Documents/FM-1/venv/bin/python make_notice.py || exit 1
@@ -72,5 +72,5 @@ for i in range(1, n):
     w.pages[i].merge_page(num.pages[i])
 w.write(out); print("total", n)
 PY
-[ -z "$G6_PASS2" ] && G6_PASS2=1 exec zsh "${0:A}"    # (a second pass: the contents with the pages just found)
+[ -z "$G6_PASS2" ] && G6_PASS2=1 exec zsh "$SELF"    # (a second pass: the contents with the pages just found)
 [ -z "$G6_OUT" ] && cp "$OUT" ~/Desktop/

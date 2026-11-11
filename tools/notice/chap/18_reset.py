@@ -30,8 +30,8 @@ CH("reset", "Resets, calibration and rescue", "Réinitialisations, calibrage et 
     "Si un bouton agit comme un autre, ou si un bouton rotatif tourne à l'envers, réapprenez ses commandes au FM-1 :") +
  STEPS([("MENU › SYSTEM › <b>CALIBRATION</b>, OCT+; or hold OCT− and OCT+ together while switching on.",
          "MENU › SYSTEM › <b>CALIBRATION</b>, OCT+ ; ou maintenez OCT− et OCT+ ensemble en allumant le FM-1."),
-        ("HARDWARE CALIBRATION: let go of every button. At each PRESS, press the button named: the 14 buttons, in the order FX, SCL, ENV, LFO, EDIT, GLO, HOME, SAVE, ARP, SEQ, PLAY, REC, OCT−, OCT+.",
-         "HARDWARE CALIBRATION : relâchez tous les boutons. À chaque PRESS, appuyez sur le bouton nommé : les 14 boutons, dans l'ordre FX, SCL, ENV, LFO, EDIT, GLO, HOME, SAVE, ARP, SEQ, PLAY, REC, OCT−, OCT+."),
+        ("HARDWARE CALIBRATION: let go of every button. At each PRESS, press the button named: the 14 buttons, in the order FX, SEL, ENV, LFO, EDIT, GLO, HOME, SAVE, ARP, SEQ, PLAY, REC, OCT−, OCT+.",
+         "HARDWARE CALIBRATION : relâchez tous les boutons. À chaque PRESS, appuyez sur le bouton nommé : les 14 boutons, dans l'ordre FX, SEL, ENV, LFO, EDIT, GLO, HOME, SAVE, ARP, SEQ, PLAY, REC, OCT−, OCT+."),
         ("Then TURN RIGHT for each of the seven knobs (SELECT, ALGORITHM, PRESETS, KNOB 1 to 4): turn the knob named clockwise.",
          "Puis TURN RIGHT pour chacun des sept boutons rotatifs (SELECT, ALGORITHM, PRESETS, KNOB 1 à 4) : tournez le bouton nommé dans le sens des aiguilles d'une montre."),
         ("The calibration is saved (from the menu: when the menu closes). Pressing a keyboard key, or 30 s of inactivity, cancels it: SETUP CANCELLED, and the old settings remain.",

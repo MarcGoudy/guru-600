@@ -336,7 +336,7 @@
  "The keys play strange notes?": "Die Tasten spielen seltsame Noten?",
  "SCALE is not on CHR, QUANTIZE is not OFF, TRANSPOSE is not 0, or CHORD is not OFF: reset them.": "SCALE steht nicht auf CHR, QUANTIZE nicht auf OFF, TRANSPOSE nicht auf 0 oder CHORD nicht auf OFF: Setzen Sie sie zurück.",
  "Recording your own chord (MEM).": "Ihren eigenen Akkord aufnehmen (MEM).",
- "It is learned on the FM-1: SCL › CHORD, LEARN (see the Guru-600 user guide).": "Er wird am FM-1 gelernt: SCL › CHORD, LEARN (siehe Bedienungsanleitung des Guru-600).",
+ "It is learned on the FM-1: SEL › CHORD, LEARN (see the Guru-600 user guide).": "Er wird am FM-1 gelernt: SEL › CHORD, LEARN (siehe Bedienungsanleitung des Guru-600).",
  "The FX page has two parts. Under <b>TRACK</b> <i>n</i>: the effects of the selected track (INSERT, SLICER, SENDS). Under <b>ALL TRACKS</b>: the effects the four tracks share (DELAY, CHORUS, REVERB), and MASTER on the right. Each track sends what it wants to the shared effects with its own SENDS.": "Die Seite FX hat zwei Teile. Unter <b>TRACK</b> <i>n</i>: die Effekte der ausgewählten Spur (INSERT, SLICER, SENDS). Unter <b>ALL TRACKS</b>: die Effekte, die sich die vier Spuren teilen (DELAY, CHORUS, REVERB), und MASTER rechts. Jede Spur sendet mit ihren eigenen SENDS so viel sie will an die gemeinsamen Effekte.",
  "INSERT": "INSERT",
  "An effect inserted on the track. Choose its <b>TYPE</b>; its three knobs take the names of that type. <b>MIX</b>: how much of the effect is heard against the dry sound.": "Ein in die Spur eingeschleifter Effekt. Wählen Sie seinen <b>TYPE</b>; seine drei Regler tragen die Namen dieses Typs. <b>MIX</b>: wie viel Effekt im Verhältnis zum trockenen Klang zu hören ist.",

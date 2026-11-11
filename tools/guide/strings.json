@@ -1172,8 +1172,8 @@
   "fr": "Enregistrer votre propre accord (MEM)."
  },
  {
-  "en": "It is learned on the FM-1: SCL › CHORD, LEARN (see the Guru-600 user guide).",
-  "fr": "Il s'apprend sur le FM-1 : SCL › CHORD, LEARN (voir la notice du Guru-600)."
+  "en": "It is learned on the FM-1: SEL › CHORD, LEARN (see the Guru-600 user guide).",
+  "fr": "Il s'apprend sur le FM-1 : SEL › CHORD, LEARN (voir la notice du Guru-600)."
  },
  {
   "en": "The FX page follows the sound's path. Under <b>TRACK</b> <i>n</i>, the selected track's own effects: DIST and INSERT, then the SLICER, then the SENDS. Under <b>ALL TRACKS</b>, the effects the four tracks share, in the order of the sends (CHORUS, DELAY, REVERB), and MASTER on the right. A shared effect the track sends nothing to is dimmed and says <b>TRACK</b> <i>n</i> <b>· SEND 0 %</b>: its knobs still work for the other tracks.",

@@ -3,8 +3,8 @@ FXKEYS = [("F3", "REPEAT 1/8"), ("G3", "REPEAT 1/16"), ("A3", "REPEAT 1/32"), ("
           ("E4", "TAPE STOP"), ("F4", "FREEZE"), ("G4", "OCT UP"), ("A4", "OCT DN"), ("B4", "FLANGER"), ("C5", "PHASER"),
           ("D5", "REV THROW"), ("E5", "ECHO THROW"), ("F5", "—"), ("G5", "—")]
 CH("layers", "The quick screens", "Les écrans rapides",
- P2("Hold <b>FX, GLO, SCL, EDIT, SEQ</b> or <b>REC</b> to open its <b>quick screen</b>: shortcuts on the keys and the four knobs. Let go to close it. While the button is held, the keys are shortcuts and make no sound.",
-    "Maintenez <b>FX, GLO, SCL, EDIT, SEQ</b> ou <b>REC</b> pour ouvrir son <b>écran rapide</b> : des raccourcis sur les touches et les quatre boutons rotatifs. Relâchez pour le fermer. Tant que le bouton est maintenu, les touches servent de raccourcis et ne sonnent pas.") +
+ P2("Hold <b>FX, GLO, SEL, EDIT, SEQ</b> or <b>REC</b> to open its <b>quick screen</b>: shortcuts on the keys and the four knobs. Let go to close it. While the button is held, the keys are shortcuts and make no sound.",
+    "Maintenez <b>FX, GLO, SEL, EDIT, SEQ</b> ou <b>REC</b> pour ouvrir son <b>écran rapide</b> : des raccourcis sur les touches et les quatre boutons rotatifs. Relâchez pour le fermer. Tant que le bouton est maintenu, les touches servent de raccourcis et ne sonnent pas.") +
  '<div class="key">' + H3("Opening, keeping open, closing", "Ouvrir, garder ouvert, fermer") +
  LI([("<b>Hold</b> the button: the screen opens after 0.4 s (MENU › CONTROL › HOLD: 0.3 to 0.6 s).",
       "<b>Maintenez</b> le bouton : l'écran s'ouvre après 0,4 s (MENU › CONTROL › HOLD : de 0,3 à 0,6 s)."),
@@ -15,8 +15,8 @@ CH("layers", "The quick screens", "Les écrans rapides",
      ("GLO and REC also stay open with a double tap. On REC, the double tap also cancels the arming the first tap did.", "GLO et REC restent aussi ouverts avec un double appui. Sur REC, le double appui annule aussi l'armement fait par le premier appui."),
      ("<b>Close it</b>: tap its button. Any other page button, HOME or SAVE also closes it, then performs its usual function. PLAY, REC and OCT± do not close it.",
       "<b>Le fermer</b> : appuyez sur son bouton. Tout autre bouton de page, HOME ou SAVE le ferme aussi, puis remplit sa fonction habituelle. PLAY, REC et OCT± ne le ferment pas."),
-     ("<b>OCT−</b> (GLO, SCL, EDIT, SEQ, REC) undoes everything changed in the quick screen since it opened: MIX PUT BACK, SCALE PUT BACK, SEQUENCE PUT BACK…",
-      "<b>OCT−</b> (GLO, SCL, EDIT, SEQ, REC) annule tout ce que l'écran rapide a modifié depuis son ouverture : MIX PUT BACK, SCALE PUT BACK, SEQUENCE PUT BACK…"),
+     ("<b>OCT−</b> (GLO, SEL, EDIT, SEQ, REC) undoes everything changed in the quick screen since it opened: MIX PUT BACK, SCALE PUT BACK, SEQUENCE PUT BACK…",
+      "<b>OCT−</b> (GLO, SEL, EDIT, SEQ, REC) annule tout ce que l'écran rapide a modifié depuis son ouverture : MIX PUT BACK, SCALE PUT BACK, SEQUENCE PUT BACK…"),
      ("One quick screen at a time. With a button held, ALGORITHM, HOME, SAVE and the other page buttons do nothing; PLAY and REC still work.",
       "Un seul écran rapide à la fois. Tant qu'un bouton est maintenu, ALGORITHM, HOME, SAVE et les autres boutons de page ne font rien ; PLAY et REC fonctionnent toujours."),
      ("In the map, a lit key is in effect now, a breathing key can be pressed, a dark key does nothing.",
@@ -60,8 +60,8 @@ CH("layers", "The quick screens", "Les écrans rapides",
       "<b>KNOB 1 à 4</b> : les niveaux des pistes 1 à 4. <b>SELECT</b> : le tempo, même avec BPM LOCK. <b>PLAY</b> : RESTART depuis le début (GLO maintenu : dans un écran GLO verrouillé, PLAY lance et arrête comme d'habitude)."),
      ("<b>OCT−</b>: restores the mutes, levels and tempo (MIX PUT BACK).", "<b>OCT−</b> : sourdines, niveaux et tempo reviennent comme avant (MIX PUT BACK).")]) +
  '</div></div>' +
- H3("SCL: the scale", "SCL : la gamme") +
- '<div class="split">' + shot("shots/ly_scl.png", "SCL held: [SCL] SET.", "SCL maintenu : [SCL] SET.", 240) + '<div>' +
+ H3("SEL: the scale", "SEL : la gamme") +
+ '<div class="split">' + shot("shots/ly_scl.png", "SEL held: [SCL] SET.", "SEL maintenu : [SCL] SET.", 240) + '<div>' +
  LI([("<b>Any key</b>: sets the scale's root to that note.", "<b>N'importe quelle touche</b> : règle la note de départ de la gamme sur cette note."),
      ("<b>KNOB 1 to 4</b>: ROOT, SCL (the scale), CHRD (the chord keys), VOIC (the voicing).",
       "<b>KNOB 1 à 4</b> : ROOT, SCL (la gamme), CHRD (les accords), VOIC (la disposition)."),

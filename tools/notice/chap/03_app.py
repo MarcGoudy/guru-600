@@ -1,7 +1,7 @@
 # 3 · The Guru-600 application on a Mac
 APPKEYS = [("A W S E D F T G Y H U J K O L P ; '", "the keys, from C4 (A) up to F5 (')", "les touches, du C4 (A) au F5 (')"),
            ("← / →", "OCT− / OCT+", "OCT− / OCT+"), ("Space", "PLAY", "PLAY"), ("R", "REC", "REC"),
-           ("1 2 3 4 5", "FX, SCL, ENV, LFO, EDIT", "FX, SCL, ENV, LFO, EDIT"),
+           ("1 2 3 4 5", "FX, SEL, ENV, LFO, EDIT", "FX, SEL, ENV, LFO, EDIT"),
            ("6 7 8 9 0", "GLO, HOME, SAVE, ARP, SEQ", "GLO, HOME, SAVE, ARP, SEQ"),
            ("[ / ]", "turn SELECT", "tourner SELECT"), ("- / =", "turn PRESETS", "tourner PRESETS"),
            (", / .", "turn ALGORITHM", "tourner ALGORITHM"), ("Esc", "quit (the memory is kept)", "quitter (la mémoire est gardée)")]
