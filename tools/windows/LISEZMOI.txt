@@ -1,0 +1,30 @@
+GURU-600 · A Prophet-600 tribute pour le M-VAVE FM-1 — application Windows
+par Marc Massé · d'après Felucca de Leo Kuroshita
+======================================================================
+
+Guru-600.exe est l'émulateur du FM-1 avec le firmware Guru-600 : le FM-1 à l'écran, le même son.
+Pour installer le firmware sur un vrai FM-1 : https://marcgoudy.github.io/guru-600/
+
+LANCER
+   Décompressez le dossier où vous voulez, puis double-cliquez sur Guru-600.exe.
+   Au premier lancement, Windows peut afficher « Windows a protégé votre ordinateur » (le programme
+   n'est pas signé) : cliquez sur « Informations complémentaires », puis « Exécuter quand même ».
+   Windows 10 ou 11, 64 bits.
+
+JOUER
+   À la souris : cliquez ou glissez sur les touches et les boutons, glissez ou faites tourner la
+   molette sur les potentiomètres (MASTER = volume).
+   Au clavier : A W S E D F T G Y H U J K O L P = les notes, Z / X = OCT, Espace = PLAY, R = REC,
+   1 à 0 = FX SCL ENV LFO EDIT GLO HOME SAVE ARP SEQ, flèches = SELECT et PRESETS, Échap = quitter.
+   Un clavier MIDI branché à l'ordinateur joue le synthé.
+
+MENUS
+   Sauvegarde : exporter ou importer une sauvegarde, la même que celle de l'éditeur Guru-600
+   (d'un FM-1 vers l'application et inversement).
+   Audio : la latence (20, 35 ou 50 ms ; 50 si le son craque).
+   Aide : la notice, et À propos.
+
+   Les sons enregistrés et les projets sont gardés d'une fois sur l'autre dans
+   %APPDATA%\Guru-600\flash.bin.
+
+Licences : dossier Licences (Guru-600 et Felucca : GPL-3.0 ; émulateur fm1-emu : MIT).

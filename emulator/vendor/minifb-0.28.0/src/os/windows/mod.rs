@@ -581,7 +581,8 @@ impl Window {
                 cbClsExtra: 0,
                 cbWndExtra: 0,
                 hInstance: hinstance,
-                hIcon: std::ptr::null_mut(),
+                // Guru-600: the program's own icon (resource 1, guru-600.rc), in the title bar and the taskbar
+                hIcon: winuser::LoadIconW(hinstance, 1 as *const u16),
                 hCursor: winuser::LoadCursorW(std::ptr::null_mut(), winuser::IDC_ARROW),
                 hbrBackground: std::ptr::null_mut(),
                 lpszMenuName: std::ptr::null(),

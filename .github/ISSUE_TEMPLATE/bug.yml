@@ -20,6 +20,7 @@ body:
       options:
         - "On the FM-1 / Sur le FM-1"
         - "In the Mac application / Dans l'application Mac"
+        - "In the Windows application / Dans l'application Windows"
         - "On the installation or sound sender page / Sur la page d'installation ou d'envoi des sons"
     validations:
       required: true

@@ -1,3 +1,4 @@
+#![cfg_attr(windows, windows_subsystem = "windows")]   // Guru-600: no console window behind the synth
 //! Play the emulated FM-1 live.
 //!
 //!   fm1-live [--bin work/felucca_xip.bin] [--entry 0x02000120] [--mhz 240]
@@ -35,6 +36,8 @@ mod backup;
 mod buildinfo;
 mod panel;
 mod panel_smk;
+#[cfg(windows)]
+mod win;
 use std::collections::VecDeque;
 use std::sync::atomic::{AtomicBool, AtomicU64, Ordering};
 use std::sync::{mpsc, Arc, Mutex};
@@ -112,6 +115,8 @@ fn catalog() -> Vec<(String, String, String, String)> {
 
 fn parse() -> Option<Opts> {
     let a: Vec<String> = std::env::args().collect();
+    #[cfg(windows)]
+    let a = if a.len() == 1 { win::default_args().unwrap_or(a) } else { a };   // Guru-600: a double-click on Guru-600.exe
     let mut o = Opts { bin: "work/felucca_xip.bin".into(), entry: 0x0200_0120, mhz: 240, bench: None, shot: None,
                        name: "Felucca".into(), fwsc: None, syx: None, midi: "all".into(), midi_ch: 0,
                        flaky_core1: None, seed: None, flash: None, help: None, backup: None, window_menu: None };
@@ -546,6 +551,10 @@ fn choose_file(save: bool) -> Option<String> {
     if let Ok(p) = std::env::var(if save { "FM1_BK_EXPORT" } else { "FM1_BK_IMPORT" }) {
         return Some(p);                                // (the tests: the file given, no dialog)
     }
+    #[cfg(windows)]
+    return win::choose_file(save);
+    #[cfg(not(windows))]
+    {
     let script = if save {
         "POSIX path of (choose file name default name \"Guru-600 backup.json\")"
     } else {
@@ -554,12 +563,18 @@ fn choose_file(save: bool) -> Option<String> {
     let out = std::process::Command::new("osascript").arg("-e").arg(script).output().ok()?;
     let p = String::from_utf8_lossy(&out.stdout).trim().to_string();
     (out.status.success() && !p.is_empty()).then(|| if save && !p.ends_with(".json") { format!("{p}.json") } else { p })
+    }
 }
 
 /// Guru-600: a message the Mac shows (osascript), for a backup that could not be read or written
 fn alert(msg: &str) {
-    let m = msg.replace('\\', "\\\\").replace('"', "\\\"");
-    let _ = std::process::Command::new("osascript").arg("-e").arg(format!("display alert \"Guru-600\" message \"{m}\"")).spawn();
+    #[cfg(windows)]
+    return win::message("Guru-600", msg);
+    #[cfg(not(windows))]
+    {
+        let m = msg.replace('\\', "\\\\").replace('"', "\\\"");
+        let _ = std::process::Command::new("osascript").arg("-e").arg(format!("display alert \"Guru-600\" message \"{m}\"")).spawn();
+    }
 }
 
 /// --flash: the flash chip back to its file; and how many erases / programs it saw
@@ -808,6 +823,7 @@ fn midi_inputs(o: &Opts, tx: &mpsc::Sender<Action>) -> Vec<midir::MidiInputConne
 
 /// Guru-600: the port a MIDI program sends to (a CoreMIDI destination named "Guru-600"): each message as USB-MIDI
 /// packets for the emulated cable. Lives as long as the returned value.
+#[cfg(not(windows))]
 fn usb_port_in(tx: mpsc::Sender<Vec<u8>>) -> Option<midir::MidiInputConnection<()>> {
     use midir::os::unix::VirtualInput;
     let mut input = midir::MidiInput::new("Guru-600").ok()?;
@@ -822,6 +838,7 @@ fn usb_port_in(tx: mpsc::Sender<Vec<u8>>) -> Option<midir::MidiInputConnection<(
 }
 
 /// Guru-600: the port a MIDI program listens to (a CoreMIDI source named "Guru-600"): what the firmware sends over USB.
+#[cfg(not(windows))]
 fn usb_port_out() -> Option<midir::MidiOutputConnection> {
     use midir::os::unix::VirtualOutput;
     match midir::MidiOutput::new("Guru-600").ok()?.create_virtual("Guru-600") {
@@ -832,6 +849,12 @@ fn usb_port_out() -> Option<midir::MidiOutputConnection> {
         }
     }
 }
+
+/// (Windows has no virtual MIDI ports: no "Guru-600" port there; the MIDI inputs still play the synth)
+#[cfg(windows)]
+fn usb_port_in(_tx: mpsc::Sender<Vec<u8>>) -> Option<midir::MidiInputConnection<()>> { None }
+#[cfg(windows)]
+fn usb_port_out() -> Option<midir::MidiOutputConnection> { None }
 
 /// Pixels of vertical mouse drag per encoder click.
 const DRAG_PER_CLICK: f32 = 12.0;
@@ -1092,6 +1115,8 @@ fn main() {
     if let Some((title, item, _)) = o.help.as_ref() {     // Guru-600: the user guide, the last menu (as on the Mac)
         let mut menu = minifb::Menu::new(title).unwrap();
         menu.add_item(item, 1).build();
+        #[cfg(windows)]
+        menu.add_item(&win::about_title(), 2).build();   // (on the Mac, About is in the application's menu)
         win.add_menu(&menu);
     }
     let base = panel::base();
@@ -1112,9 +1137,14 @@ fn main() {
         match win.is_menu_pressed() {
             Some(1) => {
                 if let Some((_, _, file)) = o.help.as_ref() {
+                    #[cfg(windows)]
+                    win::open(file);
+                    #[cfg(not(windows))]
                     let _ = std::process::Command::new("open").arg(file).spawn();
                 }
             }
+            #[cfg(windows)]
+            Some(2) => win::about(),
             Some(id @ (201 | 202)) => {                  // Guru-600: Backup > Export / Import (the file chosen here)
                 if let Some(path) = choose_file(id == 201) {
                     let _ = btx.send(if id == 201 { Bk::Export(path) } else { Bk::Import(path) });
