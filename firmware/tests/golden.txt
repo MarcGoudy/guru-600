@@ -209,9 +209,9 @@ preset/P600/133_134_Attack_Bras b06dd18ff9a23e28
 preset/P600/134_135_Bright_Bras 9f32791f48c351b4
 preset/P600/135_136_Mild_Brass 854ed1c2238a1a10
 preset/P600/136_137_Elegiac_Bra 0b04cadbef6d3878
-preset/P600/137_138_Orchestral_ de4cd56452dd31a4
-preset/P600/138_139_Orchestral_ 7527634864fed518
-preset/P600/139_140_Orchestral_ f1f42a3128d447e4
+preset/P600/137_138_Orch._1 de4cd56452dd31a4
+preset/P600/138_139_Orch._2 7527634864fed518
+preset/P600/139_140_Orch._3 f1f42a3128d447e4
 preset/P600/140_141_Attack_Bass a3d65064ad8a6084
 preset/P600/141_142_Bassically 18fe50ebc5d5eb34
 preset/P600/142_143_Double_Bass 0c06886ccbf4a6b4
@@ -226,7 +226,7 @@ preset/P600/150_151_Space_Oboe ec71e657f55cae40
 preset/P600/151_152_Wind_Organ 140a21e23dd0aa34
 preset/P600/152_153_Totally_Tru e44012248cb99e84
 preset/P600/153_154_My_Spinett ada58e4236f2a318
-preset/P600/154_155_Space_Oboe_ ec71e657f55cae40
+preset/P600/154_155_Sp.Oboe_Ch. ec71e657f55cae40
 preset/P600/155_156_Wood_Block e31fd10d9a4b3500
 preset/P600/156_157_Club_Organ f7873eb3b6f3dbfc
 preset/P600/157_158_Chiffy_Orga 178254ffe6803efc

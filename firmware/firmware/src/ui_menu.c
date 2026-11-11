@@ -44,9 +44,9 @@ static const menu_credit_t MENU_CREDITS[] = {
     {"1-100: the factory programs, Sequential Circuits, 1982. Prophet-600 is a trademark of its owner; Guru-600 is not affiliated with Sequential.", MC_TEXT},
     {"101-200: the v2022 collection by Andy, el-folie, imogen, Jpro600k, Matrix12x, from the GliGli Prophet-600 firmware project / GPL", MC_TEXT},
     {"https://github.com/image-et-son/p600fw", MC_URL},
-    {"201-230: adapted from the factory sounds of Surge XT by Claes Johanson / GPL-3.0", MC_TEXT},
+    {"201-230: from the Surge XT factory sounds by Claes Johanson / GPL-3.0", MC_TEXT},
     {"https://surge-synthesizer.github.io", MC_URL},
-    {"231-255: originals made for Guru-600", MC_TEXT},
+    {"231-255: Guru-600 originals", MC_TEXT},
     {"", MC_TEXT},
     {"VI MONG RONG", MC_TITLE},                /* the logo's face (p600/make_splash.py) */
     {"VN-Fonts Team, 1994", MC_TEXT},
@@ -132,9 +132,10 @@ static int32_t menu_document(int32_t y, int draw)
 {
     uint32_t i;
     if (draw) {
-        /* the logo and the mention in the power-on screen's colours (p600/make_splash.py FG, SUB) */
-        cv_alpha_hc(7, y + 2, ABOUT_LOGO_W, ABOUT_LOGO_H, ABOUT_LOGO_D, ABOUT_LOGO_HC, ramp(RGB(238, 232, 216), T_BG));
-        cv_text(6, y + 54, &AF_S, "A PROPHET-600 TRIBUTE", RGB(214, 84, 64));
+        /* the logo and the mention in the power-on screen's colours (p600/make_splash.py FG, SUB); MONO: its text's */
+        int bw = settings.palette == UI_BW_INDEX;
+        cv_alpha_hc(7, y + 2, ABOUT_LOGO_W, ABOUT_LOGO_H, ABOUT_LOGO_D, ABOUT_LOGO_HC, ramp(bw ? T_TEXT : RGB(238, 232, 216), T_BG));
+        cv_text(6, y + 54, &AF_S, "A PROPHET-600 TRIBUTE", bw ? T_TEXT : RGB(214, 84, 64));
         cv_text(6, y + 76, &AF_M, "v" GURU_VERSION, T_THEME);
         cv_text_r(232, y + 79, &AF_S, __DATE__, T_MID, T_BG);
         cv_text(6, y + 100, &AF_S, "(C) 2026 Marc Mass\xE9", T_TEXT);

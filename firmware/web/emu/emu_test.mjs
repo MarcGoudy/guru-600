@@ -68,8 +68,9 @@ const splash = colours(a.screen());
 a.render(800);
 check("  over by 1 s (~0.70 s)", a.ex.web_anim_levels() === 0);
 const home = a.screen();
-check(`boots: the splash, then HOME (${colours(home)} colours), the HOME LED lit`,
-      splash > 1 && colours(home) > 4 && (a.ex.web_lit_buttons() >> B.HOME & 1) === 1);
+check(`boots: the splash, then HOME (${colours(home)} colours), the HOME LED lit`,   /* (Guru-600: the power-on screen is the
+       panel's black while the boot loads, ui_draw.c draw_splash; its animation runs on the device, main.c, not here) */
+      splash >= 1 && colours(home) > 4 && (a.ex.web_lit_buttons() >> B.HOME & 1) === 1);
 check("silent at rest", a.peak === 0);
 a.ex.web_keys(1 << 7);                                        // C4
 a.render(300);

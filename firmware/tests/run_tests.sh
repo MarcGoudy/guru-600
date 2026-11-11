@@ -199,7 +199,7 @@ OUT=build/host
 mkdir -p "$OUT"
 CC="${CC:-cc} -O1 -Wall -Wno-unused-function -DFELUCCA_TEST_ORIG -DFELUCCA_TEST_NO3D"   # (Guru-600: Felucca's own power-on, navigation and flat panels; the P600 side: p600/tests)
 fail=0
-run() { echo "== $1"; shift; "$@" || fail=1; }
+run() { echo "== $1"; n="$1"; shift; "$@" || { fail=1; echo "STEP FAILED: $n"; }; }
 
 $CC -o "$OUT/storage_test" tests/storage_test.c
 run "flash storage (A/B, torn writes)" "$OUT/storage_test"
@@ -299,9 +299,9 @@ if [ -f build/gen/felucca_tables.h ]; then
     run "themes: contrast, text blending and font metrics" "$OUT/theme_test"
     $CC -O1 -w -Ibuild/gen -Ifirmware/src -o "$OUT/text_ref_test" tests/text_ref_test.c -lm
     run "text: pens, kerning and pixels equal the reference renderer" "$OUT/text_ref_test"
-    if python3 -c "import PIL" 2>/dev/null; then
+    if "${PYTHON:-python3}" -c "import PIL" 2>/dev/null; then   # (the build's Python, as build.sh: an older Pillow draws the reference otherwise)
         run "text spacing: glyph gaps against the font's own (16x supersampled), S M <= 0.25 px, L <= 0.5 px" \
-            python3 tests/text_spacing_test.py build/gen/ui_fonts.h
+            "${PYTHON:-python3}" tests/text_spacing_test.py build/gen/ui_fonts.h
     fi
     $CC -O1 -w -Ibuild/gen -o "$OUT/settings_test" tests/settings_test.c
     run "settings: PER1..PER4 migration, palette ids and preference preservation" "$OUT/settings_test"
@@ -397,14 +397,14 @@ if [ -f build/gen/felucca_tables.h ]; then
     # tables against its golden renders (the same hashes: build/gen/felucca_tables.h has the engines' tables)
     run "Felucca-Engines: its own tables, host and golden renders" sh firmware/engines/tests/run.sh
     $CC -O2 -w '-DFE_TABLES_H="felucca_tables.h"' -Ibuild/gen -o "$OUT/fe_host" firmware/engines/tests/fe_host.c
-    "$OUT/fe_host" > "$OUT/fe_renders.txt" || fail=1
+    "$OUT/fe_host" > "$OUT/fe_renders.txt" || { fail=1; echo "STEP FAILED: line $LINENO"; }
     run "Felucca-Engines with Felucca's tables: the engines' golden renders" diff -u firmware/engines/tests/golden.txt "$OUT/fe_renders.txt"
     $CC -O2 -w -Ibuild/gen -Ifirmware/src -o "$OUT/union_test" tests/union_test.c -lm
     run "engine memory (1.5): every switch between the engines with per-part state sounds as in 1.4 (720 sequences)" \
         "$OUT/union_test" tests/union_golden.txt
     $CC -w -Ibuild/gen -Ifirmware/src -o "$OUT/descdump" tests/descdump.c -lm
     echo "== parameter and engine tables as JSON (for the editor mock test)"
-    "$OUT/descdump" > "$OUT/desc.json" || fail=1
+    "$OUT/descdump" > "$OUT/desc.json" || { fail=1; echo "STEP FAILED: line $LINENO"; }
     $CC -O2 -w -Ibuild/gen -Ifirmware/src -o "$OUT/phys_test" tests/phys_test.c -lm
     mkdir -p build/phys_demo
     run "PHYS: stability C-1..G9 over the parameter corners, worst-case cost against PHASE WIRE, demos" "$OUT/phys_test" build/phys_demo
@@ -438,7 +438,7 @@ if [ -f build/gen/felucca_tables.h ]; then
             build/slice_demo/loop build/slice_demo
     else
         echo "== SLICE: build/ was made with FELUCCA_SLICE=0 (no BREAK); run ./build.sh without it first"
-        fail=1
+        fail=1; echo "STEP FAILED: line $LINENO"
     fi
     # SAMPLE's PIANO (1.5: as 1.1.5), SLICE's PIANO (its middle C zone), 1.2's PIANO HD in a user slot
     if grep -q '^    {"PIANO", 0, 5},' build/gen/felucca_samples.h; then

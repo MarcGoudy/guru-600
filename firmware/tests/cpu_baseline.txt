@@ -209,9 +209,9 @@ cpu/P600/133_134_Attack_Bras 1765
 cpu/P600/134_135_Bright_Bras 1761
 cpu/P600/135_136_Mild_Brass 1737
 cpu/P600/136_137_Elegiac_Bra 1857
-cpu/P600/137_138_Orchestral_ 1737
-cpu/P600/138_139_Orchestral_ 1882
-cpu/P600/139_140_Orchestral_ 1738
+cpu/P600/137_138_Orch._1 1737
+cpu/P600/138_139_Orch._2 1882
+cpu/P600/139_140_Orch._3 1738
 cpu/P600/140_141_Attack_Bass 1755
 cpu/P600/141_142_Bassically 1810
 cpu/P600/142_143_Double_Bass 1689
@@ -226,7 +226,7 @@ cpu/P600/150_151_Space_Oboe 1738
 cpu/P600/151_152_Wind_Organ 1861
 cpu/P600/152_153_Totally_Tru 1931
 cpu/P600/153_154_My_Spinett 1784
-cpu/P600/154_155_Space_Oboe_ 1738
+cpu/P600/154_155_Sp.Oboe_Ch. 1738
 cpu/P600/155_156_Wood_Block 1811
 cpu/P600/156_157_Club_Organ 1763
 cpu/P600/157_158_Chiffy_Orga 1832

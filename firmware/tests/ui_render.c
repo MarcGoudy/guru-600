@@ -986,7 +986,17 @@ static void setup(int s)
     case S_MESSAGE: ui_say("LOADED ", "07 A VERY LONG PATTERN NAME"); break;
     case S_MESSAGE_KEY: ui_message("[SAVE] HOLD TO UNDO"); break;            /* a message with a keycap */
     case S_MESSAGE_NOFILE:                          /* a missing sample (ui_input.c sample_notice): USR2 */
-        eng(ENGI_SAMPLE); TSEL->p[P_E0] = (int16_t)(SMP_NSETS + 1); memset(snd_said, 0, sizeof snd_said); sample_notice(); break;
+        eng(ENGI_SAMPLE); TSEL->p[P_E0] = (int16_t)(SMP_NSETS + 1); memset(snd_said, 0, sizeof snd_said); sample_notice();
+#if 1   /* (any Guru-600 build, FELUCCA_FM4 too: draw_banner is always the messages') */
+        /* Guru-600: messages are the banner's (ui_draw.c draw_banner), a band fading in over the header that a single
+         * frame catches at its first step; what is checked: the notice reaches it, then the page under it */
+        if (strcmp(ui.msg, MSG_NO_SAMPLE)) {
+            if (rep) fprintf(rep, "FIND %-26s the missing sample says '%s', not NO SAMPLE\n", cur_name, ui.msg);
+            nfind++;
+        }
+        ui.msg_t = 0;
+#endif
+        break;
     case S_PRESETS: favorite_set(0, 4, 1); favorite_set(0, 5, 1); go_page(GR_BROWSE); break;
     case S_PRESETS_NOFAV: favorites.filter = 1; go_page(GR_BROWSE); break;
     case S_USER: song.playing = 0; up_store(3, "MY LONG BASS NAME"); up_store(4, "PAD"); ui.uslot = 3; go_page(GR_USER); break;
@@ -1647,6 +1657,20 @@ static void draw(int s)
         in_splash = 1;
         draw_splash();
         in_splash = 0;
+#if FELUCCA_P600
+        {   /* Guru-600: draw_splash is the panel's black while the boot loads (ui_draw.c; the name's animation is main.c's,
+             * not drawn here): one colour on the whole screen, no text */
+            uint32_t k, odd = 0;
+            for (k = 1; k < 240u * 240u; k++)
+                odd += host_screen[k] != host_screen[0];
+            if (odd || splash_seen[0]) {
+                if (rep) fprintf(rep, "FIND %-26s the power-on screen is not one black: %u pixels off, text '%s'\n",
+                                 cur_name, (unsigned)odd, splash_seen);
+                nfind++;
+            }
+        }
+        return;
+#endif
         {   /* the square whole on the screen (176 x 176 at 32,32, more than the canvas): its edges and square corners
              * RAISE, BG just outside; its text's ink 16 px in from the left and the top (the bottom: AL_B, the hook) */
             const int32_t q0 = 32, q1 = 32 + 176 - 1;
