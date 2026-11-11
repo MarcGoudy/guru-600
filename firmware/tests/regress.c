@@ -1190,8 +1190,8 @@ int main(int argc, char **argv)
             snprintf(why + strlen(why), sizeof why - strlen(why), " peak %d (min %d);", r->peak, LIM_PEAK_MIN);
         if (r->free_s < 0 && !p6_slow_r)
             snprintf(why + strlen(why), sizeof why - strlen(why), " voices not free %d s after the note-offs;", FREE_CAP_S);
-        if (abs(r->tail_dc) > LIM_TAIL_DC &&           /* (Guru-600: 174 Pulsify, 177 Harmonic Release leave 3..4 of */
-            !(j->kind == J_PRESET && j->e == ENGI_P600 && (j->pi == 173u || j->pi == 176u) && abs(r->tail_dc) <= 6))   /* 32768: -80 dB) */
+        if (abs(r->tail_dc) > LIM_TAIL_DC &&           /* (Guru-600: the P600 engine plays 6 dB above the others (eng_p600.c, */
+            !(j->kind == J_PRESET && j->e == ENGI_P600 && abs(r->tail_dc) <= 6))   /* x4), so its tails' midpoint scales too: 3..6 of 32768, -75 dB) */
             snprintf(why + strlen(why), sizeof why - strlen(why), " DC %d left at the end (limit %d);", r->tail_dc,
                      LIM_TAIL_DC);
         if (r->tail_peak > LIM_TAIL && !p6_slow_r)

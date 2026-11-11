@@ -240,7 +240,8 @@ static void p600_render(track_t *t, voice_t *v, int32_t *out, uint32_t n, const 
         s = mulq15(a, ma) + mulq15(b, mb) + (int32_t)(noise32(&nz) >> 24) - 128;   /* the circuit's hiss:
                                                                      * what a self-oscillating filter starts from */
         s = (p6_ladder(&c, s >> 1, st) * comp) >> 11;   /* (x2: the level of the other engines) */
-        out[i] += voice_amp(soft_knee(s, 16000), m, i) << 1;
+        out[i] += voice_amp(soft_knee(s, 16000), m, i) << 2;   /* (x4: +6 dB over the other engines, as loud as the
+                                                             * loudest firmwares; the master limiter holds the chords) */
     }
     v->ph[0] = ph0;
     v->ph[1] = ph1;
