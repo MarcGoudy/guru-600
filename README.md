@@ -328,3 +328,5 @@ Guru-600 はフリーなプロジェクトで、これからも進化し続け�
 Guru-600 は Felucca と同じく **GNU GPL-3.0** ライセンスのフリーソフトウェアです。このリポジトリには、完全なソースコード（Felucca と P600 エンジン）、ツール（サウンド・バンク、起動画面、ユーザーガイド、サイト、テスト）、改変した FM-1 エミュレーターが含まれています。ファームウェアのビルド方法は [firmware/BUILDING.md](firmware/BUILDING.md) を参照してください。
 
 Prophet-600 はその所有者の商標です。Guru-600 は Sequential とは無関係です。M-VAVE と FM-1 は各所有者の商標です。
+
+You can also try Guru-600 in the browser, no flashing needed, in the free community [FM-1 Emulator](https://fm1-emulator.atst.tools/).
