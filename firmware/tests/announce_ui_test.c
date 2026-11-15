@@ -24,7 +24,11 @@ static int ann_cap(const uint8_t *p, uint32_t n)
     if (n < 7u || p[0] != 0xF0u || p[n - 1u] != 0xF7u || p[1] != 0x7Du || p[2] != 0x53u || p[3] != 0x52u)
         return bad7 = 1, 0;
     if (p[4] == 1u) {                                     /* HELLO: version, name, 0, link */
-        hello_ok = p[5] == 1u && n >= 16u && !memcmp(p + 6, "GURU-600", 8) && p[14] == 0;
+        /* (1.2) the name with its version, then the link to its words file (gen_words.py: ANN_WORDS_URL) */
+        uint32_t ln = (uint32_t)sizeof ANN_NAME - 1u, lu = (uint32_t)sizeof ANN_WORDS_URL - 1u;
+        hello_ok = p[5] == 1u && n == 6u + ln + 1u + lu + 1u && !memcmp(p + 6, ANN_NAME, ln) && p[6 + ln] == 0 &&
+                   !memcmp(p + 7 + ln, ANN_WORDS_URL, lu) && !memcmp(ANN_NAME, "GURU-600 ", 9) &&
+                   !memcmp(ANN_WORDS_URL, "https://guru-600.com/words/", 27);
         return 0;
     }
     if (p[4] == 16u && nsaid < 64u) {
@@ -94,7 +98,7 @@ int main(void)
     ck("no reader: not a byte (pages, a knob, a message)", nbytes == 0);
     hello();
     fr(100);
-    ck("HELLO: answered GURU-600, protocol 1", hello_ok);
+    ck("HELLO: answered GURU-600 and its version, protocol 1, the link to its words file", hello_ok);
     dump(0);
     ck("..then the screen: HOME, the track and its sound, the cards", nsaid == 1u && has(0, "HOME, TRACK 1, ") &&
        said_fl[0] == ANN_NOW);
@@ -143,6 +147,31 @@ int main(void)
     fr(100);
     dump(n0);
     ck("WHERE: the whole screen again, the track and its sound too", nsaid == n0 + 1u && has(n0, "HOME, TRACK 1, "));
+    /* 1.2: what the header shows and no card says: the octave, PLAY / STOP, the track's REC */
+    hello();
+    fr(100);
+    n0 = nsaid;
+    press(B_OCTUP);
+    fr(100);
+    dump(n0);
+    ck("OCT+: OCTAVE +1, at once", any(n0, "OCTAVE +1"));
+    n0 = nsaid;
+    press(B_OCTDN);
+    press(B_OCTDN);
+    fr(100);
+    dump(n0);
+    ck("OCT- twice: OCTAVE 0 then OCTAVE -1", any(n0, "OCTAVE 0") && any(n0, "OCTAVE -1"));
+    press(B_OCTUP);
+    fr(100);
+    n0 = nsaid;
+    song.playing = 1;
+    fr(100);
+    ck("PLAY: said", any(n0, "PLAY"));
+    n0 = nsaid;
+    stop_transport();
+    fr(100);
+    ck("STOP: said", any(n0, "STOP"));
+    hello();
     n0 = nsaid;
     fr(5200);
     go_title("INSERT");

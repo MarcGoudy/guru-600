@@ -15,6 +15,7 @@ static struct {
     char col[4][40];                                    /* the cards drawn this frame */
     uint8_t drawn, hot;                                 /* their mask; the menu's row (always "turned") */
     uint32_t where, knob[4], sound;                     /* hashes of what was said */
+    uint32_t bar;                                       /* (1.2) the header's state said: octave, PLAY, REC, | 1 once set */
 } annc;                                                 /* (.bss, zero at start; main loop only) */
 
 /* ui_draw.c (draw_column, draw_column_tall, draw_act_column, the P600 panel's knobs): card c shows label, value, unit */
@@ -88,6 +89,27 @@ static void ann_place(char *s, uint32_t cap)
     ann_cat(s, cap, a);
 }
 
+/* 1.2: what the header shows and no card says: the octave (OCT- / OCT+), PLAY / STOP, the selected track's REC.
+ * Said when it changes (not when the reader starts listening: WHERE says the place) */
+static void ann_bar(void)
+{
+    char s[24];
+    uint32_t rec = (song.rec >> song.sel) & 1u, b = (uint32_t)(song.octave + 8) | (song.playing ? 16u : 0u) |
+                   (rec ? 32u : 0u) | 64u;
+    if (annc.bar && b != annc.bar && !ui.menu && !ui.confirm && !name_on()) {
+        if ((b ^ annc.bar) & 15u) {
+            str_cpy(s, song.octave > 0 ? "OCTAVE +" : "OCTAVE ", sizeof s);
+            fmt_int(s + str_len(s), song.octave);
+            ann_say(s, 0, ANN_NOW);
+        }
+        if ((b ^ annc.bar) & 16u)
+            ann_say(song.playing ? "PLAY" : "STOP", 0, ANN_NOW);
+        if ((b ^ annc.bar) & 32u)
+            ann_say(rec ? "REC ON" : "REC OFF", 0, ANN_NOW);
+    }
+    annc.bar = b;
+}
+
 /* after each frame (ui_draw) */
 static void ann_ui(void)
 {
@@ -95,6 +117,7 @@ static void ann_ui(void)
     uint32_t c, h, hs, w;
     if (!ann_on()) {
         annc.drawn = 0;
+        annc.bar = 0;                                   /* (a new reader: nothing said about the header) */
         return;
     }
     ann_place(s, sizeof s);
@@ -137,5 +160,6 @@ static void ann_ui(void)
             ann_later(s, ANN_NOW, 300u, fm1_ms);
         }
     }
+    ann_bar();
     annc.drawn = 0;
 }

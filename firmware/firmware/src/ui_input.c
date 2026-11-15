@@ -1338,6 +1338,15 @@ static void seq_entry(uint32_t pressed)
  *   HOME, PRESETS and every other page (EDIT, ENV, LFO, FX, SCL, ARP, MIXER, CLOCK, ...): the selected track's
  *     sound, one list over every engine, then the used user presets (preset_step). A sound load keeps the steps
  *     (SAVE held undoes it). Up to 1.0.3 it did that on HOME and PRESETS only */
+/* 1.2 (Marc): ENV held while PRESETS turns: ten sounds a detent (the 326 sounds' list is long); ENV's release then
+ * opens no page. ENV held was nothing (no layer, no MOMENTARY) */
+static uint32_t presets_by(void)
+{
+    if (!((fm1_in.buttons >> panel.btn[B_ENV]) & 1u) || ui.menu || ui.confirm || name_on() || ui.layer)
+        return 1u;
+    ui.pg_down &= (uint16_t)~(1u << panel.btn[B_ENV]);
+    return 10u;
+}
 static void presets_turn(int32_t s)
 {
     const page_t *pg = cur_page();
@@ -1355,13 +1364,13 @@ static void presets_turn(int32_t s)
         return;
     }
     if (ui.home || g == GR_BROWSE) {
-        preset_step(s);
+        preset_jump(s, presets_by());
     } else if (g == GR_ROLL || g == GR_USER || g == GR_SLOTS || g == GR_PATS || g == GR_SONG || g == GR_EVENTS) {
         edit_param(0, s);                                 /* KNOB 1's (STEP: STOP TO EDIT while a song plays) */
         ui.hot_col = 0;
         ui.hot_t = 40;
     } else if (g != GR_TOOLS && g != GR_SLICES) {
-        preset_step(s);
+        preset_jump(s, presets_by());
     }
 }
 

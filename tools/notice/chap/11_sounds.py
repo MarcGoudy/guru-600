@@ -2,6 +2,8 @@
 CH("sounds", "The sounds: finding a sound", "Les sons : trouver un son",
  P2("Turn <b>PRESETS</b> on HOME or on any sound page to load the next sound on the selected track. The list holds every engine's sounds, P600 first.",
     "Tournez <b>PRESETS</b> sur HOME ou sur n'importe quelle page de son pour charger le son suivant sur la piste choisie. La liste contient les sons de tous les moteurs, P600 en premier.") +
+ P2("To go faster, hold <b>ENV</b> while you turn <b>PRESETS</b>: each detent jumps ten sounds, either way (from 8 to 248 in 24 detents). Let go of ENV: one sound at a time again, and ENV's page does not open.",
+    "Pour aller plus vite, maintenez <b>ENV</b> en tournant <b>PRESETS</b> : chaque cran saute dix sons, dans un sens comme dans l'autre (de 8 à 248 en 24 crans). Relâchez ENV : de nouveau un son à la fois, et la page ENV ne s'ouvre pas.") +
  P2("In all: 326 sounds supplied, 32 USER slots to fill with your sounds, from any engine, and 55 places for your P600 sounds (chapter {ch:keep}).",
     "En tout : 326 sons fournis, 32 emplacements USER à remplir avec vos sons, de n'importe quel moteur, et 55 places pour vos sons P600 (chapitre {ch:keep}).") +
  table([("Numbers", "Numéros"), ("What", "Quoi")], [

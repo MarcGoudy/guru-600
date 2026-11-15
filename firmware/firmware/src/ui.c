@@ -479,7 +479,9 @@ static uint32_t page_first(uint32_t fam)       /* the family's first page this t
 }
 
 /* Guru-600 1.1: the screen reader (ui_announce.c; announce.c: fm1-base's, MPL-2.0, as it is) */
-#define ANN_NAME "GURU-600"
+#include "guru_version.h"
+#include "ann_words.h"                                 /* (1.2: p600/lecteur/words.tsv by gen_words.py: ANN_WORDS_URL) */
+#define ANN_NAME "GURU-600 " GURU_VERSION                  /* (the reader shows the firmware and its version) */
 #define ANN_MAX 120u                                    /* (a SAY: 43 USB-MIDI packets at most) */
 #define ANN_DATA                                        /* (.bss: the pool keeps its 8 KB headroom) */
 #if FELUCCA_OTA && !defined(ANN_CAPTURE)
@@ -1980,13 +1982,16 @@ static void eng_list_step(int32_t direction)         /* the next / previous soun
     preset_hinted();
 }
 
-static void preset_step(int32_t direction)
+/* the next / previous sound of the list, or (1.2: ENV held while PRESETS turns, ui_input.c) ten further */
+static void preset_jump(int32_t direction, uint32_t by)
 {
     uint32_t total, cur = preset_pos(&total);
     if (!total) { ui_message(list_mode() == 1u ? "NO FAVORITES" : "NO SOUNDS IN LIST"); return; }
+    by %= total;
     preset_go(cur >= total ? (direction > 0 ? 0 : total - 1) :
-              (cur + (direction > 0 ? 1u : total - 1u)) % total);
+              (cur + (direction > 0 ? by : total - by)) % total);
 }
+static void preset_step(int32_t direction) { preset_jump(direction, 1u); }
 
 /* Seven display rows. FAV and a category use a bounded window, not a repeating carousel.
  * Return total for an empty row; a current sound not in the list shows the start. */

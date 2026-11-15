@@ -1362,6 +1362,36 @@ static int test_screen(void)
     return bad;
 }
 
+/* 1.2 (Marc): ENV held while PRESETS turns: ten sounds a detent, both ways and around the list; ENV let go after it
+ * opens no page; alone, PRESETS still steps one */
+static int test_presets_jump(void)
+{
+    int bad = 0;
+    uint32_t total, p0, p1;
+    ui_power_on();
+    go_home();
+    p0 = preset_pos(&total);
+    turn(EN_PRESET, 1);
+    p1 = preset_pos(&total);
+    bad += check("PRESETS alone: one sound a detent", p1 == (p0 + 1u) % total);
+    btn_down(B_ENV);
+    frame();
+    turn(EN_PRESET, 1);
+    p0 = preset_pos(&total);
+    bad += check("ENV held + PRESETS: ten sounds further", p0 == (p1 + 10u) % total);
+    turn(EN_PRESET, -1);
+    turn(EN_PRESET, -1);
+    p1 = preset_pos(&total);
+    bad += check("ENV held + PRESETS back twice: twenty back, around the list", p1 == (p0 + total - 20u) % total);
+    btn_up(B_ENV);
+    frames(200);
+    bad += check("ENV let go after the jumps: HOME stays (ENV's page does not open)", ui.home);
+    press(B_ENV);
+    frames(200);
+    bad += check("ENV tapped alone: its page as always", !ui.home && cur_page()->fam == FAM_ENV);
+    return bad;
+}
+
 static int test_favorites(void)
 {
     int bad = 0;
@@ -9955,6 +9985,7 @@ int main(void)
     bad += test_grid();
     bad += test_screen();
     bad += test_favorites();
+    bad += test_presets_jump();
     bad += test_categories();
     bad += test_display_preferences();
     bad += test_menu_tabs();

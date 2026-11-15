@@ -1891,5 +1891,10 @@
  "The EQ is kept with USER sounds and with projects.": "イコライザーは USER サウンドとプロジェクトに保存されます。",
  "A screen reader, for blind and visually impaired players": "スクリーンリーダー：目の不自由な演奏者のために",
  "At the request of a visually impaired player, the Guru-600 can speak its screen. Connect the FM-1 to a computer by USB and open <a href='https://github.com/charlesvestal/fm1-reader'>FM-1 Screen Reader</a>, by Charles Vestal: it says the page, its four cards, each knob you turn and the messages, or hands them to the computer's own screen reader.": "目の不自由な演奏者の要望で、Guru-600 は画面を読み上げられます。FM-1 をコンピューターに USB で接続し、Charles Vestal による <a href='https://github.com/charlesvestal/fm1-reader'>FM-1 Screen Reader</a> を開きます。ページ、その4枚のカード、回したノブ、メッセージを読み上げるか、コンピューターのスクリーンリーダーに渡します。",
- "Nothing is sent while no reader is listening: music software on the same USB port sees nothing, and the screen does not change.": "リーダーが聞いていないあいだは何も送信されません。同じ USB ポートの音楽ソフトには何も届かず、画面も変わりません。"
+ "Nothing is sent while no reader is listening: music software on the same USB port sees nothing, and the screen does not change.": "リーダーが聞いていないあいだは何も送信されません。同じ USB ポートの音楽ソフトには何も届かず、画面も変わりません。",
+ "ENV held + PRESETS": "ENV を押したまま + PRESETS",
+ "Ten sounds a detent instead of one (chapter {ch:sounds}).": "1 クリックで 1 音色ではなく 10 音色（第 {ch:sounds} 章）。",
+ "To go faster, hold <b>ENV</b> while you turn <b>PRESETS</b>: each detent jumps ten sounds, either way (from 8 to 248 in 24 detents). Let go of ENV: one sound at a time again, and ENV's page does not open.": "もっと速く移動したいときは、<b>ENV</b> を押したまま <b>PRESETS</b> を回します。1 クリックごとに 10 音色ずつ、どちらの方向にも進みます（8 から 248 まで 24 クリック）。ENV を離すと再び 1 音色ずつになり、ENV のページは開きません。",
+ "It also says the octave when you press OCT− or OCT+, PLAY and STOP, and REC ON or OFF on the selected track. The Guru-600 gives it its own words, so it says “filter envelope” for FENV and “resonance” for RES.": "OCT− や OCT+ を押したときのオクターブ、PLAY と STOP、選択中のトラックの REC ON / OFF も読み上げます。Guru-600 が独自の単語リストを渡すので、FENV は「filter envelope」、RES は「resonance」と読み上げます。",
+ "<b>ENV held + PRESETS</b>": "<b>ENV を押したまま + PRESETS</b>"
 }

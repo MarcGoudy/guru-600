@@ -1891,5 +1891,10 @@
  "The EQ is kept with USER sounds and with projects.": "均衡器随 USER 音色和项目一起保存。",
  "A screen reader, for blind and visually impaired players": "屏幕阅读器：为盲人和视障乐手",
  "At the request of a visually impaired player, the Guru-600 can speak its screen. Connect the FM-1 to a computer by USB and open <a href='https://github.com/charlesvestal/fm1-reader'>FM-1 Screen Reader</a>, by Charles Vestal: it says the page, its four cards, each knob you turn and the messages, or hands them to the computer's own screen reader.": "应一位视障乐手的请求，Guru-600 可以朗读它的屏幕。用 USB 将 FM-1 连接到电脑，打开 Charles Vestal 的 <a href='https://github.com/charlesvestal/fm1-reader'>FM-1 Screen Reader</a>：它会读出页面、页面上的四张卡片、您转动的每个旋钮和各条消息，或交给电脑自带的屏幕阅读器。",
- "Nothing is sent while no reader is listening: music software on the same USB port sees nothing, and the screen does not change.": "没有阅读器在收听时不发送任何内容：同一 USB 端口上的音乐软件什么也收不到，屏幕也不会改变。"
+ "Nothing is sent while no reader is listening: music software on the same USB port sees nothing, and the screen does not change.": "没有阅读器在收听时不发送任何内容：同一 USB 端口上的音乐软件什么也收不到，屏幕也不会改变。",
+ "ENV held + PRESETS": "按住 ENV + PRESETS",
+ "Ten sounds a detent instead of one (chapter {ch:sounds}).": "每一格跳过十个音色，而不是一个（第 {ch:sounds} 章）。",
+ "To go faster, hold <b>ENV</b> while you turn <b>PRESETS</b>: each detent jumps ten sounds, either way (from 8 to 248 in 24 detents). Let go of ENV: one sound at a time again, and ENV's page does not open.": "想更快时，按住 <b>ENV</b> 同时转动 <b>PRESETS</b>：每一格跳十个音色，两个方向都可以（从 8 到 248 只需 24 格）。松开 ENV：又恢复一次一个音色，并且不会打开 ENV 页面。",
+ "It also says the octave when you press OCT− or OCT+, PLAY and STOP, and REC ON or OFF on the selected track. The Guru-600 gives it its own words, so it says “filter envelope” for FENV and “resonance” for RES.": "按下 OCT− 或 OCT+ 时它也会读出八度，还会读出 PLAY 和 STOP，以及所选音轨的 REC ON 或 OFF。Guru-600 为它提供了自己的词表：它会把 FENV 读成“filter envelope”，把 RES 读成“resonance”。",
+ "<b>ENV held + PRESETS</b>": "<b>按住 ENV + PRESETS</b>"
 }

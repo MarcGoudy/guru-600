@@ -1,0 +1,125 @@
+# Guru-600: the screen's words for the FM-1 Screen Reader (Charles Vestal's fm1-reader; fm1-base tools/gen_words.py)
+# url: https://guru-600.com/words/
+# A published words file never changes: add words here, a new build gets a new file.
+GURU-600	Guru 600
+P600	P 600
+INSRT	insert
+INSR2	insert 2
+INS A	insert A
+INS B	insert B
+INS C	insert C
+PHASR	phaser
+FLANG	flanger
+CHOR	chorus
+EQ	equalizer
+LOW	low
+MID	mid
+HIGH	high
+FENV	filter envelope
+CUT	cutoff
+KBD	keyboard tracking
+KTR	key tracking
+FLT	filter
+VCE	voice
+VOIC	voicing
+CHRD	chord
+CHO	chorus
+SCL	scale
+SEL	select
+SLCR	slicer
+SPRD	spread
+SWG	swing
+QNT	quantize
+QNTZ	quantize
+TRN	transpose
+GLD	glide
+GLMOD	glide mode
+DTUNE	detune
+FIN	fine
+B FIN	B fine
+A PW	A pulse width
+B PW	B pulse width
+PW	pulse width
+PM B	poly mod B
+PM DS	poly mod destination
+PM EN	poly mod envelope
+DST	distortion
+DEC	decay
+CLRSQ	clear sequence
+COLR	color
+PRIO	priority
+PROB	probability
+SHP	shape
+ROUT	routing
+CLK	clock
+DIV	division
+PAT	pattern
+LEN	length
+ESYNC	envelope sync
+ALLOC	allocation
+REPS	repeats
+MPH	morph
+[OCT+]	press octave up
+--	none
+A FRQ	A frequency
+B FRQ	B frequency
+FRQ A	frequency A
+FREQ A	frequency A
+FREQ B	frequency B
+A WAV	A wave
+B WAV	B wave
+PW A	pulse width A
+PW B	pulse width B
+FINE B	fine B
+OSC B	oscillator B
+OSC 2	oscillator 2
+OSC	oscillator
+PLS	pulse
+SAW+P	saw and pulse
+SAW+T	saw and triangle
+TRI+P	triangle and pulse
+TRI	triangle
+SAW	saw
+A+S	A and S
+ACC	accent
+VINT	vintage
+CDP	chorus depth
+CRT	chorus rate
+FDBK	feedback
+DAMP	damping
+PHS	phase
+PIT	pitch
+AMP	amplifier
+FIL ENV	filter envelope
+FLT ENV	filter envelope
+ENV AMT	envelope amount
+FILT	filter
+SLD	slide
+SRC	source
+ENG	engine
+FAV	favorites
+RATCH	ratchet
+VEL	velocity
+POS	position
+DEST	destination
+ORIG	original
+K1	knob 1
+K4	knob 4
+AMT3	amount 3
+AMT4	amount 4
+P6IM	P 600 import
+SEC	seconds
+LANES	lanes
+OP	operator
+OP1	operator 1
+OP2	operator 2
+OP3	operator 3
+OP4	operator 4
+COND	condition
+TUNE	tune
+CLK INT	clock internal
+CLK EXT	clock external
+CLK TRS	clock transport
+ROOT	root
+MUTE	mute
+SOLO	solo

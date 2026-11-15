@@ -1100,6 +1100,10 @@
   "fr": "<b>LFO maintenu + KNOB 1–4</b>"
  },
  {
+  "en": "<b>ENV held + PRESETS</b>",
+  "fr": "<b>ENV maintenu + PRESETS</b>"
+ },
+ {
   "en": "<b>FX held + white key held + PRESETS</b>",
   "fr": "<b>FX maintenu + touche blanche maintenue + PRESETS</b>"
  },
@@ -1142,6 +1146,10 @@
  {
   "en": "MOMENTARY: changes that last while LFO is held (chapter {ch:envlfo}).",
   "fr": "MOMENTARY : des changements qui durent tant que LFO est maintenu (chapitre {ch:envlfo})."
+ },
+ {
+  "en": "Ten sounds a detent instead of one (chapter {ch:sounds}).",
+  "fr": "Dix sons par cran au lieu d'un (chapitre {ch:sounds})."
  },
  {
   "en": "Assigns another effect to that key (chapter {ch:layers}).",
@@ -2290,6 +2298,10 @@
  {
   "en": "Turn <b>PRESETS</b> on HOME or on any sound page to load the next sound on the selected track. The list holds every engine's sounds, P600 first.",
   "fr": "Tournez <b>PRESETS</b> sur HOME ou sur n'importe quelle page de son pour charger le son suivant sur la piste choisie. La liste contient les sons de tous les moteurs, P600 en premier."
+ },
+ {
+  "en": "To go faster, hold <b>ENV</b> while you turn <b>PRESETS</b>: each detent jumps ten sounds, either way (from 8 to 248 in 24 detents). Let go of ENV: one sound at a time again, and ENV's page does not open.",
+  "fr": "Pour aller plus vite, maintenez <b>ENV</b> en tournant <b>PRESETS</b> : chaque cran saute dix sons, dans un sens comme dans l'autre (de 8 à 248 en 24 crans). Relâchez ENV : de nouveau un son à la fois, et la page ENV ne s'ouvre pas."
  },
  {
   "en": "In all: 326 sounds supplied, 32 USER slots to fill with your sounds, from any engine, and 55 places for your P600 sounds (chapter {ch:keep}).",
@@ -3594,6 +3606,10 @@
  {
   "en": "Nothing is sent while no reader is listening: music software on the same USB port sees nothing, and the screen does not change.",
   "fr": "Rien n'est envoyé tant qu'aucun lecteur n'écoute : un logiciel de musique sur le même port USB ne voit rien, et l'écran ne change pas."
+ },
+ {
+  "en": "It also says the octave when you press OCT− or OCT+, PLAY and STOP, and REC ON or OFF on the selected track. The Guru-600 gives it its own words, so it says “filter envelope” for FENV and “resonance” for RES.",
+  "fr": "Il dit aussi l'octave quand vous appuyez sur OCT− ou OCT+, PLAY et STOP, et REC ON ou OFF sur la piste choisie. Le Guru-600 lui fournit ses propres mots : il dit « filter envelope » pour FENV et « resonance » pour RES."
  },
  {
   "en": "Tempo and clock",
