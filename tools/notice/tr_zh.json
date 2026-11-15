@@ -1896,5 +1896,16 @@
  "Ten sounds a detent instead of one (chapter {ch:sounds}).": "每一格跳过十个音色，而不是一个（第 {ch:sounds} 章）。",
  "To go faster, hold <b>ENV</b> while you turn <b>PRESETS</b>: each detent jumps ten sounds, either way (from 8 to 248 in 24 detents). Let go of ENV: one sound at a time again, and ENV's page does not open.": "想更快时，按住 <b>ENV</b> 同时转动 <b>PRESETS</b>：每一格跳十个音色，两个方向都可以（从 8 到 248 只需 24 格）。松开 ENV：又恢复一次一个音色，并且不会打开 ENV 页面。",
  "It also says the octave when you press OCT− or OCT+, PLAY and STOP, and REC ON or OFF on the selected track. The Guru-600 gives it its own words, so it says “filter envelope” for FENV and “resonance” for RES.": "按下 OCT− 或 OCT+ 时它也会读出八度，还会读出 PLAY 和 STOP，以及所选音轨的 REC ON 或 OFF。Guru-600 为它提供了自己的词表：它会把 FENV 读成“filter envelope”，把 RES 读成“resonance”。",
- "<b>ENV held + PRESETS</b>": "<b>按住 ENV + PRESETS</b>"
+ "<b>ENV held + PRESETS</b>": "<b>按住 ENV + PRESETS</b>",
+ "<b>Made for blind and visually impaired players too</b>: the Guru-600 speaks its screen through a screen reader on the computer (chapter {ch:midi}), and the value you change shows in big type, in its own place (chapter {ch:screen}).": "<b>同样为盲人和视障乐手设计</b>：Guru-600 可以通过电脑上的屏幕阅读器读出屏幕（第 {ch:midi} 章），并且您正在调整的数值会在原位置放大显示（第 {ch:screen} 章）。",
+ "Values in big type": "放大显示的数值",
+ "The value you change shows in big type, in its own place, about twice its size, as a phone shows the key you press: a knob's value in its card (also under the knobs of the P600 pages), the tempo in the header when you turn SELECT, and the sound's name on the bottom line when you turn PRESETS or ALGORITHM.": "您调整的数值会在原位置放大显示，约为原来的两倍，就像手机放大显示您按下的键：旋钮的数值显示在其卡片中（P600 页面旋钮下方也是如此），转动 SELECT 时速度显示在页眉中，转动 PRESETS 或 ALGORITHM 时音色名称显示在底行。",
+ "It goes back to its size 0.4 s after the last detent (the sound's name 0.8 s). Two knobs turned together each show their own value, side by side.": "最后一格之后 0.4 秒恢复原大小（音色名称为 0.8 秒）。同时转动两个旋钮时，各自显示自己的数值，并排显示。",
+ "KNOB 2 turned: RES in big type.": "转动 KNOB 2：RES 放大。",
+ "PRESETS turned: the sound's name in big type.": "转动 PRESETS：音色名称放大。",
+ "SELECT turned: the tempo in big type.": "转动 SELECT：速度放大。",
+ "<b>ENV held + KNOB 1–4</b>": "<b>按住 ENV + KNOB 1–4</b>",
+ "That value back to the sound's own, the others kept (a shared value: its default).": "该数值恢复为音色自身的数值，其他保持不变（共用数值：恢复默认值）。",
+ "PRESETS, then KNOB 2 turned: the sound's name and RES in big type.": "先转动 PRESETS，再转动 KNOB 2：音色名称和 RES 放大。",
+ "<b>Back to the sound's value for one setting only</b>: hold <b>ENV</b> and turn the knob of that setting; it takes the sound's value again, and the other settings you changed stay as they are. A setting shared by the whole project (the tempo, the shared effects) goes back to its default.": "<b>只将一个设置恢复为音色的数值</b>：按住 <b>ENV</b> 并转动该设置的旋钮；它会恢复为音色的数值，您更改过的其他设置保持不变。整个项目共用的设置（速度、共用效果）会恢复为默认值。"
 }

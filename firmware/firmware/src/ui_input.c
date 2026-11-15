@@ -939,6 +939,78 @@ static void step_edit(uint32_t slot, int32_t steps)
     }
 }
 
+/* 1.3 (Marc, 15/11): ENV held + KNOB n turned: that value back to how the sound had it, the others as they are. The
+ * first turn of a value notes what it was (orig_note, for the track's sound then: another sound loaded since, its own
+ * value is the original again); a shared value (SC_GLOBAL: tempo, the shared FX) not turned since power-on goes to its
+ * default. Every knob, every page whose knob sets a value (page_desc), HOME too; ENV's release then opens no page */
+#define ORIG_N 48u
+static struct { int16_t *vp; int16_t v; uint32_t snd; } orig[ORIG_N];
+static uint32_t orig_n;
+static uint32_t orig_snd(const track_t *t)               /* the sound a track has (0: a shared value) */
+{
+    return t ? ((uint32_t)t->eng_req * 2654435761u ^ (uint32_t)t->preset * 40503u ^ user_of(t) * 97u) +
+               (uint32_t)(t - trk) * 7u + 1u : 0u;
+}
+static void orig_note(int16_t *vp, const track_t *t)   /* before a knob changes *vp */
+{
+    uint32_t i, id = orig_snd(t);
+    for (i = 0; i < orig_n; i++)
+        if (orig[i].vp == vp) {
+            if (orig[i].snd != id) {                    /* another sound since: what it has now is its original */
+                orig[i].snd = id;
+                orig[i].v = *vp;
+            }
+            return;
+        }
+    if (orig_n == ORIG_N) {                             /* full: the oldest forgotten */
+        for (i = 1; i < ORIG_N; i++)
+            orig[i - 1u] = orig[i];
+        orig_n--;
+    }
+    orig[orig_n].vp = vp;
+    orig[orig_n].v = *vp;
+    orig[orig_n].snd = id;
+    orig_n++;
+}
+static int env_mod(void)                               /* ENV held as a modifier (PRESETS, KNOB 1..4): its tap dropped */
+{
+    if (!((fm1_in.buttons >> panel.btn[B_ENV]) & 1u) || ui.menu || ui.confirm || name_on() || ui.layer || ui.uboot)
+        return 0;
+    ui.pg_down &= (uint16_t)~(1u << panel.btn[B_ENV]);
+    return 1;
+}
+static void knob_back(uint32_t k)                      /* ENV + KNOB k: its value back */
+{
+    int16_t *vp = 0;
+    const param_desc_t *d;
+    track_t *t;
+    uint32_t i;
+    if (ui.home) {
+        d = home_param(k, &vp);
+        t = home_trk(k);
+    } else {
+        const page_t *pg = cur_page();
+        if (pg->scope == SC_STEP || pg->scope == SC_TRK || (act_cols() >> k & 1u))
+            return;
+        d = page_desc(pg, k, &vp);
+        t = pg->scope == SC_GLOBAL ? 0 : TSEL;
+    }
+    if (!d || !vp)
+        return;
+    for (i = 0; i < orig_n && !(orig[i].vp == vp && orig[i].snd == orig_snd(t)); i++)
+        ;
+    if (i < orig_n)
+        *vp = orig[i].v;
+    else if (!t)
+        *vp = d->def;                                   /* (a shared value never turned: its default) */
+    else
+        return;                                         /* (not turned since the sound came: already its own) */
+    if (t) {
+        motion_capture(t, (uint32_t)(vp - t->p), *vp);
+        ml_knob(t, (uint32_t)(vp - t->p));
+    }
+}
+
 static void edit_param(uint32_t slot, int32_t steps)
 {
     int16_t *vp;
@@ -1069,6 +1141,7 @@ static void edit_param(uint32_t slot, int32_t steps)
     d = page_desc(pg, slot, &vp);
     if (!d || !vp || d->max == d->min)
         return;
+    orig_note(vp, pg->scope == SC_GLOBAL ? 0 : TSEL);   /* (1.3: what it was, for ENV + KNOB) */
     v = param_turn(d, *vp, accel(EN_K1 + slot, steps, d->fmt == F_ENUM ? 0 : d->max - d->min));
     if (v == IT_EQ && *vp != IT_EQ && pg->scope != SC_GLOBAL && (vp == &TSEL->p[P_ITYPE] || vp == &TSEL->p[P_JTYPE]))
         vp[1] = vp[2] = vp[3] = 64;                     /* Guru-600 1.1: EQ picked, LOW MID HIGH at 0 dB (fx.c) */
@@ -1342,10 +1415,7 @@ static void seq_entry(uint32_t pressed)
  * opens no page. ENV held was nothing (no layer, no MOMENTARY) */
 static uint32_t presets_by(void)
 {
-    if (!((fm1_in.buttons >> panel.btn[B_ENV]) & 1u) || ui.menu || ui.confirm || name_on() || ui.layer)
-        return 1u;
-    ui.pg_down &= (uint16_t)~(1u << panel.btn[B_ENV]);
-    return 10u;
+    return env_mod() ? 10u : 1u;
 }
 static void presets_turn(int32_t s)
 {
@@ -1365,12 +1435,14 @@ static void presets_turn(int32_t s)
     }
     if (ui.home || g == GR_BROWSE) {
         preset_jump(s, presets_by());
+        big_show();
     } else if (g == GR_ROLL || g == GR_USER || g == GR_SLOTS || g == GR_PATS || g == GR_SONG || g == GR_EVENTS) {
         edit_param(0, s);                                 /* KNOB 1's (STEP: STOP TO EDIT while a song plays) */
         ui.hot_col = 0;
         ui.hot_t = 40;
     } else if (g != GR_TOOLS && g != GR_SLICES) {
         preset_jump(s, presets_by());
+        big_show();
     }
 }
 
@@ -1864,8 +1936,10 @@ static void ui_input(void)
     kq |= lay;
     if (!lay && (s = panel_enc(EN_PRESET)) != 0)
         presets_turn(s);
-    if (!lay && (s = panel_enc(EN_ALGO)) != 0)     /* ALGORITHM: the selected track, on every page */
+    if (!lay && (s = panel_enc(EN_ALGO)) != 0) {   /* ALGORITHM: the selected track, on every page */
         track_select((uint32_t)clamp((int32_t)song.sel + (s > 0 ? 1 : -1), 0, NTRK - 1));
+        big_show();                                     /* (1.3: the track and its sound, big) */
+    }
     if ((s = glo ? sel : panel_enc(EN_SELECT)) != 0) {   /* SELECT knob = global tempo; */
         if (!glo && sel_mode() >= SEL_MODW) {         /* MENU > SELECT MODW / VEL (1.5.6, #84): it plays */
             sel_play(sel_mode(), s);
@@ -1878,6 +1952,7 @@ static void ui_input(void)
         } else if (glo || !(ui_prefs & PREF_BPM_LOCK)) {
             song.g[G_BPM] = (int16_t)clamp(song.g[G_BPM] + accel(EN_SELECT, s, 200), GP[G_BPM].min, GP[G_BPM].max);
             ui.bpm_t = 40;                              /* the header's BPM lights up; no message over the header */
+            big_bpm();                                  /* (1.3: the tempo, a phone key's bubble under the header) */
         } else {                                        /* MENU > BPM LOCK ON (#58): only with GLO held (and on HOME >
                                                          * CLOCK, GLO's F4 TAP); a turn burst says so once */
             if (!lock_ms || fm1_ms - lock_ms > 1000u)
@@ -1891,6 +1966,13 @@ static void ui_input(void)
         uint64_t held;
         if ((s = panel_enc(EN_K1 + k)) == 0)
             continue;
+        big_knob(k);                                    /* (1.3: the card turned: its value big, ui_draw.c draw_big) */
+        if (env_mod()) {                                /* 1.3: ENV held: the value back to the sound's (knob_back) */
+            knob_back(k);
+            ui.hot_col = (uint8_t)k;
+            ui.hot_t = 40;
+            continue;
+        }
         if (mom_down())                                 /* (LFO + a knob, MOMENTARY or not: LFO's release opens no page) */
             ui.pg_down &= (uint16_t)~(1u << panel.btn[B_LFO]);
         if ((held = lock_held()) != 0u) {               /* a step held on STEP: KNOB k locks (parameter locks) */
@@ -1914,6 +1996,7 @@ static void ui_input(void)
         if (ui.home) {
             int16_t *vp;
             const param_desc_t *d = home_param(k, &vp);
+            orig_note(vp, home_trk(k));                 /* (1.3: what it was, for ENV + KNOB) */
             *vp = (int16_t)param_turn(d, *vp, accel(EN_K1 + k, s, d->fmt == F_ENUM ? 0 : d->max - d->min));
             motion_capture(home_trk(k), (uint32_t)(vp - home_trk(k)->p), *vp);   /* (LEVELS: that track's, as MIXER) */
             ml_knob(home_trk(k), (uint32_t)(vp - home_trk(k)->p));

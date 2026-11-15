@@ -22,7 +22,14 @@ static struct {
 static void ann_col(uint32_t c, const char *label, const char *val, const char *unit)
 {
     char *s;
-    if (!ann_on() || c > 3u)
+    if (c > 3u)
+        return;
+    big.val[c][0] = 0;                                  /* (1.3: the card's value and unit for its bubble, always) */
+    ann_cat(big.val[c], sizeof big.val[c], val);
+    big.unit[c][0] = 0;
+    if (unit && !str_eq(unit, label ? label : ""))
+        ann_cat(big.unit[c], sizeof big.unit[c], unit);
+    if (!ann_on())
         return;
     s = annc.col[c];
     s[0] = 0;

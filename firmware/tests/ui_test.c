@@ -145,6 +145,10 @@ static struct { uint32_t stage; } felucca_dbg;
 #ifndef FELUCCA_VERSION
 #define FELUCCA_VERSION "TEST"
 #endif
+#ifndef BIG_MS                                  /* (Guru-600 1.3: no value shown big here: the cards are checked as drawn) */
+#define BIG_MS 0u
+#define BIG_SND_MS 0u
+#endif
 #include "../firmware/src/gfx.c"
 #include "../firmware/src/panel.c"
 #include "../firmware/src/ui.c"
@@ -1364,6 +1368,42 @@ static int test_screen(void)
 
 /* 1.2 (Marc): ENV held while PRESETS turns: ten sounds a detent, both ways and around the list; ENV let go after it
  * opens no page; alone, PRESETS still steps one */
+/* Guru-600 1.3 (Marc): ENV held + KNOB n turned: that value back to the sound's, the others kept; ENV's release opens no
+ * page; a shared value never turned goes to its default; another sound loaded: its own values are the originals */
+static int test_knob_back(void)
+{
+    int bad = 0;
+    int16_t *v1, *v2, k1, k2;
+    ui_power_on();
+    go_home();
+    (void)home_param(0, &v1);
+    (void)home_param(1, &v2);
+    k1 = *v1;
+    k2 = *v2;
+    turn(EN_K1, 5);
+    turn(EN_K2, -4);
+    bad += check("KNOB 1 and 2 turned: both changed", *v1 != k1 && *v2 != k2);
+    btn_down(B_ENV);
+    frame();
+    turn(EN_K2, 1);
+    btn_up(B_ENV);
+    frames(200);
+    bad += check("ENV held + KNOB 2: KNOB 2 back to the sound's value, KNOB 1 kept", *v2 == k2 && *v1 != k1);
+    bad += check("ENV let go after it: HOME stays", ui.home);
+    turn(EN_PRESET, 1);
+    turn(EN_PRESET, -1);
+    (void)home_param(0, &v1);
+    k1 = *v1;
+    turn(EN_K1, 3);
+    btn_down(B_ENV);
+    frame();
+    turn(EN_K1, 1);
+    btn_up(B_ENV);
+    frames(200);
+    bad += check("the sound loaded again, then KNOB 1 turned: ENV + KNOB 1 back to that sound's value", *v1 == k1);
+    return bad;
+}
+
 static int test_presets_jump(void)
 {
     int bad = 0;
@@ -9986,6 +10026,7 @@ int main(void)
     bad += test_screen();
     bad += test_favorites();
     bad += test_presets_jump();
+    bad += test_knob_back();
     bad += test_categories();
     bad += test_display_preferences();
     bad += test_menu_tabs();

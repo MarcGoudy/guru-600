@@ -240,6 +240,28 @@ static struct {
     volatile uint8_t mpc[NTRK];  /* MIDI Program Change per track, 0x80 | program, 0 none (midi_control.c mpc_io: here
                                   * for the same reason as ml.io; midi_pc_poll) */
 } ui;
+/* 1.3 (a player's request, Marc 15/11): the sound PRESETS just loaded, or the track ALGORITHM just picked, in big type over
+ * the page for BIG_MS after the last detent, as a phone shows the key pressed (the header's name is small). ui_draw.c
+ * draw_big; ui_input.c presets_turn and ALGORITHM set it; a KNOB 1..4 turn or another page ends it at once */
+#ifndef BIG_MS                                          /* (host tests: 0, no value shown big) */
+#define BIG_MS 400u                                    /* a value: back to its size 0.4 s after its last detent */
+#define BIG_SND_MS 800u                                 /* the sound's name: a little longer (Marc), 0.8 s */
+#endif
+static struct {
+    uint32_t sms, bms, kms[4];                          /* when each was last turned: the sound / track, the tempo, KNOB n */
+    uint8_t son, bon, kon, page, home;                  /* shown: the sound, the tempo, KNOB n (a bit each); the page */
+    char val[4][24], unit[4][8];                        /* the cards' value and unit (ann_col) */
+    int16_t kx[4], ky[4], kw[4], kh[4];                 /* where each knob's value is (ui_draw.c: a card, or under a
+                                                         * P600 panel's knob) and its ground, rounded or not */
+    uint16_t kbg[4];
+    uint8_t kr[4];
+} big;
+static void big_page(void) { big.page = ui.page; big.home = ui.home; }
+static void big_show(void) { if (BIG_SND_MS) { big.sms = fm1_ms; big.son = 1; big_page(); } }       /* PRESETS, ALGORITHM */
+static void big_bpm(void) { if (BIG_MS) { big.bms = fm1_ms; big.bon = 1; big_page(); } }        /* SELECT's tempo */
+/* (Marc, 15/11) the same for KNOB 1..4, each its own bubble: two knobs turned together show two (the FM-1's knobs can
+ * turn at once), side by side within their cards so they never overlap */
+static void big_knob(uint32_t k) { if (BIG_MS) { big.kms[k & 3u] = fm1_ms; big.kon |= (uint8_t)(1u << (k & 3u)); big_page(); } }
 
 enum { CF_NONE, CF_CLEAR_SEQ, CF_CLEAR_TRK, CF_OVR_PROJ, CF_OVR_USER, CF_LOAD_PAT,
        CF_DEL_ROW, CF_CLEAR_SONG, CF_INIT_SOUND, CF_CLEAR_MOTION, CF_ERASE_USER, CF_ERASE_PROJ, CF_CLEAN_SOUND,

@@ -682,5 +682,26 @@
    "ALGO 4",
    "wait 600"
   ]
+ },
+ {
+  "name": "scr_big_bpm",
+  "keys": [
+   "down n0 0",
+   "down n4 0",
+   "down n7 700",
+   "SELECT +5"
+  ],
+  "settle": -250
+ },
+ {
+  "name": "scr_big_both",
+  "keys": [
+   "down n0 0",
+   "down n4 0",
+   "down n7 700",
+   "PRESETS +3",
+   "K2 +4"
+  ],
+  "settle": -250
  }
 ]

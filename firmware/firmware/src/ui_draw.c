@@ -323,6 +323,8 @@ static void head_group(void)
 }
 static void draw_head(void)
 {
+    if (big.bon && !big.kon && !ui.force)              /* (1.3: the tempo's digits big over it: not drawn small meanwhile) */
+        return;
     static int16_t metro_x = -1;                       /* the metronome's ink as drawn (-1: hidden), its beat */
     static int8_t metro_beat;
     char b[16];
@@ -659,6 +661,21 @@ static void draw_column(uint32_t c, const char *label, const char *val, const ch
     int32_t kid = kc_tag(val, &kn);
     card_span_t sp = card_span;                         /* (#251: what the knob shows, this card only) */
     ann_col(c, label, val, unit);                       /* (Guru-600 1.1: the screen reader, ui_announce.c) */
+    if (c < 4u) {                                       /* (1.3: where its value shows big, and not small meanwhile:
+                                                         * the two in turn would flicker) */
+        big.kx[c] = (int16_t)CARD_X(c);
+        big.ky[c] = Y_LABEL;
+        big.kw[c] = COL_W;
+        big.kh[c] = (int16_t)card_h();
+        big.kbg[c] = T_SURF;
+        big.kr[c] = 4;
+        if (big.kon >> c & 1u) {
+            card_span.fn = 0;
+            fmt_named = 0;
+            card_mot_next = 0;
+            return;
+        }
+    }
     card_span.fn = 0;
     fmt_named = 0;                                      /* (params.c: a name, for this card only) */
     card_mot_next = 0;                                  /* (the same: MOTION, this card only) */
@@ -855,11 +872,13 @@ static void draw_foot(void)
         ml_line(ln);
         sig += str_hash(0x1EA2u, ln);
     }
+    sig += (uint32_t)big.son * 0x3C3Bu;               /* (1.3: the name big, or back) */
     if (!ui.force && sig == ui.foot_sig)
         return;
     ui.foot_sig = sig;
     cv_begin(240, H_FOOT, T_BG);
-    if (help) {                                       /* row 1: the hint in place of the steps or the OCT+ / OCT- hint */
+    if (big.son) {                                    /* (1.3: the steps' row empty under the name's big capitals) */
+    } else if (help) {                                       /* row 1: the hint in place of the steps or the OCT+ / OCT- hint */
         help_row(help, 2);
     } else if (act_cols()) {                          /* row 1: the OCT+ / OCT- hint in place of the steps */
         char ha[16], hb[16];
@@ -928,6 +947,15 @@ static void draw_foot(void)
                 GFX_HOOK_ALIGN(0, 19 + AF_S_CAP_Y, 0, 19 + AF_S_CAP_Y + AF_S_CAP_H, AL_V,
                                "footer icons on the names' line");
             x += cv_icon_in(x, 19 + AF_S_CAP_Y, 0, AF_S_CAP_H, 12, ei, T_MID, T_BG) + 5;
+        }
+        if (big.son) {                                /* 1.3: the sound just picked, its name big on its own line, */
+            int32_t nx = 8, by;                       /* from the line's start (Marc: left, the engine not needed) */
+            const aafont_t *bf = large_face_has(pn) && ink_w(&AF_L, pn) <= 224 ? &AF_L : &AF_M;
+            cv_rect(0, 0, 240, H_FOOT, T_BG);
+            by = 19 + AF_S_CAP_Y + AF_S_CAP_H - (bf == &AF_L ? AF_L_CAP_Y + AF_L_CAP_H : AF_M_CAP_Y + AF_M_CAP_H);
+            cv_text(nx, by, bf, pn, T_TEXT);
+            cv_blit(0, Y_FOOT);
+            return;
         }
         x = cv_text_fit(x, 19, &AF_S, ename, T_THEME, T_BG, 80);
         cv_free_text(x + 10, 19, &AF_S, pn, T_TEXT, T_BG, tx - 12 - (x + 10));
@@ -1189,14 +1217,22 @@ static void p6ui_draw(const p6pg_t *pp)
             str_cpy(txt + str_len(txt), unit, 8);
         }
         ann_col(c, lab, txt, "");                      /* (the screen reader) */
-        sk = str_hash(str_hash(sf + (uint32_t)ratio * 7u + (uint32_t)hot * 1000003u, lab), txt) | 2u;
+        big.kx[c] = (int16_t)(x0 + (int32_t)c * P6_KW); /* (1.3: its value big under the knob, not small meanwhile) */
+        big.ky[c] = P6_KY + 78;
+        big.kw[c] = P6_KW;
+        big.kh[c] = 28;
+        big.kbg[c] = T_BG;
+        big.kr[c] = 0;
+        sk = str_hash(str_hash(sf + (uint32_t)ratio * 7u + (uint32_t)hot * 1000003u + (big.kon >> c & 1u) * 77u, lab),
+                      txt) | 2u;
         if (!ui.force && sk == sig_k[c])
             continue;
         sig_k[c] = sk;
         cv_begin(P6_KW, P6_KH, T_BG);
         p6_knob(P6_KW / 2, 30, 18, ratio, col, d->min < 0);
         p6ui_text_c(P6_KW / 2, 72, &AF_S, lab, hot ? col : T_TEXT);
-        p6ui_text_c(P6_KW / 2, 90, text_w(&AF_M, txt) <= P6_KW - 2 ? &AF_M : &AF_S, txt, hot ? T_ACCENT : col);
+        if (!(big.kon >> c & 1u))
+            p6ui_text_c(P6_KW / 2, 90, text_w(&AF_M, txt) <= P6_KW - 2 ? &AF_M : &AF_S, txt, hot ? T_ACCENT : col);
         cv_blit((uint32_t)(x0 + (int32_t)c * P6_KW), P6_KY);
     }
 }
@@ -2226,6 +2262,7 @@ static void draw_banner(void)
         age = BN_ANIM;                                  /* (the second one: the band stays open) */
     }
 }
+static void draw_big(void);
 static void ui_draw(void)
 {
     static uint8_t counting;
@@ -2238,10 +2275,86 @@ static void ui_draw(void)
     if (!scr_frame())                                   /* MENU > SCREEN OFF: dark (or waking), nothing drawn */
         return;
     ui_draw_page(counting);
+    draw_big();                                         /* (1.3: the sound just picked, big, over the bottom) */
     ann_ui();                                           /* (Guru-600 1.1: the screen reader, ui_announce.c) */
     draw_banner();
     scr_shown();
 }
+/* 1.3: the value just changed, in big type in its own place, as a phone shows the key pressed (Marc, 15/11), for BIG_MS after its last detent:
+ *   KNOB n: its card, the same size and place, the value in L (ACCENT) and its unit in M (the value alone when both
+ *     do not fit); each knob its own, so two knobs turned together show two, never overlapping;
+ *   PRESETS / ALGORITHM: the footer's line in place, the sound in L (M when too wide);
+ *   SELECT's tempo: its digits in place over the header's, in L, not while a knob's bubble shows (they would meet).
+ * Drawn every frame while shown (as draw_banner: the page under it drawn again is covered again); one gone, the page
+ * is drawn whole again. None over the menu, a dialog, NAME, a layer, the count-in or UPDATE MODE; another page ends them */
+#define BIG_Y 192                                       /* the footer's line: rows 192 .. 239 */
+static void big_bubble(int32_t bx, int32_t by, int32_t bw, int32_t bh, int32_t r, uint16_t bg, const char *v,
+                       const char *u)                   /* the value in L (ACCENT) and its unit in M, centred in place */
+{
+    const aafont_t *vf = large_face_has(v) && ink_w(&AF_L, v) <= bw - 4 ? &AF_L : &AF_M;
+    int32_t wv = ink_w(vf, v), wn = u[0] ? 4 + ink_w(&AF_M, u) : 0, x;
+    int32_t yl = HALF_UP(bh - AF_L_CAP_H) - AF_L_CAP_Y, ym = yl + AF_L_CAP_Y + AF_L_CAP_H - AF_M_CAP_Y - AF_M_CAP_H;
+    if (wv + wn > bw - 4)                               /* (no room for the unit: the value alone, still big, */
+        wn = 0;
+    if (wv > bw - 4 && vf == &AF_L) {                   /*  then the value in M) */
+        vf = &AF_M;
+        wv = ink_w(vf, v);
+    }
+    x = HALF_UP(bw - wv - wn);
+    cv_begin((uint32_t)bw, (uint32_t)bh, T_BG);
+    if (r)
+        cv_rrect(0, 0, bw, bh, r, bg, T_BG);
+    else
+        cv_rect(0, 0, bw, bh, bg);
+    GFX_HOOK_ALIGN(0, 0, bw, 0, AL_H, "a big value centred in place");
+    cv_text(x, vf == &AF_L ? yl : ym, vf, v, T_ACCENT);
+    if (wn)
+        cv_text(x + wv + 4, ym, &AF_M, u, T_MID);
+    cv_blit((uint32_t)bx, (uint32_t)by);
+}
+static void draw_big(void)
+{
+    char s[24];
+    uint32_t c, gone = 0, now = fm1_ms;
+    if (!(big.son | big.bon | big.kon))
+        return;
+    if (big.page != ui.page || big.home != ui.home || ui.menu || ui.confirm || name_on() || ui.layer || ui.uboot ||
+        seq_counting()) {
+        big.son = big.bon = big.kon = 0;
+        ui.force = 1;                                   /* (what they covered) */
+        return;
+    }
+    if (big.son && now - big.sms >= BIG_SND_MS)
+        big.son = 0, gone = 1;
+    if (big.bon && now - big.bms >= BIG_MS)
+        big.bon = 0, gone = 1;
+    for (c = 0; c < 4u; c++)
+        if ((big.kon >> c & 1u) && now - big.kms[c] >= BIG_MS)
+            big.kon &= (uint8_t)~(1u << c), gone = 1;
+    if (gone) {                                         /* one gone: the page whole again, the others drawn over it */
+        ui.force = 1;
+        return;
+    }
+    for (c = 0; c < 4u; c++)                            /* KNOB n: its value big in its own place (a card, or under */
+        if ((big.kon >> c & 1u) && big.kw[c])           /* a P600 panel's knob) */
+            big_bubble(big.kx[c], big.ky[c], big.kw[c], big.kh[c], big.kr[c], big.kbg[c], big.val[c], big.unit[c]);
+    if (big.bon && !big.kon) {                          /* the tempo: its digits in place, over the header's (Marc) */
+        head_geo_t g;
+        int32_t cx, bw;
+        fmt_int(s, song.g[G_BPM]);
+        head_geo(&g, s);
+        cx = g.bx + HALF_UP(g.b[0] + g.b[2]);
+        bw = ink_w(&AF_L, s) + 8;
+        cx -= bw / 2;
+        if (cx < 0)
+            cx = 0;
+        if (cx + bw > 240)
+            cx = 240 - bw;
+        big_bubble(cx, 0, bw, Y_LABEL, 0, T_BG, s, "");
+    }
+    /* (the sound: draw_foot itself draws its name big, in place) */
+}
+
 static void ui_draw_page(uint32_t counting)
 {
     if (ui.uboot) {

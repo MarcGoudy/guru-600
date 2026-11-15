@@ -48,6 +48,10 @@
   "fr": "<b>Une table MIDI qui suit celle du firmware GliGli</b> : un réglage prévu pour un vrai Prophet-600 pilote le Guru-600 tel quel (chapitre {ch:midi})."
  },
  {
+  "en": "<b>Made for blind and visually impaired players too</b>: the Guru-600 speaks its screen through a screen reader on the computer (chapter {ch:midi}), and the value you change shows in big type, in its own place (chapter {ch:screen}).",
+  "fr": "<b>Pensé aussi pour les musiciens aveugles et malvoyants</b> : le Guru-600 dit son écran grâce à un lecteur d'écran sur l'ordinateur (chapitre {ch:midi}), et la valeur que vous changez s'affiche en grand, à sa place (chapitre {ch:screen})."
+ },
+ {
   "en": "<b>A new look</b>: Prophet-600-style pages, a screen that draws the sound in 3D in real time, a colored message band and an animated start screen (chapter {ch:screen}).",
   "fr": "<b>Un nouveau visage</b> : des pages à l'image du Prophet-600, un écran qui dessine le son en 3D en temps réel, un bandeau de messages coloré et un écran de démarrage animé (chapitre {ch:screen})."
  },
@@ -1100,6 +1104,10 @@
   "fr": "<b>LFO maintenu + KNOB 1–4</b>"
  },
  {
+  "en": "<b>ENV held + KNOB 1–4</b>",
+  "fr": "<b>ENV maintenu + KNOB 1–4</b>"
+ },
+ {
   "en": "<b>ENV held + PRESETS</b>",
   "fr": "<b>ENV maintenu + PRESETS</b>"
  },
@@ -1146,6 +1154,10 @@
  {
   "en": "MOMENTARY: changes that last while LFO is held (chapter {ch:envlfo}).",
   "fr": "MOMENTARY : des changements qui durent tant que LFO est maintenu (chapitre {ch:envlfo})."
+ },
+ {
+  "en": "That value back to the sound's own, the others kept (a shared value: its default).",
+  "fr": "Cette valeur revient à celle du son, les autres restent (une valeur commune : sa valeur par défaut)."
  },
  {
   "en": "Ten sounds a detent instead of one (chapter {ch:sounds}).",
@@ -1394,6 +1406,26 @@
  {
   "en": "A missing sample: NO SAMPLE, with a crossed-out file icon (chapter {ch:engines}). Until you have opened a quick screen once, each tap of its button shows HOLD [EDIT] QUICK: hold the button to open the quick screen.",
   "fr": "Un échantillon manquant : NO SAMPLE, avec une icône de fichier barré (chapitre {ch:engines}). Tant que vous n'avez pas ouvert un écran rapide une première fois, chaque appui sur son bouton affiche HOLD [EDIT] QUICK : maintenez le bouton pour ouvrir l'écran rapide."
+ },
+ {
+  "en": "Values in big type",
+  "fr": "Les valeurs en grand"
+ },
+ {
+  "en": "The value you change shows in big type, in its own place, about twice its size, as a phone shows the key you press: a knob's value in its card (also under the knobs of the P600 pages), the tempo in the header when you turn SELECT, and the sound's name on the bottom line when you turn PRESETS or ALGORITHM.",
+  "fr": "La valeur que vous changez s'affiche en grand, à sa place, environ deux fois plus grande, comme un téléphone montre la touche que vous tapez : la valeur d'un bouton dans sa carte (aussi sous les boutons des pages P600), le tempo dans l'en-tête quand vous tournez SELECT, et le nom du son sur la ligne du bas quand vous tournez PRESETS ou ALGORITHM."
+ },
+ {
+  "en": "PRESETS, then KNOB 2 turned: the sound's name and RES in big type.",
+  "fr": "PRESETS puis KNOB 2 tournés : le nom du son et RES en grand."
+ },
+ {
+  "en": "SELECT turned: the tempo in big type.",
+  "fr": "SELECT tourné : le tempo en grand."
+ },
+ {
+  "en": "It goes back to its size 0.4 s after the last detent (the sound's name 0.8 s). Two knobs turned together each show their own value, side by side.",
+  "fr": "Elle reprend sa taille 0,4 s après le dernier cran (le nom du son 0,8 s). Deux boutons tournés ensemble montrent chacun leur valeur, côte à côte."
  },
  {
   "en": "Dialogs",
@@ -2698,6 +2730,10 @@
  {
   "en": "<b>Back to the saved sound</b>: turn PRESETS one step away and back; the sound reloads as it was saved.",
   "fr": "<b>Revenir au son rangé</b> : tournez PRESETS d'un cran puis revenez ; le son se recharge tel qu'il est rangé."
+ },
+ {
+  "en": "<b>Back to the sound's value for one setting only</b>: hold <b>ENV</b> and turn the knob of that setting; it takes the sound's value again, and the other settings you changed stay as they are. A setting shared by the whole project (the tempo, the shared effects) goes back to its default.",
+  "fr": "<b>Revenir à la valeur du son pour un seul réglage</b> : maintenez <b>ENV</b> et tournez le bouton de ce réglage ; il reprend la valeur du son, et les autres réglages que vous avez changés restent tels quels. Un réglage commun à tout le projet (le tempo, les effets partagés) revient à sa valeur par défaut."
  },
  {
   "en": "<b>Undo a load</b>: hold SAVE for 1 s; hold again to redo. It undoes the track's last sound load (a quick run of PRESETS turns counts as one), MUTATE, pattern load or sequence edit.",

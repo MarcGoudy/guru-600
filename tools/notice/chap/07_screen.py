@@ -43,6 +43,13 @@ CH("screen", "Reading the screen: pages, colors, messages, help", "Lire l'écran
  P2("A missing sample: NO SAMPLE, with a crossed-out file icon (chapter {ch:engines}). Until you have opened a quick screen once, each tap of its button shows HOLD [EDIT] QUICK: hold the button to open the quick screen.",
     "Un échantillon manquant : NO SAMPLE, avec une icône de fichier barré (chapitre {ch:engines}). Tant que vous n'avez pas ouvert un écran rapide une première fois, chaque appui sur son bouton affiche HOLD [EDIT] QUICK : maintenez le bouton pour ouvrir l'écran rapide.") +
  '</div></div>' +
+ H3('Values in big type', 'Les valeurs en grand') +
+ P2("The value you change shows in big type, in its own place, about twice its size, as a phone shows the key you press: a knob's value in its card (also under the knobs of the P600 pages), the tempo in the header when you turn SELECT, and the sound's name on the bottom line when you turn PRESETS or ALGORITHM.",
+    "La valeur que vous changez s'affiche en grand, à sa place, environ deux fois plus grande, comme un téléphone montre la touche que vous tapez : la valeur d'un bouton dans sa carte (aussi sous les boutons des pages P600), le tempo dans l'en-tête quand vous tournez SELECT, et le nom du son sur la ligne du bas quand vous tournez PRESETS ou ALGORITHM.") +
+ '<div class="shotrow">' + shot("shots/scr_big_both.png", "PRESETS, then KNOB 2 turned: the sound's name and RES in big type.", 'PRESETS puis KNOB 2 tournés : le nom du son et RES en grand.', 240) +
+ shot("shots/scr_big_bpm.png", 'SELECT turned: the tempo in big type.', 'SELECT tourné : le tempo en grand.', 240) + '</div>' +
+ P2("It goes back to its size 0.4 s after the last detent (the sound's name 0.8 s). Two knobs turned together each show their own value, side by side.",
+    'Elle reprend sa taille 0,4 s après le dernier cran (le nom du son 0,8 s). Deux boutons tournés ensemble montrent chacun leur valeur, côte à côte.') +
  H3("Dialogs", "Les dialogues") +
  P2("Before anything is erased or replaced, a dialog asks for confirmation (sometimes a second line names what will be replaced): <span class='k'>OCT−</span> NO, <span class='k'>OCT+</span> YES. The other controls then do nothing; holding HOME opens the menu and cancels the dialog.",
     "Avant toute action qui efface ou remplace, un dialogue demande confirmation (parfois, une deuxième ligne nomme ce qui sera remplacé) : <span class='k'>OCT−</span> NON, <span class='k'>OCT+</span> OUI. Les autres commandes ne font alors rien ; maintenir HOME ouvre le menu et annule le dialogue.") +

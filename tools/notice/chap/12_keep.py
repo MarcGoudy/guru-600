@@ -67,6 +67,8 @@ CH("keep", "Keeping your sounds", "Conserver vos sons",
  H3("Undo, reload, forget", "Annuler, recharger, oublier") +
  LI([("<b>Back to the saved sound</b>: turn PRESETS one step away and back; the sound reloads as it was saved.",
       "<b>Revenir au son rangé</b> : tournez PRESETS d'un cran puis revenez ; le son se recharge tel qu'il est rangé."),
+     ("<b>Back to the sound's value for one setting only</b>: hold <b>ENV</b> and turn the knob of that setting; it takes the sound's value again, and the other settings you changed stay as they are. A setting shared by the whole project (the tempo, the shared effects) goes back to its default.",
+      '<b>Revenir à la valeur du son pour un seul réglage</b> : maintenez <b>ENV</b> et tournez le bouton de ce réglage ; il reprend la valeur du son, et les autres réglages que vous avez changés restent tels quels. Un réglage commun à tout le projet (le tempo, les effets partagés) revient à sa valeur par défaut.'),
      ("<b>Undo a load</b>: hold SAVE for 1 s; hold again to redo. It undoes the track's last sound load (a quick run of PRESETS turns counts as one), MUTATE, pattern load or sequence edit.",
       "<b>Annuler un chargement</b> : maintenez SAVE 1 s ; maintenez de nouveau pour rétablir. Cela annule le dernier chargement de son de la piste (une série rapide de crans de PRESETS compte pour un seul), MUTATE, chargement de séquence ou modification de séquence."),
      ("<b>Clear all your P600 sounds at once</b>: RESET SOUNDS (chapter {ch:reset}). Your USER sounds are not affected.",
