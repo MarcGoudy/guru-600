@@ -6,4 +6,6 @@ CH("credits", "Credits and licenses", "Crédits et licences",
      ("Prophet-600 factory programs: Sequential Circuits, 1982. Prophet-600 is a trademark of its owner; the Guru-600 is not affiliated with Sequential.",
       "Programmes d'usine du Prophet-600 : Sequential Circuits, 1982. Prophet-600 est une marque de son propriétaire ; le Guru-600 est sans lien avec Sequential."),
      ("Fonts: Barlow Condensed (The Barlow Project Authors, SIL Open Font License); Inter Tight (SIL Open Font License); VI Mong Rong (VN-Fonts Team, 1994).",
-      "Polices : Barlow Condensed (The Barlow Project Authors, licence SIL Open Font) ; Inter Tight (licence SIL Open Font) ; VI Mong Rong (VN-Fonts Team, 1994).")]))
+      "Polices : Barlow Condensed (The Barlow Project Authors, licence SIL Open Font) ; Inter Tight (licence SIL Open Font) ; VI Mong Rong (VN-Fonts Team, 1994)."),
+     ("Thanks to Ax (Audiorial, <a href='https://www.youtube.com/audiorial'>youtube.com/audiorial</a>) for his help with the Windows version.",
+      "Merci à Ax (Audiorial, <a href='https://www.youtube.com/audiorial'>youtube.com/audiorial</a>) pour son aide sur la version Windows.")]))

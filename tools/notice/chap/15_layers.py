@@ -61,7 +61,7 @@ CH("layers", "The quick screens", "Les écrans rapides",
      ("<b>OCT−</b>: restores the mutes, levels and tempo (MIX PUT BACK).", "<b>OCT−</b> : sourdines, niveaux et tempo reviennent comme avant (MIX PUT BACK).")]) +
  '</div></div>' +
  H3("SEL: the scale", "SEL : la gamme") +
- '<div class="split">' + shot("shots/ly_scl.png", "SEL held: [SCL] SET.", "SEL maintenu : [SCL] SET.", 240) + '<div>' +
+ '<div class="split">' + shot("shots/ly_scl.png", "SEL held: [SEL] SET.", "SEL maintenu : [SEL] SET.", 240) + '<div>' +
  LI([("<b>Any key</b>: sets the scale's root to that note.", "<b>N'importe quelle touche</b> : règle la note de départ de la gamme sur cette note."),
      ("<b>KNOB 1 to 4</b>: ROOT, SCL (the scale), CHRD (the chord keys), VOIC (the voicing).",
       "<b>KNOB 1 à 4</b> : ROOT, SCL (la gamme), CHRD (les accords), VOIC (la disposition)."),

@@ -626,7 +626,11 @@ static __attribute__((noinline)) void rev_side_mix(int32_t *l, int32_t *r, uint3
  *                        FDBK (0 .. 0.7): the FX layer's four all-pass stages (perform.c PH_A), mono, per track;
  *   FLANG CHOR           RATE, DEPTH, FDBK: a 256-sample line per track (5.8 ms); FLANG swept 0.25 .. 5 ms (the FX
  *                        layer's squared triangle), feedback 0 .. 0.85; CHOR a sine around 3.2 ms (+-2.3 ms at DEPTH
- *                        127), feedback 0 .. 0.4. A DC blocker on the swept copy (a clipped loud input is lopsided).
+ *                        127), feedback 0 .. 0.4. A DC blocker on the swept copy (a clipped loud input is lopsided);
+ *   EQ (Guru-600 1.1)    BASS MID TREBLE (EQ_DB: 64 = 0 dB, half-dB steps, -16 .. +15.5 dB): the input split by two
+ *                        one-pole low-passes (~250 Hz, ~2.4 kHz) into the part below the first, the band between, the
+ *                        part above the second (they sum back to the input), each band at its gain. Every band at 0 dB:
+ *                        the input bit for bit. Picking EQ on the INSERT page sets the three to 0 dB (ui_input.c).
  * The swept ones are the pedals': their wet is (dry + swept) / 2, the notches need both, so MIX 100 % is the whole
  * effect and less a lighter one. MIX (P_IMIX) blends dry and wet linearly; MIX 0 or TYPE OFF: the track bit for bit
  * as before (nothing runs). MIX glides (2.9 ms, SL_SLOPE); a TYPE change fades the old one out, clears the state,
@@ -636,7 +640,7 @@ static __attribute__((noinline)) void rev_side_mix(int32_t *l, int32_t *r, uint3
  * recordings) comes after, so its edges stay sharp (no flanger feedback or phaser ringing smears them) and a STUT
  * repeats the processed sound. State in the pool, per track (ins[], 580 B each); noinline, its own loops: the audio
  * ISR's inlined path gains one test per part (track_t ins_run) */
-enum { IT_OFF, IT_SOFT, IT_HARD, IT_FOLD, IT_FUZZ, IT_CRUSH, IT_PHASER, IT_FLANGER, IT_CHORUS, IT_N };
+enum { IT_OFF, IT_SOFT, IT_HARD, IT_FOLD, IT_FUZZ, IT_CRUSH, IT_PHASER, IT_FLANGER, IT_CHORUS, IT_EQ, IT_N };
 #define IL_LEN 256u                     /* FLANG / CHOR: the line, samples (a power of 2: masked) */
 static const uint8_t INS_HOLD[16] = {64, 48, 40, 32, 24, 20, 16, 12, 10, 8, 6, 5, 4, 3, 2, 1};   /* CRUSH RATE */
 typedef struct {
@@ -774,6 +778,36 @@ static __attribute__((noinline)) void ins_swept(ins_t *s, const int16_t *q, int3
     }
 }
 
+/* EQ: a band's gain minus one, Q16 (BASS MID TREBLE: 64 = 0 dB, (v - 64) / 2 half-dB steps; the cuts from LEVEL_Q12,
+ * 112 = 0 dB in half-dB steps, the boosts their inverse) */
+#define EQ_LO 43                        /* the split's cutoff indices (CUTOFF_HZ): 251 Hz, 2444 Hz */
+#define EQ_HI 89
+static int32_t eq_g(int32_t v)
+{
+    int32_t h = (clamp(v, 0, 127) - 64) >> 1;
+    int32_t g = h <= 0 ? (int32_t)LEVEL_Q12[112 + h] : (int32_t)((4096u * 4096u) / LEVEL_Q12[112 - h]);
+    return (g - 4096) << 4;
+}
+static inline int32_t eq_mul(int32_t a, int32_t g) { return (int32_t)(((int64_t)a * g) >> 16); }
+static __attribute__((noinline)) void ins_eq(ins_t *s, const int16_t *q, int32_t *b, uint32_t n, int32_t tw)
+{
+    uint32_t i, k1 = (uint32_t)ins_lpk(EQ_LO), k2 = (uint32_t)ins_lpk(EQ_HI);
+    int32_t gl = eq_g(q[1]), gm = eq_g(q[2]), gh = eq_g(q[3]);
+    for (i = 0; i < n; i++) {
+        int32_t x = b[i], v, lo, hi;
+        s->w += clamp(tw - s->w, -SL_SLOPE, SL_SLOPE);
+        v = mulq16((x << 4) - s->lp1, k1);            /* (x16, as TONE: the low cutoffs' rounding) */
+        lo = v + s->lp1;
+        s->lp1 = lo + v;
+        v = mulq16((x << 4) - s->lp2, k2);
+        hi = v + s->lp2;
+        s->lp2 = hi + v;
+        lo = (lo + 8) >> 4;                             /* below ~250 Hz */
+        hi = (hi + 8) >> 4;                             /* below ~2.4 kHz */
+        b[i] = pf_mix(x, x + eq_mul(lo, gl) + eq_mul(hi - lo, gm) + eq_mul(x - hi, gh), s->w);
+    }
+}
+
 /* the INSERT at rest at once (mix_part: TYPE turned OFF while the part was silent, its fade never ran) */
 static __attribute__((noinline)) void ins_rest(track_t *t)   /* (an INSERT whose TYPE is OFF: no fade left) */
 {
@@ -804,7 +838,9 @@ static __attribute__((noinline)) void track_insert(track_t *t, int32_t *b, uint3
             memset(s, 0, sizeof *s);                    /* starting: no stale line or filter */
             s->type = (uint8_t)ty;
         }
-        if (s->type >= IT_PHASER)
+        if (s->type == IT_EQ)
+            ins_eq(s, q, b, n, tw);
+        else if (s->type >= IT_PHASER)
             ins_swept(s, q, b, n, tw);
         else
             ins_drive(s, q, b, n, tw);

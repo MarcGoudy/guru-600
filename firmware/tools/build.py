@@ -171,6 +171,8 @@ def build_loader():
     if not image or len(image) > 0x14000:
         raise SystemExit("loader: image empty or too big")
     ota = ldr_wrap(image)
+    if len(ota) - 0x20 > 0x5000 - 0x200:    # (ota.c, the running firmware's: len > OTA_AREA_LEN - 0x200 is refused)
+        raise SystemExit(f"loader: ota.bin {len(ota)} B, more than the {0x5000 - 0x200 + 0x20} B the firmware stages")
     (LDR / "ota.bin").write_bytes(ota)
     bss = [int(ln.split()[0], 16) for ln in syms.splitlines() if ln.rstrip().endswith("_bss_end")]
     print(f"loader: image {len(image)} B at {LOADER_LOAD:#x}" + (f", bss end {bss[0]:#x}" if bss else ""))
@@ -317,6 +319,9 @@ def check(img, syms, dis, rt):
     bss = sym("_bss_end") - ram_org
     pool = sym("_pool_end") - sym("_pool_start")
     notes.append(f"image {len(img)} B; RAM .data+.bss {bss} B of {ram_len}; pool {pool} B of {pool_len}")
+    rt_org, rt_len = region["RAMTEXT"]
+    if sym("_ramtab_end"):                        # the packed tables' RAM (tools/tabpack.py), after .c1_text
+        notes.append(f"RAMTEXT (code, then the unpacked tables) {sym('_ramtab_end') - rt_org} B of {rt_len}")
     if region["RAM"][0] + ram_len != region["POOL"][0]:
         errors.append("app.ld: POOL does not start where RAM ends")
     if ram_len - bss < 4096:                      # keep >= 4 KiB of .bss spare (state the audio side touches)

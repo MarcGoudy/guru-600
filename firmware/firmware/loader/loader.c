@@ -22,6 +22,15 @@
 #include "fm1_flash.h"
 #include "../src/libc.c"
 #include "../src/usb.c"
+/* Guru-600: the screen while it installs (ldr_screen.c, started from Shine On): UPDATE MODE, WRITING (the logo fills, the percent),
+ * UPDATE FAILED */
+#define fm1_irq_off() ((void)0)                     /* (lcd.c's, around port A: interrupts are off for the whole loader) */
+#define fm1_irq_on() ((void)0)
+#include "fm1_lcd_hw.h"
+#include "../src/lcd.c"
+#define LDR_WAIT(ms) (fm1_delay_ms(ms), fm1_wdt_feed())   /* (ldr_done: between its frames) */
+#include "ldr_art.h"                               /* (Guru-600) its images: p600/make_ldr_screen.py */
+#include "ldr_screen.c"
 
 static uint32_t ldr_ms(void)   /* monotonic ms; survives the TIMER4 wrap (178.9 s) */
 {
@@ -72,7 +81,11 @@ static void ldr_record_clear(void)
 {
     fm1_updata_parm_clear();                        /* CRC 0: the SPL ignores it on a warm reset */
 }
-static void ldr_progress(uint32_t done, uint32_t total) { (void)done; (void)total; ldr_poll(); }
+static void ldr_progress(uint32_t done, uint32_t total)
+{
+    ldr_bar(done, total);                           /* (Guru-600: the bar, the percent) */
+    ldr_poll();
+}
 #include "ldr_core.c"
 
 extern uint32_t _bss_start[], _bss_end[];
@@ -81,9 +94,12 @@ void ldr_main(void)
 {
     fm1_wdt_arm(0x0D);                              /* ~8 s, fed by ldr_poll */
     fm1_time_init();
+    ldr_screen();                                   /* (Guru-600) before USB: the panel's ~0.3 s init, then USB */
+    fm1_wdt_feed();
     usb_start();
     for (;;) {
         ldr_poll();
+        ldr_anim(ldr_ms());                         /* (Guru-600) the waiting light */
         usb_retry(ldr_ms());
         if (usb.uboot_req) {                        /* soft key: mask-ROM UBOOT, as in Felucca */
             usb_detach();
@@ -96,9 +112,11 @@ void ldr_main(void)
             if (ldr_session() == 0) {
                 fm1_delay_ms(200);                  /* the "success" reply leaves */
                 usb_detach();
+                ldr_done();                         /* (Guru-600) a last glint, the host already let go (~0.7 s) */
                 fm1_delay_ms(30);
                 fm1_core_reset();                   /* the SPL boots the new app */
             }
+            ldr_failed();                           /* (Guru-600) the host may try again */
         }
     }
 }

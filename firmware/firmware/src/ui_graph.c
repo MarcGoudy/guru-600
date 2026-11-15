@@ -473,7 +473,8 @@ static void graph_fx(const track_t *t, uint16_t c)
 /* INSERT pages (1.5, fx.c track_insert): the drives and CRUSH as their curve, input (-1.5 .. +1.5 of a voice's full
  * scale) across, output up, dry and wet blended by MIX (fx.c ins_shape: the same shape; the dry diagonal RAISE); the
  * swept ones as two cycles of their sweep, as deep as DEPTH (FLANG the squared triangle, CHOR a sine, PHASR a
- * triangle). OFF: the dry diagonal, dim */
+ * triangle). EQ (Guru-600 1.1): its response, 30 Hz .. 16 kHz across (CUTOFF_HZ), +-16 dB up and down around the
+ * 0 dB axis, each band weighted where it acts (fx.c ins_eq's split: ~250 Hz, ~2.4 kHz). OFF: the dry diagonal, dim */
 static void graph_insert(const track_t *t, uint16_t c)
 {
     uint32_t p0 = cur_page()->id[0];                    /* (INSERT B's pages: the second INSERT's values) */
@@ -483,13 +484,19 @@ static void graph_insert(const track_t *t, uint16_t c)
     uint32_t sh = ins_bits_sh(q[1]);
     cv_rect(PANEL_X0, cy, PANEL_W, 1, T_RAISE);
     cv_line(PANEL_X0 + PANEL_W / 2, cy - a, PANEL_X0 + PANEL_W / 2, cy + a, T_RAISE);
-    if (ty == IT_OFF || ty >= IT_PHASER || !m)
+    if (ty == IT_OFF || (ty >= IT_PHASER && ty != IT_EQ) || !m)
         cv_line(PANEL_X0 + PANEL_W / 6, cy + a, PANEL_X0 + PANEL_W * 5 / 6, cy - a, ty ? T_RAISE : T_DIM);
     if (ty == IT_OFF)
         return;
     for (x = 0; x < PANEL_W; x++) {
         int32_t y, w;
-        if (ty >= IT_PHASER) {                       /* the sweep, two cycles */
+        if (ty == IT_EQ) {                           /* the response: the bands' half dBs, weighted (Q8) */
+            uint32_t f = CUTOFF_HZ[(uint32_t)x * 127u / (PANEL_W - 1u)], f2 = f * f;
+            int32_t wl = (int32_t)(256u * 63001u / (63001u + f2)), wh = 256 - (int32_t)(256u * 5973136u / (5973136u + f2));
+            int32_t wm = 256 - wl - wh < 0 ? 0 : 256 - wl - wh;
+            int32_t hd = wl * ((q[1] - 64) >> 1) + wm * ((q[2] - 64) >> 1) + wh * ((q[3] - 64) >> 1);   /* (x256) */
+            y = cy - mulq16(hd * a, (uint32_t)m << 1) / (32 * 256);
+        } else if (ty >= IT_PHASER) {                /* the sweep, two cycles */
             uint32_t ph = (uint32_t)x * (0xFFFFFFFFu / (PANEL_W / 2u)), tr = pf_tri(ph);
             w = ty == IT_CHORUS ? osc_sine(ph) * 2 : ty == IT_FLANGER ? (int32_t)((tr * tr) >> 16) * 2 - 65536 : (int32_t)tr * 2 - 65536;
             y = cy - (w >> 1) * a / 32768 * q[2] / 127;

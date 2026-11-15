@@ -251,6 +251,8 @@ head -c 200000 build/felucca.bin > "$OUT/old_app.bin"
 python3 tools/fm1pkg_make.py "$OUT/old_app.bin" build/loader/ota.bin "$OUT/old.fwsc" >/dev/null
 $CC -o "$OUT/ldr_test" tests/ldr_test.c
 run "update loader: other app -> this build" "$OUT/ldr_test" "$OUT/old.fwsc" build/felucca.fwsc
+$CC -o "$OUT/ldr_screen_test" tests/ldr_screen_test.c   # (Guru-600: the loader's screen, from Shine On)
+run "update loader's screen: UPDATE MODE with its light, WRITING with the segments and the percent, UPDATE FAILED" "$OUT/ldr_screen_test" "$OUT"
 
 if [ -f build/gen/felucca_tables.h ]; then
     $CC -O2 -w -Ibuild/gen -Ifirmware/src -o "$OUT/hostsim" tests/hostsim.c -lm
@@ -353,8 +355,11 @@ if [ -f build/gen/felucca_tables.h ]; then
         "$OUT/sound14_test" build/sound14_demo
     $CC -O2 -w -Ibuild/gen -Ifirmware/src -o "$OUT/insert_test" tests/insert_test.c -lm
     mkdir -p build/insert_demo
-    run "INSERT (1.5): OFF / MIX 0 bit for bit, each TYPE (no DC, bounded, dry / wet), MIX glide, automation, stored, cost, demos" \
+    run "INSERT (1.5): OFF / MIX 0 bit for bit, each TYPE (no DC, bounded, dry / wet), MIX glide, automation, stored, cost, demos; EQ (Guru-600 1.1)" \
         "$OUT/insert_test" build/insert_demo
+    $CC -O1 -w -Ibuild/gen -Ifirmware/src -Itests -o "$OUT/announce_ui_test" tests/announce_ui_test.c -lm
+    run "screen reader (Guru-600 1.1, fm1-reader): silent without a reader, HELLO, places, knobs once settled, messages, MENU, WHERE, BYE" \
+        "$OUT/announce_ui_test"
     $CC -O2 -w -Ibuild/gen -Ifirmware/src -o "$OUT/sound15_test" tests/sound15_test.c -lm
     mkdir -p build/sound15_demo
     run "1.5 sound items: ANALOG filter TYPE LP / BP / HP (responses, LP and other engines bit for bit), ENV SYNC (times at several tempi), cost, demos" \

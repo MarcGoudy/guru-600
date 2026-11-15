@@ -1070,6 +1070,8 @@ static void edit_param(uint32_t slot, int32_t steps)
     if (!d || !vp || d->max == d->min)
         return;
     v = param_turn(d, *vp, accel(EN_K1 + slot, steps, d->fmt == F_ENUM ? 0 : d->max - d->min));
+    if (v == IT_EQ && *vp != IT_EQ && pg->scope != SC_GLOBAL && (vp == &TSEL->p[P_ITYPE] || vp == &TSEL->p[P_JTYPE]))
+        vp[1] = vp[2] = vp[3] = 64;                     /* Guru-600 1.1: EQ picked, LOW MID HIGH at 0 dB (fx.c) */
     *vp = (int16_t)v;
     if (pg->scope != SC_GLOBAL) {
         motion_capture(TSEL, (uint32_t)(vp - TSEL->p), *vp);

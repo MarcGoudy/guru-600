@@ -71,6 +71,10 @@ static uint64_t now_ns(void)
 static void host_tracks_init(void)                /* as felucca_init: defaults, empty patterns */
 {
     uint32_t i, k;
+    tab_init_felucca_tables();                    /* main.c fm1_cstart: the packed tables (tools/tabpack.py; also run */
+#ifdef UAC_FIR_N                                  /* before main on a host, once only) */
+    tab_init_uac_fir();
+#endif
     for (i = 0; i < G_COUNT; i++)
         song.g[i] = GP[i].def;
     song.g[G_RTYPE] = 0;                          /* ROOM, the power-on reverb until 1.2: the renders (goldens) as

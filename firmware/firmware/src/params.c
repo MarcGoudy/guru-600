@@ -58,7 +58,7 @@ static const char *const N_GO[] = {"--", "GO"};
 static const char *const N_SLCR[] = {"OFF", "GATE", "STUT"};             /* SL_OFF .. SL_STUT (slicer.c) */
 static const char *const N_SLDIV[] = {"1/8", "1/16", "1/32", "8T", "16T", "32T"};   /* SL_DEN */
 /* the INSERT's types (1.5, fx.c IT_*; append-only: stored). Its three values A B C mean what the type says (ins_desc) */
-static const char *const N_ITYPE[] = {"OFF", "SOFT", "HARD", "FOLD", "FUZZ", "CRUSH", "PHASR", "FLANG", "CHOR"};
+static const char *const N_ITYPE[] = {"OFF", "SOFT", "HARD", "FOLD", "FUZZ", "CRUSH", "PHASR", "FLANG", "CHOR", "EQ"};
 /* CRUSH: BITS 1..16 and RATE (the held sample's rate, fx.c INS_HOLD) over the range in 16 even parts (0-terminated) */
 static const char *const N_IBITS[] = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15",
                                       "16", 0};
@@ -178,17 +178,19 @@ static const param_desc_t TP[P_COUNT] = {
 /* the INSERT's A B C as its TYPE means them (TP's ranges and defaults): the drives DRIVE TONE LEVEL, CRUSH BITS RATE
  * LPF, the swept ones RATE DEPTH FDBK; OFF TP's own */
 #define PU(l, f, df, n, u) {l, f, 0, 127, df, n, u}
-static const param_desc_t INS_DESC[3][3] = {
+static const param_desc_t INS_DESC[4][3] = {
     {PU("DRIVE", F_PCT, 64, 0, 0), PU("TONE", F_CUTOFF, 96, 0, 0), PU("LEVEL", F_DB, 96, 0, 0)},
     {PU("BITS", F_INT, 64, N_IBITS, 0), PU("RATE", F_INT, 96, N_IRATE, "Hz"), PU("LPF", F_CUTOFF, 96, 0, 0)},
     {PU("RATE", F_LFOHZ, 64, 0, 0), PU("DEPTH", F_PCT, 96, 0, 0), PU("FDBK", F_PCT, 96, 0, 0)},
+    {PU("LOW", F_GAIN, 64, 0, 0), PU("MID", F_GAIN, 64, 0, 0), PU("HIGH", F_GAIN, 64, 0, 0)},   /* EQ (Guru-600 1.1) */
 };
 #undef PU
 static const param_desc_t *ins_desc(int32_t type, uint32_t k)
 {
     if (type <= 0 || type >= (int32_t)NELEM(N_ITYPE))
         return &TP[P_IA + k];
-    return &INS_DESC[type < 5 ? 0 : type == 5 ? 1 : 2][k];   /* (IT_SOFT .. IT_FUZZ, IT_CRUSH, the swept ones) */
+    return &INS_DESC[type < 5 ? 0 : type == 5 ? 1 : type < 9 ? 2 : 3][k];   /* (IT_SOFT .. IT_FUZZ, IT_CRUSH, the swept
+                                                                           * ones, IT_EQ) */
 }
 
 static const param_desc_t GP[G_COUNT] = {
@@ -418,6 +420,19 @@ static void param_format(const param_desc_t *d, int32_t v, char *val, const char
             *unit = "dB";
         }
         break;
+    case F_GAIN: {                                    /* the INSERT EQ (fx.c eq_g): half-dB steps, 64 = 0 dB */
+        int32_t h = (v - 64) >> 1, a = h < 0 ? -h : h, n = 0;
+        if (h)
+            val[n++] = h < 0 ? '-' : '+';
+        fmt_int(val + n, a >> 1);                     /* (fmt_fix writes 0.5 as ".5") */
+        while (val[n])
+            n++;
+        val[n++] = '.';
+        val[n++] = (char)(a & 1 ? '5' : '0');
+        val[n] = 0;
+        *unit = "dB";
+        break;
+    }
     case F_SEMI:
         fmt_int(val, v);
         if (v > 0) {
@@ -494,7 +509,7 @@ static const page_t PAGES[] = {
     {"DLY", FAM_FX, SC_GLOBAL, GR_NONE, {G_DTIME, G_DFDBK, G_DCOLOR, G_DMIX}},
     {"REVERB", FAM_FX, SC_GLOBAL, GR_NONE, {G_RTYPE, G_RSIZE, G_RDAMP, 0xFF}},   /* TYPE: ROOM / SPRING / HALL */
     {"CHORUS", FAM_FX, SC_GLOBAL, GR_NONE, {G_CRATE, G_CDEPTH, 0xFF, 0xFF}},
-    {"SCL", FAM_SCL, SC_TRACK, GR_SCALE, {P_ROOT, P_SCALE, P_QUANT, P_TRANS}},
+    {"SEL", FAM_SCL, SC_TRACK, GR_SCALE, {P_ROOT, P_SCALE, P_QUANT, P_TRANS}},
     {"CHORD", FAM_SCL, SC_TRACK, GR_CHORD, {P_CHRD, P_VOIC, 0xFF, 0xFF}},   /* SCL again: the chord keys (chord.c) */
 #if FELUCCA_P600
     /* P600 only (ui.c page_visible): the rest of the Prophet-600's panel (params.c P600_XDESC), its EDIT pages in the

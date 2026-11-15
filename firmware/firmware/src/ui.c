@@ -100,6 +100,15 @@ static uint32_t sel_mode(void) { return ((ui_prefs2 >> 4) & 1u) | ((ui_prefs2 >>
 /* Guru-600: MENU > DISPLAY > 3D, a byte no engine uses (saved with the settings; 0 in older ones = ON): 1 OFF, the curves
  * flat as Felucca draws them (ui_graph3d.c); anything else ON */
 #define ui_prefs3 (favorites.factory[15][13])
+/* Guru-600: MENU > MIDI > MIDI KNOBS (ON by default: a controller plugged in works at once), bit 1 of ui_prefs3 set = OFF (bit 0 was 3D OFF; 0 in every older setting = ON): CC16..19
+ * from a controller turn KNOB1..4, on the page shown, instead of setting P600 parameters (midi_control.c p6_cc). Their
+ * values are a controller's positions (0..127, an Arturia KeyStep's bank A): each change is that many clicks (panel.c
+ * panel_enc), and the controller's end (0 or 127) pushes the knob on to its own end, so the two ends meet (a controller
+ * keeps its position and takes none back) */
+#define PREF_Y 0xFF000000u                     /* (menu_items.c MENU_FLAGS: a bit of ui_prefs3, << 24) */
+#define PREF_MIDI_KNOBS_OFF (0x02u << 24)   /* (set = OFF: 0, every setting so far, = ON, the default) */
+static uint8_t *const mknob_pref = &favorites.factory[15][13];   /* (midi_control.c midi_knob_cc: ui_prefs3) */
+static int16_t *const mknob_clk = panel_mknob;
 /* 1.5.6 (#212): MENU > DISPLAY > LEDS INV LO / INV HI: INV with the idle LEDs at the steady mid level (ui_input.c
  * ui_leds) instead of lit. The mode stays INV (settings_leds, panel.c: so firmware before 1.5.6 reads plain INV) and
  * this byte no engine uses holds the level: 1 LO, 2 HI; 0 (every older setting) or another value = INV as before.
@@ -469,10 +478,53 @@ static uint32_t page_first(uint32_t fam)       /* the family's first page this t
     return 0;
 }
 
-/* transient message in the top bar, right of the transport and the BPM: a + b */
+/* Guru-600 1.1: the screen reader (ui_announce.c; announce.c: fm1-base's, MPL-2.0, as it is) */
+#define ANN_NAME "GURU-600"
+#define ANN_MAX 120u                                    /* (a SAY: 43 USB-MIDI packets at most) */
+#define ANN_DATA                                        /* (.bss: the pool keeps its 8 KB headroom) */
+#if FELUCCA_OTA && !defined(ANN_CAPTURE)
+static int ota_wire_send(const uint8_t *p, uint32_t n);
+#endif
+static int ann_wire_send(const uint8_t *p, uint32_t n)
+{
+#if defined(ANN_CAPTURE)
+    return ANN_CAPTURE(p, n);                           /* (tests/announce_ui_test.c) */
+#elif FELUCCA_OTA
+    return ota_wire_send(p, n);
+#else
+    (void)p;
+    (void)n;
+    return -1;
+#endif
+}
+#include "announce.c"
+static void ann_cat(char *s, uint32_t cap, const char *a)   /* s + " " + a, printable ASCII only (ui_announce.c) */
+{
+    uint32_t n = str_len(s);
+    if (!a || !a[0])
+        return;
+    if (n && n + 1u < cap && s[n - 1u] != ' ' && a[0] != ',')   /* (", ": no space before) */
+        s[n++] = ' ';
+    for (; *a && n + 1u < cap; a++)
+        if (*a >= ' ' && *a <= '~')
+            s[n++] = *a;
+    s[n] = 0;
+}
+
+static void ann_col(uint32_t c, const char *label, const char *val, const char *unit);
+static void ann_ui(void);
+
+/* transient message in the top bar, right of the transport and the BPM: a + b (and to a screen reader) */
 static void ui_say(const char *a, const char *b)
 {
     uint32_t n;
+    if (ann_on()) {
+        char t[48];
+        t[0] = 0;
+        ann_cat(t, sizeof t, a);
+        ann_cat(t, sizeof t, b);
+        ann_say(t, 0, ANN_KEEP);
+    }
     str_cpy(ui.msg, a, sizeof ui.msg);
     n = str_len(ui.msg);
     str_cpy(ui.msg + n, b, sizeof ui.msg - n);

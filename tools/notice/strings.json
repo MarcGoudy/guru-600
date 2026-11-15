@@ -280,6 +280,10 @@
   "fr": "Une nouvelle version s'installe de la même façon, depuis la page d'installation. Sauvegardez d'abord avec la page BACKUP de l'éditeur Guru-600 (chapitre {ch:editor})."
  },
  {
+  "en": "The simplest way: open the Guru-600 editor with the FM-1 connected. When a newer Guru-600 is out, the editor says so and offers <b>Back up</b>, then <b>Install</b>: the update is written right there, with a progress bar that follows the one on the FM-1's screen. Do not unplug the FM-1 until it has restarted. Your sounds, projects and settings stay.",
+  "fr": "Le plus simple : ouvrez l'éditeur Guru-600, FM-1 branché. Quand une nouvelle version du Guru-600 est sortie, l'éditeur le signale et propose <b>Sauvegarder</b>, puis <b>Installer</b> : la mise à jour s'écrit sur place, avec une barre de progression qui suit celle de l'écran du FM-1. Ne débranchez pas le FM-1 avant qu'il ait redémarré. Vos sons, projets et réglages restent en place."
+ },
+ {
   "en": "Switching to another firmware, then coming back",
   "fr": "Passer à un autre firmware, puis revenir"
  },
@@ -1344,8 +1348,8 @@
   "fr": "FX, SLICER, INSERT, INSERT 2, INSERT B, INSERT B 2, DLY, REVERB, CHORUS"
  },
  {
-  "en": "SCL, CHORD",
-  "fr": "SCL, CHORD"
+  "en": "SEL, CHORD",
+  "fr": "SEL, CHORD"
  },
  {
   "en": "ARP, ARP 2",
@@ -2840,16 +2844,16 @@
   "fr": "Vérifiez qu'il utilise bien le Guru-600 et qu'il est branché en USB, puis cliquez de nouveau sur Connecter."
  },
  {
-  "en": "Press <b>SEL</b>: two pages, SCL (the scale) and CHORD (the chord keys). Both act on the selected track; on a DRUM track the keys keep their drum mapping.",
-  "fr": "Appuyez sur <b>SEL</b> : deux pages, SCL (la gamme) et CHORD (les accords). Les deux agissent sur la piste choisie ; sur une piste DRUM, les touches gardent leur répartition de batterie."
+  "en": "Press <b>SEL</b>: two pages, SEL (the scale) and CHORD (the chord keys). Both act on the selected track; on a DRUM track the keys keep their drum mapping.",
+  "fr": "Appuyez sur <b>SEL</b> : deux pages, SEL (la gamme) et CHORD (les accords). Les deux agissent sur la piste choisie ; sur une piste DRUM, les touches gardent leur répartition de batterie."
  },
  {
-  "en": "SCL 1/2",
-  "fr": "SCL 1/2"
+  "en": "SEL 1/2",
+  "fr": "SEL 1/2"
  },
  {
-  "en": "The SCL page.",
-  "fr": "La page SCL."
+  "en": "The SEL page.",
+  "fr": "La page SEL."
  },
  {
   "en": "The scale the keys play in.",
@@ -2928,8 +2932,8 @@
   "fr": "action"
  },
  {
-  "en": "DIA3 and DIA7 follow the scale set on the SCL page (with SCL on CHR, the major scale of ROOT); a key outside the scale takes the scale note below it. A chord uses as many voices as it has notes. In MONO, LEG or UNI, the track plays only the chord's root; DRUM and SLICE tracks ignore the chord keys.",
-  "fr": "DIA3 et DIA7 suivent la gamme réglée sur la page SCL (avec SCL sur CHR, la gamme majeure de ROOT) ; une touche hors gamme prend la note de la gamme juste en dessous. Un accord utilise autant de voix qu'il a de notes. En MONO, LEG ou UNI, la piste ne joue que la fondamentale de l'accord ; les pistes DRUM et SLICE ignorent les accords."
+  "en": "DIA3 and DIA7 follow the scale set on the SEL page (with SCL on CHR, the major scale of ROOT); a key outside the scale takes the scale note below it. A chord uses as many voices as it has notes. In MONO, LEG or UNI, the track plays only the chord's root; DRUM and SLICE tracks ignore the chord keys.",
+  "fr": "DIA3 et DIA7 suivent la gamme réglée sur la page SEL (avec SCL sur CHR, la gamme majeure de ROOT) ; une touche hors gamme prend la note de la gamme juste en dessous. Un accord utilise autant de voix qu'il a de notes. En MONO, LEG ou UNI, la piste ne joue que la fondamentale de l'accord ; les pistes DRUM et SLICE ignorent les accords."
  },
  {
   "en": "The chord memory (MEM)",
@@ -3124,8 +3128,8 @@
   "fr": "SEL : la gamme"
  },
  {
-  "en": "SEL held: [SCL] SET.",
-  "fr": "SEL maintenu : [SCL] SET."
+  "en": "SEL held: [SEL] SET.",
+  "fr": "SEL maintenu : [SEL] SET."
  },
  {
   "en": "<b>Any key</b>: sets the scale's root to that note.",
@@ -3264,6 +3268,10 @@
   "fr": "Éteint l'écran après ce délai sans manipulation ; le son continue."
  },
  {
+  "en": "What wakes a dark screen: the panel and MIDI notes, or the panel only.",
+  "fr": "Ce qui rallume l'écran : la façade et les notes MIDI, ou la façade seulement."
+ },
+ {
   "en": "Where the visuals pick up the sound: after MASTER (OUT) or before (MIX).",
   "fr": "Où les images captent le son : après MASTER (OUT) ou avant (MIX)."
  },
@@ -3336,8 +3344,8 @@
   "fr": "Une note MIDI destinée à une autre piste sélectionne cette piste."
  },
  {
-  "en": "What wakes a dark screen: the panel and MIDI notes, or the panel only.",
-  "fr": "Ce qui rallume l'écran : la façade et les notes MIDI, ou la façade seulement."
+  "en": "ON: a MIDI controller's knobs control the Guru-600 as they come, KNOB 1 to 4 and the four tracks' levels (chapter {ch:midi}). OFF: CC 16 to 19 set the P600 oscillators again.",
+  "fr": "ON : les boutons d'un contrôleur MIDI pilotent le Guru-600 tels quels, KNOB 1 à 4 et le niveau des quatre pistes (chapitre {ch:midi}). OFF : les CC 16 à 19 règlent de nouveau les oscillateurs P600."
  },
  {
   "en": "OCT+ forgets every MIDI LEARN assignment at once, without confirmation (LEARN CLEARED; NOTHING LEARNED if there was none). Saved at once, even with the menu open.",
@@ -3404,6 +3412,66 @@
   "fr": "<b>Rien ne joue ?</b> Le clavier émet sur un canal que MIDI IN n'utilise pas (réglez MIDI IN = SEL pour vérifier), ou la piste est coupée."
  },
  {
+  "en": "A controller's knobs: MIDI KNOBS",
+  "fr": "Les boutons d'un contrôleur : MIDI KNOBS"
+ },
+ {
+  "en": "With MENU › MIDI › <b>MIDI KNOBS</b> ON (the default), the knobs of a MIDI keyboard or controller control the Guru-600 with no setup. The four knob banks of an Arturia KeyStep 37 mk2 work as they come out of the box; any other keyboard or controller does the same by sending the CC numbers below.",
+  "fr": "Avec MENU › MIDI › <b>MIDI KNOBS</b> sur ON (le réglage d'usine), les boutons d'un clavier ou d'un contrôleur MIDI pilotent le Guru-600 sans aucun réglage. Les quatre banques de boutons d'un Arturia KeyStep 37 mk2 fonctionnent telles qu'elles sortent de la boîte ; tout autre clavier ou contrôleur fait de même en envoyant les numéros de CC ci-dessous."
+ },
+ {
+  "en": "Bank",
+  "fr": "Banque"
+ },
+ {
+  "en": "CC (knobs 1 to 4)",
+  "fr": "CC (boutons 1 à 4)"
+ },
+ {
+  "en": "What they control",
+  "fr": "Ce qu'ils pilotent"
+ },
+ {
+  "en": "The FM-1's <b>KNOB 1 to 4</b>, on the page shown",
+  "fr": "Les <b>KNOB 1 à 4</b> du FM-1, sur la page affichée"
+ },
+ {
+  "en": "Cutoff, resonance, LFO rate, LFO amount (P600)",
+  "fr": "Coupure, résonance, vitesse du LFO, quantité de LFO (P600)"
+ },
+ {
+  "en": "Attack, decay, sustain, release",
+  "fr": "Attaque, decay, sustain, release"
+ },
+ {
+  "en": "The <b>LEVEL</b> of tracks 1 to 4: a mixer",
+  "fr": "Le <b>LEVEL</b> des pistes 1 à 4 : une table de mixage"
+ },
+ {
+  "en": "<b>Bank A</b> turns the FM-1's four knobs as your hand would, on whatever page is shown. At the end of its travel (0 or 127), the controller's knob also takes the FM-1's knob to its end.",
+  "fr": "<b>La banque A</b> tourne les quatre boutons du FM-1 comme votre main, sur la page affichée. Au bout de sa course (0 ou 127), le bouton du contrôleur amène aussi celui du FM-1 au bout de la sienne."
+ },
+ {
+  "en": "<b>Banks B and C</b> act on the track the keyboard's channel plays (MENU › MIDI › MIDI IN; by default, channel 1 plays track 1).",
+  "fr": "<b>Les banques B et C</b> agissent sur la piste que joue le canal du clavier (MENU › MIDI › MIDI IN ; par défaut, le canal 1 joue la piste 1)."
+ },
+ {
+  "en": "<b>Bank D</b> is a mixer: each knob sets its own track's volume, with nothing to select first. Fully left, the track is silent; fully right, it is at full volume. You see it on the MIXER page (HOME, then HOME again).",
+  "fr": "<b>La banque D</b> est une table de mixage : chaque bouton règle le volume de sa propre piste, sans rien sélectionner. Tout à gauche, la piste est muette ; tout à droite, elle est au maximum. On le voit sur la page MIXER (HOME, puis de nouveau HOME)."
+ },
+ {
+  "en": "A controller does not know the FM-1's settings: the first time you move one of its knobs, the setting jumps to the knob's position.",
+  "fr": "Un contrôleur ne connaît pas les réglages du FM-1 : la première fois que vous bougez l'un de ses boutons, le réglage saute à la position du bouton."
+ },
+ {
+  "en": "The KeyStep's screen does not show these functions: print the KeyStep sheet (KeyStep-Guru-600.pdf, on guru-600.com) and keep it next to it.",
+  "fr": "L'écran du KeyStep n'affiche pas ces fonctions : imprimez la fiche KeyStep (KeyStep-Guru-600.pdf, sur guru-600.com) et gardez-la à côté."
+ },
+ {
+  "en": "<b>A track has gone quiet?</b> A bank D knob turned to the left lowered its volume, and it stays there even with the controller unplugged. Turn that knob to the right, or raise LEVEL on the MIXER page.",
+  "fr": "<b>Une piste est devenue muette ?</b> Un bouton de la banque D tourné vers la gauche a baissé son volume, et il le reste même contrôleur débranché. Tournez ce bouton vers la droite, ou remontez LEVEL sur la page MIXER."
+ },
+ {
   "en": "The mod wheel",
   "fr": "La molette de modulation"
  },
@@ -3428,8 +3496,8 @@
   "fr": "Chaque commande P600 sur un CC MIDI"
  },
  {
-  "en": "On a P600 track, each Guru-600 setting responds to a fixed MIDI CC, from a controller's knobs or from music software (Logic, Ableton…). The numbers are those of the GliGli firmware for the Prophet-600: a setup made for a real Prophet-600 works as is, except the glide, on CC 5 instead of 38. The CC is received on the track's channel (MENU › MIDI). A CC set with MIDI LEARN takes priority. While the track records, CC moves are recorded as automation.",
-  "fr": "Sur une piste P600, chaque réglage du Guru-600 répond à un CC MIDI fixe, depuis les boutons d'un contrôleur ou un logiciel de musique (Logic, Ableton…). Les numéros sont ceux du firmware GliGli pour le Prophet-600 : un réglage prévu pour un vrai Prophet-600 fonctionne tel quel, sauf le glide, sur le CC 5 au lieu du 38. Le CC arrive sur le canal de la piste (MENU › MIDI). Un CC réglé avec MIDI LEARN est prioritaire. Pendant que la piste enregistre, les mouvements de CC sont enregistrés en automation."
+  "en": "On a P600 track, each Guru-600 setting responds to a fixed MIDI CC, from a controller's knobs or from music software (Logic, Ableton…). The numbers are those of the GliGli firmware for the Prophet-600: a setup made for a real Prophet-600 works as is, except the glide, on CC 5 instead of 38. The CC is received on the track's channel (MENU › MIDI). A CC set with MIDI LEARN takes priority. While the track records, CC moves are recorded as automation. With MIDI KNOBS ON (the default), CC 16 to 19 turn the FM-1's knobs instead (above): set MIDI KNOBS to OFF to use them on the oscillators.",
+  "fr": "Sur une piste P600, chaque réglage du Guru-600 répond à un CC MIDI fixe, depuis les boutons d'un contrôleur ou un logiciel de musique (Logic, Ableton…). Les numéros sont ceux du firmware GliGli pour le Prophet-600 : un réglage prévu pour un vrai Prophet-600 fonctionne tel quel, sauf le glide, sur le CC 5 au lieu du 38. Le CC arrive sur le canal de la piste (MENU › MIDI). Un CC réglé avec MIDI LEARN est prioritaire. Pendant que la piste enregistre, les mouvements de CC sont enregistrés en automation. Avec MIDI KNOBS sur ON (le réglage d'usine), les CC 16 à 19 tournent plutôt les boutons du FM-1 (ci-dessus) : réglez MIDI KNOBS sur OFF pour les utiliser sur les oscillateurs."
  },
  {
   "en": "CC",
@@ -3514,6 +3582,18 @@
  {
   "en": "The assignments are kept after power-off. MENU › MIDI › LEARN CLEAR clears them all.",
   "fr": "Les attributions sont conservées après extinction. MENU › MIDI › LEARN CLEAR les oublie toutes."
+ },
+ {
+  "en": "A screen reader, for blind and visually impaired players",
+  "fr": "Un lecteur d'écran, pour les musiciens aveugles et malvoyants"
+ },
+ {
+  "en": "At the request of a visually impaired player, the Guru-600 can speak its screen. Connect the FM-1 to a computer by USB and open <a href='https://github.com/charlesvestal/fm1-reader'>FM-1 Screen Reader</a>, by Charles Vestal: it says the page, its four cards, each knob you turn and the messages, or hands them to the computer's own screen reader.",
+  "fr": "À la demande d'un musicien malvoyant, le Guru-600 peut dire son écran. Branchez le FM-1 à un ordinateur en USB et ouvrez <a href='https://github.com/charlesvestal/fm1-reader'>FM-1 Screen Reader</a>, de Charles Vestal : il dit la page, ses quatre cartes, chaque bouton que vous tournez et les messages, ou les confie au lecteur d'écran de l'ordinateur."
+ },
+ {
+  "en": "Nothing is sent while no reader is listening: music software on the same USB port sees nothing, and the screen does not change.",
+  "fr": "Rien n'est envoyé tant qu'aucun lecteur n'écoute : un logiciel de musique sur le même port USB ne voit rien, et l'écran ne change pas."
  },
  {
   "en": "Tempo and clock",
@@ -4180,16 +4260,16 @@
   "fr": "La page INSERT ; INSERT 2 4/9 règle son dosage sec / traité (MIX)."
  },
  {
-  "en": "An effect inserted on the track: SOFT, HARD, FOLD, FUZZ (distortions: DRIVE, TONE, LEVEL), CRUSH (BITS, RATE, LPF), PHASR, FLANG, CHOR (RATE, DEPTH, FDBK).",
-  "fr": "Un effet inséré sur la piste : SOFT, HARD, FOLD, FUZZ (saturations : DRIVE, TONE, LEVEL), CRUSH (BITS, RATE, LPF), PHASR, FLANG, CHOR (RATE, DEPTH, FDBK)."
+  "en": "An effect inserted on the track: SOFT, HARD, FOLD, FUZZ (distortions: DRIVE, TONE, LEVEL), CRUSH (BITS, RATE, LPF), PHASR, FLANG, CHOR (RATE, DEPTH, FDBK), EQ (LOW, MID, HIGH).",
+  "fr": "Un effet inséré sur la piste : SOFT, HARD, FOLD, FUZZ (saturations : DRIVE, TONE, LEVEL), CRUSH (BITS, RATE, LPF), PHASR, FLANG, CHOR (RATE, DEPTH, FDBK), EQ (LOW, MID, HIGH)."
  },
  {
-  "en": "The type, OFF to CHOR.",
-  "fr": "Le type, de OFF à CHOR."
+  "en": "The type, OFF to EQ.",
+  "fr": "Le type, de OFF à EQ."
  },
  {
-  "en": "9 types",
-  "fr": "9 types"
+  "en": "10 types",
+  "fr": "10 types"
  },
  {
   "en": "Its three settings, named by the type.",
@@ -4206,6 +4286,26 @@
  {
   "en": "The sound goes through DIST, INSERT, then INSERT B: for example a phaser then a flanger. INSERT B OFF changes nothing.",
   "fr": "Le son passe par DIST, l'INSERT, puis l'INSERT B : par exemple un phaser puis un flanger. INSERT B sur OFF ne change rien."
+ },
+ {
+  "en": "EQ: an equalizer per sound",
+  "fr": "EQ : un égaliseur par son"
+ },
+ {
+  "en": "Set INSRT (or INSERT B) to <b>EQ</b>: three bands, <b>LOW</b> (below about 250 Hz), <b>MID</b> and <b>HIGH</b> (above about 2.4 kHz). At 64, a band is at 0 dB: the sound is unchanged. Each step is 0.5 dB, from −16 to +15.5 dB.",
+  "fr": "Réglez INSRT (ou INSERT B) sur <b>EQ</b> : trois bandes, <b>LOW</b> (sous 250 Hz environ), <b>MID</b> et <b>HIGH</b> (au-dessus de 2,4 kHz environ). À 64, une bande est à 0 dB : le son ne change pas. Chaque cran vaut 0,5 dB, de −16 à +15,5 dB."
+ },
+ {
+  "en": "Choosing EQ puts the three bands back to 0 dB. The page draws the response curve.",
+  "fr": "Choisir EQ remet les trois bandes à 0 dB. La page dessine la courbe de réponse."
+ },
+ {
+  "en": "To tame a sound that whistles or is too bright, lower HIGH; to thin out a heavy bass, lower LOW.",
+  "fr": "Pour adoucir un son qui siffle ou trop brillant, baissez HIGH ; pour alléger une basse trop lourde, baissez LOW."
+ },
+ {
+  "en": "The EQ is kept with USER sounds and with projects.",
+  "fr": "L'égaliseur est conservé avec les sons USER et avec les projets."
  },
  {
   "en": "DLY 7/9: TIME (in note values), FDBK, COLR, MIX.",
@@ -4412,8 +4512,8 @@
   "fr": "Les touches jouent d'autres notes que celles sur lesquelles j'appuie."
  },
  {
-  "en": "A scale or a transposition is set: on SCL, set SCL to CHR, QNT to OFF and TRN to 0. For the octave, press OCT− and OCT+ together. For the chord keys, set CHRD to OFF on SEL › CHORD.",
-  "fr": "Une gamme ou une transposition est réglée : sur SCL, mettez SCL sur CHR, QNT sur OFF et TRN à 0. L'octave : appuyez ensemble sur OCT− et OCT+. Les accords : sur SEL › CHORD, réglez CHRD sur OFF."
+  "en": "A scale or a transposition is set: on SEL, set SCL to CHR, QNT to OFF and TRN to 0. For the octave, press OCT− and OCT+ together. For the chord keys, set CHRD to OFF on SEL › CHORD.",
+  "fr": "Une gamme ou une transposition est réglée : sur SEL, mettez SCL sur CHR, QNT sur OFF et TRN à 0. L'octave : appuyez ensemble sur OCT− et OCT+. Les accords : sur SEL › CHORD, réglez CHRD sur OFF."
  },
  {
   "en": "A note keeps playing by itself.",
@@ -5142,6 +5242,10 @@
  {
   "en": "Fonts: Inter Tight (SIL Open Font License); VI Mong Rong (VN-Fonts Team, 1994).",
   "fr": "Polices : Inter Tight (licence SIL Open Font) ; VI Mong Rong (VN-Fonts Team, 1994)."
+ },
+ {
+  "en": "Thanks to Ax (Audiorial, <a href='https://www.youtube.com/audiorial'>youtube.com/audiorial</a>) for his help with the Windows version.",
+  "fr": "Merci à Ax (Audiorial, <a href='https://www.youtube.com/audiorial'>youtube.com/audiorial</a>) pour son aide sur la version Windows."
  },
  {
   "en": "To Éric Le Yavanc, my brother at heart,",

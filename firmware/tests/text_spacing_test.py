@@ -44,12 +44,19 @@ def parse(path):
         name, f = m.group(1), [x.strip() for x in m.group(2).split(",")]
         arr = lambda n: [int(v, 0) for v in re.search(r"AF_%s_%s\[\d+\] = \{([^}]*)\}" % (name, n), t)
                          .group(1).replace("\n", " ").split(",") if v.strip()]
-        g = [tuple(int(v) for v in e.split(",")) for e in
-             re.findall(r"\{(-?\d+, -?\d+, -?\d+, -?\d+, -?\d+, -?\d+)\}",
-                        re.search(r"AF_%s_G\[\d+\] = \{(.*?)\n\};" % name, t, re.S).group(1))]
+        psh = int(f[11]) if len(f) > 11 else 0
+        adv = arr("ADV")                              # (gen_aa_font.py: the advance per glyph, not per phase)
+        g = [(e[0], adv[i >> psh]) + e[1:] for i, e in enumerate(
+             tuple(int(v) for v in e.split(",")) for e in
+             re.findall(r"\{(-?\d+, -?\d+, -?\d+, -?\d+, -?\d+)\}",
+                        re.search(r"AF_%s_G\[\d+\] = \{(.*?)\n\};" % name, t, re.S).group(1)))]
         kern = {}
-        if f[8] != "0":
-            kern = dict(zip(arr("KERN"), arr("KD")))
+        if f[8] != "0":                               # by left glyph: KS[i] .. KS[i + 1] - 1, the right characters
+            ks, kb, kd = arr("KS"), arr("KERN"), arr("KD")
+            codes = list(range(int(f[2]), int(f[3]) + 1)) + arr("EX")[:int(f[4])]
+            for i, a in enumerate(codes):
+                for m2 in range(ks[i], ks[i + 1]):
+                    kern[(a << 8) | kb[m2]] = kd[m2]
         faces[name] = {"h": int(f[0]), "asc": int(f[1]), "first": int(f[2]), "last": int(f[3]), "nex": int(f[4]),
                        "g": g, "data": bytes(arr("DATA")), "kern": kern, "ex": arr("EX")[:int(f[4])],
                        "psh": int(f[11]) if len(f) > 11 else 0,

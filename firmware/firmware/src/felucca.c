@@ -41,8 +41,8 @@
                                       * waiting loop is in RAM the ROM and the SPL use at boot) */
 #ifndef FELUCCA_VERSION
 #define FELUCCA_VERSION "v1.6.1" /* shown in the menu, the console and the editor; build.py --release X.Y */
-#define GURU_VERSION "1.0.2"        /* Guru-600's own version: MENU > ABOUT (p600/make_splash.py VERSION, the splash) */
 #endif
+#include "guru_version.h"              /* Guru-600's own version (one place) */
 #if FELUCCA_OTA && !FELUCCA_FLASH
 #error "FELUCCA_OTA needs FELUCCA_FLASH"
 #endif

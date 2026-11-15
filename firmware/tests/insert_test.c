@@ -12,7 +12,8 @@
  * 4. stored: a project round trip (FUN10, 111 parameters with 1.5's TYPE and ESYNC; 16 spare bytes left), a FUN10 of 104 (1.2 .. 1.4) loads the
  *    INSERT OFF; user presets of 111 and 104; the labels and values the pages show per TYPE; the page order.
  * 5. the cost per type and track (instructions / sample, host) against an 8-voice ANALOG part.
- * 6. demos (DEMO_DIR): each TYPE on a loop (acid line + drums), two bars dry, two bars with the INSERT. */
+ * 6. demos (DEMO_DIR): each TYPE on a loop (acid line + drums), two bars dry, two bars with the INSERT.
+ * Guru-600 1.1: the EQ (LOW MID HIGH): 0 dB bit for bit, each band where it acts, its page, picked at 0 dB. */
 #define UI_TEST_NO_MAIN 1
 #include "ui_test.c"
 #ifdef __APPLE__
@@ -253,9 +254,10 @@ static void test_types(void)
                N_ITYPE[ty], pk[0], pk[1], dc[0], dc[1]);
         {
             char w[96];
-            snprintf(w, sizeof w, "%s: no DC (< 0.5 %% of a voice's full scale), bounded (< 1.5 x the input, LEVEL +7.5 dB)",
+            snprintf(w, sizeof w, "%s: no DC (< 0.5 %% of a voice's full scale), bounded (< 1.5 x the input; EQ 8 x)",
                      N_ITYPE[ty]);
-            ck(w, dc[0] < 164.0 && dc[1] < 164.0 && pk[0] < 120000 && pk[1] < 288000);
+            ck(w, dc[0] < 164.0 && dc[1] < 164.0 && (ty == IT_EQ ? pk[0] < 72000 * 8 && pk[1] < 192000 * 8 :
+                                                       pk[0] < 120000 && pk[1] < 288000));   /* (EQ: +15.5 dB a band) */
             snprintf(w, sizeof w, "%s: MIX 0 the input bit for bit, MIX 50 %% halfway to MIX 100 %% (the wet), it acts",
                      N_ITYPE[ty]);
             ck(w, same0 && lin && diff);
@@ -500,6 +502,94 @@ static void test_cost(void)
        worst < c0 * 0.10 && c < c0 * 0.005);
 }
 
+/* Guru-600 1.1: the EQ (fx.c ins_eq): every band at 0 dB the input bit for bit; each band cuts and boosts where it acts
+ * and leaves the others' range alone; LOW MID HIGH and their dBs on the page; picking EQ sets them to 0 dB */
+static double eq_db(double hz, int32_t a, int32_t b, int32_t c)
+{
+    uint32_t i;
+    double so = 0, si = 0;
+    for (i = 0; i < NS; i++)
+        sig_in[i] = (int32_t)(24000.0 * sin(2.0 * M_PI * hz * i / FS));
+    run_ins(IT_EQ, a, b, c, 127, sig_a);
+    for (i = NS / 2u; i < NS; i++) {
+        so += (double)sig_a[i] * sig_a[i];
+        si += (double)sig_in[i] * sig_in[i];
+    }
+    return 10.0 * log10(so / si);
+}
+static void test_eq(void)
+{
+    static const double HZ[3] = {60.0, 800.0, 10000.0};
+    double r[3][3], o[3];
+    uint32_t k, j;
+    int ok = 1, okc = 1, oko = 1, okb = 1;
+    char val[12];
+    const char *unit = 0;
+    track_t *t = &trk[0];
+    fresh(0, 0);                                         /* (no INSERT 2 left by test_ins2) */
+    for (k = 3; k <= 8u; k += 5) {
+        make_sig(k);
+        run_ins(IT_EQ, 64, 64, 64, 127, sig_a);
+        ok &= !memcmp(sig_a, sig_in, sizeof sig_in);
+        run_ins(IT_EQ, 65, 65, 65, 127, sig_a);
+        ok &= !memcmp(sig_a, sig_in, sizeof sig_in);
+    }
+    ck("EQ: LOW MID HIGH at 0 dB (64, 65): the input bit for bit (3 and 8 saws)", ok);
+    for (k = 0; k < 3u; k++) {                            /* each band at -12 dB (16), then +12 dB (112) */
+        int32_t q[3] = {64, 64, 64};
+        q[k] = 16;
+        for (j = 0; j < 3u; j++)
+            r[k][j] = eq_db(HZ[j], q[0], q[1], q[2]);
+        q[k] = 112;
+        o[k] = eq_db(HZ[k], q[0], q[1], q[2]);
+        printf("insert:   EQ %s -12 dB: %+5.1f dB at 60 Hz, %+5.1f at 800 Hz, %+5.1f at 10 kHz; +12 dB: %+5.1f where it acts\n",
+               k == 0 ? "LOW " : k == 1 ? "MID " : "HIGH", r[k][0], r[k][1], r[k][2], o[k]);
+    }
+    okc = r[0][0] < -9.0 && r[2][2] < -9.0 && r[1][1] < -4.0 && r[0][2] > -0.5 && r[2][0] > -0.5 &&
+          r[1][0] > -2.0 && r[1][2] > -2.0;
+    oko = o[0] > 10.0 && o[2] > 10.0 && o[1] > 4.0;
+    ck("EQ: LOW and HIGH -12 dB cut their end by more than 9 dB, MID its band by more than 4 dB; the far end kept",
+       okc);
+    ck("EQ: +12 dB boosts as much (LOW and HIGH > 10 dB, MID > 4 dB)", oko);
+    make_sig(8);
+    run_ins(IT_EQ, 0, 0, 0, 127, sig_a);                  /* every band -16 dB: the whole input down 16 dB */
+    for (k = NS / 2u; k < NS; k += 97u)
+        okb &= abs(sig_a[k] - mulq16(sig_in[k], 10380u)) < 600;
+    ck("EQ: every band at -16 dB: the input 16 dB down (all bands sum back)", okb);
+    set_ins(t, IT_EQ, 64, 64, 64, 127);
+    ok = str_eq(track_desc(t, P_IA)->label, "LOW") && str_eq(track_desc(t, P_IB)->label, "MID") &&
+         str_eq(track_desc(t, P_IC)->label, "HIGH") && str_eq(N_ITYPE[IT_EQ], "EQ");
+    param_format(track_desc(t, P_IA), 64, val, &unit);
+    ok &= str_eq(val, "0.0") && unit && str_eq(unit, "dB");
+    param_format(track_desc(t, P_IA), 78, val, &unit);
+    ok &= str_eq(val, "+3.5");
+    param_format(track_desc(t, P_IA), 63, val, &unit);
+    ok &= str_eq(val, "-0.5");
+    param_format(track_desc(t, P_IA), 0, val, &unit);
+    ok &= str_eq(val, "-16.0");
+    param_format(track_desc(t, P_IA), 127, val, &unit);
+    ok &= str_eq(val, "+15.5");
+    fresh(0, 0);                                         /* KNOB 1 on INSERT (and INSERT B) from CHOR to EQ: 0 dB */
+    ui_power_on();
+    t = TSEL;
+    set_ins(t, IT_CHORUS, 40, 96, 110, 127);
+    t->p[P_JTYPE] = IT_CHORUS; t->p[P_JA] = 40; t->p[P_JB] = 96; t->p[P_JC] = 110;
+    go_title("INSERT");
+    turn(EN_K1, 1);
+    okb = t->p[P_ITYPE] == IT_EQ && t->p[P_IA] == 64 && t->p[P_IB] == 64 && t->p[P_IC] == 64;
+    turn(EN_K1, -1);
+    t->p[P_IA] = 30;
+    turn(EN_K1, 1);
+    okb &= t->p[P_ITYPE] == IT_EQ && t->p[P_IA] == 64;
+    go_title("INSERT B");
+    turn(EN_K1, 1);
+    okb &= t->p[P_JTYPE] == IT_EQ && t->p[P_JA] == 64 && t->p[P_JB] == 64 && t->p[P_JC] == 64 && t->p[P_IMIX] == 127;
+    ck("EQ: picking it on INSERT or INSERT B (KNOB 1) sets LOW MID HIGH to 0 dB", okb);
+    set_ins(t, IT_OFF, 64, 96, 96, 127);
+    t->p[P_JTYPE] = IT_OFF;
+    ck("EQ: the page shows LOW MID HIGH in dB (0.0 at 64, +3.5 at 78, -0.5 at 63, -16.0 .. +15.5)", ok);
+}
+
 /* ------------------------------------------------------------------ 6 --- */
 static FILE *demo_open(const char *dir, const char *name, uint32_t frames)
 {
@@ -518,7 +608,7 @@ static int demos(const char *dir)
     static const uint8_t LINE[16] = {36, 36, 48, 36, 0, 39, 36, 46, 36, 0, 48, 43, 36, 39, 0, 41};
     static const uint8_t SET[IT_N][4] = {{0}, {100, 90, 96, 127}, {90, 100, 92, 127}, {70, 110, 100, 127},
                                          {110, 80, 106, 127}, {40, 72, 90, 127}, {50, 127, 100, 127},
-                                         {40, 127, 110, 127}, {60, 110, 30, 127}};
+                                         {40, 127, 110, 127}, {60, 110, 30, 127}, {80, 56, 40, 127}};
     uint32_t ty, i, n = 0, bars = 4u, frames = bars * 4u * FS / 2u / CTL * CTL;   /* 120 BPM: a bar 2 s */
     for (ty = 1; ty < IT_N; ty++) {
         char name[32];
@@ -632,6 +722,7 @@ int main(int argc, char **argv)
     test_motion();
     test_stored();
     test_ins2();
+    test_eq();
     test_cost();
     if (argc > 1)
         printf("insert: %d demos in %s (each TYPE on a loop: two bars dry, two with it)\n", demos(argv[1]), argv[1]);

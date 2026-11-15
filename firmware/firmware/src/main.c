@@ -430,6 +430,10 @@ void fm1_cstart(void)
     for (s = _c1_load, d = _c1_start; d < _c1_end; s++, d++)
         *d = *s;                                /* the second core's waiting loop (hal/fm1_cpu1.h) */
 #endif
+    tab_init_felucca_tables();                  /* the packed tables into RAM (tools/tabpack.py; app.ld .ramtab), */
+#ifdef UAC_FIR_N                                /* before the audio, the UI or the USB reads one */
+    tab_init_uac_fir();
+#endif
     fm1_mailbox_clear();
     fm1_guard_enable(FM1_GUARD_STACK | FM1_GUARD_WRITE | FM1_GUARD_BUS | FM1_GUARD_PC);
     fm1_boot.p3_rst = (uint8_t)p3;

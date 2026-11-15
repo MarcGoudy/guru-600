@@ -169,13 +169,25 @@ $("go").addEventListener("click", async () => {
     const up = new Updater(midi, log);
     // the bar: where in the image the FM-1 asks (a count of blocks fixed beforehand reached 100 % halfway): the check
     // 5 %, the writing 95 %, never backwards
+    // (Guru-600 1.1.0, Marc 15/11: the bar with the FM-1's screen) the loader reads the package twice: all of it to
+    // check it before erasing anything (loader/ldr_core.c 2b), then the app area again as it writes: the bar fills
+    // during that second pass only, as the FM-1's own bar; the checks show their percent in the text
+    let peak = 0, pass2 = -1;
     const step = (k, a, f) => {
       log(`${k} ${a ?? ""}`);
-      const at = (v) => { $("bar").value = Math.max($("bar").value, Math.min(100, v)); };
+      f = Math.min(1, f || 0);
       if (k === "start") sayK("start");
-      if (k === "verify") { sayK("verify"); at(5 * Math.min(1, f || 0)); pct(); }
+      if (k === "verify") { sayK("verify"); $("status").textContent += ` · ${Math.round(100 * f)} %`; }
       if (k === "loader") sayK("loader");
-      if (k === "write") { sayK("write"); at(5 + 95 * Math.min(1, f || 0)); pct(); }
+      if (k === "write") {
+        if (pass2 < 0 && peak > 0.9 && f < peak - 0.01) pass2 = f;   /* (after the whole check: the key check reads ahead first) */
+        peak = Math.max(peak, f);
+        if (pass2 < 0) { sayK("verify"); $("status").textContent += ` · ${Math.round(100 * f)} %`; }
+        else {
+          $("bar").value = Math.max($("bar").value, Math.min(100, 100 * (f - pass2) / Math.max(1e-6, peak - pass2)));
+          sayK("write"); pct();
+        }
+      }
       if (k === "reboot") sayK("reboot");
       if (k === "done") { $("bar").value = 100; sayK("done"); }
     };

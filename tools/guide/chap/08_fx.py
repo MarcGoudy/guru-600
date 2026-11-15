@@ -14,7 +14,8 @@ CH("fx", "FX: the effects", "FX : les effets",
      ["<b>OFF</b>", ("No insert effect.", "Pas d'effet inséré."), "—"],
      ["<b>SOFT, HARD, FOLD, FUZZ</b>", ("Distortions, from the gentlest to the harshest.", "Des saturations, de la plus douce à la plus dure."), "DRIVE, TONE, LEVEL"],
      ["<b>CRUSH</b>", ("Fewer bits and a lower sample rate: a lo-fi sound.", "Moins de bits et une fréquence d'échantillonnage plus basse : un son lo-fi."), ("BITS (1 … 16), RATE (689 Hz … 44k), LPF", "BITS (1 … 16), RATE (689 Hz … 44k), LPF")],
-     ["<b>PHASR, FLANG, CHOR</b>", ("Phaser, flanger, chorus on the track alone.", "Phaser, flanger, chorus sur la piste seule."), "RATE, DEPTH, FDBK"]]) +
+     ["<b>PHASR, FLANG, CHOR</b>", ("Phaser, flanger, chorus on the track alone.", "Phaser, flanger, chorus sur la piste seule."), "RATE, DEPTH, FDBK"],
+     ["<b>EQ</b>", ("A three-band equaliser: LOW (below 250 Hz), MID, HIGH (above 2.4 kHz). Choosing EQ sets the three bands to 0 dB, where the sound is unchanged. Lower HIGH to soften a sound that whistles.", "Un égaliseur à trois bandes : LOW (sous 250 Hz), MID, HIGH (au-dessus de 2,4 kHz). Choisir EQ met les trois bandes à 0 dB, où le son ne change pas. Baissez HIGH pour adoucir un son qui siffle."), ("LOW, MID, HIGH (−16 … +15.5 dB)", "LOW, MID, HIGH (−16 … +15,5 dB)")]]) +
  H3("SLICER", "SLICER", EDC["fx"]) +
  P2("A rhythmic gate or stutter, in time with the tempo.", "Un hachage ou un bégaiement rythmique, calé sur le tempo.") +
  CTL3([("MODE", "OFF, GATE (cuts the sound in rhythm), STUT (repeats it).", "OFF, GATE (coupe le son en rythme), STUT (le répète).", "OFF, GATE, STUT", "OFF, GATE, STUT"),

@@ -7,12 +7,12 @@ Object.assign(P, { SLCR: 45, SLPAT: 46, SLRATE: 47, SLDEPTH: 48, ITYPE: 96, IA: 
   JTYPE: 103, JA: 104, JB: 105, JC: 106, JMIX: 107 });   // (INSERT 2, Guru-600 10/11: the firmware's P_JTYPE .. P_JMIX)
 const G = (id) => 1000 + id;
 const GV = { SWING: G(1), TUNE: G(3), DTIME: G(4), DFDBK: G(5), DCOLOR: G(6), DMIX: G(7), RSIZE: G(8), RDAMP: G(9), CRATE: G(10), CDEPTH: G(11), RTYPE: G(24) };
-const N_ITYPE = ["OFF", "SOFT", "HARD", "FOLD", "FUZZ", "CRUSH", "PHASR", "FLANG", "CHOR"];
+const N_ITYPE = ["OFF", "SOFT", "HARD", "FOLD", "FUZZ", "CRUSH", "PHASR", "FLANG", "CHOR", "EQ"];   // (EQ: Guru-600 1.1.0)
 const N_DTIME = ["1/4", "1/8", "1/16", "1/32", "8T", "16T", "1/2", "1/1", "2BAR", "4BAR", "1/8D", "1/16D", "1/4D"];
 const N_IBITS = Array.from({ length: 16 }, (_, k) => String(k + 1));
 const N_IRATE = ["689", "919", "1.1k", "1.4k", "1.8k", "2.2k", "2.8k", "3.7k", "4.4k", "5.5k", "7.4k", "8.8k", "11k", "15k", "22k", "44k"];
 Object.assign(D, {
-  [P.ITYPE]: dsc(F.ENUM, 0, 8, 0), [P.IMIX]: dsc(F.PCT, 0, 127, 127), [P.JTYPE]: dsc(F.ENUM, 0, 8, 0), [P.JMIX]: dsc(F.PCT, 0, 127, 127),
+  [P.ITYPE]: dsc(F.ENUM, 0, 9, 0), [P.IMIX]: dsc(F.PCT, 0, 127, 127), [P.JTYPE]: dsc(F.ENUM, 0, 9, 0), [P.JMIX]: dsc(F.PCT, 0, 127, 127),
   [P.SLCR]: dsc(F.ENUM, 0, 2, 0), [P.SLPAT]: dsc(F.INT, 1, 16, 1), [P.SLRATE]: dsc(F.ENUM, 0, 5, 1), [P.SLDEPTH]: dsc(F.PCT, 0, 127, 127),
   [GV.DTIME]: dsc(F.ENUM, 0, 12, 1), [GV.DFDBK]: dsc(F.PCT, 0, 120, 60), [GV.DCOLOR]: dsc(F.PCT, 0, 127, 70), [GV.DMIX]: dsc(F.PCT, 0, 127, 90),
   [GV.RSIZE]: dsc(F.PCT, 0, 127, 90), [GV.RDAMP]: dsc(F.PCT, 0, 127, 60), [GV.CRATE]: dsc(F.LFOHZ, 0, 127, 40), [GV.CDEPTH]: dsc(F.PCT, 0, 127, 60),
@@ -21,14 +21,16 @@ Object.assign(D, {
 D[GV.DFDBK].fmt = F.INT; D[GV.DFDBK].unit = "%";   // (0..120: the value is the %)
 D[P.SLRATE].order = [0, 3, 1, 4, 2, 5];                            // (as on the FM-1, params.c: 1/8 8T 1/16 16T 1/32 32T)
 D[GV.DTIME].order = [9, 8, 7, 6, 12, 0, 10, 1, 11, 4, 2, 5, 3];    // (4BAR 2BAR 1/1 1/2 1/4D 1/4 1/8D 1/8 1/16D 8T 1/16 16T 1/32)
+F.GAIN = 102;     // (the EQ's bands: half-dB steps, 64 = 0 dB, -16.0 .. +15.5 dB; firmware params.c F_GAIN)
 // the insert's three values as its TYPE names them (firmware params.c INS_DESC: 0..127 each)
 const INS = [
   [["DRIVE", F.PCT], ["TONE", F.CUTOFF], ["LEVEL", F.DB]],
   [["BITS", F.ENUM, N_IBITS], ["RATE", F.ENUM, N_IRATE, "Hz"], ["LPF", F.CUTOFF]],
-  [["RATE", F.LFOHZ], ["DEPTH", F.PCT], ["FDBK", F.PCT]]];
+  [["RATE", F.LFOHZ], ["DEPTH", F.PCT], ["FDBK", F.PCT]],
+  [["LOW", F.GAIN], ["MID", F.GAIN], ["HIGH", F.GAIN]]];   // (EQ, 1.1.0: 251 Hz / 2.4 kHz; 64 = 0 dB)
 function insDescs() {
   for (const [ty, ids] of [[P.ITYPE, [P.IA, P.IB, P.IC]], [P.JTYPE, [P.JA, P.JB, P.JC]]]) {
-  const t = val[ty], set = INS[t < 5 ? 0 : t === 5 ? 1 : 2];
+  const t = val[ty], set = INS[t < 5 ? 0 : t === 5 ? 1 : t < 9 ? 2 : 3];
   ids.forEach((id, k) => {
     const [label, fmt0, names, unit] = set[k];
     D[id] = { fmt: names ? F.ENUM16 : fmt0, min: 0, max: 127, def: 64, unit: unit || "", names: names || null };
@@ -46,6 +48,7 @@ const fxFmt = fmt;
 fmt = function (id, v) {   // (BITS, CRUSH's RATE: the 16th of the range named)
   const d = D[id];
   if (d && d.fmt === F.ENUM16) return d.names[Math.min(15, v >> 3)] + (d.unit ? " " + d.unit : "");
+  if (d && d.fmt === F.GAIN) { const hd = (v - 64) >> 1; return (hd > 0 ? "+" : hd < 0 ? "-" : "") + dec((Math.abs(hd) / 2).toFixed(1)) + " dB"; }
   return fxFmt(id, v);
 };
 
@@ -132,6 +135,14 @@ document.head.insertAdjacentHTML("beforeend", "<style>.grp.distg { position: rel
   for (const e of stage.querySelectorAll('[data-page="fx"]')) e.style.display = "none";
 })();
 ctl.slice(ctlFx).forEach(bindCtl);
+// EQ chosen (from another type): its three bands at 0 dB, as KNOB 1 does on the FM-1 (ui_input.c edit_param)
+const fxSetVal = setVal;
+setVal = function (id, v, from = "user") {
+  const bands = +id === P.ITYPE ? [P.IA, P.IB, P.IC] : +id === P.JTYPE ? [P.JA, P.JB, P.JC] : null;
+  const eq = bands && from === "user" && Math.round(v) === 9 && val[id] !== 9;
+  fxSetVal(id, v, from);
+  if (eq) for (const b of bands) fxSetVal(b, 64, from);
+};
 // the TRACK n heading follows the track; the insert's knobs their TYPE
 const fxRender = render;
 render = function (only) {

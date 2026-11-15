@@ -428,6 +428,17 @@ const TX_MAJ = {   // [la nouvelle version, la version du FM-1 connue ; ... inco
   zh: ["Guru-600 已推出新版本：%s。\n您的 FM-1 当前为 %s。\n", "Guru-600 已推出新版本：%s。\n您的 FM-1 是旧版本。", "安装", "更新不会覆盖您的内容和设置，\n但先备份更稳妥。", "备份", "备份已保存：现在可以安装更新。", "不用了"],
   ja: ["Guru-600 の新しいバージョン %s が出ました。\nお使いの FM-1 は %s です。", "Guru-600 の新しいバージョン %s が出ました。\nお使いの FM-1 は以前のバージョンです。", "インストール", "アップデートで内容や設定が上書きされることはありませんが、\n先にバックアップを取るとより安心です。", "バックアップ", "バックアップを保存しました。アップデートをインストールできます。", "今はしない"],
 };
+// (Guru-600 1.1.0) l'installation dans l'éditeur même (Marc, 15/11) : [téléchargement, début, vérification, mode mise à jour,
+// écriture, redémarrage, terminé, échec, ne pas débrancher, page d'installation]
+const TX_INST = {
+  en: ["Downloading the update…", "Starting the update…", "Checking…", "Switching the FM-1 to update mode…", "Writing", "Restarting the FM-1…", "Done: your FM-1 has the Guru-600 %s.", "The update did not finish (%s).\nUnplug and replug the USB cable, then click Install again: the FM-1 stays in update mode until it is finished.", "Do not unplug the FM-1 while it installs.", "Installer page"],
+  fr: ["Téléchargement de la mise à jour…", "Début de la mise à jour…", "Vérification…", "Passage du FM-1 en mode mise à jour…", "Écriture", "Redémarrage du FM-1…", "Terminé : votre FM-1 a le Guru-600 %s.", "La mise à jour ne s'est pas terminée (%s).\nDébranchez et rebranchez le câble USB, puis cliquez de nouveau sur Installer : le FM-1 reste en mode mise à jour jusqu'à la fin.", "Ne débranchez pas le FM-1 pendant l'installation.", "Page d'installation"],
+  de: ["Das Update wird geladen…", "Das Update beginnt…", "Prüfung…", "Der FM-1 wechselt in den Update-Modus…", "Schreiben", "Der FM-1 startet neu…", "Fertig: Ihr FM-1 hat den Guru-600 %s.", "Das Update wurde nicht abgeschlossen (%s).\nZiehen Sie das USB-Kabel ab, stecken Sie es wieder ein und klicken Sie erneut auf Installieren: Der FM-1 bleibt im Update-Modus, bis es fertig ist.", "Trennen Sie den FM-1 während der Installation nicht.", "Installationsseite"],
+  es: ["Descargando la actualización…", "Comienza la actualización…", "Comprobación…", "El FM-1 pasa al modo de actualización…", "Escritura", "El FM-1 se reinicia…", "Listo: su FM-1 tiene el Guru-600 %s.", "La actualización no ha terminado (%s).\nDesconecte y vuelva a conectar el cable USB y haga clic de nuevo en Instalar: el FM-1 sigue en modo de actualización hasta terminar.", "No desconecte el FM-1 durante la instalación.", "Página de instalación"],
+  it: ["Download dell’aggiornamento…", "Inizio dell’aggiornamento…", "Verifica…", "Il FM-1 passa in modalità aggiornamento…", "Scrittura", "Il FM-1 si riavvia…", "Fatto: il FM-1 ha il Guru-600 %s.", "L’aggiornamento non è terminato (%s).\nScollegate e ricollegate il cavo USB, poi cliccate di nuovo su Installa: il FM-1 resta in modalità aggiornamento fino alla fine.", "Non scollegate il FM-1 durante l’installazione.", "Pagina di installazione"],
+  zh: ["正在下载更新…", "开始更新…", "正在校验…", "FM-1 正在进入更新模式…", "正在写入", "FM-1 正在重启…", "完成：您的 FM-1 已是 Guru-600 %s。", "更新未完成（%s）。\n请拔下并重新插上 USB 线，然后再次点击安装：FM-1 会保持更新模式直到完成。", "安装期间请勿拔下 FM-1。", "安装页面"],
+  ja: ["アップデートをダウンロードしています…", "アップデートを開始します…", "確認中…", "FM-1 をアップデートモードに切り替えています…", "書き込み中", "FM-1 を再起動しています…", "完了：FM-1 は Guru-600 %s になりました。", "アップデートが完了しませんでした（%s）。\nUSB ケーブルを抜き差しして、もう一度インストールをクリックしてください。FM-1 は完了するまでアップデートモードのままです。", "インストール中は FM-1 を抜かないでください。", "インストールページ"],
+};
 const tx = (k, ...a) => { let s = (TX[lang] || TX.en)[k] || TX.en[k] || k; for (const x of a) s = s.replace("%s", x); return s; };
 let toastT = 0;
 function toast(s) {
@@ -538,7 +549,77 @@ async function majVerifier(info) {
     if (window.majSauvegarder && await window.majSauvegarder()) { el.querySelector("small").textContent = t[5]; bs.hidden = true; }
     el.classList.add("on");
   };
+  el.querySelector("a").onclick = (e) => { e.preventDefault(); majInstaller(derniere); };   // (1.1.0: installed here, not on a page)
   el.classList.add("on");
+}
+// (Guru-600 1.1.0, Marc 15/11) Installer : la mise à jour se fait dans l'éditeur même, par le code de la page d'installation
+// (fm1ota.js, fm1pkg.js, copiés de Felucca/web). Le paquet : ../firmware/guru-600-X.fwsc là où l'éditeur est servi avec le
+// site (guru-600.com, la copie GitHub Pages), sinon la copie GitHub Pages (elle seule répond aux autres origines). L'éditeur
+// lâche d'abord le FM-1 (le même port), puis se reconnecte quand il revient, sur la nouvelle version.
+let majEnCours = false;
+async function majInstaller(version) {
+  if (majEnCours) return;
+  const el = document.getElementById("maj"), T = TX_INST[lang] || TX_INST.en;
+  const span = el.querySelector("span"), small = el.querySelector("small"), act = el.querySelector(".act");
+  const say = (a, b = "") => { span.textContent = a; small.textContent = b; };
+  let bar = el.querySelector("progress");
+  if (!bar) { bar = document.createElement("progress"); bar.max = 100; act.before(bar); }
+  bar.value = 0; bar.hidden = false; act.hidden = true;
+  majEnCours = true;
+  const keep = (ev) => { ev.preventDefault(); ev.returnValue = T[8]; };
+  window.addEventListener("beforeunload", keep);
+  try {
+    say(T[0], T[8]);
+    const nom = "guru-600-" + version + ".fwsc";
+    let pkg = null;
+    for (const url of [new URL("../firmware/" + nom, location.href).href, "https://marcgoudy.github.io/guru-600/firmware/" + nom]) {
+      try { const r = await fetch(url, { cache: "no-store" }); if (r.ok) { pkg = new Uint8Array(await r.arrayBuffer()); break; } } catch (e) {}
+    }
+    if (!pkg) throw Object.assign(new Error("download"), { code: "download" });
+    const [{ Updater }, { productOf, logicalImage }] = await Promise.all([import("./fm1ota.js"), import("./fm1pkg.js")]);
+    const product = productOf(pkg), image = logicalImage(pkg);
+    if (dev) {                                       // (the editor lets go of the FM-1: the update speaks on the same port)
+      dev.link.close(); dev = null; clearInterval(pinger); clearInterval(morphPoller); farClear(); showConn(false);
+    }
+    const midi = access || await navigator.requestMIDIAccess({ sysex: true });
+    // (Marc, 15/11: the bar with the FM-1's logo) the loader reads the package twice: all of it first, to check it
+    // before erasing anything (ldr_core.c 2b), then the app area again, sector by sector, as it writes: the bar fills
+    // only during that second pass, as the FM-1's logo does; the check shows its own percent
+    let peak = 0, pass2 = -1;
+    const step = (k, a, f) => {
+      f = Math.min(1, f || 0);
+      if (k === "start") say(T[1], T[8]);
+      if (k === "verify") say(T[2], T[8]);
+      if (k === "loader") say(T[3], T[8]);
+      if (k === "write") {
+        if (pass2 < 0 && peak > 0.9 && f < peak - 0.01) pass2 = f;   /* (after the whole check: the key check reads ahead first) */       /* (it starts over: the writing pass) */
+        peak = Math.max(peak, f);
+        if (pass2 < 0) say(T[2] + " · " + Math.round(100 * f) + " %", T[8]);
+        else {
+          bar.value = Math.max(bar.value, Math.min(100, 100 * (f - pass2) / Math.max(1e-6, peak - pass2)));
+          say(T[4] + " · " + Math.round(bar.value) + " %", T[8]);
+        }
+      }
+      if (k === "reboot") say(T[5], T[8]);
+      if (k === "done") { bar.value = 100; }
+    };
+    const up = new Updater(midi);
+    const ota = await up.find((id) => /^ota-/i.test(id.model));   // (an update cut off: the FM-1 waits in update mode)
+    if (ota) { ota.link.close(); if (!(await up.resume(image, step, product))) throw Object.assign(new Error("stopped"), { code: "stopped" }); }
+    else await up.install(image, product, step);
+    say(T[6].replace("%s", version));
+    bar.hidden = true;
+    majEnCours = false;
+    window.removeEventListener("beforeunload", keep);
+    setTimeout(() => { quietTries = 0; connect(true); setTimeout(() => el.classList.remove("on"), 4000); }, 1500);
+  } catch (e) {
+    majEnCours = false;
+    window.removeEventListener("beforeunload", keep);
+    bar.hidden = true;
+    say(T[7].replace("%s", (e && (e.code || e.message)) || "?"));
+    act.hidden = false;
+    console.warn(e);
+  }
 }
 function lost() {
   if (!dev) return;
@@ -547,7 +628,7 @@ function lost() {
 }
 function onMidiState(e) {   // unplugged: disconnected; plugged in: connected
   if (dev && e.port.state === "disconnected" && e.port === dev.link.out) lost();
-  else if (!dev && e.port.state === "connected" && /felucca|fm-?1|guru/i.test(e.port.name || "")) { quietTries = 0; setTimeout(() => connect(true), 300); }
+  else if (!dev && !majEnCours && e.port.state === "connected" && /felucca|fm-?1|guru/i.test(e.port.name || "")) { quietTries = 0; setTimeout(() => connect(true), 300); }
 }
 connEl.addEventListener("click", () => connect());
 ledEl.addEventListener("click", () => connect());

@@ -41,6 +41,8 @@ CH("install", "Installing the Guru-600 on an FM-1", "Installer le Guru-600 sur u
  H3("Updating the Guru-600", "Mettre à jour le Guru-600") +
  P2("A new version installs the same way, from the installation page. First back up with the BACKUP page of the Guru-600 editor (chapter {ch:editor}).",
     "Une nouvelle version s'installe de la même façon, depuis la page d'installation. Sauvegardez d'abord avec la page BACKUP de l'éditeur Guru-600 (chapitre {ch:editor}).") +
+ P2("The simplest way: open the Guru-600 editor with the FM-1 connected. When a newer Guru-600 is out, the editor says so and offers <b>Back up</b>, then <b>Install</b>: the update is written right there, with a progress bar that follows the one on the FM-1's screen. Do not unplug the FM-1 until it has restarted. Your sounds, projects and settings stay.",
+    "Le plus simple : ouvrez l'éditeur Guru-600, FM-1 branché. Quand une nouvelle version du Guru-600 est sortie, l'éditeur le signale et propose <b>Sauvegarder</b>, puis <b>Installer</b> : la mise à jour s'écrit sur place, avec une barre de progression qui suit celle de l'écran du FM-1. Ne débranchez pas le FM-1 avant qu'il ait redémarré. Vos sons, projets et réglages restent en place.") +
  H3("Switching to another firmware, then coming back", "Passer à un autre firmware, puis revenir") +
  STEPS([("In the Guru-600 editor (link on the installation page), on the BACKUP page, click <b>SAVE A BACKUP TO THIS COMPUTER</b>: a file is saved to the computer.",
          "Dans l'éditeur Guru-600 (lien sur la page d'installation), sur la page BACKUP, cliquez sur <b>SAVE A BACKUP TO THIS COMPUTER</b> : un fichier est enregistré sur l'ordinateur."),

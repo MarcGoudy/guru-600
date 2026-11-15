@@ -1667,11 +1667,11 @@ static int test_menu_tabs(void)
             }
     }
     ui_prefs = 0;
-    bad += check("MENU tabs: DISPLAY CONTROL AUDIO MIDI SYSTEM (7 8 6 8 6 rows, Guru-600: 1.6.1 2ND CORE, a FELUCCA_CPU2=0 build SYSTEM 6; 1.5.5: SELECT, T1..T4 CHANNEL, AUTO SELECT, SCREEN WAKE), 1..8 each in a run, fit the page; tab gaps "
+    bad += check("MENU tabs: DISPLAY CONTROL AUDIO MIDI SYSTEM (8 8 6 8 6 rows, Guru-600: 1.6.1 2ND CORE, a FELUCCA_CPU2=0 build SYSTEM 6; 1.5.5: SELECT, T1..T4 CHANNEL, AUTO SELECT, SCREEN WAKE; Guru-600: SCREEN WAKE in DISPLAY, MIDI KNOBS in MIDI), 1..8 each in a run, fit the page; tab gaps "
                  "constant (S, LARGE)",
                  ok && MTAB_COUNT == 5u && str_eq(MTAB_NAME[0], "DISPLAY") && str_eq(MTAB_NAME[MTAB_MIDI], "MIDI") &&
-                 mtab_rows(MTAB_DISPLAY) == 7u && MI_TAB[MI_SCOPE] == MTAB_DISPLAY && mtab_rows(MTAB_CONTROL) == 8u && MI_TAB[MI_SELECT] == MTAB_CONTROL && mtab_rows(MTAB_AUDIO) == 6u &&
-                 mtab_rows(MTAB_MIDI) == 8u && MI_TAB[MI_MFOLLOW] == MTAB_MIDI && MI_TAB[MI_SCRWAKE] == MTAB_MIDI && MI_SCRWAKE + 1u == MI_LCLEAR && MI_TAB[MI_LCLEAR] == MTAB_MIDI && MI_TAB[MI_TCH4] == MTAB_MIDI && mtab_rows(MTAB_SYSTEM) == 6u + FELUCCA_CPU2 + FELUCCA_P600   /* (Guru-600: RESET GURU-600) */ &&
+                 mtab_rows(MTAB_DISPLAY) == 8u && MI_TAB[MI_SCOPE] == MTAB_DISPLAY && MI_TAB[MI_SCRWAKE] == MTAB_DISPLAY && mtab_rows(MTAB_CONTROL) == 8u && MI_TAB[MI_SELECT] == MTAB_CONTROL && mtab_rows(MTAB_AUDIO) == 6u &&
+                 mtab_rows(MTAB_MIDI) == 8u && MI_TAB[MI_MFOLLOW] == MTAB_MIDI && MI_TAB[MI_MKNOBS] == MTAB_MIDI && MI_MKNOBS + 1u == MI_LCLEAR && MI_TAB[MI_LCLEAR] == MTAB_MIDI && MI_TAB[MI_TCH4] == MTAB_MIDI && mtab_rows(MTAB_SYSTEM) == 6u + FELUCCA_CPU2 + FELUCCA_P600   /* (Guru-600: RESET GURU-600) */ &&
 #if FELUCCA_CPU2
                  MI_TAB[MI_CPU2] == MTAB_SYSTEM &&
 #endif
@@ -1681,11 +1681,11 @@ static int test_menu_tabs(void)
     ui_power_on();
     hold(B_HOME);
     ok = ui.menu == 1 && ui.menu_sel == MI_COLOR && menu_tab() == MTAB_DISPLAY;
-    for (i = 0; i < 6u; i++) turn(EN_PRESET, 1);
-    ok &= ui.menu_sel == MI_SCOPE;   /* (Guru-600: no HOME, no 3D) */
+    for (i = 0; i < 7u; i++) turn(EN_PRESET, 1);
+    ok &= ui.menu_sel == MI_SCOPE;   /* (Guru-600: no HOME, no 3D; SCREEN WAKE here) */
     turn(EN_PRESET, 1); ok &= ui.menu_sel == MI_COLOR;  /* (wraps within the tab) */
     turn(EN_PRESET, -1); ok &= ui.menu_sel == MI_SCOPE;
-    turn(EN_PRESET, -1); turn(EN_PRESET, -1); ok &= ui.menu_sel == MI_LEDS;
+    turn(EN_PRESET, -1); turn(EN_PRESET, -1); turn(EN_PRESET, -1); ok &= ui.menu_sel == MI_LEDS;
     bad += check("MENU: PRESETS moves within the tab and wraps there (COLOR .. SCOPE)", ok);
     turn(EN_ALGO, 1); ok = ui.menu_sel == MI_HOLD && menu_tab() == MTAB_CONTROL;
     turn(EN_PRESET, 1); turn(EN_PRESET, 1); ok &= ui.menu_sel == MI_LATCH;
@@ -3921,7 +3921,7 @@ static int test_quick_layers(void)
 {
     static const uint8_t LB[3] = {B_GLO, B_SCL, B_EDIT};
     static const uint8_t LL[3] = {LAYER_GLO, LAYER_SCL, LAYER_EDIT};
-    static const char *const HINT[3] = {"HOLD [GLO] QUICK", "HOLD [SCL] QUICK", "HOLD [EDIT] QUICK"};
+    static const char *const HINT[3] = {"HOLD [GLO] QUICK", "HOLD [SEL] QUICK", "HOLD [EDIT] QUICK"};
     int bad = 0, ok, flash, hint;
     uint32_t i, k, a, b2, mo;
     track_t before;
@@ -4391,7 +4391,7 @@ static int test_chord_page(void)
     t->p[P_VOICE] = V_POLY;
     go_home(); frame();
     press(B_SCL); frames(400);
-    ok = str_eq(cur_page()->title, "SCL");
+    ok = str_eq(cur_page()->title, "SEL");
     press(B_SCL); frames(400);
     ok &= str_eq(cur_page()->title, "CHORD") && cur_page()->graph == GR_CHORD && cur_page()->fam == FAM_SCL;
     bad += check("SCL tapped again: the CHORD page (CHRD VOIC, the chord graph)", ok && cur_page()->id[0] == P_CHRD &&
@@ -6203,14 +6203,14 @@ static int test_screen_wake(void)
 
     ui_power_on();
     ok = !(ui_prefs2 & 0x20u) && menu_get(MI_SCRWAKE) == 0u && str_eq(MI_NAME[MI_SCRWAKE], "SCREEN WAKE") &&
-         MI_TAB[MI_SCRWAKE] == MTAB_MIDI && menu_n(MI_SCRWAKE) == 2u && str_eq(menu_vname(MI_SCRWAKE, 0), "+MIDI") &&
+         MI_TAB[MI_SCRWAKE] == MTAB_DISPLAY && menu_n(MI_SCRWAKE) == 2u && str_eq(menu_vname(MI_SCRWAKE, 0), "+MIDI") &&
          str_eq(menu_vname(MI_SCRWAKE, 1), "PANEL") && PREF_WAKE_PANEL == (0x20u << 16) && !MI_PROJECT(MI_SCRWAKE) &&
          menu_valued(MI_SCRWAKE);
     menu_put(MI_SCRWAKE, 1u);
     ok &= ui_prefs2 == 0x20u && menu_get(MI_SCRWAKE) == 1u;
     menu_put(MI_SCRWAKE, 0u);
     ok &= ui_prefs2 == 0u;
-    bad += check("SCREEN WAKE: MENU > MIDI row, +MIDI (default, bit 5 of ui_prefs2 clear) / PANEL", ok);
+    bad += check("SCREEN WAKE: MENU > DISPLAY row (Guru-600), +MIDI (default, bit 5 of ui_prefs2 clear) / PANEL", ok);
 
     {   /* the settings: every older record reads +MIDI; PANEL kept */
         persist_t p = {0};
@@ -9715,6 +9715,45 @@ static uint64_t qa_beat(uint32_t lanes, double *low)
     }
     return h;
 }
+/* (Guru-600 1.1.0) MIDI KNOBS, bank D of a KeyStep (Marc, 15/11): CC80 the track by the knob's position, four zones;
+ * CC81 that track's LEVEL by the knob's position; CC82 SELECT (the tempo); CC83 MORPH; no sound choice from the
+ * controller (its values stop at 0 and 127: browsing kept stopping); MIDI KNOBS OFF: none of it */
+static int test_midi_knobs_positions(void)
+{
+    int bad = 0, ok;
+    uint32_t total, cur, t, sel;
+    int16_t l[NTRK];
+    ui_power_on();
+    go_home();
+    frame();
+    sel = song.sel;
+    cur = preset_pos(&total);
+    ok = 1;
+    for (t = 0; t < NTRK; t++) {
+        uint32_t u;
+        for (u = 0; u < NTRK; u++) l[u] = trk[u].p[P_LEVEL];
+        midi_control(0, 80 + t, 0); frame();
+        ok &= trk[t].p[P_LEVEL] == 0;
+        midi_control(0, 80 + t, 127); frame();
+        ok &= trk[t].p[P_LEVEL] == 127;
+        midi_control(0, 80 + t, 64); frame();
+        ok &= trk[t].p[P_LEVEL] == 64;
+        for (u = 0; u < NTRK; u++)
+            if (u != t) ok &= trk[u].p[P_LEVEL] == l[u];      /* (only that track's) */
+    }
+    ok &= song.sel == sel && preset_pos(&total) == cur;      /* (no track chosen, no sound changed) */
+    bad += check("MIDI KNOBS: bank D (CC80..83) the mixer, the LEVEL of tracks 1..4 by the knob's position, nothing else", ok);
+    *mknob_pref |= 2u;                              /* MENU > MIDI > MIDI KNOBS OFF */
+    {
+        int16_t l3 = trk[3].p[P_LEVEL];
+        midi_control(0, 83, 10); frame();
+        ok = trk[3].p[P_LEVEL] == l3;
+    }
+    *mknob_pref &= (uint8_t)~2u;
+    bad += check("MIDI KNOBS OFF: bank D moves nothing", ok);
+    return bad;
+}
+
 static int test_edit_quick_actions(void)
 {
     int bad = 0, ok;
@@ -9982,6 +10021,7 @@ int main(void)
     bad += test_fx_map_columns();
     bad += test_help();
     bad += test_no_flash();
+    bad += test_midi_knobs_positions();
 #if FELUCCA_FM4
     bad += test_fm_charts();                        /* (DIGITAL's charts: built with FELUCCA_FM4=1 only) */
 #else

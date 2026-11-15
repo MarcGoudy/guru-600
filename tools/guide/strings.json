@@ -1232,6 +1232,14 @@
   "fr": "Phaser, flanger, chorus sur la piste seule."
  },
  {
+  "en": "A three-band equaliser: LOW (below 250 Hz), MID, HIGH (above 2.4 kHz). Choosing EQ sets the three bands to 0 dB, where the sound is unchanged. Lower HIGH to soften a sound that whistles.",
+  "fr": "Un égaliseur à trois bandes : LOW (sous 250 Hz), MID, HIGH (au-dessus de 2,4 kHz). Choisir EQ met les trois bandes à 0 dB, où le son ne change pas. Baissez HIGH pour adoucir un son qui siffle."
+ },
+ {
+  "en": "LOW, MID, HIGH (−16 … +15.5 dB)",
+  "fr": "LOW, MID, HIGH (−16 … +15,5 dB)"
+ },
+ {
   "en": "SLICER",
   "fr": "SLICER"
  },
@@ -2044,6 +2052,10 @@
   "fr": "Éteint l'écran après ce délai sans manipulation ; le son continue."
  },
  {
+  "en": "What wakes a dark screen: the panel and MIDI notes, or the panel only.",
+  "fr": "Ce qui rallume l'écran : la façade et les notes MIDI, ou la façade seulement."
+ },
+ {
   "en": "Where the visuals pick up the sound: after MASTER (OUT) or before (MIX).",
   "fr": "Où les images captent le son : après MASTER (OUT) ou avant (MIX)."
  },
@@ -2128,8 +2140,8 @@
   "fr": "Une note MIDI destinée à une autre piste sélectionne cette piste."
  },
  {
-  "en": "What wakes a dark screen: the panel and MIDI notes, or the panel only.",
-  "fr": "Ce qui rallume l'écran : la façade et les notes MIDI, ou la façade seulement."
+  "en": "ON: a MIDI controller's knobs work with no setup: CC 16 to 19 (bank A of an Arturia KeyStep) turn the FM-1's KNOB 1 to 4 on the page shown; CC 80 to 83 (its bank D) set the LEVEL of tracks 1 to 4, a mixer. OFF: CC 16 to 19 set P600 parameters.",
+  "fr": "ON : les boutons d'un contrôleur MIDI fonctionnent sans réglage : les CC 16 à 19 (banque A d'un KeyStep d'Arturia) tournent les KNOB 1 à 4 du FM-1 sur la page affichée ; les CC 80 à 83 (sa banque D) règlent le LEVEL des pistes 1 à 4, une table de mixage. OFF : les CC 16 à 19 règlent des paramètres P600."
  },
  {
   "en": "SYSTEM",
@@ -2246,6 +2258,10 @@
  {
   "en": "Fonts: Barlow Condensed (The Barlow Project Authors, SIL Open Font License); Inter Tight (SIL Open Font License); VI Mong Rong (VN-Fonts Team, 1994).",
   "fr": "Polices : Barlow Condensed (The Barlow Project Authors, licence SIL Open Font) ; Inter Tight (licence SIL Open Font) ; VI Mong Rong (VN-Fonts Team, 1994)."
+ },
+ {
+  "en": "Thanks to Ax (Audiorial, <a href='https://www.youtube.com/audiorial'>youtube.com/audiorial</a>) for his help with the Windows version.",
+  "fr": "Merci à Ax (Audiorial, <a href='https://www.youtube.com/audiorial'>youtube.com/audiorial</a>) pour son aide sur la version Windows."
  },
  {
   "en": "Editor guide",

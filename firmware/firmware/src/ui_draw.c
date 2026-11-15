@@ -658,6 +658,7 @@ static void draw_column(uint32_t c, const char *label, const char *val, const ch
     uint32_t n, kn;
     int32_t kid = kc_tag(val, &kn);
     card_span_t sp = card_span;                         /* (#251: what the knob shows, this card only) */
+    ann_col(c, label, val, unit);                       /* (Guru-600 1.1: the screen reader, ui_announce.c) */
     card_span.fn = 0;
     fmt_named = 0;                                      /* (params.c: a name, for this card only) */
     card_mot_next = 0;                                  /* (the same: MOTION, this card only) */
@@ -1187,6 +1188,7 @@ static void p6ui_draw(const p6pg_t *pp)
             str_cpy(txt + str_len(txt), " ", 2);
             str_cpy(txt + str_len(txt), unit, 8);
         }
+        ann_col(c, lab, txt, "");                      /* (the screen reader) */
         sk = str_hash(str_hash(sf + (uint32_t)ratio * 7u + (uint32_t)hot * 1000003u, lab), txt) | 2u;
         if (!ui.force && sk == sig_k[c])
             continue;
@@ -1646,12 +1648,55 @@ static void splash_band(uint32_t y, uint32_t h, int32_t ly, const char *const *l
 #include "p600_splash.h"
 /* the areas' alpha, LZ4 blocks (p600_splash.h, 10/11: 4 KB less in flash, the same pixels) unpacked into the canvas:
  * nothing draws there until the splash ends (the UI's first frame, after it); the splash draws straight to the LCD */
+/* (Guru-600) the glint's glow: the logo, SPL_HALO_M px in, blurred (three box blurs of 9 across, then down: about a
+ * Gaussian of 4.5 px), 0..255 a byte; made at the splash's start in the canvas rather than kept in flash (Marc, 15/11) */
+static void splash_blur(uint8_t *p, uint32_t n, uint32_t step, uint8_t *c)
+{
+    uint32_t i, s = 0;
+    for (i = 0; i < n; i++)
+        c[i] = p[i * step];
+    for (i = 0; i < 4u && i < n; i++)
+        s += c[i];
+    for (i = 0; i < n; i++) {
+        if (i + 4u < n)
+            s += c[i + 4u];
+        p[i * step] = (uint8_t)(s / 9u);
+        if (i >= 4u)
+            s -= c[i - 4u];
+    }
+}
+static void splash_halo(uint8_t *h)
+{
+    uint8_t *c = h + SPL_HALO_N;                        /* (a line's copy, after it) */
+    uint32_t x, y, k, i, mx = 1;
+    for (y = 0; y < SPL_HALO_H; y++)
+        for (x = 0; x < SPL_HALO_W; x++) {
+            int32_t lx = (int32_t)x - SPL_HALO_M, ly = (int32_t)y - SPL_HALO_M;
+            uint32_t a = 0;
+            if (lx >= 0 && lx < SPL_LOGO_W && ly >= 0 && ly < SPL_LOGO_H) {
+                i = (uint32_t)(ly * SPL_LOGO_W + lx);
+                a = (SPL_LOGO_A[i >> 1] >> ((i & 1u) << 2)) & 15u;
+            }
+            h[y * SPL_HALO_W + x] = (uint8_t)(a * 17u);
+        }
+    for (k = 0; k < 3u; k++) {
+        for (y = 0; y < SPL_HALO_H; y++)
+            splash_blur(h + y * SPL_HALO_W, SPL_HALO_W, 1, c);
+        for (x = 0; x < SPL_HALO_W; x++)
+            splash_blur(h + x, SPL_HALO_H, SPL_HALO_W, c);
+    }
+    for (i = 0; i < SPL_HALO_N; i++)
+        mx = h[i] > mx ? h[i] : mx;
+    for (i = 0; i < SPL_HALO_N; i++)
+        h[i] = (uint8_t)(h[i] * 255u / mx);
+}
 static void splash_unpack(void)
 {
     uint8_t *d = (uint8_t *)cv_px;
     uint32_t k;
-    _Static_assert(4725 + 1309 + 735 + 888 <= sizeof cv_px, "the splash's areas fit the canvas");
-    for (k = 0; k < 4u; k++) {
+    _Static_assert(SPL_LOGO_N + SPL_SUB_N + SPL_VER_N + SPL_CRED_N + SPL_HALO_N + SPL_HALO_W <= sizeof cv_px,
+                   "the splash's areas and the glow's halo fit the canvas");
+    for (k = 0; k < sizeof SPL_Z / sizeof SPL_Z[0]; k++) {
         const uint8_t *s = SPL_Z[k], *e = s + SPL_ZN[k][0];
         spl_a[k] = d;
         while (s < e) {                                 /* a sequence: literals, then a match (none at the end) */
@@ -1673,6 +1718,8 @@ static void splash_unpack(void)
                 *d++ = *r++;
         }
     }
+    spl_halo = d;                                       /* (Guru-600) the glow's halo: the logo blurred, made here */
+    splash_halo(d);
 }
 static void draw_splash(void)                          /* at power-on, while the boot loads: the panel's black only, */
 {                                                       /* the name comes with the animation (Marc, 10/11: not twice) */
@@ -1685,19 +1732,35 @@ static void draw_splash(void)                          /* at power-on, while the
  *  250 .. 1160  it swells into a run of waves, 130 ms each: saw, wide and tight sines, square, triangle .. saw
  * 1160 .. 1860  the morph: Guru~600, squeezed flat onto the wave, unfolds into its letters while the wave settles
  *               (each column of the logo scaled by m around where the wave crosses it, the trace fading as 1 - m)
- * 1960 .. 2460  a glint runs over the letters
+ * 2700 .. 4100  after the colours, a wide slanted glint with its glow runs once over the letters, left to right
  * 2060 .. 2660  « A Prophet-600 tribute » fades in; then it holds (the name stays, the wave was brief)
  * 5900 .. 6500  everything fades out to the black (main.c ends the splash at 6500).
  * A band of SPA_H rows around the logo is redrawn a row at a time (alpha of the logo and of the trace, through the
  * ramps); the line under it only while it fades */
 #define SPA_CY (SPL_LOGO_Y + SPL_LOGO_H / 2)
 #define SPA_H 64
+#define SPA_GW 24                                       /* (Guru-600) the glint: 24 px each side of its line */
 #define SPA_Y0 (SPA_CY - SPA_H / 2)
 static inline uint32_t spa_lin(uint32_t ms, uint32_t a, uint32_t b)   /* 0..256 over a..b */
 {
     return ms <= a ? 0u : ms >= b ? 256u : (ms - a) * 256u / (b - a);
 }
 static inline uint32_t spa_ease(uint32_t t) { return t * t * (768u - 2u * t) >> 16; }   /* smoothstep, 0..256 */
+static inline int32_t spa_halo(int32_t hx, int32_t hy)   /* (Guru-600) the glint's glow: the logo blurred, 0..255 */
+{
+    uint32_t i;
+    if (hy < 0 || hy >= SPL_HALO_H || hx < 0 || hx >= SPL_HALO_W)
+        return 0;
+    i = (uint32_t)(hy * SPL_HALO_W + hx);
+    return SPL_HALO_A[i];                               /* (0..255) */
+}
+static inline uint16_t spa_glow(uint16_t c, int32_t g)  /* (Guru-600) an unswapped colour plus the glow's light, g 0..256 */
+{
+    static const uint32_t L = RGB(255, 255, 255);   /* (white: Marc, 15/11) */
+    int32_t r = (c >> 11) + (int32_t)((L >> 11) * (uint32_t)g >> 8), gg = (c >> 5 & 63) + (int32_t)((L >> 5 & 63u) * (uint32_t)g >> 8),
+            b = (c & 31) + (int32_t)((L & 31u) * (uint32_t)g >> 8);
+    return (uint16_t)((r > 31 ? 31 : r) << 11 | (gg > 63 ? 63 : gg) << 5 | (b > 31 ? 31 : b));
+}
 static inline int32_t spa_logo(int32_t lx, int32_t ly)                                /* the logo's alpha, 0..15 */
 {
     uint32_t i;
@@ -1780,7 +1843,8 @@ static void splash_anim(uint32_t ms)
     int32_t m = (int32_t)spa_ease(spa_lin(ms, 1160, 1860));             /* the morph, 0..256 */
     int32_t amp = (int32_t)swell * 26 / 256;            /* 0 .. 26 px */
     int32_t half = (int32_t)(grow * 120u / 256u);       /* the trace's half width */
-    int32_t glint = ms < 2700u ? -100 : (int32_t)spa_lin(ms, 2700, 3200) * 300 / 256 - 30;   /* (after the colours) */
+    int32_t glint = ms < 2700u || ms > 4100u ? -999 : (int32_t)spa_lin(ms, 2700, 4100) * 350 / 256 - 50;   /* (after the
+                                     * colours, once, left to right in 1.4 s; slanted, wide, with its glow: Marc, 15/11) */
     int32_t rb = ms < 1800u ? -999 : (int32_t)spa_lin(ms, 1800, 2700) * 400 / 256 - 80;   /* the colour wave's middle */
     uint16_t bgn = SPL_BG;                              /* (the page's black, unswapped: lcd_fill's order) */
     int32_t fo = 256 - (int32_t)spa_lin(ms, 5900, 6450);   /* the fade-out, 256 .. 0 */
@@ -1818,9 +1882,9 @@ static void splash_anim(uint32_t ms)
                     if (m < 96)                         /* squeezed: more ink in a row, as a thicker trace */
                         la = la + (la * (96 - m) >> 6) > 15 ? 15 : la + (la * (96 - m) >> 6);
                 }
-                d = xi - glint;
-                if (la && d > -14 && d < 14)            /* the glint */
-                    ramp = SPL_GLINT_RAMP, la = la + (14 - (d < 0 ? -d : d)) * (15 - la) / 14;
+                d = xi - glint - (SPL_LOGO_Y + SPL_LOGO_H - sy) / 2;   /* (slanted: / ) */
+                if (la && d > -SPA_GW && d < SPA_GW)    /* the glint */
+                    ramp = SPL_GLINT_RAMP, la = la + (SPA_GW - (d < 0 ? -d : d)) * (15 - la) / SPA_GW;
             }
             la = la * fo >> 8;
             a = a * fo >> 8;
@@ -1834,6 +1898,14 @@ static void splash_anim(uint32_t ms)
                 }
             } else {
                 row[x] = swap16(spa_mixn(bgn, tc, a * 256 / 15));
+            }
+            if (glint > -999 && m >= 256) {             /* (Guru-600) the glint's glow, on the letters and the black */
+                d = xi - glint - (SPL_LOGO_Y + SPL_LOGO_H - sy) / 2;
+                if (d > -SPA_GW && d < SPA_GW) {
+                    int32_t hl = spa_halo(xi - SPL_HALO_X, sy - SPL_HALO_Y);
+                    if (hl)
+                        row[x] = swap16(spa_glow(swap16(row[x]), hl * (SPA_GW - (d < 0 ? -d : d)) * 240 / (255 * SPA_GW) * fo >> 8));
+                }
             }
         }
         lcd_blit(0, (uint32_t)sy, 240, 1, row);
@@ -2166,6 +2238,7 @@ static void ui_draw(void)
     if (!scr_frame())                                   /* MENU > SCREEN OFF: dark (or waking), nothing drawn */
         return;
     ui_draw_page(counting);
+    ann_ui();                                           /* (Guru-600 1.1: the screen reader, ui_announce.c) */
     draw_banner();
     scr_shown();
 }

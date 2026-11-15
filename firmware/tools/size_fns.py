@@ -27,7 +27,14 @@ SIZE_FILES = ["ui.c", "favorites.c", "menu_items.c", "icons.c", "ui_graph.c", "u
               # learn and palette, categories); not ui_graph3d.c, whose drawing speed is the animations'
               "ui_tools.c", "ui_help.c", "p600_store.c", "midi_learn.c", "editor_learn.c", "editor_palette.c", "category.c",
               # Guru-600 (10/11): P600's import, export, places and SysEx (its voice and render: reached by the ISR, -Os kept)
-              "eng_p600.c"]
+              "eng_p600.c",
+              # Guru-600 (14/11): the FM6 operator pages' drawing and the FM6 voice bank (flash), main loop only
+              "ui_fm6op.c", "fm6_vbank.c"]
+# single functions of files that also hold sound code: main loop only (a user sample's scan, the fault report,
+# the boot's guards and UBOOT entry, a sound's pack / unpack for the stores and the editor, SLICE's manual edits);
+# one an interrupt reaches stays -Os all the same (isr_reach)
+SIZE_FUNCS = {"smp_user_scan", "fm1_fault_c", "fm1_guard_enable", "fm1_enter_uboot", "fm6_pack", "fm6_unpack",
+              "slc_man_begin", "slc_man_restore"}
 ISR_ROOTS = ("fm1_alnk0_irq", "fm1_timer5_irq")      # hal/fm1_isr.S: the audio ISR, the key / LED scan (+ USB poll)
 DEF = re.compile(r"^(?:static|void|int|uint\w*|int\w*|const)\b[^;=(]*?\b([A-Za-z_]\w*)\s*\(", re.M)
 IR_DEF = re.compile(r"^(define [^\n]*?@\"?([\w.]+)\"?\([^\n]*\)(?: unnamed_addr| local_unnamed_addr)?)( #\d+[^\n]*\{)$",
@@ -52,7 +59,7 @@ def definitions(text):
 
 
 def size_names():
-    names = set()
+    names = set(SIZE_FUNCS)
     for f in SIZE_FILES:
         names.update(definitions((SRC / f).read_text()))
     return names

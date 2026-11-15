@@ -208,7 +208,9 @@ int main(int argc, char **argv)
     rc = ota_session();
     printf("  %u requests\n", requests);
     bad += check("session commits (flash.bin exactly 0x93000)", rc == 0 && committed);
-    bad += check("headers + loader + confirm, no head reads", requests >= 10 && requests <= 30);
+    /* (the loader in 512-B reads, up to the 19 968 B the firmware stages: 39, + the headers and the confirm; the
+     * head's 0x4000 read again would add 32 more: still over 50. Guru-600's loader draws its screen: 32 reads) */
+    bad += check("headers + loader + confirm, no head reads", requests >= 10 && requests <= 50);
     {
         uint8_t *h = nor + 0xE0000, *p = committed_parm;
         bad += check("staged body == the package's loader", !memcmp(nor + 0xE0020, logical + ota_body_off(), 64));

@@ -10,7 +10,8 @@ import make_site                                             # noqa: E402
 
 LANGS = ["en", "fr", "de", "es", "it", "zh", "ja"]   # (zh, ja: 10/11, Marc: the seven languages of the editor)
 NAMES = {"en": "EN", "fr": "FR", "de": "DE", "es": "ES", "it": "IT", "zh": "中文", "ja": "日本語"}
-VERSION = "1.0.2"
+VERSION = re.search(r'#define GURU_VERSION "([^"]+)"', (HERE.parents[1] / "Felucca" / "firmware" / "src" /
+                                                       "guru_version.h").read_text()).group(1)   # (le seul endroit)
 
 
 def texts(group):

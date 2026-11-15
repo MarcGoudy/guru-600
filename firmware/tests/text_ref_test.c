@@ -73,12 +73,10 @@ static uint32_t ref_gi(const aafont_t *f, uint32_t ch)      /* the glyph's numbe
 }
 static int32_t ref_kern(const aafont_t *f, uint32_t a, uint32_t b)
 {
-    uint32_t key = (a << 8) | b, lo = 0, hi = f->nk;
-    while (lo < hi) {
-        uint32_t m = (lo + hi) / 2u;
-        if (f->kkey[m] == key) return f->kd[m];
-        if (f->kkey[m] < key) lo = m + 1u; else hi = m;
-    }
+    int32_t ga = ref_at(f, a);                              /* (a scan of the left glyph's pairs) */
+    if (!f->ks || ga < 0) return 0;
+    for (uint32_t m = f->ks[ga]; m < f->ks[ga + 1]; m++)
+        if (f->kkey[m] == b) return f->kd[m];
     return 0;
 }
 /* a glyph's alpha values: 2 px per byte, or (f->hc) the Huffman bit stream of tools/gen_aa_font.py, decoded
@@ -134,7 +132,7 @@ static int32_t ref_text(int32_t x, int32_t y, const aafont_t *f, const char *s, 
                 int32_t px = x + (int32_t)floor(pos / 16.0) + g->bx + (int32_t)gx, py = y + g->by + (int32_t)gy;
                 if (v && (uint32_t)px < W && (uint32_t)py < H) ref[py * W + px] = v == 15u ? fg : rv[v];
             }
-        pen += g->adv;
+        pen += f->adv[ref_gi(f, c)];
         prev = c;
     }
     return x + ((pen + 8) >> 4);

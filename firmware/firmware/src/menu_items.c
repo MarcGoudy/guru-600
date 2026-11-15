@@ -13,9 +13,9 @@
  * 1.2: TUNE and MIDI IN are not settings: they edit the project's G_TUNE and G_ROUTE (up to 1.1.5 on GLO > GLOBAL and
  * GLO > SYSTEM), the values the project holds and saves as before (no format change; a project load brings its own);
  * nothing of theirs is in the settings record (MI_PROJECT: menu_get / menu_put read and write song.g) */
-enum { MI_COLOR, MI_STYLE, MI_LARGE, MI_ANIM, MI_LEDS, MI_SCROFF, MI_SCOPE, MI_HOLD, MI_ACCEL, MI_LATCH, MI_BPMLOCK, MI_SCLLED,
+enum { MI_COLOR, MI_STYLE, MI_LARGE, MI_ANIM, MI_LEDS, MI_SCROFF, MI_SCRWAKE, MI_SCOPE, MI_HOLD, MI_ACCEL, MI_LATCH, MI_BPMLOCK, MI_SCLLED,
        MI_PREVIEW, MI_CHADD, MI_SELECT, MI_LOWCUT, MI_USB,
-       MI_CLICK, MI_CLKLVL, MI_COUNTIN, MI_TUNE, MI_MIDIIN, MI_TCH1, MI_TCH2, MI_TCH3, MI_TCH4, MI_MFOLLOW, MI_SCRWAKE, MI_LCLEAR, MI_RESTORE, MI_HELP,
+       MI_CLICK, MI_CLKLVL, MI_COUNTIN, MI_TUNE, MI_MIDIIN, MI_TCH1, MI_TCH2, MI_TCH3, MI_TCH4, MI_MFOLLOW, MI_MKNOBS, MI_LCLEAR, MI_RESTORE, MI_HELP,
 #if FELUCCA_CPU2
        MI_CPU2,                                        /* (not in a FELUCCA_CPU2=0 build: core.h) */
 #endif
@@ -41,11 +41,11 @@ static int menu_valued(uint32_t row) { return row < MI_VALUES && row != MI_LCLEA
 #define MI_PROJECT(row) ((row) == MI_TUNE || ((row) >= MI_MIDIIN && (row) <= MI_TCH4))   /* the project's values (song.g,
                                                                                          * song.mch), not settings */
 #define MI_TCH(row) ((row) >= MI_TCH1 && (row) <= MI_TCH4)   /* 1.5.5 (#202): T1..T4 CHANNEL, MIDI IN TRACK's */
-static const char *const MI_NAME[MI_COUNT] = {"COLOR", "STYLE", "LARGE", "ANIM", "LEDS", "SCREEN OFF", "SCOPE", "HOLD", "KNOB ACCEL",
+static const char *const MI_NAME[MI_COUNT] = {"COLOR", "STYLE", "LARGE", "ANIM", "LEDS", "SCREEN OFF", "SCREEN WAKE", "SCOPE", "HOLD", "KNOB ACCEL",
                                               "FX LATCH", "BPM LOCK", "SCALE LEDS", "STEP PREVIEW", "CHORD ENTRY", "SELECT",
                                               "SPEAKER EQ", "USB LEVEL", "CLICK", "CLICK LEVEL", "COUNT-IN", "TUNE",
                                               "MIDI IN", "T1 CHANNEL", "T2 CHANNEL", "T3 CHANNEL", "T4 CHANNEL",
-                                              "AUTO SELECT", "SCREEN WAKE", "LEARN CLEAR", "RESTORE LAST", "HELP",
+                                              "AUTO SELECT", "MIDI KNOBS", "LEARN CLEAR", "RESTORE LAST", "HELP",
 #if FELUCCA_CPU2
                                               "2ND CORE",
 #endif
@@ -68,6 +68,8 @@ static const char *const MTAB_NAME[MTAB_COUNT] = {"DISPLAY", "CONTROL", "AUDIO",
 static const uint8_t MI_TAB[MI_COUNT] = {
     MTAB_DISPLAY, MTAB_DISPLAY, MTAB_DISPLAY, MTAB_DISPLAY, MTAB_DISPLAY,   /* COLOR STYLE LARGE ANIM LEDS */
     MTAB_DISPLAY,                                                           /* SCREEN OFF (1.1.5) */
+    MTAB_DISPLAY,                                                           /* SCREEN WAKE (1.5.5; Guru-600: from MIDI, its
+                                                                             * place there for MIDI KNOBS) */
     MTAB_DISPLAY,                                                           /* SCOPE (1.2) */
                                                                             /* (Guru-600: no HOME, no 3D: HOME the spectrum
                                                                              * disc, the other views on their pages) */
@@ -81,7 +83,7 @@ static const uint8_t MI_TAB[MI_COUNT] = {
     MTAB_MIDI,                                                              /* MIDI IN (1.2) */
     MTAB_MIDI, MTAB_MIDI, MTAB_MIDI, MTAB_MIDI,                             /* T1..T4 CHANNEL (1.5.5) */
     MTAB_MIDI,                                                              /* AUTO SELECT (1.5.5) */
-    MTAB_MIDI,                                                              /* SCREEN WAKE (1.5.5: DISPLAY is full) */
+    MTAB_MIDI,                                                              /* MIDI KNOBS (Guru-600) */
     MTAB_MIDI,                                                              /* LEARN CLEAR (1.5) */
     MTAB_SYSTEM, MTAB_SYSTEM,                                               /* RESTORE LAST, HELP (1.5); (Guru-600: no USB
                                                                              * SERIAL, a FELUCCA_CDC=0 build) */
@@ -136,6 +138,7 @@ static const menu_flag_t MENU_FLAGS[] = {
     {MI_HELP, PREF_HELP, {"OFF", "ON"}},               /* 1.5, Discussion #156: ON, a hint per page / layer (ui_help.c) */
     {MI_MFOLLOW, PREF_MIDI_FOLLOW, {"OFF", "ON"}},     /* 1.5.5, #208: ON, MIDI IN notes select their track (ui_input.c) */
     {MI_SCRWAKE, PREF_WAKE_PANEL, {"+MIDI", "PANEL"}}, /* 1.5.5: PANEL, only the panel wakes SCREEN OFF (ui.c scr_input) */
+    {MI_MKNOBS, PREF_MIDI_KNOBS_OFF, {"ON", "OFF"}},   /* Guru-600: ON (the default), CC16..19 turn KNOB1..4 (midi_control.c) */
 #if FELUCCA_CPU2
     {MI_CPU2, PREF_CPU2_ON, {"OFF", "ON (BETA)"}},     /* 1.6.1: ON, the second core (main.c, from the next power-on) */
 #endif
@@ -206,7 +209,7 @@ static uint32_t menu_get(uint32_t row)
     const menu_flag_t *f = menu_flag(row);
     uint32_t i = 0;
     if (f)
-        return ((ui_prefs | (uint32_t)ui_rec_prefs << 8 | (uint32_t)ui_prefs2 << 16) & f->bit) != 0;
+        return ((ui_prefs | (uint32_t)ui_rec_prefs << 8 | (uint32_t)ui_prefs2 << 16 | (uint32_t)ui_prefs3 << 24) & f->bit) != 0;
     switch (row) {
     case MI_COLOR: return palette_cur();
     case MI_STYLE: return ui_style == ST_LINE;
@@ -270,7 +273,9 @@ static void menu_put(uint32_t row, uint32_t v)
 {
     const menu_flag_t *f = menu_flag(row);
     if (f) {
-        if (f->bit & PREF_X)
+        if (f->bit & PREF_Y)
+            ui_prefs3 = (uint8_t)(v ? ui_prefs3 | f->bit >> 24 : ui_prefs3 & ~(f->bit >> 24));
+        else if (f->bit & PREF_X)
             ui_prefs2 = (uint8_t)(v ? ui_prefs2 | f->bit >> 16 : ui_prefs2 & ~(f->bit >> 16));
         else if (f->bit & PREF_REC)
             ui_rec_prefs = (uint8_t)(v ? ui_rec_prefs | f->bit >> 8 : ui_rec_prefs & ~(f->bit >> 8));

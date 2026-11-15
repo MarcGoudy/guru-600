@@ -587,6 +587,9 @@ body.flat .fdr i { box-shadow: none; }
 #maj .act { display: flex; gap: 14px; }
 #maj span, #maj small { white-space: pre-line; }
 #maj small { font: 500 19px/1.35 "Barlow C"; color: var(--cream); opacity: .8; margin-top: -6px; }
+#maj progress { width: 100%; height: 10px; appearance: none; border: 2px solid var(--cream); border-radius: 5px; background: #111; overflow: hidden; }
+#maj progress::-webkit-progress-bar { background: #111; }
+#maj progress::-webkit-progress-value { background: var(--cream); }   /* (1.1.0: the install in the editor) */
 #maj a, #maj button { font: 600 19px/1 "Barlow C"; text-transform: uppercase; letter-spacing: .06em; border-radius: 4px; padding: 12px 22px; cursor: pointer; text-decoration: none; }
 #maj a { color: #111; background: var(--cream); border: 2px solid var(--cream); }
 #maj button { color: var(--cream); background: none; border: 2px solid var(--cream); }
@@ -975,7 +978,7 @@ build();
 abs(h("div", "", "<span></span>"), 0, 960, 1536, 1010).id = "toast";
 abs(h("div", "", '<div class="carte"><i></i><span></span><small></small><div class="act"><a href="https://guru-600.com/installer/" target="_blank" rel="noopener"></a><button type="button" data-act="save"></button><button type="button" data-act="later"></button></div></div>'), 0, 0, 1536, 1024).id = "maj";
 document.querySelector("#maj [data-act=later]").onclick = () => document.getElementById("maj").classList.remove("on");
-document.getElementById("maj").onclick = (e) => { if (e.target.id === "maj") e.target.classList.remove("on"); };
+document.getElementById("maj").onclick = (e) => { if (e.target.id === "maj" && !majEnCours) e.target.classList.remove("on"); };   // (not while it installs)
 render();
 document.fonts.ready.then(layout);
 layout();

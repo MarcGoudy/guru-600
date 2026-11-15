@@ -12,8 +12,9 @@ SHOTS = [("cover", "sound", None), ("sound", "sound", None), ("header", "sound",
          ("sounds", "sound&listat=254", (1316, 150, 1536, 780)), ("seq", "seq", None), ("song", "song", None), ("arp", "arp", None),
          ("fx", "fx", None), ("mod", "mod", None), ("tracks", "tracks", None), ("projects", "projects", None),
          ("samples", "samples", None), ("backup", "backup", None), ("settings", "settings", None)]
-want = set(a for a in sys.argv[1:] if len(a) > 2)
-LANGS = [a for a in sys.argv[1:] if len(a) == 2] or ["en", "fr", "de", "es", "it", "zh", "ja"]   # (shots/xx/: one series per language)
+NAMES = {n for n, _, _ in SHOTS}                     # (a shot's name first: "fx" is a name, not a language)
+want = set(a for a in sys.argv[1:] if a in NAMES)
+LANGS = [a for a in sys.argv[1:] if len(a) == 2 and a not in NAMES] or ["en", "fr", "de", "es", "it", "zh", "ja"]   # (shots/xx/: one series per language)
 for name, tab, crop in SHOTS:
   for lg in LANGS:
     if want and name not in want:

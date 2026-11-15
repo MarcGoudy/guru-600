@@ -627,7 +627,7 @@ static int cc_map_test(void)
     memcpy(before, trk[0].p, sizeof before);
     queued(0xB0, 121, 0, 1);
     bad += check("CC121 resets no mapped parameter (RP-015)", !memcmp(before, trk[0].p, sizeof before));
-    queued(0xB0, 20, 99, 1); queued(0xB0, 76, 99, 1); queued(0xB0, 95, 99, 1);
+    queued(0xB0, 20, 99, 1); queued(0xB0, 85, 99, 1); queued(0xB0, 95, 99, 1);   /* (Guru-600 1.1: 76 is LFO RATE) */
     bad += check("CCs outside the map change nothing", !memcmp(before, trk[0].p, sizeof before));
     memcpy(before, trk[2].p, sizeof before);
     queued(0xB4, 7, 5, 1); queued(0xB9, 74, 5, 2); queued(0xBF, 91, 5, 1);

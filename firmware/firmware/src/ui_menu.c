@@ -18,9 +18,7 @@ static const uint32_t ABOUT_QR[29] = {
     0x05B41B65u, 0x09A95191u, 0x1DF5096Du, 0x1F12F100u, 0x075BF47Fu, 0x011EBF41u,
     0x05F0C55Du, 0x06B5B75Du, 0x0FDC415Du, 0x0AB13641u, 0x05A5357Fu,
 };
-#ifndef GURU_VERSION
-#define GURU_VERSION "1.0.2"
-#endif
+#include "guru_version.h"
 #include "p600_about.h"                                 /* Guru-600: the logo at the top of ABOUT */
 
 static void draw_about_qr(int32_t x, int32_t y)
@@ -108,7 +106,7 @@ static int32_t menu_text(const char *s, int32_t y, uint16_t col, int draw)
             uint32_t c = (uint8_t)s[n];
             line[n] = s[n];
             line[n + 1u] = 0;
-            pen += (prev ? kern(&AF_S, prev, c) : 0) + AF_S.g[glyph(&AF_S, c)].adv;
+            pen += (prev ? kern(&AF_S, prev, c) : 0) + AF_S.adv[glyph(&AF_S, c) >> AF_S.psh];
             prev = c;
             if ((pen + 8) >> 4 > 226)
                 break;
@@ -165,6 +163,8 @@ static int32_t menu_document(int32_t y, int draw)
     y = menu_text("THANKS", y + 20, T_THEME, draw);      /* Guru-600: the user guide's dedication */
     y = menu_text("To \xC9ric Le Yavanc, my brother at heart, passionate about sound and a techie like no other.", y, T_TEXT, draw);
     y = menu_text("Love you, lil' bro! It's all thanks to you!", y, T_TEXT, draw);
+    y = menu_text("To Ax (Audiorial), for his help with the Windows version.", y + 8, T_TEXT, draw);
+    y = menu_text("youtube.com/audiorial", y, T_MID, draw);
     return y + 4;
 }
 static int32_t menu_scroll_max(void)

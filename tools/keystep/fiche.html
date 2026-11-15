@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>KeyStep 37 mk2 · Guru-600</title>
+<style>
+@font-face { font-family: "Guru600"; src: url("../fonts/guru600/Guru600.ttf"); }
+@font-face { font-family: "MonRong"; src: url("../notice/fonts/MonRong.ttf"); }
+@font-face { font-family: "Inter Tight"; src: url("../notice/fonts/InterTight.ttf"); font-weight: 100 900; }
+@page { size: A4 landscape; margin: 0; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { width: 297mm; height: 210mm; background: #fff; color: #1b1a17; font-family: "Inter Tight", sans-serif; }
+body { padding: 13mm 15mm 11mm; display: flex; flex-direction: column; }
+header { display: flex; align-items: flex-end; justify-content: space-between; border-bottom: 1.2mm solid #1b1a17; padding-bottom: 4mm; }
+.logo { font-family: "MonRong"; font-size: 23mm; line-height: .8; letter-spacing: -.5mm; }
+.titre { text-align: right; }
+.titre h1 { font-family: "Guru600"; font-weight: 400; font-size: 11mm; line-height: 1; letter-spacing: .3mm; }
+.titre p { font-size: 4mm; font-weight: 500; margin-top: 2mm; }
+.titre p b { font-weight: 800; }
+main { flex: 1; display: grid; grid-template-columns: repeat(4, 1fr); gap: 6mm; margin-top: 8mm; }
+.banque { border: .9mm solid var(--c); border-radius: 6mm; padding: 5mm 4mm 4mm; display: flex; flex-direction: column; align-items: center; }
+.tete { display: flex; align-items: center; gap: 3mm; }
+.lettre { width: 13mm; height: 13mm; border-radius: 50%; background: var(--c); color: #fff; font-family: "Guru600"; font-size: 8.5mm;
+          display: flex; align-items: center; justify-content: center; padding-top: .6mm; }
+.nom { font-family: "Guru600"; font-size: 6mm; line-height: 1.05; color: var(--c); }
+.cc { font-size: 3.3mm; font-weight: 600; color: #6b675e; margin: 2.5mm 0 4mm; }
+.boutons { width: 100%; display: grid; grid-template-rows: repeat(4, 1fr); gap: 3mm; flex: 1; }
+.bouton { display: flex; align-items: center; gap: 3.5mm; }
+.rond { flex: none; width: 13mm; height: 13mm; border-radius: 50%; border: .8mm solid #1b1a17; position: relative;
+        font-weight: 800; font-size: 4.6mm; display: flex; align-items: center; justify-content: center; }
+.rond::after { content: ""; position: absolute; top: .7mm; left: 50%; width: .8mm; height: 2.6mm; margin-left: -.4mm; background: var(--c); border-radius: .4mm; }
+.fonction { font-weight: 800; font-size: 4.6mm; line-height: 1.1; letter-spacing: .1mm; }
+.fonction small { display: block; font-weight: 500; font-size: 3.1mm; letter-spacing: 0; color: #6b675e; margin-top: .6mm; }
+footer { margin-top: 7mm; display: flex; justify-content: space-between; align-items: flex-end; font-size: 3.3mm; color: #3a372f; gap: 10mm; }
+footer .notes { line-height: 1.45; }
+footer .notes b { font-weight: 800; color: #1b1a17; }
+footer .site { font-family: "Guru600"; font-size: 5.5mm; color: #1b1a17; white-space: nowrap; }
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">guru-600</div>
+  <div class="titre">
+    <h1>ARTURIA KEYSTEP 37 MK2</h1>
+    <p>FM-1 · Guru-600 <b>__VERSION__</b> · MENU › MIDI › <b>MIDI KNOBS: ON</b></p>
+  </div>
+</header>
+<main>
+  <section class="banque" style="--c:#e8572e">
+    <div class="tete"><div class="lettre">A</div><div class="nom">FM-1<br>KNOBS</div></div>
+    <div class="cc">CC 16 · 17 · 18 · 19</div>
+    <div class="boutons">
+      <div class="bouton"><div class="rond">1</div><div class="fonction">KNOB 1<small>on the page shown</small></div></div>
+      <div class="bouton"><div class="rond">2</div><div class="fonction">KNOB 2<small>on the page shown</small></div></div>
+      <div class="bouton"><div class="rond">3</div><div class="fonction">KNOB 3<small>on the page shown</small></div></div>
+      <div class="bouton"><div class="rond">4</div><div class="fonction">KNOB 4<small>on the page shown</small></div></div>
+    </div>
+  </section>
+  <section class="banque" style="--c:#c9861a">
+    <div class="tete"><div class="lettre">B</div><div class="nom">FILTER<br>LFO</div></div>
+    <div class="cc">CC 74 · 71 · 76 · 77</div>
+    <div class="boutons">
+      <div class="bouton"><div class="rond">1</div><div class="fonction">CUTOFF</div></div>
+      <div class="bouton"><div class="rond">2</div><div class="fonction">RESONANCE</div></div>
+      <div class="bouton"><div class="rond">3</div><div class="fonction">LFO RATE</div></div>
+      <div class="bouton"><div class="rond">4</div><div class="fonction">LFO AMOUNT<small>P600 tracks</small></div></div>
+    </div>
+  </section>
+  <section class="banque" style="--c:#2f8f83">
+    <div class="tete"><div class="lettre">C</div><div class="nom">ENVELOPE</div></div>
+    <div class="cc">CC 73 · 75 · 97 · 72</div>
+    <div class="boutons">
+      <div class="bouton"><div class="rond">1</div><div class="fonction">ATTACK</div></div>
+      <div class="bouton"><div class="rond">2</div><div class="fonction">DECAY</div></div>
+      <div class="bouton"><div class="rond">3</div><div class="fonction">SUSTAIN</div></div>
+      <div class="bouton"><div class="rond">4</div><div class="fonction">RELEASE</div></div>
+    </div>
+  </section>
+  <section class="banque" style="--c:#7556c4">
+    <div class="tete"><div class="lettre">D</div><div class="nom">MIXER</div></div>
+    <div class="cc">CC 80 · 81 · 82 · 83</div>
+    <div class="boutons">
+      <div class="bouton"><div class="rond">1</div><div class="fonction">LEVEL T1<small>track 1</small></div></div>
+      <div class="bouton"><div class="rond">2</div><div class="fonction">LEVEL T2<small>track 2</small></div></div>
+      <div class="bouton"><div class="rond">3</div><div class="fonction">LEVEL T3<small>track 3</small></div></div>
+      <div class="bouton"><div class="rond">4</div><div class="fonction">LEVEL T4<small>track 4</small></div></div>
+    </div>
+  </section>
+</main>
+<footer>
+  <div class="notes">
+    <b>B · C</b> act on the track your keyboard's channel plays (channel 1 = track 1). <b>D</b>: left = silent, right = full; see HOME › MIXER.<br>
+    A knob's first move takes the setting to the knob's position. Other keyboards: send the same CC numbers.
+  </div>
+  <div class="site">guru-600.com</div>
+</footer>
+</body>
+</html>

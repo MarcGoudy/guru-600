@@ -18,11 +18,13 @@ Output (a C header; the glyph / font types live in the renderer, firmware/src/gf
                 a run of 1..16 zeros or 15s, or one value 1..14 (huff_pack; about 28 % less than 2 px per byte)
   AF_<N>_HC     the code: the number of codes of each length 1..15, then the symbols in code order
                 ((count - 1) << 4 | value)
-  AF_<N>_G      aag_t {off, adv (1/16 px), bx, by, bw, bh} per glyph and phase (PHASES of S M, PHASES_L of L:
+  AF_<N>_G      aag_t {off, bx, by, bw, bh} per glyph and phase (PHASES of S M, PHASES_L of L:
                 the glyph drawn at a pen of +0, +1/phases .. px, next to each other), ASCII 32..126, then the
                 extras (Latin-1 by their code; the ellipsis U+2026 as code 0x85, as in Windows-1252)
-  AF_<N>_KERN / _KD  kerning pairs (key = a<<8|b, sorted) and their deltas in 1/16 px (GPOS of the weight)
-  AF_<N>        aafont_t (its last field: log2 of the phases)
+  AF_<N>_ADV    the advance per glyph (1/16 px; the same at every phase)
+  AF_<N>_KS / _KERN / _KD  kerning: the pairs of glyph i (its left character) at KS[i] .. KS[i + 1] - 1, each its
+                right character (sorted) and its delta in 1/16 px (GPOS of the weight)
+  AF_<N>        aafont_t (psh: log2 of the phases; then hc, adv, ks)
 Prints the byte cost of every face.
 """
 import argparse
@@ -39,9 +41,9 @@ LOCAL_INTER = os.path.expanduser("~/Library/Fonts/Inter.ttc")   # 4.001: 0 Regul
 EXTRAS = [0xA9, 0xB0, 0xB7, 0xC4, 0xC9, 0xD6, 0xDC, 0xE4, 0xE9, 0xF6, 0xFC, 0x2026]  # (c) deg . A: E/ O: U: a: e/ o: u: (Latin-1; Guru-600: E/ e/ for MENU > ABOUT), ...
 CODE = {0x2026: 0x85}                  # characters outside Latin-1 -> their one-byte code in the firmware
 PHASES, PHASES_L = 4, 2                # horizontal phases per glyph (aa_raster.raster_font): S M, L
-# faces stored Huffman-coded (--huff): M and L. S, the most drawn and the least compressible (-15 %), stays
-# 2 px per byte, so the labels draw at full speed
-HUFF = [("M", "L")]
+# faces stored Huffman-coded (--huff): M, L and T (Guru-600: the P600 look's titles, -28 %). S, the most drawn
+# and the least compressible (-15 %), stays 2 px per byte, so the labels draw at full speed
+HUFF = [("M", "L", "T")]
 # L draws only "FELUCCA", the UPDATE MODE countdown digit, the calibration's control names (panel.c
 # B_NAME / E_NAME) and MENU > LARGE's card values and page titles (ui_draw.c draw_column_tall, ui_graph.c
 # graph_title: # . / J W too; a value with another character is set in M): a sparse face of those glyphs, the
@@ -116,9 +118,10 @@ def huff_lengths(count):
     return length
 
 
-def huff_pack(glyph_values):
-    """[alpha values per glyph] -> (hc table bytes, [bytes per glyph]): canonical Huffman, MSB first"""
-    syms = [huff_symbols(v) for v in glyph_values]
+def huff_pack(glyph_values, symbols=None):
+    """[alpha values per glyph] -> (hc table bytes, [bytes per glyph]): canonical Huffman, MSB first; symbols:
+    values -> symbols (default huff_symbols; gfx.c cv_alpha_hc decodes any (count - 1) << 4 | value)"""
+    syms = [(symbols or huff_symbols)(v) for v in glyph_values]
     count = {}
     for g in syms:
         for s in g:
@@ -211,21 +214,39 @@ def emit(face, tracking, gamma, kern_min):
         lines.append(ar.c_array(f"AF_{name}_HC", "uint8_t", hc, 24))
     lines.append(f"static const aag_t AF_{name}_G[{len(table)}] = {{")
     for off, adv, bx, by, bw, bh in table:
-        lines.append(f"    {{{off}, {adv}, {bx}, {by}, {bw}, {bh}}},")
+        lines.append(f"    {{{off}, {bx}, {by}, {bw}, {bh}}},")
     lines.append("};")
+    adv = [table[i * phases][1] for i in range(len(chars))]
+    assert all(table[i * phases + k][1] == adv[i] for i in range(len(chars)) for k in range(phases))
+    lines.append(ar.c_array(f"AF_{name}_ADV", "uint16_t", adv, 12))
+    # kerning by left glyph (gfx.c kern: glyph_at(a), then its right characters): KS[i] .. KS[i + 1] - 1
+    codes, per = [CODE.get(c, ord(c)) for c in chars], {}
+    for k, d in zip(keys, deltas):
+        assert (k >> 8) in codes, "kerning: a left character outside the face"
+        per.setdefault(codes.index(k >> 8), []).append((k & 255, d))
+    ks, kb, kd = [], [], []
+    for i in range(len(chars)):
+        ks.append(len(kb))
+        for b, d in sorted(per.get(i, [])):
+            kb.append(b)
+            kd.append(d)
+    ks.append(len(kb))
     if keys:
-        lines.append(ar.c_array(f"AF_{name}_KERN", "uint16_t", keys, 12))
-        lines.append(ar.c_array(f"AF_{name}_KD", "int8_t", deltas, 24))
+        lines.append(ar.c_array(f"AF_{name}_KS", "uint16_t", ks, 12))
+        lines.append(ar.c_array(f"AF_{name}_KERN", "uint8_t", kb, 24))
+        lines.append(ar.c_array(f"AF_{name}_KD", "int8_t", kd, 24))
     ex = ", ".join(str(CODE.get(c, c)) for c in extras) or "0"
     lines.append(f"static const uint8_t AF_{name}_EX[{max(1, len(extras))}] = {{{ex}}};")
     lines.append(f"static const aafont_t AF_{name} = {{{r['h']}, {r['asc']}, {first}, {last}, {len(extras)}, {len(keys)}, "
                  f"AF_{name}_G, AF_{name}_DATA, {'AF_%s_KERN' % name if keys else '0'}, "
-                 f"{'AF_%s_KD' % name if keys else '0'}, AF_{name}_EX, {psh}, {'AF_%s_HC' % name if hc else '0'}}};")
+                 f"{'AF_%s_KD' % name if keys else '0'}, AF_{name}_EX, {psh}, {'AF_%s_HC' % name if hc else '0'}, "
+                 f"AF_{name}_ADV, {'AF_%s_KS' % name if keys else '0'}}};")
     if "H" in chars:                                  # the capitals' band (gfx.c CAP_IN: centring text by it)
         cap = table[chars.index("H") * phases]
         lines.append(f"#define AF_{name}_CAP_Y {cap[3]}   /* the ink of H: rows {cap[3]} .. {cap[3] + cap[5] - 1} of the line */")
         lines.append(f"#define AF_{name}_CAP_H {cap[5]}")
-    cost = {"data": len(data) + len(hc), "glyph_table": 8 * len(table), "kern": 3 * len(keys), "extras": len(extras),
+    cost = {"data": len(data) + len(hc), "glyph_table": 6 * len(table) + 2 * len(chars),
+            "kern": 2 * len(keys) + (2 * len(ks) if keys else 0), "extras": len(extras),
             "glyphs": len(chars), "phases": phases, "pairs": len(keys), "h": r["h"], "asc": r["asc"], "px": px,
             "font": os.path.basename(font.split("#")[0]), "adv_digit": r["glyphs"]["0"][0] / 16}
     cost["total"] = cost["data"] + cost["glyph_table"] + cost["kern"] + cost["extras"]

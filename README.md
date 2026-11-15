@@ -19,6 +19,7 @@ The Guru-600 turns the M-VAVE FM-1 into an emulator of the Sequential Circuits P
 - **55 places of your own** for P600 sounds, in addition to the 32 USER places.
 - **Prophet-600 sounds sent from a computer** (.syx), and back.
 - **A chord memory**, a MIDI map that follows the GliGli firmware's, a new look and easier navigation.
+- **A MIDI keyboard's knobs work at once** (an Arturia KeyStep as it comes, or any controller): the FM-1's four knobs, the filter, the envelope and a four-track mixer. And an equalizer per sound, and a screen reader for blind and visually impaired players.
 - **A complete backup** of the FM-1 with the Guru-600 editor: switch to another firmware, come back, and find the machine exactly as you left it.
 - **The Guru-600 editor**, in the browser: the whole FM-1 on the computer's screen, as a panel inspired by the Prophet-600 with a keyboard: the P600 sounds, the sequencer, the song, the effects, the mix, the projects, the samples, the backup and the settings, with its own guide in 7 languages: **https://marcgoudy.github.io/guru-600/editor/**
 - **A Mac application** (Apple silicon) **and a Windows application** (Windows 10 and 11, 64-bit): the whole Guru-600 on the computer's screen, to discover it, prepare sounds or play without the FM-1. Their backups move to and from a FM-1.
@@ -66,6 +67,7 @@ Le Guru-600 transforme le M-VAVE FM-1 en émulateur du Prophet-600 de Sequential
 - **55 places à vous** pour les sons P600, en plus des 32 emplacements USER.
 - **Des sons Prophet-600 envoyés depuis un ordinateur** (.syx), et récupérés.
 - **Une mémoire d'accords**, une table MIDI qui suit celle du firmware GliGli, un nouveau visage et une navigation plus simple.
+- **Les boutons d'un clavier MIDI fonctionnent tout de suite** (un Arturia KeyStep tel qu'il sort de la boîte, ou tout contrôleur) : les quatre boutons du FM-1, le filtre, l'enveloppe et une table de mixage des quatre pistes. Et un égaliseur par son, et un lecteur d'écran pour les musiciens aveugles et malvoyants.
 - **Une sauvegarde complète** du FM-1 avec l'éditeur Guru-600 : passez à un autre firmware, revenez, et retrouvez la machine exactement telle que vous l'aviez laissée.
 - **L'éditeur Guru-600**, dans le navigateur : tout le FM-1 sur l'écran de l'ordinateur, sous la forme d'une façade inspirée du Prophet-600, avec un clavier : les sons P600, le séquenceur, le morceau, les effets, le mixage, les projets, les échantillons, la sauvegarde et les réglages, avec son propre guide en 7 langues : **https://marcgoudy.github.io/guru-600/editor/**
 - **Une application pour Mac** (puce Apple) **et une pour Windows** (Windows 10 et 11, 64 bits) : tout le Guru-600 sur l'écran de l'ordinateur, pour le découvrir, préparer des sons ou jouer sans le FM-1. Leurs sauvegardes passent d'un FM-1 à l'application, et inversement.
@@ -113,6 +115,7 @@ Der Guru-600 verwandelt den M-VAVE FM-1 in einen Emulator des Sequential Circuit
 - **55 eigene Plätze** für P600-Sounds, zusätzlich zu den 32 USER-Plätzen.
 - **Prophet-600-Sounds vom Computer** (.syx) senden und zurückholen.
 - **Ein Akkordspeicher**, eine MIDI-Belegung wie bei der GliGli-Firmware, ein neues Aussehen und eine einfachere Navigation.
+- **Die Regler eines MIDI-Keyboards funktionieren sofort** (ein Arturia KeyStep ab Werk oder jeder Controller): die vier Regler des FM-1, der Filter, die Hüllkurve und ein Mischpult für die vier Spuren. Dazu ein Equalizer pro Klang und ein Bildschirmleser für blinde und sehbehinderte Musiker.
 - **Ein vollständiges Backup** des FM-1 mit dem Guru-600-Editor: Wechseln Sie zu einer anderen Firmware, kehren Sie zurück, und das Gerät ist genau so, wie Sie es verlassen haben.
 - **Der Guru-600-Editor** im Browser: der ganze FM-1 auf dem Bildschirm, als ein vom Prophet-600 inspiriertes Bedienfeld mit Tastatur: die P600-Sounds, der Sequencer, der Song, die Effekte, der Mix, die Projekte, die Samples, das Backup und die Einstellungen, mit eigener Anleitung in 7 Sprachen: **https://marcgoudy.github.io/guru-600/editor/**
 - **Eine Mac-Anwendung** (Apple Silicon) **und eine Windows-Anwendung** (Windows 10 und 11, 64 Bit): der ganze Guru-600 auf dem Bildschirm, um ihn kennenzulernen, Sounds vorzubereiten oder ohne den FM-1 zu spielen. Ihre Backups lassen sich zwischen FM-1 und Anwendung austauschen.
@@ -160,6 +163,7 @@ El Guru-600 convierte el M-VAVE FM-1 en un emulador del Sequential Circuits Prop
 - **55 lugares propios** para sonidos P600, además de las 32 posiciones USER.
 - **Sonidos del Prophet-600 enviados desde un ordenador** (.syx), y recuperados.
 - **Una memoria de acordes**, un mapa MIDI que sigue el del firmware GliGli, un nuevo aspecto y una navegación más sencilla.
+- **Los potenciómetros de un teclado MIDI funcionan al instante** (un Arturia KeyStep tal como sale de la caja, o cualquier controlador): los cuatro potenciómetros del FM-1, el filtro, la envolvente y una mesa de mezclas de las cuatro pistas. Además, un ecualizador por sonido y un lector de pantalla para músicos ciegos y con baja visión.
 - **Una copia de seguridad completa** del FM-1 con el editor Guru-600: cambie a otro firmware, vuelva, y encuentre la máquina exactamente como la dejó.
 - **El editor Guru-600**, en el navegador: todo el FM-1 en la pantalla del ordenador, como un panel inspirado en el Prophet-600, con un teclado: los sonidos P600, el secuenciador, la canción, los efectos, la mezcla, los proyectos, las muestras, la copia de seguridad y los ajustes, con su propia guía en 7 idiomas: **https://marcgoudy.github.io/guru-600/editor/**
 - **Una aplicación para Mac** (Apple silicon) **y otra para Windows** (Windows 10 y 11, 64 bits): todo el Guru-600 en la pantalla del ordenador, para descubrirlo, preparar sonidos o tocar sin el FM-1. Sus copias de seguridad pasan del FM-1 a la aplicación, y al revés.
@@ -207,6 +211,7 @@ Il Guru-600 trasforma l'M-VAVE FM-1 in un emulatore del Sequential Circuits Prop
 - **55 posti tutti vostri** per i suoni P600, oltre alle 32 posizioni USER.
 - **Suoni del Prophet-600 inviati da un computer** (.syx), e recuperati.
 - **Una memoria degli accordi**, una mappa MIDI che segue quella del firmware GliGli, un nuovo aspetto e una navigazione più semplice.
+- **Le manopole di una tastiera MIDI funzionano subito** (un Arturia KeyStep così com'è, o qualsiasi controller): le quattro manopole del FM-1, il filtro, l'inviluppo e un mixer delle quattro tracce. In più un equalizzatore per suono e un lettore di schermo per musicisti ciechi e ipovedenti.
 - **Un backup completo** dell'FM-1 con l'editor Guru-600: passate a un altro firmware, tornate indietro, e ritrovate la macchina esattamente come l'avevate lasciata.
 - **L'editor Guru-600**, nel browser: tutto l'FM-1 sullo schermo del computer, come un pannello ispirato al Prophet-600, con una tastiera: i suoni P600, il sequencer, la song, gli effetti, il mix, i progetti, i campioni, il backup e le impostazioni, con la sua guida in 7 lingue: **https://marcgoudy.github.io/guru-600/editor/**
 - **Un'applicazione per Mac** (Apple silicon) **e una per Windows** (Windows 10 e 11, 64 bit): tutto il Guru-600 sullo schermo del computer, per scoprirlo, preparare suoni o suonare senza l'FM-1. I loro backup passano dall'FM-1 all'applicazione, e viceversa.
@@ -254,6 +259,7 @@ Guru-600 将 M-VAVE FM-1 变成 Sequential Circuits Prophet-600（1982 年）的
 - **55 个属于您的位置**，用于存放 P600 音色，另有 32 个 USER 位置。
 - **从电脑发送 Prophet-600 音色**（.syx），也可以取回。
 - **和弦记忆**、沿用 GliGli 固件的 MIDI 对应表、全新的外观和更简便的操作。
+- **MIDI 键盘的旋钮即插即用**（开箱即用的 Arturia KeyStep 或任何控制器）：FM-1 的四个旋钮、滤波器、包络和四音轨调音台。另有每个音色的均衡器，以及为盲人和视障乐手准备的屏幕阅读器。
 - **FM-1 的完整备份**（使用 Guru-600 编辑器）：换用其他固件后再换回来，设备会完全恢复到您离开时的状态。
 - **Guru-600 编辑器**（在浏览器中）：在电脑屏幕上呈现完整的 FM-1，形式为一块受 Prophet-600 启发、带键盘的面板：P600 音色、音序器、歌曲、效果、混音、工程、采样、备份和设置，并附有 7 种语言的专属指南：**https://marcgoudy.github.io/guru-600/editor/**
 - **Mac 应用程序**（Apple 芯片）**和 Windows 应用程序**（Windows 10 和 11，64 位）：在电脑屏幕上使用完整的 Guru-600，用来熟悉它、准备音色或在没有 FM-1 时演奏。其备份可以在 FM-1 和应用程序之间互相传递。
@@ -301,6 +307,7 @@ Guru-600 は、M-VAVE FM-1 を、MIDI を搭載した最初期のシンセサイ
 - **P600 サウンド用の自分の枠 55**。USER 枠 32 とは別にあります。
 - **コンピューターから Prophet-600 のサウンドを送信**（.syx）し、取り戻すこともできます。
 - **コード・メモリー**、GliGli ファームウェアと同じ MIDI マップ、新しい外観、よりシンプルな操作。
+- **MIDI キーボードのノブがすぐに使えます**（箱から出したままの Arturia KeyStep、またはどんなコントローラーでも）：FM-1 の4つのノブ、フィルター、エンベロープ、4トラックのミキサー。さらにサウンドごとのイコライザーと、目の不自由な演奏者のためのスクリーンリーダー。
 - **Guru-600 エディターによる FM-1 の完全バックアップ**：別のファームウェアに切り替えて戻しても、機器は離れたときとまったく同じ状態に戻ります。
 - **Guru-600 エディター**（ブラウザーで使用）：FM-1 のすべてを、Prophet-600 にインスパイアされた鍵盤付きのパネルとしてコンピューターの画面に表示します。P600 サウンド、シーケンサー、ソング、エフェクト、ミックス、プロジェクト、サンプル、バックアップ、設定。7 言語の専用ガイド付き：**https://marcgoudy.github.io/guru-600/editor/**
 - **Mac 用アプリケーション**（Apple シリコン）**と Windows 用アプリケーション**（Windows 10・11、64 ビット）：Guru-600 のすべてをコンピューターの画面で使えます。試したり、サウンドを準備したり、FM-1 なしで演奏したりできます。バックアップは FM-1 とアプリケーションの間でやり取りできます。

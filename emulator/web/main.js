@@ -488,16 +488,18 @@ canvas.addEventListener("wheel", (e) => {
   while (wheelAcc <= -40) { wheelAcc += 40; turn(h, -1); }
 }, { passive: false });
 
-// computer keyboard: A W S E D F T G Y H U J K O L P ; ' = C4..F5, Z X OCT- OCT+, Space PLAY,
-// R REC, 1..0 FX SCL ENV LFO EDIT GLO HOME SAVE ARP SEQ, arrows / , . encoders. SMK-37: the same
-// notes (keys 12..29), Z X OCTAVE- / +, Space SEQ PLAY, R SEQ REC, 1..8 the top pads, arrows K1 / K2,
-// , . K3
+// computer keyboard (Guru-600: the Mac and Windows applications' keys, 10/11): A W S E D F T G Y H U
+// J K O L P ; ' = C4..F5, arrows <- -> OCT- OCT+, Space PLAY, R REC, 1..0 FX SEL ENV LFO EDIT GLO HOME
+// SAVE ARP SEQ, [ ] SELECT, - = PRESETS, , . ALGORITHM. SMK-37: the same notes (keys 12..29), arrows
+// OCTAVE- / +, Space SEQ PLAY, R SEQ REC, 1..8 the top pads, [ ] K1, - = K2, , . K3
 const PIANO = "awsedftgyhujkolp;'";
 const BUTTONS = [
-  { z: 0, x: 1, " ": 12, r: 13, 1: 2, 2: 3, 3: 4, 4: 5, 5: 6, 6: 7, 7: 8, 8: 9, 9: 10, 0: 11 },
-  { z: BTN0 + 4, x: BTN0 + 5, " ": BTN0 + 16, r: BTN0 + 17 },
+  { arrowleft: 0, arrowright: 1, " ": 12, r: 13, 1: 2, 2: 3, 3: 4, 4: 5, 5: 6, 6: 7, 7: 8, 8: 9, 9: 10, 0: 11 },
+  { arrowleft: BTN0 + 4, arrowright: BTN0 + 5, " ": BTN0 + 16, r: BTN0 + 17 },
 ];
-const ENC_KEYS = { ArrowLeft: [0, -1], ArrowRight: [0, 1], ArrowDown: [1, -1], ArrowUp: [1, 1], ",": [2, -1], ".": [2, 1] };
+// the encoders, by the character typed (on any keyboard layout, the key that types it)
+const ENC_CHARS = { "[": [0, -1], "]": [0, 1], "-": [1, -1], "=": [1, 1], ",": [2, -1], ".": [2, 1] };
+const encKey = (e) => ENC_CHARS[e.key];
 function keyId(k) {
   const i = PIANO.indexOf(k.toLowerCase());
   if (i >= 0) return (board === 1 ? 12 : 21) + i;
@@ -507,7 +509,8 @@ function keyId(k) {
 const padKey = (k) => (board === 1 && /^[1-8]$/.test(k) ? Number(k) - 1 : -1);
 addEventListener("keydown", (e) => {
   if (e.metaKey || e.ctrlKey || e.target instanceof HTMLSelectElement) return;
-  if (ENC_KEYS[e.key]) { e.preventDefault(); turn(...ENC_KEYS[e.key]); return; }
+  const enc = encKey(e);
+  if (enc) { e.preventDefault(); turn(...enc); return; }
   const pad = padKey(e.key);
   if (pad >= 0) { e.preventDefault(); if (!e.repeat) setAnalog(pad, 700); return; }
   const id = keyId(e.key);

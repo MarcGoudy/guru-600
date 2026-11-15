@@ -14,6 +14,13 @@ from pathlib import Path
 # (firmware/engines/, a git submodule, MIT): one generator for both, so they cannot drift apart
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "firmware" / "engines" / "tools"))
 import gen_engine_tables as fe  # noqa: E402
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import tabpack  # noqa: E402
+
+# the smooth tables kept packed in flash and unpacked once at boot into RAM (tools/tabpack.py; src/main.c
+# fm1_cstart, tab_init_felucca_tables): bit for bit the values below, 4 KB of flash instead of 15
+PACKED = ["SINE", "PITCH_OCT", "TIME_MS_X10", "ENV_LIN", "ENV_EXP", "LFO_HZ_X100", "LFO_INC", "CUTOFF_HZ", "SVF_G",
+          "LEVEL_Q12", "DECAY_K", "TANH_Q15", "FM6_EXP2", "FM6_DETUNE", "FM6_FINE"]
 
 FS = fe.FS
 CTL = fe.CTL
@@ -58,7 +65,9 @@ def main(path):
     L += arr("DECAY_K", "uint16_t", [min(65535, int(65536 * math.exp(-6.9 / (m / 1000 * FS)))) for m in dms])
     L += fe.tanh_q15()           # soft clip curve (tanh), Q15
     L += fm6_tables()
-    Path(path).write_text("\n".join(L) + "\n")
+    text, report = tabpack.rewrite("\n".join(L) + "\n", PACKED, "tab_init_felucca_tables")
+    Path(path).write_text(text)
+    print("tables: packed " + "; ".join(report))
 
 
 # FM6 (src/fm6_core.c, a C port of msfa, Apache-2.0): the tables msfa built with double math at start-up,

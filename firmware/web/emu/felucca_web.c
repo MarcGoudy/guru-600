@@ -268,6 +268,10 @@ static uint32_t web_booted, web_boot_ms, web_last_frame;
 /* main.c fm1_main's boot, up to the main loop (no USB, no UART, no panel setup) */
 static void web_power_on(void)
 {
+    tab_init_felucca_tables();          /* main.c fm1_cstart: the packed tables (tools/tabpack.py; a constructor ran */
+#ifdef UAC_FIR_N                        /* them already: once only) */
+    tab_init_uac_fir();
+#endif
     persist_boot();
     settings_init();
 #if FELUCCA_P600

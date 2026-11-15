@@ -13,11 +13,13 @@ let menuItems = [
   [8, 0, 0, "BPM LOCK", 1, "OFF|ON"], [9, 0, 0, "SPEAKER EQ", 2, "FLAT|LOWCUT|BASS+"], [10, 0, 0, "USB LEVEL", 2, "MASTER|FIXED"],
   [12, 0, 0, "CLICK", 2, "OFF|REC|ON"], [13, 0, 1, "CLICK LEVEL", 2, "LOW|MID|HIGH"], [14, 0, 0, "COUNT-IN", 2, "OFF|1 BAR|2 BARS"],
   [15, 0, 0, "RESTORE LAST", 4, "ON|OFF"], [16, 0, 0, "SCALE LEDS", 1, "OFF|ON"], [17, 0, 0, "SCREEN OFF", 0, "NEVER|5 MIN|15 MIN|30 MIN|60 MIN"],
+  [31, 0, 0, "SCREEN WAKE", 0, "+MIDI|PANEL"],
   [18, 0, 0, "SCOPE", 0, "OUT|MIX"], [19, 0, 0, "STEP PREVIEW", 1, "OFF|ON"], [20, 0, 0, "CHORD ENTRY", 1, "HOLD|ADD"],
   [21, 0, 0, "MIDI IN", 3, "CH1-4|SEL|CH5-8|CH9-12|CH13-16|TRACK"], [22, 1, 0, "TUNE", 2, "ct"], [24, 0, 0, "HELP", 4, "OFF|ON"],
   [25, 0, 0, "SELECT", 1, "BPM|PAGE|MODW|VEL"], [26, 0, 0, "T1 CHANNEL", 3, N_CH.join("|")], [27, 0, 1, "T2 CHANNEL", 3, N_CH.join("|")],
   [28, 0, 2, "T3 CHANNEL", 3, N_CH.join("|")], [29, 0, 3, "T4 CHANNEL", 3, N_CH.join("|")], [30, 0, 0, "AUTO SELECT", 3, "OFF|ON"],
-  [31, 0, 0, "SCREEN WAKE", 3, "+MIDI|PANEL"], [32, 0, 0, "2ND CORE", 4, "OFF|ON (BETA)"],
+  [32, 0, 0, "2ND CORE", 4, "OFF|ON (BETA)"],
+  [33, 0, 0, "MIDI KNOBS", 3, "ON|OFF"],   // (Guru-600 1.1.0: the KeyStep's knobs turn KNOB 1..4)
 ].map(([id, kind, v, name, tab, n]) => ({ id, kind, v, lo: kind ? -50 : 0, hi: kind ? 50 : n.split("|").length - 1, name, tab,
   tabn: ["DISPLAY", "CONTROL", "AUDIO", "MIDI", "SYSTEM"][tab], names: n.split("|") }));
 const SET_SECS = [["DISPLAY", "osc", 0], ["CONTROL", "lfo", 1], ["AUDIO", "fx", 2], ["MIDI", "vce", 3], ["SYSTEM", "pm", 4], ["EDITOR", "snd", 5]];

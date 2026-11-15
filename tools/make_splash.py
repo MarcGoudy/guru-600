@@ -1,17 +1,21 @@
 """Écran d'accueil « Guru~600 » du firmware (240 x 240) : aperçu PNG + en-tête C (alpha 4 bits, rampe de couleurs).
     venv/bin/python p600/make_splash.py p600/fonts/vimongrong/MONRON1T.TTF p600/splash ../Felucca/firmware/src/p600_splash.h"""
 import os
+import re
 import sys
-from PIL import Image, ImageDraw, ImageFont
+from PIL import Image, ImageDraw, ImageFilter, ImageFont
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "Felucca", "tools"))
 import lz4blk                                                  # (10/11 : les images compressées sans perte, LZ4)
 
 BG, FG, SUB = (12, 11, 10), (238, 232, 216), (214, 84, 64)    # noir du panneau, crème du logo, rouge de la mention
 CREDC = (168, 162, 150)                                        # le crédit Felucca : plus discret, lisible
 VERC = (206, 200, 186)                                         # le numéro de version : gris crème, lisible
+HM = 6                                                         # la marge du halo autour du logo
+GLOW = (255, 255, 255)                                         # sa lumière : blanche (Marc, 15/11)
 WAVE = (255, 64, 48)                                           # l'onde : le rouge de l'afficheur LED du Prophet
 SS = 4                                                         # suréchantillonnage
-VERSION = "1.0.2"                                              # la version de Guru 600, sous la mention
+VERSION = re.search(r'#define GURU_VERSION "([^"]+)"', open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..",
+                    "Felucca", "firmware", "src", "guru_version.h")).read()).group(1)   # (le seul endroit : guru_version.h)
 
 
 def text_img(font_path, text, px, pad=2):
@@ -110,6 +114,12 @@ def main(font, outdir, header):
     ver = tracked("by Marc Massé, v" + VERSION, 11, 450, 0.2)   # Inter Tight aussi, en graisse normale
     cred = tracked("based on Felucca by Leo Kuroshita", 9, 400, 0.3)   # le crédit du firmware de base, en petit
     W = 240
+    # le halo du reflet (glow, Marc 15/11) : le logo flouté, HM px de marge autour, la lumière qui déborde des lettres
+    big = Image.new("L", (logo.width + 2 * HM, logo.height + 2 * HM), 0)
+    big.paste(logo, (HM, HM))
+    halo = big.filter(ImageFilter.GaussianBlur(4.0))
+    mx = max(halo.get_flattened_data()) or 1
+    halo = halo.point(lambda v: min(255, round(v * 255 / mx)))
     canvas = Image.new("L", (W, 240), 0)
     canvas_sub = Image.new("L", (W, 240), 0)
     y = (240 - logo.height) // 2 - 8
@@ -148,13 +158,18 @@ def main(font, outdir, header):
                                  ("SUB", sub, SUB, (W - sub.width) // 2, y + logo.height + 18),
                                  ("VER", ver, VERC, (W - ver.width) // 2, y + logo.height + 18 + sub.height + 6),
                                  ("CRED", cred, CREDC, (W - cred.width) // 2,
-                                  y + logo.height + 18 + sub.height + 6 + ver.height + 4)):
+                                  y + logo.height + 18 + sub.height + 6 + ver.height + 4),
+                                 ("HALO", halo, GLOW, (W - logo.width) // 2 - HM, y - HM)):   # (Marc, 15/11 : le glow)
         L.append("#define SPL_%s_X %d\n#define SPL_%s_Y %d\n#define SPL_%s_W %d\n#define SPL_%s_H %d" %
                  (name, x, name, yy, name, im.width, name, im.height))
+        if name == "HALO":                                 # (calculé à l'allumage depuis le logo : ui_draw.c splash_unpack)
+            L.append("#define SPL_HALO_M %d   /* the logo HM px in from its corner */\n#define SPL_HALO_N %d   /* a byte a pixel */"
+                     % (HM, im.width * im.height))
+            continue
         L.append("static const uint16_t SPL_%s_RAMP[16] = {%s};" % (name, ", ".join("0x%04X" % v for v in ramp(col))))
         if name == "LOGO":                                 # le reflet qui passe sur les lettres (animation)
             L.append("static const uint16_t SPL_GLINT_RAMP[16] = {%s};" %
-                     ", ".join("0x%04X" % v for v in ramp((255, 252, 244))))
+                     ", ".join("0x%04X" % v for v in ramp((255, 255, 255))))
             L.append("static const uint16_t SPL_WAVE_RAMP[16] = {%s};" % ", ".join("0x%04X" % v for v in ramp(WAVE)))
         d = packed(im)
         z = min(lz4blk.compress(bytes(d)), lz4_optimal(bytes(d)), key=len)
@@ -169,6 +184,8 @@ def main(font, outdir, header):
     L.append("static const uint16_t SPL_ZN[%d][2] = {%s};   /* packed, unpacked */" %
              (len(Z), ", ".join("{%d, %d}" % (b, a) for _, a, b in Z)))
     L.append("static const uint8_t *spl_a[%d];   /* the unpacked areas (in the canvas, during the splash) */" % len(Z))
+    L.append("static uint8_t *spl_halo;   /* the glow's halo, made from the logo at the splash's start (in the canvas) */")
+    L.append("#define SPL_HALO_A spl_halo")
     for k, (n, _, _) in enumerate(Z):
         L.append("#define SPL_%s_A (spl_a[%d])" % (n, k))
     open(header, "w").write("\n".join(L) + "\n")

@@ -365,7 +365,7 @@ const CMD = { INFO: 1, GET: 2, SET: 3, DUMP: 4, DESC: 5, STEP_GET: 6, STEP_SET: 
 const PUSH = new Set([CMD.CHANGED, CMD.RELOAD, CMD.STEP_CHANGED, CMD.TRACK_CHANGED]);
 /* user preset bank: name 1..12 printable ASCII, a 16-step pattern of (note, flags 1 acc 2 slide 4 tie) */
 const UP = { NAME_MAX: 12, PAT: 16, LIST_MAX: 16 };
-const F = { INT: 0, PCT: 1, BIPCT: 2, TIME: 3, LFOHZ: 4, CUTOFF: 5, DB: 6, SEMI: 7, ENUM: 8, BPM: 9, NOTE: 10, ONOFF: 11, OCT: 12, STEPS: 13 };
+const F = { INT: 0, PCT: 1, BIPCT: 2, TIME: 3, LFOHZ: 4, CUTOFF: 5, DB: 6, SEMI: 7, ENUM: 8, BPM: 9, NOTE: 10, ONOFF: 11, OCT: 12, STEPS: 13, GAIN: 14 };
 
 const v14enc = (v) => { const u = Math.max(-8192, Math.min(8191, Math.round(v))) + 8192; return [u & 0x7F, (u >> 7) & 0x7F]; };
 const v14dec = (lo, hi) => (lo | (hi << 7)) - 8192;
@@ -2059,10 +2059,10 @@ function makeMockDevice(opt = {}) {
   TP.push(E("SYNC", ["OFF", "4BAR", "2BAR", "1/1", "1/2", "1/4", "1/8", "8T", "1/16", "16T", "1/32"], 0),   /* 1.2: LFO 2 (91..93) */
     E("TRIG", ["NOTE", "FREE"], 0), E("POL", ["BI", "UNI"], 0), E("QNTZ", ["OFF", "ON"], 1),   /* and QUANTIZE (94) */
     D("SPRD", F.PCT, 0, 127, 0),   /* SPREAD (95, #148) */
-    E("INSRT", ["OFF", "SOFT", "HARD", "FOLD", "FUZZ", "CRUSH", "PHASR", "FLANG", "CHOR"], 0),   /* 1.5: the INSERT (96..100) */
+    E("INSRT", ["OFF", "SOFT", "HARD", "FOLD", "FUZZ", "CRUSH", "PHASR", "FLANG", "CHOR", "EQ"], 0),   /* 1.5: the INSERT (96..100) */
     D("INS A", F.PCT, 0, 127, 64), D("INS B", F.PCT, 0, 127, 96), D("INS C", F.PCT, 0, 127, 96), D("MIX", F.PCT, 0, 127, 127),
     E("TYPE", ["LP", "BP", "HP"], 0), E("ESYNC", ["OFF", "ON"], 0));   /* 1.5: ANALOG's filter TYPE (101, #104), ENV SYNC (102, #175) */
-  TP.push(E("INSR2", ["OFF", "SOFT", "HARD", "FOLD", "FUZZ", "CRUSH", "PHASR", "FLANG", "CHOR"], 0),   /* Guru-600: INSERT 2 (103..107) */
+  TP.push(E("INSR2", ["OFF", "SOFT", "HARD", "FOLD", "FUZZ", "CRUSH", "PHASR", "FLANG", "CHOR", "EQ"], 0),   /* Guru-600: INSERT 2 (103..107) */
     D("INS A", F.PCT, 0, 127, 64), D("INS B", F.PCT, 0, 127, 96), D("INS C", F.PCT, 0, 127, 96), D("MIX", F.PCT, 0, 127, 127));
   const P_COUNT = 116, G_COUNT = 27, NSTEP = 64, P_E0 = 108, G_ENGSEL = 20, P_SLCR = 45;
   const clamp = (v, a, b) => Math.max(a, Math.min(b, v));

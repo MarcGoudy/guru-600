@@ -8,17 +8,19 @@
  * each glyph is rasterised at 1 << psh horizontal phases (S M 4, L 2: drawn at a pen of +0, +1/4 .. px);
  * cv_text takes the phase that puts it within a phase step of its true place. Blending uses a 16-entry
  * ramp per (ink, background) pair, cached, so a pixel costs a nibble read and a store. Colours come from the theme tokens. */
-typedef struct { uint16_t off, adv; int8_t bx; uint8_t by, bw, bh; } aag_t;
+typedef struct { uint16_t off; int8_t bx; uint8_t by, bw, bh; } aag_t;   /* (the advance: aafont_t adv, per glyph) */
 typedef struct {
     uint8_t h, asc, first, last, nex;   /* line height, baseline; ASCII range; extras */
     uint16_t nk;                        /* kerning pairs */
     const aag_t *g;
     const uint8_t *data;
-    const uint16_t *kkey;               /* a << 8 | b, sorted */
+    const uint8_t *kkey;                /* kerning: the right characters of each left glyph's pairs, sorted (ks) */
     const int8_t *kd;                   /* 1/16 px */
     const uint8_t *ex;                  /* codes of the extra glyphs */
     uint8_t psh;                        /* log2 of the phases per glyph: g[i << psh] .. g[(i << psh) + phases - 1] */
     const uint8_t *hc;                  /* data's Huffman code (cv_alpha_hc), 0 = 2 px per byte (cv_alpha) */
+    const uint16_t *adv;                /* the advance of glyph i (1/16 px), at every phase */
+    const uint16_t *ks;                 /* glyph i's kerning pairs: kkey[ks[i]] .. kkey[ks[i + 1] - 1] (0: no kerning) */
 } aafont_t;
 typedef struct { const char *name; uint16_t bg, surf, text, theme, accent; } ui_pal_t;
 typedef struct { uint16_t off; uint8_t w; const char *label; } kc_t;
@@ -412,7 +414,8 @@ static void cv_alpha(int32_t x, int32_t y, uint32_t w, uint32_t h, const uint8_t
  * its repeat count ((count - 1) << 4 | value: runs of zeros and 15s). Codes of up to 8 bits come from a
  * 256-entry table made once per font in RAM (symbol | length << 8; 0 = a longer code: bit by bit). The
  * stream is read in order, so rows outside the clip are decoded and dropped; a run spans rows */
-#define HC_FONTS 3                       /* the codes: the faces M and L (gen_aa_font.py HUFF), the icons (AI_HC) */
+#define HC_FONTS 4                       /* the codes: the faces M, L and T (gen_aa_font.py HUFF), the icons (AI_HC), the
+                                          * keycaps (KC_HC): five codes, four slots (the last rebuilt on a change) */
 static struct { const uint8_t *hc; uint16_t lut[256]; } hc_tab[HC_FONTS] __attribute__((section(".pool")));
 static const uint16_t *hc_lut(const uint8_t *hc)
 {
@@ -514,12 +517,17 @@ static uint32_t glyph(const aafont_t *f, uint32_t ch)
 
 static int32_t kern(const aafont_t *f, uint32_t a, uint32_t b)       /* 1/16 px */
 {
-    uint32_t key = (a << 8) | b, lo = 0, hi = f->nk;
-    while (lo < hi) {
+    int32_t ga;
+    uint32_t lo, hi;
+    if (!f->ks || (ga = glyph_at(f, a)) < 0)         /* (a outside the face: no pairs) */
+        return 0;
+    lo = f->ks[ga];
+    hi = f->ks[ga + 1];
+    while (lo < hi) {                                /* its pairs, by right character */
         uint32_t m = (lo + hi) / 2u;
-        if (f->kkey[m] == key)
+        if (f->kkey[m] == b)
             return f->kd[m];
-        if (f->kkey[m] < key)
+        if (f->kkey[m] < b)
             lo = m + 1u;
         else
             hi = m;
@@ -537,7 +545,7 @@ static int32_t text_w(const aafont_t *f, const char *s)
         uint32_t c = fold(f, (uint8_t)*s);
         if (prev)
             pen += kern(f, prev, c);
-        pen += f->g[glyph(f, c)].adv;
+        pen += f->adv[glyph(f, c) >> f->psh];
         prev = c;
     }
     return (pen + 8) >> 4;
@@ -579,7 +587,7 @@ static int32_t text_run(int32_t x, int32_t y, const aafont_t *f, const char *s, 
             if (GFX_HOOKS && gy < y0) y0 = gy;       /* (the rows: for the host's lint only) */
             if (GFX_HOOKS && gy + g->bh > y1) y1 = gy + g->bh;
         }
-        pen += g->adv;
+        pen += f->adv[(uint32_t)(g - f->g) >> f->psh];
         prev = c;
     }
     bb[0] = x0;
@@ -740,7 +748,7 @@ static int32_t cv_keycap(int32_t x, int32_t y, uint32_t id, uint16_t fill, uint1
 {
     const kc_t *k = &KC[id < KC_COUNT ? id : 0u];
     const uint16_t *rv = kc_ramp(under, fill, ink);
-    cv_alpha(x, y, k->w, KC_H, KC_DATA + k->off, rv);
+    cv_alpha_hc(x, y, k->w, KC_H, KC_DATA + k->off, KC_HC, rv);   /* (gen_aa_keycaps.py: Huffman, cv_flip 0) */
     if (x < 0 || x + k->w > (int32_t)cv_w || y + cv_oy < 0 || y + KC_H + cv_oy > (int32_t)cv_h)
         GFX_HOOK_TEXT(x, y + cv_oy, x + k->w, y + KC_H + cv_oy, k->label, 6u);      /* cut by the canvas */
     else

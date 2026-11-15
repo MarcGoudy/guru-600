@@ -215,8 +215,9 @@ static int midi_track_held(uint32_t track)
 #define MCC_RES 0xFFu
 static const uint8_t MIDI_CC_MAP[][2] = {
     {5, P_GLIDE}, {7, P_LEVEL}, {10, P_PAN}, {71, MCC_RES}, {72, P_REL}, {73, P_ATK}, {74, MCC_CUT}, {75, P_DEC},
-    {91, P_REV}, {93, P_CHOR}, {94, P_DLY},
-};
+    {76, P_LRATE}, {91, P_REV}, {93, P_CHOR}, {94, P_DLY}, {97, P_SUS},
+};   /* (Guru-600: 76 LFO RATE, 97 SUSTAIN: with 74 71 and 73 75 72, an Arturia KeyStep's banks B and C as they
+        * come, every knob a use; 77, the LFO's amount, p6_cc) */
 /* per engine (ENGINES[] order): CC74's E index + 1 in the high nibble, CC71's in the low one, 0 = none */
 static const uint8_t MIDI_CC_ENG[NENGINES] = {
     0x56, 0x00, 0x30, 0x80, 0x50, 0x07, 0x67, 0x00,   /* ANALOG CUT RES, -, PHASE DCW, LOFI TONE, SAMPLE CUT, VOICE Q,
@@ -319,7 +320,7 @@ static int p6_cc(track_t *t, uint32_t cc, uint32_t value)
         }
     switch (cc) {
     case 17: p6_cc_put(t, P_E0 + P6_MIX, 127 - (int32_t)value); return 1;   /* OSC A level: the MIXER the other way */
-    case 37: p6_cc_put(t, P_M4AMT, 63 - (int32_t)value * 63 / 127); return 1;   /* LFO INITIAL AMOUNT (EXTRAS WHEEL:
+    case 37: case 77: p6_cc_put(t, P_M4AMT, 63 - (int32_t)value * 63 / 127); return 1;   /* LFO INITIAL AMOUNT (EXTRAS WHEEL:
                                                                                   * what the wheel adds on top) */
     case 40: p6_cc_put(t, P_M3AMT, (int32_t)value / 2); return 1;          /* filter velocity: EXTRAS VEL > FLT */
     case 48: case 49: case 50: case 51: case 52: case 53: {               /* the waveforms: SAW TRI PULSE, A then B */
@@ -367,10 +368,47 @@ static void __attribute__((noinline)) midi_cc_map(track_t *t, uint32_t cc, uint3
     midi_cc_set(t, id, value);
 }
 
+/* Guru-600: MENU > MIDI > MIDI KNOBS, ON by default (ui.c PREF_MIDI_KNOBS_OFF): a controller turns the FM-1's own
+ * knobs, on the page shown, instead of CC16..19 setting P600 parameters. An Arturia KeyStep's banks as they come:
+ * A (CC16..19) KNOB1..4; D (CC80..83) the mixer, the LEVEL of tracks 1..4, each by the knob's position (below).
+ * For KNOB1..4 their values are a controller's positions (0..127): each change is that many clicks, and
+ * the controller's end (0 or 127) pushes the knob on to its own end, so the two ends meet (a controller keeps its
+ * position and takes none back). mknob_pref (ui_prefs3) and mknob_clk (panel.c panel_mknob, per panel role) come from
+ * ui.c: a build without the UI has neither */
+static uint8_t *const mknob_pref;
+static int16_t *const mknob_clk;
+static uint8_t mknob_last[7] = {0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF};
+/* Bank D (Marc, 15/11): a mixer, CC80..83 the LEVEL of tracks 1..4, the knob's position over its range, nothing to
+ * select first. No sound choice from a controller: a KeyStep's knob sends a value that stops at 0 and 127 and it has
+ * no relative mode, so browsing 255 sounds with it, on one knob or two, kept stopping */
+static int midi_knob_cc(uint32_t cc, uint32_t value)
+{
+    uint32_t r = cc - 13u;                          /* (panel.c roles: SELECT 0, ALGO 1, PRESET 2, K1..K4 3..6) */
+    int32_t d;
+    if (!mknob_pref || (*mknob_pref & 2u))          /* (bit 1 set: MIDI KNOBS OFF) */
+        return 0;
+    if (cc >= 80u) {                                /* bank D: track (cc - 80)'s LEVEL, the knob's position */
+        midi_cc_set(&trk[cc - 80u], P_LEVEL, value);
+        return 1;
+    }
+    if (mknob_last[r] <= 127u) {
+        d = (int32_t)value - mknob_last[r];
+        if (r >= 3u && value == 127u && d > 0)
+            d += 256;
+        else if (r >= 3u && value == 0u && d < 0)
+            d -= 256;
+        d += mknob_clk[r];
+        mknob_clk[r] = (int16_t)(d > 1000 ? 1000 : d < -1000 ? -1000 : d);
+    }
+    mknob_last[r] = (uint8_t)value;
+    return 1;
+}
 static void midi_control(uint32_t ch, uint32_t cc, uint32_t value)
 {
     midi_channel_t *c = midi_channel(ch);
     uint32_t i, mask;
+    if ((cc - 16u < 4u || cc - 80u < 4u) && midi_knob_cc(cc, value))   /* Guru-600: MIDI KNOBS (above) */
+        return;
     switch (cc) {
     case 1:
         c->wheel = (uint8_t)value;

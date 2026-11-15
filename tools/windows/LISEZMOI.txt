@@ -3,7 +3,7 @@ par Marc Massé · d'après Felucca de Leo Kuroshita
 ======================================================================
 
 Guru-600.exe est l'émulateur du FM-1 avec le firmware Guru-600 : le FM-1 à l'écran, le même son.
-Pour installer le firmware sur un vrai FM-1 : https://marcgoudy.github.io/guru-600/
+Pour installer le firmware sur un vrai FM-1 : https://guru-600.com
 
 LANCER
    Décompressez le dossier où vous voulez, puis double-cliquez sur Guru-600.exe.
@@ -15,7 +15,7 @@ JOUER
    À la souris : cliquez ou glissez sur les touches et les boutons, glissez ou faites tourner la
    molette sur les potentiomètres (MASTER = volume).
    Au clavier : A W S E D F T G Y H U J K O L P = les notes, Z / X = OCT, Espace = PLAY, R = REC,
-   1 à 0 = FX SCL ENV LFO EDIT GLO HOME SAVE ARP SEQ, flèches = SELECT et PRESETS, Échap = quitter.
+   1 à 0 = FX SEL ENV LFO EDIT GLO HOME SAVE ARP SEQ, flèches = SELECT et PRESETS, Échap = quitter.
    Un clavier MIDI branché à l'ordinateur joue le synthé.
 
 MENUS
@@ -26,5 +26,8 @@ MENUS
 
    Les sons enregistrés et les projets sont gardés d'une fois sur l'autre dans
    %APPDATA%\Guru-600\flash.bin.
+
+MERCI
+   À Ax (Audiorial, www.youtube.com/audiorial) pour son aide sur la version Windows.
 
 Licences : dossier Licences (Guru-600 et Felucca : GPL-3.0 ; émulateur fm1-emu : MIT).

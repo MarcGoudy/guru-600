@@ -9,7 +9,7 @@
 enum { B_FX, B_SCL, B_ENV, B_LFO, B_EDIT, B_GLO, B_HOME, B_SAVE, B_ARP, B_SEQ, B_PLAY, B_REC,
        B_OCTDN, B_OCTUP, NB };
 enum { EN_SELECT, EN_ALGO, EN_PRESET, EN_K1, EN_K2, EN_K3, EN_K4, NE };
-static const char *const B_NAME[NB] = {"FX", "SCL", "ENV", "LFO", "EDIT", "GLO", "HOME", "SAVE",
+static const char *const B_NAME[NB] = {"FX", "SEL", "ENV", "LFO", "EDIT", "GLO", "HOME", "SAVE",
                                         "ARP", "SEQ", "PLAY", "REC", "OCT-", "OCT+"};
 static const char *const E_NAME[NE] = {"SELECT", "ALGORITHM", "PRESETS", "KNOB 1", "KNOB 2",
                                         "KNOB 3", "KNOB 4"};
@@ -57,9 +57,12 @@ static uint32_t panel_btn_of(uint32_t matrix_id)        /* label of a matrix but
 
 /* steps of a role, + = clockwise */
 static uint8_t panel_moved;                     /* a knob turned since ui.c scr_input last looked (SCREEN OFF) */
+static int16_t panel_mknob[NE];                 /* Guru-600: a knob's clicks from a MIDI controller (midi_control.c midi_knob_cc) */
 static int32_t panel_enc(uint32_t role)
 {
     int32_t s = fm1_enc_take(panel.enc[role]) * panel.dir[role];
+    s += panel_mknob[role];
+    panel_mknob[role] = 0;
     if (s)
         panel_moved = 1;
     return s;

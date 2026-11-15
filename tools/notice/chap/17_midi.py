@@ -8,6 +8,26 @@ CH("midi", "The mod wheel, MIDI and MIDI LEARN", "La molette, le MIDI et MIDI LE
       "La vélocité du clavier, sa molette de modulation (CC 1), l'aftertouch, la pédale d'expression (CC 11) et la pédale de maintien (CC 64) fonctionnent. La molette de hauteur infléchit les notes de ±2 demi-tons (un clavier peut changer cette plage par le RPN 0). L'aftertouch et la pédale d'expression n'agissent qu'à travers la matrice de modulation (LFO › MOD, sources AT et EXPR)."),
      ("<b>Nothing plays?</b> The keyboard is sending on a channel that MIDI IN does not use (set MIDI IN = SEL to check), or the track is muted.",
       "<b>Rien ne joue ?</b> Le clavier émet sur un canal que MIDI IN n'utilise pas (réglez MIDI IN = SEL pour vérifier), ou la piste est coupée.")]) +
+ H3("A controller's knobs: MIDI KNOBS", "Les boutons d'un contrôleur : MIDI KNOBS") +
+ P2("With MENU › MIDI › <b>MIDI KNOBS</b> ON (the default), the knobs of a MIDI keyboard or controller control the Guru-600 with no setup. The four knob banks of an Arturia KeyStep 37 mk2 work as they come out of the box; any other keyboard or controller does the same by sending the CC numbers below.",
+    "Avec MENU › MIDI › <b>MIDI KNOBS</b> sur ON (le réglage d'usine), les boutons d'un clavier ou d'un contrôleur MIDI pilotent le Guru-600 sans aucun réglage. Les quatre banques de boutons d'un Arturia KeyStep 37 mk2 fonctionnent telles qu'elles sortent de la boîte ; tout autre clavier ou contrôleur fait de même en envoyant les numéros de CC ci-dessous.") +
+ table([("Bank", "Banque"), ("CC (knobs 1 to 4)", "CC (boutons 1 à 4)"), ("What they control", "Ce qu'ils pilotent")],
+       [["<b>A</b>", "16 \u00b7 17 \u00b7 18 \u00b7 19", ("The FM-1's <b>KNOB 1 to 4</b>, on the page shown", "Les <b>KNOB 1 à 4</b> du FM-1, sur la page affichée")],
+        ["<b>B</b>", "74 \u00b7 71 \u00b7 76 \u00b7 77", ("Cutoff, resonance, LFO rate, LFO amount (P600)", "Coupure, résonance, vitesse du LFO, quantité de LFO (P600)")],
+        ["<b>C</b>", "73 \u00b7 75 \u00b7 97 \u00b7 72", ("Attack, decay, sustain, release", "Attaque, decay, sustain, release")],
+        ["<b>D</b>", "80 \u00b7 81 \u00b7 82 \u00b7 83", ("The <b>LEVEL</b> of tracks 1 to 4: a mixer", "Le <b>LEVEL</b> des pistes 1 à 4 : une table de mixage")]], "knobs") +
+ LI([("<b>Bank A</b> turns the FM-1's four knobs as your hand would, on whatever page is shown. At the end of its travel (0 or 127), the controller's knob also takes the FM-1's knob to its end.",
+      "<b>La banque A</b> tourne les quatre boutons du FM-1 comme votre main, sur la page affichée. Au bout de sa course (0 ou 127), le bouton du contrôleur amène aussi celui du FM-1 au bout de la sienne."),
+     ("<b>Banks B and C</b> act on the track the keyboard's channel plays (MENU › MIDI › MIDI IN; by default, channel 1 plays track 1).",
+      "<b>Les banques B et C</b> agissent sur la piste que joue le canal du clavier (MENU › MIDI › MIDI IN ; par défaut, le canal 1 joue la piste 1)."),
+     ("<b>Bank D</b> is a mixer: each knob sets its own track's volume, with nothing to select first. Fully left, the track is silent; fully right, it is at full volume. You see it on the MIXER page (HOME, then HOME again).",
+      "<b>La banque D</b> est une table de mixage : chaque bouton règle le volume de sa propre piste, sans rien sélectionner. Tout à gauche, la piste est muette ; tout à droite, elle est au maximum. On le voit sur la page MIXER (HOME, puis de nouveau HOME)."),
+     ("A controller does not know the FM-1's settings: the first time you move one of its knobs, the setting jumps to the knob's position.",
+      "Un contrôleur ne connaît pas les réglages du FM-1 : la première fois que vous bougez l'un de ses boutons, le réglage saute à la position du bouton."),
+     ("The KeyStep's screen does not show these functions: print the KeyStep sheet (KeyStep-Guru-600.pdf, on guru-600.com) and keep it next to it.",
+      "L'écran du KeyStep n'affiche pas ces fonctions : imprimez la fiche KeyStep (KeyStep-Guru-600.pdf, sur guru-600.com) et gardez-la à côté."),
+     ("<b>A track has gone quiet?</b> A bank D knob turned to the left lowered its volume, and it stays there even with the controller unplugged. Turn that knob to the right, or raise LEVEL on the MIXER page.",
+      "<b>Une piste est devenue muette ?</b> Un bouton de la banque D tourné vers la gauche a baissé son volume, et il le reste même contrôleur débranché. Tournez ce bouton vers la droite, ou remontez LEVEL sur la page MIXER.")]) +
  H3("The mod wheel", "La molette de modulation") +
  P2("The appendix gives the mod wheel's role in each factory sound. The FM-1 has no mod wheel:",
     "L'annexe indique l'effet de la molette de modulation dans chaque son d'usine. Le FM-1 n'en a pas :") +
@@ -17,8 +37,8 @@ CH("midi", "The mod wheel, MIDI and MIDI LEARN", "La molette, le MIDI et MIDI LE
  P2("<b>WHEEL</b> on the EXTRAS page sets the wheel's effect (chapter {ch:p600}). The wheel does not spring back: at 0, it adds nothing.",
     "<b>WHEEL</b> sur la page EXTRAS dose l'action de la molette (chapitre {ch:p600}). La molette ne revient pas seule : à 0, elle n'ajoute rien.") +
  H3("Every P600 control on a MIDI CC", "Chaque commande P600 sur un CC MIDI") +
- P2("On a P600 track, each Guru-600 setting responds to a fixed MIDI CC, from a controller's knobs or from music software (Logic, Ableton…). The numbers are those of the GliGli firmware for the Prophet-600: a setup made for a real Prophet-600 works as is, except the glide, on CC 5 instead of 38. The CC is received on the track's channel (MENU › MIDI). A CC set with MIDI LEARN takes priority. While the track records, CC moves are recorded as automation.",
-    "Sur une piste P600, chaque réglage du Guru-600 répond à un CC MIDI fixe, depuis les boutons d'un contrôleur ou un logiciel de musique (Logic, Ableton…). Les numéros sont ceux du firmware GliGli pour le Prophet-600 : un réglage prévu pour un vrai Prophet-600 fonctionne tel quel, sauf le glide, sur le CC 5 au lieu du 38. Le CC arrive sur le canal de la piste (MENU › MIDI). Un CC réglé avec MIDI LEARN est prioritaire. Pendant que la piste enregistre, les mouvements de CC sont enregistrés en automation.") +
+ P2("On a P600 track, each Guru-600 setting responds to a fixed MIDI CC, from a controller's knobs or from music software (Logic, Ableton…). The numbers are those of the GliGli firmware for the Prophet-600: a setup made for a real Prophet-600 works as is, except the glide, on CC 5 instead of 38. The CC is received on the track's channel (MENU › MIDI). A CC set with MIDI LEARN takes priority. While the track records, CC moves are recorded as automation. With MIDI KNOBS ON (the default), CC 16 to 19 turn the FM-1's knobs instead (above): set MIDI KNOBS to OFF to use them on the oscillators.",
+    "Sur une piste P600, chaque réglage du Guru-600 répond à un CC MIDI fixe, depuis les boutons d'un contrôleur ou un logiciel de musique (Logic, Ableton…). Les numéros sont ceux du firmware GliGli pour le Prophet-600 : un réglage prévu pour un vrai Prophet-600 fonctionne tel quel, sauf le glide, sur le CC 5 au lieu du 38. Le CC arrive sur le canal de la piste (MENU › MIDI). Un CC réglé avec MIDI LEARN est prioritaire. Pendant que la piste enregistre, les mouvements de CC sont enregistrés en automation. Avec MIDI KNOBS sur ON (le réglage d'usine), les CC 16 à 19 tournent plutôt les boutons du FM-1 (ci-dessus) : réglez MIDI KNOBS sur OFF pour les utiliser sur les oscillateurs.") +
  table([("CC", "CC"), ("Control", "Commande"), ("Values", "Valeurs")], [["1", '<b>MOD WHEEL</b>', ("0 to 127", "0 à 127")],
        ["5", '<b>GLIDE</b>', ("0 to 127", "0 à 127")],
        ["7", '<b>VOLUME</b>', ("0 to 127", "0 à 127")],
@@ -73,6 +93,11 @@ CH("midi", "The mod wheel, MIDI and MIDI LEARN", "La molette, le MIDI et MIDI LE
      ("CC NOT LEARNABLE: CCs 0, 1, 6, 11, 32, 38, 64, 96 to 101 and 120 to 127 cannot be learned.",
       "CC NOT LEARNABLE : les CC 0, 1, 6, 11, 32, 38, 64, 96 à 101 et 120 à 127 ne peuvent pas être appris."),
      ("The assignments are kept after power-off. MENU › MIDI › LEARN CLEAR clears them all.", "Les attributions sont conservées après extinction. MENU › MIDI › LEARN CLEAR les oublie toutes.")]) +
+ H3('A screen reader, for blind and visually impaired players', "Un lecteur d'écran, pour les musiciens aveugles et malvoyants") +
+ LI([("At the request of a visually impaired player, the Guru-600 can speak its screen. Connect the FM-1 to a computer by USB and open <a href='https://github.com/charlesvestal/fm1-reader'>FM-1 Screen Reader</a>, by Charles Vestal: it says the page, its four cards, each knob you turn and the messages, or hands them to the computer's own screen reader.",
+      "À la demande d'un musicien malvoyant, le Guru-600 peut dire son écran. Branchez le FM-1 à un ordinateur en USB et ouvrez <a href='https://github.com/charlesvestal/fm1-reader'>FM-1 Screen Reader</a>, de Charles Vestal : il dit la page, ses quatre cartes, chaque bouton que vous tournez et les messages, ou les confie au lecteur d'écran de l'ordinateur."),
+     ('Nothing is sent while no reader is listening: music software on the same USB port sees nothing, and the screen does not change.',
+      "Rien n'est envoyé tant qu'aucun lecteur n'écoute : un logiciel de musique sur le même port USB ne voit rien, et l'écran ne change pas.")]) +
  H3("Tempo and clock", "Tempo et horloge") +
  P2("On HOME › CLOCK, <b>CLK</b> chooses who sets the tempo: INT (the FM-1), USB or TRS (an external MIDI clock sets the tempo and starts the sequencer). With an external clock, TAP and RESTART respond with CLK IS EXT (chapter {ch:tracks}).",
     "Sur HOME › CLOCK, <b>CLK</b> choisit qui donne le tempo : INT (le FM-1), USB ou TRS (une horloge MIDI externe donne le tempo et lance le séquenceur). Avec une horloge externe, TAP et RESTART répondent CLK IS EXT (chapitre {ch:tracks}).") +

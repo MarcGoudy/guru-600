@@ -3,7 +3,7 @@ by Marc Massé · based on Felucca by Leo Kuroshita
 ======================================================================
 
 Guru-600.exe is the FM-1 emulator running the Guru-600 firmware: the FM-1 on screen, the same sound.
-To install the firmware on a real FM-1: https://marcgoudy.github.io/guru-600/
+To install the firmware on a real FM-1: https://guru-600.com
 
 START
    Unzip the folder anywhere, then double-click Guru-600.exe.
@@ -15,7 +15,7 @@ PLAY
    With the mouse: click or drag across the keys and buttons, drag or scroll over the knobs
    (MASTER = volume).
    With the keyboard: A W S E D F T G Y H U J K O L P = notes, Z / X = OCT, Space = PLAY, R = REC,
-   1 to 0 = FX SCL ENV LFO EDIT GLO HOME SAVE ARP SEQ, arrows = SELECT and PRESETS, Esc = quit.
+   1 to 0 = FX SEL ENV LFO EDIT GLO HOME SAVE ARP SEQ, arrows = SELECT and PRESETS, Esc = quit.
    A MIDI keyboard connected to the computer plays the synth.
 
 MENUS
@@ -26,5 +26,8 @@ MENUS
 
    Recorded sounds and projects are kept from one session to the next in
    %APPDATA%\Guru-600\flash.bin.
+
+THANKS
+   To Ax (Audiorial, www.youtube.com/audiorial) for his help with the Windows version.
 
 Licences: the Licences folder (Guru-600 and Felucca: GPL-3.0; the fm1-emu emulator: MIT).

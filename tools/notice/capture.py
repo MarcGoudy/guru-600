@@ -58,8 +58,9 @@ def take(scene):
         subprocess.run(["sips", "-s", "format", "png", os.path.join(d, "work", "panel.ppm"), "--out", out],
                        stdout=subprocess.DEVNULL, check=True)
         if scene.get("crop", "screen") == "screen":
-            subprocess.run(["sips", "-c", "480", "480", "--cropOffset", "42", "370", out, "--out", out],
+            subprocess.run(["sips", "-c", "780", "780", "--cropOffset", "122", "718", out, "--out", out],   # (the new panel, fm1-live panel.rs: LCD_X 718, LCD_Y 122, LCD_N 780)
                            stdout=subprocess.DEVNULL, check=True)
+            subprocess.run(["sips", "-Z", "480", out, "--out", out], stdout=subprocess.DEVNULL, check=True)   # (480: as before)
         return scene["name"], "ok"
     except Exception as x:
         return scene["name"], f"ERREUR {x}"

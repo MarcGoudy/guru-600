@@ -160,7 +160,7 @@ fn mac_default_args() -> Option<Vec<String>> {
         "--help-menu".into(), w[0].into(), w[1].into(), s(res.join("Notice").join("index.html")),
         "--backup-menu".into(), w[2].into(), w[3].into(), w[4].into(),
         "--window-menu".into(), w[5].into(),
-        "--about".into(), w[6].into(), "guru-600".into(), "A PROPHET-600 TRIBUTE".into(), "by Marc Massé, v1.0.2".into(),
+        "--about".into(), w[6].into(), "guru-600".into(), "A PROPHET-600 TRIBUTE".into(), "by Marc Massé, v1.1.0".into(),
         "based on Felucca by Leo Kuroshita".into(), s(f.join("MonRong.ttf")), s(f.join("InterTight.ttf")),
     ])
 }
@@ -388,6 +388,8 @@ impl Machine {
 /// Ask for a performance core: macOS runs default-QoS background threads on
 /// the efficiency cores, which made the emulator ~40% slower than on main.
 fn high_priority() {
+    #[cfg(windows)]
+    win::high_priority();                            // (Guru-600: the emulation ahead of ordinary work on Windows too)
     #[cfg(target_os = "macos")]
     {
         extern "C" {
@@ -951,6 +953,8 @@ fn main() {
         println!("{USAGE}");
         return;
     }
+    #[cfg(windows)]
+    win::fine_timer();                                   // (Guru-600: 1 ms waits, not ~16 ms: win.rs)
     let Some(o) = parse() else {
         eprintln!("{USAGE}");
         std::process::exit(2);
@@ -1189,12 +1193,13 @@ fn main() {
     let mut turning = [0u32; 8];
     let mut scroll_acc = [0f32; 8];
     let mut shown_leds = [0f32; 41];
+    let mut lcd_copy = vec![0u16; 240 * 240];   // (Guru-600: the screen copied at once, drawn after: below)
     let mut grab: Option<Ctl> = None;
     let mut was_pressed = false;
     let (mut last_y, mut drag_acc) = (0f32, 0f32);
     let mut last_title = Instant::now();
     eprintln!("mouse: click/drag the keys, click buttons, drag or scroll the knobs (MASTER = volume)");
-    eprintln!("keys: A W S E D F T G Y H U J K O L P ; ' = C4..F5, Z/X OCT, Space PLAY, R REC, 1..0 buttons, arrows and , . for SELECT/PRESETS/ALGORITHM; Esc quits");
+    eprintln!("keys: A W S E D F T G Y H U J K O L P ; ' = C4..F5, arrows OCT- OCT+, Space PLAY, R REC, 1..0 buttons FX..SEQ, [ ] SELECT, - = PRESETS, , . ALGORITHM; Esc quits");
 
     while win.is_open() && !win.is_key_down(Key::Escape) {
         match win.is_menu_pressed() {
@@ -1342,9 +1347,12 @@ fn main() {
                 shown_leds[i] = l[i].max(shown_leds[i] * 0.8);
             }
         }
+        // (Guru-600, 15/11: the FM-1's screen copied in an instant and the lock let go before the panel is drawn: the
+        // emulation thread takes the same lock to hand over each frame, and while the whole panel was drawn holding it
+        // the emulation waited; on Windows, where the drawing is slower, it ran at 0.37x real time on an i7-8700K)
+        lcd_copy.copy_from_slice(&lcd.lock().unwrap());
         {
-            let fb = lcd.lock().unwrap();
-            let st = panel::State { lcd: &fb, enc_clicks: &enc_clicks, pot, down: &down, leds: &shown_leds, turning: &turning };
+            let st = panel::State { lcd: &lcd_copy, enc_clicks: &enc_clicks, pot, down: &down, leds: &shown_leds, turning: &turning };
             panel::draw(&mut buf, &base, &st);
         }
         if win.update_with_buffer(&buf, W, H).is_err() {

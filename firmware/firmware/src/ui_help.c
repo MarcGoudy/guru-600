@@ -41,7 +41,7 @@ static const struct { const char *title, *hint; } HELP_PAGE[] = {
     {"DLY", "[K1-4]ALL TRACKS[FX]REVERB"},
     {"REVERB", "[K1]ROOM SPRING HALL[FX]CHORUS"},
     {"CHORUS", "[K1-4]ALL TRACKS[FX]FX"},
-    {"SCL", "[K2]SCALE[K3]QUANTIZE[SCL]CHORDS"},
+    {"SEL", "[K2]SCALE[K3]QUANTIZE[SEL]CHORDS"},   /* (Guru-600: SEL, the button as printed; Felucca: SCL) */
     {"CHORD", "[K1]CHORD[K3]LEARN[KEYS]PLAY"},
     {"EDIT 1", H_EDIT},
     {"EDIT 2", H_EDIT},

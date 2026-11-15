@@ -43,9 +43,7 @@ static void ed_v(int32_t v)
     ed_b(u);
     ed_b(u >> 7);
 }
-#ifndef GURU_VERSION
-#define GURU_VERSION "?"
-#endif
+#include "guru_version.h"
 static void ed_str(const char *s, uint32_t max)   /* ASCII, 0-terminated */
 {
     uint32_t i;
@@ -1076,6 +1074,9 @@ static void ed_service(void)
 {
     const uint8_t *p;
     uint32_t n;
+    if (ota_frame_get(&p, &n) && ann_frame(p, n, fm1_ms)) /* Guru-600 1.1: the screen reader's (ui_announce.c) */
+        ota_frame_done();
+    ann_tick(fm1_ms);
     ed_sync();                                             /* v2 pushes (while watched) */
 #if FELUCCA_P600
     ed_p6_beat();                                          /* (Guru-600: the beat) */

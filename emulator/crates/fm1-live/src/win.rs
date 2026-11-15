@@ -10,7 +10,7 @@ use std::path::PathBuf;
 use std::process::Command;
 
 /// the version shown in Help > About
-pub const VERSION: &str = "1.0.2";
+pub const VERSION: &str = "1.1.0";
 
 const CREATE_NO_WINDOW: u32 = 0x0800_0000;
 
@@ -18,9 +18,36 @@ const CREATE_NO_WINDOW: u32 = 0x0800_0000;
 extern "system" {
     fn GetUserDefaultLocaleName(name: *mut u16, len: i32) -> i32;
 }
+#[link(name = "winmm")]
+extern "system" {
+    fn timeBeginPeriod(period_ms: u32) -> u32;
+}
+#[link(name = "kernel32")]
+extern "system" {
+    fn GetCurrentThread() -> *mut core::ffi::c_void;
+    fn SetThreadPriority(thread: *mut core::ffi::c_void, priority: i32) -> i32;
+}
 #[link(name = "user32")]
 extern "system" {
     fn MessageBoxW(hwnd: *mut core::ffi::c_void, text: *const u16, caption: *const u16, kind: u32) -> i32;
+}
+
+/// Windows' timer at 1 ms for this program (15.6 ms by default): the emulation thread waits 1 ms at a time
+/// between two runs (main.rs), a wait Windows otherwise rounds up to ~16 ms, which starved the sound by fits
+/// (Ax, 15/11/2026: a stutter on an i7-8700K, at every latency). As every audio program does on Windows.
+pub fn fine_timer() {
+    unsafe {
+        timeBeginPeriod(1);
+    }
+}
+
+/// the calling thread (the emulation's) above normal work, as the Mac's QoS user-interactive does (main.rs
+/// high_priority); not TIME_CRITICAL: the window and the sound keep their turn
+pub fn high_priority() {
+    const THREAD_PRIORITY_HIGHEST: i32 = 2;
+    unsafe {
+        SetThreadPriority(GetCurrentThread(), THREAD_PRIORITY_HIGHEST);
+    }
 }
 
 fn wide(s: &str) -> Vec<u16> {

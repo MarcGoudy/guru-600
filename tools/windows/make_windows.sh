@@ -12,7 +12,7 @@ F=~/Documents/FM-1
 W=$F/p600/windows
 E=$F/fm1-emu-src
 R=/Applications/Guru-600.app/Contents/Resources
-V=$(sed -n 's/^VERSION = "\(.*\)".*/\1/p' $F/p600/site/make_site_guru.py)
+V=$(sed -n 's/^#define GURU_VERSION "\(.*\)".*/\1/p' $F/Felucca/firmware/src/guru_version.h)   # (la version : le seul endroit)
 T=~/.rustup/toolchains/stable-aarch64-apple-darwin/bin
 
 grep -q "VERSION: &str = \"$V\"" $E/crates/fm1-live/src/win.rs || { echo "win.rs VERSION != $V"; exit 1; }

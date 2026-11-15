@@ -13,7 +13,9 @@ CH("credits", "Credits and licenses", "Crédits et licences",
      ("FM-1 emulator: fm1-emu (Joakim Eriksson).",
       "Émulateur FM-1 : fm1-emu (Joakim Eriksson)."),
      ("Fonts: Inter Tight (SIL Open Font License); VI Mong Rong (VN-Fonts Team, 1994).",
-      "Polices : Inter Tight (licence SIL Open Font) ; VI Mong Rong (VN-Fonts Team, 1994).")]) +
+      "Polices : Inter Tight (licence SIL Open Font) ; VI Mong Rong (VN-Fonts Team, 1994)."),
+     ("Thanks to Ax (Audiorial, <a href='https://www.youtube.com/audiorial'>youtube.com/audiorial</a>) for his help with the Windows version.",
+      "Merci à Ax (Audiorial, <a href='https://www.youtube.com/audiorial'>youtube.com/audiorial</a>) pour son aide sur la version Windows.")]) +
  BOX("key", ("The Guru-600 is a free project, and it can always evolve. If you have an idea for a feature or an improvement, or if you find a bug, write to us on <a href='https://github.com/MarcGoudy/guru-600'>github.com/MarcGoudy/guru-600</a>: Issues for bugs, Discussions for ideas. Without a GitHub account: <a href='mailto:guru600fm1@gmail.com'>guru600fm1@gmail.com</a>.",
              "Le Guru-600 est un projet libre, qui peut toujours évoluer. Si vous avez une idée de fonctionnalité ou d'amélioration, ou si vous constatez un bug, écrivez-nous sur <a href='https://github.com/MarcGoudy/guru-600'>github.com/MarcGoudy/guru-600</a> : « Issues » pour les bugs, « Discussions » pour les idées. Sans compte GitHub : <a href='mailto:guru600fm1@gmail.com'>guru600fm1@gmail.com</a>."),
             ("For what comes from Felucca (the sequencer, the other engines\u2026): <a href='https://github.com/hugelton/Felucca'>github.com/hugelton/Felucca</a>.",

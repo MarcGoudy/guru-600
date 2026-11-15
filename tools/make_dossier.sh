@@ -4,7 +4,7 @@
 set -e
 F=~/Documents/FM-1; A=/Applications/Guru-600.app; R=$A/Contents/Resources; G=$F/Guru-600
 FW=$F/Felucca/build/felucca.fwsc
-V=$(sed -n 's/^VERSION = "\(.*\)".*/\1/p' $F/p600/site/make_site_guru.py)   # la version (1.0.1…)
+V=$(sed -n 's/^#define GURU_VERSION "\(.*\)".*/\1/p' $F/Felucca/firmware/src/guru_version.h)   # (la version : le seul endroit)
 # 1. l'app : firmware, notice
 pkill -f "Guru-600.app/Contents/" || true
 # l'émulateur (avec sa façade) est l'exécutable même de l'app : sans lanceur en shell, « Ouvrir quand même » le couvre
@@ -47,8 +47,16 @@ rm -rf $T
 # 4. la copie sur 1To, puis la vérification
 if [ -d /Volumes/1To ]; then
   # (8, 9, 10 : seulement sur le 1To — firmwares officiels, annonces, sauvegardes du FM-1 — jamais effacés)
-  rsync -a --delete --exclude "8 Firmwares officiels M-VAVE" --exclude "9 Diffusion" --exclude "10 Sauvegardes FM-1" "$G/" /Volumes/1To/Guru-600/
-  diff -rq -x "8 Firmwares officiels M-VAVE" -x "9 Diffusion" -x "10 Sauvegardes FM-1" "$G" /Volumes/1To/Guru-600 && echo "1To : copie identique"
+  # (15/11 : seuls les dossiers 1 à 7 et les fichiers de tête ; sans aucune suppression. Un
+  #  « --delete » sur tout /Volumes/1To/Guru-600 a effacé « 11 Site guru-600.com », qui n'existe que sur le 1To)
+  #  Règle de Marc (15/11) : INTERDICTION de supprimer quoi que ce soit sur le 1To ; copies sans --delete, sans rm.
+  for d in "1 Firmware" "2 Application Mac" "2 Application Windows" "3 Notice" "4 Site web" "5 Sources" "6 Licences" "7 Éditeur"; do
+    [ -d "$G/$d" ] && mkdir -p "/Volumes/1To/Guru-600/$d" && rsync -a "$G/$d/" "/Volumes/1To/Guru-600/$d/"
+  done
+  for f in "$G"/*(.N); do cp "$f" /Volumes/1To/Guru-600/; done
+  ok=1; for d in "1 Firmware" "2 Application Mac" "2 Application Windows" "3 Notice" "4 Site web" "5 Sources" "6 Licences" "7 Éditeur"; do
+    [ -d "$G/$d" ] && { diff -rq "$G/$d" "/Volumes/1To/Guru-600/$d" > /dev/null || ok=0; }
+  done; [ $ok = 1 ] && echo "1To : copie identique (dossiers 1 à 7)"
 else
   echo "1To non monté : copie à refaire"
 fi
