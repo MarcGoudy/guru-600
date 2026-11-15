@@ -6,7 +6,7 @@ CH("morph", "MORPH and MUTATE", "MORPH et MUTATE",
  STEPS([("Select a P600 track and press <b>EDIT</b> until <b>MORPH 8/11</b> appears.", "Choisissez une piste P600 et appuyez sur <b>EDIT</b> jusqu'à <b>MORPH 8/11</b>.")]) +
  '</div></div>' +
  knobs([("KNOB 1", "SOUND A: the starting sound (the track's sound). Turn it to load the next or previous P600 sound (after 255 comes 1).", "SOUND A : le son de départ (le son de la piste). Tournez-le pour charger le son P600 suivant ou précédent (après 255 vient 1).", "1–255", "1–255"),
-        ("KNOB 2", "SOUND B: the sound to reach, any of the 255 places (after 255 comes 1).", "SOUND B : le son à atteindre, n'importe laquelle des 255 places (après 255 vient 1).", "1–255", "1–255"),
+        ("KNOB 2", "SOUND B: the sound to reach: any of the 255 places, then your USER sounds of the P600 engine (U01…), and round to 1.", "SOUND B : le son à atteindre : n'importe laquelle des 255 places, puis vos sons USER du moteur P600 (U01…), et retour à 1.", "1–255, U01–U32", "1–255, U01–U32"),
         ("KNOB 3", "MORPH: 0 % is A, 100 % is B, everything in between is a mixture.", "MORPH : 0 % correspond à A, 100 % à B ; entre les deux, un mélange.", "0–100 %", "0–100 %"),
         ("KNOB 4", "MUTATE: how far a press of OCT+ moves the sound away (31 % when the page opens).", "MUTATE : jusqu'où un appui sur OCT+ éloigne le son (31 % à l'ouverture de la page).", "1–100 %", "1–100 %")]) +
  H3("Morphing, step by step", "Morpher, pas à pas") +

@@ -2216,8 +2216,12 @@
   "fr": "SOUND A : le son de départ (le son de la piste). Tournez-le pour charger le son P600 suivant ou précédent (après 255 vient 1)."
  },
  {
-  "en": "SOUND B: the sound to reach, any of the 255 places (after 255 comes 1).",
-  "fr": "SOUND B : le son à atteindre, n'importe laquelle des 255 places (après 255 vient 1)."
+  "en": "SOUND B: the sound to reach: any of the 255 places, then your USER sounds of the P600 engine (U01…), and round to 1.",
+  "fr": "SOUND B : le son à atteindre : n'importe laquelle des 255 places, puis vos sons USER du moteur P600 (U01…), et retour à 1."
+ },
+ {
+  "en": "1–255, U01–U32",
+  "fr": "1–255, U01–U32"
  },
  {
   "en": "MORPH: 0 % is A, 100 % is B, everything in between is a mixture.",

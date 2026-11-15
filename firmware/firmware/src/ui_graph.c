@@ -1491,8 +1491,13 @@ static void graph_p6place(uint32_t sel)              /* (the place picked: PLACE
  * values as bars gliding to where they are (MORPH turned, MUTATE), A's value and B's marked on each while it morphs */
 static void p6_short(uint32_t k, char *nm)            /* a place's name without its number, at most 10 letters */
 {
+    char un[13];                                      /* (1.3.0: 255 + a USER slot, its name) */
     const char *s = k < 255u && p6_ram[k].name ? p6_ram[k].name : "";
     uint32_t i = 0;
+    if (k >= 255u && k - 255u < UP_SLOTS) {
+        up_name(k - 255u, un);
+        s = un;
+    }
     while (*s >= '0' && *s <= '9') s++;
     while (*s == ' ') s++;
     for (; i < 10u && s[i]; i++) nm[i] = s[i];
@@ -1506,7 +1511,7 @@ static void graph_p6morph(int32_t oy, uint16_t bg, uint16_t col)   /* (y oy: the
     char nm[12];
     int32_t k, x, on = ui.mph_trk && ui.mph_pos;
     cv_text_on(6, oy, &AF_S, "A", T_MID, bg);
-    p6_short(TSEL->preset, nm);
+    p6_short(mph_a_code(), nm);
     cv_text_on(18, oy, &AF_S, nm, T_TEXT, bg);
     p6_short(ui.mph_b, nm);
     cv_text_r(208, oy, &AF_S, nm, col, bg);

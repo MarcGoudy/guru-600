@@ -1126,7 +1126,7 @@ static void p6ui_morph(uint16_t col)
     static const char *const LB[4] = {"SOUND A", "SOUND B", "MORPH", "MUTATE"};
     int32_t v[4], c;
     char t[8];
-    if (ui.mph_trk && TSEL->preset != ui.mph_apre) {  /* (another sound A loaded, PRESETS: the morph where it was, */
+    if (ui.mph_trk && (TSEL->preset != ui.mph_apre || TSEL->user != ui.mph_auser)) {  /* (another sound A loaded, PRESETS: the morph where it was, */
         uint32_t at = ui.mph_pos;                     /* from it) */
         ui.mph_pos = 0;
         ui.mph_trk = 0;
@@ -1135,8 +1135,8 @@ static void p6ui_morph(uint16_t col)
     }
     if (!ui.force && (ui.frame & 1u))
         return;
-    v[0] = (int32_t)(TSEL->preset < 255u ? TSEL->preset : 0u) * 1000 / 254;
-    v[1] = (int32_t)ui.mph_b * 1000 / 254;
+    v[0] = (int32_t)mph_a_code() * 1000 / (254 + UP_SLOTS);
+    v[1] = (int32_t)ui.mph_b * 1000 / (254 + UP_SLOTS);
     v[2] = (int32_t)ui.mph_pos * 10;
     v[3] = (int32_t)ui.mph_amt * 1000 / 127;
     cv_begin(228, 60, T_BG);                          /* (two strips: a canvas holds less than the whole inside) */
@@ -1144,8 +1144,10 @@ static void p6ui_morph(uint16_t col)
         int32_t cx = 29 + c * 57;
         int hot = (uint32_t)c == ui.hot_col && ui.hot_t;
         p6_knob(cx, 16, 13, v[c], col, 0);
-        fmt_int(t, c == 0 ? (int32_t)(TSEL->preset < 255u ? TSEL->preset : 0u) + 1 : c == 1 ? (int32_t)ui.mph_b + 1 :
-                   c == 2 ? (int32_t)ui.mph_pos : (int32_t)ui.mph_amt * 100 / 127);
+        if (c < 2)
+            mph_label(t, c == 0 ? mph_a_code() : ui.mph_b);
+        else
+            fmt_int(t, c == 2 ? (int32_t)ui.mph_pos : (int32_t)ui.mph_amt * 100 / 127);
         if (c >= 2)
             str_cpy(t + str_len(t), " %", 3);
         p6ui_text_c(cx, 38, &AF_S, LB[c], hot ? col : T_TEXT);
@@ -1445,8 +1447,8 @@ static void draw_columns(void)
     if (cur_page()->graph == GR_P6MORPH) {               /* Guru-600: MUTATE (its amount), B, MORPH */
         fmt_int(val, (int32_t)ui.mph_amt * 100 / 127);
         draw_column(0, "MUTATE", val, "%", VAL(0u), (int32_t)ui.mph_amt * 1000 / 127, ICON_AUTO);
-        fmt_int(val, (int32_t)ui.mph_b + 1);
-        draw_column(1, "B", val, "", VAL(1u), (int32_t)ui.mph_b * 1000 / 254, ICON_AUTO);
+        mph_label(val, ui.mph_b);
+        draw_column(1, "B", val, "", VAL(1u), (int32_t)ui.mph_b * 1000 / (254 + UP_SLOTS), ICON_AUTO);
         fmt_int(val, (int32_t)ui.mph_pos);
         draw_column(2, "MORPH", val, "%", VAL(2u), (int32_t)ui.mph_pos * 10, ICON_AUTO);
         draw_column(3, "", "", "", T_THEME, -1, ICON_AUTO);

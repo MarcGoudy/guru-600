@@ -1907,5 +1907,7 @@
  "<b>ENV held + KNOB 1–4</b>": "<b>按住 ENV + KNOB 1–4</b>",
  "That value back to the sound's own, the others kept (a shared value: its default).": "该数值恢复为音色自身的数值，其他保持不变（共用数值：恢复默认值）。",
  "PRESETS, then KNOB 2 turned: the sound's name and RES in big type.": "先转动 PRESETS，再转动 KNOB 2：音色名称和 RES 放大。",
- "<b>Back to the sound's value for one setting only</b>: hold <b>ENV</b> and turn the knob of that setting; it takes the sound's value again, and the other settings you changed stay as they are. A setting shared by the whole project (the tempo, the shared effects) goes back to its default.": "<b>只将一个设置恢复为音色的数值</b>：按住 <b>ENV</b> 并转动该设置的旋钮；它会恢复为音色的数值，您更改过的其他设置保持不变。整个项目共用的设置（速度、共用效果）会恢复为默认值。"
+ "<b>Back to the sound's value for one setting only</b>: hold <b>ENV</b> and turn the knob of that setting; it takes the sound's value again, and the other settings you changed stay as they are. A setting shared by the whole project (the tempo, the shared effects) goes back to its default.": "<b>只将一个设置恢复为音色的数值</b>：按住 <b>ENV</b> 并转动该设置的旋钮；它会恢复为音色的数值，您更改过的其他设置保持不变。整个项目共用的设置（速度、共用效果）会恢复为默认值。",
+ "SOUND B: the sound to reach: any of the 255 places, then your USER sounds of the P600 engine (U01…), and round to 1.": "SOUND B：要变成的目标音色：255 个位置中的任意一个，然后是您的 P600 引擎 USER 音色（U01…），再回到 1。",
+ "1–255, U01–U32": "1–255, U01–U32"
 }

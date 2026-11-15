@@ -489,6 +489,23 @@ static int up_load(uint32_t k)
     return 0;
 }
 
+/* (1.3.0, Marc 16/11) MORPH's B may be a USER sound of P600: its values over p (A's copy) as up_load puts them on a
+ * track (the kept settings stay A's); 1 = no such sound there; p 0: only asks */
+static int up_p600(uint32_t k, int16_t *p)
+{
+    int16_t v[P_COUNT];
+    uint32_t i;
+    if (!up_used(k) || up_rec(k)->engine != ENGI_P600)
+        return 1;
+    if (p) {
+        up_values(up_rec(k), v);
+        for (i = 0; i < P_COUNT; i++)
+            if (!param_kept(i))
+                p[i] = v[i];
+    }
+    return 0;
+}
+
 /* the patterns of the user presets (SAVE > PHRASES lists them after the factory ones, ui.c pat_count) */
 static int up_has_pat(uint32_t k) { return up_used(k) && !up_pat_empty(up_rec(k)); }
 

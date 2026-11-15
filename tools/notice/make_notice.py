@@ -1,3 +1,5 @@
+import os as _os, re as _re
+GURU_V = _re.search(r'GURU_VERSION "([^"]+)"', open(_os.path.join(_os.path.dirname(_os.path.abspath(__file__)), '../../Felucca/firmware/src/guru_version.h')).read()).group(1)   # (la version : guru_version.h, le seul endroit)
 """La notice bilingue de Guru 600 (anglais / français) : notice/index.html, un bouton EN / FR, imprimable en PDF
 (?lang=en, ?lang=fr). Les listes de sons viennent des banques (factory_bank.json, factory_names.json, factory_notes.json,
 banques/v2022_doc.json)."""
@@ -235,7 +237,7 @@ LANG_FULL = [("en", "English", "User guide"), ("fr", "Français", "Notice d'util
              ("de", "Deutsch", "Bedienungsanleitung"), ("es", "Español", "Manual de usuario"),
              ("it", "Italiano", "Manuale d'uso"), ("zh", "中文", "用户指南"), ("ja", "日本語", "ユーザーガイド")]
 ALLCOVER = ('<section class="cover all"><div class="logo-t" role="img" aria-label="guru-600"><span class="g6">guru-600</span><span class="trib">A PROPHET-600 TRIBUTE</span></div>'
-            '<p class="sub">M-VAVE FM-1 · v1.0 · Marc Massé</p>'
+            '<p class="sub">M-VAVE FM-1 · v' + GURU_V + ' · Marc Massé</p>'
             '<img class="fm1" src="img/cover_fm1.png" alt="M-VAVE FM-1, Guru-600">'   # (the FM-1, Guru-600 starting: fm1-live)
             '<nav class="golang">' +
             ''.join(f'<a href="https://guru-600.lang/{l}" data-l="{l}"><b>{n}</b><span>{typo(t, "fr" if l == "fr" else "en")}</span></a>'
@@ -406,6 +408,8 @@ out = ('<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="v
        'var nl=(navigator.language||"en").slice(0,2);if(["en","fr","de","es","it","zh","ja"].indexOf(nl)<0)nl="en";setLang(q||nl);document.querySelectorAll(".golang a,.toc a[data-l]").forEach(function(a){a.onclick=function(e){e.preventDefault();'
        'var l=a.dataset.l;if(l=="annex"){document.querySelector(".annex").scrollIntoView()}else{setLang(l);'
        'document.querySelector(".toc").scrollIntoView()}}})</script></body></html>')
+out = re.sub(r"(· (?:version|Version|versión|versione|バージョン)[ \u00a0]?)1\.0\b", lambda m: m.group(1) + GURU_V, out)   # (each language's cover: the firmware's version, guru_version.h)
+out = re.sub(r"· 1\.0 版", "· " + GURU_V + " 版", out)
 open(os.path.join(H, "index.html"), "w").write(out)
 json.dump([{"en": k, "fr": v} for k, v in STRINGS.items()], open(os.path.join(H, "strings.json"), "w"), ensure_ascii=False, indent=1)
 print("strings", len(STRINGS), "missing", sorted(MISSING), "bad refs", sorted(BADREF))

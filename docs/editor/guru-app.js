@@ -128,7 +128,7 @@ function showMorph(at) {                       // at: where the thumb is drawn (
   if (at == null) { if (morphGlide) cancelAnimationFrame(morphGlide); morphGlide = 0; morphShown = null; }
   setMorph((at ?? morph.pos) / 100);
   if (at != null) document.getElementById("mpos").textContent = morph.pos + " %";
-  document.getElementById("fb").textContent = placeLabel(morph.b);
+  document.getElementById("fb").textContent = mphLabel(morph.b);
   document.getElementById("mamt").textContent = Math.round(morph.amt * 100 / 127) + " %";
   drawKnob(document.getElementById("mknob"), (morph.amt - 1) / 126);
 }
@@ -199,8 +199,20 @@ function morphReloadSoon() {
   }, 80);
 }
 // SOUND B: another B, the rail where it was (the sound mixed again at that place)
-document.getElementById("fb-").addEventListener("click", () => { morph.b = (morph.b + 254) % 255; showMorph(); if (morph.pos) { dirty = true; sendMorph(); } });
-document.getElementById("fb+").addEventListener("click", () => { morph.b = (morph.b + 1) % 255; showMorph(); if (morph.pos) { dirty = true; sendMorph(); } });
+// (1.3.0, Marc 16/11: B changes at 0 % too; sent to the FM-1, which keeps it and leaves A as it is, so the reading
+// of the FM-1's state no longer brings the old B back)
+// (1.3.0, Marc 16/11) B may be a USER sound of P600 too: 255 + its slot (the firmware's mph_set); the arrows go
+// through the places, then those USER sounds, and round (as KNOB 2 on the FM-1)
+const userP600 = (k) => typeof userList !== "undefined" && userList[k] && userList[k].used && userList[k].engine === 14;
+const mphLabel = (c) => c >= 255 ? "U" + String(c - 254).padStart(2, "0") + " " + (userList[c - 255] ? userList[c - 255].name : "") : placeLabel(c);
+function morphBTo(c) { morph.b = c; showMorph(); if (morph.pos) dirty = true; sendMorph(); }
+function morphB(step) {
+  const n = 255 + 32; let b = morph.b;
+  do b = (b + step + n) % n; while (b >= 255 && !userP600(b - 255));
+  morphBTo(b);
+}
+document.getElementById("fb-").addEventListener("click", () => morphB(-1));
+document.getElementById("fb+").addEventListener("click", () => morphB(1));
 document.getElementById("b-mutate").addEventListener("click", async () => {
   if (!dev) return toast(tx("offline"));
   try { await dev.mutate(morph.amt); morph.pos = 0; showMorph(); dirty = true; await reloadValues(); } catch (e) { toast(tx("noreply")); }
@@ -210,7 +222,7 @@ document.getElementById("b-mutate").addEventListener("click", async () => {
 const names = SOUND_NAMES.map((n) => ({ name: n, kept: false }));
 while (names.length < 255) names.push({ name: "SOUND " + (names.length + 1), kept: false });
 names[2].kept = true;
-let place = 0, family = -1;
+let place = 0, family = -1, aUser = -1;   // (aUser: SOUND A a USER sound, its slot, 1.3.0)
 const bare = (s) => String(s || "").replace(/^\d+\s*/, "");   // "12 BRASS I" -> "BRASS I"
 const placeLabel = (i) => (i + 1) + " " + (names[i] ? bare(names[i].name) : "");
 const rows = [...document.querySelectorAll("#list .row")];
@@ -221,7 +233,7 @@ function showSounds(scroll) {
     r.classList.toggle("hide", family >= 0 && +FAMILY_OF[i] !== family);
     r.querySelector(".nm").textContent = bare(names[i].name);
   });
-  document.getElementById("fa").textContent = placeLabel(place);
+  document.getElementById("fa").textContent = aUser >= 0 ? mphLabel(255 + aUser) : placeLabel(place);
   document.getElementById("b-orig").classList.toggle("dis", !names[place].kept);
   if (scroll) rows[place].scrollIntoView({ block: "nearest" });
   showMorph();
@@ -234,13 +246,13 @@ document.querySelectorAll("#chips .chip").forEach((c) => c.addEventListener("poi
 rows.forEach((r, i) => r.addEventListener("pointerdown", () => choose(i)));
 async function choose(i) {
   if (dirty && dev && i !== place && !await uiConfirm(tx("lose"))) return;
-  place = i; dirty = false; showSounds(true);
+  place = i; aUser = -1; dirty = false; showSounds(true);
   if (dev) { try { await dev.load(i); await reloadValues(); } catch (e) { toast(tx("noreply")); } }
 }
 // MORPH's SOUND A: another A at the same place of the rail (the firmware's mph_set takes the sound loaded as A and
 // mixes it with B there again); no question: MORPH is for trying sounds
 async function chooseA(i) {
-  place = i; showSounds(true);
+  place = i; aUser = -1; showSounds(true);
   if (!dev) return;
   try {
     await dev.load(i);
@@ -249,8 +261,74 @@ async function chooseA(i) {
     await reloadValues();
   } catch (e) { toast(tx("noreply")); }
 }
+// (1.3.0) SOUND A a USER sound of P600 (UP_LOAD 20, as LOAD on the PROJECTS page), the morph where it was, from it
+async function chooseAUser(k) {
+  aUser = k; showSounds();
+  if (!dev) return;
+  try {
+    await dev.link.ask(false, 20, [k], (r) => r[0] === k);
+    if (morph.pos) await dev.morph(morph.b, morph.pos);
+    dirty = morph.pos > 0;
+    await reloadValues();
+  } catch (e) { toast(tx("noreply")); }
+}
 document.getElementById("fa-").addEventListener("click", () => chooseA((place + 254) % 255));
 document.getElementById("fa+").addEventListener("click", () => chooseA((place + 1) % 255));
+// (1.3.0, Marc 16/11) MORPH: a click on SOUND A's or SOUND B's name opens the 255 sounds, with the families as on the
+// sound list, to go faster than the arrows; the list opens above the name (the MORPH band is at the stage's foot)
+document.head.insertAdjacentHTML("beforeend", "<style>#mlist { position: absolute; z-index: 60; width: 340px; height: 540px; display: flex; flex-direction: column; background: #0c0c0c; border: 2px solid var(--mph); border-radius: 4px; box-shadow: 0 0 22px #000; }" +
+  "#mlist .mc { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px 5px; padding: 10px 10px 8px; }" +
+  "#mlist .ml { flex: 1; min-height: 0; overflow-y: scroll; padding: 0 2px 4px 10px; scrollbar-width: thin; scrollbar-color: #8a8a8a transparent; }" +
+  "#mlist .row { height: 29px; margin: 0 8px 5px 0; } #mlist .row .n { width: 42px; height: 29px; font-size: 18px; } #mlist .row .nm { font-size: 17px; }" +
+  "#morph .field.pick { cursor: pointer; }</style>");
+let mlist = null, mlistOf = "";
+function closeMList() { if (mlist) { mlist.remove(); mlist = null; mlistOf = ""; } }
+function openMList(which) {
+  const cur = which === "a" ? (aUser >= 0 ? 255 + aUser : place) : morph.b, fld = document.getElementById("f" + which);
+  closeMList();
+  const box = h("div", ""); box.id = "mlist";
+  const mc = h("div", "mc"), ml = h("div", "ml");
+  const codes = [...names.keys(), ...[...Array(32).keys()].filter(userP600).map((k) => 255 + k)];   // (the places, then the USER sounds of P600)
+  const rs = codes.map((i) => {
+    const u = i >= 255, r = h("div", "row" + (i === cur ? " on" : "") + (!u && names[i].kept ? " kept" : ""));
+    r.append(h("div", "n", u ? "U" + String(i - 254).padStart(2, "0") : String(i + 1)), h("div", "nm"));
+    r.lastChild.textContent = u ? userList[i - 255].name : bare(names[i].name);
+    r.dataset.f = u ? "U" : FAMILY_OF[i];
+    r.addEventListener("pointerdown", () => { closeMList(); if (which === "a") { if (i !== cur) (u ? chooseAUser(i - 255) : chooseA(i)); } else if (i !== morph.b) morphBTo(i); });
+    ml.appendChild(r); return r;
+  });
+  const curRow = rs[codes.indexOf(cur)] || rs[0];
+  ["ALL", ...FAMILIES, "USER"].forEach((f, i) => {
+    const key = i === 0 ? "" : f === "USER" ? "U" : String(i - 1);
+    if (key && !rs.some((r) => r.dataset.f === key)) return;   // (a family without a sound here, DRUM: not shown, Marc 16/11)
+    const c = h("div", "chip" + (i ? "" : " on"), f);
+    c.addEventListener("pointerdown", () => {
+      mc.querySelectorAll(".chip").forEach((o) => o.classList.toggle("on", o === c));
+      rs.forEach((r) => r.classList.toggle("hide", !!key && r.dataset.f !== key));
+      if (!curRow.classList.contains("hide")) ml.scrollTop = curRow.offsetTop - ml.clientHeight / 2;
+    });
+    mc.appendChild(c);
+  });
+  box.append(mc, ml);
+  const st = document.getElementById("stage"), sr = st.getBoundingClientRect(), fr = fld.getBoundingClientRect(), k = sr.width / DW;
+  box.style.left = Math.max(8, Math.min(DW - 348, (fr.left - sr.left) / k + fr.width / k / 2 - 170)) + "px";
+  box.style.top = Math.max(8, (fr.top - sr.top) / k - 548) + "px";
+  st.appendChild(box);
+  ml.scrollTop = curRow.offsetTop - ml.clientHeight / 2;
+  mlist = box; mlistOf = which;
+}
+["a", "b"].forEach((w) => {
+  const f = document.getElementById("f" + w);
+  f.classList.add("pick");
+  f.addEventListener("pointerdown", (e) => {
+    e.stopPropagation();
+    if (mlistOf === w) return closeMList();
+    if (dev && typeof userRead === "function") userRead().catch(() => {}).finally(() => openMList(w));   // (the USER sounds as they are now)
+    else openMList(w);
+  });
+});
+document.addEventListener("pointerdown", (e) => { if (mlist && !mlist.contains(e.target)) closeMList(); });
+document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeMList(); });
 
 /* ---------------------------------------------------------------------------------- the keyboard --- */
 let octave = 0;                        // OCT- / OCT+: -2 .. +2 (the lowest key C3 at 0)

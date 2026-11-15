@@ -954,7 +954,7 @@ static int ed_p6(const uint8_t *f, uint32_t n)
             factory_reset();
         return 1;
     }
-    if (c == 16u ? n < 8u : c == 15u ? n < 5u || f[4] > 3u : c == 12u ? n < 5u || !f[4] : c != 10u && c != 13u && (n < 6u || d > 254u || (c == 8u && (n < 7u || !f[6] || f[6] > 16u)) ||
+    if (c == 16u ? n < 8u : c == 15u ? n < 5u || f[4] > 3u : c == 12u ? n < 5u || !f[4] : c != 10u && c != 13u && (n < 6u || d > (c == 11u ? 254u + UP_SLOTS : 254u) || (c == 8u && (n < 7u || !f[6] || f[6] > 16u)) ||
                                                     (c == 11u && (n < 7u || f[6] > 100u))))
         return 1;                                          /* (malformed: no answer, as the Felucca frames) */
     k = ed_p6h(c);
@@ -997,7 +997,7 @@ static int ed_p6(const uint8_t *f, uint32_t n)
     o[k++] = (uint8_t)(d & 0x7Fu);
     o[k++] = (uint8_t)(d >> 7);
     if (c == 13u) {
-        o[k++] = ui.mph_trk == song.sel + 1u && TSEL->preset == ui.mph_apre ? ui.mph_pos : 0u;
+        o[k++] = ui.mph_trk == song.sel + 1u && TSEL->preset == ui.mph_apre && TSEL->user == ui.mph_auser ? ui.mph_pos : 0u;
         r = ui.mph_amt ? ui.mph_amt : 40u;
     } else if (c == 11u) {                                 /* MORPH */
         o[k++] = f[6];

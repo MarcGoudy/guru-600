@@ -26,6 +26,7 @@ static void up_pat_load(track_t *t, uint32_t k);
 static void up_auto_name(char *b, uint32_t e, uint32_t k);   /* naming (ui_name.c) */
 static void up_ui_named(uint32_t op, uint32_t k, const char *name, uint32_t cat);
 static uint32_t up_cat(uint32_t k);
+static int up_p600(uint32_t k, int16_t *p);    /* (1.3.0) a USER sound of P600: MORPH's B (upreset.c) */
 static int project_save_as(uint32_t slot, const char *name);
 static int project_name(uint32_t slot, char *b);
 static int project_info(uint32_t slot, char *b, uint16_t *len48, uint32_t *den, uint8_t *n);
@@ -199,7 +200,9 @@ static struct {
     uint8_t uslot;               /* SAVE > USER: the selected user preset slot */
     uint8_t p6place;             /* Guru-600 SAVE > PLACE: the P600 place picked (0..254) */
     uint8_t cl_on, cl_n, cl_note[4];   /* Guru-600 SCL > CHORD LEARN: on, the notes played (as kb_map gives them) */
-    uint8_t mph_amt, mph_b, mph_pos, mph_trk, mph_apre;   /* Guru-600 EDIT > MORPH: MUTATE's amount, B's place, the morph (0..100),
+    uint16_t mph_b;              /* Guru-600 EDIT > MORPH: B, a place 0..254, or 255 + a USER slot of P600 (1.3.0) */
+    uint8_t mph_auser;           /* (1.3.0) A's USER slot + 1 (track_t.user), 0: a place */
+    uint8_t mph_amt, mph_pos, mph_trk, mph_apre;   /* Guru-600 EDIT > MORPH: MUTATE's amount, the morph (0..100),
                                   * the track it began on + 1 (0: none, A not taken), A's preset */
     uint8_t ppick;               /* SAVE > PHRASES: the pattern picked (pat_count list index) */
     uint8_t song_row;            /* SONG: the section selected, count selects + ADD */
@@ -1608,7 +1611,9 @@ static void mph_set(uint32_t place, uint32_t pos)
     uint32_t i;
     if (t->eng_req % NENGINES != ENGI_P600)
         return;
-    if (ui.mph_trk != song.sel + 1u || t->preset != ui.mph_apre) {   /* (another track, another sound since: A is the
+    if (place >= 255u && (place - 255u >= UP_SLOTS || up_p600(place - 255u, 0)))   /* (1.3.0: B a USER sound of P600) */
+        return;
+    if (ui.mph_trk != song.sel + 1u || t->preset != ui.mph_apre || t->user != ui.mph_auser) {   /* (another track, another sound since: A is the
                                                                        * sound as it is now) */
         ui.mph_pos = 0;
         ui.mph_trk = 0;
@@ -1617,12 +1622,16 @@ static void mph_set(uint32_t place, uint32_t pos)
         memcpy(mph_a, t->p, sizeof mph_a);
         ui.mph_trk = (uint8_t)(song.sel + 1u);
         ui.mph_apre = t->preset;
+        ui.mph_auser = t->user;
     }
     if (place != ui.mph_b || !ui.mph_pos) {           /* B: A, then the place's sound over it */
         memcpy(mph_bp, mph_a, sizeof mph_bp);
-        preset_params(ENGI_P600, place, mph_bp);
+        if (place < 255u)
+            preset_params(ENGI_P600, place, mph_bp);
+        else
+            up_p600(place - 255u, mph_bp);
     }
-    ui.mph_b = (uint8_t)place;
+    ui.mph_b = (uint16_t)place;
     ui.mph_pos = (uint8_t)pos;
     for (i = 0; i < P_COUNT; i++) {
         int32_t a = mph_a[i], b = mph_bp[i];
@@ -1646,6 +1655,24 @@ static void mph_set(uint32_t place, uint32_t pos)
     }
     if (!pos)
         ui.mph_trk = 0;                               /* (at A: the next move takes the sound as it is then) */
+}
+/* (1.3.0) MORPH's sounds by one number: a place 0..254, or 255 + a USER slot; A: the track's sound, B: KNOB 2 goes
+ * through the places then the USER sounds of P600 (the others skipped), and round */
+static uint32_t mph_a_code(void) { return TSEL->user ? 254u + TSEL->user : TSEL->preset < 255u ? TSEL->preset : 0u; }
+static uint32_t mph_b_step(int32_t steps)
+{
+    uint32_t b = ui.mph_b, n = 255u + UP_SLOTS, dir = steps < 0 ? n - 1u : 1u;
+    int32_t m = steps < 0 ? -steps : steps;
+    while (m-- > 0)
+        do b = (b + dir) % n; while (b >= 255u && up_p600(b - 255u, 0));
+    return b;
+}
+static void mph_label(char *t, uint32_t c)            /* "12" or "U07" (t holds 8) */
+{
+    if (c >= 255u)
+        up_slot_label(t, c - 255u);
+    else
+        fmt_int(t, (int32_t)c + 1);
 }
 static void mph_mutate(void)
 {

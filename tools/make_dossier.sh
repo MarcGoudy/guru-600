@@ -46,7 +46,7 @@ rm -f "$G/5 Sources/"*.zip
 (cd $T && zip -qr "$G/5 Sources/guru-600-firmware-source.zip" guru-600-firmware && zip -qr "$G/5 Sources/guru-600-tools-source.zip" guru-600-tools && zip -qr "$G/5 Sources/fm1-emu-guru-600-source.zip" fm1-emu-guru-600)
 rm -rf $T
 # 4. la copie sur 1To, puis la vérification
-if [ -d /Volumes/1To ]; then
+if [ -z "$NO_1TO" ] && [ -d /Volumes/1To ]; then   # (NO_1TO=1 : la copie sur le 1To lancée à part)
   # (8, 9, 10 : seulement sur le 1To — firmwares officiels, annonces, sauvegardes du FM-1 — jamais effacés)
   # (15/11 : seuls les dossiers 1 à 7 et les fichiers de tête ; sans aucune suppression. Un
   #  « --delete » sur tout /Volumes/1To/Guru-600 a effacé « 11 Site guru-600.com », qui n'existe que sur le 1To)

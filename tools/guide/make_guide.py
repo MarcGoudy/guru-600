@@ -1,3 +1,5 @@
+import os as _os, re as _re
+GURU_V = _re.search(r'GURU_VERSION "([^"]+)"', open(_os.path.join(_os.path.dirname(_os.path.abspath(__file__)), '../../Felucca/firmware/src/guru_version.h')).read()).group(1)   # (la version : guru_version.h, le seul endroit)
 """Guru-600 Editor – Guide : le guide de l'éditeur web (p600/editeur), séparé de la notice et complet à lui seul, en sept
 langues : guide/index.html (?lang=xx, imprimable en PDF : make_pdf.sh). Même mise en page et mêmes règles
 typographiques que la notice : ses fonctions (make_notice.py, jusqu'aux sections) sont reprises telles quelles, avec les
@@ -94,7 +96,7 @@ for i, (k, en, fr, body) in enumerate(CHAPS):
 LANG_FULL = [("en", "English", "Editor guide"), ("fr", "Français", "Guide de l'éditeur"),
              ("de", "Deutsch", "Editor-Handbuch"), ("es", "Español", "Guía del editor"),
              ("it", "Italiano", "Guida all'editor"), ("zh", "中文", "编辑器指南"), ("ja", "日本語", "エディター ガイド")]
-S.insert(0, '<section class="cover all">' + LOGO + '<p class="sub">Editor · M-VAVE FM-1 · v1.0 · Marc Massé</p>'
+S.insert(0, '<section class="cover all">' + LOGO + '<p class="sub">Editor · M-VAVE FM-1 · v' + GURU_V + ' · Marc Massé</p>'
             '<img class="fm1" src="shots/cover.jpg" alt="Guru-600 editor">'
             '<nav class="golang">' + ''.join(f'<a href="https://guru-600.lang/{l}" data-l="{l}"><b>{n}</b><span>{typo(t, "fr" if l == "fr" else "en")}</span></a>'
                                             for l, n, t in LANG_FULL) + '</nav></section>')
@@ -115,6 +117,8 @@ out = ('<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="v
        'var nl=(navigator.language||"en").slice(0,2);if(["en","fr","de","es","it","zh","ja"].indexOf(nl)<0)nl="en";setLang(q||s||nl);'
        'document.querySelectorAll(".golang a").forEach(function(a){a.onclick=function(e){e.preventDefault();setLang(a.dataset.l);'
        'document.querySelector(".toc").scrollIntoView()}});if(location.hash)setTimeout(function(){var t=document.querySelector(location.hash);if(t)t.scrollIntoView()},0)</script></body></html>')
+out = re.sub(r"(· (?:version|Version|versión|versione|バージョン)[ \u00a0]?)1\.0\b", lambda m: m.group(1) + GURU_V, out)   # (each language's cover: the firmware's version, guru_version.h)
+out = re.sub(r"· 1\.0 版", "· " + GURU_V + " 版", out)
 open(os.path.join(H, "index.html"), "w").write(out)
 for d in ("fonts",):                                   # (the guide's folder: complete on its own)
     if not os.path.isdir(os.path.join(H, d)):

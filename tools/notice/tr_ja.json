@@ -1907,5 +1907,7 @@
  "<b>ENV held + KNOB 1–4</b>": "<b>ENV を押したまま + KNOB 1–4</b>",
  "That value back to the sound's own, the others kept (a shared value: its default).": "その値が音色本来の値に戻り、他の値はそのまま（共通の値はデフォルト値に）。",
  "PRESETS, then KNOB 2 turned: the sound's name and RES in big type.": "PRESETS、続いて KNOB 2 を回す：音色名と RES が大きく。",
- "<b>Back to the sound's value for one setting only</b>: hold <b>ENV</b> and turn the knob of that setting; it takes the sound's value again, and the other settings you changed stay as they are. A setting shared by the whole project (the tempo, the shared effects) goes back to its default.": "<b>1 つの設定だけを音色の値に戻す</b>：<b>ENV</b> を押したまま、その設定のノブを回します。その設定は音色の値に戻り、変更した他の設定はそのままです。プロジェクト全体で共通の設定（テンポ、共通エフェクト）はデフォルト値に戻ります。"
+ "<b>Back to the sound's value for one setting only</b>: hold <b>ENV</b> and turn the knob of that setting; it takes the sound's value again, and the other settings you changed stay as they are. A setting shared by the whole project (the tempo, the shared effects) goes back to its default.": "<b>1 つの設定だけを音色の値に戻す</b>：<b>ENV</b> を押したまま、その設定のノブを回します。その設定は音色の値に戻り、変更した他の設定はそのままです。プロジェクト全体で共通の設定（テンポ、共通エフェクト）はデフォルト値に戻ります。",
+ "SOUND B: the sound to reach: any of the 255 places, then your USER sounds of the P600 engine (U01…), and round to 1.": "SOUND B：目標のサウンド。255 の枠のいずれか、続いて P600 エンジンの USER サウンド（U01…）、そして 1 に戻ります。",
+ "1–255, U01–U32": "1–255, U01–U32"
 }

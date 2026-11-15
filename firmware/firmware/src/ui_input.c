@@ -1104,7 +1104,7 @@ static void edit_param(uint32_t slot, int32_t steps)
             if (at)
                 mph_set(ui.mph_b, at);
         } else if (slot == 1u)
-            mph_set((uint32_t)((((int32_t)ui.mph_b + steps) % 255 + 255) % 255), ui.mph_pos);   /* (wraps) */
+            mph_set(mph_b_step(steps), ui.mph_pos);   /* (wraps; 1.3.0: then the USER sounds of P600) */
         else if (slot == 2u)
             mph_set(ui.mph_b, (uint32_t)clamp((int32_t)ui.mph_pos + steps, 0, 100));
         return;

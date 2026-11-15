@@ -118,9 +118,9 @@ CH("sound", "SOUND: a panel inspired by the Prophet-600", "SOUND : une façade i
  SHOT("morph", "MORPH, under the panel.", "MORPH, sous la façade.") +
  P2("MORPH turns the track's sound (SOUND A) into another one (SOUND B), little by little, and MUTATE makes a variation of it.",
     "MORPH transforme peu à peu le son de la piste (SOUND A) en un autre (SOUND B), et MUTATE en fait une variante.") +
- CTL([("SOUND A ◀ ▶", "The track's sound. The arrows load the previous or next place (after 255 comes 1), as a click in SOUNDS.",
-       "Le son de la piste. Les flèches chargent la place précédente ou suivante (après 255 vient 1), comme un clic dans SOUNDS."),
-      ("SOUND B ◀ ▶", "The sound to reach. Choosing another B puts the slider back at A.", "Le son à atteindre. Choisir un autre B ramène le curseur sur A."),
+ CTL([("SOUND A ◀ ▶", "The track's sound. The arrows load the previous or next place (after 255 comes 1), as a click in SOUNDS. A click on the name opens the list: the 255 places, then your USER sounds of the P600 engine (USER), by family.",
+       "Le son de la piste. Les flèches chargent la place précédente ou suivante (après 255 vient 1), comme un clic dans SOUNDS. Un clic sur le nom ouvre la liste : les 255 places, puis vos sons USER du moteur P600 (USER), par famille."),
+      ("SOUND B ◀ ▶", "The sound to reach: a place, or one of your USER sounds of the P600 engine. The arrows go through the places, then those USER sounds; a click on the name opens the list. The slider stays where it is.", "Le son à atteindre : une place, ou l'un de vos sons USER du moteur P600. Les flèches parcourent les places, puis ces sons USER ; un clic sur le nom ouvre la liste. Le curseur reste où il est."),
       ("MORPH", "Click or drag on the rail, from A (0 %) to B (100 %). The value shows after the title. The sound changes as you move.",
        "Cliquez ou glissez sur le rail, de A (0 %) à B (100 %). La valeur s'affiche après le titre. Le son change à mesure."),
       ("MUTATE", "Changes the sound at random, by the AMOUNT shown. Click again for another variation.",
