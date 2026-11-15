@@ -3,7 +3,7 @@
 // that runs the emulator. Every firmware boots from its whole update package (.fwsc), unpacked
 // in the wasm: a catalog entry's fetched from its author's site, or one opened from this
 // computer (M-VAVE's own: their server does not let other pages fetch it).
-import { fetchPackage } from "./fwsc.js";
+import { fetchPackage, flashFromPackage } from "./fwsc.js";
 import { SaveStore, packageHash, changedSectors, packSectors, exportSave, importSave } from "./persistence.js";
 
 const CLOCKS = [60, 80, 100, 120, 160, 200, 240];
@@ -171,8 +171,11 @@ if (DEVICE === "fm1") {
   }
 }
 
-// Cached packages are pinned to their exact bytes. Checking for updates is explicit.
+// Cached packages are pinned to their exact bytes. Checking for updates is explicit, except when
+// the catalog now names another package than the one kept (a new release on the site): then the
+// new one is fetched, and the next boot carries the saved settings and projects over (carried).
 const packages = new Map();
+const carried = new Map();                 // catalog id -> the kept record the new package replaces
 let localFw = null;
 class NeedFile extends Error {}
 async function keptEntry(id) {
@@ -183,6 +186,15 @@ async function packageOf(f) {
   if (f.id === "local") return { bytes: f.bytes, url: null };
   if (packages.has(f.id)) return packages.get(f.id);
   const kept = await keptEntry(f.id);
+  if (kept && !f.byo && f.package && (kept.source ?? kept.url) !== f.package) {
+    try {
+      const got = await fetchPackage(f);
+      packages.set(f.id, got);
+      noteVersion(f, got.version);
+      carried.set(f.id, kept);
+      return got;
+    } catch { /* offline, or the new package is missing: keep running the kept one */ }
+  }
   if (kept) {
     const got = { bytes: kept.package, url: kept.url };
     packages.set(f.id, got);
@@ -852,11 +864,24 @@ function boot(options = {}) {
       record = options.imported
         ? { ...options.imported, revision: memoryRecords.get(hash)?.revision || options.imported.revision }
         : memoryRecords.get(hash) || record;
+      // A new package of this firmware with no save of its own yet: the previous package's
+      // settings and projects come along, as an update on the device keeps them. The updater
+      // writes only the package's flash image (Felucca's OTA_FL_LEN, 0x93000); everything
+      // above it is the firmware's data, so only the sectors there are carried.
+      const before = carried.get(f.id);
+      if (!record && !options.imported && !options.reset && before && before.hash !== hash) {
+        let end = Infinity;
+        try { end = flashFromPackage(got.bytes).length; } catch { /* not a flash package: nothing */ }
+        const old = memoryRecords.get(before.hash) || before;
+        record = { sectors: (old.sectors || []).filter((s) => s.at >= end), revision: 0, unsaved: true };
+      }
+      carried.delete(f.id);
       if (options.reset) record = { ...record, sectors: [] };
       const sectors = record?.sectors || [];
       const session = { seq, forceSave: !!(options.reset || options.imported || record?.unsaved),
         persistedSectors: record?.sectors || [], entry: DEV.key + f.id, revision: record?.revision || 0,
         record: { version: 1, hash, name: f.name, byo: !!(f.byo || record?.byo), device: DEVICE, package: got.bytes, url: got.url,
+          source: f.package,
           sectors, revision: record?.revision || 0 } };
       sessions.set(seq, session);
       loadedUrl = got.url;
@@ -1056,6 +1081,7 @@ document.getElementById("update-firmware").addEventListener("click", action(asyn
   const got = await fetchPackage(selected);
   const hash = await packageHash(got.bytes);
   packages.set(selected.id, got);
+  if (running?.entry === DEV.key + selected.id && running.record.hash !== hash) carried.set(selected.id, running.record);
   noteVersion(selected, got.version);
   if (fw !== selected) return;
   if (running?.record.hash === hash) { saveMessage("Firmware is up to date"); return; }
