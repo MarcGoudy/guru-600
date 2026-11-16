@@ -39,8 +39,8 @@ def installer(out):
     h = inst.read_text(encoding="utf-8")
     T = texts("installer")
     # (16/11/2026, Marc) the version being installed, in the Install button itself
-    INSTALL_V = {"en": "Install version {}", "fr": "Installer la version {}", "de": "Version {} installieren", "es": "Instalar la versión {}",
-                 "it": "Installa la versione {}", "zh": "安装 {} 版", "ja": "バージョン {} をインストール"}
+    INSTALL_V = {"en": "Install V{}", "fr": "Installer la V{}", "de": "V{} installieren", "es": "Instalar la V{}",
+                 "it": "Installa la V{}", "zh": "安装 V{}", "ja": "V{} をインストール"}   # (Marc: V1.3.0 rather than the whole word)
     for l in T: T[l]["install"] = INSTALL_V[l].format(VERSION)
     h = h.replace('<html lang="ja">', '<html lang="en">', 1).replace("<title>Felucca</title>", "<title>Guru-600</title>", 1)
     # (16/11/2026) its icon: Marc's FIRMWARE one (p600/icone/v2), in the tab and on a phone's home screen
