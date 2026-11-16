@@ -38,6 +38,10 @@ def installer(out):
     inst = out / "webapp" / "installer" / "index.html"
     h = inst.read_text(encoding="utf-8")
     T = texts("installer")
+    # (16/11/2026, Marc) the version being installed, in the Install button itself
+    INSTALL_V = {"en": "Install version {}", "fr": "Installer la version {}", "de": "Version {} installieren", "es": "Instalar la versión {}",
+                 "it": "Installa la versione {}", "zh": "安装 {} 版", "ja": "バージョン {} をインストール"}
+    for l in T: T[l]["install"] = INSTALL_V[l].format(VERSION)
     h = h.replace('<html lang="ja">', '<html lang="en">', 1).replace("<title>Felucca</title>", "<title>Guru-600</title>", 1)
     # (16/11/2026) its icon: Marc's FIRMWARE one (p600/icone/v2), in the tab and on a phone's home screen
     from PIL import Image
@@ -45,6 +49,9 @@ def installer(out):
     for n in (32, 180): ico.resize((n, n), Image.LANCZOS).save(inst.parent / f"icon-{n}.png", optimize=True)
     h = h.replace("<title>Guru-600</title>", '<title>Guru-600</title>\n<link rel="icon" href="icon-32.png" type="image/png">'
                   '\n<link rel="apple-touch-icon" href="icon-180.png">', 1)
+    v = 'say(`Felucca ${meta.version}`);'   # (Felucca's page as it comes: its own name, which the visitor no longer sees)
+    assert v in h, "installer: the version line changed"
+    h = h.replace(v, 'say("");   // (the version: in the Install button)', 1)
     h = h.replace("</style>", LANG_CSS + "</style>", 1)
     h = h.replace('  <button class="lang" id="lang"></button>\n  <h1>Felucca</h1>',
                   '  ' + LANG_JS + '\n  <h1 class="logo">guru-600</h1>\n  <p class="trib">A PROPHET-600 TRIBUTE</p>\n'
