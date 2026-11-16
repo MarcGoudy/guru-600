@@ -9,7 +9,7 @@ A="$H/build/Guru-600 Editor.app"; C="$A/Contents"
 rm -rf $H/build; mkdir -p "$C/MacOS" "$C/Resources"
 cp $H/launcher.zsh "$C/MacOS/Guru-600 Editor"; chmod +x "$C/MacOS/Guru-600 Editor"
 ditto $S/editor "$C/Resources/editor"; ditto $S/guide "$C/Resources/guide"
-cp $F/p600/icone/Guru600.icns "$C/Resources/Guru600.icns"
+cp $F/p600/icone/v2/editor.icns "$C/Resources/Guru600.icns"   # (16/11/2026 : l'icône EDITOR de Marc)
 cat > "$C/Info.plist" <<PL
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">

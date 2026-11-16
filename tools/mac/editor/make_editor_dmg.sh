@@ -4,7 +4,7 @@
 #   editor/make_editor_dmg.sh [adresse du zip de l'application] [dossier de sortie]
 set -e
 E=${0:A:h}; H=${E:h}; URL=${1:-https://guru-600.com/telecharger/Guru-600-Editor-Mac.zip}; OUT=${2:-$HOME/Documents/FM-1/Partage}
-ICNS="$HOME/Documents/FM-1/Guru-600/2 Application Mac/Guru-600.app/Contents/Resources/applet.icns"
+ICNS="$HOME/Documents/FM-1/p600/icone/v2/editor.icns"   # (16/11/2026 : l'icône EDITOR de Marc)
 T=$(mktemp -d)
 sed "s#https://guru-600.com/telecharger/Guru-600-Editor-Mac.zip#$URL#" $E/installer.applescript > $T/i.applescript
 # l'installateur : un lanceur de trois lignes (ce qu'on voit), le programme dans Scripts/installer.scpt,

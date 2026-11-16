@@ -39,6 +39,12 @@ def installer(out):
     h = inst.read_text(encoding="utf-8")
     T = texts("installer")
     h = h.replace('<html lang="ja">', '<html lang="en">', 1).replace("<title>Felucca</title>", "<title>Guru-600</title>", 1)
+    # (16/11/2026) its icon: Marc's FIRMWARE one (p600/icone/v2), in the tab and on a phone's home screen
+    from PIL import Image
+    ico = Image.open(HERE.parent / "icone" / "v2" / "firmware_plein_1024.png")
+    for n in (32, 180): ico.resize((n, n), Image.LANCZOS).save(inst.parent / f"icon-{n}.png", optimize=True)
+    h = h.replace("<title>Guru-600</title>", '<title>Guru-600</title>\n<link rel="icon" href="icon-32.png" type="image/png">'
+                  '\n<link rel="apple-touch-icon" href="icon-180.png">', 1)
     h = h.replace("</style>", LANG_CSS + "</style>", 1)
     h = h.replace('  <button class="lang" id="lang"></button>\n  <h1>Felucca</h1>',
                   '  ' + LANG_JS + '\n  <h1 class="logo">guru-600</h1>\n  <p class="trib">A PROPHET-600 TRIBUTE</p>\n'

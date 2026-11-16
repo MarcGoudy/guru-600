@@ -13,6 +13,7 @@ cp $F/fm1-emu-src/target/release/fm1-live $A/Contents/MacOS/Guru-600; rm -f $R/G
 cp $FW $F/Firmwares/guru-600.fwsc; cp $FW $F/Partage/guru-600.fwsc; cp $FW $R/guru-600.fwsc
 rm -rf $R/Notice; mkdir -p $R/Notice; (cd $F/p600/notice && cp index.html $R/Notice/ && cp -R img shots fonts $R/Notice/)
 /usr/libexec/PlistBuddy -c "Set :CFBundleShortVersionString $V" -c "Set :CFBundleVersion $V" $A/Contents/Info.plist   # (la version de l'app = celle du firmware)
+cp $F/p600/icone/v2/emulator.icns $R/applet.icns   # (16/11/2026 : l'icône EMULATOR de Marc)
 codesign --force --deep -s - $A 2>&1 | tail -1
 rm -f $F/Partage/Guru-600.zip; ditto -c -k --keepParent $A $F/Partage/Guru-600.zip
 # l'installateur Mac (image disque) : le visiteur passe par lui, l'application téléchargée par le navigateur serait bloquée
