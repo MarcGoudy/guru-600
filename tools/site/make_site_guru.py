@@ -42,6 +42,9 @@ def installer(out):
     INSTALL_V = {"en": "Install V{}", "fr": "Installer la V{}", "de": "V{} installieren", "es": "Instalar la V{}",
                  "it": "Installa la V{}", "zh": "安装 V{}", "ja": "V{} をインストール"}   # (Marc: V1.3.0 rather than the whole word)
     for l in T: T[l]["install"] = INSTALL_V[l].format(VERSION)
+    w = "main { max-width: 520px;"   # (16/11/2026, Marc: a wider column)
+    assert w in h, "installer: the column changed"
+    h = h.replace(w, "main { max-width: 760px;", 1)
     h = h.replace('<html lang="ja">', '<html lang="en">', 1).replace("<title>Felucca</title>", "<title>Guru-600</title>", 1)
     # (16/11/2026) its icon: Marc's FIRMWARE one (p600/icone/v2), in the tab and on a phone's home screen
     from PIL import Image
