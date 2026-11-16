@@ -6,6 +6,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>guru-600 editor</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon-32.png" type="image/png">
+<link rel="apple-touch-icon" href="icons/icon-180.png">
+<meta name="theme-color" content="#000000">
 <style>
 @font-face { font-family: "MonRong"; src: url("fonts/MonRong.ttf") format("truetype"); font-display: block; }
 @font-face { font-family: "Barlow C"; src: url("fonts/BarlowCondensed-SemiBold.ttf") format("truetype"); font-weight: 600; font-display: block; }
@@ -598,8 +602,8 @@ body.flat .fdr i { box-shadow: none; }
 </head>
 <body>
 <div id="stage"></div>
-<script src="guru-families.js"></script>
-<script src="guru-link.js"></script>
+<script src="guru-families.js?v=1.3.0"></script>
+<script src="guru-link.js?v=1.3.0"></script>
 <script>
 "use strict";
 /* ------------------------------------------------------------------ the parameters (core.h P_*, params.c) --- */
@@ -984,27 +988,29 @@ document.fonts.ready.then(layout);
 layout();
 addEventListener("resize", layout);
 </script>
-<script src="guru-dialog.js"></script>
-<script src="guru-app.js"></script>
-<script src="guru-seq.js"></script>
-<script src="guru-song.js"></script>
-<script src="guru-arp.js"></script>
-<script src="guru-fx.js"></script>
-<script src="guru-mod.js"></script>
-<script src="guru-tracks.js"></script>
-<script src="guru-projects.js"></script>
-<script src="guru-allsounds.js"></script>
-<script src="guru-sampleio.js"></script>
-<script src="guru-samples.js"></script>
-<script src="guru-backupio.js"></script>
-<script src="guru-backup.js"></script>
-<script src="guru-settings.js"></script>
-<script src="guru-tx.js"></script>
-<script src="guru-guide-ch.js"></script>
-<script src="guru-tips.js"></script>
-<script src="guru-gloss.js"></script>
-<script src="guru-labels.js"></script>
-<script src="guru-i18n.js"></script>
+<script src="guru-dialog.js?v=1.3.0"></script>
+<script src="guru-app.js?v=1.3.0"></script>
+<script src="guru-seq.js?v=1.3.0"></script>
+<script src="guru-song.js?v=1.3.0"></script>
+<script src="guru-arp.js?v=1.3.0"></script>
+<script src="guru-fx.js?v=1.3.0"></script>
+<script src="guru-mod.js?v=1.3.0"></script>
+<script src="guru-tracks.js?v=1.3.0"></script>
+<script src="guru-projects.js?v=1.3.0"></script>
+<script src="guru-allsounds.js?v=1.3.0"></script>
+<script src="guru-sampleio.js?v=1.3.0"></script>
+<script src="guru-samples.js?v=1.3.0"></script>
+<script src="guru-backupio.js?v=1.3.0"></script>
+<script src="guru-backup.js?v=1.3.0"></script>
+<script src="guru-settings.js?v=1.3.0"></script>
+<script src="guru-tx.js?v=1.3.0"></script>
+<script src="guru-guide-ch.js?v=1.3.0"></script>
+<script src="guru-tips.js?v=1.3.0"></script>
+<script src="guru-gloss.js?v=1.3.0"></script>
+<script src="guru-labels.js?v=1.3.0"></script>
+<script src="guru-i18n.js?v=1.3.0"></script>
 <script>showPage(new URLSearchParams(location.search).get("tab") || "sound");   // (?tab=seq: a page at once)</script>
+<script>   // (16/11/2026) an installable application that also works offline: the worker at the site's root (site/sw.js)
+if ("serviceWorker" in navigator && location.protocol.startsWith("http")) navigator.serviceWorker.register("../sw.js", { scope: "../" }).catch(() => {});</script>
 </body>
 </html>

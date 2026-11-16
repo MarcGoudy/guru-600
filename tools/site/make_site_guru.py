@@ -1,7 +1,7 @@
 """La page d'installation du Guru-600 (d'après Felucca/web/make_site.py) et la page d'envoi des sons, en sept langues.
     venv/bin/python p600/site/make_site_guru.py ../Felucca/build/felucca.fwsc ../Partage/site-installation
 Les textes : strings_en.json (anglais) et strings_tr.json (fr, de, es, it, zh, ja)."""
-import json, re, shutil, sys
+import hashlib, json, re, shutil, sys
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
@@ -100,6 +100,13 @@ def editor(out):   # the Guru-600 editor (p600/editeur) and its guide (p600/guid
     shutil.copy(P / "guide" / "index.html", out / "guide" / "index.html")
     for d in ("shots", "fonts"):
         shutil.copytree(P / "guide" / d, out / "guide" / d)
+    # the editor, an installable application that also works offline (16/11/2026): its worker at the site's root,
+    # with the list of the editor's and the guide's files, and their hash (a new editor = a new worker)
+    files = sorted(f for d in ("editor", "guide") for f in (out / d).rglob("*") if f.is_file() and f.name != ".DS_Store")
+    rel = ["editor/", "guide/"] + [f.relative_to(out).as_posix() for f in files]
+    hsh = hashlib.sha256(b"".join(f.relative_to(out).as_posix().encode() + f.read_bytes() for f in files)).hexdigest()[:16]
+    sw = (HERE / "sw.js").read_text(encoding="utf-8").replace("__VERSION__", hsh).replace("__FILES__", json.dumps(rel, indent=0))
+    (out / "sw.js").write_text(sw, encoding="utf-8")
 
 
 def main(pkg, out):
