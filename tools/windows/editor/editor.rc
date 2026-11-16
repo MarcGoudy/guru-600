@@ -1,0 +1,23 @@
+1 ICON "../guru-600.ico"
+1 VERSIONINFO
+FILEVERSION 1,3,0,0
+PRODUCTVERSION 1,3,0,0
+BEGIN
+  BLOCK "StringFileInfo"
+  BEGIN
+    BLOCK "040904B0"
+    BEGIN
+      VALUE "CompanyName", "Marc Mass\xE9"
+      VALUE "FileDescription", "Guru-600 Editor"
+      VALUE "FileVersion", "1.3.0"
+      VALUE "ProductName", "Guru-600 Editor"
+      VALUE "ProductVersion", "1.3.0"
+      VALUE "LegalCopyright", "GPL-3.0 (Guru-600)"
+      VALUE "OriginalFilename", "Guru-600 Editor.exe"
+    END
+  END
+  BLOCK "VarFileInfo"
+  BEGIN
+    VALUE "Translation", 0x409, 1200
+  END
+END

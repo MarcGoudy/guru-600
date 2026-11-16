@@ -2,7 +2,7 @@
 // At the site's root so that it covers editor/ and guide/ (the editor's ? opens ../guide/); nothing else on the site is touched.
 // Online: always the network (the latest editor), and the copy kept up to date; offline: the copy.
 // make_site_guru.py fills FILES and VERSION (a hash of the files: a new editor installs a new worker, and its files at once).
-const VERSION = "1b1359062701f5da";
+const VERSION = "d7ad77749390ff78";
 const FILES = [
 "editor/",
 "guide/",

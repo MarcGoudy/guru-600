@@ -456,19 +456,19 @@ addEventListener("keydown", (e) => {
 });
 document.getElementById("logo").addEventListener("dblclick", fullscreen);
 document.getElementById("t-full").addEventListener("click", fullscreen);
-// (16/11/2026, Marc) INSTALL THE APPLICATION: the editor with its icon, in its own window, offline too. The browser installs it
-// (Chrome, Edge: its offer, caught in index.html); a browser that offers none: how to. Hidden in the application itself, and in the
-// downloaded folder (file:, nothing to install).
+// (16/11/2026, Marc) DOWNLOAD THE APPLICATION: the Guru-600 Editor application of this computer (Mac: its installer;
+// Windows: its folder), which keeps the editor on the disk: offline, whatever the browser keeps or clears, in a window of its
+// own, its icon. Hidden where the editor is already on the disk (file:: the application, the downloaded folder).
 (function () {
   const b = document.getElementById("t-inst");
-  const hide = () => { b.hidden = true; };
-  if (location.protocol === "file:" || matchMedia("(display-mode: standalone)").matches || navigator.standalone) hide();
-  addEventListener("appinstalled", hide);
-  b.addEventListener("click", async () => {
-    const o = window.installOffer;
-    if (!o) return uiInfo(tx("noinst"));
-    o.prompt(); const r = await o.userChoice.catch(() => null); window.installOffer = null;
-    if (r && r.outcome === "accepted") hide();
+  if (location.protocol === "file:") { b.hidden = true; return; }
+  const os = ((navigator.userAgentData && navigator.userAgentData.platform) || navigator.platform || "").toLowerCase();
+  const D = "https://guru-600.com/telecharger/";
+  b.addEventListener("click", () => {
+    const f = os.startsWith("mac") ? "Guru-600-Editor-Installer-Mac.dmg" : os.startsWith("win") ? "Guru-600-Editor-Windows.zip" : "";
+    if (!f) return uiInfo(tx("noinst"));
+    const a = document.createElement("a"); a.href = D + f; a.download = f; document.body.appendChild(a); a.click(); a.remove();
+    uiInfo(tx(os.startsWith("mac") ? "dlmac" : "dlwin"));
   });
 })();
 // the bulb: the lit look or the flat one (remembered by this browser)
@@ -492,7 +492,9 @@ function fullscreen() { if (document.fullscreenElement) document.exitFullscreen(
 /* ---------------------------------------------------------------------------------- messages --- */
 const TX = {
   en: { offline: "Connect the FM-1 first.", noreply: "The FM-1 does not answer.", lose: "The changes to this sound are not saved. Load another sound anyway?",
-        noinst: "To install the editor as an application (its own icon, its own window, offline too), open guru-600.com/editor in Chrome or Edge, then click this button again.",
+        noinst: "The Guru-600 Editor application exists for Mac and Windows: open guru-600.com/editor on one of them to download it.",
+        dlmac: "Downloading the installer. Open Guru-600-Editor-Installer-Mac.dmg from your Downloads, double-click the installer, then follow its three steps. The editor then works without Internet, from its own icon.",
+        dlwin: "Downloading the application. Unzip Guru-600-Editor-Windows.zip from your Downloads, then double-click Guru-600 Editor.exe (if Windows warns: More info, then Run anyway). The editor then works without Internet, from its own icon.",
         nomidi: "This browser has no MIDI: use Chrome, Edge, Brave, Opera…", denied: "MIDI access was refused.", nodevice: "No FM-1 found: connect it by USB, with the Guru-600 firmware.",
         oldfw: "This FM-1 needs the Guru-600 firmware.", connected: "FM-1 connected", disconnected: "FM-1 disconnected",
         save: "Save the current sound in place %s? The sound there now is replaced.", saved: "Saved in place %s", full: "The memory of the places is full (55 sounds).",
@@ -502,7 +504,9 @@ const TX = {
         unsavedexp: "The changes to this sound are not saved: the file will hold the sound as saved in place %s. Export anyway?",
         other: "Track %s plays a sound of the FM-1 (%s).<br>This panel sets the Guru-600 sounds (1 to 255): choose one in the list to set it here." },
   fr: { offline: "Branchez d'abord le FM-1.", noreply: "Le FM-1 ne répond pas.", lose: "Les modifications de ce son ne sont pas enregistrées. Charger quand même un autre son ?",
-        noinst: "Pour installer l'éditeur comme une application (son icône, sa propre fenêtre, hors ligne aussi), ouvrez guru-600.com/editor dans Chrome ou Edge, puis cliquez de nouveau sur ce bouton.",
+        noinst: "L'application Guru-600 Editor existe pour Mac et Windows : ouvrez guru-600.com/editor sur l'un d'eux pour la télécharger.",
+        dlmac: "Téléchargement de l'installateur. Ouvrez Guru-600-Editor-Installer-Mac.dmg dans vos Téléchargements, double-cliquez sur l'installateur, puis suivez ses trois étapes. L'éditeur fonctionne ensuite sans Internet, depuis sa propre icône.",
+        dlwin: "Téléchargement de l'application. Décompressez Guru-600-Editor-Windows.zip dans vos Téléchargements, puis double-cliquez sur Guru-600 Editor.exe (si Windows prévient : Informations complémentaires, puis Exécuter quand même). L'éditeur fonctionne ensuite sans Internet, depuis sa propre icône.",
         nomidi: "Ce navigateur n'a pas le MIDI : utilisez un navigateur compatible MIDI, Chrome, Edge, Brave, Opera…", denied: "L'accès au MIDI a été refusé.",
         nodevice: "Aucun FM-1 trouvé : branchez-le en USB, avec le firmware Guru-600.", oldfw: "Ce FM-1 doit avoir le firmware Guru-600.",
         connected: "FM-1 branché", disconnected: "FM-1 débranché",

@@ -36,11 +36,14 @@ E="$G/7 Éditeur/Guru-600 Editor"; rm -rf "$G/7 Éditeur"; mkdir -p "$E"
 ditto $F/Partage/site-installation/editor "$E/editor"; ditto $F/Partage/site-installation/guide "$E/guide"
 cp $F/Partage/"Guru-600 Editor - Guide.pdf" "$E/"
 (cd "$G/7 Éditeur" && ditto -c -k --keepParent "Guru-600 Editor" "Guru-600-Editor.zip")
+# (16/11/2026, Marc) l'application Guru-600 Editor, hors ligne, avec son icône : Mac (application + son installateur) et Windows (lanceur + éditeur)
+zsh $F/p600/mac/editor/make_editor_app.sh > /dev/null; zsh $F/p600/mac/editor/make_editor_dmg.sh > /dev/null 2>&1; zsh $F/p600/windows/editor/make_editor_windows.sh > /dev/null
+cp $F/Partage/Guru-600-Editor-Installer-Mac.dmg $F/Partage/Guru-600-Editor-Mac.zip $F/Partage/Guru-600-Editor-Windows.zip "$G/7 Éditeur/"
 T=$(mktemp -d)
 (cd $F/Felucca && git diff > "$G/5 Sources/guru-600-vs-felucca-63f88ec.patch" && mkdir -p $T/guru-600-firmware &&
  { git ls-files -co --exclude-standard | grep -v '^build/'; } | while read f; do [ -f "$f" ] && mkdir -p "$T/guru-600-firmware/$(dirname "$f")" && cp "$f" "$T/guru-600-firmware/$f"; done)
 (cd $F/Felucca/firmware/engines && git ls-files | while read f; do mkdir -p "$T/guru-600-firmware/firmware/engines/$(dirname "$f")"; cp "$f" "$T/guru-600-firmware/firmware/engines/$f"; done)
-mkdir -p $T/guru-600-tools; rsync -a --exclude 'build/' --exclude 'dbg/' --exclude 'wav*/' --exclude 'manuels/' --exclude 'American Uncial*' --exclude '*.wav' --exclude 'splash/' --exclude '__pycache__' --exclude 'windows/build/' --exclude '*.o' $F/p600/ $T/guru-600-tools/
+mkdir -p $T/guru-600-tools; rsync -a --exclude 'build/' --exclude 'dbg/' --exclude 'wav*/' --exclude 'manuels/' --exclude 'American Uncial*' --exclude '*.wav' --exclude 'splash/' --exclude '__pycache__' --exclude 'windows/build/' --exclude '*.o' --exclude 'target/' $F/p600/ $T/guru-600-tools/
 (cd $F/fm1-emu-src && git diff > "$G/5 Sources/fm1-emu-guru-600.patch" && mkdir -p $T/fm1-emu-guru-600 && git ls-files -co --exclude-standard | grep -v '^target/' | while read f; do mkdir -p "$T/fm1-emu-guru-600/$(dirname "$f")"; cp "$f" "$T/fm1-emu-guru-600/$f"; done)
 rm -f "$G/5 Sources/"*.zip
 (cd $T && zip -qr "$G/5 Sources/guru-600-firmware-source.zip" guru-600-firmware && zip -qr "$G/5 Sources/guru-600-tools-source.zip" guru-600-tools && zip -qr "$G/5 Sources/fm1-emu-guru-600-source.zip" fm1-emu-guru-600)
