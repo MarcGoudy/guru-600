@@ -8,6 +8,7 @@ V=$(sed -n 's/^#define GURU_VERSION "\(.*\)".*/\1/p' $F/Felucca/firmware/src/gur
 sed -i '' "s/^version = .*/version = \"$V\"/" $W/Cargo.toml
 sed -i '' "s/FILEVERSION .*/FILEVERSION ${V//./,},0/; s/PRODUCTVERSION .*/PRODUCTVERSION ${V//./,},0/; s/\"FileVersion\", \".*\"/\"FileVersion\", \"$V\"/; s/\"ProductVersion\", \".*\"/\"ProductVersion\", \"$V\"/" $W/editor.rc
 (cd $W && x86_64-w64-mingw32-windres -c 1252 editor.rc -O coff -o editor-res.o)
+touch $W/src/main.rs   # (sans changement de source, cargo ne relie pas l'icône ; on force)
 (cd $W && CARGO_TARGET_X86_64_PC_WINDOWS_GNU_LINKER=x86_64-w64-mingw32-gcc RUSTC=$T/rustc \
   CARGO_TARGET_X86_64_PC_WINDOWS_GNU_RUSTFLAGS="-C link-arg=$W/editor-res.o" $T/cargo build -q --release --target x86_64-pc-windows-gnu)
 O="$W/build/Guru-600 Editor"; rm -rf $W/build; mkdir -p "$O"

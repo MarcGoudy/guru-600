@@ -20,6 +20,7 @@ sed -i '' "s/FILEVERSION .*/FILEVERSION ${V//./,},0/; s/PRODUCTVERSION .*/PRODUC
 (cd $W && x86_64-w64-mingw32-windres -c 1252 guru-600.rc -O coff -o guru-600-res.o)
 
 cd $E
+touch crates/fm1-live/src/main.rs   # (16/11/2026 : sans changement de source, cargo ne relie pas l'icône ; on force)
 CARGO_TARGET_X86_64_PC_WINDOWS_GNU_LINKER=x86_64-w64-mingw32-gcc RUSTC=$T/rustc \
 CARGO_TARGET_X86_64_PC_WINDOWS_GNU_RUSTFLAGS="-C link-arg=$W/guru-600-res.o" \
     $T/cargo build --release -p fm1-live --target x86_64-pc-windows-gnu
