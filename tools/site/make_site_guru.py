@@ -45,6 +45,7 @@ def installer(out):
     w = "main { max-width: 520px;"   # (16/11/2026, Marc: a wider column)
     assert w in h, "installer: the column changed"
     h = h.replace(w, "main { max-width: 1040px;", 1)   # (Marc: twice the 520 of before)
+    h = h.replace("</style>", "#status:empty{display:none}#status:empty+#log+p{margin-top:28px}</style>", 1)   # (Marc: under the bar, the same space as above it, while nothing is said)
     h = h.replace('<html lang="ja">', '<html lang="en">', 1).replace("<title>Felucca</title>", "<title>Guru-600</title>", 1)
     # (16/11/2026) its icon: Marc's FIRMWARE one (p600/icone/v2), in the tab and on a phone's home screen
     from PIL import Image
