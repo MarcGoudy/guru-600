@@ -458,10 +458,11 @@ document.getElementById("logo").addEventListener("dblclick", fullscreen);
 document.getElementById("t-full").addEventListener("click", fullscreen);
 // (16/11/2026, Marc) DOWNLOAD THE APPLICATION: the Guru-600 Editor application of this computer (Mac: its installer;
 // Windows: its folder), which keeps the editor on the disk: offline, whatever the browser keeps or clears, in a window of its
-// own, its icon. Hidden where the editor is already on the disk (file:: the application, the downloaded folder).
+// own, its icon. Where the editor is already on the disk (file:: the application, the downloaded folder): greyed and inactive,
+// in its place (Marc: the same editor, the same look, online and on the computer).
 (function () {
   const b = document.getElementById("t-inst");
-  if (location.protocol === "file:") { b.hidden = true; return; }
+  if (location.protocol === "file:") { b.classList.add("off"); return; }
   const os = ((navigator.userAgentData && navigator.userAgentData.platform) || navigator.platform || "").toLowerCase();
   const D = "https://guru-600.com/telecharger/";
   b.addEventListener("click", async () => {
