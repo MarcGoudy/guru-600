@@ -10,6 +10,8 @@
 <link rel="icon" href="icons/icon-32.png" type="image/png">
 <link rel="apple-touch-icon" href="icons/icon-180.png">
 <meta name="theme-color" content="#000000">
+<script>   // (16/11/2026) the browser's offer to install the editor, kept for the install button (#t-inst, guru-app.js)
+window.installOffer = null; addEventListener("beforeinstallprompt", (e) => { e.preventDefault(); window.installOffer = e; });</script>
 <style>
 @font-face { font-family: "MonRong"; src: url("fonts/MonRong.ttf") format("truetype"); font-display: block; }
 @font-face { font-family: "Barlow C"; src: url("fonts/BarlowCondensed-SemiBold.ttf") format("truetype"); font-weight: 600; font-display: block; }
@@ -29,6 +31,8 @@ body { font-variant-numeric: tabular-nums; color: var(--cream); font: 600 15px/1
 
 /* header */
 #logo { left: 22px; top: -12px; font: 400 112px/1 "MonRong"; color: #FBF6EA; text-transform: none; letter-spacing: 0; white-space: nowrap; }
+#edword { text-align: center; }   /* (centred between the g's loop and A PROPHET-600 TRIBUTE) */
+#edword::after { content: "EDITOR"; font: 400 21px/1 "Guru600"; color: #8a8a8a; letter-spacing: .04em; white-space: nowrap; }
 #tribute { font: 700 17px/1 "Barlow C"; letter-spacing: 3px; margin-right: -3px; color: #F0362A; white-space: nowrap; }   /* (-3: the last letter's spacing) */
 #status { top: 33px; height: 46px; display: flex; align-items: center; gap: 0; white-space: nowrap; }
 #led { width: 16px; height: 16px; border-radius: 50%; margin-right: 11px; cursor: pointer; box-sizing: border-box; border: 1.5px solid color-mix(in srgb, var(--led) 70%, #fff);
@@ -43,7 +47,7 @@ body { font-variant-numeric: tabular-nums; color: var(--cream); font: 600 15px/1
       background: linear-gradient(color-mix(in srgb, var(--c) 22%, #262626), color-mix(in srgb, var(--c) 16%, #0b0b0b));
       box-shadow: inset 0 1px 0 rgba(255, 255, 255, .14), inset 0 -2px 3px rgba(0, 0, 0, .6), 0 2px 3px rgba(0, 0, 0, .7); }   /* (off: its colour, unlit) */
 .tp svg { width: 22px; height: 22px; fill: color-mix(in srgb, var(--c) 45%, #2a2a2a); }
-.tp#t-play { --c: #3BD16F; } .tp#t-rec { --c: var(--red); } .tp#t-stop, .tp#t-full, .tp#t-help { --c: var(--cream); } .tp#t-glow { --c: var(--cream); }
+.tp#t-play { --c: #3BD16F; } .tp#t-rec { --c: var(--red); } .tp#t-stop, .tp#t-full, .tp#t-help, .tp#t-inst { --c: var(--cream); } .tp#t-glow { --c: var(--cream); }
 .tp#t-glow svg { fill: none; stroke: color-mix(in srgb, var(--c) 55%, #2a2a2a); }
 /* lit: the button stays dark, only its bulb glows */
 .tp#t-glow.on { border-color: color-mix(in srgb, var(--cream) 30%, #333) !important;
@@ -65,12 +69,12 @@ body.flat #slider .rail::before, body.flat #slider .rail::after { display: none;
 body.flat #bpm.b, body.flat #bpm.b1 { animation: none; }
 body.flat #bpm.b { background: color-mix(in srgb, var(--cream) 25%, transparent); }
 body.flat #bpm.b1 { background: color-mix(in srgb, var(--trk) 45%, transparent); }
-.tp#t-full svg { fill: none; stroke: color-mix(in srgb, var(--c) 55%, #2a2a2a); }
+.tp#t-full svg, .tp#t-inst svg { fill: none; stroke: color-mix(in srgb, var(--c) 55%, #2a2a2a); }
 .tp#t-help span { font: 700 26px/1 "Barlow C"; color: color-mix(in srgb, var(--c) 55%, #2a2a2a); }
-#t-full, #t-help { margin: 0; width: 40px; height: 40px; flex: none; }
-#t-full:active, #t-help:active { border-color: #fff; background: radial-gradient(ellipse at 50% 45%, #fff 0%, var(--cream) 62%, #bdb6a5 100%);
+#t-full, #t-help, #t-inst { margin: 0; width: 40px; height: 40px; flex: none; }
+#t-full:active, #t-help:active, #t-inst:active { border-color: #fff; background: radial-gradient(ellipse at 50% 45%, #fff 0%, var(--cream) 62%, #bdb6a5 100%);
   box-shadow: 0 0 7px 2px color-mix(in srgb, var(--cream) 90%, transparent), 0 0 18px 3px color-mix(in srgb, var(--cream) 45%, transparent); }
-#t-full:active svg { stroke: #0b0b0b; } #t-help:active span { color: #0b0b0b; }
+#t-full:active svg, #t-inst:active svg { stroke: #0b0b0b; } #t-inst[hidden] { display: none; } #t-help:active span { color: #0b0b0b; }
 .tp.on { border-color: color-mix(in srgb, var(--c) 70%, #fff); background: radial-gradient(ellipse at 50% 45%, color-mix(in srgb, var(--c) 45%, #fff) 0%, var(--c) 62%, color-mix(in srgb, var(--c) 80%, #000) 100%);
          box-shadow: 0 0 7px 2px color-mix(in srgb, var(--c) 90%, transparent), 0 0 18px 3px color-mix(in srgb, var(--c) 45%, transparent); }
 .tp.on svg { fill: #0b0b0b; }
@@ -820,6 +824,7 @@ function makeSection(s) {
 function build() {
   abs(h("div", "", "guru-600"), 22, -12, 480, 80).id = "logo";
   abs(h("div", "", "A PROPHET-600 TRIBUTE"), 22, 80, 480, 100).id = "tribute";   // (under the logo, right-aligned on its 600: layout)
+  abs(h("div", ""), 82, 79, 266, 102).id = "edword";   // (16/11/2026, Marc) EDITOR under "guru", in the sections' type; always in English (the CSS writes it: no translation)
   const st = abs(h("div", ""), 760, 33, 1524, 79); st.id = "status";
   st.innerHTML = `<div class="tp" id="t-play" title="PLAY"><svg viewBox="0 0 20 20"><path d="M6 4 16 10 6 16Z"/></svg></div>` +
     `<div class="tp" id="t-stop" title="STOP"><svg viewBox="0 0 20 20"><rect x="5" y="5" width="10" height="10"/></svg></div>` +
@@ -831,6 +836,7 @@ function build() {
   TABS.forEach((t, i) => { const e = h("div", "tab" + (i ? " later" : " on"), t); e.dataset.tab = PAGES[i]; tabs.appendChild(e); });
   tabs.insertAdjacentHTML("beforeend",   // full screen, the guide: at the tabs' end
     `<div class="tp on" id="t-glow" title="LIT / FLAT"><svg viewBox="0 0 20 20"><path d="M10 2.5a5.5 5.5 0 0 0-3.2 10c.6.5.9 1 .9 1.7V15h4.6v-.8c0-.7.3-1.2.9-1.7A5.5 5.5 0 0 0 10 2.5ZM7.8 16.5h4.4M8.6 18h2.8" stroke-width="1.6"/></svg></div>` +
+    `<div class="tp" id="t-inst" title="INSTALL THE APPLICATION"><svg viewBox="0 0 20 20"><path d="M10 2.8v9.4M5.9 8.3l4.1 4.1 4.1-4.1M3.5 13.8v3h13v-3" fill="none" stroke-width="2.1"/></svg></div>` +
     `<div class="tp" id="t-full" title="FULL SCREEN"><svg viewBox="0 0 20 20"><path d="M3 8V3h5M12 3h5v5M17 12v5h-5M8 17H3v-5" fill="none" stroke-width="2.2"/></svg></div>` +
     `<div class="tp" id="t-help" title="HELP"><span>?</span></div>`);
   SECTIONS.forEach(makeSection);

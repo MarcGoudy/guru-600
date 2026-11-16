@@ -2,7 +2,7 @@
 // At the site's root so that it covers editor/ and guide/ (the editor's ? opens ../guide/); nothing else on the site is touched.
 // Online: always the network (the latest editor), and the copy kept up to date; offline: the copy.
 // make_site_guru.py fills FILES and VERSION (a hash of the files: a new editor installs a new worker, and its files at once).
-const VERSION = "190200e5663d8042";
+const VERSION = "1b1359062701f5da";
 const FILES = [
 "editor/",
 "guide/",
@@ -96,7 +96,7 @@ self.addEventListener("fetch", (e) => {
   if (r.method !== "GET") return;
   const u = new URL(r.url), base = new URL(self.registration.scope);
   if (u.origin !== base.origin || !PATHS.some((p) => u.pathname.startsWith(base.pathname + p))) return;
-  e.respondWith(fetch(r).then((res) => {
+  e.respondWith(fetch(r, { cache: "no-cache" }).then((res) => {   // (no-cache: checked with the server each time, never an old copy)
     if (res.ok) { const copy = res.clone(); caches.open(CACHE).then((c) => c.put(r, copy)); }
     return res;
   }).catch(() => caches.match(r, { ignoreSearch: true }).then((m) => m || caches.match(r.url.split("?")[0] + "index.html"))

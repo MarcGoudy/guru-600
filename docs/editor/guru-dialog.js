@@ -41,4 +41,5 @@ function uiAsk(text, value) {                             // value null: a confi
   });
 }
 const uiConfirm = (text) => uiAsk(text, null);
+const uiInfo = (text) => { const no = dlgEl.querySelector(".no"); no.style.display = "none"; return uiAsk(text, null).then(() => { no.style.display = ""; }); };   // (OK alone)
 const uiPrompt = (text, value) => uiAsk(text, value == null ? "" : String(value));

@@ -7,6 +7,7 @@ Object.assign(TX, {
   de: {
     offline: "Schließen Sie zuerst den FM-1 an.", noreply: "Der FM-1 antwortet nicht.",
     lose: "Die Änderungen an diesem Sound sind nicht gespeichert. Trotzdem einen anderen Sound laden?",
+    noinst: "Um den Editor als Anwendung zu installieren (eigenes Symbol, eigenes Fenster, auch offline), öffnen Sie guru-600.com/editor in Chrome oder Edge und klicken Sie dann erneut auf diese Schaltfläche.",
     nomidi: "Dieser Browser hat kein MIDI: Verwenden Sie Chrome, Edge, Brave, Opera…", denied: "Der MIDI-Zugriff wurde verweigert.",
     nodevice: "Kein FM-1 gefunden: Schließen Sie ihn per USB an, mit der Guru-600-Firmware.", oldfw: "Dieser FM-1 braucht die Guru-600-Firmware.",
     connected: "FM-1 verbunden", disconnected: "FM-1 getrennt",
@@ -36,6 +37,7 @@ Object.assign(TX, {
   es: {
     offline: "Conecte primero el FM-1.", noreply: "El FM-1 no responde.",
     lose: "Los cambios de este sonido no están guardados. ¿Cargar otro sonido de todos modos?",
+    noinst: "Para instalar el editor como aplicación (su propio icono, su propia ventana, también sin conexión), abra guru-600.com/editor en Chrome o Edge y vuelva a hacer clic en este botón.",
     nomidi: "Este navegador no tiene MIDI: use Chrome, Edge, Brave, Opera…", denied: "Se denegó el acceso MIDI.",
     nodevice: "No se encontró ningún FM-1: conéctelo por USB, con el firmware Guru-600.", oldfw: "Este FM-1 necesita el firmware Guru-600.",
     connected: "FM-1 conectado", disconnected: "FM-1 desconectado",
@@ -65,6 +67,7 @@ Object.assign(TX, {
   it: {
     offline: "Collegare prima l'FM-1.", noreply: "L'FM-1 non risponde.",
     lose: "Le modifiche a questo suono non sono salvate. Caricare comunque un altro suono?",
+    noinst: "Per installare l'editor come applicazione (la sua icona, la sua finestra, anche offline), aprire guru-600.com/editor in Chrome o Edge, poi fare di nuovo clic su questo pulsante.",
     nomidi: "Questo browser non ha il MIDI: usare Chrome, Edge, Brave, Opera…", denied: "L'accesso MIDI è stato rifiutato.",
     nodevice: "Nessun FM-1 trovato: collegarlo via USB, con il firmware Guru-600.", oldfw: "Questo FM-1 richiede il firmware Guru-600.",
     connected: "FM-1 collegato", disconnected: "FM-1 scollegato",
@@ -94,6 +97,7 @@ Object.assign(TX, {
   zh: {
     offline: "请先连接 FM-1。", noreply: "FM-1 没有响应。",
     lose: "此音色的修改尚未保存。仍要载入另一个音色吗？",
+    noinst: "要将编辑器安装为应用程序（有自己的图标和窗口，也可离线使用），请在 Chrome 或 Edge 中打开 guru-600.com/editor，然后再次点击此按钮。",
     nomidi: "此浏览器不支持 MIDI：请使用 Chrome、Edge、Brave、Opera…", denied: "MIDI 访问被拒绝。",
     nodevice: "未找到 FM-1：请通过 USB 连接装有 Guru-600 固件的 FM-1。", oldfw: "此 FM-1 需要 Guru-600 固件。",
     connected: "FM-1 已连接", disconnected: "FM-1 已断开",
@@ -123,6 +127,7 @@ Object.assign(TX, {
   ja: {
     offline: "先に FM-1 を接続してください。", noreply: "FM-1 が応答しません。",
     lose: "このサウンドの変更は保存されていません。それでも別のサウンドを読み込みますか？",
+    noinst: "エディターをアプリとしてインストールするには（専用のアイコンとウィンドウ、オフラインでも使用可）、Chrome または Edge で guru-600.com/editor を開き、もう一度このボタンをクリックしてください。",
     nomidi: "このブラウザーは MIDI に対応していません。Chrome、Edge、Brave、Opera などを使ってください。", denied: "MIDI へのアクセスが拒否されました。",
     nodevice: "FM-1 が見つかりません。Guru-600 ファームウェアの FM-1 を USB で接続してください。", oldfw: "この FM-1 には Guru-600 ファームウェアが必要です。",
     connected: "FM-1 を接続しました", disconnected: "FM-1 が切断されました",
