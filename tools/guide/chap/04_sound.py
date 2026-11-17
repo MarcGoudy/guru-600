@@ -36,10 +36,8 @@ CH("sound", "SOUND: a panel inspired by the Prophet-600", "SOUND : une façade i
         "DESTINATION : où va la modulation. Les deux allumés : les deux ; les deux éteints : nulle part.", "OFF / ON", "OFF / ON")]) +
  H3("LFO", "LFO", FAM["lfo"]) +
  CTL3([("FREQUENCY", "The LFO's speed.", "La vitesse du LFO.", "0.1 … 40 Hz", "0,1 … 40 Hz"),
-       ("SHAPE", "Click to choose the triangle (left) or the square (right). Unlit: a shape the Prophet-600 does not have, set on the FM-1.",
-        "Cliquez pour choisir le triangle (à gauche) ou le carré (à droite). Éteint : une forme que le Prophet-600 n'a pas, réglée sur le FM-1.", "△ / □", "△ / □"),
-       ("INITIAL AMOUNT", "How much of the LFO plays with the mod wheel down. The rest, the wheel adds it. It is EXTRAS' WHEEL seen the other way round: the two knobs move together.",
-        "La part du LFO qui joue molette en bas. Le reste, la molette l'ajoute. C'est le WHEEL d'EXTRAS vu dans l'autre sens : les deux boutons bougent ensemble.", "0 … 100 %", "0 … 100 %"),
+       ("SHAPE", "Click to choose the triangle wave (top) or the square wave (bottom); the shape chosen glows. Unlit: a shape the Prophet-600 does not have, set on the FM-1.",
+        "Cliquez pour choisir l'onde triangulaire (en haut) ou l'onde carrée (en bas) ; la forme choisie est lumineuse. Éteint : une forme que le Prophet-600 n'a pas, réglée sur le FM-1.", "TRI / SQR", "TRI / SQR"),
        ("FREQ A-B, PW A-B, FILTER", "DESTINATION: what the LFO moves: the pitch of both oscillators, their pulse widths, the filter. Any combination.",
         "DESTINATION : ce que fait bouger le LFO : la hauteur des deux oscillateurs, leurs largeurs d'impulsion, le filtre. Toute combinaison.", "OFF / ON", "OFF / ON")]) +
  H3("OSCILLATOR A, OSCILLATOR B", "OSCILLATOR A, OSCILLATOR B", FAM["osc"]) +
@@ -51,7 +49,7 @@ CH("sound", "SOUND: a panel inspired by the Prophet-600", "SOUND : une façade i
  H3("MIXER, GLIDE, UNISON", "MIXER, GLIDE, UNISON", FAM["osc"]) +
  CTL3([P6R("MIXER", "MIXER", "MIX"), P6R("GLIDE", "MIXER", "GLD"),
        ("UNISON", "All the voices on one note, huge. Unlit: the track plays chords (POLY). The other voice modes (MONO, LEGATO) are on the MOD page (chapter {ch:mod}).",
-        "Toutes les voix sur une note, énorme. Éteint : la piste joue des accords (POLY). Les autres modes de voix (MONO, LEGATO) sont sur la page MOD (chapitre {ch:mod}).", "OFF / ON", "OFF / ON")]) +
+        "Toutes les voix sur une note, énorme. Éteint : la piste joue des accords (POLY). Les autres modes de voix (MONO, LEGATO) sont sur la page MODULATION (chapitre {ch:mod}).", "OFF / ON", "OFF / ON")]) +
  H3("FILTER, FILTER ENVELOPE", "FILTER, FILTER ENVELOPE", FAM["flt"]) +
  CTL3([P6R("CUTOFF", "FILTER", "CUT"), P6R("RESONANCE", "FILTER", "RES"), P6R("ENVELOPE AMOUNT", "FILTER", "FENV"),
        ("KEYBOARD", "Higher notes open the filter: OFF, HALF, FULL (the filter follows the keyboard note for note). Click an option.",
@@ -70,8 +68,8 @@ CH("sound", "SOUND: a panel inspired by the Prophet-600", "SOUND : une façade i
  H3("EXTRAS", "EXTRAS", FAM["ext"]) +
  P2("Features the Prophet-600 did not have, set per sound.", "Ce que le Prophet-600 n'avait pas, réglé par chaque son.") +
  CTL3([P6R("VINTAGE", "EXTRAS", "VINTAGE"),
-       ("WHEEL", "How much of the LFO the mod wheel controls. 0 %: the LFO always plays fully and the wheel does nothing. 100 %: no LFO until you push the wheel. The LFO's INITIAL AMOUNT shows the same thing the other way round.",
-        "La part du LFO que commande la molette. 0 % : le LFO joue toujours en entier et la molette ne fait rien. 100 % : pas de LFO tant que vous ne poussez pas la molette. L'INITIAL AMOUNT du LFO montre la même chose dans l'autre sens.", "0 … 100 %", "0 … 100 %"),
+       ("WHEEL", "The LFO the sound plays with the mod wheel at rest: 0 % none, 100 % all; the wheel adds the rest.",
+        "Le LFO que joue le son molette au repos : 0 % aucun, 100 % tout ; la molette ajoute le reste.", "0 … 100 %", "0 … 100 %"),
        P6R("VEL > FLT", "EXTRAS", "VEL>FLT"), P6R("DETUNE", "EXTRAS", "DETUNE")]) +
  H3("Turning the knobs", "Tourner les boutons", EDC["sound"]) +
  LI([("Drag up or down on a knob; hold <kbd>Shift</kbd> for finer steps. Or scroll over it.",
@@ -95,10 +93,10 @@ CH("sound", "SOUND: a panel inspired by the Prophet-600", "SOUND : une façade i
        "Enregistre le son de la piste dans la place éclairée en jaune, après confirmation : il remplace le son qui s'y trouve. Pour l'enregistrer ailleurs, cliquez d'abord sur cette place, puis sur SAVE TO THIS PLACE."),
       ("BACK TO ORIGINAL", "On a place in orange: brings back the sound the place had at first, after a confirmation. Grey on a place that still holds its original.",
        "Sur une place en orange : rétablit le son d'origine de la place, après confirmation. Gris sur une place qui a encore son son d'origine."),
-      ("EXPORT .SYX", "Saves the sound of the place as a Prophet-600 file (<i>number name</i>.syx) in the browser's downloads, under the name you give it: the Prophet-600 SysEx format, which other Prophet-600 tools read. It holds the sound as saved in the place: save your changes first.",
-       "Enregistre le son de la place dans un fichier Prophet-600 (<i>numéro nom</i>.syx), dans les téléchargements du navigateur, sous le nom que vous lui donnez : le format SysEx du Prophet-600, que lisent d'autres outils du Prophet-600. Il contient le son tel qu'il est enregistré dans la place : enregistrez d'abord vos changements."),
-      ("IMPORT .SYX", "Puts a Prophet-600 sound from a file (.syx or .mid, Sequential's format or GliGli's) in the place lit yellow, after a confirmation, with its name (the one given on export, else the file's). With several sounds in the file, the first one.",
-       "Met un son de Prophet-600 tiré d'un fichier (.syx ou .mid, au format de Sequential ou de GliGli) dans la place éclairée en jaune, après confirmation, avec son nom (celui donné à l'export, sinon celui du fichier). Si le fichier en contient plusieurs, le premier."),
+      ("EXPORT .SYX", "Saves the sound of the place as a Prophet-600 .syx file. Saves the sound of the place as a Prophet-600 file (<i>number name</i>.syx) in the browser's downloads, under the name you give it: the Prophet-600 SysEx format, which other Prophet-600 tools read. It holds the sound as saved in the place: save your changes first.",
+       "Enregistre le son de la place dans un fichier .syx de Prophet-600. Enregistre le son de la place dans un fichier Prophet-600 (<i>numéro nom</i>.syx), dans les téléchargements du navigateur, sous le nom que vous lui donnez : le format SysEx du Prophet-600, que lisent d'autres outils du Prophet-600. Il contient le son tel qu'il est enregistré dans la place : enregistrez d'abord vos changements."),
+      ("IMPORT .SYX", "Puts a Prophet-600 sound from a .syx or .mid file in the place lit yellow. Puts a Prophet-600 sound from a file (.syx or .mid, Sequential's format or GliGli's) in the place lit yellow, after a confirmation, with its name (the one given on export, else the file's). With several sounds in the file, the first one.",
+       "Met un son de Prophet-600 tiré d'un fichier .syx ou .mid dans la place éclairée en jaune. Met un son de Prophet-600 tiré d'un fichier (.syx ou .mid, au format de Sequential ou de GliGli) dans la place éclairée en jaune, après confirmation, avec son nom (celui donné à l'export, sinon celui du fichier). Si le fichier en contient plusieurs, le premier."),
       ("RESET ALL SOUNDS", "Brings back the 255 original sounds, after a confirmation: every sound you saved or imported is erased. Make a backup first (chapter {ch:backup}).",
        "Rétablit les 255 sons d'origine, après confirmation : tous les sons enregistrés ou importés sont effacés. Faites d'abord une sauvegarde (chapitre {ch:backup}).")]) +
  P2("SAVE TO THIS PLACE, BACK TO ORIGINAL and EXPORT .SYX act on a Guru-600 sound: they are grey while the track plays a sound of the FM-1.",
@@ -109,7 +107,7 @@ CH("sound", "SOUND: a panel inspired by the Prophet-600", "SOUND : une façade i
     "the LFO's PHASE and FADE and the other LFO settings of the MOD page, the ENVELOPE settings of the MOD page, MOD MATRIX slots 1–2, the VOICE settings of the MOD page and SPREAD.",
     "<b>Enregistrés avec le son</b> : les oscillateurs, le mixeur, le filtre et son enveloppe, la Poly-Mod, l'enveloppe d'amplitude, le glide, UNI actif ou non (avec son DETUNE), la vitesse, la forme et les destinations du LFO, WHEEL et VEL>FLT. "
     "<b>Non enregistrés</b> : VINTAGE (revient à 24 à chaque chargement), les envois d'effets (un son gardé joue sec, tous les envois à 0), l'INSERT, MONO et LEG (un son gardé joue toujours en POLY, ou en UNI si son unisson était actif), "
-    "PHASE et FADE du LFO et les autres réglages du LFO de la page MOD, les réglages ENVELOPE de la page MOD, les emplacements 1 et 2 de MOD MATRIX, les réglages VOICE de la page MOD et SPREAD.") +
+    "PHASE et FADE du LFO et les autres réglages du LFO de la page MODULATION, les réglages ENVELOPE de la page MODULATION, les emplacements 1 et 2 de MOD MATRIX, les réglages VOICE de la page MODULATION et SPREAD.") +
  P2("To keep everything, use STORE THE TRACK'S SOUND on the PROJECTS page (a USER sound), or save the project. "
     "The places of your own are 55 at most, shared by the sounds you save and the sounds you import. Beyond: the message <b>The memory of the places is full</b>; free some with BACK TO ORIGINAL.",
     "Pour tout garder, utilisez STORE THE TRACK'S SOUND sur la page PROJECTS (un son USER), ou enregistrez le projet. "
@@ -117,7 +115,7 @@ CH("sound", "SOUND: a panel inspired by the Prophet-600", "SOUND : une façade i
  H3("MORPH", "MORPH", FAM["mph"]) +
  SHOT("morph", "MORPH, under the panel.", "MORPH, sous la façade.") +
  P2("MORPH turns the track's sound (SOUND A) into another one (SOUND B), little by little, and MUTATE makes a variation of it.",
-    "MORPH transforme peu à peu le son de la piste (SOUND A) en un autre (SOUND B), et MUTATE en fait une variante.") +
+    "MORPH transforme peu à peu le son de la piste (SOUND A) en un autre (SOUND B), et MUTATE en tire une version au hasard.") +
  CTL([("SOUND A ◀ ▶", "The track's sound. The arrows load the previous or next place (after 255 comes 1), as a click in SOUNDS. A click on the name opens the list: the 255 places, then your USER sounds of the P600 engine (USER), by family.",
        "Le son de la piste. Les flèches chargent la place précédente ou suivante (après 255 vient 1), comme un clic dans SOUNDS. Un clic sur le nom ouvre la liste : les 255 places, puis vos sons USER du moteur P600 (USER), par famille."),
       ("SOUND B ◀ ▶", "The sound to reach: a place, or one of your USER sounds of the P600 engine. The arrows go through the places, then those USER sounds; a click on the name opens the list. The slider stays where it is.", "Le son à atteindre : une place, ou l'un de vos sons USER du moteur P600. Les flèches parcourent les places, puis ces sons USER ; un clic sur le nom ouvre la liste. Le curseur reste où il est."),

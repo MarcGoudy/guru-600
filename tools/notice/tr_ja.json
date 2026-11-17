@@ -1488,7 +1488,6 @@
  "Where each control of the Prophet-600's panel is on the Guru-600: useful if you know the original, or if you are following a recipe written for it.": "Prophet-600 のパネルの各操作子が Guru-600 のどこにあるかを示します。オリジナルをご存じの方や、Prophet-600 用に書かれた音作りのレシピを参考にする場合に便利です。",
  "Guru-600 on the FM-1": "FM-1 上の Guru-600",
  "EDIT › POLY MOD (1/11) › PM DS: FRQ A, FILT, BOTH": "EDIT › POLY MOD (1/11) › PM DS：FRQ A、FILT、BOTH",
- "EDIT › EXTRAS (7/11) › WHEEL (lower WHEEL = more LFO without the wheel)": "EDIT › EXTRAS (7/11) › WHEEL（WHEEL を下げるほど、ホイールなしでも LFO が深くかかります）",
  "LFO › LFO DEST › PIT, SHP, FLT (0 or 100 %)": "LFO › LFO DEST › PIT、SHP、FLT（0 または 100 %）",
  "EDIT › MIXER (4/11) › MIX (also HOME › KNOB 4)": "EDIT › MIXER (4/11) › MIX（HOME › KNOB 4 でも可）",
  "EDIT › FILTER (5/11) › CUT, RES, FENV (also HOME › KNOB 1 to 3)": "EDIT › FILTER (5/11) › CUT、RES、FENV（HOME › KNOB 1 〜 3 でも可）",
@@ -1538,7 +1537,6 @@
  "A USB <b>data</b> cable, plugged directly into the computer.": "USB <b>データ</b>ケーブル（コンピューターに直接接続）。",
  "A Mac, a PC or a Linux computer.": "Mac、PC、または Linux コンピューター。",
  "A MIDI-compatible browser: Chrome, Edge, Brave, Opera…": "MIDI 対応のブラウザー：Chrome、Edge、Brave、Opera…",
- "It needs a Mac with Apple silicon (M1 or later).": "Apple シリコン（M1 以降）搭載の Mac が必要です。",
  "The first time only: right-click the application › <b>Open</b>, then confirm <b>Open</b>. If the Mac still refuses, open System Settings › Privacy & Security and click <b>Open Anyway</b>.": "初回のみ：アプリケーションを右クリック › <b>開く</b> を選び、確認画面でもう一度 <b>開く</b> を選びます。それでも開けない場合は、システム設定 › プライバシーとセキュリティ を開き、<b>このまま開く</b> をクリックしてください。",
  "Close every application that uses MIDI (music software, another browser tab with an editor).": "MIDI を使用しているアプリケーション（音楽ソフトウェア、エディターを開いている別のブラウザー・タブなど）をすべて終了します。",
  "Switch off whenever you like: the FM-1 starts again with the sounds and the music as you left them (<b>MENU › SYSTEM › RESTORE LAST</b>). After a change, stop the sequencer and wait a minute before switching off.": "いつでも電源を切れます。FM-1 は、終了したときのサウンドと音楽のまま再起動します（<b>MENU › SYSTEM › RESTORE LAST</b>）。変更したあとは、シーケンサーを停止して 1 分待ってから電源を切ってください。",
@@ -1909,5 +1907,10 @@
  "PRESETS, then KNOB 2 turned: the sound's name and RES in big type.": "PRESETS、続いて KNOB 2 を回す：音色名と RES が大きく。",
  "<b>Back to the sound's value for one setting only</b>: hold <b>ENV</b> and turn the knob of that setting; it takes the sound's value again, and the other settings you changed stay as they are. A setting shared by the whole project (the tempo, the shared effects) goes back to its default.": "<b>1 つの設定だけを音色の値に戻す</b>：<b>ENV</b> を押したまま、その設定のノブを回します。その設定は音色の値に戻り、変更した他の設定はそのままです。プロジェクト全体で共通の設定（テンポ、共通エフェクト）はデフォルト値に戻ります。",
  "SOUND B: the sound to reach: any of the 255 places, then your USER sounds of the P600 engine (U01…), and round to 1.": "SOUND B：目標のサウンド。255 の枠のいずれか、続いて P600 エンジンの USER サウンド（U01…）、そして 1 に戻ります。",
- "1–255, U01–U32": "1–255, U01–U32"
+ "1–255, U01–U32": "1–255, U01–U32",
+ "The knobs of a MIDI keyboard or controller show their value the same way (chapter {ch:midi}): in its card when the page shows the setting they change, otherwise its name and value in big type on the bottom line, for example FILTER REL 790 ms.": "MIDI キーボードやコントローラーのノブも同じように値を表示します（第 {ch:midi} 章）。変更する設定がページに表示されていればそのカードで、表示されていなければ下の行にその名前と値を大きく表示します（例：FILTER REL 790 ms）。",
+ "The LFO the sound plays with the mod wheel at rest. 0 %: none, the wheel opens it all as you push it. 50 %: half at rest, all with the wheel pushed. 100 %: the LFO plays fully and the wheel does nothing.": "モジュレーションホイールを戻した状態で音色が鳴らす LFO の量。0 %：なし、ホイールを押すと全開になります。50 %：戻した状態で半分、押し切ると全部。100 %：LFO が全開で鳴り、ホイールは何もしません。",
+ "The LFO the sound plays with the mod wheel at rest. 0 %: none, the wheel opens it all; 50 %: half, all with the wheel pushed; 100 %: all, the wheel does nothing.": "モジュレーションホイールを戻した状態で音色が鳴らす LFO の量。0 %：なし、ホイールで全開；50 %：半分、押し切ると全部；100 %：全部、ホイールは何もしません。",
+ "EDIT › EXTRAS (7/11) › WHEEL (higher WHEEL = more LFO without the wheel)": "EDIT › EXTRAS (7/11) › WHEEL（WHEEL を上げるほど、ホイールなしでも LFO が深くかかります）",
+ "It runs on Macs with Apple silicon or Intel, from macOS 10.13 (High Sierra).": "Apple シリコンまたは Intel 搭載の Mac で、macOS 10.13（High Sierra）以降で動作します。"
 }

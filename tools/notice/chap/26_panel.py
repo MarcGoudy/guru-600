@@ -2,7 +2,7 @@
 MAP2 = [("POLY-MOD › FILTER ENVELOPE, OSC B", "EDIT › POLY MOD (1/11) › PM EN, PM B"),
         ("POLY-MOD › FREQ A, FILTER (switches)", ("EDIT › POLY MOD (1/11) › PM DS: FRQ A, FILT, BOTH", "EDIT › POLY MOD (1/11) › PM DS : FRQ A, FILT, BOTH")),
         ("LFO › FREQUENCY, SHAPE", "LFO › RATE, WAVE"),
-        ("LFO › INITIAL AMOUNT", ("EDIT › EXTRAS (7/11) › WHEEL (lower WHEEL = more LFO without the wheel)", "EDIT › EXTRAS (7/11) › WHEEL (WHEEL plus bas = plus de LFO sans la molette)")),
+        ("LFO › INITIAL AMOUNT", ("EDIT › EXTRAS (7/11) › WHEEL (higher WHEEL = more LFO without the wheel)", "EDIT › EXTRAS (7/11) › WHEEL (WHEEL plus haut = plus de LFO sans la molette)")),
         ("LFO › FREQ, PW, FILTER (switches)", ("LFO › LFO DEST › PIT, SHP, FLT (0 or 100 %)", "LFO › LFO DEST › PIT, SHP, FLT (0 ou 100 %)")),
         ("OSC A › FREQUENCY, SAW / TRI / PULSE", "EDIT › OSC (2/11) › A FRQ, A WAV"),
         ("OSC A › PULSE WIDTH, SYNC", "EDIT › OSC 2 (3/11) › A PW, SYNC"),

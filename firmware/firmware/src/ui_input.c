@@ -1960,6 +1960,30 @@ static void ui_input(void)
             lock_ms = fm1_ms | 1u;
         }
     }
+    if (cc_hit) {                                      /* 1.3.1: a controller's CC set a value of the selected track:
+                                                         * its card big, as a knob turned (midi_control.c cc_hit) */
+        uint32_t h = cc_hit, c, tn = (h >> 12) - 1u, id = h & 0xFFFu;
+        cc_hit = 0;
+        int shown = 0;
+        for (c = 0; c < 4u && !lay && tn < NTRK; c++) {
+            int hit;
+            if (ui.home) {                              /* HOME: its cards' own values (home_param, LEVELS: any track) */
+                int16_t *vp;
+                (void)home_param(c, &vp);
+                hit = home_trk(c) == &trk[tn] && vp == &trk[tn].p[id];
+            } else {
+                hit = tn == song.sel && (uint32_t)cur_page()->id[c] == id;
+            }
+            if (hit) {
+                big_knob(c);
+                ui.hot_col = (uint8_t)c;
+                ui.hot_t = 40;
+                shown = 1;
+            }
+        }
+        if (!shown && !lay && tn < NTRK)               /* (no card shows it: its name and value, big, over the footer) */
+            big_param(tn, id);
+    }
     for (k = 0; k < 4u && !kq; k++) {
         const page_t *pg = cur_page();
         int16_t *hv;

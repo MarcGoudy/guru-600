@@ -148,7 +148,8 @@ static uint8_t sync_reload;                  /* engine / preset / project / user
 
 #define ACC T_THEME                /* values, curves */
 #define VAL(c) ((c) == ui.hot_col && ui.hot_t ? T_ACCENT : T_THEME)   /* the knob just turned: accent */
-#define RATIO(d, v) ((d)->max > (d)->min ? ((int32_t)(v) - (d)->min) * 1000 / ((d)->max - (d)->min) : -1)
+#define RATIO(d, v) ((d)->max > (d)->min ? ((d)->fmt == F_INVPCT ? ((d)->max - (int32_t)(v)) : ((int32_t)(v) - (d)->min)) * 1000 / \
+                     ((d)->max - (d)->min) : -1)   /* (F_INVPCT: the gauge as the value shown, 1.3.1) */
 /* layout: header 0..24, four cards 28..72 (57 px at x 3 + 59 c),
  * the panel 76..198 (a SURF area; the graphs live in it), footer 202..240; BG between them */
 #define Y_HEAD 0
@@ -251,8 +252,11 @@ static struct {
 #define BIG_SND_MS 800u                                 /* the sound's name: a little longer (Marc), 0.8 s */
 #endif
 static struct {
-    uint32_t sms, bms, kms[4];                          /* when each was last turned: the sound / track, the tempo, KNOB n */
-    uint8_t son, bon, kon, page, home;                  /* shown: the sound, the tempo, KNOB n (a bit each); the page */
+    uint32_t sms, bms, kms[4], pms;                     /* when each was last turned: the sound / track, the tempo, KNOB n,
+                                                         * a controller's parameter (1.3.1) */
+    uint8_t son, bon, kon, page, home, pon, ptrk;       /* (pon, ptrk, pid: 1.3.1, a controller's parameter the page does
+                                                         * not show: its name and value big, over the footer) */
+    uint16_t pid;                  /* shown: the sound, the tempo, KNOB n (a bit each); the page */
     char val[4][24], unit[4][8];                        /* the cards' value and unit (ann_col) */
     int16_t kx[4], ky[4], kw[4], kh[4];                 /* where each knob's value is (ui_draw.c: a card, or under a
                                                          * P600 panel's knob) and its ground, rounded or not */
@@ -260,7 +264,10 @@ static struct {
     uint8_t kr[4];
 } big;
 static void big_page(void) { big.page = ui.page; big.home = ui.home; }
-static void big_show(void) { if (BIG_SND_MS) { big.sms = fm1_ms; big.son = 1; big_page(); } }       /* PRESETS, ALGORITHM */
+static void big_show(void) { if (BIG_SND_MS) { big.sms = fm1_ms; big.son = 1; big.pon = 0; big_page(); } }   /* PRESETS, ALGORITHM */
+/* 1.3.1 (Marc, 17/11): a controller's knob set a parameter the page has no card for: its name and value big over the
+ * footer, for BIG_SND_MS, as the sound's name (ui_input.c cc_hit; ui_draw.c draw_big) */
+static void big_param(uint32_t tn, uint32_t id) { if (BIG_SND_MS) { big.pms = fm1_ms; big.pon = 1; big.son = 0; big.ptrk = (uint8_t)tn; big.pid = (uint16_t)id; big_page(); } }
 static void big_bpm(void) { if (BIG_MS) { big.bms = fm1_ms; big.bon = 1; big_page(); } }        /* SELECT's tempo */
 /* (Marc, 15/11) the same for KNOB 1..4, each its own bubble: two knobs turned together show two (the FM-1's knobs can
  * turn at once), side by side within their cards so they never overlap */

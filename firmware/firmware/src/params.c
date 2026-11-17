@@ -252,9 +252,17 @@ static const param_desc_t P600_XDESC[P_FM4_LEVEL - P_FM1_ATK + 1] = {
 };
 #endif
 
+#if FELUCCA_P600
+/* Guru-600 1.3.1 (Marc, 17/11): a P600's EXTRAS WHEEL (matrix slot 4, MODW > DEPTH) shown as the LFO the sound plays
+ * with the wheel at rest: 0 % none (the wheel opens it all), 100 % all (the wheel does nothing). The value kept is
+ * the wheel's share as before (0..63), so every sound sounds the same; the screen shows and turns it the other way */
+static const param_desc_t P6_WHEEL_DESC = PD("AMT4", F_INVPCT, 0, 63, 63);
+#endif
 static const param_desc_t *track_desc(const track_t *t, uint32_t id)
 {
 #if FELUCCA_P600
+    if (id == P_M4AMT && t->eng_req % NENGINES == ENGI_P600)
+        return &P6_WHEEL_DESC;
     if (id >= P_FM1_ATK && id <= P_FM4_LEVEL && t->eng_req % NENGINES == ENGI_P600 && P600_XDESC[id - P_FM1_ATK].label)
         return &P600_XDESC[id - P_FM1_ATK];
 #endif
@@ -344,6 +352,8 @@ static int32_t enum_rank(const param_desc_t *d, int32_t v)   /* v's place in the
 static int32_t param_turn(const param_desc_t *d, int32_t v, int32_t steps)
 {
     const uint8_t *o = enum_order(d);
+    if (d->fmt == F_INVPCT)                           /* (1.3.1: shown the other way, turned the other way) */
+        steps = -steps;
     if (o)
         return o[clamp(enum_rank(d, v) - d->min + steps, 0, d->max - d->min)] + d->min;
     if (d->names == ESYNC_NAMES) {                    /* ENV SYNC: a note value a step (the first value showing it) */
@@ -363,6 +373,10 @@ static void param_format(const param_desc_t *d, int32_t v, char *val, const char
     switch (d->fmt) {
     case F_PCT:                                     /* a 0..100 range (SWG) is its value, others a share of 127 */
         fmt_int(val, d->max == 100 ? v : (v * 100 + 63) / 127);
+        *unit = "%";
+        break;
+    case F_INVPCT:                                  /* (1.3.1) max..min as 0..100 %: a P600's WHEEL */
+        fmt_int(val, (d->max - clamp(v, d->min, d->max)) * 100 / (d->max - d->min));
         *unit = "%";
         break;
     case F_BIPCT:                                   /* -64..63 as -100..+100 % (1.5.5, #199: each side over its own

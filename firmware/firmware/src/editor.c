@@ -1067,6 +1067,53 @@ static void ed_p6_beat(void)
     memcpy(ed_p6o + k, v, 4u);
     ed_p6s(k + 4u);
 }
+/* Guru-600 1.3.1: PLAY push, while watched: F0 7D 47 36 18 (kind track a b)... F7, 8 at most a frame, what a MIDI keyboard
+ * plays (midi_control.c play_*): kind 0 a note (a = note, b = velocity, 0: off), 1 the bend (a, b: its 14 bits, low then
+ * high), 2 the wheel (a = 0..127). The FM-1's own keys are not in it: they go out as notes (seq.c key_on). */
+static void ed_p6_play(void)
+{
+    uint32_t k = 0, n = 0, tr;
+    if (!ed_w.on) {                                        /* (not watched: forgotten) */
+        play_qr = play_qw;
+        for (tr = 0; tr < NTRK; tr++)
+            play_bend_new[tr] = play_wheel_new[tr] = 0;
+        return;
+    }
+    if (!ed_room())
+        return;
+    k = ed_p6h(18u);
+    while (n < 8u && play_qr != play_qw) {
+        uint32_t v = play_q[play_qr % PLAYQ];
+        play_qr = (uint8_t)(play_qr + 1u);
+        ed_p6o[k++] = 0;
+        ed_p6o[k++] = (uint8_t)(v >> 16);
+        ed_p6o[k++] = (uint8_t)((v >> 8) & 0x7Fu);
+        ed_p6o[k++] = (uint8_t)(v & 0x7Fu);
+        n++;
+    }
+    for (tr = 0; tr < NTRK && n < 8u; tr++) {
+        if (play_bend_new[tr]) {
+            uint32_t b;
+            play_bend_new[tr] = 0;
+            b = play_bend[tr];
+            ed_p6o[k++] = 1;
+            ed_p6o[k++] = (uint8_t)tr;
+            ed_p6o[k++] = (uint8_t)(b & 0x7Fu);
+            ed_p6o[k++] = (uint8_t)((b >> 7) & 0x7Fu);
+            n++;
+        }
+        if (play_wheel_new[tr] && n < 8u) {
+            play_wheel_new[tr] = 0;
+            ed_p6o[k++] = 2;
+            ed_p6o[k++] = (uint8_t)tr;
+            ed_p6o[k++] = (uint8_t)(play_wheel[tr] & 0x7Fu);
+            ed_p6o[k++] = 0;
+            n++;
+        }
+    }
+    if (n)
+        ed_p6s(k);
+}
 #endif
 
 /* main loop: editor frames first; anything else stays for ota_service() */
@@ -1080,6 +1127,7 @@ static void ed_service(void)
     ed_sync();                                             /* v2 pushes (while watched) */
 #if FELUCCA_P600
     ed_p6_beat();                                          /* (Guru-600: the beat) */
+    ed_p6_play();                                          /* (Guru-600 1.3.1: a MIDI keyboard's playing) */
 #endif
 #if FELUCCA_P600
     if (ota_frame_get(&p, &n) && n >= 4u && p[0] == 0x7Du && p[1] == 0x47u && p[2] == 0x36u && ed_p6(p, n)) {

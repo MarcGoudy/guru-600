@@ -17,4 +17,14 @@ PY="${PYTHON:-python3}"
 if [ "$(uname -s)" != Linux ] || [ "$(uname -m)" != x86_64 ]; then
     docker info >/dev/null 2>&1 || { echo "build.sh: Docker is not running"; exit 1; }
 fi
+# Guru-600 (17/11/2026, Marc): the power-on screen's version, an image (p600_splash.h), made again from guru_version.h
+# at every build, so that it always says the firmware's number (it said 1.3.0 in 1.3.1). p600/make_splash.py beside
+# Felucca (FM-1/p600); absent (Felucca alone): nothing done
+SPL=../p600/make_splash.py
+if [ -f "$SPL" ]; then
+    (cd .. && "$PY" p600/make_splash.py p600/fonts/vimongrong/MONRON1T.TTF p600/splash Felucca/firmware/src/p600_splash.h >/dev/null) ||
+        { echo "build.sh: make_splash.py failed"; exit 1; }
+    (cd .. && "$PY" p600/make_ldr_screen.py p600/fonts/vimongrong/MONRON1T.TTF Felucca/firmware/loader/ldr_art.h >/dev/null) ||
+        { echo "build.sh: make_ldr_screen.py failed"; exit 1; }   # (the update screen's version: the same)
+fi
 exec "$PY" tools/build.py "$@"

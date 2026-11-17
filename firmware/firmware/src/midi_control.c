@@ -126,6 +126,23 @@ static void midi_play(track_t *t, uint32_t ch, uint32_t note, uint32_t vel)
     }
 }
 
+/* Guru-600 1.3.1 (Marc, 17/11): what a MIDI keyboard plays, shown by the editor (editor.c ed_p6_play): its notes
+ * queued (a full queue drops them), its bend and its wheel the latest of each track. Written here (the audio ISR), read
+ * by the main loop: one writer, one reader, byte-wide flags. */
+#define PLAYQ 32u
+static volatile uint32_t play_q[PLAYQ];      /* track << 16 | note << 8 | velocity (0: off) */
+static volatile uint8_t play_qw, play_qr;
+static volatile uint16_t play_bend[NTRK];
+static volatile uint8_t play_wheel[NTRK], play_bend_new[NTRK], play_wheel_new[NTRK];
+static void play_note(uint32_t tr, uint32_t note, uint32_t vel)
+{
+    uint8_t w = play_qw;
+    if ((uint8_t)(w - play_qr) >= PLAYQ)
+        return;
+    play_q[w % PLAYQ] = tr << 16 | (note & 0x7Fu) << 8 | (vel & 0x7Fu);
+    play_qw = (uint8_t)(w + 1u);
+}
+
 static void midi_note_event(uint32_t ch, uint32_t note, uint32_t vel)
 {
     midi_channel_t *c = midi_channel(ch);
@@ -141,10 +158,12 @@ static void midi_note_event(uint32_t ch, uint32_t note, uint32_t vel)
         midi_seen |= (uint8_t)(1u << trk_index(t));   /* (1.5.5: only noted; the UI does the rest) */
         c->targets |= (uint8_t)(1u << trk_index(t));
         midi_play(t, ch, note, vel);
+        play_note(trk_index(t), note, vel);
         midi_notes[ch][note] = (uint8_t)(trk_index(t) + 1u);
         midi_owners[trk_index(t)]++;
         c->owned[trk_index(t)]++;
     } else if (id) {
+        play_note(id - 1u, note, 0);
         if (c->pedal && !drum_track(&trk[id - 1u]))
             midi_notes[ch][note] |= MIDI_PEDAL_NOTE;
         else
@@ -231,6 +250,11 @@ static const uint8_t MIDI_CC_ENG[NENGINES] = {
 #endif
 };
 /* a CC sets parameter id of track t as a knob would: 0..127 over its range */
+/* Guru-600 1.3.1 (Marc, 17/11): a CC that sets a parameter itself (the P600's map, MIDI LEARN, the mixer of bank D,
+ * CC16..19 with MIDI KNOBS OFF): its card, when the page shows it, in big type as a knob turned (ui_input.c). The
+ * last one: (track + 1) << 12 | its id, 0 none */
+static volatile uint16_t cc_hit;
+static void cc_hit_set(const track_t *t, uint32_t id) { cc_hit = (uint16_t)(((uint32_t)(t - trk) + 1u) << 12 | (id & 0xFFFu)); }
 static void midi_cc_set(track_t *t, uint32_t id, uint32_t value)
 {
     const param_desc_t *d = param_desc_of(eng_idx(t->eng_req), id);
@@ -239,6 +263,7 @@ static void midi_cc_set(track_t *t, uint32_t id, uint32_t value)
         return;
     t->p[id] = (int16_t)v;
     (void)motion_capture(t, id, (int16_t)v);
+    cc_hit_set(t, id);
 }
 /* MIDI LEARN (1.5, Discussion #170): up to ML_N CCs, each set to one parameter of one track, whatever channel it
  * comes on (a channel ROUT ignores stays ignored) and whichever track that channel plays. Kept with the settings in
@@ -305,6 +330,7 @@ static void p6_cc_put(track_t *t, uint32_t id, int32_t v)
         return;
     t->p[id] = (int16_t)v;
     (void)motion_capture(t, id, (int16_t)v);
+    cc_hit_set(t, id);
 }
 static int p6_cc(track_t *t, uint32_t cc, uint32_t value)
 {
@@ -502,9 +528,17 @@ static void __attribute__((noinline)) midi_event(uint32_t st, uint32_t ch, uint3
     if (st == 0x90u || st == 0x80u)
         midi_note_event(ch, d1, st == 0x90u ? d2 : 0);
     else if (st == 0xE0u) {
+        uint32_t tr = trk_index(midi_track(ch));
         midi_channel(ch)->bend = (int16_t)((int32_t)(d1 | (d2 << 7)) - 8192);
         midi_expression_channel(ch);
+        play_bend[tr] = (uint16_t)(d1 | (d2 << 7));
+        play_bend_new[tr] = 1;
     } else if (st == 0xB0u) {
+        if (d1 == 1u) {                                /* (the wheel: shown by the editor) */
+            uint32_t tr = trk_index(midi_track(ch));
+            play_wheel[tr] = (uint8_t)d2;
+            play_wheel_new[tr] = 1;
+        }
         mod_midi(midi_track(ch), st, d1, d2);
         midi_control(ch, d1, d2);
     } else if (st == 0xD0u)

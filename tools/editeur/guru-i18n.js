@@ -265,6 +265,7 @@ const i18nEn = new WeakMap();                             // text node -> its En
 function i18nNode(n) {
   const v = n.nodeValue, t = v.trim();
   if (!t || I18N_REV.has(t)) return;
+  if (n.parentElement && n.parentElement.closest("#tip")) return;   // (the tooltip: already in its language, its title English)
   const page = n.parentElement && n.parentElement.closest("[data-page]") ? n.parentElement.closest("[data-page]").dataset.page : "";
   const pe = n.parentElement;
   if (pe && pe.matches(".v") && /^(?:[LR] \d+|C)$/.test(t)) {   // a pan value: left / centre / right letters of the language
@@ -273,6 +274,12 @@ function i18nNode(n) {
     if (tr !== t) { i18nEn.set(n, t); n.nodeValue = v.replace(t, tr); }
     return;
   }
+  // (Marc 17/11: the menu's ARP, FX, MOD in full, in French only; elsewhere they stay the FM-1's words)
+  const TAB_FR = { ARP: "ARPÉGIATEUR", FX: "EFFETS", MOD: "MODULATION" };
+  if (I18N_LI === 0 && pe && pe.closest("#tabs") && TAB_FR[t]) { i18nEn.set(n, t); I18N_REV.add(TAB_FR[t]); n.nodeValue = v.replace(t, TAB_FR[t]); if (t === "ARP") pe.closest(".tab").style.letterSpacing = "-0.5px"; i18nFitSoon(); return; }   // (ARPÉGIATEUR a little tighter, Marc 17/11)
+  // (Marc 17/11: MUTATE's button, under its MUTATION title: VARIANTE, not the title's word again; English keeps MUTATE)
+  if (pe && pe.id === "b-mutate" && t === "MUTATE") { const tr = ["VARIANTE", "VARIANTE", "VARIANTE", "VARIANTE", "变体", "バリエーション"][I18N_LI];
+    i18nEn.set(n, t); I18N_REV.add(tr); n.nodeValue = v.replace(t, tr); i18nFitSoon(); return; }
   const lab = typeof LABELS !== "undefined" && LABELS[page] && LABELS[page][t];   // (an FM-1 word that is not technical: translated)
   const tr = pe && pe.matches(".ttl, .pt") && I18N_SEC[t] ? I18N_SEC[t][I18N_LI]
     : lab && !(pe && pe.closest("#tabs, #list, #userlist, #autolist, #actlist")) ? lab[I18N_LI] : i18nText(t, page);
@@ -313,10 +320,20 @@ const TIP_PAGE = { sound: "sound", seq: "seq", song: "song", arp: "arp", fx: "fx
   samples: "samples", backup: "backup", settings: "settings" };
 let tipsOn = (() => { try { return localStorage.getItem("guru600-tips") !== "off"; } catch (e) { return true; } })();
 const tipEl = document.createElement("div"); tipEl.id = "tip"; document.body.appendChild(tipEl);
-document.head.insertAdjacentHTML("beforeend", "<style>" +
-  "#tip { position: fixed; z-index: 1000; max-width: 330px; padding: 9px 12px 10px; background: #0d0d0d; border: 1.5px solid #8f8b80; border-radius: 6px;" +
-  " box-shadow: 0 4px 16px rgba(0,0,0,.7); color: #EDEBE6; font: 500 15px/1.35 'Barlow C', sans-serif; text-transform: none; letter-spacing: 0; pointer-events: none; opacity: 0; transition: opacity .12s; }" +
-  "#tip.on { opacity: 1; } #tip b { display: block; font-weight: 700; font-size: 17px; margin-bottom: 3px; color: #fff; } #tip b:only-child { margin: 0; }" +
+document.head.insertAdjacentHTML("beforeend", "<style>" +   // (Marc 17/11: a squarer box; 17/11 bis: the text in the size of the controls names, 14 px, tighter lines)
+  "#tip { position: fixed; z-index: 1000; max-width: 220px; padding: 9px 12px 10px; background: #0d0d0d; border: 1.5px solid #8f8b80; border-radius: 6px;" +
+  " box-shadow: 0 4px 16px rgba(0,0,0,.7); color: #EDEBE6; font: 500 14px/1.15 'Barlow C', sans-serif; text-transform: none; letter-spacing: 0; pointer-events: none; opacity: 0; transition: opacity .12s; }" +
+  "#tip::before, #tip::after { content: ''; position: absolute; left: var(--ax, 50%); width: 0; height: 0; border: solid transparent; }" +
+  "#tip::before { top: 100%; margin-left: -8px; border-width: 8px 8px 0; border-top-color: #8f8b80; }" +
+  "#tip::after { top: calc(100% - 1px); margin-left: -6px; border-width: 6.5px 6px 0; border-top-color: #0d0d0d; }" +
+  "#tip.below::before { top: auto; bottom: 100%; border-width: 0 8px 8px; border-bottom-color: #8f8b80; }" +
+  "#tip.below::after { top: auto; bottom: calc(100% - 1px); border-width: 0 6px 6.5px; border-bottom-color: #0d0d0d; }" +
+  "#tip.right::before, #tip.left::before, #tip.right::after, #tip.left::after { left: auto; top: var(--ay, 50%); }" +
+  "#tip.right::before { right: 100%; margin: -8px 0 0; border-width: 8px 8px 8px 0; border-color: transparent #8f8b80 transparent transparent; }" +
+  "#tip.right::after { right: calc(100% - 1px); margin: -6px 0 0; border-width: 6px 6.5px 6px 0; border-color: transparent #0d0d0d transparent transparent; }" +
+  "#tip.left::before { left: 100%; margin: -8px 0 0; border-width: 8px 0 8px 8px; border-color: transparent transparent transparent #8f8b80; }" +
+  "#tip.left::after { left: calc(100% - 1px); margin: -6px 0 0; border-width: 6px 0 6px 6.5px; border-color: transparent transparent transparent #0d0d0d; }" +
+  "#tip.on { opacity: 1; } #tip b { display: block; font-weight: 700; font-size: 15px; line-height: 1.1; text-transform: uppercase; margin-bottom: 4px; color: #fff; } #tip b:only-child { margin: 0; }" +
   ".tp#t-tips { --c: var(--cream); } .tp#t-tips svg { fill: none; stroke: color-mix(in srgb, var(--c) 55%, #2a2a2a); }" +
   // (on: as the bulb beside it: the button stays dark, only its bubble glows, white, the i hollow)
   ".tp#t-tips.on { border-color: color-mix(in srgb, var(--cream) 30%, #333) !important; background: linear-gradient(color-mix(in srgb, var(--cream) 10%, #262626), #0b0b0b) !important;" +
@@ -332,7 +349,7 @@ function tipSummary(s, name) {                            // the description's f
                                                                      //  named in a sentence: not its end)
   const sent = s.match(/.+?(?:[.!?](?=\s+[A-ZÀ-ÖØ-Þ0-9"(<]|$)|[。！？])\s*|.+$/g) || [s];   // (a sentence ends before a capital)
   let t = sent[0].trim();
-  if (t.length < 70 && sent[1]) t += " " + sent[1].trim();
+  if (t.length < 70 && sent[1] && t.length + sent[1].trim().length < 190) t += " " + sent[1].trim();   // (Marc 17/11: never a sentence cut by …)
   if (t.length > 190) t = t.slice(0, 180).replace(/[\s,;:]+\S*$/, "") + "…";
   return t;
 }
@@ -348,24 +365,30 @@ function tipLocal(s, page) {
     for (const en in I18N_ALL) add(en, I18N_ALL[en][I18N_LI]);
     const lb = typeof LABELS !== "undefined" && LABELS[page]; if (lb) for (const en in lb) add(en, lb[en][I18N_LI]);
     const pg = I18N_PAGE[page] || {}; for (const en in pg) add(en, pg[en][I18N_LI]);   // (the page's own last: they win)
+    if (page === "sound") m.MUTATE = ["VARIANTE", "VARIANTE", "VARIANTE", "VARIANTE", "变体", "バリエーション"][I18N_LI];   // (the button, Marc 17/11)
     const keys = Object.keys(m).sort((a, b) => b.length - a.length);
     L = tipLocalCache[page] = keys.length ? { m, re: new RegExp("(?<![A-Za-zÀ-ÿ0-9])(" + keys.map((k) => k.replace(/[.*+?^${}()|[\]\\/-]/g, "\\$&")).join("|") + ")(?![A-Za-zÀ-ÿ0-9])", "g") } : { m, re: null };
   }
   return L.re ? s.replace(L.re, (k) => L.m[k]) : s;
 }
+// Marc 17/11: buttons that shared one text, each its own (the guide keeps them in one row)
+const TIP_OWN = {"sound": {"SAW": {"en": "The sawtooth wave: bright, full of harmonics.", "fr": "L'onde en dents de scie : brillante, riche en harmoniques.", "de": "Die Sägezahnwelle: hell, voller Obertöne.", "es": "La onda de diente de sierra: brillante, llena de armónicos.", "it": "L'onda a dente di sega: brillante, ricca di armoniche.", "zh": "锯齿波：明亮，泛音丰富。", "ja": "ノコギリ波：明るく、倍音が豊か。"}, "TRI": {"en": "The triangle wave: soft and round.", "fr": "L'onde triangulaire : douce et ronde.", "de": "Die Dreieckwelle: weich und rund.", "es": "La onda triangular: suave y redonda.", "it": "L'onda triangolare: morbida e rotonda.", "zh": "三角波：柔和圆润。", "ja": "三角波：柔らかく丸い音。"}, "PULSE": {"en": "The pulse wave: hollow; PULSE WIDTH sets its width.", "fr": "L'onde d'impulsion : creuse ; PULSE WIDTH règle sa largeur.", "de": "Die Pulswelle: hohl; PULSE WIDTH stellt ihre Breite ein.", "es": "La onda de pulso: hueca; PULSE WIDTH ajusta su anchura.", "it": "L'onda impulsiva: cava; PULSE WIDTH ne regola la larghezza.", "zh": "脉冲波：空洞；由 PULSE WIDTH 调节宽度。", "ja": "パルス波：中空な音。幅は PULSE WIDTH で調整。"}, "DIST": {"en": "The track's own distortion.", "fr": "La distorsion propre à la piste.", "de": "Die eigene Verzerrung der Spur.", "es": "La distorsión propia de la pista.", "it": "La distorsione propria della traccia.", "zh": "该音轨自身的失真。", "ja": "トラック固有のディストーション。"}, "CHORUS": {"en": "How much of the track goes to the shared chorus.", "fr": "La part de la piste envoyée au chorus commun.", "de": "Wie viel der Spur in den gemeinsamen Chorus geht.", "es": "Cuánto de la pista va al chorus común.", "it": "Quanto della traccia va al chorus comune.", "zh": "该音轨送往公共合唱的量。", "ja": "共通コーラスへ送るトラックの量。"}, "DELAY": {"en": "How much of the track goes to the shared delay.", "fr": "La part de la piste envoyée au delay commun.", "de": "Wie viel der Spur in das gemeinsame Delay geht.", "es": "Cuánto de la pista va al delay común.", "it": "Quanto della traccia va al delay comune.", "zh": "该音轨送往公共延迟的量。", "ja": "共通ディレイへ送るトラックの量。"}, "REVERB": {"en": "How much of the track goes to the shared reverb.", "fr": "La part de la piste envoyée à la réverbération commune.", "de": "Wie viel der Spur in den gemeinsamen Hall geht.", "es": "Cuánto de la pista va a la reverb común.", "it": "Quanto della traccia va al riverbero comune.", "zh": "该音轨送往公共混响的量。", "ja": "共通リバーブへ送るトラックの量。"}, "OSCILLATOR B · FREQUENCY": {"en": "Oscillator B's pitch in semitones: 24 plays the note as is, 12 an octave lower, 36 an octave higher.", "fr": "Hauteur de l'oscillateur B en demi-tons : 24 joue la note telle quelle, 12 une octave plus bas, 36 une octave plus haut.", "de": "Tonhöhe von Oszillator B in Halbtönen: 24 spielt die Note unverändert, 12 eine Oktave tiefer, 36 eine Oktave höher.", "es": "Altura del oscilador B en semitonos: 24 toca la nota tal cual, 12 una octava más grave, 36 una octava más aguda.", "it": "Altezza dell'oscillatore B in semitoni: 24 suona la nota così com'è, 12 un'ottava sotto, 36 un'ottava sopra.", "zh": "振荡器 B 的音高（半音）：24 按原音演奏，12 低一个八度，36 高一个八度。", "ja": "オシレーター B の音程（半音単位）：24 でそのまま、12 で 1 オクターブ下、36 で 1 オクターブ上。"}}, "fx": {"SOFT": {"en": "A gentle saturation.", "fr": "Une saturation douce.", "de": "Eine sanfte Sättigung.", "es": "Una saturación suave.", "it": "Una saturazione morbida.", "zh": "柔和的饱和。", "ja": "やわらかなサチュレーション。"}, "HARD": {"en": "A hard, clipped saturation.", "fr": "Une saturation franche, écrêtée.", "de": "Eine harte, gekappte Sättigung.", "es": "Una saturación dura, recortada.", "it": "Una saturazione dura, tosata.", "zh": "强烈的削波饱和。", "ja": "クリップした硬いサチュレーション。"}, "FOLD": {"en": "Folds the wave back on itself: a metallic distortion.", "fr": "Replie l'onde sur elle-même : une distorsion métallique.", "de": "Faltet die Welle in sich zurück: eine metallische Verzerrung.", "es": "Repliega la onda sobre sí misma: una distorsión metálica.", "it": "Ripiega l'onda su se stessa: una distorsione metallica.", "zh": "将波形折返：金属感失真。", "ja": "波形を折り返す金属的な歪み。"}, "FUZZ": {"en": "The harshest distortion, buzzing.", "fr": "La distorsion la plus dure, bourdonnante.", "de": "Die härteste Verzerrung, schnarrend.", "es": "La distorsión más dura, zumbante.", "it": "La distorsione più dura, ronzante.", "zh": "最猛烈的嗡嗡失真。", "ja": "最も激しい、ジリジリした歪み。"}, "PHASR": {"en": "A phaser: a hollow, sweeping whoosh.", "fr": "Un phaser : un souffle creux qui tourne.", "de": "Ein Phaser: ein hohles, kreisendes Rauschen.", "es": "Un phaser: un soplo hueco que gira.", "it": "Un phaser: un soffio cavo che ruota.", "zh": "移相器：空洞的旋转声。", "ja": "フェイザー：うねる中空な響き。"}, "FLANG": {"en": "A flanger: a jet-like swirl.", "fr": "Un flanger : un tourbillon façon avion à réaction.", "de": "Ein Flanger: ein Wirbel wie ein Düsenjet.", "es": "Un flanger: un remolino como de avión a reacción.", "it": "Un flanger: un vortice come un jet.", "zh": "镶边：喷气机般的回旋。", "ja": "フランジャー：ジェット機のようなうねり。"}, "CHOR": {"en": "A chorus: the sound doubled and widened.", "fr": "Un chorus : le son doublé et élargi.", "de": "Ein Chorus: der Klang verdoppelt und verbreitert.", "es": "Un chorus: el sonido doblado y ensanchado.", "it": "Un chorus: il suono raddoppiato e allargato.", "zh": "合唱：声音被加倍并展宽。", "ja": "コーラス：音を重ねて広げます。"}}, "tracks": {"DIST": {"en": "The track's own distortion.", "fr": "La distorsion propre à la piste.", "de": "Die eigene Verzerrung der Spur.", "es": "La distorsión propia de la pista.", "it": "La distorsione propria della traccia.", "zh": "该音轨自身的失真。", "ja": "トラック固有のディストーション。"}, "CHORUS": {"en": "How much of the track goes to the shared chorus.", "fr": "La part de la piste envoyée au chorus commun.", "de": "Wie viel der Spur in den gemeinsamen Chorus geht.", "es": "Cuánto de la pista va al chorus común.", "it": "Quanto della traccia va al chorus comune.", "zh": "该音轨送往公共合唱的量。", "ja": "共通コーラスへ送るトラックの量。"}, "DELAY": {"en": "How much of the track goes to the shared delay.", "fr": "La part de la piste envoyée au delay commun.", "de": "Wie viel der Spur in das gemeinsame Delay geht.", "es": "Cuánto de la pista va al delay común.", "it": "Quanto della traccia va al delay comune.", "zh": "该音轨送往公共延迟的量。", "ja": "共通ディレイへ送るトラックの量。"}, "REVERB": {"en": "How much of the track goes to the shared reverb.", "fr": "La part de la piste envoyée à la réverbération commune.", "de": "Wie viel der Spur in den gemeinsamen Hall geht.", "es": "Cuánto de la pista va a la reverb común.", "it": "Quanto della traccia va al riverbero comune.", "zh": "该音轨送往公共混响的量。", "ja": "共通リバーブへ送るトラックの量。"}}, "backup": {"PROJECT A": {"en": "Project A, saved on the FM-1.", "fr": "Le projet A, enregistré dans le FM-1.", "de": "Projekt A, im FM-1 gespeichert.", "es": "El proyecto A, guardado en el FM-1.", "it": "Il progetto A, salvato nel FM-1.", "zh": "项目 A，保存在 FM-1 中。", "ja": "FM-1 に保存されたプロジェクト A。"}, "PROJECT B": {"en": "Project B, saved on the FM-1.", "fr": "Le projet B, enregistré dans le FM-1.", "de": "Projekt B, im FM-1 gespeichert.", "es": "El proyecto B, guardado en el FM-1.", "it": "Il progetto B, salvato nel FM-1.", "zh": "项目 B，保存在 FM-1 中。", "ja": "FM-1 に保存されたプロジェクト B。"}, "PROJECT C": {"en": "Project C, saved on the FM-1.", "fr": "Le projet C, enregistré dans le FM-1.", "de": "Projekt C, im FM-1 gespeichert.", "es": "El proyecto C, guardado en el FM-1.", "it": "Il progetto C, salvato nel FM-1.", "zh": "项目 C，保存在 FM-1 中。", "ja": "FM-1 に保存されたプロジェクト C。"}, "PROJECT D": {"en": "Project D, saved on the FM-1.", "fr": "Le projet D, enregistré dans le FM-1.", "de": "Projekt D, im FM-1 gespeichert.", "es": "El proyecto D, guardado en el FM-1.", "it": "Il progetto D, salvato nel FM-1.", "zh": "项目 D，保存在 FM-1 中。", "ja": "FM-1 に保存されたプロジェクト D。"}, "SAMPLE USR1": {"en": "Your sample in slot 1.", "fr": "Votre échantillon de l'emplacement 1.", "de": "Ihr Sample auf Platz 1.", "es": "Su muestra del espacio 1.", "it": "Il tuo campione nello slot 1.", "zh": "您在第 1 个位置的采样。", "ja": "スロット 1 のあなたのサンプル。"}, "SAMPLE USR2": {"en": "Your sample in slot 2.", "fr": "Votre échantillon de l'emplacement 2.", "de": "Ihr Sample auf Platz 2.", "es": "Su muestra del espacio 2.", "it": "Il tuo campione nello slot 2.", "zh": "您在第 2 个位置的采样。", "ja": "スロット 2 のあなたのサンプル。"}, "SAMPLE USR3": {"en": "Your sample in slot 3.", "fr": "Votre échantillon de l'emplacement 3.", "de": "Ihr Sample auf Platz 3.", "es": "Su muestra del espacio 3.", "it": "Il tuo campione nello slot 3.", "zh": "您在第 3 个位置的采样。", "ja": "スロット 3 のあなたのサンプル。"}}, "settings": {"T1 CHANNEL": {"en": "The MIDI channel of track 1, used only with MIDI IN = TRACK.", "fr": "Le canal MIDI de la piste 1, utilisé seulement avec MIDI IN = TRACK.", "de": "Der MIDI-Kanal von Spur 1, nur mit MIDI IN = TRACK genutzt.", "es": "El canal MIDI de la pista 1, usado solo con MIDI IN = TRACK.", "it": "Il canale MIDI della traccia 1, usato solo con MIDI IN = TRACK.", "zh": "音轨 1 的 MIDI 通道，仅在 MIDI IN = TRACK 时使用。", "ja": "トラック 1 の MIDI チャンネル。MIDI IN = TRACK のときだけ使います。"}, "T2 CHANNEL": {"en": "The MIDI channel of track 2, used only with MIDI IN = TRACK.", "fr": "Le canal MIDI de la piste 2, utilisé seulement avec MIDI IN = TRACK.", "de": "Der MIDI-Kanal von Spur 2, nur mit MIDI IN = TRACK genutzt.", "es": "El canal MIDI de la pista 2, usado solo con MIDI IN = TRACK.", "it": "Il canale MIDI della traccia 2, usato solo con MIDI IN = TRACK.", "zh": "音轨 2 的 MIDI 通道，仅在 MIDI IN = TRACK 时使用。", "ja": "トラック 2 の MIDI チャンネル。MIDI IN = TRACK のときだけ使います。"}, "T3 CHANNEL": {"en": "The MIDI channel of track 3, used only with MIDI IN = TRACK.", "fr": "Le canal MIDI de la piste 3, utilisé seulement avec MIDI IN = TRACK.", "de": "Der MIDI-Kanal von Spur 3, nur mit MIDI IN = TRACK genutzt.", "es": "El canal MIDI de la pista 3, usado solo con MIDI IN = TRACK.", "it": "Il canale MIDI della traccia 3, usato solo con MIDI IN = TRACK.", "zh": "音轨 3 的 MIDI 通道，仅在 MIDI IN = TRACK 时使用。", "ja": "トラック 3 の MIDI チャンネル。MIDI IN = TRACK のときだけ使います。"}, "T4 CHANNEL": {"en": "The MIDI channel of track 4, used only with MIDI IN = TRACK.", "fr": "Le canal MIDI de la piste 4, utilisé seulement avec MIDI IN = TRACK.", "de": "Der MIDI-Kanal von Spur 4, nur mit MIDI IN = TRACK genutzt.", "es": "El canal MIDI de la pista 4, usado solo con MIDI IN = TRACK.", "it": "Il canale MIDI della traccia 4, usato solo con MIDI IN = TRACK.", "zh": "音轨 4 的 MIDI 通道，仅在 MIDI IN = TRACK 时使用。", "ja": "トラック 4 の MIDI チャンネル。MIDI IN = TRACK のときだけ使います。"}}};
 function tipFind(page, word, sec) {                       // the guide's row for this word on this page, in this box
   const rows = (typeof TIPS !== "undefined" && TIPS[TIP_PAGE[page] || page]) || [];
   const S = (sec || "").toUpperCase(), W = word.toUpperCase();
   const cands = rows.filter((r) => { const n = r.n.toUpperCase();
-    return n === W || n === S + " · " + W || n.startsWith(W + " (") || n.split(/\s*,\s*/).includes(W) ||
+    return n === W || n === S + " · " + W || n.startsWith(W + " (") || (n.split(/\s*,\s*/).includes(W) && (!S || (r.s || "").toUpperCase().includes(S))) ||   // (a list's name: in its own box only, not FILTER's title taking POLY-MOD's FREQ A, FILTER)
+     
       (/ … /.test(n) && new RegExp("^" + n.replace(/[.*+?^${}()|[\]\\]/g, "\\$&").replace(/\S+ … \S+/, ".+") + "$").test(W)); });
   if (!cands.length) return null;
+  const ab = /\b([AB])$/.exec(S), own = ab && cands.find((r) => r.n.toUpperCase().endsWith("(" + ab[1] + ")"));   // (OSCILLATOR B: B's rows)
+  if (own) return own;
   return cands.find((r) => r.n.toUpperCase() === S + " · " + W) || cands.find((r) => S && r.s.toUpperCase().includes(S)) || cands[0];
 }
 function tipLabel(t) {                                    // the label an element stands for: itself, or its knob's, its row's...
   const own = (e) => { const en = [...e.childNodes].filter((c) => c.nodeType === 3).map((c) => i18nEn.get(c) || c.nodeValue).join("").trim(); return en; };
-  const item = t.closest(".item, .sk, .pan, .setr, .mxk, .wheel");
-  if (item) { const l = item.querySelector(".tl, .nm, .gt"); if (l && own(l)) return [l, own(l)]; }
+  // (Marc 17/11: only over a control's name, never over the knob, switch or slider itself: playing, a tooltip
+  // stayed on top of the controls. Over the knob before, the item's label was looked for here)
   for (let e = t; e && e !== document.body; e = e.parentElement) {
     if (e.matches(".tl, .gt, .ttl, .nm, .sl, .pt, .btn, .ch, .tab, .bkgt, .fxlab, .fxhint, .sethint, .hint, .chip, .field, #detlabels > div") && own(e)) return [e, own(e)];
     if (e.matches(".sec, #stage")) break;
@@ -373,12 +396,42 @@ function tipLabel(t) {                                    // the label an elemen
   return null;
 }
 let tipTimer = 0, tipFor = null, tipX = 0, tipY = 0;   // (tipX, tipY: the pointer)
+// Marc 17/11: each tooltip as square as its text allows: its width tried from its title's up to its text on one line,
+// the lines it then makes counted (the words never cut), the width whose box comes nearest a square kept
+// Marc 17/11: the non-breaking spaces a line must never split: a number and its unit, the space before : ; ! ? % » and
+// after « (the tips' file keeps plain spaces)
+const tipClean = (t) => {   // (Marc 17/11: the FM-1 screen's name before the text, and the guide's "(chapter 8)", not in a tooltip)
+  t = t.replace(/^[A-ZÀ-Ý0-9][A-ZÀ-Ý0-9 >+\-·]{2,15} ?[:：] +(?=[a-zà-ÿ])/, "").replace(/\s*[(（][^()（）]*?(?:chapitre|chapter|Kapitel|capitolo|capítulo|章)[^()（）]*[)）]/gi, "");
+  return t.charAt(0).toUpperCase() + t.slice(1);
+};
+const tipNbsp = (t) => t.replace(/(\d) (?=(?:%|ms|s|Hz|kHz|dB|st|ct|BPM|x)(?![\p{L}]))/gu, "$1\u00a0").replace(/ (?=[:;!?%»])/g, "\u00a0").replace(/« /g, "«\u00a0");
+function tipFit() {
+  const st = tipEl.style, b = tipEl.querySelector("b"), sp = tipEl.querySelector("span");
+  st.boxSizing = "border-box"; st.width = "max-content"; st.maxWidth = "none"; st.whiteSpace = "nowrap";
+  const wide = (el) => { const r = document.createRange(); r.selectNodeContents(el); return Math.ceil(r.getBoundingClientRect().width); };
+  const bw = b ? wide(b) : 0, one = sp ? wide(sp) : 0;   // (b is a block: the text's own width, not the box's)
+  const b1 = b ? b.offsetHeight : 0;                     // (the title on one line: its height)
+  st.whiteSpace = "";
+  const cs = getComputedStyle(tipEl), padX = parseFloat(cs.paddingLeft) + parseFloat(cs.paddingRight) + 3,
+    padY = parseFloat(cs.paddingTop) + parseFloat(cs.paddingBottom) + 3;
+  let best = 0, gap = 1e9;
+  // (Marc 17/11: a long title on two lines too, the box kept square; never a word of it cut)
+  for (let w = 110; w <= Math.max(bw, Math.min(one, 460)); w += 4) {
+    st.width = w + padX + "px";
+    if (b && (b.scrollWidth > b.clientWidth + 1 || b.offsetHeight > b1 * 2.2)) continue;   // (two lines at most)
+    if (!sp) { best = w; break; }                        // (a title alone: the narrowest that holds it)
+    const d = Math.abs(tipEl.offsetWidth - tipEl.offsetHeight);
+    if (d < gap) { gap = d; best = w; }
+    if (tipEl.offsetHeight < tipEl.offsetWidth) break;   // (wider only makes it flatter)
+  }
+  st.width = best ? best + padX + "px" : "max-content";   // (a short title alone: its own width)
+}
 function tipShow(ev) {
   if (!tipsOn) return;
   const t = ev.target instanceof Element ? ev.target : null; if (!t) return;
   const ttl = t.closest("[data-tip-t]");
-  let html = "";
-  if (ttl) html = `<b>${ttl.dataset.tipT}</b>`;
+  let html = "", anc = ttl;                             // (anc: the name the tooltip stands above)
+  if (ttl) html = `<span>${ttl.dataset.tipT}</span>`;   // (an icon's tooltip: its only explanation, as text, no title)
   else {
     const lab = tipLabel(t); if (!lab) return tipHide();
     const [el, en] = lab;
@@ -389,24 +442,60 @@ function tipShow(ev) {
     const word = I18N_LI >= 0 && typeof GLOSS !== "undefined" && GLOSS[page] && GLOSS[page][en] ? GLOSS[page][en][["fr", "de", "es", "it", "zh", "ja"][I18N_LI]] : "";
     const shownTr = [...el.childNodes].some((c) => c.nodeType === 3 && i18nEn.has(c));   // (shown translated: SETTINGS)
     let row = tipFind(page, en, sec);
+    // (Marc 17/11: buttons sharing one text, FREQ A-B, PW A-B, FILTER: the tooltip on their group's title, DESTINATION, not on each)
+    const grp = el.closest(".grp"), gt = grp && grp.querySelector(":scope > .gt");
+    const enOf = (x) => [...x.childNodes].filter((c) => c.nodeType === 3).map((c) => i18nEn.get(c) || c.nodeValue).join("").trim();
+    const own = TIP_OWN[page] && (TIP_OWN[page][sec.toUpperCase() + " · " + en] || TIP_OWN[page][en]);
+    // (a value to choose, OFF, UP, MAJ…, or one of buttons sharing a text: no tooltip of its own, its setting's name has it)
+    const N = row ? row.n.toUpperCase() : "", W = en.toUpperCase(), S = sec.toUpperCase();
+    const exact = !row || N === W || N.startsWith(W + " (") || N === S + " · " + W || / … /.test(N);
+    if (!own && !exact) return tipHide();
+    if (!row && el === gt) { const sl = grp.querySelector(".sl"), r2 = sl && tipFind(page, enOf(sl), sec); if (r2 && r2.n.includes(",")) row = r2; }
     const rowLab = el.matches(".ch, .btn.ch, .field") ? (el.closest(".setr") || el.closest(".grp.chg")) : null;   // a value: its row's text
-    if (!row && rowLab) { const l = rowLab.querySelector(".nm, .gt"); if (l) row = tipFind(page, [...l.childNodes].filter((c) => c.nodeType === 3).map((c) => i18nEn.get(c) || c.nodeValue).join("").trim(), sec); }
-    const desc = row ? tipLocal(tipSummary(row.d[lang] || row.d.en, row.n), page) : "";
+    if (!own && rowLab && rowLab.querySelector(".nm, .gt") && !el.matches(".nm, .gt")) return tipHide();   // (a value of a named row, even one named
+                                                                                                    //  like another setting, ACCORD: the name has the tooltip)
+    // (a box's title saying what one of its controls says, ACCORDS over ACCORD: only the control has it)
+    if (row && el.matches(".ttl") && secEl && [...secEl.querySelectorAll(".nm, .gt, .tl, .sl")].some((x) => x !== el && enOf(x) && tipFind(page, enOf(x), sec) === row)) return tipHide();
+    const desc = own ? tipNbsp(tipLocal(own[lang] || own.en, page)) : row ? tipNbsp(tipClean(tipLocal(tipSummary(row.d[lang] || row.d.en, row.n), page))) : "";
     const shown = [...el.childNodes].filter((c) => c.nodeType === 3).map((c) => c.nodeValue).join("").trim();
-    const head = shownTr && shown && shown !== en ? `${shown} (${en})`        // (Marc, 10/11: the word shown first, the FM-1's after:
-      : word && word.toUpperCase() !== en.toUpperCase() ? `${word} (${en})` : word;   //  RÉPÉTITION (RATCH), Fréquence de coupure (CUTOFF))
-    if (!head && !desc) return tipHide();
+    // (Marc 17/11: the English name alone as the title; no tooltip without an explanation)
+    const head = rowLab && !tipFind(page, en, sec) && row ? row.n.replace(/ \([A-Z]\)$/, "") : en;   // (a value: its setting's name)
+    if (!desc) return tipHide();
     html = (head ? `<b>${head}</b>` : "") + (desc ? `<span>${desc}</span>` : "");
     tipFor = el;
+    anc = el;
   }
   clearTimeout(tipTimer);
-  tipTimer = setTimeout(() => {                         // (beside the pointer, never under it: below right, or flipped at an edge)
-    tipEl.innerHTML = html;
+  tipTimer = setTimeout(() => {                         // (Marc 17/11: above the name, centred on it; below it when the
+    tipEl.innerHTML = html; tipFit();                   //  screen's top has no room)
     const w = tipEl.offsetWidth, hh = tipEl.offsetHeight;
-    let x = tipX + 18, y = tipY + 24;
-    if (x + w > innerWidth - 8) x = tipX - w - 14;
-    if (y + hh > innerHeight - 8) y = tipY - hh - 14;
-    tipEl.style.left = Math.max(8, x) + "px"; tipEl.style.top = Math.max(8, y) + "px"; tipEl.classList.add("on");
+    // (the name's own text, not its box: MORPH's box spans the whole rail, the tooltip stood in its middle)
+    const txt = () => {   // (its own words only: not a value shown beside them, MORPH 0 %)
+      const tn = [...anc.childNodes].filter((c) => c.nodeType === 3 && c.nodeValue.trim());
+      if (!tn.length) return anc.getBoundingClientRect();
+      const g = document.createRange(); g.setStartBefore(tn[0]); g.setEndAfter(tn[tn.length - 1]);
+      const q = g.getBoundingClientRect(); return q.width ? q : anc.getBoundingClientRect();
+    };
+    const r = anc ? txt() : { left: tipX, right: tipX, top: tipY, bottom: tipY };
+    // (Marc 17/11: on the side away from the control: a name under its knob, the tooltip below; a name above it, above.
+    //  The control is where the name's box lies in its parent's: the name in its lower half, the control above it)
+    const pr = anc && anc.parentElement ? anc.parentElement.getBoundingClientRect() : r;
+    const under = (r.top + r.bottom) / 2 > (pr.top + pr.bottom) / 2 + 2;
+    const up = r.top - hh - 11, down = r.bottom + 11;   // (room for the arrow)
+    // (Marc 17/11: never over the control: on its side away from it; without room there, beside the name, right or left)
+    let x = (r.left + r.right) / 2 - w / 2, y = under ? down : up, side = "";
+    if (under ? y + hh > innerHeight - 8 : y < 8) {
+      y = Math.min(Math.max(8, (r.top + r.bottom) / 2 - hh / 2), innerHeight - hh - 8);
+      if (r.right + 11 + w <= innerWidth - 8) { x = r.right + 11; side = "right"; }
+      else { x = Math.max(8, r.left - 11 - w); side = "left"; }
+    } else x = Math.min(Math.max(8, x), innerWidth - w - 8);
+    // (a small arrow pointing at the name: under the box, over it, or at its side)
+    tipEl.classList.toggle("below", !side && y > r.top);
+    tipEl.classList.toggle("right", side === "right");
+    tipEl.classList.toggle("left", side === "left");
+    tipEl.style.setProperty("--ax", Math.min(Math.max(12, (r.left + r.right) / 2 - x), w - 12) + "px");
+    tipEl.style.setProperty("--ay", Math.min(Math.max(12, (r.top + r.bottom) / 2 - y), hh - 12) + "px");
+    tipEl.style.left = x + "px"; tipEl.style.top = y + "px"; tipEl.classList.add("on");
   }, 380);
 }
 document.addEventListener("pointermove", (ev) => { tipX = ev.clientX; tipY = ev.clientY; }, { passive: true });

@@ -316,8 +316,8 @@
   "fr": "<b>Guru-600.app</b> fait tourner le firmware Guru-600 dans un émulateur du FM-1 sur le Mac. Tout ce que décrit cette notice y fonctionne : découvrez le Guru-600 avant de l'installer, préparez des sons, apprenez les pages ou jouez sans l'appareil."
  },
  {
-  "en": "It needs a Mac with Apple silicon (M1 or later).",
-  "fr": "Il faut un Mac à puce Apple (M1 ou plus récent)."
+  "en": "It runs on Macs with Apple silicon or Intel, from macOS 10.13 (High Sierra).",
+  "fr": "Elle fonctionne sur les Mac à puce Apple ou Intel, à partir de macOS 10.13 (High Sierra)."
  },
  {
   "en": "Installing and opening it",
@@ -1428,6 +1428,10 @@
   "fr": "Elle reprend sa taille 0,4 s après le dernier cran (le nom du son 0,8 s). Deux boutons tournés ensemble montrent chacun leur valeur, côte à côte."
  },
  {
+  "en": "The knobs of a MIDI keyboard or controller show their value the same way (chapter {ch:midi}): in its card when the page shows the setting they change, otherwise its name and value in big type on the bottom line, for example FILTER REL 790 ms.",
+  "fr": "Les boutons d'un clavier ou d'un contrôleur MIDI montrent leur valeur de la même façon (chapitre {ch:midi}) : dans sa carte quand la page affiche le réglage qu'ils changent, sinon son nom et sa valeur en grand sur la ligne du bas, par exemple FILTER REL 790 ms."
+ },
+ {
   "en": "Dialogs",
   "fr": "Les dialogues"
  },
@@ -1816,8 +1820,8 @@
   "fr": "Chaque voix dérive légèrement, en hauteur (jusqu'à ±20 cents) et en brillance, comme un vieux synthétiseur analogique. 0 % : parfaitement stable."
  },
  {
-  "en": "How much of the LFO the mod wheel controls. 0 %: the LFO always plays fully and the wheel does nothing. +100 %: no LFO until you push the wheel. Negative: the wheel takes the LFO away (chapter {ch:midi}).",
-  "fr": "La part du LFO que commande la molette. 0 % : le LFO joue toujours en entier et la molette ne fait rien. +100 % : pas de LFO tant que vous ne poussez pas la molette. Négatif : la molette retire le LFO (chapitre {ch:midi})."
+  "en": "The LFO the sound plays with the mod wheel at rest. 0 %: none, the wheel opens it all; 50 %: half, all with the wheel pushed; 100 %: all, the wheel does nothing.",
+  "fr": "Le LFO que joue le son molette au repos. 0 % : aucun, la molette l'ouvre en entier ; 50 % : la moitié, tout molette poussée ; 100 % : tout, la molette ne fait rien."
  },
  {
   "en": "Playing harder opens the filter (negative: closes it). Requires velocity: a MIDI keyboard, or SELECT = VEL.",
@@ -5232,8 +5236,8 @@
   "fr": "EDIT › POLY MOD (1/11) › PM DS : FRQ A, FILT, BOTH"
  },
  {
-  "en": "EDIT › EXTRAS (7/11) › WHEEL (lower WHEEL = more LFO without the wheel)",
-  "fr": "EDIT › EXTRAS (7/11) › WHEEL (WHEEL plus bas = plus de LFO sans la molette)"
+  "en": "EDIT › EXTRAS (7/11) › WHEEL (higher WHEEL = more LFO without the wheel)",
+  "fr": "EDIT › EXTRAS (7/11) › WHEEL (WHEEL plus haut = plus de LFO sans la molette)"
  },
  {
   "en": "LFO › LFO DEST › PIT, SHP, FLT (0 or 100 %)",

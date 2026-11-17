@@ -52,7 +52,9 @@
 /* ------------------------------------------------------- parameters --- */
 enum {
     F_INT, F_PCT, F_BIPCT, F_TIME, F_LFOHZ, F_CUTOFF, F_DB, F_SEMI, F_ENUM, F_BPM, F_NOTE,
-    F_ONOFF, F_OCT, F_STEPS, F_GAIN               /* F_GAIN (Guru-600 1.1): the INSERT EQ's bands, 64 = 0 dB */
+    F_ONOFF, F_OCT, F_STEPS, F_GAIN,              /* F_GAIN (Guru-600 1.1): the INSERT EQ's bands, 64 = 0 dB */
+    F_INVPCT                                      /* Guru-600 1.3.1: a share shown the other way, min..max as 100..0 %
+                                                   * (a P600's EXTRAS WHEEL: Marc, 0 nothing, 100 all) */
 };
 
 typedef struct {

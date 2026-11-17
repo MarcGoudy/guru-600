@@ -46,6 +46,9 @@ _ORDER = sorted(WORDS, key=len, reverse=True)
 _RX = {k: _rx(k) for k in _ORDER}
 
 
+MUTATE_BTN = ["VARIANTE", "VARIANTE", "VARIANTE", "VARIANTE", "变体", "バリエーション"]
+
+
 def ui(text, l, page=None):
     """text (a translation, HTML) with the editor's words in language l"""
     if l not in LI:
@@ -62,6 +65,8 @@ def ui(text, l, page=None):
         for k in _ORDER:
             if (" " in k or k in ALWAYS or bold) and k in part:
                 part = _RX[k].sub(WORDS[k][i], part)
+        if page == "sound" and "MUTATE" in part:      # (Marc 17/11: the button is VARIANTE outside English, as in the editor)
+            part = _rx("MUTATE").sub(MUTATE_BTN[i], part)
         if page and page in PAGE and bold:
             for k, v in sorted(PAGE[page].items(), key=lambda kv: len(kv[0]), reverse=True):
                 if k in part:

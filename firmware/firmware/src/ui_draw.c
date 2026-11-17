@@ -2314,15 +2314,50 @@ static void big_bubble(int32_t bx, int32_t by, int32_t bw, int32_t bh, int32_t r
         cv_text(x + wv + 4, ym, &AF_M, u, T_MID);
     cv_blit((uint32_t)bx, (uint32_t)by);
 }
+#if FELUCCA_P600
+/* 1.3.1: the banner's names for a P600 track's parameters a controller sets (midi_control.c P6_CC_KNOB, p6_cc): the
+ * cards' own labels need their page's title (REL: the filter's or the amp's?), the banner has none */
+static const char *p6_big_name(uint32_t id)
+{
+    switch (id) {
+    case P_E0 + P6_A_FRQ: return "OSC A FREQ";
+    case P6_APW: return "OSC A PW";
+    case P_E0 + P6_B_FRQ: return "OSC B FREQ";
+    case P6_BPW: return "OSC B PW";
+    case P6_BFIN: return "OSC B FINE";
+    case P_E0 + P6_MIX: return "MIXER";
+    case P_E0 + P6_CUT: return "CUTOFF";
+    case P_E0 + P6_RES: return "RESONANCE";
+    case P_E0 + P6_FENV: return "FILTER ENV";
+    case P6_FATK: return "FILTER ATK";
+    case P6_FDEC: return "FILTER DEC";
+    case P6_FSUS: return "FILTER SUS";
+    case P6_FREL: return "FILTER REL";
+    case P_ATK: return "AMP ATK";
+    case P_DEC: return "AMP DEC";
+    case P_SUS: return "AMP SUS";
+    case P_REL: return "AMP REL";
+    case P6_PMENV: return "PMOD ENV";
+    case P6_PMB: return "PMOD OSC B";
+    case P_LRATE: return "LFO RATE";
+    case P_M4AMT: return "WHEEL";
+    case P_M3AMT: return "VEL > FLT";
+    case P_DETUNE: return "DETUNE";
+    case P6_VINT: return "VINTAGE";
+    case P_LEVEL: return "LEVEL";
+    default: return 0;
+    }
+}
+#endif
 static void draw_big(void)
 {
     char s[24];
     uint32_t c, gone = 0, now = fm1_ms;
-    if (!(big.son | big.bon | big.kon))
+    if (!(big.son | big.bon | big.kon | big.pon))
         return;
     if (big.page != ui.page || big.home != ui.home || ui.menu || ui.confirm || name_on() || ui.layer || ui.uboot ||
         seq_counting()) {
-        big.son = big.bon = big.kon = 0;
+        big.son = big.bon = big.kon = big.pon = 0;
         ui.force = 1;                                   /* (what they covered) */
         return;
     }
@@ -2330,6 +2365,8 @@ static void draw_big(void)
         big.son = 0, gone = 1;
     if (big.bon && now - big.bms >= BIG_MS)
         big.bon = 0, gone = 1;
+    if (big.pon && now - big.pms >= BIG_SND_MS)
+        big.pon = 0, gone = 1;
     for (c = 0; c < 4u; c++)
         if ((big.kon >> c & 1u) && now - big.kms[c] >= BIG_MS)
             big.kon &= (uint8_t)~(1u << c), gone = 1;
@@ -2353,6 +2390,69 @@ static void draw_big(void)
         if (cx + bw > 240)
             cx = 240 - bw;
         big_bubble(cx, 0, bw, Y_LABEL, 0, T_BG, s, "");
+    }
+    if (big.pon) {                                      /* 1.3.1: a controller's parameter the page has no card for:
+                                                         * its name (M), value (L, ACCENT) and unit (M), centred over
+                                                         * the footer; another track's: T2 before its name */
+        const track_t *t = &trk[big.ptrk];
+        const param_desc_t *d = track_desc(t, big.pid);
+        const char *u;
+        char v[24], n[24];
+        const aafont_t *vf;
+        int32_t wn, wv, wu, x, yl = HALF_UP(48 - AF_L_CAP_H) - AF_L_CAP_Y;
+        int32_t ym = yl + AF_L_CAP_Y + AF_L_CAP_H - AF_M_CAP_Y - AF_M_CAP_H;
+        param_format(d, t->p[big.pid], v, &u);
+        n[0] = 0;
+        if (big.ptrk != song.sel) {
+            n[0] = 'T';
+            n[1] = (char)('1' + big.ptrk);
+            n[2] = ' ';
+            n[3] = 0;
+        }
+        {
+            const char *nm = big.pid == P_LEVEL ? "LEVEL" : d->label;   /* (bank D's mixer: any engine) */
+#if FELUCCA_P600
+            if (eng_idx(t->eng_req) == ENGI_P600 && p6_big_name(big.pid))
+                nm = p6_big_name(big.pid);
+#endif
+            str_cpy(n + str_len(n), nm, sizeof n - str_len(n));
+        }
+        vf = large_face_has(v) ? &AF_L : &AF_M;
+        wn = ink_w(&AF_M, n) + 10;
+        {   /* (Marc: the text must not move as the value changes: placed for the parameter's widest value, from its
+             * lowest, middle and highest, the name and the value's start then fixed) */
+            char m[24];
+            const char *mu;
+            int32_t k, w;
+            wv = ink_w(vf, v);
+            wu = u[0] ? 4 + ink_w(&AF_M, u) : 0;
+            for (k = 0; k <= 8; k++) {                  /* (nine points over the range: ms, s, Hz, kHz each met) */
+                param_format(d, d->min + (d->max - d->min) * k / 8, m, &mu);
+                w = ink_w(vf, m);
+                if (w > wv)
+                    wv = w;
+                w = mu[0] ? 4 + ink_w(&AF_M, mu) : 0;   /* (and the widest unit: ms then s must not move it) */
+                if (w > wu)
+                    wu = w;
+            }
+        }
+        if (wn + wv + wu > 232)                         /* (no room: the unit goes, then the value in M) */
+            wu = 0;
+        if (wn + wv + wu > 232 && vf == &AF_L) {
+            vf = &AF_M;
+            wv = ink_w(vf, v);
+        }
+        x = HALF_UP(240 - wn - wv - wu);
+        if (!u[0])
+            wu = 0;
+        cv_begin(240, 48, T_BG);
+        cv_rect(0, 0, 240, 48, T_BG);
+        GFX_HOOK_ALIGN(0, 0, 240, 0, AL_H, "a controller's parameter centred over the footer");
+        cv_text(x, ym, &AF_M, n, T_MID);
+        cv_text(x + wn, vf == &AF_L ? yl : ym, vf, v, T_ACCENT);
+        if (wu)
+            cv_text(x + wn + ink_w(vf, v) + 4, ym, &AF_M, u, T_MID);   /* (the unit right after the value) */
+        cv_blit(0, BIG_Y);
     }
     /* (the sound: draw_foot itself draws its name big, in place) */
 }

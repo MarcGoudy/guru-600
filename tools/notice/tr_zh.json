@@ -1488,7 +1488,6 @@
  "Where each control of the Prophet-600's panel is on the Guru-600: useful if you know the original, or if you are following a recipe written for it.": "Prophet-600 面板上的每个控制在 Guru-600 上的位置：如果您熟悉原机，或正在参照为原机编写的音色配方，这会很有用。",
  "Guru-600 on the FM-1": "FM-1 上的 Guru-600",
  "EDIT › POLY MOD (1/11) › PM DS: FRQ A, FILT, BOTH": "EDIT › POLY MOD（1/11）› PM DS：FRQ A、FILT、BOTH",
- "EDIT › EXTRAS (7/11) › WHEEL (lower WHEEL = more LFO without the wheel)": "EDIT › EXTRAS（7/11）› WHEEL（WHEEL 越低 = 不用调制轮时 LFO 越多）",
  "LFO › LFO DEST › PIT, SHP, FLT (0 or 100 %)": "LFO › LFO DEST › PIT、SHP、FLT（0 或 100 %）",
  "EDIT › MIXER (4/11) › MIX (also HOME › KNOB 4)": "EDIT › MIXER（4/11）› MIX（也可用 HOME › KNOB 4）",
  "EDIT › FILTER (5/11) › CUT, RES, FENV (also HOME › KNOB 1 to 3)": "EDIT › FILTER（5/11）› CUT、RES、FENV（也可用 HOME › KNOB 1 至 3）",
@@ -1538,7 +1537,6 @@
  "A USB <b>data</b> cable, plugged directly into the computer.": "一根 USB <b>数据</b>线，直接连接到电脑。",
  "A Mac, a PC or a Linux computer.": "一台 Mac、PC 或 Linux 电脑。",
  "A MIDI-compatible browser: Chrome, Edge, Brave, Opera…": "一个支持 MIDI 的浏览器：Chrome、Edge、Brave、Opera…",
- "It needs a Mac with Apple silicon (M1 or later).": "需要一台搭载 Apple 芯片（M1 或更新）的 Mac。",
  "The first time only: right-click the application › <b>Open</b>, then confirm <b>Open</b>. If the Mac still refuses, open System Settings › Privacy & Security and click <b>Open Anyway</b>.": "仅限首次：右键点按该应用程序 › <b>打开</b>，然后确认<b>打开</b>。如果 Mac 仍然拒绝，请打开“系统设置”›“隐私与安全性”，点按<b>仍要打开</b>。",
  "Close every application that uses MIDI (music software, another browser tab with an editor).": "关闭所有使用 MIDI 的应用程序（音乐软件、打开了编辑器的其他浏览器标签页）。",
  "Switch off whenever you like: the FM-1 starts again with the sounds and the music as you left them (<b>MENU › SYSTEM › RESTORE LAST</b>). After a change, stop the sequencer and wait a minute before switching off.": "随时可以关机：FM-1 会以您离开时的音色和音乐重新启动（<b>MENU › SYSTEM › RESTORE LAST</b>）。更改之后，请停止音序器并等待一分钟再关机。",
@@ -1909,5 +1907,10 @@
  "PRESETS, then KNOB 2 turned: the sound's name and RES in big type.": "先转动 PRESETS，再转动 KNOB 2：音色名称和 RES 放大。",
  "<b>Back to the sound's value for one setting only</b>: hold <b>ENV</b> and turn the knob of that setting; it takes the sound's value again, and the other settings you changed stay as they are. A setting shared by the whole project (the tempo, the shared effects) goes back to its default.": "<b>只将一个设置恢复为音色的数值</b>：按住 <b>ENV</b> 并转动该设置的旋钮；它会恢复为音色的数值，您更改过的其他设置保持不变。整个项目共用的设置（速度、共用效果）会恢复为默认值。",
  "SOUND B: the sound to reach: any of the 255 places, then your USER sounds of the P600 engine (U01…), and round to 1.": "SOUND B：要变成的目标音色：255 个位置中的任意一个，然后是您的 P600 引擎 USER 音色（U01…），再回到 1。",
- "1–255, U01–U32": "1–255, U01–U32"
+ "1–255, U01–U32": "1–255, U01–U32",
+ "The knobs of a MIDI keyboard or controller show their value the same way (chapter {ch:midi}): in its card when the page shows the setting they change, otherwise its name and value in big type on the bottom line, for example FILTER REL 790 ms.": "MIDI 键盘或控制器的旋钮也以同样方式显示数值（第 {ch:midi} 章）：页面显示其所改设置时，在对应卡片中放大；否则在底行放大显示其名称和数值，例如 FILTER REL 790 ms。",
+ "The LFO the sound plays with the mod wheel at rest. 0 %: none, the wheel opens it all as you push it. 50 %: half at rest, all with the wheel pushed. 100 %: the LFO plays fully and the wheel does nothing.": "调制轮静止时音色播放的 LFO 量。0 %：没有，推动调制轮时将其完全打开。50 %：静止时一半，推到底时全部。100 %：LFO 完全播放，调制轮不起作用。",
+ "The LFO the sound plays with the mod wheel at rest. 0 %: none, the wheel opens it all; 50 %: half, all with the wheel pushed; 100 %: all, the wheel does nothing.": "调制轮静止时音色播放的 LFO 量。0 %：没有，调制轮将其完全打开；50 %：一半，推到底时全部；100 %：全部，调制轮不起作用。",
+ "EDIT › EXTRAS (7/11) › WHEEL (higher WHEEL = more LFO without the wheel)": "EDIT › EXTRAS（7/11）› WHEEL（WHEEL 越高 = 不用调制轮时 LFO 越多）",
+ "It runs on Macs with Apple silicon or Intel, from macOS 10.13 (High Sierra).": "适用于搭载 Apple 芯片或 Intel 处理器的 Mac，需 macOS 10.13（High Sierra）或更高版本。"
 }

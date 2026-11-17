@@ -1540,7 +1540,6 @@
  "Where each control of the Prophet-600's panel is on the Guru-600: useful if you know the original, or if you are following a recipe written for it.": "Dónde está en el Guru-600 cada control del panel del Prophet-600: útil si conoce el original o si sigue una receta escrita para él.",
  "Guru-600 on the FM-1": "Guru-600 en el FM-1",
  "EDIT › POLY MOD (1/11) › PM DS: FRQ A, FILT, BOTH": "EDIT › POLY MOD (1/11) › PM DS: FRQ A, FILT, BOTH",
- "EDIT › EXTRAS (7/11) › WHEEL (lower WHEEL = more LFO without the wheel)": "EDIT › EXTRAS (7/11) › WHEEL (WHEEL más bajo = más LFO sin la rueda)",
  "LFO › LFO DEST › PIT, SHP, FLT (0 or 100 %)": "LFO › LFO DEST › PIT, SHP, FLT (0 o 100 %)",
  "EDIT › MIXER (4/11) › MIX (also HOME › KNOB 4)": "EDIT › MIXER (4/11) › MIX (también HOME › KNOB 4)",
  "EDIT › FILTER (5/11) › CUT, RES, FENV (also HOME › KNOB 1 to 3)": "EDIT › FILTER (5/11) › CUT, RES, FENV (también HOME › KNOB 1 a 3)",
@@ -1590,7 +1589,6 @@
  "A USB <b>data</b> cable, plugged directly into the computer.": "Un cable USB <b>de datos</b>, conectado directamente al ordenador.",
  "A Mac, a PC or a Linux computer.": "Un Mac, un PC o un ordenador con Linux.",
  "A MIDI-compatible browser: Chrome, Edge, Brave, Opera…": "Un navegador compatible con MIDI: Chrome, Edge, Brave, Opera…",
- "It needs a Mac with Apple silicon (M1 or later).": "Necesita un Mac con chip de Apple (M1 o posterior).",
  "The first time only: right-click the application › <b>Open</b>, then confirm <b>Open</b>. If the Mac still refuses, open System Settings › Privacy & Security and click <b>Open Anyway</b>.": "Solo la primera vez: haga clic con el botón derecho en la aplicación › <b>Abrir</b> y confirme <b>Abrir</b>. Si el Mac aun así se niega, abra Ajustes del Sistema › Privacidad y seguridad y haga clic en <b>Abrir igualmente</b>.",
  "Close every application that uses MIDI (music software, another browser tab with an editor).": "Cierre todas las aplicaciones que usen MIDI (programas de música, otra pestaña del navegador con un editor).",
  "Switch off whenever you like: the FM-1 starts again with the sounds and the music as you left them (<b>MENU › SYSTEM › RESTORE LAST</b>). After a change, stop the sequencer and wait a minute before switching off.": "Apague cuando quiera: el FM-1 vuelve a arrancar con los sonidos y la música tal como los dejó (<b>MENU › SYSTEM › RESTORE LAST</b>). Tras un cambio, detenga el secuenciador y espere un minuto antes de apagar.",
@@ -1961,5 +1959,10 @@
  "PRESETS, then KNOB 2 turned: the sound's name and RES in big type.": "PRESETS y luego KNOB 2 girados: el nombre del sonido y RES en grande.",
  "<b>Back to the sound's value for one setting only</b>: hold <b>ENV</b> and turn the knob of that setting; it takes the sound's value again, and the other settings you changed stay as they are. A setting shared by the whole project (the tempo, the shared effects) goes back to its default.": "<b>Volver al valor del sonido en un solo ajuste</b>: mantenga <b>ENV</b> y gire el potenciómetro de ese ajuste; recupera el valor del sonido, y los demás ajustes que cambió se quedan como están. Un ajuste común a todo el proyecto (el tempo, los efectos compartidos) vuelve a su valor por defecto.",
  "SOUND B: the sound to reach: any of the 255 places, then your USER sounds of the P600 engine (U01…), and round to 1.": "SOUND B: el sonido de destino: cualquiera de las 255 posiciones y después sus sonidos USER del motor P600 (U01…), y vuelta a 1.",
- "1–255, U01–U32": "1–255, U01–U32"
+ "1–255, U01–U32": "1–255, U01–U32",
+ "The knobs of a MIDI keyboard or controller show their value the same way (chapter {ch:midi}): in its card when the page shows the setting they change, otherwise its name and value in big type on the bottom line, for example FILTER REL 790 ms.": "Los mandos de un teclado o controlador MIDI muestran su valor de la misma manera (capítulo {ch:midi}): en su tarjeta cuando la página muestra el ajuste que cambian; si no, su nombre y su valor en grande en la línea inferior, por ejemplo FILTER REL 790 ms.",
+ "The LFO the sound plays with the mod wheel at rest. 0 %: none, the wheel opens it all as you push it. 50 %: half at rest, all with the wheel pushed. 100 %: the LFO plays fully and the wheel does nothing.": "El LFO que toca el sonido con la rueda de modulación en reposo. 0 %: ninguno, la rueda lo abre entero al empujarla. 50 %: la mitad en reposo, todo con la rueda empujada. 100 %: el LFO suena entero y la rueda no hace nada.",
+ "The LFO the sound plays with the mod wheel at rest. 0 %: none, the wheel opens it all; 50 %: half, all with the wheel pushed; 100 %: all, the wheel does nothing.": "El LFO que toca el sonido con la rueda de modulación en reposo. 0 %: ninguno, la rueda lo abre entero; 50 %: la mitad, todo con la rueda empujada; 100 %: todo, la rueda no hace nada.",
+ "EDIT › EXTRAS (7/11) › WHEEL (higher WHEEL = more LFO without the wheel)": "EDIT › EXTRAS (7/11) › WHEEL (WHEEL más alto = más LFO sin la rueda)",
+ "It runs on Macs with Apple silicon or Intel, from macOS 10.13 (High Sierra).": "Funciona en Mac con Apple silicon o Intel, desde macOS 10.13 (High Sierra)."
 }

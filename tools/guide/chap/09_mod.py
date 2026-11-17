@@ -1,10 +1,10 @@
 # 09 · MOD: modulations, LFO, voice, envelope
-CH("mod", "MOD: modulations", "MOD : les modulations",
+CH("mod", "MOD: modulations", "MODULATION",
  P2("The MOD page gathers what moves the sound beyond the Prophet-600's panel: the modulation matrix, the LFO's other settings, the voice modes and the envelope's destinations. "
     "ACTIVE, on the right, lists everything that modulates the sound now.",
-    "La page MOD rassemble ce qui fait bouger le son au-delà de la façade du Prophet-600 : la matrice de modulation, les autres réglages du LFO, les modes de voix et les destinations de l'enveloppe. "
+    "La page MODULATION rassemble ce qui fait bouger le son au-delà de la façade du Prophet-600 : la matrice de modulation, les autres réglages du LFO, les modes de voix et les destinations de l'enveloppe. "
     "ACTIVE, à droite, liste tout ce qui module le son en ce moment.") +
- SHOT("mod", "The MOD page.", "La page MOD.") +
+ SHOT("mod", "The MOD page.", "La page MODULATION.") +
  BOX("note", ("Loading a P600 sound resets this page, except TO AMP and the amounts of slots 3 and 4. Keep your settings with STORE THE TRACK'S SOUND (a USER sound) or a project (chapter {ch:projects}).",
               "Charger un son P600 réinitialise cette page, sauf TO AMP et les quantités des emplacements 3 et 4. Gardez vos réglages avec STORE THE TRACK'S SOUND (un son USER) ou un projet (chapitre {ch:projects}).")) +
  H3("MOD MATRIX", "MOD MATRIX", FAM["lfo"]) +
@@ -30,8 +30,8 @@ CH("mod", "MOD: modulations", "MOD : les modulations",
        ("FADE", "Time for the LFO to come in after the note starts: a delayed vibrato.", "Temps d'arrivée du LFO après le début de la note : un vibrato retardé.", "1 ms – 10 s", "1 ms – 10 s"),
        ("TO AMP", "Volume: tremolo.", "Volume : trémolo.", "0–100 %", "0–100 %")]) +
  H3("VOICE", "VOICE", FAM["vce"]) +
- CTL3([("MODE", "POLY (up to six notes), MONO (one note, each note restarts the envelopes), LEGATO (one note, the envelopes restart only after a gap), UNISON (all the voices on one note: the SOUND page's UNISON).",
-        "POLY (jusqu'à six notes), MONO (une note, chaque note relance les enveloppes), LEGATO (une note, les enveloppes ne repartent qu'après un silence), UNISON (toutes les voix sur une note : l'UNISON de la page SOUND).", "4 modes", "4 modes"),
+ CTL3([("MODE", "How many notes the track plays at once. POLY (up to six notes), MONO (one note, each note restarts the envelopes), LEGATO (one note, the envelopes restart only after a gap), UNISON (all the voices on one note: the SOUND page's UNISON).",
+        "Combien de notes la piste joue à la fois. POLY (jusqu'à six notes), MONO (une note, chaque note relance les enveloppes), LEGATO (une note, les enveloppes ne repartent qu'après un silence), UNISON (toutes les voix sur une note : l'UNISON de la page SOUND).", "4 modes", "4 modes"),
        ("GLIDE", "How the glide is timed: RATE (a constant speed: a wide interval takes longer) or TIME (always the same time).", "Mode du glide : RATE (vitesse constante : un grand intervalle prend plus de temps) ou TIME (toujours le même temps).", "2 choices", "2 choix"),
        ("PRIORITY", "In MONO and LEGATO, which note sounds when you hold several: LAST, LOW or HIGH.", "En MONO et LEGATO, la note qui sonne quand vous en tenez plusieurs : LAST (la dernière), LOW (la plus grave) ou HIGH (la plus aiguë).", "3 choices", "3 choix"),
        ("VOICES", "How notes take voices: ROTATE (in rotation, so a note's release keeps ringing) or REUSE (a repeated note takes its own voice back).", "Attribution des voix : ROTATE (à tour de rôle : la fin d'une note continue ainsi de sonner) ou REUSE (une note répétée reprend sa propre voix).", "2 choices", "2 choix")]) +

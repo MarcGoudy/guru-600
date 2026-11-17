@@ -50,6 +50,8 @@ CH("screen", "Reading the screen: pages, colors, messages, help", "Lire l'écran
  shot("shots/scr_big_bpm.png", 'SELECT turned: the tempo in big type.', 'SELECT tourné : le tempo en grand.', 240) + '</div>' +
  P2("It goes back to its size 0.4 s after the last detent (the sound's name 0.8 s). Two knobs turned together each show their own value, side by side.",
     'Elle reprend sa taille 0,4 s après le dernier cran (le nom du son 0,8 s). Deux boutons tournés ensemble montrent chacun leur valeur, côte à côte.') +
+ P2("The knobs of a MIDI keyboard or controller show their value the same way (chapter {ch:midi}): in its card when the page shows the setting they change, otherwise its name and value in big type on the bottom line, for example FILTER REL 790 ms.",
+    "Les boutons d'un clavier ou d'un contrôleur MIDI montrent leur valeur de la même façon (chapitre {ch:midi}) : dans sa carte quand la page affiche le réglage qu'ils changent, sinon son nom et sa valeur en grand sur la ligne du bas, par exemple FILTER REL 790 ms.") +
  H3("Dialogs", "Les dialogues") +
  P2("Before anything is erased or replaced, a dialog asks for confirmation (sometimes a second line names what will be replaced): <span class='k'>OCT−</span> NO, <span class='k'>OCT+</span> YES. The other controls then do nothing; holding HOME opens the menu and cancels the dialog.",
     "Avant toute action qui efface ou remplace, un dialogue demande confirmation (parfois, une deuxième ligne nomme ce qui sera remplacé) : <span class='k'>OCT−</span> NON, <span class='k'>OCT+</span> OUI. Les autres commandes ne font alors rien ; maintenir HOME ouvre le menu et annule le dialogue.") +

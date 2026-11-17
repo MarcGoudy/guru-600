@@ -24,7 +24,7 @@ The Guru-600 turns the M-VAVE FM-1 into an emulator of the Sequential Circuits P
 - **Made for blind and visually impaired players too**: a screen reader, and the value you change shows in big type. Hold ENV and turn a knob: that setting back to the sound's own.
 - **A complete backup** of the FM-1 with the Guru-600 editor: switch to another firmware, come back, and find the machine exactly as you left it.
 - **The Guru-600 editor**, in the browser: the whole FM-1 on the computer's screen, as a panel inspired by the Prophet-600 with a keyboard: the P600 sounds, the sequencer, the song, the effects, the mix, the projects, the samples, the backup and the settings, with its own guide in 7 languages: **https://marcgoudy.github.io/guru-600/editor/**
-- **A Mac application** (Apple silicon) **and a Windows application** (Windows 10 and 11, 64-bit): the whole Guru-600 on the computer's screen, to discover it, prepare sounds or play without the FM-1. Their backups move to and from a FM-1.
+- **A Mac application** (Apple silicon or Intel, macOS 10.13 and later) **and a Windows application** (Windows 10 and 11, 64-bit): the whole Guru-600 on the computer's screen, to discover it, prepare sounds or play without the FM-1. Their backups move to and from a FM-1.
 
 Everything Felucca does remains: four tracks, thirteen other sound engines, a 64-step sequencer, an arpeggiator, effects, scales and chords, songs and projects.
 
@@ -74,7 +74,7 @@ Le Guru-600 transforme le M-VAVE FM-1 en émulateur du Prophet-600 de Sequential
 - **Pensé aussi pour les musiciens aveugles et malvoyants** : un lecteur d'écran, et la valeur que vous changez s'affiche en grand. ENV maintenu + un bouton : ce réglage revient à celui du son.
 - **Une sauvegarde complète** du FM-1 avec l'éditeur Guru-600 : passez à un autre firmware, revenez, et retrouvez la machine exactement telle que vous l'aviez laissée.
 - **L'éditeur Guru-600**, dans le navigateur : tout le FM-1 sur l'écran de l'ordinateur, sous la forme d'une façade inspirée du Prophet-600, avec un clavier : les sons P600, le séquenceur, le morceau, les effets, le mixage, les projets, les échantillons, la sauvegarde et les réglages, avec son propre guide en 7 langues : **https://marcgoudy.github.io/guru-600/editor/**
-- **Une application pour Mac** (puce Apple) **et une pour Windows** (Windows 10 et 11, 64 bits) : tout le Guru-600 sur l'écran de l'ordinateur, pour le découvrir, préparer des sons ou jouer sans le FM-1. Leurs sauvegardes passent d'un FM-1 à l'application, et inversement.
+- **Une application pour Mac** (puce Apple ou Intel, macOS 10.13 et plus récent) **et une pour Windows** (Windows 10 et 11, 64 bits) : tout le Guru-600 sur l'écran de l'ordinateur, pour le découvrir, préparer des sons ou jouer sans le FM-1. Leurs sauvegardes passent d'un FM-1 à l'application, et inversement.
 
 Tout ce que fait Felucca demeure : quatre pistes, treize autres moteurs sonores, un séquenceur de 64 pas, un arpégiateur, des effets, des gammes et des accords, des morceaux et des projets.
 
@@ -124,7 +124,7 @@ Der Guru-600 verwandelt den M-VAVE FM-1 in einen Emulator des Sequential Circuit
 - **Auch für blinde und sehbehinderte Musiker gedacht**: ein Bildschirmleser, und der Wert, den Sie ändern, erscheint groß. ENV gedrückt + ein Regler: diese Einstellung zurück zum Klang.
 - **Ein vollständiges Backup** des FM-1 mit dem Guru-600-Editor: Wechseln Sie zu einer anderen Firmware, kehren Sie zurück, und das Gerät ist genau so, wie Sie es verlassen haben.
 - **Der Guru-600-Editor** im Browser: der ganze FM-1 auf dem Bildschirm, als ein vom Prophet-600 inspiriertes Bedienfeld mit Tastatur: die P600-Sounds, der Sequencer, der Song, die Effekte, der Mix, die Projekte, die Samples, das Backup und die Einstellungen, mit eigener Anleitung in 7 Sprachen: **https://marcgoudy.github.io/guru-600/editor/**
-- **Eine Mac-Anwendung** (Apple Silicon) **und eine Windows-Anwendung** (Windows 10 und 11, 64 Bit): der ganze Guru-600 auf dem Bildschirm, um ihn kennenzulernen, Sounds vorzubereiten oder ohne den FM-1 zu spielen. Ihre Backups lassen sich zwischen FM-1 und Anwendung austauschen.
+- **Eine Mac-Anwendung** (Apple Silicon oder Intel, ab macOS 10.13) **und eine Windows-Anwendung** (Windows 10 und 11, 64 Bit): der ganze Guru-600 auf dem Bildschirm, um ihn kennenzulernen, Sounds vorzubereiten oder ohne den FM-1 zu spielen. Ihre Backups lassen sich zwischen FM-1 und Anwendung austauschen.
 
 Alles, was Felucca kann, bleibt erhalten: vier Spuren, dreizehn weitere Klangerzeugungen, ein 64-Schritt-Sequenzer, ein Arpeggiator, Effekte, Skalen und Akkorde, Songs und Projekte.
 
@@ -174,7 +174,7 @@ El Guru-600 convierte el M-VAVE FM-1 en un emulador del Sequential Circuits Prop
 - **Pensado también para músicos ciegos y con baja visión**: un lector de pantalla, y el valor que cambia se muestra en grande. ENV mantenido + un potenciómetro: ese ajuste vuelve al del sonido.
 - **Una copia de seguridad completa** del FM-1 con el editor Guru-600: cambie a otro firmware, vuelva, y encuentre la máquina exactamente como la dejó.
 - **El editor Guru-600**, en el navegador: todo el FM-1 en la pantalla del ordenador, como un panel inspirado en el Prophet-600, con un teclado: los sonidos P600, el secuenciador, la canción, los efectos, la mezcla, los proyectos, las muestras, la copia de seguridad y los ajustes, con su propia guía en 7 idiomas: **https://marcgoudy.github.io/guru-600/editor/**
-- **Una aplicación para Mac** (Apple silicon) **y otra para Windows** (Windows 10 y 11, 64 bits): todo el Guru-600 en la pantalla del ordenador, para descubrirlo, preparar sonidos o tocar sin el FM-1. Sus copias de seguridad pasan del FM-1 a la aplicación, y al revés.
+- **Una aplicación para Mac** (Apple silicon o Intel, desde macOS 10.13) **y otra para Windows** (Windows 10 y 11, 64 bits): todo el Guru-600 en la pantalla del ordenador, para descubrirlo, preparar sonidos o tocar sin el FM-1. Sus copias de seguridad pasan del FM-1 a la aplicación, y al revés.
 
 Todo lo que hace Felucca se mantiene: cuatro pistas, otros trece motores de sonido, un secuenciador de 64 pasos, un arpegiador, efectos, escalas y acordes, canciones y proyectos.
 
@@ -224,7 +224,7 @@ Il Guru-600 trasforma l'M-VAVE FM-1 in un emulatore del Sequential Circuits Prop
 - **Pensato anche per musicisti ciechi e ipovedenti**: un lettore di schermo, e il valore che cambiate appare in grande. ENV tenuto + una manopola: quell'impostazione torna a quella del suono.
 - **Un backup completo** dell'FM-1 con l'editor Guru-600: passate a un altro firmware, tornate indietro, e ritrovate la macchina esattamente come l'avevate lasciata.
 - **L'editor Guru-600**, nel browser: tutto l'FM-1 sullo schermo del computer, come un pannello ispirato al Prophet-600, con una tastiera: i suoni P600, il sequencer, la song, gli effetti, il mix, i progetti, i campioni, il backup e le impostazioni, con la sua guida in 7 lingue: **https://marcgoudy.github.io/guru-600/editor/**
-- **Un'applicazione per Mac** (Apple silicon) **e una per Windows** (Windows 10 e 11, 64 bit): tutto il Guru-600 sullo schermo del computer, per scoprirlo, preparare suoni o suonare senza l'FM-1. I loro backup passano dall'FM-1 all'applicazione, e viceversa.
+- **Un'applicazione per Mac** (Apple silicon o Intel, da macOS 10.13) **e una per Windows** (Windows 10 e 11, 64 bit): tutto il Guru-600 sullo schermo del computer, per scoprirlo, preparare suoni o suonare senza l'FM-1. I loro backup passano dall'FM-1 all'applicazione, e viceversa.
 
 Tutto ciò che fa Felucca resta: quattro tracce, altri tredici motori sonori, un sequencer a 64 passi, un arpeggiatore, effetti, scale e accordi, brani e progetti.
 
@@ -274,7 +274,7 @@ Guru-600 将 M-VAVE FM-1 变成 Sequential Circuits Prophet-600（1982 年）的
 - **同样为盲人和视障乐手设计**：屏幕阅读器，以及正在调整的数值放大显示。按住 ENV 并转动旋钮：该设置恢复为音色自身的数值。
 - **FM-1 的完整备份**（使用 Guru-600 编辑器）：换用其他固件后再换回来，设备会完全恢复到您离开时的状态。
 - **Guru-600 编辑器**（在浏览器中）：在电脑屏幕上呈现完整的 FM-1，形式为一块受 Prophet-600 启发、带键盘的面板：P600 音色、音序器、歌曲、效果、混音、工程、采样、备份和设置，并附有 7 种语言的专属指南：**https://marcgoudy.github.io/guru-600/editor/**
-- **Mac 应用程序**（Apple 芯片）**和 Windows 应用程序**（Windows 10 和 11，64 位）：在电脑屏幕上使用完整的 Guru-600，用来熟悉它、准备音色或在没有 FM-1 时演奏。其备份可以在 FM-1 和应用程序之间互相传递。
+- **Mac 应用程序**（Apple 芯片或 Intel，macOS 10.13 及以上）**和 Windows 应用程序**（Windows 10 和 11，64 位）：在电脑屏幕上使用完整的 Guru-600，用来熟悉它、准备音色或在没有 FM-1 时演奏。其备份可以在 FM-1 和应用程序之间互相传递。
 
 Felucca 的所有功能都保留：四条音轨、另外十三个音色引擎、64 步音序器、琶音器、效果器、音阶与和弦、乐曲和工程。
 
@@ -324,7 +324,7 @@ Guru-600 は、M-VAVE FM-1 を、MIDI を搭載した最初期のシンセサイ
 - **目の不自由な演奏者にも配慮**：スクリーンリーダーと、変更中の値の拡大表示。ENV を押したままノブを回すと、その設定が音色本来の値に戻ります。
 - **Guru-600 エディターによる FM-1 の完全バックアップ**：別のファームウェアに切り替えて戻しても、機器は離れたときとまったく同じ状態に戻ります。
 - **Guru-600 エディター**（ブラウザーで使用）：FM-1 のすべてを、Prophet-600 にインスパイアされた鍵盤付きのパネルとしてコンピューターの画面に表示します。P600 サウンド、シーケンサー、ソング、エフェクト、ミックス、プロジェクト、サンプル、バックアップ、設定。7 言語の専用ガイド付き：**https://marcgoudy.github.io/guru-600/editor/**
-- **Mac 用アプリケーション**（Apple シリコン）**と Windows 用アプリケーション**（Windows 10・11、64 ビット）：Guru-600 のすべてをコンピューターの画面で使えます。試したり、サウンドを準備したり、FM-1 なしで演奏したりできます。バックアップは FM-1 とアプリケーションの間でやり取りできます。
+- **Mac 用アプリケーション**（Apple シリコンまたは Intel、macOS 10.13 以降）**と Windows 用アプリケーション**（Windows 10・11、64 ビット）：Guru-600 のすべてをコンピューターの画面で使えます。試したり、サウンドを準備したり、FM-1 なしで演奏したりできます。バックアップは FM-1 とアプリケーションの間でやり取りできます。
 
 Felucca の機能はすべてそのまま使えます：4 トラック、ほかの 13 のサウンド・エンジン、64 ステップのシーケンサー、アルペジエーター、エフェクト、スケールとコード、ソングとプロジェクト。
 

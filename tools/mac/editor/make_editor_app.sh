@@ -23,7 +23,7 @@ cat > "$C/Info.plist" <<PL
 <key>CFBundleInfoDictionaryVersion</key><string>6.0</string>
 <key>CFBundleShortVersionString</key><string>$V</string>
 <key>CFBundleVersion</key><string>$V</string>
-<key>LSMinimumSystemVersion</key><string>11.0</string>
+<key>LSMinimumSystemVersion</key><string>10.13</string>
 <key>NSHighResolutionCapable</key><true/>
 </dict></plist>
 PL

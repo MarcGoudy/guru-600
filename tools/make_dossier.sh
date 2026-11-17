@@ -5,11 +5,16 @@ set -e
 F=~/Documents/FM-1; A=/Applications/Guru-600.app; R=$A/Contents/Resources; G=$F/Guru-600
 FW=$F/Felucca/build/felucca.fwsc
 V=$(sed -n 's/^#define GURU_VERSION "\(.*\)".*/\1/p' $F/Felucca/firmware/src/guru_version.h)   # (la version : le seul endroit)
+sed -i '' -E "s/\?v=[0-9.]+\"/?v=$V\"/g" $F/p600/editeur/index.html   # (17/11 : les fichiers de l'éditeur marqués de la version : un navigateur ne garde pas l'ancien)
 # 1. l'app : firmware, notice
 pkill -f "Guru-600.app/Contents/" || true
 # l'émulateur (avec sa façade) est l'exécutable même de l'app : sans lanceur en shell, « Ouvrir quand même » le couvre
 (cd $F/fm1-emu-src && cargo build --release -p fm1-live 2>&1 | tail -1)
-cp $F/fm1-emu-src/target/release/fm1-live $A/Contents/MacOS/Guru-600; rm -f $R/Guru-600
+# 17/11/2026 : aussi pour les Mac Intel, depuis macOS 10.13 (rustup a la cible x86_64 ; le cargo de Homebrew ne l'a pas)
+T=~/.rustup/toolchains/stable-aarch64-apple-darwin/bin
+(cd $F/fm1-emu-src && PATH="$T:$PATH" RUSTC=$T/rustc MACOSX_DEPLOYMENT_TARGET=10.13 $T/cargo build --release -p fm1-live --target x86_64-apple-darwin 2>&1 | tail -1)
+lipo -create $F/fm1-emu-src/target/release/fm1-live $F/fm1-emu-src/target/x86_64-apple-darwin/release/fm1-live -output $A/Contents/MacOS/Guru-600; rm -f $R/Guru-600
+/usr/libexec/PlistBuddy -c "Set :LSMinimumSystemVersion 10.13" $A/Contents/Info.plist 2>/dev/null || /usr/libexec/PlistBuddy -c "Add :LSMinimumSystemVersion string 10.13" $A/Contents/Info.plist
 cp $FW $F/Firmwares/guru-600.fwsc; cp $FW $F/Partage/guru-600.fwsc; cp $FW $R/guru-600.fwsc
 rm -rf $R/Notice; mkdir -p $R/Notice; (cd $F/p600/notice && cp index.html $R/Notice/ && cp -R img shots fonts $R/Notice/)
 /usr/libexec/PlistBuddy -c "Set :CFBundleShortVersionString $V" -c "Set :CFBundleVersion $V" $A/Contents/Info.plist   # (la version de l'app = celle du firmware)

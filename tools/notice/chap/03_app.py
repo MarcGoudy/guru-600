@@ -11,8 +11,8 @@ CH("app", "The Guru-600 application on a Mac", "L'application Guru-600 sur Mac",
     "<b>Guru-600.app</b> fait tourner le firmware Guru-600 dans un émulateur du FM-1 sur le Mac. Tout ce que décrit cette "
     "notice y fonctionne : découvrez le Guru-600 avant de l'installer, préparez des sons, apprenez les pages ou jouez sans "
     "l'appareil.") +
- BOX("note", ("It needs a Mac with Apple silicon (M1 or later).",
-              "Il faut un Mac à puce Apple (M1 ou plus récent).")) +
+ BOX("note", ("It runs on Macs with Apple silicon or Intel, from macOS 10.13 (High Sierra).",
+              "Elle fonctionne sur les Mac à puce Apple ou Intel, à partir de macOS 10.13 (High Sierra).")) +
  H3("Installing and opening it", "L'installer et l'ouvrir") +
  STEPS([('Download <b>Guru-600-Installer-Mac.dmg</b> from guru-600.com and open it.',
          'Téléchargez <b>Guru-600-Installer-Mac.dmg</b> sur guru-600.com et ouvrez-le.'),

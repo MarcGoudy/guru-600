@@ -1,8 +1,8 @@
 # 08 · FX: the effects
-CH("fx", "FX: the effects", "FX : les effets",
+CH("fx", "FX: the effects", "EFFETS",
  P2("The FX page follows the sound's path. Under <b>TRACK</b> <i>n</i>, the selected track's own effects: DIST and INSERT, then the SLICER, then the SENDS. Under <b>ALL TRACKS</b>, the effects the four tracks share, in the order of the sends (CHORUS, DELAY, REVERB), and MASTER on the right. A shared effect the track sends nothing to is dimmed and says <b>TRACK</b> <i>n</i> <b>· SEND 0 %</b>: its knobs still work for the other tracks.",
-    "La page FX suit le trajet du son. Sous <b>TRACK</b> <i>n</i>, les effets propres à la piste choisie : DIST et INSERT, puis le SLICER, puis les SENDS. Sous <b>ALL TRACKS</b>, les effets communs aux quatre pistes, dans l'ordre des envois (CHORUS, DELAY, REVERB), et MASTER à droite. Un effet commun auquel la piste n'envoie rien est estompé et indique <b>TRACK</b> <i>n</i> <b>· SEND 0 %</b> : ses boutons agissent toujours pour les autres pistes.") +
- SHOT("fx", "The FX page.", "La page FX.") +
+    "La page EFFETS suit le trajet du son. Sous <b>TRACK</b> <i>n</i>, les effets propres à la piste choisie : DIST et INSERT, puis le SLICER, puis les SENDS. Sous <b>ALL TRACKS</b>, les effets communs aux quatre pistes, dans l'ordre des envois (CHORUS, DELAY, REVERB), et MASTER à droite. Un effet commun auquel la piste n'envoie rien est estompé et indique <b>TRACK</b> <i>n</i> <b>· SEND 0 %</b> : ses boutons agissent toujours pour les autres pistes.") +
+ SHOT("fx", "The FX page.", "La page EFFETS.") +
  H3("INSERT", "INSERT", EDC["fx"]) +
  P2("<b>DIST</b>, the first knob: the track's own distortion, at the very start of its path. It is part of the sound: loading a sound sets it again.",
     "<b>DIST</b>, le premier bouton : la distorsion propre à la piste, au tout début de son trajet. Elle fait partie du son : charger un son la redéfinit.") +
@@ -27,7 +27,7 @@ CH("fx", "FX: the effects", "FX : les effets",
     "La part de la piste envoyée vers CHORUS, DELAY et REVERB, les effets communs du dessous. Les mêmes boutons que FX SENDS sur la page SOUND et sur la page TRACKS. Ils font partie du son : charger un son les redéfinit.") +
  H3("CHORUS, DELAY, REVERB (all tracks)", "CHORUS, DELAY, REVERB (toutes les pistes)", EDC["fx"]) +
  CTL3([("CHORUS · RATE", "The speed of the chorus.", "La vitesse du chorus.", "Hz", "Hz"),
-       ("CHORUS · DEPTH", "Its depth.", "Sa profondeur.", "0 … 100 %", "0 … 100 %"),
+       ("CHORUS · DEPTH", "How wide the chorus sways.", "L'ampleur du chorus.", "0 … 100 %", "0 … 100 %"),
        ("DELAY · TIME", "The time between repeats, in note values of the tempo (D: dotted, T: triplet).", "Le temps entre les répétitions, en valeurs de notes du tempo (D : pointée, T : triolet).",
         "4BAR … 1/32", "4BAR … 1/32"),
        ("DELAY · FEEDBACK", "How long the repeats last: the higher, the more of them. They always fade away in the end.", "La durée des répétitions : plus il est haut, plus elles sont nombreuses. Elles finissent toujours par s'éteindre.", "0 … 120 %", "0 … 120 %"),

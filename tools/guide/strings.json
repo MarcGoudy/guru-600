@@ -192,12 +192,16 @@
   "fr": "Les onglets et les boutons à côté"
  },
  {
-  "en": "SOUND, SEQUENCER, SONG, ARP, FX, MOD, TRACKS, PROJECTS, SAMPLES, BACKUP, SETTINGS: click one to show its page. Each has its chapter in this guide.",
-  "fr": "SOUND, SEQUENCER, SONG, ARP, FX, MOD, TRACKS, PROJECTS, SAMPLES, BACKUP, SETTINGS : cliquez sur l'un d'eux pour afficher sa page. Chacun a son chapitre dans ce guide."
+  "en": "SOUND, SEQUENCER, SONG, ARP, FX, MOD, TRACKS, PROJECTS, SAMPLES, BACKUP, SETTINGS: click one to show its page. Each has its chapter in this guide. A click on the Guru-600 logo brings back the SOUND page.",
+  "fr": "SOUND, SEQUENCER, SONG, ARPÉGIATEUR, EFFETS, MODULATION, TRACKS, PROJECTS, SAMPLES, BACKUP, SETTINGS : cliquez sur l'un d'eux pour afficher sa page. Chacun a son chapitre dans ce guide. Un clic sur le logo Guru-600 ramène à la page SOUND."
  },
  {
   "en": "The bulb button. LIT or FLAT: the lights glow as on a lit panel, or plain colors. Kept by the browser (also SETTINGS › EDITOR › LIGHTING).",
   "fr": "Le bouton ampoule. LIT ou FLAT : les voyants brillent comme sur une façade éclairée, ou des couleurs unies. Gardé par le navigateur (aussi SETTINGS › EDITOR › LIGHTING)."
+ },
+ {
+  "en": "The arrow button, between the bulb and FULL SCREEN: downloads the Guru-600 Editor application for your computer (Mac: its installer; Windows: its folder), after asking where to save it. The application keeps the editor on the computer: it then works without Internet, from its own icon. In the application, the button stays in its place but does nothing.",
+  "fr": "Le bouton flèche, entre l'ampoule et le plein écran : télécharge l'application Guru-600 Editor pour votre ordinateur (Mac : son installateur ; Windows : son dossier), après vous avoir demandé où l'enregistrer. L'application garde l'éditeur sur l'ordinateur : il fonctionne ensuite sans Internet, depuis sa propre icône. Dans l'application, le bouton reste à sa place mais n'agit plus."
  },
  {
   "en": "The button with four corners: full screen, and back. Also <kbd>F11</kbd>, <kbd>Alt</kbd>+<kbd>Enter</kbd> or a double click on the logo; <kbd>Esc</kbd> leaves it.",
@@ -368,12 +372,12 @@
   "fr": "0,1 … 40 Hz"
  },
  {
-  "en": "Click to choose the triangle (left) or the square (right). Unlit: a shape the Prophet-600 does not have, set on the FM-1.",
-  "fr": "Cliquez pour choisir le triangle (à gauche) ou le carré (à droite). Éteint : une forme que le Prophet-600 n'a pas, réglée sur le FM-1."
+  "en": "Click to choose the triangle wave (top) or the square wave (bottom); the shape chosen glows. Unlit: a shape the Prophet-600 does not have, set on the FM-1.",
+  "fr": "Cliquez pour choisir l'onde triangulaire (en haut) ou l'onde carrée (en bas) ; la forme choisie est lumineuse. Éteint : une forme que le Prophet-600 n'a pas, réglée sur le FM-1."
  },
  {
-  "en": "How much of the LFO plays with the mod wheel down. The rest, the wheel adds it. It is EXTRAS' WHEEL seen the other way round: the two knobs move together.",
-  "fr": "La part du LFO qui joue molette en bas. Le reste, la molette l'ajoute. C'est le WHEEL d'EXTRAS vu dans l'autre sens : les deux boutons bougent ensemble."
+  "en": "TRI / SQR",
+  "fr": "TRI / SQR"
  },
  {
   "en": "DESTINATION: what the LFO moves: the pitch of both oscillators, their pulse widths, the filter. Any combination.",
@@ -433,7 +437,7 @@
  },
  {
   "en": "All the voices on one note, huge. Unlit: the track plays chords (POLY). The other voice modes (MONO, LEGATO) are on the MOD page (chapter {ch:mod}).",
-  "fr": "Toutes les voix sur une note, énorme. Éteint : la piste joue des accords (POLY). Les autres modes de voix (MONO, LEGATO) sont sur la page MOD (chapitre {ch:mod})."
+  "fr": "Toutes les voix sur une note, énorme. Éteint : la piste joue des accords (POLY). Les autres modes de voix (MONO, LEGATO) sont sur la page MODULATION (chapitre {ch:mod})."
  },
  {
   "en": "FILTER, FILTER ENVELOPE",
@@ -544,8 +548,8 @@
   "fr": "Chaque voix dérive légèrement, en hauteur (jusqu'à ±20 cents) et en brillance, comme un vieux synthétiseur analogique. 0 % : parfaitement stable."
  },
  {
-  "en": "How much of the LFO the mod wheel controls. 0 %: the LFO always plays fully and the wheel does nothing. 100 %: no LFO until you push the wheel. The LFO's INITIAL AMOUNT shows the same thing the other way round.",
-  "fr": "La part du LFO que commande la molette. 0 % : le LFO joue toujours en entier et la molette ne fait rien. 100 % : pas de LFO tant que vous ne poussez pas la molette. L'INITIAL AMOUNT du LFO montre la même chose dans l'autre sens."
+  "en": "The LFO the sound plays with the mod wheel at rest: 0 % none, 100 % all; the wheel adds the rest.",
+  "fr": "Le LFO que joue le son molette au repos : 0 % aucun, 100 % tout ; la molette ajoute le reste."
  },
  {
   "en": "Playing harder opens the filter (negative: closes it). Requires velocity: a MIDI keyboard, or SELECT = VEL.",
@@ -608,12 +612,12 @@
   "fr": "Sur une place en orange : rétablit le son d'origine de la place, après confirmation. Gris sur une place qui a encore son son d'origine."
  },
  {
-  "en": "Saves the sound of the place as a Prophet-600 file (<i>number name</i>.syx) in the browser's downloads, under the name you give it: the Prophet-600 SysEx format, which other Prophet-600 tools read. It holds the sound as saved in the place: save your changes first.",
-  "fr": "Enregistre le son de la place dans un fichier Prophet-600 (<i>numéro nom</i>.syx), dans les téléchargements du navigateur, sous le nom que vous lui donnez : le format SysEx du Prophet-600, que lisent d'autres outils du Prophet-600. Il contient le son tel qu'il est enregistré dans la place : enregistrez d'abord vos changements."
+  "en": "Saves the sound of the place as a Prophet-600 .syx file. Saves the sound of the place as a Prophet-600 file (<i>number name</i>.syx) in the browser's downloads, under the name you give it: the Prophet-600 SysEx format, which other Prophet-600 tools read. It holds the sound as saved in the place: save your changes first.",
+  "fr": "Enregistre le son de la place dans un fichier .syx de Prophet-600. Enregistre le son de la place dans un fichier Prophet-600 (<i>numéro nom</i>.syx), dans les téléchargements du navigateur, sous le nom que vous lui donnez : le format SysEx du Prophet-600, que lisent d'autres outils du Prophet-600. Il contient le son tel qu'il est enregistré dans la place : enregistrez d'abord vos changements."
  },
  {
-  "en": "Puts a Prophet-600 sound from a file (.syx or .mid, Sequential's format or GliGli's) in the place lit yellow, after a confirmation, with its name (the one given on export, else the file's). With several sounds in the file, the first one.",
-  "fr": "Met un son de Prophet-600 tiré d'un fichier (.syx ou .mid, au format de Sequential ou de GliGli) dans la place éclairée en jaune, après confirmation, avec son nom (celui donné à l'export, sinon celui du fichier). Si le fichier en contient plusieurs, le premier."
+  "en": "Puts a Prophet-600 sound from a .syx or .mid file in the place lit yellow. Puts a Prophet-600 sound from a file (.syx or .mid, Sequential's format or GliGli's) in the place lit yellow, after a confirmation, with its name (the one given on export, else the file's). With several sounds in the file, the first one.",
+  "fr": "Met un son de Prophet-600 tiré d'un fichier .syx ou .mid dans la place éclairée en jaune. Met un son de Prophet-600 tiré d'un fichier (.syx ou .mid, au format de Sequential ou de GliGli) dans la place éclairée en jaune, après confirmation, avec son nom (celui donné à l'export, sinon celui du fichier). Si le fichier en contient plusieurs, le premier."
  },
  {
   "en": "Brings back the 255 original sounds, after a confirmation: every sound you saved or imported is erased. Make a backup first (chapter {ch:backup}).",
@@ -629,7 +633,7 @@
  },
  {
   "en": "<b>Saved with the sound</b>: the oscillators, the mixer, the filter and its envelope, the Poly-Mod, the amplifier envelope, the glide, UNI on or off (with its DETUNE), the LFO's rate, shape and destinations, WHEEL and VEL>FLT. <b>Not saved</b>: VINTAGE (back to 24 at each load), the effect sends (a kept sound plays dry, all sends at 0), the INSERT, MONO and LEG (a kept sound always plays POLY, or UNI if its unison was on), the LFO's PHASE and FADE and the other LFO settings of the MOD page, the ENVELOPE settings of the MOD page, MOD MATRIX slots 1–2, the VOICE settings of the MOD page and SPREAD.",
-  "fr": "<b>Enregistrés avec le son</b> : les oscillateurs, le mixeur, le filtre et son enveloppe, la Poly-Mod, l'enveloppe d'amplitude, le glide, UNI actif ou non (avec son DETUNE), la vitesse, la forme et les destinations du LFO, WHEEL et VEL>FLT. <b>Non enregistrés</b> : VINTAGE (revient à 24 à chaque chargement), les envois d'effets (un son gardé joue sec, tous les envois à 0), l'INSERT, MONO et LEG (un son gardé joue toujours en POLY, ou en UNI si son unisson était actif), PHASE et FADE du LFO et les autres réglages du LFO de la page MOD, les réglages ENVELOPE de la page MOD, les emplacements 1 et 2 de MOD MATRIX, les réglages VOICE de la page MOD et SPREAD."
+  "fr": "<b>Enregistrés avec le son</b> : les oscillateurs, le mixeur, le filtre et son enveloppe, la Poly-Mod, l'enveloppe d'amplitude, le glide, UNI actif ou non (avec son DETUNE), la vitesse, la forme et les destinations du LFO, WHEEL et VEL>FLT. <b>Non enregistrés</b> : VINTAGE (revient à 24 à chaque chargement), les envois d'effets (un son gardé joue sec, tous les envois à 0), l'INSERT, MONO et LEG (un son gardé joue toujours en POLY, ou en UNI si son unisson était actif), PHASE et FADE du LFO et les autres réglages du LFO de la page MODULATION, les réglages ENVELOPE de la page MODULATION, les emplacements 1 et 2 de MOD MATRIX, les réglages VOICE de la page MODULATION et SPREAD."
  },
  {
   "en": "To keep everything, use STORE THE TRACK'S SOUND on the PROJECTS page (a USER sound), or save the project. The places of your own are 55 at most, shared by the sounds you save and the sounds you import. Beyond: the message <b>The memory of the places is full</b>; free some with BACK TO ORIGINAL.",
@@ -645,7 +649,7 @@
  },
  {
   "en": "MORPH turns the track's sound (SOUND A) into another one (SOUND B), little by little, and MUTATE makes a variation of it.",
-  "fr": "MORPH transforme peu à peu le son de la piste (SOUND A) en un autre (SOUND B), et MUTATE en fait une variante."
+  "fr": "MORPH transforme peu à peu le son de la piste (SOUND A) en un autre (SOUND B), et MUTATE en tire une version au hasard."
  },
  {
   "en": "The track's sound. The arrows load the previous or next place (after 255 comes 1), as a click in SOUNDS. A click on the name opens the list: the 255 places, then your USER sounds of the P600 engine (USER), by family.",
@@ -749,7 +753,7 @@
  },
  {
   "en": "Transposes what the keys play, in semitones; the sequence too when QUANTIZE on the ARP page is SEQ+T. The same as TRANSPOSE on the ARP page.",
-  "fr": "Transpose ce que jouent les touches, en demi-tons ; la séquence aussi quand le QUANTIZE de la page ARP est sur SEQ+T. Le même que TRANSPOSE sur la page ARP."
+  "fr": "Transpose ce que jouent les touches, en demi-tons ; la séquence aussi quand le QUANTIZE de la page ARPÉGIATEUR est sur SEQ+T. Le même que TRANSPOSE sur la page ARPÉGIATEUR."
  },
  {
   "en": "−24 … +24 st",
@@ -808,8 +812,8 @@
   "fr": "En avance ou en retard, en seizièmes de pas : glissez vers le haut ou le bas. Entendu seulement avec QUANTIZE éteint."
  },
  {
-  "en": "Click to choose when the step plays: 1:2 (the first of every 2 loops), 2:2, 1:3 … 4:4, FILL (only while a fill is held on the FM-1: GLO + E4), !FILL (only when it is not). Choosing a condition puts CHANCE back to 100 %; dragging CHANCE removes the condition.",
-  "fr": "Cliquez pour choisir quand le pas joue : 1:2 (la première de chaque série de 2 boucles), 2:2, 1:3 … 4:4, FILL (seulement pendant un fill tenu sur le FM-1 : GLO + E4), !FILL (seulement en dehors). Choisir une condition remet CHANCE à 100 % ; glisser CHANCE retire la condition."
+  "en": "In which loops the step plays. Click to choose when the step plays: 1:2 (the first of every 2 loops), 2:2, 1:3 … 4:4, FILL (only while a fill is held on the FM-1: GLO + E4), !FILL (only when it is not). Choosing a condition puts CHANCE back to 100 %; dragging CHANCE removes the condition.",
+  "fr": "Dans quelles boucles le pas joue. Cliquez pour choisir quand le pas joue : 1:2 (la première de chaque série de 2 boucles), 2:2, 1:3 … 4:4, FILL (seulement pendant un fill tenu sur le FM-1 : GLO + E4), !FILL (seulement en dehors). Choisir une condition remet CHANCE à 100 % ; glisser CHANCE retire la condition."
  },
  {
   "en": "—, 1:2 … 4:4, FILL, !FILL",
@@ -841,7 +845,7 @@
  },
  {
   "en": "New notes taken from the track's scale (ARP page), on the same rhythm. On a DRUM track: a new beat.",
-  "fr": "De nouvelles notes prises dans la gamme de la piste (page ARP), sur le même rythme. Sur une piste DRUM : un nouveau rythme."
+  "fr": "De nouvelles notes prises dans la gamme de la piste (page ARPÉGIATEUR), sur le même rythme. Sur une piste DRUM : un nouveau rythme."
  },
  {
   "en": "A musical variation of the sequence; click again for more.",
@@ -1025,11 +1029,11 @@
  },
  {
   "en": "The ARP page gathers what turns the keys you play into music: the arpeggiator, the scale the keys play in, and the chord keys. These settings belong to the selected track, with any engine: they stay when you change sounds.",
-  "fr": "La page ARP rassemble ce qui transforme les touches jouées en musique : l'arpégiateur, la gamme dans laquelle jouent les touches, et les accords. Ces réglages appartiennent à la piste choisie, quel que soit son moteur : ils restent quand vous changez de son."
+  "fr": "La page ARPÉGIATEUR rassemble ce qui transforme les touches jouées en musique : l'arpégiateur, la gamme dans laquelle jouent les touches, et les accords. Ces réglages appartiennent à la piste choisie, quel que soit son moteur : ils restent quand vous changez de son."
  },
  {
   "en": "The ARP page.",
-  "fr": "La page ARP."
+  "fr": "La page ARPÉGIATEUR."
  },
  {
   "en": "ARPEGGIATOR",
@@ -1040,8 +1044,8 @@
   "fr": "L'arpégiateur joue l'une après l'autre les notes tenues, en rythme avec le tempo. Réglez MODE sur OFF pour revenir au jeu normal."
  },
  {
-  "en": "OFF, UP, DN, UPDN, RND, ORD (the order you pressed them), REPEAT, and for chords DNUP, UP+8, CONV, DIVG, PINKY, THUMB, WALK, CHORD.",
-  "fr": "OFF, UP, DN, UPDN, RND, ORD (l'ordre d'appui), REPEAT, et pour les accords DNUP, UP+8, CONV, DIVG, PINKY, THUMB, WALK, CHORD."
+  "en": "The order in which the arpeggio plays the held notes. OFF, UP, DN, UPDN, RND, ORD (the order you pressed them), REPEAT, and for chords DNUP, UP+8, CONV, DIVG, PINKY, THUMB, WALK, CHORD.",
+  "fr": "L'ordre dans lequel l'arpège joue les notes tenues. OFF, UP, DN, UPDN, RND, ORD (l'ordre d'appui), REPEAT, et pour les accords DNUP, UP+8, CONV, DIVG, PINKY, THUMB, WALK, CHORD."
  },
  {
   "en": "15 modes",
@@ -1064,8 +1068,8 @@
   "fr": "La longueur de chaque note."
  },
  {
-  "en": "Swing.",
-  "fr": "Swing."
+  "en": "Delays every other note: a lilt.",
+  "fr": "Retarde une note sur deux : un balancement."
  },
  {
   "en": "The chance that each note plays.",
@@ -1104,8 +1108,8 @@
   "fr": "16 gammes"
  },
  {
-  "en": "How the keys follow the scale: OFF (every key plays its own note), SNAP (a note outside the scale is moved down into it), WHITE (the scale on the white keys only: C4 plays ROOT, the black keys are silent), SEQ (like SNAP, and the sequence also plays in the scale), SEQ+T (like SEQ, and TRANSPOSE transposes the sequence too).",
-  "fr": "Comment les touches suivent la gamme : OFF (chaque touche joue sa note), SNAP (une note hors gamme est ramenée dans la gamme, vers le bas), WHITE (la gamme sur les seules touches blanches : C4 joue ROOT, les noires sont muettes), SEQ (comme SNAP, et la séquence joue aussi dans la gamme), SEQ+T (comme SEQ, et TRANSPOSE transpose aussi la séquence)."
+  "en": "Whether the keys play only the scale's notes. How the keys follow the scale: OFF (every key plays its own note), SNAP (a note outside the scale is moved down into it), WHITE (the scale on the white keys only: C4 plays ROOT, the black keys are silent), SEQ (like SNAP, and the sequence also plays in the scale), SEQ+T (like SEQ, and TRANSPOSE transposes the sequence too).",
+  "fr": "Si les touches ne jouent que les notes de la gamme. Comment les touches suivent la gamme : OFF (chaque touche joue sa note), SNAP (une note hors gamme est ramenée dans la gamme, vers le bas), WHITE (la gamme sur les seules touches blanches : C4 joue ROOT, les noires sont muettes), SEQ (comme SNAP, et la séquence joue aussi dans la gamme), SEQ+T (comme SEQ, et TRANSPOSE transpose aussi la séquence)."
  },
  {
   "en": "5 modes",
@@ -1132,8 +1136,8 @@
   "fr": "Un doigt joue un accord."
  },
  {
-  "en": "The chord keys: OFF, DIA3 (the scale's triads: every chord is in key), DIA7 (the scale's sevenths), MAJ, MIN, DOM7, MAJ7, MIN7, SUS4, POW (fixed shapes on every key), MEM (your own chord, learned on the FM-1).",
-  "fr": "Les accords : OFF, DIA3 (les triades de la gamme : chaque accord est dans la tonalité), DIA7 (les septièmes de la gamme), MAJ, MIN, DOM7, MAJ7, MIN7, SUS4, POW (des formes fixes sur chaque touche), MEM (votre propre accord, appris sur le FM-1)."
+  "en": "The chord a single key plays. The chord keys: OFF, DIA3 (the scale's triads: every chord is in key), DIA7 (the scale's sevenths), MAJ, MIN, DOM7, MAJ7, MIN7, SUS4, POW (fixed shapes on every key), MEM (your own chord, learned on the FM-1).",
+  "fr": "L'accord que joue une seule touche. Les accords : OFF, DIA3 (les triades de la gamme : chaque accord est dans la tonalité), DIA7 (les septièmes de la gamme), MAJ, MIN, DOM7, MAJ7, MIN7, SUS4, POW (des formes fixes sur chaque touche), MEM (votre propre accord, appris sur le FM-1)."
  },
  {
   "en": "11 choices",
@@ -1177,11 +1181,11 @@
  },
  {
   "en": "The FX page follows the sound's path. Under <b>TRACK</b> <i>n</i>, the selected track's own effects: DIST and INSERT, then the SLICER, then the SENDS. Under <b>ALL TRACKS</b>, the effects the four tracks share, in the order of the sends (CHORUS, DELAY, REVERB), and MASTER on the right. A shared effect the track sends nothing to is dimmed and says <b>TRACK</b> <i>n</i> <b>· SEND 0 %</b>: its knobs still work for the other tracks.",
-  "fr": "La page FX suit le trajet du son. Sous <b>TRACK</b> <i>n</i>, les effets propres à la piste choisie : DIST et INSERT, puis le SLICER, puis les SENDS. Sous <b>ALL TRACKS</b>, les effets communs aux quatre pistes, dans l'ordre des envois (CHORUS, DELAY, REVERB), et MASTER à droite. Un effet commun auquel la piste n'envoie rien est estompé et indique <b>TRACK</b> <i>n</i> <b>· SEND 0 %</b> : ses boutons agissent toujours pour les autres pistes."
+  "fr": "La page EFFETS suit le trajet du son. Sous <b>TRACK</b> <i>n</i>, les effets propres à la piste choisie : DIST et INSERT, puis le SLICER, puis les SENDS. Sous <b>ALL TRACKS</b>, les effets communs aux quatre pistes, dans l'ordre des envois (CHORUS, DELAY, REVERB), et MASTER à droite. Un effet commun auquel la piste n'envoie rien est estompé et indique <b>TRACK</b> <i>n</i> <b>· SEND 0 %</b> : ses boutons agissent toujours pour les autres pistes."
  },
  {
   "en": "The FX page.",
-  "fr": "La page FX."
+  "fr": "La page EFFETS."
  },
  {
   "en": "INSERT",
@@ -1292,8 +1296,8 @@
   "fr": "Hz"
  },
  {
-  "en": "Its depth.",
-  "fr": "Sa profondeur."
+  "en": "How wide the chorus sways.",
+  "fr": "L'ampleur du chorus."
  },
  {
   "en": "The time between repeats, in note values of the tempo (D: dotted, T: triplet).",
@@ -1373,11 +1377,11 @@
  },
  {
   "en": "The MOD page gathers what moves the sound beyond the Prophet-600's panel: the modulation matrix, the LFO's other settings, the voice modes and the envelope's destinations. ACTIVE, on the right, lists everything that modulates the sound now.",
-  "fr": "La page MOD rassemble ce qui fait bouger le son au-delà de la façade du Prophet-600 : la matrice de modulation, les autres réglages du LFO, les modes de voix et les destinations de l'enveloppe. ACTIVE, à droite, liste tout ce qui module le son en ce moment."
+  "fr": "La page MODULATION rassemble ce qui fait bouger le son au-delà de la façade du Prophet-600 : la matrice de modulation, les autres réglages du LFO, les modes de voix et les destinations de l'enveloppe. ACTIVE, à droite, liste tout ce qui module le son en ce moment."
  },
  {
   "en": "The MOD page.",
-  "fr": "La page MOD."
+  "fr": "La page MODULATION."
  },
  {
   "en": "Loading a P600 sound resets this page, except TO AMP and the amounts of slots 3 and 4. Keep your settings with STORE THE TRACK'S SOUND (a USER sound) or a project (chapter {ch:projects}).",
@@ -1452,8 +1456,8 @@
   "fr": "VOICE"
  },
  {
-  "en": "POLY (up to six notes), MONO (one note, each note restarts the envelopes), LEGATO (one note, the envelopes restart only after a gap), UNISON (all the voices on one note: the SOUND page's UNISON).",
-  "fr": "POLY (jusqu'à six notes), MONO (une note, chaque note relance les enveloppes), LEGATO (une note, les enveloppes ne repartent qu'après un silence), UNISON (toutes les voix sur une note : l'UNISON de la page SOUND)."
+  "en": "How many notes the track plays at once. POLY (up to six notes), MONO (one note, each note restarts the envelopes), LEGATO (one note, the envelopes restart only after a gap), UNISON (all the voices on one note: the SOUND page's UNISON).",
+  "fr": "Combien de notes la piste joue à la fois. POLY (jusqu'à six notes), MONO (une note, chaque note relance les enveloppes), LEGATO (une note, les enveloppes ne repartent qu'après un silence), UNISON (toutes les voix sur une note : l'UNISON de la page SOUND)."
  },
  {
   "en": "4 modes",
@@ -1985,7 +1989,7 @@
  },
  {
   "en": "MIDI IN, T1 … T4 CHANNEL and TUNE belong to the music: they are kept with the project (chapter {ch:projects}). TUNE is also the FX page's MASTER TUNE (chapter {ch:fx}).",
-  "fr": "MIDI IN, T1 … T4 CHANNEL et TUNE appartiennent à la musique : ils sont enregistrés avec le projet (chapitre {ch:projects}). TUNE est aussi le MASTER TUNE de la page FX (chapitre {ch:fx})."
+  "fr": "MIDI IN, T1 … T4 CHANNEL et TUNE appartiennent à la musique : ils sont enregistrés avec le projet (chapitre {ch:projects}). TUNE est aussi le MASTER TUNE de la page EFFETS (chapitre {ch:fx})."
  },
  {
   "en": "Set: the FM-1 keeps it once the music stops.",
@@ -2128,8 +2132,8 @@
   "fr": "MIDI"
  },
  {
-  "en": "Which MIDI channels play which track: CH1-4 = channels 1 to 4 on tracks 1 to 4 (same for the other blocks); SEL = every channel on the selected track; TRACK = the channels set below. Kept with the project.",
-  "fr": "Quels canaux MIDI jouent quelle piste : CH1-4 = canaux 1 à 4 sur les pistes 1 à 4 (de même pour les autres blocs) ; SEL = tous les canaux sur la piste choisie ; TRACK = les canaux réglés ci-dessous. Enregistré avec le projet."
+  "en": "The MIDI channels the tracks listen to. Which MIDI channels play which track: CH1-4 = channels 1 to 4 on tracks 1 to 4 (same for the other blocks); SEL = every channel on the selected track; TRACK = the channels set below. Kept with the project.",
+  "fr": "Les canaux MIDI qu'écoutent les pistes. Quels canaux MIDI jouent quelle piste : CH1-4 = canaux 1 à 4 sur les pistes 1 à 4 (de même pour les autres blocs) ; SEL = tous les canaux sur la piste choisie ; TRACK = les canaux réglés ci-dessous. Enregistré avec le projet."
  },
  {
   "en": "Each track's channel, used only with MIDI IN = TRACK (grayed out otherwise). Kept with the project.",
@@ -2140,8 +2144,8 @@
   "fr": "Une note MIDI destinée à une autre piste sélectionne cette piste."
  },
  {
-  "en": "ON: a MIDI controller's knobs work with no setup: CC 16 to 19 (bank A of an Arturia KeyStep) turn the FM-1's KNOB 1 to 4 on the page shown; CC 80 to 83 (its bank D) set the LEVEL of tracks 1 to 4, a mixer. OFF: CC 16 to 19 set P600 parameters.",
-  "fr": "ON : les boutons d'un contrôleur MIDI fonctionnent sans réglage : les CC 16 à 19 (banque A d'un KeyStep d'Arturia) tournent les KNOB 1 à 4 du FM-1 sur la page affichée ; les CC 80 à 83 (sa banque D) règlent le LEVEL des pistes 1 à 4, une table de mixage. OFF : les CC 16 à 19 règlent des paramètres P600."
+  "en": "A MIDI controller's knobs turn the FM-1's, with no setup. ON: a MIDI controller's knobs work with no setup: CC 16 to 19 (bank A of an Arturia KeyStep) turn the FM-1's KNOB 1 to 4 on the page shown; CC 80 to 83 (its bank D) set the LEVEL of tracks 1 to 4, a mixer. OFF: CC 16 to 19 set P600 parameters.",
+  "fr": "Les boutons d'un contrôleur MIDI agissent sur ceux du FM-1, sans réglage. ON : les boutons d'un contrôleur MIDI fonctionnent sans réglage : les CC 16 à 19 (banque A d'un KeyStep d'Arturia) tournent les KNOB 1 à 4 du FM-1 sur la page affichée ; les CC 80 à 83 (sa banque D) règlent le LEVEL des pistes 1 à 4, une table de mixage. OFF : les CC 16 à 19 règlent des paramètres P600."
  },
  {
   "en": "SYSTEM",
@@ -2305,15 +2309,15 @@
  },
  {
   "en": "ARP: arpeggiator, scale and chords",
-  "fr": "ARP : arpégiateur, gamme et accords"
+  "fr": "ARPÉGIATEUR : arpège, gamme et accords"
  },
  {
   "en": "FX: the effects",
-  "fr": "FX : les effets"
+  "fr": "EFFETS"
  },
  {
   "en": "MOD: modulations",
-  "fr": "MOD : les modulations"
+  "fr": "MODULATION"
  },
  {
   "en": "TRACKS: the mixer",

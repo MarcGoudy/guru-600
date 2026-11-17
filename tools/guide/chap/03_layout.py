@@ -18,8 +18,8 @@ CH("layout", "The editor at a glance", "L'éditeur d'un coup d'œil",
       ("CONNECT FM-1", "The connection (chapter {ch:connect}). FM-1 CONNECTED with its LED lit green: connected.", "La connexion (chapitre {ch:connect}). FM-1 CONNECTED avec son voyant vert allumé : connecté."),
       ("TRACK 1 2 3 4", "The selected track, lit orange: the pages show and change it, and the keyboard plays it.", "La piste choisie, éclairée en orange : les pages la montrent et la modifient, et le clavier la joue.")]) +
  H3("The tabs and the buttons beside them", "Les onglets et les boutons à côté", EDC["sound"]) +
- P2("SOUND, SEQUENCER, SONG, ARP, FX, MOD, TRACKS, PROJECTS, SAMPLES, BACKUP, SETTINGS: click one to show its page. Each has its chapter in this guide.",
-    "SOUND, SEQUENCER, SONG, ARP, FX, MOD, TRACKS, PROJECTS, SAMPLES, BACKUP, SETTINGS : cliquez sur l'un d'eux pour afficher sa page. Chacun a son chapitre dans ce guide.") +
+ P2("SOUND, SEQUENCER, SONG, ARP, FX, MOD, TRACKS, PROJECTS, SAMPLES, BACKUP, SETTINGS: click one to show its page. Each has its chapter in this guide. A click on the Guru-600 logo brings back the SOUND page.",
+    "SOUND, SEQUENCER, SONG, ARPÉGIATEUR, EFFETS, MODULATION, TRACKS, PROJECTS, SAMPLES, BACKUP, SETTINGS : cliquez sur l'un d'eux pour afficher sa page. Chacun a son chapitre dans ce guide. Un clic sur le logo Guru-600 ramène à la page SOUND.") +
  CTL([("LIT / FLAT", "The bulb button. LIT or FLAT: the lights glow as on a lit panel, or plain colors. Kept by the browser (also SETTINGS › EDITOR › LIGHTING).",
        "Le bouton ampoule. LIT ou FLAT : les voyants brillent comme sur une façade éclairée, ou des couleurs unies. Gardé par le navigateur (aussi SETTINGS › EDITOR › LIGHTING)."),
       ("DOWNLOAD THE APPLICATION", "The arrow button, between the bulb and FULL SCREEN: downloads the Guru-600 Editor application for your computer (Mac: its installer; Windows: its folder), after asking where to save it. The application keeps the editor on the computer: it then works without Internet, from its own icon. In the application, the button stays in its place but does nothing.",
