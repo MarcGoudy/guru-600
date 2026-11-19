@@ -410,8 +410,8 @@ function wheel(id, spring, put) {
   let f = spring ? 0.5 : 0;
   const show = () => { ind.style.top = ((1 - f) * (el.clientHeight - 12) + 2) + "px"; };
   const at = (e) => { const r = el.getBoundingClientRect(); f = Math.max(0, Math.min(1, 1 - (e.clientY - r.top) / r.height)); show(); put(f); };
-  let anim = 0, down = false;
-  el.addEventListener("pointerdown", (e) => { cancelAnimationFrame(anim); down = true; el.setPointerCapture(e.pointerId); at(e); });
+  let anim = 0, down = false, springing = false;
+  el.addEventListener("pointerdown", (e) => { cancelAnimationFrame(anim); springing = false; down = true; el.setPointerCapture(e.pointerId); at(e); });
   el.addEventListener("pointermove", (e) => { if (down && el.hasPointerCapture(e.pointerId)) at(e); });
   // PITCH let go: back to the middle on a spring (a damped swing, 0.3 s, a little past the middle and back); the
   // sound follows it but never crosses the middle (the note does not wobble), and ends exactly there
@@ -422,21 +422,23 @@ function wheel(id, spring, put) {
     const f0 = f - 0.5, t0 = performance.now();
     const step = (now) => {
       const t = (now - t0) / 1000;
-      if (t >= 0.3 || !f0) { f = 0.5; show(); put(0.5); return; }
+      if (t >= 0.3 || !f0) { springing = false; f = 0.5; show(); put(0.5); return; }
       const x = f0 * Math.exp(-t / 0.07) * Math.cos(2 * Math.PI * 4.5 * t);
       f = 0.5 + x; show();
       put(0.5 + (Math.sign(x) === Math.sign(f0) ? x : 0));
       anim = requestAnimationFrame(step);
     };
-    anim = requestAnimationFrame(step);
+    springing = true; anim = requestAnimationFrame(step);
   };
   for (const ev of ["pointerup", "pointercancel", "lostpointercapture"]) el.addEventListener(ev, let_go);
   addEventListener("pointerup", let_go); addEventListener("blur", let_go);
   new ResizeObserver(show).observe(el);
   show();
+  // (1.3.1: a MIDI keyboard's wheel, as the FM-1 tells it: shown, unless the mouse holds this one or it springs back)
+  return (v) => { if (down || springing) return; f = Math.max(0, Math.min(1, v)); show(); };
 }
-wheel("pitch", true, (f) => { const b = Math.round(f * 16383); if (dev) dev.link.out.send([0xE0 | track, b & 127, b >> 7]); });
-wheel("modw", false, (f) => { if (dev) dev.link.out.send([0xB0 | track, 1, Math.round(f * 127)]); });
+const pitchShow = wheel("pitch", true, (f) => { const b = Math.round(f * 16383); if (dev) dev.link.out.send([0xE0 | track, b & 127, b >> 7]); });
+const modShow = wheel("modw", false, (f) => { if (dev) dev.link.out.send([0xB0 | track, 1, Math.round(f * 127)]); });
 
 /* ------------------------------------------------------------------------------------ the tracks --- */
 let track = 0;
@@ -763,6 +765,14 @@ function onPush(kind, a) {
     if (typeof seqStepChanged === "function") seqStepChanged(a[0], a.length > 1 ? a[1] : track);
   } else if (kind === CMD.RELOAD) {
     clearTimeout(reloading); reloading = setTimeout(() => { reloadAll().then(reopenPage).catch((e) => console.warn(e)); reloadNamesOf(place); }, 60);
+  } else if (kind === "play") {   // (1.3.1) what a MIDI keyboard plays on the FM-1: kind track a b, by fours
+    for (let i = 0; i + 3 < a.length; i += 4) {
+      const [k, tr, x, y] = a.slice(i, i + 4);
+      if (tr !== track) continue;
+      if (k === 0) farNote(track, x, y);
+      else if (k === 1) pitchShow((x | (y << 7)) / 16383);
+      else if (k === 2) modShow(x / 127);
+    }
   } else if (kind === "beat") {   // playing, beat, armed, the step the track plays
     showBeat(a[0], a[1]); showTransport(a[0], a[2]);
     if (typeof seqPlayhead === "function") seqPlayhead(a[0] ? a[3] : -1);
@@ -869,3 +879,5 @@ function showPage(name) {
   for (const t of document.querySelectorAll(".tab")) t.classList.toggle("later", !document.querySelector(`[data-page="${t.dataset.tab}"]`));
 }
 document.querySelectorAll(".tab").forEach((t) => t.addEventListener("pointerdown", () => showPage(t.dataset.tab)));
+// (Marc 17/11: a click on the logo goes back to the SOUND page)
+for (const id of ["logo", "edword"]) { const e = document.getElementById(id); if (e) { e.style.cursor = "pointer"; e.addEventListener("pointerdown", () => showPage("sound")); } }

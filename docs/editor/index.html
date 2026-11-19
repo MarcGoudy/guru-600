@@ -173,11 +173,16 @@ body.flat #bpm.b1 { background: color-mix(in srgb, var(--trk) 45%, transparent);
 #led.off { background: radial-gradient(circle at 38% 32%, rgba(255, 255, 255, .3) 0 2px, transparent 3px), radial-gradient(circle at 50% 55%, #1d3a22, #0a140c 75%);
   border: 1.5px solid #203024; box-sizing: border-box; box-shadow: inset 0 1px 2px rgba(0, 0, 0, .8); }
 .radio .on i { background: radial-gradient(circle at 40% 35%, #ff8a80, var(--red) 55%, #c4221a); border-color: #ff6a60; box-shadow: 0 0 7px rgba(255, 80, 70, .7); }
-.shape { display: flex; flex-direction: column; align-items: center; gap: 8px; margin-top: 4px; }
-.shape .ic { display: flex; gap: 14px; }
-.pill { width: 38px; height: 24px; border-radius: 5px; background: var(--c); position: relative; cursor: pointer; }
-.pill::after { content: ""; position: absolute; top: 6px; width: 12px; height: 12px; border-radius: 50%; background: #fff; left: 6px; transition: left .08s; }
-.pill.r::after { left: 20px; }
+.shape { display: flex; flex-direction: column; align-items: center; gap: 6px; margin-top: 4px; }   /* (Marc 17/11: upright, as the other switches) */
+.pill { width: 26px; height: 46px; border-radius: 5px; background: var(--c); position: relative; cursor: pointer; box-sizing: border-box; }   /* (the size of .sw) */
+.pill::after { content: ""; position: absolute; left: 50%; margin-left: -6px; width: 12px; height: 12px; border-radius: 50%; background: #fff; top: 7px; transition: top .08s; }
+.pill.r::after { top: 27px; }
+/* (Marc 17/11) both shapes in the section's colour, the one chosen with a halo */
+.shape svg path { stroke: var(--c); transition: stroke .08s; }
+.shape svg.lit path { stroke: color-mix(in srgb, var(--c) 35%, #fff); }
+.shape svg.lit { filter: drop-shadow(0 0 2px #fff) drop-shadow(0 0 4px var(--c)) drop-shadow(0 0 9px var(--c)) drop-shadow(0 0 14px color-mix(in srgb, var(--c) 70%, transparent)); }   /* (Marc: a strong halo) */
+body.flat .shape svg.lit { filter: none; }
+body.flat .shape svg.lit path { stroke: var(--c); }
 .pill.none { box-sizing: border-box; }
 
 /* low sections (VOICE, FX SENDS): one line */
@@ -607,8 +612,8 @@ body.flat .fdr i { box-shadow: none; }
 </head>
 <body>
 <div id="stage"></div>
-<script src="guru-families.js?v=1.3.0"></script>
-<script src="guru-link.js?v=1.3.0"></script>
+<script src="guru-families.js?v=1.3.1"></script>
+<script src="guru-link.js?v=1.3.1"></script>
 <script>
 "use strict";
 /* ------------------------------------------------------------------ the parameters (core.h P_*, params.c) --- */
@@ -679,7 +684,7 @@ const SECTIONS = [
     { t: "DESTINATION", items: [S(P.PMDST, 1, { sl: "FREQ A" }), S(P.PMDST, 2, { sl: "FILTER" })], gtDy: 15, dy: -2 }] },   // (Marc 11/11 : le titre et les interrupteurs à la hauteur de ceux d'OSCILLATOR A)
   { id: "lfo", t: "LFO", c: "lfo", box: [12, 366, 386, 569], groups: [
     { t: "FREQUENCY", items: [K(P.LRATE)] }, { t: "SHAPE", items: [{ k: "shape" }] },
-    { t: "INITIAL<br>AMOUNT", items: [K(P.WHEEL, { inv: true })] },
+    // (INITIAL AMOUNT removed, Marc 17/11: the same value as EXTRAS WHEEL, which now reads the same way, 0 nothing, 100 all)
     { t: "DESTINATION", items: [S(P.LD_PIT, 0, { sl: "FREQ A-B", lfo: 1 }), S(P.LD_SHP, 0, { sl: "PW A-B", lfo: 1 }), S(P.LD_FLT, 0, { sl: "FILTER", lfo: 1 })] }] },
   { id: "osca", t: "OSCILLATOR A", c: "osc", box: [394, 155, 746, 358], groups: [
     { t: "FREQUENCY", items: [K(P.AFRQ)] }, { t: "SYNC", items: [S(P.SYNC, 0)] },
@@ -697,7 +702,7 @@ const SECTIONS = [
   { id: "amp", t: "AMPLIFIER", c: "env", box: [860, 498, 1206, 648], adsr: [P.ATK, P.DEC, P.SUS, P.REL] },
   { id: "vce", t: "VOICE", c: "vce", box: [12, 577, 336, 648], row: [[P.LEVEL, "LEVEL"], [P.PAN, "PAN"], [P.SPRD, "SPREAD"]] },
   { id: "fxs", t: "FX<br>SENDS", c: "fx", box: [344, 577, 746, 648], row: [[P.DIST, "DIST"], [P.CHOR, "CHORUS"], [P.DLY, "DELAY"], [P.REV, "REVERB"]] },
-  { id: "ext", t: "EXTRAS", c: "ext", box: [1214, 155, 1314, 648], col: [[P.VINT, "VINTAGE"], [P.WHEEL, "WHEEL"], [P.VEL, "VEL &gt; FLT"], [P.DETUNE, "DETUNE"]] },
+  { id: "ext", t: "EXTRAS", c: "ext", box: [1214, 155, 1314, 648], col: [[P.VINT, "VINTAGE"], [P.WHEEL, "WHEEL", { inv: true }], [P.VEL, "VEL &gt; FLT"], [P.DETUNE, "DETUNE"]] },
 ];
 const TABS = ["SOUND", "SEQUENCER", "SONG", "ARP", "FX", "MOD", "TRACKS", "PROJECTS", "SAMPLES", "BACKUP", "SETTINGS"];
 const PAGES = ["sound", "seq", "song", "arp", "fx", "mod", "tracks", "projects", "samples", "backup", "settings"];   // (data-page)
@@ -762,10 +767,13 @@ function makeItem(it) {
     e.appendChild(r);
   } else if (it.k === "shape") {
     const s = h("div", "shape");
-    s.innerHTML = `<div class="ic"><svg width="17" height="15" viewBox="0 0 17 15"><path d="M8.5 1.5 15.5 13.5H1.5Z" fill="none" stroke="var(--c)" stroke-width="2.2" stroke-linejoin="round"/></svg>` +
-      `<svg width="15" height="15" viewBox="0 0 15 15"><rect x="1.5" y="1.5" width="12" height="12" fill="none" stroke="var(--c)" stroke-width="2.2"/></svg></div>`;
-    const p = h("div", "pill"); s.appendChild(p); e.appendChild(s);
-    ctl.push({ kind: "shape", id: P.LWAVE, el: p });
+    // (Marc 17/11: the waves as instruments draw them, a triangle wave and a square wave, not a triangle and a square)
+    const tri = `<svg width="22" height="15" viewBox="0 0 22 15"><path d="M1.5 12.5 6.5 2.5 11 12.5 15.5 2.5 20.5 12.5" fill="none" stroke="var(--c)" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/></svg>`;
+    const sqr = `<svg width="22" height="15" viewBox="0 0 22 15"><path d="M1.5 12.5V2.5H11V12.5H20.5V2.5" fill="none" stroke="var(--c)" stroke-width="2.2" stroke-linejoin="miter" stroke-linecap="square"/></svg>`;
+    const p = h("div", "pill");   // (upright: the triangle above, the square below, Marc 17/11)
+    s.insertAdjacentHTML("beforeend", tri); s.appendChild(p); s.insertAdjacentHTML("beforeend", sqr); e.appendChild(s);
+    const [st, ss] = s.querySelectorAll("svg");
+    ctl.push({ kind: "shape", id: P.LWAVE, el: p, st, ss });
   }
   return e;
 }
@@ -799,7 +807,7 @@ function makeSection(s) {
   }
   if (s.col) {
     const c = h("div", "col");
-    s.col.forEach(([id, n]) => c.appendChild(makeItem(K(id, { tl: n }))));
+    s.col.forEach(([id, n, o]) => c.appendChild(makeItem(K(id, { tl: n, ...o }))));   // (o: { inv } for WHEEL, Marc 17/11: 0 nothing, 100 all)
     bd.appendChild(c);
   }
   if (s.row) {   // a low section: its title on the left, each knob with its label above and its value on its right
@@ -943,6 +951,7 @@ function render(only) {   // only: one parameter's controls (a change redraws on
       c.el.classList.toggle("on", v === c.v);
     } else if (c.kind === "shape") {
       c.el.classList.toggle("r", v === 3); c.el.classList.toggle("none", v !== 1 && v !== 3);
+      c.st.classList.toggle("lit", v === 1); c.ss.classList.toggle("lit", v === 3);   // (the shape chosen lit)
     } else if (c.kind === "unison") {
       c.el.classList.toggle("on", v === 3);
     } else if (c.kind === "fld") {   // a value shown in a field (its arrows step it)
@@ -995,27 +1004,27 @@ document.fonts.ready.then(layout);
 layout();
 addEventListener("resize", layout);
 </script>
-<script src="guru-dialog.js?v=1.3.0"></script>
-<script src="guru-app.js?v=1.3.0"></script>
-<script src="guru-seq.js?v=1.3.0"></script>
-<script src="guru-song.js?v=1.3.0"></script>
-<script src="guru-arp.js?v=1.3.0"></script>
-<script src="guru-fx.js?v=1.3.0"></script>
-<script src="guru-mod.js?v=1.3.0"></script>
-<script src="guru-tracks.js?v=1.3.0"></script>
-<script src="guru-projects.js?v=1.3.0"></script>
-<script src="guru-allsounds.js?v=1.3.0"></script>
-<script src="guru-sampleio.js?v=1.3.0"></script>
-<script src="guru-samples.js?v=1.3.0"></script>
-<script src="guru-backupio.js?v=1.3.0"></script>
-<script src="guru-backup.js?v=1.3.0"></script>
-<script src="guru-settings.js?v=1.3.0"></script>
-<script src="guru-tx.js?v=1.3.0"></script>
-<script src="guru-guide-ch.js?v=1.3.0"></script>
-<script src="guru-tips.js?v=1.3.0"></script>
-<script src="guru-gloss.js?v=1.3.0"></script>
-<script src="guru-labels.js?v=1.3.0"></script>
-<script src="guru-i18n.js?v=1.3.0"></script>
+<script src="guru-dialog.js?v=1.3.1"></script>
+<script src="guru-app.js?v=1.3.1"></script>
+<script src="guru-seq.js?v=1.3.1"></script>
+<script src="guru-song.js?v=1.3.1"></script>
+<script src="guru-arp.js?v=1.3.1"></script>
+<script src="guru-fx.js?v=1.3.1"></script>
+<script src="guru-mod.js?v=1.3.1"></script>
+<script src="guru-tracks.js?v=1.3.1"></script>
+<script src="guru-projects.js?v=1.3.1"></script>
+<script src="guru-allsounds.js?v=1.3.1"></script>
+<script src="guru-sampleio.js?v=1.3.1"></script>
+<script src="guru-samples.js?v=1.3.1"></script>
+<script src="guru-backupio.js?v=1.3.1"></script>
+<script src="guru-backup.js?v=1.3.1"></script>
+<script src="guru-settings.js?v=1.3.1"></script>
+<script src="guru-tx.js?v=1.3.1"></script>
+<script src="guru-guide-ch.js?v=1.3.1"></script>
+<script src="guru-tips.js?v=1.3.1"></script>
+<script src="guru-gloss.js?v=1.3.1"></script>
+<script src="guru-labels.js?v=1.3.1"></script>
+<script src="guru-i18n.js?v=1.3.1"></script>
 <script>showPage(new URLSearchParams(location.search).get("tab") || "sound");   // (?tab=seq: a page at once)</script>
 <script>   // (16/11/2026) an installable application that also works offline: the worker at the site's root (site/sw.js)
 if ("serviceWorker" in navigator && location.protocol.startsWith("http")) navigator.serviceWorker.register("../sw.js", { scope: "../" }).catch(() => {});</script>

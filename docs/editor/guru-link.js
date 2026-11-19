@@ -46,6 +46,7 @@ class Link {
     if (w && w.g6 === g6 && w.cmd === cmd && w.match(a)) { this.wait = null; clearTimeout(w.t); w.ok(a); return; }
     if (fl && PUSH.has(cmd)) this.onPush(cmd, a);
     if (g6 && cmd === P6.BEAT) this.onPush("beat", a);   // (Guru-600: the beat, firmware editor.c ed_p6_beat)
+    if (g6 && cmd === 18) this.onPush("play", a);        // (Guru-600 1.3.1: what a MIDI keyboard plays, editor.c ed_p6_play)
   }
   // a request: [header, cmd, args], match(a) the answer; resolves with the answer's args
   ask(g6, cmd, args = [], match = () => true, timeout = 600) {
