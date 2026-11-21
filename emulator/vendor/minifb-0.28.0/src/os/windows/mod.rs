@@ -338,6 +338,8 @@ unsafe extern "system" fn wnd_proc(
 
             let dc = wnd.dc;
             wingdi::SelectObject(dc, wnd.clear_brush as *mut winapi::ctypes::c_void);
+            // Guru-600 (17/11): the bars around the panel without the pen's black outline
+            wingdi::SelectObject(dc, wingdi::GetStockObject(wingdi::NULL_PEN as i32));
 
             match wnd.draw_params.scale_mode {
                 ScaleMode::AspectRatioStretch => {
@@ -430,6 +432,13 @@ unsafe extern "system" fn wnd_proc(
                 _ => (),
             }
 
+            // Guru-600 (17/11): a window resized smoothly (HALFTONE averages, as the Mac's linear filter does),
+            // and only when the panel is not shown pixel for pixel, where plain copying stays the fastest
+            let scaled = new_width != buffer_width || new_height != buffer_height;
+            wingdi::SetStretchBltMode(dc, if scaled { wingdi::HALFTONE } else { wingdi::COLORONCOLOR } as i32);
+            if scaled {
+                wingdi::SetBrushOrgEx(dc, 0, 0, std::ptr::null_mut());
+            }
             wingdi::StretchDIBits(
                 dc,
                 x_offset,

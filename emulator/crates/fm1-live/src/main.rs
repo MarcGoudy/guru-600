@@ -28,7 +28,7 @@
 use cpal::traits::{DeviceTrait, HostTrait, StreamTrait};
 use fm1_core::{Bus, Cpu};
 use fm1_soc::{machine, Action, Soc, VEC_BASE};
-use minifb::{Key, KeyRepeat, MouseButton, MouseMode, Window, WindowOptions};
+use minifb::{Key, KeyRepeat, MouseButton, MouseMode, ScaleMode, Window, WindowOptions};
 use panel::{Ctl, ENCS, H, W};
 /// Guru-600: on the Mac, the FM-1 panel drawn twice as fine as its window (panel.rs), sharp on a
 /// Retina screen; on Windows at the window's size (GDI's stretch would spoil the halving)
@@ -160,7 +160,7 @@ fn mac_default_args() -> Option<Vec<String>> {
         "--help-menu".into(), w[0].into(), w[1].into(), s(res.join("Notice").join("index.html")),
         "--backup-menu".into(), w[2].into(), w[3].into(), w[4].into(),
         "--window-menu".into(), w[5].into(),
-        "--about".into(), w[6].into(), "guru-600".into(), "A PROPHET-600 TRIBUTE".into(), "by Marc Massé, v1.1.0".into(),
+        "--about".into(), w[6].into(), "guru-600".into(), "A PROPHET-600 TRIBUTE".into(), match option_env!("GURU_VERSION") { Some(v) => format!("by Marc Massé, v{v}"), None => "by Marc Massé".into() },   // (21/11/2026 : la version du firmware, donnée par make_dossier.sh ; elle était écrite en dur, restée à 1.1.0)
         "based on Felucca by Leo Kuroshita".into(), s(f.join("MonRong.ttf")), s(f.join("InterTight.ttf")),
     ])
 }
@@ -692,7 +692,20 @@ fn shot(o: &Opts, ms: u64) {
     let skip_from: u64 = std::env::var("FM1_SKIP_FROM").ok().and_then(|v| v.parse().ok()).unwrap_or(0);
     let want_skip = m.soc.periph.skip_idle;
     m.soc.periph.skip_idle = want_skip && skip_from == 0;
+    // FM1_USB_CC=FROM-TO: a CC23 on channel 1 every 50 ms over the USB cable from FROM to TO ms (the boot freeze, 17/11)
+    let usb_cc: Option<(u64, u64)> = std::env::var("FM1_USB_CC").ok().and_then(|v| {
+        let (a, b) = v.split_once('-')?;
+        Some((a.parse().ok()?, b.parse().ok()?))
+    });
+    let mut usb_cc_next = usb_cc.map_or(u64::MAX, |(a, _)| a);
     while m.soc.periph.ms() + 40 < ms {
+        if let Some((_, to)) = usb_cc {
+            let now = m.soc.periph.ms();
+            if now >= usb_cc_next && now <= to {
+                m.soc.usb.out_q.extend(fm1_soc::usb::packets(&[0xb0, 23, (now / 50 % 128) as u8]));
+                usb_cc_next += 50;
+            }
+        }
         if want_skip && m.soc.periph.ms() >= skip_from {
             m.soc.periph.skip_idle = true;
         }
@@ -708,6 +721,9 @@ fn shot(o: &Opts, ms: u64) {
         }
     }
     println!("irq levels at the end: {:?}, ie {}, skipped {} cycles", m.cpu.irq_levels, m.cpu.ie, m.soc.periph.skipped);
+    if usb_cc.is_some() {
+        println!("usb: ready {}, {} bytes still queued, pc {:#010x}", m.soc.usb.ready(), m.soc.usb.out_q.len(), m.cpu.pc);
+    }
     let _ = m.soc.periph.led_take();
     let (mut in_isr, mut total) = (0u64, 0u64);
     while m.soc.periph.ms() < ms {
@@ -1140,7 +1156,10 @@ fn main() {
         let _ = emu.join();
         return;
     }
-    let mut win = match Window::new(&format!("{} (emulated)", title_head(&o.name)), W / PANEL_SCALE, H / PANEL_SCALE, WindowOptions::default()) {
+    // (Guru-600, 17/11: the window can be resized with the mouse; the panel follows at its own proportions,
+    // the rest of the window in the colour around the body)
+    let resizable = WindowOptions { resize: true, scale_mode: ScaleMode::AspectRatioStretch, ..WindowOptions::default() };
+    let mut win = match Window::new(&format!("{} (emulated)", title_head(&o.name)), W / PANEL_SCALE, H / PANEL_SCALE, resizable) {
         Ok(w) => w,
         Err(e) => {
             eprintln!("window: {e}");
@@ -1187,6 +1206,8 @@ fn main() {
         win.add_menu(&menu);
     }
     let mut base = panel::base();
+    let around = |win: &mut Window, base: &[u32]| win.set_background_color((base[0] >> 16) as u8, (base[0] >> 8) as u8, base[0] as u8);
+    around(&mut win, &base);
     let mut buf = vec![0u32; W * H];
     let mut down = [false; 41];
     let mut enc_clicks = [0i32; 7];
@@ -1221,6 +1242,7 @@ fn main() {
             Some(id @ 301..=306) => {                    // Guru-600: Color > one of the six
                 panel::set_colour(id - 301);
                 base = panel::base();
+                around(&mut win, &base);
                 if let Some(f) = colour_file(&o) {
                     let _ = std::fs::write(f, (id - 301).to_string());
                 }
@@ -1243,10 +1265,13 @@ fn main() {
         let pos = win.get_mouse_pos(MouseMode::Clamp);
         let pressed = win.get_mouse_down(MouseButton::Left);
         if let Some((mx, my)) = pos {
-            // (the window shows the panel at 1 / PANEL_SCALE: back to panel coordinates; drags in window points)
+            // (the window shows the panel at its own proportions, as large as it fits, centred: back to panel
+            // coordinates; drags in window points, as the knobs turned before the window could be resized)
             let (ww, wh) = win.get_size();
-            let (mx, my) = (mx * W as f32 / ww.max(1) as f32, my * H as f32 / wh.max(1) as f32);
-            let ps = PANEL_SCALE as f32;
+            let k = (ww.max(1) as f32 / W as f32).min(wh.max(1) as f32 / H as f32);
+            let (ox, oy) = ((ww as f32 - W as f32 * k) / 2.0, (wh as f32 - H as f32 * k) / 2.0);
+            let (mx, my) = (((mx - ox) / k).clamp(0.0, W as f32 - 1.0), ((my - oy) / k).clamp(0.0, H as f32 - 1.0));
+            let ps = 1.0 / k;
             if pressed && !was_pressed {
                 grab = panel::hit(mx, my);
                 last_y = my;

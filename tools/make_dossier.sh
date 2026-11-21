@@ -6,6 +6,7 @@ F=~/Documents/FM-1; A=/Applications/Guru-600.app; R=$A/Contents/Resources; G=$F/
 FW=$F/Felucca/build/felucca.fwsc
 V=$(sed -n 's/^#define GURU_VERSION "\(.*\)".*/\1/p' $F/Felucca/firmware/src/guru_version.h)   # (la version : le seul endroit)
 sed -i '' -E "s/\?v=[0-9.]+\"/?v=$V\"/g" $F/p600/editeur/index.html   # (17/11 : les fichiers de l'éditeur marqués de la version : un navigateur ne garde pas l'ancien)
+export GURU_VERSION=$V   # (21/11/2026 : lue par l'émulateur pour sa fenêtre « À propos », Mac et Windows)
 # 1. l'app : firmware, notice
 pkill -f "Guru-600.app/Contents/" || true
 # l'émulateur (avec sa façade) est l'exécutable même de l'app : sans lanceur en shell, « Ouvrir quand même » le couvre

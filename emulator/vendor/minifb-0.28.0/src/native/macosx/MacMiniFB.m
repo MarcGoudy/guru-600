@@ -42,7 +42,7 @@ NSString* g_shadersSrc = @
     "fragment float4 fragFunc(VertexOutput input [[stage_in]],\n"
             "texture2d<half> colorTexture [[ texture(0) ]])\n"
     "{\n"
-        "constexpr sampler textureSampler(mag_filter::nearest, min_filter::linear);\n"
+        "constexpr sampler textureSampler(mag_filter::linear, min_filter::linear);\n"
 
         // Sample the texture to obtain a color
         "const half4 colorSample = colorTexture.sample(textureSampler, input.texcoord);\n"

@@ -1250,6 +1250,12 @@ impl Cpu {
         if n == "psr" {
             self.flags = v & 0xf;
         }
+        // icfg's bit 9 is the global enable `icfg()` reads back: writing it back sets it, as `sti` / `cli` do.
+        // (Guru-600, 17/11: Felucca's motion_guard saves icfg, clears it with cli, and puts it back with
+        // `icfg = R`; the enable stayed off, fm1_ms stopped and the boot froze when CCs came in during the splash)
+        if n == "icfg" {
+            self.ie = v & 0x200 != 0;
+        }
         self.sreg_store[Self::sreg_index(n)] = v;
     }
 
@@ -1520,7 +1526,7 @@ impl Cpu {
             }
             Fast::IcfgRd { d } => self.regs[(d & 15) as usize] = self.icfg(),
             Fast::IcfgWr { s } => {
-                self.sreg_store[0] = self.regs[(s & 15) as usize];
+                self.set_sreg("icfg", self.regs[(s & 15) as usize]);
                 bus.irq_window();
             }
             Fast::BlockMove { base, mask, store, post } => {
