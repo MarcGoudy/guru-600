@@ -81,7 +81,7 @@ The user guide (PDF, 7 languages), the editor for use without internet and its g
 
 On a Mac, download **Guru-600-Installer-Mac.dmg** and follow the three steps shown in its window: the Guru-600 is free and not certified by Apple, so this small installer puts it in Applications for you.
 
-> **Guru-600 1.0 is a first release, installed at your own risk**: the author accepts no responsibility if your FM-1 is damaged or misbehaves. The official M-VAVE firmware can be put back at any time with M-VAVE's own updater.
+> **The Guru-600 is installed at your own risk**: the author accepts no responsibility if your FM-1 is damaged or misbehaves. The official M-VAVE firmware can be put back at any time with M-VAVE's own updater.
 
 <br>
 
@@ -143,7 +143,7 @@ La notice (PDF, 7 langues), l'éditeur à utiliser sans internet et son guide, e
 
 Sur Mac, téléchargez **Guru-600-Installer-Mac.dmg** et suivez les trois étapes affichées dans sa fenêtre : le Guru-600 est gratuit et n'est pas certifié par Apple, ce petit installateur le place donc pour vous dans Applications.
 
-> **Le Guru-600 1.0 est une première version, installée à vos risques** : l'auteur décline toute responsabilité si votre FM-1 est endommagé ou fonctionne mal. Le firmware officiel de M-VAVE peut être remis à tout moment avec l'outil de mise à jour de M-VAVE.
+> **Le Guru-600 s'installe à vos risques** : l'auteur décline toute responsabilité si votre FM-1 est endommagé ou fonctionne mal. Le firmware officiel de M-VAVE peut être remis à tout moment avec l'outil de mise à jour de M-VAVE.
 
 <br>
 
@@ -205,7 +205,7 @@ Die Bedienungsanleitung (PDF, 7 Sprachen), der Editor zur Nutzung ohne Internet 
 
 Auf dem Mac laden Sie **Guru-600-Installer-Mac.dmg** herunter und folgen den drei Schritten in seinem Fenster: Der Guru-600 ist kostenlos und nicht von Apple zertifiziert, deshalb legt ihn dieses kleine Installationsprogramm für Sie in Programme.
 
-> **Der Guru-600 1.0 ist eine erste Version, die Installation erfolgt auf eigene Gefahr**: Der Autor übernimmt keine Verantwortung, wenn Ihr FM-1 beschädigt wird oder nicht richtig funktioniert. Die offizielle M-VAVE-Firmware lässt sich jederzeit mit dem Update-Programm von M-VAVE wieder aufspielen.
+> **Die Installation des Guru-600 erfolgt auf eigene Gefahr**: Der Autor übernimmt keine Verantwortung, wenn Ihr FM-1 beschädigt wird oder nicht richtig funktioniert. Die offizielle M-VAVE-Firmware lässt sich jederzeit mit dem Update-Programm von M-VAVE wieder aufspielen.
 
 <br>
 
@@ -267,7 +267,7 @@ El manual (PDF, 7 idiomas), el editor para usar sin internet y su guía, y las a
 
 En Mac, descargue **Guru-600-Installer-Mac.dmg** y siga los tres pasos que muestra su ventana: el Guru-600 es gratuito y no está certificado por Apple, así que este pequeño instalador lo coloca por usted en Aplicaciones.
 
-> **El Guru-600 1.0 es una primera versión, instalada bajo su propio riesgo**: el autor no se hace responsable si su FM-1 resulta dañado o funciona mal. El firmware oficial de M-VAVE puede volver a instalarse en cualquier momento con el actualizador de M-VAVE.
+> **El Guru-600 se instala bajo su propio riesgo**: el autor no se hace responsable si su FM-1 resulta dañado o funciona mal. El firmware oficial de M-VAVE puede volver a instalarse en cualquier momento con el actualizador de M-VAVE.
 
 <br>
 
@@ -329,7 +329,7 @@ Il manuale (PDF, 7 lingue), l'editor da usare senza internet con la sua guida e 
 
 Su Mac, scaricate **Guru-600-Installer-Mac.dmg** e seguite i tre passaggi indicati nella sua finestra: il Guru-600 è gratuito e non è certificato da Apple, quindi questo piccolo programma di installazione lo mette per voi in Applicazioni.
 
-> **Il Guru-600 1.0 è una prima versione, installata a proprio rischio**: l'autore declina ogni responsabilità se l'FM-1 viene danneggiato o non funziona bene. Il firmware ufficiale di M-VAVE si può rimettere in qualsiasi momento con lo strumento di aggiornamento di M-VAVE.
+> **Il Guru-600 si installa a proprio rischio**: l'autore declina ogni responsabilità se l'FM-1 viene danneggiato o non funziona bene. Il firmware ufficiale di M-VAVE si può rimettere in qualsiasi momento con lo strumento di aggiornamento di M-VAVE.
 
 <br>
 
@@ -391,7 +391,7 @@ Felucca 的所有功能都保留：四条音轨、另外十三个音色引擎、
 
 在 Mac 上，请下载 **Guru-600-Installer-Mac.dmg** 并按照其窗口中的三个步骤操作：Guru-600 是免费的，没有经过 Apple 认证，因此由这个小安装程序为您放入“应用程序”。
 
-> **Guru-600 1.0 是首个版本，安装风险自负**：如果您的 FM-1 损坏或工作异常，作者概不负责。您可以随时用 M-VAVE 的更新工具装回 M-VAVE 官方固件。
+> <b>安装 Guru-600 风险自负</b>：如果您的 FM-1 损坏或工作异常，作者概不负责。您可以随时用 M-VAVE 的更新工具装回 M-VAVE 官方固件。
 
 <br>
 
@@ -453,7 +453,7 @@ Felucca の機能はすべてそのまま使えます：4 トラック、ほか�
 
 Mac では **Guru-600-Installer-Mac.dmg** をダウンロードし、ウインドウに表示される 3 つの手順に従ってください。Guru-600 は無料で Apple の認証を受けていないため、この小さなインストーラーが「アプリケーション」に入れます。
 
-> **Guru-600 1.0 は最初のバージョンで、インストールは自己責任でお願いします**：FM-1 が損傷したり正常に動作しなくなったりしても、作者は一切責任を負いません。M-VAVE の公式ファームウェアは、M-VAVE のアップデーターでいつでも元に戻せます。
+> <b>Guru-600 のインストールは自己責任でお願いします</b>：FM-1 が損傷したり正常に動作しなくなったりしても、作者は一切責任を負いません。M-VAVE の公式ファームウェアは、M-VAVE のアップデーターでいつでも元に戻せます。
 
 <br>
 
