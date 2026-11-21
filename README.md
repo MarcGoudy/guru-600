@@ -1,6 +1,45 @@
-**[English](#english) · [Français](#francais) · [Deutsch](#deutsch) · [Español](#espanol) · [Italiano](#italiano) · [中文](#zhongwen) · [日本語](#nihongo)**
+<p align="center"><b><a href="#english">English</a> · <a href="#francais">Français</a> · <a href="#deutsch">Deutsch</a> · <a href="#espanol">Español</a> · <a href="#italiano">Italiano</a> · <a href="#zhongwen">中文</a> · <a href="#nihongo">日本語</a></b></p>
 
-# Guru-600
+<br>
+
+<h1 align="center">
+<picture>
+<source media="(prefers-color-scheme: dark)" srcset="media/logo-dark.png">
+<img src="media/logo-light.png" alt="Guru-600" width="460">
+</picture>
+</h1>
+
+<br>
+
+<p align="center"><b>A Prophet-600 emulator firmware for the M-VAVE FM-1</b><br>255 sounds · MORPH · a full editor · Mac and Windows applications · 7 languages</p>
+
+<br>
+
+<p align="center"><img src="media/fm1-guru-600.webp" alt="The M-VAVE FM-1 running the Guru-600" width="720"></p>
+
+<br>
+
+<p align="center">
+<a href="https://marcgoudy.github.io/guru-600/"><img src="https://img.shields.io/badge/Install-in_your_browser-f26b1d?style=for-the-badge" alt="Install in your browser"></a>
+<a href="https://guru-600.com/editor/"><img src="https://img.shields.io/badge/Open-the_editor-3a8fd9?style=for-the-badge" alt="Open the editor"></a>
+<a href="https://github.com/MarcGoudy/guru-600/releases/latest"><img src="https://img.shields.io/github/v/release/MarcGoudy/guru-600?style=for-the-badge&label=Download&color=2e9e5b" alt="Download"></a>
+<a href="https://guru-600.com"><img src="https://img.shields.io/badge/Website-guru--600.com-555555?style=for-the-badge" alt="Website guru-600.com"></a>
+</p>
+
+<br>
+
+<p align="center"><img src="media/editor.webp" alt="The Guru-600 editor, SOUND page" width="820"></p>
+
+<br>
+
+<p align="center">
+<img src="media/screen-home.webp" alt="HOME screen" width="180">
+<img src="media/screen-p6_edit1.webp" alt="P600 sound editing" width="180">
+<img src="media/screen-pg_eq.webp" alt="Equalizer" width="180">
+<img src="media/screen-mixer.webp" alt="Mixer" width="180">
+</p>
+
+<br>
 
 <a name="english"></a>
 ## English
@@ -10,6 +49,8 @@
 **Website: https://guru-600.com** (the sounds, the emulator to try in the browser, the downloads, in 7 languages)
 
 The Guru-600 turns the M-VAVE FM-1 into an emulator of the Sequential Circuits Prophet-600 (1982), one of the very first synthesizers with MIDI. It replaces the FM-1's original firmware and can be removed at any time.
+
+<br>
 
 ### What it adds
 
@@ -28,6 +69,8 @@ The Guru-600 turns the M-VAVE FM-1 into an emulator of the Sequential Circuits P
 
 Everything Felucca does remains: four tracks, thirteen other sound engines, a 64-step sequencer, an arpeggiator, effects, scales and chords, songs and projects.
 
+<br>
+
 ### Install
 
 1. Connect the FM-1 to the computer with a USB data cable.
@@ -40,9 +83,13 @@ On a Mac, download **Guru-600-Installer-Mac.dmg** and follow the three steps sho
 
 > **Guru-600 1.0 is a first release, installed at your own risk**: the author accepts no responsibility if your FM-1 is damaged or misbehaves. The official M-VAVE firmware can be put back at any time with M-VAVE's own updater.
 
+<br>
+
 ### A bug, an idea?
 
 The Guru-600 is a free project, and it can always evolve. If you have an idea for a feature or an improvement, or if you find a bug, write to us here: [Issues](https://github.com/MarcGoudy/guru-600/issues) for bugs, [Discussions](https://github.com/MarcGoudy/guru-600/discussions) for ideas. Without a GitHub account: guru600fm1@gmail.com. For what comes from Felucca (the sequencer, the other engines…): [github.com/hugelton/Felucca](https://github.com/hugelton/Felucca).
+
+<br>
 
 ### Source code and licenses
 
@@ -50,7 +97,11 @@ The Guru-600 is free software under the **GNU GPL-3.0** license, like Felucca. T
 
 Prophet-600 is a trademark of its owner; the Guru-600 is not affiliated with Sequential. M-VAVE and FM-1 are trademarks of their respective owners.
 
+<br>
+
 ---
+
+<br>
 
 <a name="francais"></a>
 ## Français
@@ -60,6 +111,8 @@ Prophet-600 is a trademark of its owner; the Guru-600 is not affiliated with Seq
 **Site : https://guru-600.com** (les sons, l'émulateur à essayer dans le navigateur, les téléchargements, en 7 langues)
 
 Le Guru-600 transforme le M-VAVE FM-1 en émulateur du Prophet-600 de Sequential Circuits (1982), l'un des tout premiers synthétiseurs MIDI. Il remplace le firmware d'origine du FM-1 et peut être retiré à tout moment.
+
+<br>
 
 ### Ce qu'il ajoute
 
@@ -78,6 +131,8 @@ Le Guru-600 transforme le M-VAVE FM-1 en émulateur du Prophet-600 de Sequential
 
 Tout ce que fait Felucca demeure : quatre pistes, treize autres moteurs sonores, un séquenceur de 64 pas, un arpégiateur, des effets, des gammes et des accords, des morceaux et des projets.
 
+<br>
+
 ### Installer
 
 1. Branchez le FM-1 à l'ordinateur avec un câble USB de données.
@@ -90,9 +145,13 @@ Sur Mac, téléchargez **Guru-600-Installer-Mac.dmg** et suivez les trois étape
 
 > **Le Guru-600 1.0 est une première version, installée à vos risques** : l'auteur décline toute responsabilité si votre FM-1 est endommagé ou fonctionne mal. Le firmware officiel de M-VAVE peut être remis à tout moment avec l'outil de mise à jour de M-VAVE.
 
+<br>
+
 ### Un bug, une idée ?
 
 Le Guru-600 est un projet libre, qui peut toujours évoluer. Si vous avez une idée de fonctionnalité ou d'amélioration, ou si vous constatez un bug, écrivez-nous ici : [Issues](https://github.com/MarcGoudy/guru-600/issues) pour les bugs, [Discussions](https://github.com/MarcGoudy/guru-600/discussions) pour les idées. Sans compte GitHub : guru600fm1@gmail.com. Pour ce qui vient de Felucca (le séquenceur, les autres moteurs…) : [github.com/hugelton/Felucca](https://github.com/hugelton/Felucca).
+
+<br>
 
 ### Code source et licences
 
@@ -100,7 +159,11 @@ Le Guru-600 est un logiciel libre sous licence **GNU GPL-3.0**, comme Felucca. C
 
 Prophet-600 est une marque de son propriétaire ; le Guru-600 est sans lien avec Sequential. M-VAVE et FM-1 sont des marques de leurs propriétaires respectifs.
 
+<br>
+
 ---
+
+<br>
 
 <a name="deutsch"></a>
 ## Deutsch
@@ -110,6 +173,8 @@ Prophet-600 est une marque de son propriétaire ; le Guru-600 est sans lien avec
 **Website: https://guru-600.com** (die Klänge, der Emulator zum Ausprobieren im Browser, die Downloads, in 7 Sprachen)
 
 Der Guru-600 verwandelt den M-VAVE FM-1 in einen Emulator des Sequential Circuits Prophet-600 (1982), einen der allerersten Synthesizer mit MIDI. Er ersetzt die Original-Firmware des FM-1 und lässt sich jederzeit wieder entfernen.
+
+<br>
 
 ### Was er hinzufügt
 
@@ -128,6 +193,8 @@ Der Guru-600 verwandelt den M-VAVE FM-1 in einen Emulator des Sequential Circuit
 
 Alles, was Felucca kann, bleibt erhalten: vier Spuren, dreizehn weitere Klangerzeugungen, ein 64-Schritt-Sequenzer, ein Arpeggiator, Effekte, Skalen und Akkorde, Songs und Projekte.
 
+<br>
+
 ### Installation
 
 1. Schließen Sie den FM-1 mit einem USB-Datenkabel an den Computer an.
@@ -140,9 +207,13 @@ Auf dem Mac laden Sie **Guru-600-Installer-Mac.dmg** herunter und folgen den dre
 
 > **Der Guru-600 1.0 ist eine erste Version, die Installation erfolgt auf eigene Gefahr**: Der Autor übernimmt keine Verantwortung, wenn Ihr FM-1 beschädigt wird oder nicht richtig funktioniert. Die offizielle M-VAVE-Firmware lässt sich jederzeit mit dem Update-Programm von M-VAVE wieder aufspielen.
 
+<br>
+
 ### Ein Fehler, eine Idee?
 
 Der Guru-600 ist ein freies Projekt und kann sich immer weiterentwickeln. Wenn Sie eine Idee für eine Funktion oder Verbesserung haben oder einen Fehler bemerken, schreiben Sie uns hier: [Issues](https://github.com/MarcGoudy/guru-600/issues) für Fehler, [Discussions](https://github.com/MarcGoudy/guru-600/discussions) für Ideen. Ohne GitHub-Konto: guru600fm1@gmail.com. Für alles, was von Felucca stammt (der Sequenzer, die anderen Klangerzeugungen…): [github.com/hugelton/Felucca](https://github.com/hugelton/Felucca).
+
+<br>
 
 ### Quellcode und Lizenzen
 
@@ -150,7 +221,11 @@ Der Guru-600 ist freie Software unter der Lizenz **GNU GPL-3.0**, wie Felucca. D
 
 Prophet-600 ist eine Marke ihres Inhabers; der Guru-600 steht in keiner Verbindung zu Sequential. M-VAVE und FM-1 sind Marken ihrer jeweiligen Inhaber.
 
+<br>
+
 ---
+
+<br>
 
 <a name="espanol"></a>
 ## Español
@@ -160,6 +235,8 @@ Prophet-600 ist eine Marke ihres Inhabers; der Guru-600 steht in keiner Verbindu
 **Sitio web: https://guru-600.com** (los sonidos, el emulador para probar en el navegador, las descargas, en 7 idiomas)
 
 El Guru-600 convierte el M-VAVE FM-1 en un emulador del Sequential Circuits Prophet-600 (1982), uno de los primeros sintetizadores con MIDI. Sustituye el firmware original del FM-1 y puede quitarse en cualquier momento.
+
+<br>
 
 ### Lo que añade
 
@@ -178,6 +255,8 @@ El Guru-600 convierte el M-VAVE FM-1 en un emulador del Sequential Circuits Prop
 
 Todo lo que hace Felucca se mantiene: cuatro pistas, otros trece motores de sonido, un secuenciador de 64 pasos, un arpegiador, efectos, escalas y acordes, canciones y proyectos.
 
+<br>
+
 ### Instalación
 
 1. Conecte el FM-1 al ordenador con un cable USB de datos.
@@ -190,9 +269,13 @@ En Mac, descargue **Guru-600-Installer-Mac.dmg** y siga los tres pasos que muest
 
 > **El Guru-600 1.0 es una primera versión, instalada bajo su propio riesgo**: el autor no se hace responsable si su FM-1 resulta dañado o funciona mal. El firmware oficial de M-VAVE puede volver a instalarse en cualquier momento con el actualizador de M-VAVE.
 
+<br>
+
 ### ¿Un error, una idea?
 
 El Guru-600 es un proyecto libre, que siempre puede evolucionar. Si tiene una idea de función o de mejora, o si detecta un error, escríbanos aquí: [Issues](https://github.com/MarcGoudy/guru-600/issues) para los errores, [Discussions](https://github.com/MarcGoudy/guru-600/discussions) para las ideas. Sin cuenta de GitHub: guru600fm1@gmail.com. Para lo que viene de Felucca (el secuenciador, los demás motores…): [github.com/hugelton/Felucca](https://github.com/hugelton/Felucca).
+
+<br>
 
 ### Código fuente y licencias
 
@@ -200,7 +283,11 @@ El Guru-600 es software libre bajo la licencia **GNU GPL-3.0**, como Felucca. Es
 
 Prophet-600 es una marca de su propietario; el Guru-600 no tiene relación con Sequential. M-VAVE y FM-1 son marcas de sus respectivos propietarios.
 
+<br>
+
 ---
+
+<br>
 
 <a name="italiano"></a>
 ## Italiano
@@ -210,6 +297,8 @@ Prophet-600 es una marca de su propietario; el Guru-600 no tiene relación con S
 **Sito: https://guru-600.com** (i suoni, l'emulatore da provare nel browser, i download, in 7 lingue)
 
 Il Guru-600 trasforma l'M-VAVE FM-1 in un emulatore del Sequential Circuits Prophet-600 (1982), uno dei primissimi sintetizzatori dotati di MIDI. Sostituisce il firmware originale dell'FM-1 e si può rimuovere in qualsiasi momento.
+
+<br>
 
 ### Cosa aggiunge
 
@@ -228,6 +317,8 @@ Il Guru-600 trasforma l'M-VAVE FM-1 in un emulatore del Sequential Circuits Prop
 
 Tutto ciò che fa Felucca resta: quattro tracce, altri tredici motori sonori, un sequencer a 64 passi, un arpeggiatore, effetti, scale e accordi, brani e progetti.
 
+<br>
+
 ### Installazione
 
 1. Collegare l'FM-1 al computer con un cavo USB dati.
@@ -240,9 +331,13 @@ Su Mac, scaricate **Guru-600-Installer-Mac.dmg** e seguite i tre passaggi indica
 
 > **Il Guru-600 1.0 è una prima versione, installata a proprio rischio**: l'autore declina ogni responsabilità se l'FM-1 viene danneggiato o non funziona bene. Il firmware ufficiale di M-VAVE si può rimettere in qualsiasi momento con lo strumento di aggiornamento di M-VAVE.
 
+<br>
+
 ### Un bug, un'idea?
 
 Il Guru-600 è un progetto libero, che può sempre evolvere. Se avete un'idea per una funzione o un miglioramento, o se notate un bug, scriveteci qui: [Issues](https://github.com/MarcGoudy/guru-600/issues) per i bug, [Discussions](https://github.com/MarcGoudy/guru-600/discussions) per le idee. Senza un account GitHub: guru600fm1@gmail.com. Per ciò che viene da Felucca (il sequencer, gli altri motori…): [github.com/hugelton/Felucca](https://github.com/hugelton/Felucca).
+
+<br>
 
 ### Codice sorgente e licenze
 
@@ -250,16 +345,22 @@ Il Guru-600 è software libero con licenza **GNU GPL-3.0**, come Felucca. Questo
 
 Prophet-600 è un marchio del suo proprietario; il Guru-600 non è affiliato a Sequential. M-VAVE e FM-1 sono marchi dei rispettivi proprietari.
 
+<br>
+
 ---
+
+<br>
 
 <a name="zhongwen"></a>
 ## 中文
 
 **一款用于 M-VAVE FM-1 的 Prophet-600 模拟器固件**，作者 Marc Massé，基于 Leo Kuroshita 的 [Felucca](https://github.com/hugelton/Felucca)。
 
-**网站：https://guru-600.com**（音色、可在浏览器中试用的模拟器、下载，共 7 种语言）
+<b>网站：https://guru-600.com</b>（音色、可在浏览器中试用的模拟器、下载，共 7 种语言）
 
 Guru-600 将 M-VAVE FM-1 变成 Sequential Circuits Prophet-600（1982 年）的模拟器，Prophet-600 是最早配备 MIDI 的合成器之一。它会取代 FM-1 的原厂固件，可随时卸载。
+
+<br>
 
 ### 新增功能
 
@@ -278,6 +379,8 @@ Guru-600 将 M-VAVE FM-1 变成 Sequential Circuits Prophet-600（1982 年）的
 
 Felucca 的所有功能都保留：四条音轨、另外十三个音色引擎、64 步音序器、琶音器、效果器、音阶与和弦、乐曲和工程。
 
+<br>
+
 ### 安装
 
 1. 用 USB 数据线将 FM-1 连接到电脑。
@@ -290,9 +393,13 @@ Felucca 的所有功能都保留：四条音轨、另外十三个音色引擎、
 
 > **Guru-600 1.0 是首个版本，安装风险自负**：如果您的 FM-1 损坏或工作异常，作者概不负责。您可以随时用 M-VAVE 的更新工具装回 M-VAVE 官方固件。
 
+<br>
+
 ### 发现错误或有想法？
 
 Guru-600 是一个自由项目，可以不断发展。如果您有功能或改进的想法，或者发现了错误，请在这里联系我们：错误请提交 [Issues](https://github.com/MarcGoudy/guru-600/issues)，想法请发到 [Discussions](https://github.com/MarcGoudy/guru-600/discussions)。没有 GitHub 账号：guru600fm1@gmail.com。与 Felucca 有关的内容（音序器、其他引擎……）：[github.com/hugelton/Felucca](https://github.com/hugelton/Felucca)。
+
+<br>
 
 ### 源代码与许可证
 
@@ -300,16 +407,22 @@ Guru-600 是自由软件，与 Felucca 一样采用 **GNU GPL-3.0** 许可证。
 
 Prophet-600 是其所有者的商标；Guru-600 与 Sequential 无关。M-VAVE 和 FM-1 是其各自所有者的商标。
 
+<br>
+
 ---
+
+<br>
 
 <a name="nihongo"></a>
 ## 日本語
 
 **M-VAVE FM-1 用の Prophet-600 エミュレーター・ファームウェア**。作者は Marc Massé、Leo Kuroshita による [Felucca](https://github.com/hugelton/Felucca) をベースにしています。
 
-**ウェブサイト：https://guru-600.com**（サウンド、ブラウザで試せるエミュレーター、ダウンロード、7 言語）
+<b>ウェブサイト：https://guru-600.com</b>（サウンド、ブラウザで試せるエミュレーター、ダウンロード、7 言語）
 
 Guru-600 は、M-VAVE FM-1 を、MIDI を搭載した最初期のシンセサイザーの一つである Sequential Circuits Prophet-600（1982年）のエミュレーターに変えます。FM-1 の純正ファームウェアと置き換わり、いつでも元に戻せます。
+
+<br>
 
 ### 追加される機能
 
@@ -328,6 +441,8 @@ Guru-600 は、M-VAVE FM-1 を、MIDI を搭載した最初期のシンセサイ
 
 Felucca の機能はすべてそのまま使えます：4 トラック、ほかの 13 のサウンド・エンジン、64 ステップのシーケンサー、アルペジエーター、エフェクト、スケールとコード、ソングとプロジェクト。
 
+<br>
+
 ### インストール
 
 1. USB データ・ケーブルで FM-1 をコンピューターに接続します。
@@ -340,9 +455,13 @@ Mac では **Guru-600-Installer-Mac.dmg** をダウンロードし、ウイン�
 
 > **Guru-600 1.0 は最初のバージョンで、インストールは自己責任でお願いします**：FM-1 が損傷したり正常に動作しなくなったりしても、作者は一切責任を負いません。M-VAVE の公式ファームウェアは、M-VAVE のアップデーターでいつでも元に戻せます。
 
+<br>
+
 ### バグやアイデアは？
 
 Guru-600 はフリーなプロジェクトで、これからも進化し続けます。機能や改善のアイデアがあるとき、またはバグを見つけたときは、こちらでお知らせください。バグは [Issues](https://github.com/MarcGoudy/guru-600/issues) に、アイデアは [Discussions](https://github.com/MarcGoudy/guru-600/discussions) にどうぞ。GitHub アカウントがない場合：guru600fm1@gmail.com。Felucca に由来するもの（シーケンサー、ほかのエンジンなど）は：[github.com/hugelton/Felucca](https://github.com/hugelton/Felucca)。
+
+<br>
 
 ### ソースコードとライセンス
 
