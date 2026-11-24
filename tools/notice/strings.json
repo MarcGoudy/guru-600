@@ -20,12 +20,12 @@
   "fr": "Ce qu'il ajoute"
  },
  {
-  "en": "<b>A P600 sound engine</b> built like the original: two oscillators per voice with sync, a 24 dB filter with its own envelope, Poly-Mod, an LFO, unison and six voices (chapter {ch:p600}).",
-  "fr": "<b>Un moteur sonore P600</b> construit comme l'original : deux oscillateurs par voix avec synchronisation, un filtre 24 dB avec son enveloppe, la Poly-Mod, un LFO, l'unisson et six voix (chapitre {ch:p600})."
+  "en": "<b>A P600 sound engine</b> built like the original: two oscillators per voice with sync, a 24 dB filter with its own envelope, Poly-Mod, an LFO, unison and six voices (chapter {ch:p600}). It also does what 1982 could not: a high-pass filter, a sub-oscillator, noise, a second LFO, Poly-Mod on pulse width A, and eight voices instead of six.",
+  "fr": "<b>Un moteur sonore P600</b> construit comme l'original : deux oscillateurs par voix avec synchronisation, un filtre 24 dB avec son enveloppe, la Poly-Mod, un LFO, l'unisson et six voix (chapitre {ch:p600}). Il fait aussi ce que 1982 ne permettait pas : un filtre passe-haut, un sous-oscillateur, du bruit, un second LFO, la Poly-Mod sur la largeur d'impulsion de A, et huit voix au lieu de six."
  },
  {
-  "en": "<b>255 sounds</b>: the Prophet-600's 100 factory programs under their real names, 100 free sounds from the Prophet-600 community, and 55 sounds made for the Guru-600. With the 71 sounds of Felucca's other engines, the list holds 326 sounds, plus 32 USER slots for yours (chapter {ch:sounds}).",
-  "fr": "<b>255 sons</b> : les 100 programmes d'usine du Prophet-600 sous leurs vrais noms, 100 sons libres de la communauté du Prophet-600 et 55 sons créés pour le Guru-600. Avec les 71 sons des autres moteurs de Felucca, la liste compte 326 sons, plus 32 emplacements USER pour les vôtres (chapitre {ch:sounds})."
+  "en": "<b>255 sounds</b>: the Prophet-600's 100 factory programs under their real names, 100 free sounds from the Prophet-600 community, and 55 sounds made for the Guru-600. With the 69 sounds of Felucca's other engines, the list holds 324 sounds, plus 32 USER slots for yours (chapter {ch:sounds}).",
+  "fr": "<b>255 sons</b> : les 100 programmes d'usine du Prophet-600 sous leurs vrais noms, 100 sons libres de la communauté du Prophet-600 et 55 sons créés pour le Guru-600. Avec les 69 sons des autres moteurs de Felucca, la liste compte 324 sons, plus 32 emplacements USER pour les vôtres (chapitre {ch:sounds})."
  },
  {
   "en": "<b>MORPH and MUTATE</b>: gradually turn one sound into another, or create a variation of a sound in one gesture (chapter {ch:morph}).",
@@ -792,8 +792,8 @@
   "fr": "7. Voix, unisson et glide"
  },
  {
-  "en": "Six <b>voices</b> mean six notes at once. <b>UNISON</b> stacks all the voices on one note for a huge single-note sound (basses, leads). <b>GLIDE</b> slides from one note to the next instead of jumping.",
-  "fr": "Six <b>voix</b>, c'est six notes en même temps. L'<b>UNISON</b> empile toutes les voix sur une seule note pour un son énorme (basses, leads). Le <b>GLIDE</b> fait glisser d'une note à l'autre au lieu de sauter."
+  "en": "Six <b>voices</b> mean six notes at once (eight on the Guru-600 if you choose: MIXER › POLY). <b>UNISON</b> stacks all the voices on one note for a huge single-note sound (basses, leads). <b>GLIDE</b> slides from one note to the next instead of jumping.",
+  "fr": "Six <b>voix</b>, c'est six notes en même temps (huit sur le Guru-600 si vous le choisissez : MIXER › POLY). L'<b>UNISON</b> empile toutes les voix sur une seule note pour un son énorme (basses, leads). Le <b>GLIDE</b> fait glisser d'une note à l'autre au lieu de sauter."
  },
  {
   "en": "8. Effects",
@@ -1536,12 +1536,12 @@
   "fr": "Atteindre les pages"
  },
  {
-  "en": "Choose a P600 track (ALGORITHM; track 1 at power-on) and press <b>EDIT</b>: page 1/11, POLY MOD. Press EDIT again for the next page, double tap for the previous one.",
-  "fr": "Choisissez une piste P600 (ALGORITHM ; la piste 1 à l'allumage) et appuyez sur <b>EDIT</b> : la page 1/11, POLY MOD. Appuyez de nouveau sur EDIT pour la page suivante, double appui pour la page précédente."
+  "en": "Choose a P600 track (ALGORITHM; track 1 at power-on) and press <b>EDIT</b>: page 1/12, POLY MOD. Press EDIT again for the next page, double tap for the previous one.",
+  "fr": "Choisissez une piste P600 (ALGORITHM ; la piste 1 à l'allumage) et appuyez sur <b>EDIT</b> : la page 1/12, POLY MOD. Appuyez de nouveau sur EDIT pour la page suivante, double appui pour la page précédente."
  },
  {
-  "en": "EDIT reopens the page you left. The page name and number are at the bottom right of the screen: POLY MOD 1/11, OSC 2/11…",
-  "fr": "EDIT rouvre la page que vous avez quittée. Le nom et le numéro de la page sont en bas à droite de l'écran : POLY MOD 1/11, OSC 2/11…"
+  "en": "EDIT reopens the page you left. The page name and number are at the bottom right of the screen: POLY MOD 1/12, OSC 2/12…",
+  "fr": "EDIT rouvre la page que vous avez quittée. Le nom et le numéro de la page sont en bas à droite de l'écran : POLY MOD 1/12, OSC 2/12…"
  },
  {
   "en": "KNOB 1 to 4 (top right) change the four settings, left to right. The amplifier envelope is on <b>ENV</b> and the LFO on <b>LFO</b> (chapter {ch:envlfo}).",
@@ -1552,16 +1552,16 @@
   "fr": "Un changement modifie le son de la piste, pas le son rangé : pour le conserver, voyez le chapitre {ch:keep}."
  },
  {
-  "en": "1/11 · POLY MOD",
-  "fr": "1/11 · POLY MOD"
+  "en": "1/12 · POLY MOD",
+  "fr": "1/12 · POLY MOD"
  },
  {
-  "en": "EDIT, page 1 of 11.",
-  "fr": "EDIT, page 1 sur 11."
+  "en": "EDIT, page 1 of 12.",
+  "fr": "EDIT, page 1 sur 12."
  },
  {
-  "en": "In each voice, two sources modulate oscillator A's pitch and/or the filter.",
-  "fr": "Dans chaque voix, deux sources modulent la hauteur de l'oscillateur A et/ou le filtre."
+  "en": "In each voice, two sources modulate oscillator A's pitch, its pulse width and/or the filter.",
+  "fr": "Dans chaque voix, deux sources modulent la hauteur de l'oscillateur A, sa largeur d'impulsion et/ou le filtre."
  },
  {
   "en": "FILTER ENV: how much the filter envelope modulates the destination.",
@@ -1572,12 +1572,12 @@
   "fr": "OSC B : quantité de modulation par l'oscillateur B, à vitesse audio : sons métalliques, cloches."
  },
  {
-  "en": "DEST: where the modulation goes: OFF, FRQ A (oscillator A's pitch), FILT (the filter), BOTH.",
-  "fr": "DEST : la destination : OFF, FRQ A (hauteur de l'oscillateur A), FILT (le filtre), BOTH (les deux)."
+  "en": "DEST: where the modulation goes: OFF, FRQ A (oscillator A's pitch), FILT (the filter), BOTH (both), PW A (oscillator A's pulse width, which the Prophet-600 could not do), FRQ+PW, FLT+PW, ALL (all three).",
+  "fr": "DEST : la destination : OFF, FRQ A (hauteur de l'oscillateur A), FILT (le filtre), BOTH (les deux), PW A (largeur d'impulsion de l'oscillateur A, ce que le Prophet-600 ne faisait pas), FRQ+PW, FLT+PW, ALL (les trois)."
  },
  {
-  "en": "4 choices",
-  "fr": "4 choix"
+  "en": "8 choices",
+  "fr": "8 choix"
  },
  {
   "en": "<b>Nothing happens?</b> DEST is OFF, or both amounts are at 0 %.",
@@ -1588,16 +1588,20 @@
   "fr": "FILTER ENV vers FRQ A balaie la hauteur de l'oscillateur A à chaque note, jusqu'à cinq octaves : un balayage de synchro quand SYNC est activé (page 3), un « zap » ou une chute sinon."
  },
  {
+  "en": "PW A is heard when oscillator A's shape includes PLS (page 2): OSC B to PW A gives a buzzing, growling pulse; FILTER ENV to PW A, a pulse that narrows at each note.",
+  "fr": "PW A s'entend quand la forme de l'oscillateur A contient PLS (page 2) : OSC B vers PW A donne une impulsion qui grésille et grogne ; FILTER ENV vers PW A, une impulsion qui se resserre à chaque note."
+ },
+ {
   "en": "OSC B modulates even when mixed out (MIXER at 0 %) or set to OFF (it then acts as a triangle): use it purely as a modulator.",
   "fr": "OSC B module même hors du mixage (MIXER à 0 %) ou sur OFF (il agit alors comme un triangle) : utilisez-le uniquement comme modulateur."
  },
  {
-  "en": "2/11 · OSC",
-  "fr": "2/11 · OSC"
+  "en": "2/12 · OSC",
+  "fr": "2/12 · OSC"
  },
  {
-  "en": "EDIT, page 2 of 11.",
-  "fr": "EDIT, page 2 sur 11."
+  "en": "EDIT, page 2 of 12.",
+  "fr": "EDIT, page 2 sur 12."
  },
  {
   "en": "The waveforms and pitches of oscillators A and B.",
@@ -1606,10 +1610,6 @@
  {
   "en": "SHAPE A: oscillator A's waveforms: OFF (silent), SAW, TRI, SAW+T, PLS, SAW+P, TRI+P, ALL (all three).",
   "fr": "SHAPE A : formes d'onde de l'oscillateur A : OFF (muet), SAW, TRI, SAW+T, PLS, SAW+P, TRI+P, ALL (les trois)."
- },
- {
-  "en": "8 choices",
-  "fr": "8 choix"
  },
  {
   "en": "FREQ A: oscillator A's pitch in semitones. 24 plays the note as written, 12 an octave lower, 36 an octave higher.",
@@ -1640,12 +1640,12 @@
   "fr": "PLS (impulsion) varie selon la largeur d'impulsion réglée en page 3."
  },
  {
-  "en": "3/11 · OSC 2",
-  "fr": "3/11 · OSC 2"
+  "en": "3/12 · OSC 2",
+  "fr": "3/12 · OSC 2"
  },
  {
-  "en": "EDIT, page 3 of 11.",
-  "fr": "EDIT, page 3 sur 11."
+  "en": "EDIT, page 3 of 12.",
+  "fr": "EDIT, page 3 sur 12."
  },
  {
   "en": "Pulse widths, fine tuning and sync.",
@@ -1680,16 +1680,16 @@
   "fr": "Le LFO peut faire bouger les largeurs d'impulsion (LFO DEST › SHP) : le scintillement des ensembles de cordes."
  },
  {
-  "en": "4/11 · MIXER",
-  "fr": "4/11 · MIXER"
+  "en": "4/12 · MIXER",
+  "fr": "4/12 · MIXER"
  },
  {
-  "en": "EDIT, page 4 of 11.",
-  "fr": "EDIT, page 4 sur 11."
+  "en": "EDIT, page 4 of 12.",
+  "fr": "EDIT, page 4 sur 12."
  },
  {
-  "en": "The balance of the two oscillators, the glide and the voice mode.",
-  "fr": "L'équilibre des deux oscillateurs, le glide et le mode de voix."
+  "en": "The balance of the two oscillators, the glide, the voice mode and the number of voices.",
+  "fr": "L'équilibre des deux oscillateurs, le glide, le mode de voix et le nombre de voix."
  },
  {
   "en": "MIXER: 0 % only A, 50 % both equally, 100 % only B.",
@@ -1704,28 +1704,40 @@
   "fr": "1 ms – 10 s"
  },
  {
-  "en": "VOICES: POLY (up to six notes), MONO (one note, each note restarts the envelopes), LEG (legato: one note, the envelopes restart only after a gap), UNI (unison: all the voices on one note, huge).",
-  "fr": "VOICES : POLY (jusqu'à six notes), MONO (une note, chaque note relance les enveloppes), LEG (legato : une note, les enveloppes ne repartent qu'après un silence), UNI (unisson : toutes les voix sur une note, énorme)."
+  "en": "VOICES: POLY (up to six notes, or eight with the POLY setting), MONO (one note, each note restarts the envelopes), LEG (legato: one note, the envelopes restart only after a gap), UNI (unison: six voices on one note, huge).",
+  "fr": "VOICES : POLY (jusqu'à six notes, ou huit avec le réglage POLY), MONO (une note, chaque note relance les enveloppes), LEG (legato : une note, les enveloppes ne repartent qu'après un silence), UNI (unisson : six voix sur une note, énorme)."
  },
  {
   "en": "4 modes",
   "fr": "4 modes"
  },
  {
+  "en": "The number of voices: 6, as on the Prophet-600 (the default), or 8. Turn right for 8.",
+  "fr": "Le nombre de voix : 6, comme sur le Prophet-600 (par défaut), ou 8. Tournez vers la droite pour 8."
+ },
+ {
   "en": "In UNI, DETUNE (page 7) spreads the stacked voices; the track then plays one note at a time.",
   "fr": "En UNI, DETUNE (page 7) écarte les voix empilées ; la piste ne joue alors qu'une note à la fois."
  },
  {
-  "en": "The four tracks share the FM-1's eight voices: a P600 track takes six at most, fewer if the other tracks are playing many notes.",
-  "fr": "Les quatre pistes se partagent les huit voix du FM-1 : une piste P600 en prend six au plus, moins si les autres pistes jouent beaucoup de notes."
+  "en": "The four tracks share the FM-1's eight voices: a P600 track takes six at most, or eight with POLY at 8, fewer if the other tracks are playing many notes.",
+  "fr": "Les quatre pistes se partagent les huit voix du FM-1 : une piste P600 en prend six au plus, ou huit avec POLY à 8, moins si les autres pistes jouent beaucoup de notes."
  },
  {
-  "en": "5/11 · FILTER",
-  "fr": "5/11 · FILTER"
+  "en": "Eight voices ask more of the processor: they rely on the second core (MENU › SYSTEM › 2ND CORE, ON since version 1.4.0, chapter {ch:menu}). If the sound crackles, go back to 6.",
+  "fr": "Huit voix demandent davantage au processeur : elles s'appuient sur le second cœur (MENU › SYSTEM › 2ND CORE, sur ON depuis la version 1.4.0, chapitre {ch:menu}). Si le son craque, revenez à 6."
  },
  {
-  "en": "EDIT, page 5 of 11.",
-  "fr": "EDIT, page 5 sur 11."
+  "en": "The factory sounds load with 6 voices, as they were made; POLY at 8 is kept in your places (chapter {ch:keep}).",
+  "fr": "Les sons d'usine se chargent en 6 voix, tels qu'ils ont été créés ; POLY à 8 est gardé dans vos places (chapitre {ch:keep})."
+ },
+ {
+  "en": "5/12 · FILTER",
+  "fr": "5/12 · FILTER"
+ },
+ {
+  "en": "EDIT, page 5 of 12.",
+  "fr": "EDIT, page 5 sur 12."
  },
  {
   "en": "The 24 dB low-pass filter.",
@@ -1768,12 +1780,12 @@
   "fr": "Jouer plus fort peut ouvrir le filtre : VEL>FLT en page 7, avec un clavier MIDI ou SELECT = VEL."
  },
  {
-  "en": "6/11 · FLT ENV",
-  "fr": "6/11 · FLT ENV"
+  "en": "6/12 · FLT ENV",
+  "fr": "6/12 · FLT ENV"
  },
  {
-  "en": "EDIT, page 6 of 11.",
-  "fr": "EDIT, page 6 sur 11."
+  "en": "EDIT, page 6 of 12.",
+  "fr": "EDIT, page 6 sur 12."
  },
  {
   "en": "The filter's own envelope.",
@@ -1804,12 +1816,12 @@
   "fr": "ATTACK et DECAY courts, SUSTAIN bas : le pincé d'un clavinet ou d'une basse. ATTACK lente : des cuivres qui enflent."
  },
  {
-  "en": "7/11 · EXTRAS",
-  "fr": "7/11 · EXTRAS"
+  "en": "7/12 · EXTRAS",
+  "fr": "7/12 · EXTRAS"
  },
  {
-  "en": "EDIT, page 7 of 11.",
-  "fr": "EDIT, page 7 sur 11."
+  "en": "EDIT, page 7 of 12.",
+  "fr": "EDIT, page 7 sur 12."
  },
  {
   "en": "Features the Prophet-600 did not have, set per sound.",
@@ -1840,12 +1852,48 @@
   "fr": "VINTAGE n'est pas enregistré avec un son dans une place P600 (chapitre {ch:keep}) : chaque son P600 se charge avec VINTAGE à 24 (environ 19 %). Il l'est dans les emplacements USER et les projets."
  },
  {
-  "en": "8/11 · MORPH",
-  "fr": "8/11 · MORPH"
+  "en": "8/12 · EXTRAS 2",
+  "fr": "8/12 · EXTRAS 2"
  },
  {
-  "en": "EDIT, page 8 of 11.",
-  "fr": "EDIT, page 8 sur 11."
+  "en": "EDIT, page 8 of 12.",
+  "fr": "EDIT, page 8 sur 12."
+ },
+ {
+  "en": "More of what 1982 could not do: a high-pass filter, a sub-oscillator and noise, set per sound.",
+  "fr": "Encore ce que 1982 ne permettait pas : un filtre passe-haut, un sous-oscillateur et du bruit, réglés par chaque son."
+ },
+ {
+  "en": "HIGH-PASS: a 12 dB high-pass filter after the 24 dB filter, from about 30 Hz to 3.5 kHz: it thins the sound from below. 0 %: off.",
+  "fr": "HIGH-PASS : un filtre passe-haut 12 dB placé après le filtre 24 dB, d'environ 30 Hz à 3,5 kHz : il allège le son par le bas. 0 % : coupé."
+ },
+ {
+  "en": "SUB OSC: a square wave one octave below oscillator A, added to the mix: weight for basses. 0 %: none.",
+  "fr": "SUB OSC : une onde carrée une octave sous l'oscillateur A, ajoutée au mixage : du poids pour les basses. 0 % : aucune."
+ },
+ {
+  "en": "White noise, added to the mix before the filter: breath, wind, percussion. 0 %: none.",
+  "fr": "Un bruit blanc, ajouté au mixage avant le filtre : souffle, vent, percussions. 0 % : aucun."
+ },
+ {
+  "en": "The factory sounds load with all three at 0 %, as they were made: nothing changes until you turn them. Your places keep them (chapter {ch:keep}).",
+  "fr": "Les sons d'usine se chargent avec les trois à 0 %, tels qu'ils ont été créés : rien ne change tant que vous ne les tournez pas. Vos places les gardent (chapitre {ch:keep})."
+ },
+ {
+  "en": "NOISE alone (both oscillators OFF, page 2) with the filter and its envelope gives snares, hi-hats and wind; with high RESONANCE, a whistling wind.",
+  "fr": "NOISE seul (les deux oscillateurs sur OFF, page 2) avec le filtre et son enveloppe donne caisses claires, charlestons et vent ; avec une RESONANCE élevée, un vent qui siffle."
+ },
+ {
+  "en": "HPF with a high RESONANCE in the 24 dB filter: a band-pass sound, thin and nasal.",
+  "fr": "HPF avec une RESONANCE élevée dans le filtre 24 dB : un son en passe-bande, fin et nasal."
+ },
+ {
+  "en": "9/12 · MORPH",
+  "fr": "9/12 · MORPH"
+ },
+ {
+  "en": "EDIT, page 9 of 12.",
+  "fr": "EDIT, page 9 sur 12."
  },
  {
   "en": "Gradually turn one sound into another, or create a variation (chapter {ch:morph}).",
@@ -1868,12 +1916,12 @@
   "fr": "Jusqu'où OCT+ (MUTATE) modifie le son."
  },
  {
-  "en": "9/11 · VOICE",
-  "fr": "9/11 · VOICE"
+  "en": "10/12 · VOICE",
+  "fr": "10/12 · VOICE"
  },
  {
-  "en": "EDIT, page 9 of 11.",
-  "fr": "EDIT, page 9 sur 11."
+  "en": "EDIT, page 10 of 12.",
+  "fr": "EDIT, page 10 sur 12."
  },
  {
   "en": "Felucca's voice page, common to every engine.",
@@ -1900,12 +1948,12 @@
   "fr": "En MONO et LEG, la note qui sonne quand vous en tenez plusieurs : LAST (la dernière), LOW (la plus grave) ou HIGH (la plus aiguë)."
  },
  {
-  "en": "10/11 · VOICE 2",
-  "fr": "10/11 · VOICE 2"
+  "en": "11/12 · VOICE 2",
+  "fr": "11/12 · VOICE 2"
  },
  {
-  "en": "EDIT, page 10 of 11.",
-  "fr": "EDIT, page 10 sur 11."
+  "en": "EDIT, page 11 of 12.",
+  "fr": "EDIT, page 11 sur 12."
  },
  {
   "en": "Voice allocation, unison detune, panning and mute.",
@@ -1928,12 +1976,12 @@
   "fr": "Coupe le son de la piste (comme MIXER › MUTE)."
  },
  {
-  "en": "11/11 · VOICE 3",
-  "fr": "11/11 · VOICE 3"
+  "en": "12/12 · VOICE 3",
+  "fr": "12/12 · VOICE 3"
  },
  {
-  "en": "EDIT, page 11 of 11.",
-  "fr": "EDIT, page 11 sur 11."
+  "en": "EDIT, page 12 of 12.",
+  "fr": "EDIT, page 12 sur 12."
  },
  {
   "en": "The stereo spread of the voices.",
@@ -1948,8 +1996,8 @@
   "fr": "Ce que contient un son P600"
  },
  {
-  "en": "Each of the 255 P600 sounds sets the pages above, plus the amplifier envelope (ENV), the LFO (rate, shape, destinations and amount) and the track's effect sends (FX). Loading a sound resets all of these, and also the INSERT, the MOD slots, ENV DEST, LFO 2 and the VOICE settings; VINTAGE goes back to 24. What stays unchanged: the track's level, pan and mute, the scale and the chord keys (SCL), the arpeggiator (ARP), the SLICER, and the sequence with its length and swing. Chapter {ch:panel} shows where each knob of the real Prophet-600 is on the Guru-600.",
-  "fr": "Chacun des 255 sons P600 règle les pages ci-dessus, plus l'enveloppe d'amplitude (ENV), le LFO (vitesse, forme, destinations et quantité) et les envois d'effets de la piste (FX). Charger un son redéfinit tout cela, ainsi que l'INSERT, les emplacements de MOD, ENV DEST, LFO 2 et les réglages VOICE ; VINTAGE revient à 24. Ce qui reste tel quel : le niveau, le panoramique et la sourdine de la piste, la gamme et les accords (SCL), l'arpégiateur (ARP), le SLICER, et la séquence avec sa longueur et son swing. Le chapitre {ch:panel} montre où se trouve chaque bouton du vrai Prophet-600 sur le Guru-600."
+  "en": "Each of the 255 P600 sounds sets the pages above, plus the amplifier envelope (ENV), the LFO (rate, shape, destinations and amount) and the track's effect sends (FX). Loading a sound resets all of these, and also the INSERT, the MOD slots, ENV DEST, LFO 2 and the VOICE settings; VINTAGE goes back to 24. What the Guru-600 adds (EXTRAS 2, POLY, LFO B) comes back off, with six voices, unless the sound is one of your places, which keeps them. What stays unchanged: the track's level, pan and mute, the scale and the chord keys (SCL), the arpeggiator (ARP), the SLICER, and the sequence with its length and swing. Chapter {ch:panel} shows where each knob of the real Prophet-600 is on the Guru-600.",
+  "fr": "Chacun des 255 sons P600 règle les pages ci-dessus, plus l'enveloppe d'amplitude (ENV), le LFO (vitesse, forme, destinations et quantité) et les envois d'effets de la piste (FX). Charger un son redéfinit tout cela, ainsi que l'INSERT, les emplacements de MOD, ENV DEST, LFO 2 et les réglages VOICE ; VINTAGE revient à 24. Ce qu'ajoute le Guru-600 (EXTRAS 2, POLY, LFO B) revient coupé, en six voix, sauf si le son est l'une de vos places, qui les garde. Ce qui reste tel quel : le niveau, le panoramique et la sourdine de la piste, la gamme et les accords (SCL), l'arpégiateur (ARP), le SLICER, et la séquence avec sa longueur et son swing. Le chapitre {ch:panel} montre où se trouve chaque bouton du vrai Prophet-600 sur le Guru-600."
  },
  {
   "en": "To start from scratch: hold EDIT and press the CLEAN key (G5), then OCT+ to confirm CLEAN INIT SOUND?. You get the plain P600 voice: two sawtooths, no effects and no modulation (chapter {ch:layers}). The INIT key (F5) loads the engine's first sound instead.",
@@ -2036,8 +2084,8 @@
   "fr": "LFO : le mouvement lent"
  },
  {
-  "en": "LFO 1/4",
-  "fr": "LFO 1/4"
+  "en": "LFO 1/5",
+  "fr": "LFO 1/5"
  },
  {
   "en": "The LFO page.",
@@ -2072,8 +2120,8 @@
   "fr": "Temps d'arrivée du LFO après le début de la note : un vibrato retardé."
  },
  {
-  "en": "LFO 2 2/4",
-  "fr": "LFO 2 2/4"
+  "en": "LFO 2 2/5",
+  "fr": "LFO 2 2/5"
  },
  {
   "en": "The LFO 2 page.",
@@ -2100,8 +2148,8 @@
   "fr": "BI : au-dessus et au-dessous du réglage. UNI : seulement au-dessus."
  },
  {
-  "en": "LFO DEST 3/4",
-  "fr": "LFO DEST 3/4"
+  "en": "LFO DEST 3/5",
+  "fr": "LFO DEST 3/5"
  },
  {
   "en": "The LFO DEST page.",
@@ -2128,8 +2176,8 @@
   "fr": "Volume : trémolo."
  },
  {
-  "en": "MOD 4/4",
-  "fr": "MOD 4/4"
+  "en": "MOD 4/5",
+  "fr": "MOD 4/5"
  },
  {
   "en": "The MOD page.",
@@ -2170,6 +2218,46 @@
  {
   "en": "ENV › DEPTH gives an LFO that follows the note's envelope; LFO › RATE gives an LFO whose speed changes.",
   "fr": "ENV › DEPTH donne un LFO qui suit l'enveloppe de la note ; LFO › RATE, un LFO dont la vitesse change."
+ },
+ {
+  "en": "LFO B 5/5",
+  "fr": "LFO B 5/5"
+ },
+ {
+  "en": "The LFO B page.",
+  "fr": "La page LFO B."
+ },
+ {
+  "en": "On a P600 track only (the other engines have four LFO pages): a second LFO, which the Prophet-600 did not have. A triangle shared by all the voices of the track, as on the original's LFO.",
+  "fr": "Sur une piste P600 seulement (les autres moteurs ont quatre pages LFO) : un second LFO, que le Prophet-600 n'avait pas. Un triangle commun à toutes les voix de la piste, comme le LFO de l'original."
+ },
+ {
+  "en": "Its speed.",
+  "fr": "Sa vitesse."
+ },
+ {
+  "en": "How much it moves its destination. 0 %: nothing.",
+  "fr": "De combien il fait bouger sa destination. 0 % : rien."
+ },
+ {
+  "en": "Where it goes: PITCH (both oscillators, up to an octave), PW A or PW B (a pulse width), FILT (the cutoff), AMP (the volume: tremolo), OFF.",
+  "fr": "Où il va : PITCH (les deux oscillateurs, jusqu'à une octave), PW A ou PW B (une largeur d'impulsion), FILT (la coupure), AMP (le volume : trémolo), OFF."
+ },
+ {
+  "en": "6 choices",
+  "fr": "6 choix"
+ },
+ {
+  "en": "LFO B runs alongside the first LFO: for example a slow vibrato on one and a fast tremolo on the other, or PW A and PW B moving at two different speeds.",
+  "fr": "LFO B tourne en même temps que le premier LFO : par exemple un vibrato lent sur l'un et un trémolo rapide sur l'autre, ou PW A et PW B qui bougent à deux vitesses différentes."
+ },
+ {
+  "en": "The factory sounds load with LFO B OFF, as they were made. Your places keep its settings (chapter {ch:keep}).",
+  "fr": "Les sons d'usine se chargent avec LFO B sur OFF, tels qu'ils ont été créés. Vos places gardent ses réglages (chapitre {ch:keep})."
+ },
+ {
+  "en": "<b>Nothing happens?</b> DEST is OFF or DEPTH at 0 %; with PW A or PW B, the oscillator's shape must include PLS.",
+  "fr": "<b>Rien ne se passe ?</b> DEST est sur OFF ou DEPTH à 0 % ; avec PW A ou PW B, la forme de l'oscillateur doit contenir PLS."
  },
  {
   "en": "MOMENTARY: changes that snap back",
@@ -2344,8 +2432,8 @@
   "fr": "Pour aller plus vite, maintenez <b>ENV</b> en tournant <b>PRESETS</b> : chaque cran saute dix sons, dans un sens comme dans l'autre (de 8 à 248 en 24 crans). Relâchez ENV : de nouveau un son à la fois, et la page ENV ne s'ouvre pas."
  },
  {
-  "en": "In all: 326 sounds supplied, 32 USER slots to fill with your sounds, from any engine, and 55 places for your P600 sounds (chapter {ch:keep}).",
-  "fr": "En tout : 326 sons fournis, 32 emplacements USER à remplir avec vos sons, de n'importe quel moteur, et 55 places pour vos sons P600 (chapitre {ch:keep})."
+  "en": "In all: 324 sounds supplied, 32 USER slots to fill with your sounds, from any engine, and 55 places for your P600 sounds (chapter {ch:keep}).",
+  "fr": "En tout : 324 sons fournis, 32 emplacements USER à remplir avec vos sons, de n'importe quel moteur, et 55 places pour vos sons P600 (chapitre {ch:keep})."
  },
  {
   "en": "Numbers",
@@ -2372,8 +2460,8 @@
   "fr": "puis"
  },
  {
-  "en": "The other engines' sounds: ANALOG, FM6, PHASE, LOFI, SAMPLE, VOICE, TRIO, WHEEL, GRAIN, PHYS, NOISE, SLICE, DRUM (chapter {ch:engines}): 71 sounds.",
-  "fr": "Les sons des autres moteurs : ANALOG, FM6, PHASE, LOFI, SAMPLE, VOICE, TRIO, WHEEL, GRAIN, PHYS, NOISE, SLICE, DRUM (chapitre {ch:engines}) : 71 sons."
+  "en": "The other engines' sounds: ANALOG, FM6, PHASE, LOFI, SAMPLE, VOICE, TRIO, WHEEL, GRAIN, PHYS, NOISE, DRUM (chapter {ch:engines}): 69 sounds.",
+  "fr": "Les sons des autres moteurs : ANALOG, FM6, PHASE, LOFI, SAMPLE, VOICE, TRIO, WHEEL, GRAIN, PHYS, NOISE, DRUM (chapitre {ch:engines}) : 69 sons."
  },
  {
   "en": "last",
@@ -2412,8 +2500,8 @@
   "fr": "Appuyez sur <b>SAVE</b> jusqu'à <b>PRESETS</b> (page 3 sur une piste P600, page 2 sur les autres)."
  },
  {
-  "en": "No.: the sound, and its number in the list (1/326…). Same as PRESETS.",
-  "fr": "No. : le son, et son numéro dans la liste (1/326…). Même rôle que PRESETS."
+  "en": "No.: the sound, and its number in the list (1/324…). Same as PRESETS.",
+  "fr": "No. : le son, et son numéro dans la liste (1/324…). Même rôle que PRESETS."
  },
  {
   "en": "list",
@@ -2700,8 +2788,8 @@
   "fr": "Votre son remplace le son intégré <b>seulement tant qu'il est là</b> : le son intégré n'est jamais perdu et revient avec ORIG ou RESET SOUNDS."
  },
  {
-  "en": "<b>Saved with the sound</b>: the oscillators, the mixer, the filter and its envelope, the Poly-Mod, the amplifier envelope, the glide, UNI on or off (with its DETUNE), the LFO's rate, shape and destinations, WHEEL and VEL>FLT. <b>Not saved</b>: VINTAGE (back to 24 at each load), the effect sends (a kept sound plays dry, all sends at 0), the INSERT, MONO and LEG (a kept sound always plays POLY, or UNI if its unison was on), the LFO's PHS and FADE and the LFO 2 page, ENV DEST, MOD slots 1–2 and the VOICE pages. Use a USER place to keep everything.",
-  "fr": "<b>Enregistrés avec le son</b> : les oscillateurs, le mixeur, le filtre et son enveloppe, la Poly-Mod, l'enveloppe d'amplitude, le glide, UNI actif ou non (avec son DETUNE), la vitesse, la forme et les destinations du LFO, WHEEL et VEL>FLT. <b>Non enregistrés</b> : VINTAGE (revient à 24 à chaque chargement), les envois d'effets (un son gardé joue sec, tous les envois à 0), l'INSERT, MONO et LEG (un son gardé joue toujours en POLY, ou en UNI si son unisson était actif), PHS et FADE du LFO et la page LFO 2, ENV DEST, les emplacements de MOD 1 et 2 et les pages VOICE. Utilisez un emplacement USER pour tout conserver."
+  "en": "<b>Saved with the sound</b>: the oscillators, the mixer, the filter and its envelope, the Poly-Mod, the amplifier envelope, the glide, UNI on or off (with its DETUNE), the LFO's rate, shape and destinations, WHEEL and VEL>FLT, and what the Guru-600 adds: EXTRAS 2 (HPF, SUB, NOISE), MIXER › POLY and LFO B. <b>Not saved</b>: VINTAGE (back to 24 at each load), the effect sends (a kept sound plays dry, all sends at 0), the INSERT, MONO and LEG (a kept sound always plays POLY, or UNI if its unison was on), the LFO's PHS and FADE and the LFO 2 page, ENV DEST, MOD slots 1–2 and the VOICE pages. Use a USER place to keep everything.",
+  "fr": "<b>Enregistrés avec le son</b> : les oscillateurs, le mixeur, le filtre et son enveloppe, la Poly-Mod, l'enveloppe d'amplitude, le glide, UNI actif ou non (avec son DETUNE), la vitesse, la forme et les destinations du LFO, WHEEL et VEL>FLT, et ce qu'ajoute le Guru-600 : EXTRAS 2 (HPF, SUB, NOISE), MIXER › POLY et LFO B. <b>Non enregistrés</b> : VINTAGE (revient à 24 à chaque chargement), les envois d'effets (un son gardé joue sec, tous les envois à 0), l'INSERT, MONO et LEG (un son gardé joue toujours en POLY, ou en UNI si son unisson était actif), PHS et FADE du LFO et la page LFO 2, ENV DEST, les emplacements de MOD 1 et 2 et les pages VOICE. Utilisez un emplacement USER pour tout conserver."
  },
  {
   "en": "The 55 places of your own are shared by the sounds you save here and the sounds sent from a computer (chapter {ch:import}). Beyond 55: P600 MEMORY FULL. Free up places with ORIG.",
@@ -3388,6 +3476,10 @@
   "fr": "L'accord général, en cents. Enregistré avec le projet, pas avec les réglages."
  },
  {
+  "en": "OFF: every track plays dry, to hear the sounds without their effects: the distortion, the INSERTs, the chorus, delay and reverb sends are left out. A sound's EQ stays on, and nothing is changed in the sounds: ON brings everything back.",
+  "fr": "OFF : toutes les pistes jouent à sec, pour entendre les sons sans leurs effets : la distorsion, les INSERT, les envois de chorus, de delay et de réverbération sont laissés de côté. L'égaliseur d'un son reste actif, et rien n'est modifié dans les sons : ON remet tout."
+ },
+ {
   "en": "Which MIDI channels play which track: CH1-4 = channels 1 to 4 on tracks 1 to 4 (same for the other blocks); SEL = every channel on the selected track; TRACK = the channels set below. Kept with the project.",
   "fr": "Quels canaux MIDI jouent quelle piste : CH1-4 = canaux 1 à 4 sur les pistes 1 à 4 (de même pour les autres blocs) ; SEL = tous les canaux sur la piste choisie ; TRACK = les canaux réglés ci-dessous. Enregistré avec le projet."
  },
@@ -3416,8 +3508,8 @@
   "fr": "Des astuces en bas de chaque page et de chaque écran rapide (chapitre {ch:screen})."
  },
  {
-  "en": "Uses the chip's second core, starting at the next power-on (2ND CORE ON: RESTART). It switches itself off if it misbehaves.",
-  "fr": "Utilise le second cœur de la puce, au prochain allumage (2ND CORE ON: RESTART). Il se désactive de lui-même en cas de problème."
+  "en": "Uses the chip's second core, starting at the next power-on (2ND CORE ON: RESTART). Version 1.4.0 switches it on once, at its first power-on; switched off afterwards, it stays off. It switches itself off if it misbehaves.",
+  "fr": "Utilise le second cœur de la puce, au prochain allumage (2ND CORE ON: RESTART). La version 1.4.0 l'active une fois, à son premier allumage ; désactivé ensuite, il le reste. Il se désactive de lui-même en cas de problème."
  },
  {
   "en": "Teaches the FM-1 each button and knob again (chapter {ch:reset}).",
@@ -3440,8 +3532,8 @@
   "fr": "Les crédits et licences de Felucca, avec un QR code vers son site ; PRESETS fait défiler. OCT− pour revenir."
  },
  {
-  "en": "<b>2ND CORE</b>: the FM-1's chip has two cores; the Guru-600 uses one by default. With 2ND CORE ON, part of the tracks' work moves to the second, and the load drops (measured on the FM-1 with four tracks, effects and a big chord: from 72 % to 60 %). Switching it on is worth it without being needed: one core already copes, but the second leaves room, so the sound stays clean when everything plays at once (four tracks, both INSERTs, heavy sounds). It is still a trial option (BETA): if anything goes wrong, it switches itself off and everything carries on.",
-  "fr": "<b>2ND CORE</b> : la puce du FM-1 a deux cœurs ; le Guru-600 n'en utilise qu'un par défaut. Avec 2ND CORE sur ON, une partie du calcul des pistes passe sur le second, et la charge baisse (mesurée sur le FM-1 avec quatre pistes, des effets et un gros accord : de 72 % à 60 %). L'activer est bénéfique sans être indispensable : un seul cœur suffit déjà, mais le second laisse de la marge, pour que le son reste propre quand tout joue en même temps (quatre pistes, les deux INSERT, des sons lourds). C'est encore une option en essai (BETA) : en cas de souci, elle se désactive d'elle-même et tout continue."
+  "en": "<b>2ND CORE</b>: the FM-1's chip has two cores; since version 1.4.0, the Guru-600 uses both. With 2ND CORE ON, part of the tracks' work moves to the second, and the load drops (measured on the FM-1 with four tracks, effects and a big chord: from 72 % to 60 %). It leaves room, so the sound stays clean when everything plays at once (four tracks, both INSERTs, heavy sounds), and it is what makes room for the P600's eight voices (MIXER › POLY). It is still a trial option (BETA): if anything goes wrong, it switches itself off and everything carries on.",
+  "fr": "<b>2ND CORE</b> : la puce du FM-1 a deux cœurs ; depuis la version 1.4.0, le Guru-600 utilise les deux. Avec 2ND CORE sur ON, une partie du calcul des pistes passe sur le second, et la charge baisse (mesurée sur le FM-1 avec quatre pistes, des effets et un gros accord : de 72 % à 60 %). Il laisse de la marge, pour que le son reste propre quand tout joue en même temps (quatre pistes, les deux INSERT, des sons lourds), et c'est lui qui fait de la place aux huit voix du P600 (MIXER › POLY). C'est encore une option en essai (BETA) : en cas de souci, elle se désactive d'elle-même et tout continue."
  },
  {
   "en": "<b>Felucca</b> · Felucca's menu page describes the menu of the original firmware. Details: <a href=\"https://github.com/hugelton/Felucca/wiki/Menu\">github.com/hugelton/Felucca/wiki/Menu</a> (in English).",
@@ -3460,8 +3552,8 @@
   "fr": "Pour jouer la piste choisie quel que soit le canal du clavier : MIDI IN = <b>SEL</b>."
  },
  {
-  "en": "The keyboard's velocity, mod wheel (CC 1), aftertouch, expression pedal (CC 11) and sustain pedal (CC 64) all work. The pitch wheel bends the notes by ±2 semitones (a keyboard can change that range with RPN 0). Aftertouch and the expression pedal act only through the modulation matrix (LFO › MOD, sources AT and EXPR).",
-  "fr": "La vélocité du clavier, sa molette de modulation (CC 1), l'aftertouch, la pédale d'expression (CC 11) et la pédale de maintien (CC 64) fonctionnent. La molette de hauteur infléchit les notes de ±2 demi-tons (un clavier peut changer cette plage par le RPN 0). L'aftertouch et la pédale d'expression n'agissent qu'à travers la matrice de modulation (LFO › MOD, sources AT et EXPR)."
+  "en": "The keyboard's velocity, mod wheel (CC 1), aftertouch, expression pedal (CC 11) and sustain pedal (CC 64) all work. The pitch wheel bends the notes by ±2 semitones (a keyboard can change that range with RPN 0). Aftertouch and the expression pedal act only through the modulation matrix (LFO › MOD, sources AT and EXPR). The FM-1's own keys send no aftertouch: it takes a MIDI keyboard that sends it.",
+  "fr": "La vélocité du clavier, sa molette de modulation (CC 1), l'aftertouch, la pédale d'expression (CC 11) et la pédale de maintien (CC 64) fonctionnent. La molette de hauteur infléchit les notes de ±2 demi-tons (un clavier peut changer cette plage par le RPN 0). L'aftertouch et la pédale d'expression n'agissent qu'à travers la matrice de modulation (LFO › MOD, sources AT et EXPR). Les touches du FM-1 n'envoient pas d'aftertouch : il faut un clavier MIDI qui en envoie."
  },
  {
   "en": "<b>Nothing plays?</b> The keyboard is sending on a channel that MIDI IN does not use (set MIDI IN = SEL to check), or the track is muted.",
@@ -4000,8 +4092,8 @@
   "fr": "SLICE joue une tranche par touche, de la touche la plus grave vers le haut, sans tenir compte de la gamme."
  },
  {
-  "en": "VOICE plays four notes at most, GRAIN and PHYS three, P600 and FM6 six, the others eight (within the FM-1's eight voices).",
-  "fr": "VOICE joue quatre notes au plus, GRAIN et PHYS trois, P600 et FM6 six, les autres huit (dans la limite des huit voix du FM-1)."
+  "en": "VOICE plays four notes at most, GRAIN and PHYS three, FM6 six, P600 six or eight (MIXER › POLY), the others eight (within the FM-1's eight voices).",
+  "fr": "VOICE joue quatre notes au plus, GRAIN et PHYS trois, FM6 six, P600 six ou huit (MIXER › POLY), les autres huit (dans la limite des huit voix du FM-1)."
  },
  {
   "en": "The FM6 patches are edited in the Felucca web editor; the samples and the full backups are made in the Guru-600 editor (chapter {ch:editor}).",
@@ -4066,6 +4158,10 @@
  {
   "en": "—, ACC (accent), SLD (slide), A+S.",
   "fr": "—, ACC (accent), SLD (glissé), A+S."
+ },
+ {
+  "en": "4 choices",
+  "fr": "4 choix"
  },
  {
   "en": "<b>EDIT</b> on STEP: clears the step under the cursor and moves on (STEP CLEARED).",

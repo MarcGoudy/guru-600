@@ -456,7 +456,8 @@ def main(out):
             else:
                 b.cc0_set(name, kind)
     if slice_on():                                  # SLICE's BREAK: only when that engine is built
-        b.slice_break()                             # last: the sets' offsets stay as they were
+        # Guru-600 (24/11/2026, Marc): no BREAK (its sounds CHOP and STUTTER retired, ~22 KB of flash freed for the
+        # P600 engine; the drum kits cover percussion); SRC BREAK then has no material (eng_slice.c: a sine)
         b.slice_piano()                             # (no data of its own: the PIANO set's)
     text = b.header()
     Path(out).write_text(text)

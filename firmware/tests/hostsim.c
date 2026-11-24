@@ -802,7 +802,7 @@ static int tracks_test(const char *dir)
     printf("tracks: one part, 8 notes held (host -O2, ns per sample, heaviest preset per engine):");
     for (e = 0; e < NENGINES; e++)
         if (eng_ok(e))
-            printf(" %s %s %.1f%s", ENGINES[e]->name, ENGINES[e]->presets[heavy[e]].name, best_e[e],
+            printf(" %s %s %.1f%s", ENGINES[e]->name, ENGINES[e]->npresets ? ENGINES[e]->presets[heavy[e]].name : "-", best_e[e],
                    e + 1u < NENGINES ? "," : "\n");
     {   /* FM (DIGITAL with FELUCCA_FM4, else FM6), PHASE, VOICE (their heaviest presets) and drums on part 4 at once:
          * 3 + 3 + 2 notes and the hits in the budget of 8 */

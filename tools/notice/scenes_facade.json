@@ -1,0 +1,2 @@
+[{"name": "facade_new", "keys": ["C4", "wait 200"], "crop": "panel"},
+ {"name": "facade_rep_new", "keys": ["wait 300"], "crop": "panel", "prelude": false}]

@@ -55,13 +55,14 @@ The Guru-600 turns the M-VAVE FM-1 into an emulator of the Sequential Circuits P
 ### What it adds
 
 - **A P600 sound engine** built like the original: two oscillators per voice with sync, a 24 dB filter with its own envelope, Poly-Mod, an LFO, unison and six voices.
+- **What 1982 could not do**: a high-pass filter, a sub-oscillator, white noise, a second LFO, Poly-Mod on oscillator A's pulse width, and eight voices instead of six if you choose. The factory sounds stay as they were made.
 - **255 sounds**: the Prophet-600's 100 factory programs under their real names, 100 free sounds from the Prophet-600 community, and 55 sounds made for the Guru-600.
 - **MORPH and MUTATE**: gradually turn one sound into another, your own USER sounds too, or create a variation of a sound in one gesture.
 - **55 places of your own** for P600 sounds, in addition to the 32 USER places.
 - **Prophet-600 sounds sent from a computer** (.syx), and back.
 - **A chord memory**, a MIDI map that follows the GliGli firmware's, a new look and easier navigation.
 - **A MIDI keyboard's knobs work at once** (an Arturia KeyStep as it comes, or any controller): the FM-1's four knobs, the filter, the envelope and a four-track mixer. And an equalizer per sound, and a screen reader for blind and visually impaired players.
-- **Faster through the 326 sounds**: hold ENV while you turn PRESETS, ten sounds a detent.
+- **Faster through the 324 sounds**: hold ENV while you turn PRESETS, ten sounds a detent.
 - **Made for blind and visually impaired players too**: a screen reader, and the value you change shows in big type. Hold ENV and turn a knob: that setting back to the sound's own.
 - **A complete backup** of the FM-1 with the Guru-600 editor: switch to another firmware, come back, and find the machine exactly as you left it.
 - **The Guru-600 editor**, in the browser: the whole FM-1 on the computer's screen, as a panel inspired by the Prophet-600 with a keyboard: the P600 sounds, the sequencer, the song, the effects, the mix, the projects, the samples, the backup and the settings, with its own guide in 7 languages: **https://marcgoudy.github.io/guru-600/editor/**
@@ -117,13 +118,14 @@ Le Guru-600 transforme le M-VAVE FM-1 en émulateur du Prophet-600 de Sequential
 ### Ce qu'il ajoute
 
 - **Un moteur sonore P600** construit comme l'original : deux oscillateurs par voix avec synchronisation, un filtre 24 dB avec son enveloppe, la Poly-Mod, un LFO, l'unisson et six voix.
+- **Ce que 1982 ne permettait pas** : un filtre passe-haut, un sous-oscillateur, un bruit blanc, un second LFO, la Poly-Mod sur la largeur d'impulsion de l'oscillateur A, et huit voix au lieu de six si vous le choisissez. Les sons d'usine restent tels qu'ils ont été créés.
 - **255 sons** : les 100 programmes d'usine du Prophet-600 sous leurs vrais noms, 100 sons libres de la communauté du Prophet-600 et 55 sons créés pour le Guru-600.
 - **MORPH et MUTATE** : transformer progressivement un son en un autre, vos sons USER compris, ou créer une variante d'un son en un geste.
 - **55 places à vous** pour les sons P600, en plus des 32 emplacements USER.
 - **Des sons Prophet-600 envoyés depuis un ordinateur** (.syx), et récupérés.
 - **Une mémoire d'accords**, une table MIDI qui suit celle du firmware GliGli, un nouveau visage et une navigation plus simple.
 - **Les boutons d'un clavier MIDI fonctionnent tout de suite** (un Arturia KeyStep tel qu'il sort de la boîte, ou tout contrôleur) : les quatre boutons du FM-1, le filtre, l'enveloppe et une table de mixage des quatre pistes. Et un égaliseur par son, et un lecteur d'écran pour les musiciens aveugles et malvoyants.
-- **Parcourir les 326 sons plus vite** : maintenez ENV en tournant PRESETS, dix sons par cran.
+- **Parcourir les 324 sons plus vite** : maintenez ENV en tournant PRESETS, dix sons par cran.
 - **Pensé aussi pour les musiciens aveugles et malvoyants** : un lecteur d'écran, et la valeur que vous changez s'affiche en grand. ENV maintenu + un bouton : ce réglage revient à celui du son.
 - **Une sauvegarde complète** du FM-1 avec l'éditeur Guru-600 : passez à un autre firmware, revenez, et retrouvez la machine exactement telle que vous l'aviez laissée.
 - **L'éditeur Guru-600**, dans le navigateur : tout le FM-1 sur l'écran de l'ordinateur, sous la forme d'une façade inspirée du Prophet-600, avec un clavier : les sons P600, le séquenceur, le morceau, les effets, le mixage, les projets, les échantillons, la sauvegarde et les réglages, avec son propre guide en 7 langues : **https://marcgoudy.github.io/guru-600/editor/**
@@ -179,13 +181,14 @@ Der Guru-600 verwandelt den M-VAVE FM-1 in einen Emulator des Sequential Circuit
 ### Was er hinzufügt
 
 - **Eine P600-Klangerzeugung**, aufgebaut wie das Original: zwei Oszillatoren pro Stimme mit Sync, ein 24-dB-Filter mit eigener Hüllkurve, Poly-Mod, ein LFO, Unisono und sechs Stimmen.
+- **Was 1982 nicht möglich war**: ein Hochpassfilter, ein Suboszillator, weißes Rauschen, ein zweiter LFO, Poly-Mod auf die Pulsbreite von Oszillator A und, nach Wahl, acht statt sechs Stimmen. Die Werksklänge bleiben, wie sie geschaffen wurden.
 - **255 Sounds**: die 100 Werksprogramme des Prophet-600 unter ihren echten Namen, 100 freie Sounds aus der Prophet-600-Community und 55 für den Guru-600 geschaffene Sounds.
 - **MORPH und MUTATE**: einen Sound schrittweise in einen anderen verwandeln, auch Ihre eigenen USER-Sounds, oder mit einer einzigen Geste eine Variante erzeugen.
 - **55 eigene Plätze** für P600-Sounds, zusätzlich zu den 32 USER-Plätzen.
 - **Prophet-600-Sounds vom Computer** (.syx) senden und zurückholen.
 - **Ein Akkordspeicher**, eine MIDI-Belegung wie bei der GliGli-Firmware, ein neues Aussehen und eine einfachere Navigation.
 - **Die Regler eines MIDI-Keyboards funktionieren sofort** (ein Arturia KeyStep ab Werk oder jeder Controller): die vier Regler des FM-1, der Filter, die Hüllkurve und ein Mischpult für die vier Spuren. Dazu ein Equalizer pro Klang und ein Bildschirmleser für blinde und sehbehinderte Musiker.
-- **Schneller durch die 326 Klänge**: ENV gedrückt halten und PRESETS drehen, zehn Klänge pro Raste.
+- **Schneller durch die 324 Klänge**: ENV gedrückt halten und PRESETS drehen, zehn Klänge pro Raste.
 - **Auch für blinde und sehbehinderte Musiker gedacht**: ein Bildschirmleser, und der Wert, den Sie ändern, erscheint groß. ENV gedrückt + ein Regler: diese Einstellung zurück zum Klang.
 - **Ein vollständiges Backup** des FM-1 mit dem Guru-600-Editor: Wechseln Sie zu einer anderen Firmware, kehren Sie zurück, und das Gerät ist genau so, wie Sie es verlassen haben.
 - **Der Guru-600-Editor** im Browser: der ganze FM-1 auf dem Bildschirm, als ein vom Prophet-600 inspiriertes Bedienfeld mit Tastatur: die P600-Sounds, der Sequencer, der Song, die Effekte, der Mix, die Projekte, die Samples, das Backup und die Einstellungen, mit eigener Anleitung in 7 Sprachen: **https://marcgoudy.github.io/guru-600/editor/**
@@ -241,13 +244,14 @@ El Guru-600 convierte el M-VAVE FM-1 en un emulador del Sequential Circuits Prop
 ### Lo que añade
 
 - **Un motor de sonido P600** construido como el original: dos osciladores por voz con sincronización, un filtro de 24 dB con su propia envolvente, Poly-Mod, un LFO, unísono y seis voces.
+- **Lo que 1982 no permitía**: un filtro paso alto, un suboscilador, un ruido blanco, un segundo LFO, la Poly-Mod sobre el ancho de pulso del oscilador A, y ocho voces en lugar de seis si lo elige. Los sonidos de fábrica siguen tal como se crearon.
 - **255 sonidos**: los 100 programas de fábrica del Prophet-600 con sus nombres reales, 100 sonidos libres de la comunidad del Prophet-600 y 55 sonidos creados para el Guru-600.
 - **MORPH y MUTATE**: transformar progresivamente un sonido en otro, también sus propios sonidos USER, o crear una variación de un sonido con un solo gesto.
 - **55 lugares propios** para sonidos P600, además de las 32 posiciones USER.
 - **Sonidos del Prophet-600 enviados desde un ordenador** (.syx), y recuperados.
 - **Una memoria de acordes**, un mapa MIDI que sigue el del firmware GliGli, un nuevo aspecto y una navegación más sencilla.
 - **Los potenciómetros de un teclado MIDI funcionan al instante** (un Arturia KeyStep tal como sale de la caja, o cualquier controlador): los cuatro potenciómetros del FM-1, el filtro, la envolvente y una mesa de mezclas de las cuatro pistas. Además, un ecualizador por sonido y un lector de pantalla para músicos ciegos y con baja visión.
-- **Recorrer los 326 sonidos más rápido**: mantenga ENV mientras gira PRESETS, diez sonidos por paso.
+- **Recorrer los 324 sonidos más rápido**: mantenga ENV mientras gira PRESETS, diez sonidos por paso.
 - **Pensado también para músicos ciegos y con baja visión**: un lector de pantalla, y el valor que cambia se muestra en grande. ENV mantenido + un potenciómetro: ese ajuste vuelve al del sonido.
 - **Una copia de seguridad completa** del FM-1 con el editor Guru-600: cambie a otro firmware, vuelva, y encuentre la máquina exactamente como la dejó.
 - **El editor Guru-600**, en el navegador: todo el FM-1 en la pantalla del ordenador, como un panel inspirado en el Prophet-600, con un teclado: los sonidos P600, el secuenciador, la canción, los efectos, la mezcla, los proyectos, las muestras, la copia de seguridad y los ajustes, con su propia guía en 7 idiomas: **https://marcgoudy.github.io/guru-600/editor/**
@@ -303,13 +307,14 @@ Il Guru-600 trasforma l'M-VAVE FM-1 in un emulatore del Sequential Circuits Prop
 ### Cosa aggiunge
 
 - **Un motore sonoro P600** costruito come l'originale: due oscillatori per voce con sync, un filtro da 24 dB con il suo inviluppo, la Poly-Mod, un LFO, l'unisono e sei voci.
+- **Ciò che il 1982 non permetteva**: un filtro passa-alto, un suboscillatore, un rumore bianco, un secondo LFO, la Poly-Mod sulla larghezza d'impulso dell'oscillatore A, e otto voci invece di sei, a scelta. I suoni di fabbrica restano come sono stati creati.
 - **255 suoni**: i 100 programmi di fabbrica del Prophet-600 con i loro veri nomi, 100 suoni liberi della comunità del Prophet-600 e 55 suoni creati per il Guru-600.
 - **MORPH e MUTATE**: trasformare gradualmente un suono in un altro, anche i vostri suoni USER, o creare una variante di un suono con un solo gesto.
 - **55 posti tutti vostri** per i suoni P600, oltre alle 32 posizioni USER.
 - **Suoni del Prophet-600 inviati da un computer** (.syx), e recuperati.
 - **Una memoria degli accordi**, una mappa MIDI che segue quella del firmware GliGli, un nuovo aspetto e una navigazione più semplice.
 - **Le manopole di una tastiera MIDI funzionano subito** (un Arturia KeyStep così com'è, o qualsiasi controller): le quattro manopole del FM-1, il filtro, l'inviluppo e un mixer delle quattro tracce. In più un equalizzatore per suono e un lettore di schermo per musicisti ciechi e ipovedenti.
-- **Scorrere i 326 suoni più in fretta**: tenete premuto ENV mentre girate PRESETS, dieci suoni a scatto.
+- **Scorrere i 324 suoni più in fretta**: tenete premuto ENV mentre girate PRESETS, dieci suoni a scatto.
 - **Pensato anche per musicisti ciechi e ipovedenti**: un lettore di schermo, e il valore che cambiate appare in grande. ENV tenuto + una manopola: quell'impostazione torna a quella del suono.
 - **Un backup completo** dell'FM-1 con l'editor Guru-600: passate a un altro firmware, tornate indietro, e ritrovate la macchina esattamente come l'avevate lasciata.
 - **L'editor Guru-600**, nel browser: tutto l'FM-1 sullo schermo del computer, come un pannello ispirato al Prophet-600, con una tastiera: i suoni P600, il sequencer, la song, gli effetti, il mix, i progetti, i campioni, il backup e le impostazioni, con la sua guida in 7 lingue: **https://marcgoudy.github.io/guru-600/editor/**
@@ -365,13 +370,14 @@ Guru-600 将 M-VAVE FM-1 变成 Sequential Circuits Prophet-600（1982 年）的
 ### 新增功能
 
 - **P600 音色引擎**，按原机结构打造：每个声部两个可同步的振荡器、带独立包络的 24 dB 滤波器、Poly-Mod、LFO、齐奏和六个声部。
+- **1982 年做不到的功能**：高通滤波器、副振荡器、白噪声、第二个 LFO、作用于振荡器 A 脉冲宽度的 Poly-Mod，还可选择八个复音而不是六个。出厂音色保持原样。
 - **255 个音色**：Prophet-600 的 100 个出厂程序（沿用原名）、Prophet-600 社区的 100 个免费音色，以及为 Guru-600 制作的 55 个音色。
 - **MORPH 与 MUTATE**：将一个音色逐渐变为另一个音色（包括您自己的 USER 音色），或一个动作就生成某个音色的变体。
 - **55 个属于您的位置**，用于存放 P600 音色，另有 32 个 USER 位置。
 - **从电脑发送 Prophet-600 音色**（.syx），也可以取回。
 - **和弦记忆**、沿用 GliGli 固件的 MIDI 对应表、全新的外观和更简便的操作。
 - **MIDI 键盘的旋钮即插即用**（开箱即用的 Arturia KeyStep 或任何控制器）：FM-1 的四个旋钮、滤波器、包络和四音轨调音台。另有每个音色的均衡器，以及为盲人和视障乐手准备的屏幕阅读器。
-- **更快浏览 326 个音色**：按住 ENV 同时转动 PRESETS，每一格跳十个音色。
+- **更快浏览 324 个音色**：按住 ENV 同时转动 PRESETS，每一格跳十个音色。
 - **同样为盲人和视障乐手设计**：屏幕阅读器，以及正在调整的数值放大显示。按住 ENV 并转动旋钮：该设置恢复为音色自身的数值。
 - **FM-1 的完整备份**（使用 Guru-600 编辑器）：换用其他固件后再换回来，设备会完全恢复到您离开时的状态。
 - **Guru-600 编辑器**（在浏览器中）：在电脑屏幕上呈现完整的 FM-1，形式为一块受 Prophet-600 启发、带键盘的面板：P600 音色、音序器、歌曲、效果、混音、工程、采样、备份和设置，并附有 7 种语言的专属指南：**https://marcgoudy.github.io/guru-600/editor/**
@@ -427,13 +433,14 @@ Guru-600 は、M-VAVE FM-1 を、MIDI を搭載した最初期のシンセサイ
 ### 追加される機能
 
 - **P600 サウンド・エンジン**：オリジナルと同じ構成で、ボイスごとにシンク可能な 2 つのオシレーター、専用エンベロープ付きの 24 dB フィルター、Poly-Mod、LFO、ユニゾン、6 ボイスを備えています。
+- **1982 年にはできなかったこと**：ハイパス・フィルター、サブ・オシレーター、ホワイト・ノイズ、2 つ目の LFO、オシレーター A のパルス幅への Poly-Mod、そして選べば 6 ボイスではなく 8 ボイス。ファクトリー・サウンドは作られたときのままです。
 - **255 のサウンド**：Prophet-600 の 100 のファクトリー・プログラムを本来の名前のまま収録し、さらに Prophet-600 コミュニティによる無料サウンド 100 種と、Guru-600 のために作られた 55 種を加えています。
 - **MORPH と MUTATE**：あるサウンドを別のサウンドへ徐々に変化させたり（自分の USER サウンドも使えます）、ワン・アクションでサウンドのバリエーションを作ったりできます。
 - **P600 サウンド用の自分の枠 55**。USER 枠 32 とは別にあります。
 - **コンピューターから Prophet-600 のサウンドを送信**（.syx）し、取り戻すこともできます。
 - **コード・メモリー**、GliGli ファームウェアと同じ MIDI マップ、新しい外観、よりシンプルな操作。
 - **MIDI キーボードのノブがすぐに使えます**（箱から出したままの Arturia KeyStep、またはどんなコントローラーでも）：FM-1 の4つのノブ、フィルター、エンベロープ、4トラックのミキサー。さらにサウンドごとのイコライザーと、目の不自由な演奏者のためのスクリーンリーダー。
-- **326 の音色をすばやく選ぶ**：ENV を押したまま PRESETS を回すと、1 クリックで 10 音色ずつ進みます。
+- **324 の音色をすばやく選ぶ**：ENV を押したまま PRESETS を回すと、1 クリックで 10 音色ずつ進みます。
 - **目の不自由な演奏者にも配慮**：スクリーンリーダーと、変更中の値の拡大表示。ENV を押したままノブを回すと、その設定が音色本来の値に戻ります。
 - **Guru-600 エディターによる FM-1 の完全バックアップ**：別のファームウェアに切り替えて戻しても、機器は離れたときとまったく同じ状態に戻ります。
 - **Guru-600 エディター**（ブラウザーで使用）：FM-1 のすべてを、Prophet-600 にインスパイアされた鍵盤付きのパネルとしてコンピューターの画面に表示します。P600 サウンド、シーケンサー、ソング、エフェクト、ミックス、プロジェクト、サンプル、バックアップ、設定。7 言語の専用ガイド付き：**https://marcgoudy.github.io/guru-600/editor/**

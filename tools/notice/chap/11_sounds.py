@@ -4,13 +4,13 @@ CH("sounds", "The sounds: finding a sound", "Les sons : trouver un son",
     "Tournez <b>PRESETS</b> sur HOME ou sur n'importe quelle page de son pour charger le son suivant sur la piste choisie. La liste contient les sons de tous les moteurs, P600 en premier.") +
  P2("To go faster, hold <b>ENV</b> while you turn <b>PRESETS</b>: each detent jumps ten sounds, either way (from 8 to 248 in 24 detents). Let go of ENV: one sound at a time again, and ENV's page does not open.",
     "Pour aller plus vite, maintenez <b>ENV</b> en tournant <b>PRESETS</b> : chaque cran saute dix sons, dans un sens comme dans l'autre (de 8 à 248 en 24 crans). Relâchez ENV : de nouveau un son à la fois, et la page ENV ne s'ouvre pas.") +
- P2("In all: 326 sounds supplied, 32 USER slots to fill with your sounds, from any engine, and 55 places for your P600 sounds (chapter {ch:keep}).",
-    "En tout : 326 sons fournis, 32 emplacements USER à remplir avec vos sons, de n'importe quel moteur, et 55 places pour vos sons P600 (chapitre {ch:keep}).") +
+ P2("In all: 324 sounds supplied, 32 USER slots to fill with your sounds, from any engine, and 55 places for your P600 sounds (chapter {ch:keep}).",
+    "En tout : 324 sons fournis, 32 emplacements USER à remplir avec vos sons, de n'importe quel moteur, et 55 places pour vos sons P600 (chapitre {ch:keep}).") +
  table([("Numbers", "Numéros"), ("What", "Quoi")], [
    ["1–100", ("The Prophet-600 factory sounds, the 100 programs Sequential Circuits shipped with it in 1982, with their original names.", "Les sons d'usine du Prophet-600, les 100 programmes installés par Sequential Circuits en 1982, sous leurs noms d'origine.")],
    ["101–200", ("The free v2022 collection: 100 sounds made by Prophet-600 owners for the GliGli firmware and shared under the GPL license.", "La collection libre v2022 : 100 sons créés par des propriétaires de Prophet-600 pour le firmware GliGli et partagés sous licence GPL.")],
    ["201–255", ("The Guru-600's own sounds: 30 adapted from the free synthesizer Surge XT (sounds by Claes Johanson, GPL-3) and 25 originals: bells, gong, sync scream, filter percussion, sound effects, random sequences, slow pads.", "Les sons propres au Guru-600 : 30 adaptés du synthétiseur libre Surge XT (sons de Claes Johanson, GPL-3) et 25 originaux : cloches, gong, cri de synchro, percussions au filtre, bruitages, séquences aléatoires, nappes lentes.")],
-   [("then", "puis"), ("The other engines' sounds: ANALOG, FM6, PHASE, LOFI, SAMPLE, VOICE, TRIO, WHEEL, GRAIN, PHYS, NOISE, SLICE, DRUM (chapter {ch:engines}): 71 sounds.", "Les sons des autres moteurs : ANALOG, FM6, PHASE, LOFI, SAMPLE, VOICE, TRIO, WHEEL, GRAIN, PHYS, NOISE, SLICE, DRUM (chapitre {ch:engines}) : 71 sons.")],
+   [("then", "puis"), ("The other engines' sounds: ANALOG, FM6, PHASE, LOFI, SAMPLE, VOICE, TRIO, WHEEL, GRAIN, PHYS, NOISE, DRUM (chapter {ch:engines}): 69 sounds.", "Les sons des autres moteurs : ANALOG, FM6, PHASE, LOFI, SAMPLE, VOICE, TRIO, WHEEL, GRAIN, PHYS, NOISE, DRUM (chapitre {ch:engines}) : 69 sons.")],
    [("last", "enfin"), ("Your USER sounds, the ones you saved (chapter {ch:keep}).", "Vos sons USER, ceux que vous avez rangés (chapitre {ch:keep}).")]]) +
  LI([("The list wraps around: after the last sound comes sound 1, and before sound 1 the last one.",
       "La liste boucle : après le dernier son vient le son 1, et avant le son 1, le dernier."),
@@ -24,7 +24,7 @@ CH("sounds", "The sounds: finding a sound", "Les sons : trouver un son",
  '<div class="split">' + shot("shots/pg_save3.png", "SAVE › PRESETS, page 3 of 6.", "SAVE › PRESETS, page 3 sur 6.", 240) + '<div>' +
  P2("Press <b>SAVE</b> repeatedly until <b>PRESETS</b> appears (page 3 on a P600 track, page 2 on other tracks).",
     "Appuyez sur <b>SAVE</b> jusqu'à <b>PRESETS</b> (page 3 sur une piste P600, page 2 sur les autres).") +
- knobs([("KNOB 1", "No.: the sound, and its number in the list (1/326…). Same as PRESETS.", "No. : le son, et son numéro dans la liste (1/326…). Même rôle que PRESETS.", "list", "liste"),
+ knobs([("KNOB 1", "No.: the sound, and its number in the list (1/324…). Same as PRESETS.", "No. : le son, et son numéro dans la liste (1/324…). Même rôle que PRESETS.", "list", "liste"),
         ("KNOB 2", "ENG: jump to the next or previous engine's first sound.", "ENG : saute au premier son du moteur suivant ou précédent.", "14 engines", "14 moteurs"),
         ("KNOB 3", "FAV: turn right to mark the sound as a favorite, left to unmark it.", "FAV : à droite, marque le son comme favori ; à gauche, le retire.", "OFF / ON", "OFF / ON"),
         ("KNOB 4", "LIST: which sounds PRESETS steps through: ALL, FAV (your favorites), or one family: BASS, LEAD, PAD, PLUCK (plucked sounds and bells), KEYS, DRUM, FX, OTHER.", "LIST : les sons que parcourt PRESETS : ALL (tous), FAV (vos favoris), ou une famille : BASS, LEAD, PAD, PLUCK (sons pincés et cloches), KEYS, DRUM, FX, OTHER.", "10 lists", "10 listes")]) +

@@ -1015,6 +1015,7 @@ fn main() {
     let board = m.soc.board;
     let status = Arc::new(Mutex::new(String::from("booting")));
     let quit = Arc::new(AtomicBool::new(false));
+    let power = Arc::new(AtomicBool::new(true));       // Guru-600 (24/11/2026, Marc): Power > On / Off, the FM-1's switch
     let (tx, rx) = mpsc::channel::<Action>();
     let _midi = midi_inputs(&o, &tx);
     // Guru-600: a MIDI port "Guru-600", the emulated FM-1's USB cable: what a MIDI program sends to it reaches the
@@ -1026,6 +1027,7 @@ fn main() {
     let audio_ok = _stream.is_some();
     let emu = {
         let (ring, lcd, leds, pads, status, quit) = (ring.clone(), lcd.clone(), leds.clone(), pads.clone(), status.clone(), quit.clone());
+        let power = power.clone();
         let flash = o.flash.clone();
         std::thread::spawn(move || {
             high_priority();
@@ -1037,7 +1039,36 @@ fn main() {
             let mut last_stat = Instant::now();
             let (mut stat_emu, mut stat_wall) = (0u64, Instant::now());
             let (mut last_save, mut saved_ops) = (Instant::now(), 0u64);
+            let mut was_on = true;
             while !quit.load(Ordering::Relaxed) {
+                // Guru-600: Power Off: the memory saved, the screen, the LEDs and the sound out, nothing run; On: the
+                // FM-1 started again on its memory, as a real power-on
+                if !power.load(Ordering::Relaxed) {
+                    if was_on {
+                        was_on = false;
+                        save_flash(&m, flash.as_ref());
+                        saved_ops = m.soc.flash.ops as u64;
+                        lcd.lock().unwrap().fill(0);
+                        *leds.lock().unwrap() = [0f32; 41];
+                        ring.q.lock().unwrap().clear();
+                        ring.started.store(false, Ordering::Relaxed);   // (no sound while off: no underrun counted)
+                        *status.lock().unwrap() = String::from("off");
+                    }
+                    while rx.try_recv().is_ok() {}          // (keys and knobs do nothing while it is off)
+                    std::thread::sleep(Duration::from_millis(10));
+                    continue;
+                }
+                if !was_on {
+                    was_on = true;
+                    let f = m.soc.flash.mem.to_vec();
+                    if let Err(e) = m.restart_with(&f) {
+                        eprintln!("power on: {e}");
+                    }
+                    offset_ms = start.elapsed().as_secs_f64() * 1000.0;   // (the emulated clock from 0 again)
+                    saved_ops = m.soc.flash.ops as u64;
+                    stat_emu = 0;                                // (the title's speed from the new clock)
+                    stat_wall = Instant::now();
+                }
                 // Guru-600: the flash back to its file every 5 s it changed, not only at the end
                 // (a run killed or crashed keeps what was saved on the device)
                 if flash.is_some() && last_save.elapsed().as_secs() >= 5 && m.soc.flash.ops as u64 != saved_ops {
@@ -1187,6 +1218,11 @@ fn main() {
         menu.add_item("Latency 50 ms (safest)", 50).build();
         win.add_menu(&menu);
     }
+    {                                                    // Guru-600 (24/11/2026, Marc): Power > On / Off
+        let mut menu = minifb::Menu::new("Power").unwrap();
+        menu.add_item("On / Off", 401).build();
+        win.add_menu(&menu);
+    }
     load_colour(&o);
     {                                                    // Guru-600: Color > M-VAVE's six colours of the FM-1
         let mut menu = minifb::Menu::new("Color").unwrap();
@@ -1239,13 +1275,16 @@ fn main() {
                     let _ = btx.send(if id == 201 { Bk::Export(path) } else { Bk::Import(path) });
                 }
             }
-            Some(id @ 301..=306) => {                    // Guru-600: Color > one of the six
+            Some(id @ 301..=309) => {                    // Guru-600: Color > one of the nine (24/11/2026: three more)
                 panel::set_colour(id - 301);
                 base = panel::base();
                 around(&mut win, &base);
                 if let Some(f) = colour_file(&o) {
                     let _ = std::fs::write(f, (id - 301).to_string());
                 }
+            }
+            Some(401) => {                               // Guru-600: Power > On / Off
+                power.store(!power.load(Ordering::Relaxed), Ordering::Relaxed);
             }
             Some(ms @ (20 | 35 | 50)) => {
                 TARGET_MS.store(ms as u32, Ordering::Relaxed);

@@ -15,15 +15,20 @@ from PIL import Image, ImageDraw, ImageFont
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(ROOT, "crates/fm1-live/src/panel_labels.bin")
-BUTTON_FONT = sys.argv[1] if len(sys.argv) > 1 else os.path.expanduser("~/Library/Fonts/Virage-WideBold.otf")
+# Guru-600 (24/11/2026, Marc): Chakra Petch Bold (SIL OFL 1.1, Google Fonts), flattened to 85 %, the closest to the
+# FM-1's buttons of the fonts compared (was Virage WideBold)
+BUTTON_FONT = sys.argv[1] if len(sys.argv) > 1 else os.path.expanduser("~/Documents/FM-1/p600/fonts/ChakraPetch-Bold.ttf")
+BUTTON_FLAT = 0.92     # the buttons' words: their height this share of the font's own, for the width they are given
+BUTTON_STROKE = 5      # and thicker than its Bold (a stroke round each letter, in the font's 200 px drawing)
 KEY_FONT = sys.argv[2] if len(sys.argv) > 2 else "/System/Library/Fonts/Supplemental/Arial Bold.ttf"
 K1 = 240 / 153         # panel pixels per photo pixel at scale 1 for the keys (panel.rs K1)
 KC = K1                # ... for the buttons (the same: panel.rs draws all but the screen at K1)
 # (words, font, cap height and the width of a reference word in photo pixels, panel pixels per photo pixel)
 SETS = [
     (["FX", "SEL", "ENV", "LFO", "EDIT", "GLO", "HOME", "SAVE", "ARP", "SEQ", "PLAY", "STOP", "REC", "OCT-", "OCT+"],
-     BUTTON_FONT, 8.1, ("HOME", 32.5), KC),
-    (["OP1", "OP2", "OP3", "OP4", "OP5", "OP6", "PIT", "GLO.", "MONO", "POLY"], KEY_FONT, 6.8, ("OP1", 16.2), K1),
+     BUTTON_FONT, 8.1, ("HOME", 35.8), KC),   # (Guru-600 24/11/2026, Marc: 29 % wider, as on his FM-1 and its
+                                              #  photos; was 32.5)
+    (["OP1", "OP2", "OP3", "OP4", "OP5", "OP6", "PIT", "GLO.", "MONO", "POLY"], KEY_FONT, 6.8, ("OP1", 20.6), K1),   # (27 % wider too, as the photos; was 16.2)
 ]
 SS = 8  # supersampling
 
@@ -39,10 +44,14 @@ def render(word, font_path, cap, ref, k, scale):
     th = cap * k * scale
     sy = th / cap_px
     sx = (ref[1] * k * scale) / ((refb[2] - refb[0]) * sy) * sy
+    if font_path == BUTTON_FONT:                       # (flattened: the height from the width, not from cap)
+        sy = sx * BUTTON_FLAT
+        th = cap_px * sy
     b = f.getbbox(text)
     w, h = b[2] - b[0] + 20, big + 40
     im = Image.new("L", (w, h), 0)
-    ImageDraw.Draw(im).text((10 - b[0], 20), text, font=f, fill=255)
+    sw = BUTTON_STROKE if font_path == BUTTON_FONT else 0
+    ImageDraw.Draw(im).text((10 - b[0], 20), text, font=f, fill=255, stroke_width=sw, stroke_fill=255)
     # a band around the capitals, as much above as below (Q's tail fits): centring the mask
     # centres the capitals
     top, pad = 20 + capb[1], round(cap_px * 0.3)

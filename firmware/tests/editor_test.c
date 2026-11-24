@@ -11,9 +11,18 @@ static unsigned char host_samples[3][0x14000];
 #define main hostsim_main
 #include "hostsim.c"
 #undef main
-#define MENU_N (31u + FELUCCA_CPU2)                  /* 1.6.1 (core.h FELUCCA_CPU2, the default): 2ND CORE, id 32; Guru-600:
+#define MENU_N (32u + FELUCCA_CPU2)                  /* 1.6.1 (core.h FELUCCA_CPU2, the default): 2ND CORE, id 32; Guru-600:
                                                         * no 11 USB SERIAL, no 23 HOME */
-static uint32_t ed_id(uint32_t i) { return i + (i >= 11u) + (i >= 22u) + (!FELUCCA_CPU2 && i + 1u == MENU_N); }   /* (Guru-600)
+static uint32_t ed_id(uint32_t i)   /* (the ids in order but 11 USB SERIAL, 23 HOME and, a FELUCCA_CPU2=0 build, 32; 1.4.0: 34 EFFECTS last) */
+{
+    uint32_t id, k = 0;
+    for (id = 0;; id++) {
+        if (id == 11u || id == 23u || (!FELUCCA_CPU2 && id == 32u))
+            continue;
+        if (k++ == i)
+            return id;
+    }
+}   /* (Guru-600)
                                                        * MENU_DESC index -> id (1.1: MIDI KNOBS, id 33, last) */
 
 static uint32_t host_progress = 1, host_erases, host_writes;
@@ -900,7 +909,7 @@ static uint32_t menu_set(uint32_t id, int32_t v)            /* -> rc; host_wire[
 #define TCH_NAMES "1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,OMNI,OFF"
 static int menu_protocol(void)
 {
-    static const char *const WANT[34][2] = {
+    static const char *const WANT[35][2] = {
         {"COLOR", 0}, {"STYLE", "FLAT,LINE"}, {"LARGE", "OFF,ON"}, {"ANIM", "ON,OFF,IDLE"}, {"LEDS", "OFF,DIM LO,DIM HI,INV,INV LO,INV HI"},
         {"HOLD", "0.3 s,0.4 s,0.5 s,0.6 s"}, {"KNOB ACCEL", "OFF,ON"}, {"FX LATCH", "OFF,ON"}, {"BPM LOCK", "OFF,ON"},
         {"SPEAKER EQ", "FLAT,LOWCUT,BASS+"}, {"USB LEVEL", "MASTER,FIXED"}, {"USB SERIAL", "ON,OFF"},
@@ -915,9 +924,10 @@ static int menu_protocol(void)
         {"T1 CHANNEL", TCH_NAMES}, {"T2 CHANNEL", TCH_NAMES}, {"T3 CHANNEL", TCH_NAMES}, {"T4 CHANNEL", TCH_NAMES},   /* (1.5.5) */
         {"AUTO SELECT", "OFF,ON"}, {"SCREEN WAKE", "+MIDI,PANEL"},                                   /* (1.5.5) */
         {"2ND CORE", "OFF,ON (BETA)"},                                                           /* (1.6.1; OFF the default) */
-        {"MIDI KNOBS", "ON,OFF"}};                                                           /* (1.6.1; OFF the default) */
-    static const int32_t DEF[34] = {-1, 0, 0, 0, 2, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 3, 0, 0, 0, 0};   /* (COLOR: the default palette) */
-    static const uint8_t TAB[34] = {0, 0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 4, 2, 2, 2, 4, 1, 0, 0, 1, 1, 3, 2, 0, 4, 1, 3, 3, 3, 3, 3, 0, 4, 3};   /* (Guru-600: SCREEN WAKE in DISPLAY) */   /* DISPLAY CONTROL AUDIO
+        {"MIDI KNOBS", "ON,OFF"},
+        {"EFFECTS", "ON,OFF"}};                                                              /* (Guru-600 1.4.0; ON the default) */                                                           /* (1.6.1; OFF the default) */
+    static const int32_t DEF[35] = {-1, 0, 0, 0, 2, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 3, 0, 0, 0, 0, 0};   /* (COLOR: the default palette) */
+    static const uint8_t TAB[35] = {0, 0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 4, 2, 2, 2, 4, 1, 0, 0, 1, 1, 3, 2, 0, 4, 1, 3, 3, 3, 3, 3, 0, 4, 3, 2};   /* (Guru-600: SCREEN WAKE in DISPLAY) */   /* DISPLAY CONTROL AUDIO
                                                                                                          * MIDI SYSTEM (1.2) */
     static const char *const TABN[5] = {"DISPLAY", "CONTROL", "AUDIO", "MIDI", "SYSTEM"};
     int bad = 0, ok = 1;
@@ -951,7 +961,7 @@ static int menu_protocol(void)
         }
     }
     if (jf) { fprintf(jf, "]\n"); fclose(jf); }
-    bad += check(FELUCCA_CPU2 ? "MENU_DESC: 34 items (... 1.5.5, 1.6.1 2ND CORE id 32: OFF / ON (BETA), OFF by default; Guru-600 1.1 MIDI KNOBS id 33 last, ON by default), names, defaults" : "MENU_DESC (FELUCCA_CPU2=0): 32 items (1.0.4's 12 in the menu's order, then 1.1's CLICK, CLICK LEVEL, COUNT-IN, 1.2's RESTORE LAST, SCALE LEDS, SCREEN OFF, 1.2's SCOPE, STEP PREVIEW, CHORD ENTRY, MIDI IN, TUNE, 1.3's HOME, 1.5's HELP, 1.5.5's SELECT, T1..T4 CHANNEL, AUTO SELECT, SCREEN WAKE), ids 0..31, names, defaults; TUNE a number -50..50 ct", ok);
+    bad += check(FELUCCA_CPU2 ? "MENU_DESC: 35 items (... 1.5.5, 1.6.1 2ND CORE id 32: OFF / ON (BETA), OFF by default; Guru-600 1.1 MIDI KNOBS id 33, 1.4.0 EFFECTS id 34 last, ON by default), names, defaults" : "MENU_DESC (FELUCCA_CPU2=0): 32 items (1.0.4's 12 in the menu's order, then 1.1's CLICK, CLICK LEVEL, COUNT-IN, 1.2's RESTORE LAST, SCALE LEDS, SCREEN OFF, 1.2's SCOPE, STEP PREVIEW, CHORD ENTRY, MIDI IN, TUNE, 1.3's HOME, 1.5's HELP, 1.5.5's SELECT, T1..T4 CHANNEL, AUTO SELECT, SCREEN WAKE), ids 0..31, names, defaults; TUNE a number -50..50 ct", ok);
     bad += check("MENU_DESC (1.0.5): after the names (TUNE: the unit) each item's tab, index and name (DISPLAY CONTROL AUDIO MIDI SYSTEM)", ok);
     {   /* an older editor reads the names and stops: the tab is past them, nothing it reads moved */
         uint32_t m = menu_desc(4, &it), p = 14, q;
@@ -1020,8 +1030,9 @@ static int menu_protocol(void)
     ok &= menu_set(32, 1) == 1 && ui_prefs2 == 0x3Fu;   /* (no 2ND CORE in a FELUCCA_CPU2=0 build: an unknown id, nothing set) */
 #endif
     ok &= menu_set(33, 1) == 3 && (ui_prefs3 & 2u);    /* (Guru-600 1.1: MIDI KNOBS OFF, bit 1 of ui_prefs3) */
+    ok &= menu_set(34, 1) == 3 && (ui_prefs3 & 4u);    /* (Guru-600 1.4.0: EFFECTS OFF, bit 2 of ui_prefs3) */
     for (i = 0; i < MENU_N; i++) {                         /* MENU_DESC reads them back */
-        static const int32_t SET[34] = {2, 1, 1, 1, 1, 3, 1, 1, 1, 2, 1, 0, 2, 0, 2, 1, 1, 2, 1, 1, 1, 2, -13, 1, 1, 1, 9, 16, 17, 0, 1, 1, 1, 1};
+        static const int32_t SET[35] = {2, 1, 1, 1, 1, 3, 1, 1, 1, 2, 1, 0, 2, 0, 2, 1, 1, 2, 1, 1, 1, 2, -13, 1, 1, 1, 9, 16, 17, 0, 1, 1, 1, 1, 1};
         menu_desc(i, &it);
         ok &= it.value == SET[ed_id(i)];
     }
@@ -1049,7 +1060,7 @@ static int menu_protocol(void)
         static uint8_t fav0[sizeof favorites], set0[sizeof settings];
         uint8_t hold0 = settings_hold, leds0 = settings_leds;
         memcpy(fav0, &favorites, sizeof favorites); memcpy(set0, &settings, sizeof settings);
-        ok = menu_set(34u, 1) == 1 && host_wire[6] == 34u && ed_rv(host_wire + 7) == 1;   /* (Guru-600: ids past the last, 1.1: 34) */
+        ok = menu_set(35u, 1) == 1 && host_wire[6] == 35u && ed_rv(host_wire + 7) == 1;   /* (Guru-600: ids past the last, 1.4.0: 35) */
         ok &= menu_set(126, -3) == 1 && host_wire[6] == 126 && ed_rv(host_wire + 7) == -3;
         ok &= menu_set(127, 0) == 1 && host_wire[6] == 127;
         ok &= !memcmp(fav0, &favorites, sizeof favorites) && !memcmp(set0, &settings, sizeof settings) &&

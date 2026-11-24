@@ -49,7 +49,8 @@ HUFF = [("M", "L", "T")]
 # graph_title: # . / J W too; a value with another character is set in M): a sparse face of those glyphs, the
 # space as its range and the rest as extras
 # (ui_test.c checks that every L string is covered)
-L_CHARS = " #+-./0123456789ABCDEFGHIJKLMNOPQRSTUVWXY"
+# Guru-600 (24/11/2026): ! & ' and Z added, so that every factory name shows big (FROZEN, JAZZ PERC, 65 DOG'S BARK...)
+L_CHARS = " !#&'+-./0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 # T (the P600 build): the frames' titles (ui_draw.c p6ui_draw) in ExtraBold, as the panel's legends: capitals,
 # digits and the hyphen
 T_CHARS = " -0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"

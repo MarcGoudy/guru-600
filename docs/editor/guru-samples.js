@@ -4,7 +4,7 @@
 // editor sends them (guru-sampleio.js: SMP_BEGIN 11, SMP_WRITE 12, SMP_END 13; SMP_ERASE 14; SMP_INFO 15).
 "use strict";
 
-let smpInfo = { slotKiB: 80, slots: [{ zones: 3, name: "VOX", kib: 41 }, { zones: 0, name: "", kib: 0 }, { zones: 1, name: "BREAK", kib: 52 }] };
+let smpInfo = { slotKiB: 80, slots: [{ zones: 0, name: "", kib: 0 }, { zones: 0, name: "", kib: 0 }, { zones: 0, name: "", kib: 0 }] };   // (1.4.0: offline, the three empty, as a Guru-600 FM-1 has them)
 const smpDraft = [0, 1, 2].map(() => ({ name: "", files: [] }));
 // (the Guru-600 keeps its saved P600 places at the end of USR3: its sample data stops at 17 sectors, as the firmware's
 // eng_sample.c SMP_SLOT_END; the FM-1 refuses more)

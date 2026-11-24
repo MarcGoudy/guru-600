@@ -739,7 +739,7 @@ const TEXT = {
  "en": {
   "intro": "Connect the FM-1 by USB, in a MIDI-compatible browser: Chrome, Edge, Brave, Opera…",
   "warn": "Do not unplug the USB cable while writing.",
-  "install": "Install V1.3.1",
+  "install": "Install V1.4.0",
   "editor": "Felucca editor (the original firmware's: sequences, settings and backups)",
   "direct": "Connect the USB cable directly to the computer.",
   "brick": "If an install fails and the FM-1 no longer starts, recovering it needs a Transporter:",
@@ -785,7 +785,7 @@ const TEXT = {
  "fr": {
   "intro": "Branchez le FM-1 en USB, dans un navigateur compatible MIDI : Chrome, Edge, Brave, Opera…",
   "warn": "Ne débranchez pas le câble USB pendant l’écriture.",
-  "install": "Installer la V1.3.1",
+  "install": "Installer la V1.4.0",
   "editor": "Éditeur Felucca (celui du firmware d'origine : séquences, réglages et sauvegardes)",
   "direct": "Branchez le câble USB directement sur l’ordinateur.",
   "brick": "Si une installation échoue et que le FM-1 ne démarre plus, il faut un Transporter pour le récupérer :",
@@ -831,7 +831,7 @@ const TEXT = {
  "de": {
   "intro": "Verbinden Sie den FM-1 per USB, in einem MIDI-fähigen Browser: Chrome, Edge, Brave, Opera…",
   "warn": "Ziehen Sie das USB-Kabel während des Schreibens nicht ab.",
-  "install": "V1.3.1 installieren",
+  "install": "V1.4.0 installieren",
   "editor": "Felucca-Editor (der Editor der ursprünglichen Firmware: Sequenzen, Einstellungen und Sicherungen)",
   "direct": "Schließen Sie das USB-Kabel direkt am Computer an.",
   "brick": "Wenn eine Installation fehlschlägt und der FM-1 nicht mehr startet, ist zur Wiederherstellung ein Transporter nötig:",
@@ -877,7 +877,7 @@ const TEXT = {
  "es": {
   "intro": "Conecte el FM-1 por USB, en un navegador compatible con MIDI: Chrome, Edge, Brave, Opera…",
   "warn": "No desconecte el cable USB durante la escritura.",
-  "install": "Instalar la V1.3.1",
+  "install": "Instalar la V1.4.0",
   "editor": "Editor Felucca (el del firmware original: secuencias, ajustes y copias de seguridad)",
   "direct": "Conecte el cable USB directamente al ordenador.",
   "brick": "Si una instalación falla y el FM-1 ya no arranca, para recuperarlo se necesita un Transporter:",
@@ -923,7 +923,7 @@ const TEXT = {
  "it": {
   "intro": "Colleghi l’FM-1 tramite USB, in un browser compatibile MIDI: Chrome, Edge, Brave, Opera…",
   "warn": "Non scolleghi il cavo USB durante la scrittura.",
-  "install": "Installa la V1.3.1",
+  "install": "Installa la V1.4.0",
   "editor": "Editor Felucca (quello del firmware originale: sequenze, impostazioni e backup)",
   "direct": "Colleghi il cavo USB direttamente al computer.",
   "brick": "Se un’installazione non riesce e l’FM-1 non si avvia più, per recuperarlo serve un Transporter:",
@@ -969,7 +969,7 @@ const TEXT = {
  "zh": {
   "intro": "请用 USB 连接 FM-1，并使用支持 MIDI 的浏览器：Chrome、Edge、Brave、Opera…",
   "warn": "写入期间请勿拔下 USB 线。",
-  "install": "安装 V1.3.1",
+  "install": "安装 V1.4.0",
   "editor": "Felucca 编辑器（原版固件的编辑器：音序、设置和备份）",
   "direct": "请将 USB 线直接连接到电脑。",
   "brick": "如果安装失败且 FM-1 无法再启动，需要使用 Transporter 才能恢复：",
@@ -1015,7 +1015,7 @@ const TEXT = {
  "ja": {
   "intro": "FM-1 を USB で接続し、MIDI 対応のブラウザー（Chrome、Edge、Brave、Opera…）を使用してください。",
   "warn": "書き込み中は USB ケーブルを抜かないでください。",
-  "install": "V1.3.1 をインストール",
+  "install": "V1.4.0 をインストール",
   "editor": "Felucca エディター（純正ファームウェア用：シーケンス、設定、バックアップ）",
   "direct": "USB ケーブルはコンピューターに直接接続してください。",
   "brick": "インストールに失敗して FM-1 が起動しなくなった場合、復旧には Transporter が必要です：",
@@ -1075,7 +1075,7 @@ const say = (txt) => { lastKey = null; $("status").textContent = txt; };
 const log = (t) => { $("log").textContent += t + "\n"; };
 const pct = () => { $("status").textContent += ` · ${Math.round($("bar").value)} %`; };   // (the bar's value, after the step's name)
 let image = null;
-const meta = {"version": "1.3.1", "product": "FM-1_600600", "pkg": "../../firmware/guru-600-1.3.1.fwsc"};
+const meta = {"version": "1.4.0", "product": "FM-1_600600", "pkg": "../../firmware/guru-600-1.4.0.fwsc"};
 
 let writing = false, stock = null, stockFileEpoch = 0;
 const lockInstaller = (on) => { writing = on; $("go").disabled = on || !image; $("stock-go").disabled = on || !stock; $("stock-file").disabled = on; $("stock-recovery").disabled = on; };

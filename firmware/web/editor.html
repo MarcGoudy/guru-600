@@ -1773,7 +1773,7 @@ function makeMockDevice(opt = {}) {
     { name: "SLICE", titles: ["SLCE", "PLAY"], edit: [E("SRC", ["BREAK", "USR1", "USR2", "USR3", "PIANO"], 0),
         E("DIV", ["4", "8", "16", "32", "AUTO", "MAN"], 2), D("START", F.INT, 0, 31, 0), D("PTCH", F.SEMI, -24, 24, 0),
         E("MODE", ["ONE", "GATE", "LOOP"], 0), E("REV", ["OFF", "ON"], 0), D("DCAY", F.TIME, 0, 127, 127), D("TONE", F.INT, 0, 127, 127)],
-      presets: [P("CHOP", [0, 2, 0, 0, 0, 0, 127, 127], [0, 127, 127, 30], 0, 9), P("STUTTER", [0, 1, 0, 0, 1, 0, 90, 110], [0, 127, 127, 12], 0, 10)] },
+      presets: [] },
     /* Guru-600: P600, the Prophet-600 engine (src/eng_p600.c), its 255 programs (src/p600_bank.h), as desc.json */
     { name: "P600", titles: ["OSC", "FILTER"], edit: [E("A WAV", ["OFF", "SAW", "TRI", "SAW+T", "PLS", "SAW+P", "TRI+P", "ALL"], 1), D("A FRQ", F.INT, 0, 63, 24, null, "st"), E("B WAV", ["OFF", "SAW", "TRI", "SAW+T", "PLS", "SAW+P", "TRI+P", "ALL"], 1), D("B FRQ", F.INT, 0, 63, 24, null, "st"), D("CUT", F.CUTOFF, 0, 127, 90), D("RES", F.PCT, 0, 127, 0), D("MIX", F.PCT, 0, 127, 64), D("FENV", F.PCT, 0, 127, 40)],
       presets: [

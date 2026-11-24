@@ -191,6 +191,35 @@
   ]
  },
  {
+  "name": "p6_edit12",
+  "keys": [
+   "EDIT",
+   "wait 300",
+   "EDIT",
+   "wait 300",
+   "EDIT",
+   "wait 300",
+   "EDIT",
+   "wait 300",
+   "EDIT",
+   "wait 300",
+   "EDIT",
+   "wait 300",
+   "EDIT",
+   "wait 300",
+   "EDIT",
+   "wait 300",
+   "EDIT",
+   "wait 300",
+   "EDIT",
+   "wait 300",
+   "EDIT",
+   "wait 300",
+   "EDIT",
+   "wait 900"
+  ]
+ },
+ {
   "name": "pg_env1",
   "keys": [
    "ENV",
@@ -236,6 +265,21 @@
  {
   "name": "pg_lfo4",
   "keys": [
+   "LFO",
+   "wait 300",
+   "LFO",
+   "wait 300",
+   "LFO",
+   "wait 300",
+   "LFO",
+   "wait 900"
+  ]
+ },
+ {
+  "name": "pg_lfo5",
+  "keys": [
+   "LFO",
+   "wait 300",
    "LFO",
    "wait 300",
    "LFO",

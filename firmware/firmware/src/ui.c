@@ -108,6 +108,8 @@ static uint32_t sel_mode(void) { return ((ui_prefs2 >> 4) & 1u) | ((ui_prefs2 >>
  * keeps its position and takes none back) */
 #define PREF_Y 0xFF000000u                     /* (menu_items.c MENU_FLAGS: a bit of ui_prefs3, << 24) */
 #define PREF_MIDI_KNOBS_OFF (0x02u << 24)   /* (set = OFF: 0, every setting so far, = ON, the default) */
+#define PREF_FX_OFF (0x04u << 24)          /* Guru-600 1.4.0: MENU > AUDIO > EFFECTS OFF (set; 0 = ON, the default): fx.c
+                                            * fx_all_off, every part dry */
 static uint8_t *const mknob_pref = &favorites.factory[15][13];   /* (midi_control.c midi_knob_cc: ui_prefs3) */
 static int16_t *const mknob_clk = panel_mknob;
 /* 1.5.6 (#212): MENU > DISPLAY > LEDS INV LO / INV HI: INV with the idle LEDs at the steady mid level (ui_input.c
@@ -1685,7 +1687,10 @@ static void mph_mutate(void)
 {
     static const uint8_t MUT[] = {P_E0, P_E0 + 1, P_E0 + 2, P_E0 + 3, P_E0 + 4, P_E0 + 5, P_E0 + 6, P_E0 + 7,
                                   P_FM1_ATK, P_FM1_DEC, P_FM1_SUS, P_FM1_REL, P_FM2_ATK, P_FM2_DEC, P_FM2_SUS,
-                                  P_FM2_REL, P_FM3_ATK, P_FM3_DEC, P_FM3_SUS, P_ATK, P_DEC, P_SUS, P_REL, P_LRATE};
+                                  P_FM2_REL, P_FM3_ATK, P_FM3_DEC, P_FM3_SUS, P_ATK, P_DEC, P_SUS, P_REL, P_LRATE,
+                                  P_FM4_DEC, P_FM4_SUS, P_FM4_REL, P_FM1_LEVEL, P_FM2_LEVEL};   /* (1.4.0: HPF SUB NOISE,
+                                  * LFO B's RATE and DEPTH; not POLY nor LFO B's DEST: a variant keeps its voices, turns no
+                                  * LFO on) */
     track_t *t = TSEL;
     uint32_t k;
     load_begin(t, UNDO_SOUND);

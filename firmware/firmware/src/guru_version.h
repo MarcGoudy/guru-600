@@ -3,5 +3,5 @@
  * power-on screen (p600/make_splash.py reads it) and the update loader's screen (p600/make_ldr_screen.py reads it;
  * tests/ldr_screen_test.c checks the two agree). */
 #ifndef GURU_VERSION
-#define GURU_VERSION "1.3.1"
+#define GURU_VERSION "1.4.0"
 #endif

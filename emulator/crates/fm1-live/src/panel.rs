@@ -84,13 +84,17 @@ pub struct Colour {
     line: u32,
 }
 
-pub const COLOURS: [Colour; 6] = [
+pub const COLOURS: [Colour; 9] = [
     Colour { name: "Black", body: 0x4e4f4e, tray: 0x333434, key: 0x2c2d2b, btn: 0x282828, silk: 0xd9dada, ink: 0xf4f4f4, line: 0x6f7070 },
     Colour { name: "Purple", body: 0xd596ba, tray: 0x88618d, key: 0x815984, btn: 0x8b638f, silk: 0xfde9f3, ink: 0x221422, line: 0x302332 },
     Colour { name: "Orange", body: 0xc3724d, tray: 0x91584b, key: 0x824b3f, btn: 0x855042, silk: 0xfff3ea, ink: 0x321f18, line: 0x2e2420 },
     Colour { name: "Black-Green", body: 0x4c4b4e, tray: 0x76d0c3, key: 0x6ecabc, btn: 0x7ad2c5, silk: 0xeae9ec, ink: 0x0b2b2b, line: 0x1a333c },
     Colour { name: "Cool Gray", body: 0xe3d9cf, tray: 0x404448, key: 0x3a3c3d, btn: 0x45494a, silk: 0x2e2722, ink: 0x2a2e2f, line: 0x303435 },
     Colour { name: "White-Blue", body: 0xf1ede7, tray: 0x547393, key: 0x466481, btn: 0x587592, silk: 0x3d4a66, ink: 0x1c2d36, line: 0x222f3a },
+    // Guru-600 (Marc, 24/11/2026): three more, measured on the photos he gave (cream with brick, with purple, white with teal)
+    Colour { name: "Cream-Brick", body: 0xe2e1d9, tray: 0x6b382d, key: 0x633029, btn: 0x69352d, silk: 0x403d38, ink: 0xc5aaa9, line: 0x493f3a },
+    Colour { name: "Cream-Purple", body: 0xd0d0cd, tray: 0x613f8c, key: 0x5e3b82, btn: 0x57347f, silk: 0x403935, ink: 0x160029, line: 0x271837 },
+    Colour { name: "White-Teal", body: 0xf7f8f2, tray: 0x4cb5a6, key: 0x52bdb3, btn: 0x58b9b2, silk: 0x3f3c33, ink: 0x083b36, line: 0x46aaa0 },
 ];
 
 static COLOUR: AtomicUsize = AtomicUsize::new(0);
@@ -362,7 +366,7 @@ pub fn text(buf: &mut [u32], cx: f32, y: f32, s: &str, scale: usize, color: u32)
 
 /// The FM-1's silkscreen: its dot font, letters 10 units high, the inked dots centred on cx.
 fn silk(buf: &mut [u32], cx: f32, top: f32, s: &str, color: u32) {
-    let (dw, dh) = (cs(1.23), cs(1.43));
+    let (dw, dh) = (cs(1.43), cs(1.43));   // (Guru-600 24/11/2026, Marc: square dots, as on the FM-1 and its photos; dw was 1.23)
     // the columns that carry ink (a glyph's blank side columns would put the word off centre)
     let cols: Vec<usize> = s.chars().enumerate()
         .flat_map(|(i, c)| glyph(c).into_iter().enumerate().filter(|(_, g)| *g != 0).map(move |(gx, _)| i * 6 + gx))
@@ -522,6 +526,8 @@ fn bright(f: f32) -> f32 {
 
 /// The colour of a lit LED's light.
 const LIT: u32 = 0xfffaf0;
+const PLAY_GREEN: u32 = 0x5dff7a;
+const REC_RED: u32 = 0xff3b30;
 
 /// A silicone key: its shadow, its side, its face (sunk when held).
 fn rubber(buf: &mut [u32], x: f32, y: f32, w: f32, h: f32, r: f32, face: u32, tray: u32, down: bool) {
@@ -612,15 +618,23 @@ pub fn draw(buf: &mut [u32], base: &[u32], st: &State) {
         let down = st.down[id as usize];
         let led = bright(st.leds[id as usize]);
         let (cx, cy) = pad(buf, x, y, w, h, cs(11.0), c.btn, c.tray, down);
+        // (Guru-600 24/11/2026, Marc: as on his FM-1, PLAY / STOP lights green, REC red; the others white)
+        // (only when really lit: the firmware's faint idle glow stays white, as on the other buttons)
+        let lit = st.leds[id as usize] * 11.0 >= 0.5;   // (the fraction of time lit, x 11 columns: 1 = fully lit)
+        let (glow, glow_ink) = match id {
+            12 if lit => (PLAY_GREEN, PLAY_GREEN),
+            13 if lit => (REC_RED, REC_RED),
+            _ => (LIT, 0xffffff),
+        };
         // the LED behind the word: a soft light on the top, the word lit through
         if led > 0.0 {
-            shape(buf, cx - cs(18.0), cy - cs(8.0), cs(36.0), cs(16.0), cs(8.0), cs(7.0), 0.28 * led * led, |_, _| LIT);
+            shape(buf, cx - cs(18.0), cy - cs(8.0), cs(36.0), cs(16.0), cs(8.0), cs(7.0), 0.28 * led * led, |_, _| glow);
         }
-        let ink = mix(c.ink, 0xffffff, led);
+        let ink = mix(c.ink, glow_ink, led);
         if let Some((a, b)) = name.split_once('/') {
-            word(buf, cx, cy - cs(6.5), a, ink);
+            word(buf, cx, cy - cs(7.6), a, ink);   // (Guru-600 24/11/2026, Marc: the two words a little apart; was 6.5)
             shape(buf, cx - cs(14.5), cy - cs(0.65), cs(29.0), cs(1.3), 0.0, 1.0, 1.0, |_, _| ink);
-            word(buf, cx, cy + cs(6.5), b, ink);
+            word(buf, cx, cy + cs(7.6), b, ink);
         } else {
             word(buf, cx, cy, name, ink);
         }

@@ -125,6 +125,7 @@ const I18N_WORDS = [
   ["@settings", "MIDI IN", "ENTRÉE MIDI", "MIDI-EINGANG", "ENTRADA MIDI", "INGRESSO MIDI", "MIDI 输入", "MIDI 入力"],
   ["@settings", "AUTO SELECT", "SÉLECTION AUTO", "AUTO-AUSWAHL", "SELECCIÓN AUTO", "SELEZIONE AUTO", "自动选择", "自動選択"],
   ["@settings", "SCREEN WAKE", "RÉVEIL ÉCRAN", "BILDSCHIRM WECKEN", "DESPERTAR PANTALLA", "RIATTIVA SCHERMO", "屏幕唤醒", "画面復帰"],
+  ["@settings", "EFFECTS", "EFFETS", "EFFEKTE", "EFECTOS", "EFFETTI", "效果", "エフェクト"],   // (Guru-600 1.4.0)
   ["@settings", "MIDI KNOBS", "BOUTONS MIDI", "MIDI-REGLER", "MANDOS MIDI", "MANOPOLE MIDI", "MIDI 旋钮", "MIDI ノブ"],
   ["@settings", "RESTORE LAST", "REPRISE SESSION", "LETZTEN STAND", "RESTAURAR ÚLTIMO", "RIPRENDI ULTIMO", "恢复上次", "前回を復元"],
   ["@settings", "HELP", "AIDE", "HILFE", "AYUDA", "AIUTO", "帮助", "ヘルプ"],

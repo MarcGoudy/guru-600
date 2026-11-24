@@ -99,7 +99,7 @@ static uint32_t ed_bk_capture(void)
 #endif
     settings_export(&ed_bk_settings);
 #if ED_BK_P6
-    p6st.magic = P6ST_MAGIC; p6st.ver = 1u; p6st.n = P6_NIMP;   /* the places as they are now (p600_store_poll) */
+    p6st.magic = P6ST_MAGIC; p6st.ver = 2u; p6st.n = P6_NIMP;   /* the places as they are now (p600_store_poll) */
 #endif
 #if FELUCCA_FLASH && FELUCCA_SLICE
     for (uint32_t k = 0; k < SMP_USER_SLOTS; k++) {
@@ -138,13 +138,18 @@ static uint32_t ed_bk_p600(const uint8_t *raw, uint32_t len)
     uint32_t i;
     if (len) {
         const p6st_t *p = (const p6st_t *)raw;
-        if (p->magic != P6ST_MAGIC || p->ver != 1u || p->n != P6_NIMP) return 2;
+        if (p->magic != P6ST_MAGIC || p->n != P6_NIMP || !((p->ver == 2u && len == sizeof p6st) ||
+                                                          (p->ver == 1u && len == P6ST_V1_LEN))) return 2;
         for (i = 0; i < P6_NIMP; i++)
             if (p->imp[i].used > 1u || (p->imp[i].used && p->imp[i].dest > 254u)) return 2;
-        memcpy(&p6st, raw, sizeof p6st);
+        memcpy(&p6st, raw, len);                       /* (1.4.0: a 1.0 .. 1.3.1 backup, version 1: the new values neutral) */
+        if (p6st.ver == 1u)
+            for (i = 0; i < P6_NIMP; i++)
+                p6st.x2[i] = P6X2_NEUTRAL;
+        p6st.ver = 2u;
     } else {
         memset(&p6st, 0, sizeof p6st);
-        p6st.magic = P6ST_MAGIC; p6st.ver = 1u; p6st.n = P6_NIMP;
+        p6st.magic = P6ST_MAGIC; p6st.ver = 2u; p6st.n = P6_NIMP;
     }
     for (i = 0; i < P6_NIMP; i++)                      /* (p6_imp is p6st.imp: the places as restored) */
         p6_imp[i].name[15] = 0;

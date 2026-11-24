@@ -15,10 +15,10 @@ let menuItems = [
   [15, 0, 0, "RESTORE LAST", 4, "ON|OFF"], [16, 0, 0, "SCALE LEDS", 1, "OFF|ON"], [17, 0, 0, "SCREEN OFF", 0, "NEVER|5 MIN|15 MIN|30 MIN|60 MIN"],
   [31, 0, 0, "SCREEN WAKE", 0, "+MIDI|PANEL"],
   [18, 0, 0, "SCOPE", 0, "OUT|MIX"], [19, 0, 0, "STEP PREVIEW", 1, "OFF|ON"], [20, 0, 0, "CHORD ENTRY", 1, "HOLD|ADD"],
-  [21, 0, 0, "MIDI IN", 3, "CH1-4|SEL|CH5-8|CH9-12|CH13-16|TRACK"], [22, 1, 0, "TUNE", 2, "ct"], [24, 0, 0, "HELP", 4, "OFF|ON"],
+  [21, 0, 0, "MIDI IN", 3, "CH1-4|SEL|CH5-8|CH9-12|CH13-16|TRACK"], [22, 1, 0, "TUNE", 2, "ct"], [34, 0, 0, "EFFECTS", 2, "ON|OFF"],   // (Guru-600 1.4.0: OFF, every effect off) [24, 0, 0, "HELP", 4, "OFF|ON"],
   [25, 0, 0, "SELECT", 1, "BPM|PAGE|MODW|VEL"], [26, 0, 0, "T1 CHANNEL", 3, N_CH.join("|")], [27, 0, 1, "T2 CHANNEL", 3, N_CH.join("|")],
   [28, 0, 2, "T3 CHANNEL", 3, N_CH.join("|")], [29, 0, 3, "T4 CHANNEL", 3, N_CH.join("|")], [30, 0, 0, "AUTO SELECT", 3, "OFF|ON"],
-  [32, 0, 0, "2ND CORE", 4, "OFF|ON (BETA)"],
+  [32, 0, 1, "2ND CORE", 4, "OFF|ON (BETA)"],   // (1.4.0: ON, the firmware switches it on once)
   [33, 0, 0, "MIDI KNOBS", 3, "ON|OFF"],   // (Guru-600 1.1.0: the KeyStep's knobs turn KNOB 1..4)
 ].map(([id, kind, v, name, tab, n]) => ({ id, kind, v, lo: kind ? -50 : 0, hi: kind ? 50 : n.split("|").length - 1, name, tab,
   tabn: ["DISPLAY", "CONTROL", "AUDIO", "MIDI", "SYSTEM"][tab], names: n.split("|") }));
@@ -97,7 +97,12 @@ stage.addEventListener("wheel", (ev) => {
 }, { passive: false });
 
 /* ------------------------------------------------------------------------------------ the FM-1 --- */
-async function menuRead() {
+let menuBusy = false;
+async function menuRead(quiet) {
+  if (menuBusy) return; menuBusy = true;
+  try { await menuRead_(quiet); } finally { menuBusy = false; }
+}
+async function menuRead_(quiet) {
   const out = [];
   for (let k = 0; k < 64; k++) {
     const a = await dev.link.ask(false, 72, [k], (r) => r[0] === k, 1000);
@@ -111,9 +116,13 @@ async function menuRead() {
     if (it.tab > 4) it.tab = 4;   // (a tab newer than this page: with SYSTEM)
     out.push(it);
   }
-  if (out.length) menuItems = out;
-  drawSettings();
+  if (!out.length) return quiet ? undefined : drawSettings();
+  const same = out.length === menuItems.length && out.every((x, k) => x.id === menuItems[k].id && x.v === menuItems[k].v);
+  menuItems = out;
+  if (!quiet || !same) drawSettings();   // (quiet: redrawn only when a value moved)
 }
+// (Guru-600 1.4.0, Marc 24/11: a setting changed on the FM-1 shows here too: read again while the page is shown)
+setInterval(() => { if (dev && page === "settings" && !document.hidden) menuRead(true).catch(() => {}); }, 2000);
 pageOpen.settings = () => { drawSettings(); if (dev) menuRead().catch((e) => console.warn(e)); };
 Object.assign(TX.en, { setno: "This FM-1 does not have that setting.", setram: "Set, but the FM-1 could not keep it: it is lost at power-off.",
   setlater: "Set: the FM-1 keeps it once the music stops." });

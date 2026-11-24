@@ -1,0 +1,106 @@
+[
+ {
+  "name": "site_save_phrases",
+  "keys": [
+   "SAVE",
+   "wait 300",
+   "SAVE",
+   "wait 300",
+   "SAVE",
+   "wait 900"
+  ]
+ },
+ {
+  "name": "site_save_place",
+  "keys": [
+   "SAVE",
+   "wait 300",
+   "SAVE",
+   "wait 600",
+   "K1 1",
+   "wait 900"
+  ]
+ },
+ {
+  "name": "site_save_presets",
+  "keys": [
+   "SAVE",
+   "wait 300",
+   "SAVE",
+   "wait 900"
+  ]
+ },
+ {
+  "name": "site_save_project",
+  "keys": [
+   "SAVE",
+   "wait 300",
+   "SAVE",
+   "wait 300",
+   "SAVE",
+   "wait 300",
+   "SAVE",
+   "wait 900"
+  ]
+ },
+ {
+  "name": "site_save_user",
+  "keys": [
+   "SAVE",
+   "wait 900"
+  ]
+ },
+ {
+  "name": "site_pg_eq",
+  "keys": [
+   "FX",
+   "wait 300",
+   "FX",
+   "wait 300",
+   "FX",
+   "wait 600",
+   "K1 1",
+   "wait 250",
+   "K1 1",
+   "wait 250",
+   "K1 1",
+   "wait 250",
+   "K1 1",
+   "wait 250",
+   "K1 1",
+   "wait 250",
+   "K1 1",
+   "wait 250",
+   "K1 1",
+   "wait 250",
+   "K1 1",
+   "wait 250",
+   "K1 1",
+   "wait 250",
+   "K2 24",
+   "wait 300",
+   "K3 -8",
+   "wait 300",
+   "K4 -32",
+   "wait 900"
+  ]
+ },
+ {
+  "name": "site_midi_knobs",
+  "keys": [
+   "down HOME 900",
+   "up HOME",
+   "ALGO 4",
+   "wait 400",
+   "PRESETS 6",
+   "wait 900"
+  ]
+ },
+ {
+  "name": "site_mixer",
+  "keys": [
+   "HOME",
+   "wait 900"
+  ]
+ }
+]

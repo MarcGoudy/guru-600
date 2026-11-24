@@ -18,10 +18,10 @@ def P6R(label, page, key):                  # a row of the notice's: the editor'
 TIME_V = ("1 ms … 10 s", "1 ms … 10 s")
 CH("sound", "SOUND: a panel inspired by the Prophet-600", "SOUND : une façade inspirée du Prophet-600",
  P2("The SOUND page shows the sound of the selected track on a panel inspired by the Prophet-600: every knob and switch of the "
-    "original, plus what the Guru-600 adds (VOICE, FX SENDS, EXTRAS, MORPH). A change is heard at once on the FM-1. "
+    "original, plus what the Guru-600 adds (HPF, SUB, NOISE, LFO B, POLY, VOICE, FX SENDS, EXTRAS, MORPH). A change is heard at once on the FM-1. "
     "On the right, SOUNDS holds every sound the FM-1 can play, and saves and exchanges the 255 P600 sounds.",
     "La page SOUND présente le son de la piste choisie sur une façade inspirée du Prophet-600 : chaque bouton et chaque "
-    "interrupteur de l'original, plus ce qu'ajoute le Guru-600 (VOICE, FX SENDS, EXTRAS, MORPH). Un changement s'entend "
+    "interrupteur de l'original, plus ce qu'ajoute le Guru-600 (HPF, SUB, NOISE, LFO B, POLY, VOICE, FX SENDS, EXTRAS, MORPH). Un changement s'entend "
     "aussitôt sur le FM-1. À droite, SOUNDS contient tous les sons que peut jouer le FM-1, et enregistre et échange les 255 sons P600.") +
  SHOT("sound", "The SOUND page.", "La page SOUND.") +
  BOX("note", ("A change affects the track's sound, not the saved sound. To keep it: SAVE TO THIS PLACE (below), or STORE THE TRACK'S SOUND on the PROJECTS page (chapter {ch:projects}).",
@@ -30,28 +30,35 @@ CH("sound", "SOUND: a panel inspired by the Prophet-600", "SOUND : une façade i
  P2("When the track plays a sound of the FM-1 (another engine than P600), the panel, MORPH and MUTATE dim and stay still, and a message says which engine the track plays: they set the Guru-600 sounds only. Click a Guru-600 sound (1 to 255) in SOUNDS: the track switches to P600 and plays it. The keyboard still shows the keys played on the FM-1, and the other pages work with every engine.",
     "Quand la piste joue un son du FM-1 (un autre moteur que P600), la façade, MORPH et MUTATE s'assombrissent et restent inactifs, et un message indique le moteur que joue la piste : ils ne règlent que les sons Guru-600. Cliquez sur un son Guru-600 (1 à 255) dans SOUNDS : la piste passe en P600 et le joue. Le clavier montre toujours les touches jouées sur le FM-1, et les autres pages fonctionnent avec tous les moteurs.") +
  H3("POLY-MOD", "POLY-MOD", FAM["pm"]) +
- P2("In each voice, two sources modulate oscillator A's pitch and/or the filter.", "Dans chaque voix, deux sources modulent la hauteur de l'oscillateur A et/ou le filtre.") +
+ P2("In each voice, two sources modulate oscillator A's pitch, its pulse width and/or the filter.", "Dans chaque voix, deux sources modulent la hauteur de l'oscillateur A, sa largeur d'impulsion et/ou le filtre.") +
  CTL3([P6R("FIL ENV", "POLY MOD", "PM EN"), P6R("OSC B", "POLY MOD", "PM B"),
-       ("FREQ A, FILTER", "DESTINATION: where the modulation goes. Both lit: both; both unlit: nowhere.",
-        "DESTINATION : où va la modulation. Les deux allumés : les deux ; les deux éteints : nulle part.", "OFF / ON", "OFF / ON")]) +
+       ("FREQ A, FILTER, PW A", "DESTINATION: where the modulation goes: oscillator A's pitch, the filter, oscillator A's pulse width (which the Prophet-600 could not do). Any combination; all unlit: nowhere.",
+        "DESTINATION : où va la modulation : la hauteur de l'oscillateur A, le filtre, la largeur d'impulsion de l'oscillateur A (ce que le Prophet-600 ne faisait pas). Toute combinaison ; tous éteints : nulle part.", "OFF / ON", "OFF / ON")]) +
  H3("LFO", "LFO", FAM["lfo"]) +
  CTL3([("FREQUENCY", "The LFO's speed.", "La vitesse du LFO.", "0.1 … 40 Hz", "0,1 … 40 Hz"),
-       ("SHAPE", "Click to choose the triangle wave (top) or the square wave (bottom); the shape chosen glows. Unlit: a shape the Prophet-600 does not have, set on the FM-1.",
-        "Cliquez pour choisir l'onde triangulaire (en haut) ou l'onde carrée (en bas) ; la forme choisie est lumineuse. Éteint : une forme que le Prophet-600 n'a pas, réglée sur le FM-1.", "TRI / SQR", "TRI / SQR"),
+       ("SHAPE", "Click to choose the triangle wave (top left) or the square wave (bottom right); the shape chosen glows. Unlit: a shape the Prophet-600 does not have, set on the FM-1.",
+        "Cliquez pour choisir l'onde triangulaire (en haut à gauche) ou l'onde carrée (en bas à droite) ; la forme choisie est lumineuse. Éteint : une forme que le Prophet-600 n'a pas, réglée sur le FM-1.", "TRI / SQR", "TRI / SQR"),
        ("FREQ A-B, PW A-B, FILTER", "DESTINATION: what the LFO moves: the pitch of both oscillators, their pulse widths, the filter. Any combination.",
         "DESTINATION : ce que fait bouger le LFO : la hauteur des deux oscillateurs, leurs largeurs d'impulsion, le filtre. Toute combinaison.", "OFF / ON", "OFF / ON")]) +
+ H3("LFO B", "LFO B", FAM["lfo"]) +
+ P2("Under the LFO: a second LFO, which the Prophet-600 did not have. A triangle shared by all the voices of the track, as on the original's LFO.",
+    "Sous le LFO : un second LFO, que le Prophet-600 n'avait pas. Un triangle commun à toutes les voix de la piste, comme le LFO de l'original.") +
+ CTL3([("FREQUENCY", "Its speed.", "Sa vitesse.", "0.05 – 40 Hz", "0,05 – 40 Hz"),
+       ("DEPTH", "How much it moves its destination. 0 %: nothing.", "De combien il fait bouger sa destination. 0 % : rien.", "0–100 %", "0–100 %"),
+       ("DESTINATION", "Where it goes: PITCH (both oscillators, up to an octave), PW A or PW B (a pulse width), FILT (the cutoff), AMP (the volume: tremolo), OFF.", "Où il va : PITCH (les deux oscillateurs, jusqu'à une octave), PW A ou PW B (une largeur d'impulsion), FILT (la coupure), AMP (le volume : trémolo), OFF.", "6 choices", "6 choix")]) +
  H3("OSCILLATOR A, OSCILLATOR B", "OSCILLATOR A, OSCILLATOR B", FAM["osc"]) +
  CTL3([P6R("FREQUENCY (A)", "OSC", "A FRQ"), P6R("FREQUENCY (B)", "OSC", "B FRQ"), P6R("FINE (B)", "OSC 2", "B FIN"),
        P6R("SYNC (A)", "OSC 2", "SYNC"),
        ("SAW, TRI, PULSE", "The waveforms of the oscillator: light one, two or three to combine them; all unlit: the oscillator is silent.",
         "Les formes d'onde de l'oscillateur : allumez-en une, deux ou trois pour les combiner ; toutes éteintes : l'oscillateur se tait.", "OFF / ON", "OFF / ON"),
        P6R("PULSE WIDTH (A)", "OSC 2", "A PW"), P6R("PULSE WIDTH (B)", "OSC 2", "B PW")]) +
- H3("MIXER, GLIDE, UNISON", "MIXER, GLIDE, UNISON", FAM["osc"]) +
+ H3("MIXER, GLIDE, UNISON, SUB, NOISE", "MIXER, GLIDE, UNISON, SUB, NOISE", FAM["osc"]) +
  CTL3([P6R("MIXER", "MIXER", "MIX"), P6R("GLIDE", "MIXER", "GLD"),
-       ("UNISON", "All the voices on one note, huge. Unlit: the track plays chords (POLY). The other voice modes (MONO, LEGATO) are on the MOD page (chapter {ch:mod}).",
-        "Toutes les voix sur une note, énorme. Éteint : la piste joue des accords (POLY). Les autres modes de voix (MONO, LEGATO) sont sur la page MODULATION (chapitre {ch:mod}).", "OFF / ON", "OFF / ON")]) +
+       ("UNISON", "Six voices on one note, huge. Unlit: the track plays chords (POLY). The other voice modes (MONO, LEGATO) are on the MOD page (chapter {ch:mod}).",
+        "Six voix sur une note, énorme. Éteint : la piste joue des accords (POLY). Les autres modes de voix (MONO, LEGATO) sont sur la page MODULATION (chapitre {ch:mod}).", "OFF / ON", "OFF / ON"),
+       P6R("SUB", "EXTRAS 2", "SUB"), P6R("NOISE", "EXTRAS 2", "NOISE")]) +
  H3("FILTER, FILTER ENVELOPE", "FILTER, FILTER ENVELOPE", FAM["flt"]) +
- CTL3([P6R("CUTOFF", "FILTER", "CUT"), P6R("RESONANCE", "FILTER", "RES"), P6R("ENVELOPE AMOUNT", "FILTER", "FENV"),
+ CTL3([P6R("CUTOFF", "FILTER", "CUT"), P6R("RESONANCE", "FILTER", "RES"), P6R("ENVELOPE AMOUNT", "FILTER", "FENV"), P6R("HPF", "EXTRAS 2", "HPF"),
        ("KEYBOARD", "Higher notes open the filter: OFF, HALF, FULL (the filter follows the keyboard note for note). Click an option.",
         "Les notes aiguës ouvrent le filtre : OFF, HALF, FULL (le filtre suit le clavier note pour note). Cliquez sur une option.", "OFF, HALF, FULL", "OFF, HALF, FULL"),
        P6R("ATTACK", "FLT ENV", "ATK"), P6R("DECAY", "FLT ENV", "DEC"), P6R("SUSTAIN", "FLT ENV", "SUS"), P6R("RELEASE", "FLT ENV", "REL")]) +
@@ -70,7 +77,7 @@ CH("sound", "SOUND: a panel inspired by the Prophet-600", "SOUND : une façade i
  CTL3([P6R("VINTAGE", "EXTRAS", "VINTAGE"),
        ("WHEEL", "The LFO the sound plays with the mod wheel at rest: 0 % none, 100 % all; the wheel adds the rest.",
         "Le LFO que joue le son molette au repos : 0 % aucun, 100 % tout ; la molette ajoute le reste.", "0 … 100 %", "0 … 100 %"),
-       P6R("VEL > FLT", "EXTRAS", "VEL>FLT"), P6R("DETUNE", "EXTRAS", "DETUNE")]) +
+       P6R("VEL > FLT", "EXTRAS", "VEL>FLT"), P6R("DETUNE", "EXTRAS", "DETUNE"), P6R("POLY", "MIXER", "POLY")]) +
  H3("Turning the knobs", "Tourner les boutons", EDC["sound"]) +
  LI([("Drag up or down on a knob; hold <kbd>Shift</kbd> for finer steps. Or scroll over it.",
       "Glissez vers le haut ou le bas sur un bouton ; maintenez <kbd>Maj</kbd> pour des pas plus fins. Ou faites défiler au-dessus de lui."),
@@ -102,10 +109,10 @@ CH("sound", "SOUND: a panel inspired by the Prophet-600", "SOUND : une façade i
  P2("SAVE TO THIS PLACE, BACK TO ORIGINAL and EXPORT .SYX act on a Guru-600 sound: they are grey while the track plays a sound of the FM-1.",
     "SAVE TO THIS PLACE, BACK TO ORIGINAL et EXPORT .SYX agissent sur un son Guru-600 : ils sont gris quand la piste joue un son du FM-1.") +
  H3("What a place keeps", "Ce que garde une place", EDC["sound"]) +
- P2("<b>Saved with the sound</b>: the oscillators, the mixer, the filter and its envelope, the Poly-Mod, the amplifier envelope, the glide, UNI on or off (with its DETUNE), the LFO's rate, shape and destinations, WHEEL and VEL>FLT. "
+ P2("<b>Saved with the sound</b>: the oscillators, the mixer, the filter and its envelope, the Poly-Mod, the amplifier envelope, the glide, UNI on or off (with its DETUNE), the LFO's rate, shape and destinations, WHEEL and VEL>FLT, and what the Guru-600 adds: HPF, SUB, NOISE, POLY and LFO B. "
     "<b>Not saved</b>: VINTAGE (back to 24 at each load), the effect sends (a kept sound plays dry, all sends at 0), the INSERT, MONO and LEG (a kept sound always plays POLY, or UNI if its unison was on), "
     "the LFO's PHASE and FADE and the other LFO settings of the MOD page, the ENVELOPE settings of the MOD page, MOD MATRIX slots 1–2, the VOICE settings of the MOD page and SPREAD.",
-    "<b>Enregistrés avec le son</b> : les oscillateurs, le mixeur, le filtre et son enveloppe, la Poly-Mod, l'enveloppe d'amplitude, le glide, UNI actif ou non (avec son DETUNE), la vitesse, la forme et les destinations du LFO, WHEEL et VEL>FLT. "
+    "<b>Enregistrés avec le son</b> : les oscillateurs, le mixeur, le filtre et son enveloppe, la Poly-Mod, l'enveloppe d'amplitude, le glide, UNI actif ou non (avec son DETUNE), la vitesse, la forme et les destinations du LFO, WHEEL et VEL>FLT, et ce qu'ajoute le Guru-600 : HPF, SUB, NOISE, POLY et LFO B. "
     "<b>Non enregistrés</b> : VINTAGE (revient à 24 à chaque chargement), les envois d'effets (un son gardé joue sec, tous les envois à 0), l'INSERT, MONO et LEG (un son gardé joue toujours en POLY, ou en UNI si son unisson était actif), "
     "PHASE et FADE du LFO et les autres réglages du LFO de la page MODULATION, les réglages ENVELOPE de la page MODULATION, les emplacements 1 et 2 de MOD MATRIX, les réglages VOICE de la page MODULATION et SPREAD.") +
  P2("To keep everything, use STORE THE TRACK'S SOUND on the PROJECTS page (a USER sound), or save the project. "

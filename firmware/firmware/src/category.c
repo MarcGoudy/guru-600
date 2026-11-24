@@ -34,7 +34,7 @@ static const char *const PRESET_CAT[16] = {
     "DDDD",                      /* 10 DRUM: DRUM KIT; 1.5.6: DEEP KIT, TIGHT KIT, PERC KIT */
     "FFFF",                      /* 11 NOISE: WIND, RAIN, ARCADE, METAL */
     "KUBLPUKU",                  /* 12 FM6: TINE EP, BELL, FM BASS, BRASS, PAD, MARIMBA, ORGAN, PLUCK */
-    "DD",                        /* 13 SLICE: CHOP, STUTTER */
+    "",                          /* 13 SLICE: none (CHOP, STUTTER retired with BREAK, Guru-600 24/11) */
 #if FELUCCA_P600
     /* 14 P600 (Guru-600): 1-100 the Prophet-600's factory sounds, 101-200 the 2022 collection (its patch types), 201-255
      * the Guru-600's own; p600/categories/p600_categories.py writes it */

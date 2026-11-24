@@ -8,7 +8,7 @@ H = os.path.dirname(os.path.abspath(__file__))
 ED = os.path.join(os.path.dirname(H), "editeur", "index.html")
 C = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
 SHOTS = [("cover", "sound", None), ("sound", "sound", None), ("header", "sound", (0, 0, 1536, 150)),
-         ("keyboard", "sound", (0, 776, 1536, 1024)), ("morph", "sound", (0, 650, 1320, 780)),
+         ("keyboard", "sound", (0, 776, 1536, 1024)), ("morph", "sound", (0, 650, 1214, 780)),
          ("sounds", "sound&listat=254", (1316, 150, 1536, 780)), ("seq", "seq", None), ("song", "song", None), ("arp", "arp", None),
          ("fx", "fx", None), ("mod", "mod", None), ("tracks", "tracks", None), ("projects", "projects", None),
          ("samples", "samples", None), ("backup", "backup", None), ("settings", "settings", None)]

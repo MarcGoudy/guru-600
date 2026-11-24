@@ -27,26 +27,26 @@ CH("envlfo", "The amplifier envelope, the LFO and the modulation", "L'enveloppe 
      ("On P600, the filter has its own envelope on EDIT › FLT ENV (chapter {ch:p600}); ENV DEST › FLT adds the amplifier envelope on top.",
       "Sur P600, le filtre a sa propre enveloppe dans EDIT › FLT ENV (chapitre {ch:p600}) ; ENV DEST › FLT y ajoute l'enveloppe d'amplitude.")]) +
  H3("LFO: the slow movement", "LFO : le mouvement lent") +
- fpage("lfo", "shots/pg_lfo1.png", "LFO 1/4", "A slow wave that moves other settings up and down. Press <b>LFO</b>.",
+ fpage("lfo", "shots/pg_lfo1.png", "LFO 1/5", "A slow wave that moves other settings up and down. Press <b>LFO</b>.",
        "Une onde lente qui fait monter et descendre d'autres réglages. Appuyez sur <b>LFO</b>.",
        [("RATE", "Its speed. Dimmed when LFO 2 › SYNC follows the tempo.", "Sa vitesse. Grisée quand LFO 2 › SYNC suit le tempo.", "0.05 – 40 Hz", "0,05 – 40 Hz"),
         ("WAVE", "Its shape: SIN, TRI, SAW, SQR (square), S&H (random steps).", "Sa forme : SIN, TRI, SAW, SQR (carré), S&H (paliers aléatoires).", "5 choices", "5 choix"),
         ("PHS", "Where the wave starts at each note.", "Où l'onde commence à chaque note.", "0–127", "0–127"),
         ("FADE", "Time for the LFO to come in after the note starts: a delayed vibrato.", "Temps d'arrivée du LFO après le début de la note : un vibrato retardé.", "1 ms – 10 s", "1 ms – 10 s")],
        "The LFO page.", "La page LFO.") +
- fpage("lfo", "shots/pg_lfo2.png", "LFO 2 2/4", "Tempo sync and behavior.", "Synchronisation au tempo et comportement.",
+ fpage("lfo", "shots/pg_lfo2.png", "LFO 2 2/5", "Tempo sync and behavior.", "Synchronisation au tempo et comportement.",
        [("SYNC", "OFF (RATE sets the speed) or a note value, 4BAR to 1/32, that follows the tempo.", "OFF (RATE règle la vitesse) ou une valeur de note, de 4BAR à 1/32, qui suit le tempo.", "11 choices", "11 choix"),
         ("TRIG", "NOTE: the wave restarts at each note. FREE: it runs freely.", "NOTE : l'onde repart à chaque note. FREE : elle tourne librement.", "2 choices", "2 choix"),
         ("POL", "BI: up and down around the setting. UNI: only above it.", "BI : au-dessus et au-dessous du réglage. UNI : seulement au-dessus.", "2 choices", "2 choix")],
        "The LFO 2 page.", "La page LFO 2.") +
- fpage("lfo", "shots/pg_lfo3.png", "LFO DEST 3/4", "Where the LFO goes, and how much.",
+ fpage("lfo", "shots/pg_lfo3.png", "LFO DEST 3/5", "Where the LFO goes, and how much.",
        "Où va le LFO, et de combien.",
        [("PIT", "Pitch: vibrato.", "Hauteur : vibrato.", "−100 / +100 %", "−100 / +100 %"),
         ("FLT", "Cutoff: wah-wah.", "Coupure : wah-wah.", "−100 / +100 %", "−100 / +100 %"),
         ("SHP", "Shape (on P600: the pulse widths): the shimmer of strings.", "Forme (sur P600 : les largeurs d'impulsion) : le scintillement des cordes.", "−100 / +100 %", "−100 / +100 %"),
         ("AMP", "Volume: tremolo.", "Volume : trémolo.", "0–100 %", "0–100 %")],
        "The LFO DEST page.", "La page LFO DEST.") +
- fpage("lfo", "shots/pg_lfo4.png", "MOD 4/4", "The modulation matrix: four slots per track, each sending a source to a destination, in addition to the routings above.",
+ fpage("lfo", "shots/pg_lfo4.png", "MOD 4/5", "The modulation matrix: four slots per track, each sending a source to a destination, in addition to the routings above.",
        "La matrice de modulation : quatre emplacements par piste, chacun envoyant une source vers une destination, en plus des liaisons ci-dessus.",
        [("SLOT", "Which of the four slots the other knobs edit.", "L'emplacement que modifient les autres boutons rotatifs.", "1–4", "1–4"),
         ("SRC", "The source: OFF, LFO, ENV, VEL (velocity), KEY (the note), RAND (random per note), MODW (mod wheel), AT (aftertouch), EXPR (expression pedal), S&H, SLEW (a smoothed S&H).", "La source : OFF, LFO, ENV, VEL (vélocité), KEY (la note), RAND (au hasard à chaque note), MODW (molette), AT (aftertouch), EXPR (pédale d'expression), S&H, SLEW (un S&H adouci).", "11 choices", "11 choix"),
@@ -59,6 +59,18 @@ CH("envlfo", "The amplifier envelope, the LFO and the modulation", "L'enveloppe 
       "MODW, AT et EXPR viennent d'un clavier MIDI (ou de SELECT = MODW pour la molette). Tant que rien n'est reçu, MODW et AT valent 0 et EXPR le maximum."),
      ("ENV › DEPTH gives an LFO that follows the note's envelope; LFO › RATE gives an LFO whose speed changes.",
       "ENV › DEPTH donne un LFO qui suit l'enveloppe de la note ; LFO › RATE, un LFO dont la vitesse change.")]) +
+ fpage("lfo", "shots/pg_lfo5.png", "LFO B 5/5", "On a P600 track only (the other engines have four LFO pages): a second LFO, which the Prophet-600 did not have. A triangle shared by all the voices of the track, as on the original's LFO.",
+       "Sur une piste P600 seulement (les autres moteurs ont quatre pages LFO) : un second LFO, que le Prophet-600 n'avait pas. Un triangle commun à toutes les voix de la piste, comme le LFO de l'original.",
+       [("RATE", "Its speed.", "Sa vitesse.", "0.05 – 40 Hz", "0,05 – 40 Hz"),
+        ("DEPTH", "How much it moves its destination. 0 %: nothing.", "De combien il fait bouger sa destination. 0 % : rien.", "0–100 %", "0–100 %"),
+        ("DEST", "Where it goes: PITCH (both oscillators, up to an octave), PW A or PW B (a pulse width), FILT (the cutoff), AMP (the volume: tremolo), OFF.", "Où il va : PITCH (les deux oscillateurs, jusqu'à une octave), PW A ou PW B (une largeur d'impulsion), FILT (la coupure), AMP (le volume : trémolo), OFF.", "6 choices", "6 choix")],
+       "The LFO B page.", "La page LFO B.") +
+ LI([("LFO B runs alongside the first LFO: for example a slow vibrato on one and a fast tremolo on the other, or PW A and PW B moving at two different speeds.",
+      "LFO B tourne en même temps que le premier LFO : par exemple un vibrato lent sur l'un et un trémolo rapide sur l'autre, ou PW A et PW B qui bougent à deux vitesses différentes."),
+     ("The factory sounds load with LFO B OFF, as they were made. Your places keep its settings (chapter {ch:keep}).",
+      "Les sons d'usine se chargent avec LFO B sur OFF, tels qu'ils ont été créés. Vos places gardent ses réglages (chapitre {ch:keep})."),
+     ("<b>Nothing happens?</b> DEST is OFF or DEPTH at 0 %; with PW A or PW B, the oscillator's shape must include PLS.",
+      "<b>Rien ne se passe ?</b> DEST est sur OFF ou DEPTH à 0 % ; avec PW A ou PW B, la forme de l'oscillateur doit contenir PLS.")]) +
  H3("MOMENTARY: changes that snap back", "MOMENTARY : des changements qui reviennent") +
  STEPS([("On HOME, a sound or effect page, or MIXER: <b>hold LFO</b> and turn any of KNOB 1 to 4 (band: MOMENTARY [OCT+] KEEP).",
          "Sur HOME, sur une page de son ou d'effet, ou sur MIXER : <b>maintenez LFO</b> et tournez KNOB 1 à 4 (bandeau : MOMENTARY [OCT+] KEEP)."),

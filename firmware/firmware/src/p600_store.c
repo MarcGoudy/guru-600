@@ -14,14 +14,18 @@ static void p600_boot(void)
     const smp_user_hdr_t *h = (const smp_user_hdr_t *)smp_user_xip(2);
     uint32_t i;
     p6st_ok = !(h->magic == SMP_USER_MAGIC && h->data_len > SMP_SLOT_END(2u) - SMP_USER_DATA);
-    if (p6st_ok && st_load(OBJ_P600, &p6st, sizeof p6st) == (int)sizeof p6st && p6st.magic == P6ST_MAGIC &&
-        p6st.ver == 1u && p6st.n == P6_NIMP)       /* (read straight into the places: p6_imp is p6st.imp) */
+    int n = p6st_ok ? st_load(OBJ_P600, &p6st, sizeof p6st) : -1;
+    if (p6st.magic == P6ST_MAGIC && p6st.n == P6_NIMP &&    /* (read straight into the places: p6_imp is p6st.imp) */
+        ((p6st.ver == 2u && n == (int)sizeof p6st) || (p6st.ver == 1u && n == (int)P6ST_V1_LEN))) {
         for (i = 0; i < P6_NIMP; i++) {
             p6_imp[i].name[15] = 0;
             if (p6_imp[i].dest > 254u || p6_imp[i].used > 1u)
                 p6_imp[i].used = 0;
+            if (p6st.ver == 1u)                        /* (1.0 .. 1.3.1's places: the new values neutral) */
+                p6st.x2[i] = P6X2_NEUTRAL;
         }
-    else
+        p6st.ver = 2u;
+    } else
         memset(&p6st, 0, sizeof p6st);                 /* (none kept, or a partial read: no place) */
     p6_booted = 1;
     p6_dirty = 0;
@@ -34,7 +38,7 @@ static void p600_store_poll(void)                      /* main loop */
         return;
     p6_dirty = 0;
     p6st.magic = P6ST_MAGIC;
-    p6st.ver = 1u;
+    p6st.ver = 2u;
     p6st.n = P6_NIMP;
     if (st_save(OBJ_P600, &p6st, sizeof p6st))
         ui_message("P600: NOT SAVED");

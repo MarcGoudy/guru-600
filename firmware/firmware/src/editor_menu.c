@@ -41,6 +41,7 @@ static const uint8_t ED_MENU[][2] = {
                                                         * SYSTEM, from the next power-on (a FELUCCA_CPU2=0 build: 0..31) */
 #endif
     {MI_MKNOBS, 33},                                   /* Guru-600 1.1: MIDI KNOBS ON / OFF (ON the default), MIDI */
+    {MI_FXOFF, 34},                                    /* Guru-600 1.4.0: EFFECTS ON / OFF (ON the default), AUDIO */
 };
 #define ED_MENU_N NELEM(ED_MENU)
 

@@ -33,10 +33,25 @@ enum { P6_A_WAV, P6_A_FRQ, P6_B_WAV, P6_B_FRQ, P6_CUT, P6_RES, P6_MIX, P6_FENV }
 #define P6_PMDST P_FM3_SUS
 #define P6_KBD P_FM3_REL
 #define P6_VINT P_FM4_ATK        /* EXTRAS: VINTAGE, the analog instability: each voice's own detune and cutoff */
+/* Guru-600 1.4.0 (24/11/2026, Marc: all the Prophet-600 did, plus what 1982 could not), EXTRAS 2: each 0 = off, the
+ * sound exactly as before (every factory program has them at 0) */
+#define P6_HPF P_FM4_DEC         /* a 12 dB/oct high-pass after the ladder: 1..127 = about 30 Hz .. 3.5 kHz */
+#define P6_SUB P_FM4_SUS         /* a square one octave under OSC A, its level in the mixer, stored as 127 - level
+                                  * (DIGITAL's OP4 SUS, whose 127 every stored sound holds, reads as no SUB) */
+#define P6_NOIS P_FM4_REL        /* white noise, its level in the mixer */
+/* LFO B (Guru-600 1.4.0): a second LFO, one for the part (its voices in step, as a Prophet's), a triangle. Stored so that
+ * DIGITAL's OP LEVELs, 127 in every stored sound, read as none: DEST 127 = OFF (past the names), AMOUNT 127 - depth */
+#define P6_L2RATE P_FM1_LEVEL    /* the LFO's RATE scale (F_LFOHZ) */
+#define P6_L2AMT P_FM2_LEVEL     /* 127 - depth */
+#define P6_L2DST P_FM3_LEVEL     /* 0 PITCH, 1 PW A, 2 PW B, 3 FILT, 4 AMP, 5.. OFF */
+enum { P6L2_PITCH, P6L2_PWA, P6L2_PWB, P6L2_FILT, P6L2_AMP, P6L2_OFF };
+#define P6_POLY P_FM4_LEVEL      /* MIXER's POLY: 0 = eight voices, anything else six (DIGITAL's OP4 LEVEL, 127 in every
+                                  * stored sound: six, as the original; voice.c trk_nvoice) */
 
 /* the waves an oscillator sums: bit 0 saw, 1 triangle, 2 pulse */
 static const char *const N_P6_WAVE[] = {"OFF", "SAW", "TRI", "SAW+T", "PLS", "SAW+P", "TRI+P", "ALL"};
-static const char *const N_P6_PMDST[] = {"OFF", "FRQ A", "FILT", "BOTH"};
+/* Guru-600 1.4.0: bit 2, PW A (as the Prophet-5's and the Prophet-6's POLY MOD): OFF..BOTH as the original's */
+static const char *const N_P6_PMDST[] = {"OFF", "FRQ A", "FILT", "BOTH", "PW A", "FRQ+PW", "FLT+PW", "ALL"};
 static const char *const N_P6_KBD[] = {"OFF", "HALF", "FULL"};
 
 
@@ -170,13 +185,38 @@ static int32_t p6_fenv(const int16_t *p, voice_t *v)
     return e >> 9;
 }
 
+/* EXTRAS 2's state, a voice's own (the part's engine memory, engines.c ENG_MEM): the high-pass's two stages, the
+ * sub-oscillator's sign (flips each time OSC A wraps) */
+typedef struct { int32_t h1, h2, sub; } p6x_t;
+typedef struct { p6x_t v[NVOICE]; uint32_t l2ph; int32_t l2; } p6mem_t;   /* (and the part's LFO B: phase, value Q15) */
+ENG_MEM_FITS("P600", sizeof(p6mem_t));
+static p6mem_t *p6mem_of(const track_t *t) { return (p6mem_t *)ENG_MEM((uint32_t)(t - trk) % NPART); }
+static p6x_t *p6x_of(const track_t *t, const voice_t *v)
+{
+    return &p6mem_of(t)->v[(uint32_t)(v - t->v) % NVOICE];
+}
+/* once a block and part (engine_t.block): LFO B on, its triangle; nothing when it is OFF */
+static void p600_block(track_t *t)
+{
+    p6mem_t *m = p6mem_of(t);
+    int32_t s;
+    if (t->p[P6_L2DST] >= P6L2_OFF || t->p[P6_L2AMT] >= 127) {
+        m->l2 = 0;
+        return;
+    }
+    m->l2ph += LFO_INC[t->p[P6_L2RATE] & 127];
+    s = (int32_t)(m->l2ph >> 15);                      /* 0..131071 */
+    m->l2 = s < 65536 ? s - 32768 : 98303 - s;
+}
+
 static void p600_render(track_t *t, voice_t *v, int32_t *out, uint32_t n, const vmod_t *m)
 {
     const int16_t *p = t->p;
     uint32_t wa = (uint32_t)p[P_E0 + P6_A_WAV] & 7u, wb = (uint32_t)p[P_E0 + P6_B_WAV] & 7u, i;
-    uint32_t sync = p[P6_SYNC] != 0, dst = (uint32_t)p[P6_PMDST] & 3u;
+    uint32_t sync = p[P6_SYNC] != 0, dst = (uint32_t)p[P6_PMDST] & 7u;
     uint32_t wa1 = wa, wb1 = wb;
     int32_t mk = 0, ks = sync ? 256 : 0, wf = dst & 1u ? 256 : 0, wt = dst & 2u ? 256 : 0, kq = p[P6_KBD] * 256;
+    int32_t wp = dst & 4u ? 256 : 0;                  /* (PW A's weight; MORPH fades it as FRQ A's and FILT's) */
     int32_t fenv = p6_fenv(p, v);
     if (p6m.t == t && p6m.s[0] == (uint8_t)p[P_E0 + P6_A_WAV] && p6m.s[1] == (uint8_t)p[P_E0 + P6_B_WAV] &&
         p6m.s[2] == (uint8_t)p[P6_SYNC] && p6m.s[3] == (uint8_t)p[P6_PMDST] && p6m.s[4] == (uint8_t)p[P6_KBD]) {
@@ -185,9 +225,10 @@ static void p600_render(track_t *t, voice_t *v, int32_t *out, uint32_t n, const 
         ks = (p6m.a[2] ? 256 - mk : 0) + (p6m.b[2] ? mk : 0);
         wf = (p6m.a[3] & 1u ? 256 - mk : 0) + (p6m.b[3] & 1u ? mk : 0);
         wt = (p6m.a[3] & 2u ? 256 - mk : 0) + (p6m.b[3] & 2u ? mk : 0);
+        wp = (p6m.a[3] & 4u ? 256 - mk : 0) + (p6m.b[3] & 4u ? mk : 0);
         kq = p6m.a[4] * (256 - mk) + p6m.b[4] * mk;
         sync = ks != 0;
-        dst = (wf ? 1u : 0u) | (wt ? 2u : 0u);
+        dst = (wf ? 1u : 0u) | (wt ? 2u : 0u) | (wp ? 4u : 0u);
     }
     int32_t vint = p[P6_VINT];                         /* VINTAGE 0..127: each voice off by up to +-20 cents, its */
     int32_t drift = (((int32_t)((uint32_t)v->s[2] >> 24) - 128) * vint * 3) >> 10;   /* cutoff by up to +-6 steps */
@@ -208,11 +249,35 @@ static void p600_render(track_t *t, voice_t *v, int32_t *out, uint32_t n, const 
                                                        * no state shared between the cores (2ND CORE) */
     int32_t st[4] = {v->s[0], v->s[1], v->s[6], v->s[7]};
     p6lad_t c;
+    p6x_t *x = p6x_of(t, v);
+    int32_t hg = p[P6_HPF] ? p6_g(p[P6_HPF] * 96 / 127 << 8) : 0;   /* (Q15; 0: no high-pass, nothing computed) */
+    int32_t sub = (127 - clamp(p[P6_SUB], 0, 127)) * 129, nzl = p[P6_NOIS] * 129;   /* 0..16383 */
     p6_tables();
     if (dst & 1u)
         pa += (((pmenv * 960) >> 15) * wf) >> 8;      /* PM ENV -> FRQ A: up to 5 octaves */
     if (dst & 2u)
         cut += (pmenv * wt) >> 8;                     /* PM ENV -> FILT */
+    int32_t pwq = (int32_t)(pwa >> 16);               /* PW A, Q16 of the cycle */
+    int32_t l2d = t->p[P6_L2DST] < P6L2_OFF ? t->p[P6_L2DST] : P6L2_OFF;
+    int32_t l2 = l2d < P6L2_OFF ? (p6mem_of(t)->l2 * (127 - clamp(t->p[P6_L2AMT], 0, 127))) >> 7 : 0;   /* +-32767 */
+    int32_t l2amp = 32767;
+    if (l2) {                                         /* LFO B to its destination */
+        switch (l2d) {
+        case P6L2_PITCH: pa += (l2 * 192) >> 15; pb += (l2 * 192) >> 15; break;   /* +-1 octave */
+        case P6L2_PWA: pwq = clamp(pwq + ((l2 * 29491) >> 15), 1311, 64225); pwa = (uint32_t)pwq << 16; break;
+        case P6L2_PWB: pwb = (uint32_t)clamp((int32_t)(pwb >> 16) + ((l2 * 29491) >> 15), 1311, 64225) << 16; break;
+        case P6L2_FILT: cut += (l2 * 48) >> 7; break;  /* +-48 cutoff steps */
+        default: {                                    /* AMP: down by the depth at the LFO's top, none at its foot */
+            int32_t dp = (127 - clamp(t->p[P6_L2AMT], 0, 127)) * 258;
+            l2amp = 32767 - ((dp * ((p6mem_of(t)->l2 + 32768) >> 1)) >> 15);
+            break;
+        }
+        }
+    }
+    if (dst & 4u) {                                   /* PM ENV -> PW A: up to 45 % of the cycle wider */
+        pwq = clamp(pwq + ((((pmenv * 29491) >> 15) * wp) >> 8), 1311, 64225);
+        pwa = (uint32_t)pwq << 16;
+    }
     inca = pitch_inc(clamp(pa, 0, 2047));
     incb = cents_inc(clamp(pb, 0, 2047), p[P6_BFIN] * 100 / 127, 0);   /* B FINE: up to a semitone up */
 
@@ -229,17 +294,38 @@ static void p600_render(track_t *t, voice_t *v, int32_t *out, uint32_t n, const 
                 ia = pitch_inc(clamp(pa + ((((d * 768) >> 15) * wf) >> 8), 0, 2047));   /* up to +-4 octaves */
             if ((dst & 2u) && !(i & 3u))              /* the cutoff every 4 samples (11 kHz): a divide less */
                 p6_coef(&c, cut + (((d >> 1) * wt) >> 8), k);
+            if (dst & 4u)                             /* PW A from OSC B: +-45 % of the cycle */
+                pwa = (uint32_t)clamp(pwq + ((((d * 29491) >> 15) * wp) >> 8), 1311, 64225) << 16;
         }
         a = p6_osc_m(wa, wa1, mk, ph0, ia, pwa);
         ph0 += ia;
+        if (ph0 < ia)                                 /* (OSC A wrapped: the sub-oscillator's half period ends) */
+            x->sub = !x->sub;
         ph1 += incb;
         if (sync && ph1 < incb) {                     /* OSC B wrapped: OSC A restarts with it */
             uint32_t to = (ph1 / ((incb >> 16) | 1u)) * (ia >> 16);
             ph0 = ks >= 256 ? to : ph0 + (uint32_t)((((int32_t)(to - ph0)) >> 8) * ks);   /* (MORPH: part way) */
         }
-        s = mulq15(a, ma) + mulq15(b, mb) + (int32_t)(noise32(&nz) >> 24) - 128;   /* the circuit's hiss:
+        {
+            uint32_t r = noise32(&nz);
+            s = mulq15(a, ma) + mulq15(b, mb) + (int32_t)(r >> 24) - 128;   /* the circuit's hiss:
                                                                      * what a self-oscillating filter starts from */
+            if (sub)                                  /* EXTRAS 2: SUB and NOISE into the mixer */
+                s += x->sub ? sub : -sub;
+            if (nzl)
+                s += ((int32_t)r >> 16) * nzl >> 15;
+        }
         s = (p6_ladder(&c, s >> 1, st) * comp) >> 11;   /* (x2: the level of the other engines) */
+        if (l2amp < 32767)                            /* LFO B > AMP */
+            s = mulq15(s, l2amp);
+        if (hg) {                                     /* EXTRAS 2: HPF, two one-pole high-passes (zero-delay form) */
+            int32_t u = mulq15((s - x->h1) >> 1, hg) << 1, l = u + x->h1;   /* (>> 1: no overflow) */
+            x->h1 = l + u;
+            s -= l;
+            u = mulq15((s - x->h2) >> 1, hg) << 1, l = u + x->h2;
+            x->h2 = l + u;
+            s -= l;
+        }
         out[i] += voice_amp(soft_knee(s, 16000), m, i) << 2;   /* (x4: +6 dB over the other engines, as loud as the
                                                              * loudest firmwares; the master limiter holds the chords) */
     }
@@ -275,12 +361,19 @@ typedef struct {
     char name[16];
 } p6imp_t;
 #define P6ST_MAGIC 0x4D493650u                         /* "P6IM" */
+/* Guru-600 1.4.0: a place's new values (EXTRAS 2, MIXER > POLY, LFO B), apart from p6imp_t so that version 1, what
+ * 1.0 .. 1.3.1 kept, reads on unchanged (its places then have these neutral: P6X2_NEUTRAL). Stored as eng_p600.c
+ * keeps them in the track (SUB, LFO B's DEPTH inverted; POLY 0 = eight) */
+typedef struct { uint8_t hpf, sub, nois, poly, l2rate, l2amt, l2dst, rsv; } p6x2_t;
+static const p6x2_t P6X2_NEUTRAL = {0, 127, 0, 1, 60, 127, 5, 0};
 typedef struct {                                       /* the imports as kept in flash (p600_store.c, OBJ_P600) */
     uint32_t magic;
-    uint16_t ver, n;                                   /* 1, P6_NIMP */
+    uint16_t ver, n;                                   /* 2 (1: no x2, 1.0 .. 1.3.1), P6_NIMP */
     p6imp_t imp[P6_NIMP];
+    p6x2_t x2[P6_NIMP];                                /* (version 2: each place's new values) */
 } p6st_t;
-static p6st_t p6st __attribute__((section(".pool")));   /* (Guru-600 10/11: one copy, worked on and kept: 2.9 KB less) */
+#define P6ST_V1_LEN ((uint32_t)__builtin_offsetof(p6st_t, x2))   /* what a version 1 holds */
+static p6st_t p6st;   /* (Guru-600 10/11: one copy, worked on and kept: 2.9 KB less; 1.4.0: in .bss, the pool kept 8 KB spare) */
 #define p6_imp (p6st.imp)
 static preset_t p6_ram[255] __attribute__((section(".pool")));   /* the presets shown (after p600_boot) */
 static uint8_t p6_booted, p6_dirty;                    /* p6_dirty: to be kept in flash (p600_store.c) */
@@ -506,6 +599,7 @@ enum { P6SX_KEPT = 0x100, P6SX_FULL = 0x200, P6SX_RESET = 0x300, P6SX_CLEARED = 
 
 /* m into place dest (0..254): its own import entry (a new one, or the one already there); the name as the fixed ones
  * show theirs, the place first. P6SX_KEPT | dest, or P6SX_FULL */
+static p6x2_t p6_put_x2 = {0, 127, 0, 1, 60, 127, 5, 0};   /* the next p6_put's new values (neutral but for SAVE > PLACE) */
 static uint32_t p6_put(uint32_t dest, p6imp_t *mm)
 {
     static p6imp_t m;
@@ -534,6 +628,8 @@ static uint32_t p6_put(uint32_t dest, p6imp_t *mm)
     m.dest = (uint8_t)dest;
     m.used = 1;
     p6_imp[at] = m;
+    p6st.x2[at] = p6_put_x2;                           /* (1.4.0: SAVE > PLACE's; an import's neutral) */
+    p6_put_x2 = P6X2_NEUTRAL;
     p6_changed();
     return P6SX_KEPT | dest;
 }
@@ -657,6 +753,12 @@ static uint32_t p600_store_track(const track_t *t, uint32_t dest)
     static p6imp_t m;
     uint32_t src = t->preset;
     p6_from_track(t, &m);
+    {   /* 1.4.0: the track's new values go with it (p6_put) */
+        const int16_t *p = t->p;
+        p6_put_x2.hpf = (uint8_t)p[P6_HPF]; p6_put_x2.sub = (uint8_t)p[P6_SUB]; p6_put_x2.nois = (uint8_t)p[P6_NOIS];
+        p6_put_x2.poly = (uint8_t)(p[P6_POLY] != 0); p6_put_x2.l2rate = (uint8_t)p[P6_L2RATE];
+        p6_put_x2.l2amt = (uint8_t)p[P6_L2AMT]; p6_put_x2.l2dst = (uint8_t)p[P6_L2DST]; p6_put_x2.rsv = 0;
+    }
     p6_bare_name(src < 255u ? src : dest, m.name);
     if (!m.name[0] || str_eq(m.name, "EMPTY"))
         str_cpy(m.name, "MY SOUND", 16);
@@ -806,6 +908,18 @@ static void p600_preset(int16_t *p, uint32_t pi)      /* (Guru-600: an array, a 
     p[P6_PMDST] = x->pm[2];
     p[P6_KBD] = x->kbd;
     p[P6_VINT] = 24;                                  /* a little: the original's six voices never quite agree */
+    p[P6_HPF] = 0;                                    /* Guru-600 1.4.0: EXTRAS 2 off (SUB stored inverted: 127 = none) */
+    p[P6_SUB] = 127;
+    p[P6_NOIS] = 0;
+    p[P6_L2RATE] = 60;                                /* LFO B: OFF (its DEST past the names), no depth */
+    p[P6_L2AMT] = 127;
+    p[P6_L2DST] = P6L2_OFF;
+    p[P6_POLY] = 1;                                   /* six voices, as the original (Marc: eight only when chosen) */
+    if (at >= 0) {                                    /* a kept place: its own new values (1.4.0; version 1: neutral) */
+        const p6x2_t *y = &p6st.x2[at];
+        p[P6_HPF] = y->hpf; p[P6_SUB] = y->sub; p[P6_NOIS] = y->nois; p[P6_POLY] = y->poly;
+        p[P6_L2RATE] = y->l2rate; p[P6_L2AMT] = y->l2amt; p[P6_L2DST] = y->l2dst;
+    }
     p[P_LRATE] = x->lfo[0];
     p[P_LWAVE] = x->lfo[1];
     p[P_LD_PIT] = x->lfod[0];
@@ -841,6 +955,8 @@ static engine_t ENG_P600 = {                         /* (not const: IMPORT grows
     .note_on = p600_note_on,
     .render = p600_render,
     .knob = {P_E0 + P6_CUT, P_E0 + P6_RES, P_E0 + P6_FENV, P_E0 + P6_MIX},
-    .poly = 6,                   /* the original's six voices */
+    .poly = 8,                   /* Guru-600 1.4.0 (Marc, 24/11): eight voices, two more than the original's six */
+    .mem = sizeof(p6mem_t),      /* (EXTRAS 2's state, LFO B's) */
+    .block = p600_block,
     .keep = 0xD3,                /* the ladder (s[0] s[1] s[6] s[7]) and the filter envelope's level (s[4]) */
 };

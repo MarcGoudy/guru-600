@@ -609,12 +609,8 @@ static void slice_render(track_t *t, voice_t *v, int32_t *out, uint32_t n, const
     }
 }
 
-/* two factory sounds, both on BREAK (always there). PATTERNS (engines.c): CHOP suggests
- * 9 CHOP (16 slices re-ordered), STUTTER 10 STUTTER (8 slices, repeats); 11 SLICES plays 0..15 in order */
-static const preset_t SLICE_PRESETS[] = {
-    {"CHOP", {0, 2, 0, 0, SLC_ONE, 0, 127, 127}, {0, 127, 127, 30}, 0, 0, FX(0, 0, 0, 12), PAT(9)},
-    {"STUTTER", {0, 1, 0, 0, SLC_GATE, 0, 90, 110}, {0, 127, 127, 12}, 0, 0, FX(10, 0, 20, 10), PAT(10)},
-};
+/* Guru-600 (24/11/2026, Marc): no factory sound. CHOP and STUTTER (on BREAK) retired with BREAK itself to free flash
+ * for the P600 engine; SLICE stays for the user's own samples (USR1..3) and PIANO. PATTERNS 9 CHOP, 10 STUTTER stay */
 
 /* the lowest key is slice 0 (C4 + ROOT), no scale */
 static int32_t slice_keys(const track_t *t, uint32_t k)
@@ -635,8 +631,8 @@ static const engine_t ENG_SLICE = {
         {"DCAY", F_TIME, 0, 127, 127, 0, 0},
         {"TONE", F_INT, 0, 127, 127, 0, 0},
     },
-    .presets = SLICE_PRESETS,
-    .npresets = NELEM(SLICE_PRESETS),
+    .presets = 0,
+    .npresets = 0,
     .note_on = slice_note_on,
     .render = slice_render,
     .knob = {P_E0, P_E1, P_E3, P_E6},

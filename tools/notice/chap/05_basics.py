@@ -62,9 +62,9 @@ CH("basics", "The synthesizer, in plain words", "Le synthétiseur expliqué simp
     "filtre, dans chaque voix. Une faible dose ajoute du mordant ; une forte dose donne des cloches, des sons métalliques, des balayages "
     "et des effets qu'un synthétiseur ordinaire ne sait pas faire.") +
  H3("7. Voices, unison and glide", "7. Voix, unisson et glide", FAM["vce"]) +
- P2("Six <b>voices</b> mean six notes at once. <b>UNISON</b> stacks all the voices on one note for a huge single-note "
+ P2("Six <b>voices</b> mean six notes at once (eight on the Guru-600 if you choose: MIXER › POLY). <b>UNISON</b> stacks all the voices on one note for a huge single-note "
     "sound (basses, leads). <b>GLIDE</b> slides from one note to the next instead of jumping.",
-    "Six <b>voix</b>, c'est six notes en même temps. L'<b>UNISON</b> empile toutes les voix sur une seule note pour un son "
+    "Six <b>voix</b>, c'est six notes en même temps (huit sur le Guru-600 si vous le choisissez : MIXER › POLY). L'<b>UNISON</b> empile toutes les voix sur une seule note pour un son "
     "énorme (basses, leads). Le <b>GLIDE</b> fait glisser d'une note à l'autre au lieu de sauter.") +
  H3("8. Effects", "8. Les effets", "#9a9486") +
  LI([("<b>REV</b> (reverb): the sound of a room or a hall around the instrument.", "<b>REV</b> (réverbération) : le son "

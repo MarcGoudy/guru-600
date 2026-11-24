@@ -7,7 +7,7 @@
 "use strict";
 
 const ENG_CAT = { 0: "LPBPBKLBULLP", 2: "LKPLUU", 3: "LBLLL", 4: "KKLL", 5: "PLBF", 6: "BLLUP", 7: "KKKKK", 8: "PFPP", 9: "UUUPUDDPU",
-  10: "DDDD", 11: "FFFF", 12: "KUBLPUKU", 13: "DD" };                     // (firmware category.c: a letter per preset)
+  10: "DDDD", 11: "FFFF", 12: "KUBLPUKU", 13: "" };   // (1.4.0: SLICE has no factory sound, CHOP and STUTTER removed)                     // (firmware category.c: a letter per preset)
 const CAT_FAM = { B: 0, L: 1, P: 2, U: 3, K: 4, D: 5, F: 6 };          // (FAMILIES' order; O OTHER: under ALL only)
 const UP_CAT_FAM = [-1, 0, 1, 2, 3, 4, 5, 6, -1];                       // (a USER sound's category byte: CAT_*)
 const ENG_DEF = { 0: ["SAW LEAD", "SOFT PAD", "SQR BASS", "PWM STR", "ACID", "SINE KEY", "RAVE", "SUB BASS", "PLUCK", "BRASS", "WIND", "STRINGS"],
@@ -16,7 +16,7 @@ const ENG_DEF = { 0: ["SAW LEAD", "SOFT PAD", "SQR BASS", "PWM STR", "ACID", "SI
   7: ["ORGAN 1", "ORGAN 2", "ORGAN 3", "ORGAN 4", "ORGAN 5"], 8: ["CLOUD PAD", "GLITCH", "FROZEN", "SHIMMER"],
   9: ["BELL TREE", "MARIMBA", "PLUCK", "BOWED METAL", "KALIMBA", "HAND DRUM", "TOMS", "DRONE STRING", "HARP"],
   10: ["DRUM KIT", "DEEP KIT", "TIGHT KIT", "PERC KIT"], 11: ["WIND", "RAIN", "ARCADE", "METAL"],
-  12: ["TINE EP", "BELL", "FM BASS", "BRASS", "PAD", "MARIMBA", "ORGAN", "PLUCK"], 13: ["CHOP", "STUTTER"] };
+  12: ["TINE EP", "BELL", "FM BASS", "BRASS", "PAD", "MARIMBA", "ORGAN", "PLUCK"], 13: [] };
 const X_ENGS = ENG_ORDER.filter((e) => e !== 14);
 let xRows = [], xHeads = [], xPick = null;                               // ({e, k} or {u}: the one chosen here last)
 document.head.insertAdjacentHTML("beforeend", "<style>" +

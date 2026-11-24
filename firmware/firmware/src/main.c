@@ -191,6 +191,18 @@ static void fm1_main(void)
     felucca_init();
     master_boot();
     kb_boot_hold = 1;                         /* #137: no notes from the keys before the UI (seq.c keyboard_block) */
+#if FELUCCA_CPU2 && FELUCCA_P600 && FELUCCA_SLICE
+    if (favorites.factory[13][31] != 0xA6u) {   /* Guru-600 1.4.0 (Marc, 24/11/2026): MENU > 2ND CORE ON, once, at the first
+                                                 * power-on of 1.4.0 (the other parts then go to core 1: room for the P600's
+                                                 * eight voices); turned OFF afterwards, it stays OFF. The mark: a byte of
+                                                 * SLICE's favourites no sound uses (SLICE has no factory sound since 1.4.0,
+                                                 * its two had bits 0 and 1 of [13][0]); a misreading core 1 still turns
+                                                 * itself OFF (below) */
+        favorites.factory[13][31] = 0xA6u;
+        ui_prefs2 |= (uint8_t)(PREF_CPU2_ON >> 16);
+        settings_later();
+    }
+#endif
 #if FELUCCA_CPU2
     if (!bootguard.failed && (ui_prefs2 & (PREF_CPU2_ON >> 16))) {
         /* the second core (hal/fm1_cpu1.h; fx.c mix_block hands it parts), at power-on, before the audio and

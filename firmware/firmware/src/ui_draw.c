@@ -951,9 +951,26 @@ static void draw_foot(void)
         if (big.son) {                                /* 1.3: the sound just picked, its name big on its own line, */
             int32_t nx = 8, by;                       /* from the line's start (Marc: left, the engine not needed) */
             const aafont_t *bf = large_face_has(pn) && ink_w(&AF_L, pn) <= 224 ? &AF_L : &AF_M;
+            const char *nm = pn;
+            char num[8];
+            uint32_t k = 0;
+            while (pn[k] >= '0' && pn[k] <= '9' && k < sizeof num - 1)   /* Guru-600 (24/11/2026, Marc): a P600 sound's */
+                num[k] = pn[k], k++;                  /* number always small (S), the name big (L): "251 UNI MONSTER" */
+            num[k] = 0;                               /* did not fit in L whole; every number the same size (Marc) */
+            if (k && pn[k] == ' ' && large_face_has(pn + k + 1)) {
+                nm = pn + k + 1;
+                nx = 6;
+                bf = ink_w(&AF_S, num) + 4 + ink_w(&AF_L, nm) <= 240 - nx ? &AF_L : &AF_M;
+            } else {
+                num[0] = 0;
+            }
             cv_rect(0, 0, 240, H_FOOT, T_BG);
             by = 19 + AF_S_CAP_Y + AF_S_CAP_H - (bf == &AF_L ? AF_L_CAP_Y + AF_L_CAP_H : AF_M_CAP_Y + AF_M_CAP_H);
-            cv_text(nx, by, bf, pn, T_TEXT);
+            if (num[0]) {                             /* (the number on the name's baseline) */
+                cv_text(nx, 19, &AF_S, num, T_MID);
+                nx += ink_w(&AF_S, num) + 4;
+            }
+            cv_text(nx, by, bf, nm, T_TEXT);
             cv_blit(0, Y_FOOT);
             return;
         }
@@ -999,7 +1016,7 @@ static const p6pg_t P6_PAGES[] = {
     {"FILTER", "FILTER", P6F_FLT}, {"FLT ENV", "FILTER ENVELOPE", P6F_ENV}, {"ENV", "AMPLIFIER", P6F_ENV},
     {"POLY MOD", "POLY-MOD", P6F_PM}, {"LFO", "LFO", P6F_LFO}, {"LFO 2", "LFO 2", P6F_LFO},
     {"LFO DEST", "LFO DESTINATION", P6F_LFO}, {"VOICE", "VOICE", P6F_VCE}, {"VOICE 2", "VOICE 2", P6F_VCE},
-    {"VOICE 3", "VOICE 3", P6F_VCE}, {"EXTRAS", "EXTRAS", P6F_EXT}, {"MORPH", "MORPH", P6F_MPH},
+    {"VOICE 3", "VOICE 3", P6F_VCE}, {"EXTRAS", "EXTRAS", P6F_EXT}, {"EXTRAS 2", "EXTRAS 2", P6F_EXT}, {"LFO B", "LFO B", P6F_LFO}, {"MORPH", "MORPH", P6F_MPH},
 };
 /* the panel's words for the short labels (when they fit a knob's 57 px) */
 static const char *const P6_LONG[][2] = {
@@ -1008,7 +1025,7 @@ static const char *const P6_LONG[][2] = {
     {"SUS", "SUSTAIN"}, {"REL", "RELEASE"}, {"A PW", "PW A"}, {"B PW", "PW B"}, {"B FIN", "FINE B"},
     {"PM EN", "FIL ENV"}, {"PM B", "OSC B"}, {"PM DS", "DEST"}, {"KBD", "KEYBOARD"},
     {"GLD", "GLIDE"}, {"VCE", "VOICES"}, {"VINT", "VINTAGE"}, {"AMT4", "WHEEL"}, {"AMT3", "VEL>FLT"},
-    {"DTUNE", "DETUNE"},
+    {"DTUNE", "DETUNE"}, {"HPF", "HIGH-PASS"}, {"POLY", "POLYPHONY"},
 };
 static const p6pg_t *p6ui_page(void)                   /* the P600 look's page shown, 0 = Felucca's own */
 {
@@ -2269,6 +2286,7 @@ static void ui_draw(void)
 {
     static uint8_t counting;
     style_apply();
+    fx_all_off = (ui_prefs3 & (PREF_FX_OFF >> 24)) != 0u;   /* (Guru-600 1.4.0: MENU > AUDIO > EFFECTS) */
     ui.frame++;
     if (counting != (uint8_t)seq_counting()) {          /* a count-in began or ended: the page drawn again after it */
         counting = (uint8_t)seq_counting();
@@ -2344,6 +2362,13 @@ static const char *p6_big_name(uint32_t id)
     case P_M3AMT: return "VEL > FLT";
     case P_DETUNE: return "DETUNE";
     case P6_VINT: return "VINTAGE";
+    case P6_HPF: return "HIGH-PASS";
+    case P6_SUB: return "SUB OSC";
+    case P6_NOIS: return "NOISE";
+    case P6_POLY: return "POLYPHONY";
+    case P6_L2RATE: return "LFO B RATE";
+    case P6_L2AMT: return "LFO B DEPTH";
+    case P6_L2DST: return "LFO B DEST";
     case P_LEVEL: return "LEVEL";
     default: return 0;
     }
@@ -2375,8 +2400,20 @@ static void draw_big(void)
         return;
     }
     for (c = 0; c < 4u; c++)                            /* KNOB n: its value big in its own place (a card, or under */
-        if ((big.kon >> c & 1u) && big.kw[c])           /* a P600 panel's knob) */
-            big_bubble(big.kx[c], big.ky[c], big.kw[c], big.kh[c], big.kr[c], big.kbg[c], big.val[c], big.unit[c]);
+        if ((big.kon >> c & 1u) && big.kw[c]) {         /* a P600 panel's knob) */
+            int32_t bx = big.kx[c], bw = big.kw[c];
+            if (large_face_has(big.val[c])) {           /* Guru-600 1.4.0 (Marc, 25/11): too wide for its place, the
+                                                         * value and its unit in L anyway, the bubble wider, centred on
+                                                         * its own place over the neighbours, inside the screen */
+                int32_t need = ink_w(&AF_L, big.val[c]) + (big.unit[c][0] ? 4 + ink_w(&AF_M, big.unit[c]) : 0) + 8;
+                if (need > bw) {
+                    bx -= (need - bw) / 2;
+                    bw = need < 240 ? need : 240;
+                    bx = clamp(bx, 0, 240 - bw);
+                }
+            }
+            big_bubble(bx, big.ky[c], bw, big.kh[c], big.kr[c], big.kbg[c], big.val[c], big.unit[c]);
+        }
     if (big.bon && !big.kon) {                          /* the tempo: its digits in place, over the header's (Marc) */
         head_geo_t g;
         int32_t cx, bw;

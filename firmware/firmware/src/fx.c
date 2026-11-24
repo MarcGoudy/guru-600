@@ -925,7 +925,31 @@ static const uint16_t ENG_VCOST[NENGINES] = {163, FELUCCA_FM4 ? 181 : 0, 162, 67
 
 /* one synth part into the dry mix and the sends of sm (mx[0]; mx[1] on the second core); a part with no voice sounding costs
  * the LFO tick and a cleared buffer only (after the DIST tail has run out) */
+/* Guru-600 1.4.0 (24/11/2026, a Gearspace player's wish: Felucca's sounds all come with their effects, and nothing turned
+ * them all off): MENU > AUDIO > EFFECTS OFF, every part dry: its DIST, INSERTs (but an EQ: the sound's tone, not an
+ * effect) and its CHORUS / DELAY / REVERB sends left out while it is OFF, its stored values untouched (put back after
+ * the block). ui_draw.c sets it from ui_prefs3 (PREF_FX_OFF) each frame */
+static volatile uint8_t fx_all_off;
+static void mix_part_(track_t *t, uint32_t n SM_DECL);
 static void mix_part(track_t *t, uint32_t n SM_DECL)
+{
+    static const uint8_t ID[6] = {P_DIST, P_CHOR, P_DLY, P_REV, P_ITYPE, P_JTYPE};
+    int16_t kept[6];
+    uint32_t k;
+    if (!fx_all_off) {
+        mix_part_(t, n SM_ARG(sm));
+        return;
+    }
+    for (k = 0; k < 6u; k++) {
+        kept[k] = t->p[ID[k]];
+        if (!(k >= 4u && kept[k] == IT_EQ))
+            t->p[ID[k]] = 0;
+    }
+    mix_part_(t, n SM_ARG(sm));
+    for (k = 0; k < 6u; k++)
+        t->p[ID[k]] = kept[k];
+}
+static void mix_part_(track_t *t, uint32_t n SM_DECL)
 {
     int32_t *b = SM(b);
     uint32_t i;

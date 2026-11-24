@@ -18,10 +18,12 @@ static const struct { const char *title, *hint; } HELP_P600[] = {   /* Guru-600:
     {"POLY MOD", "[K1]FILTER ENV[K2]OSC B[K3]DEST"},
     {"EDIT 1", "[K1]WAVE A[K3]WAVE B[EDIT]OSC 2"},
     {"OSC 2", "[K1]PW A[K2]PW B[K4]SYNC"},
-    {"MIXER", "[K1]A / B[K2]GLIDE[K3]VOICES"},
+    {"MIXER", "[K1]A / B[K3]VOICES[K4]POLY"},   /* (1.4.0: POLY on K4; three hints at most) */
     {"FILTER", "[K1]CUTOFF[K2]RESO[K4]KEYBOARD"},
     {"FLT ENV", "[K1-4]A D S R[EDIT]EXTRAS"},
     {"EXTRAS", "[K1]VINTAGE[K2]WHEEL[K4]DETUNE"},
+    {"EXTRAS 2", "[K1]HIGH-PASS[K2]SUB OSC[K3]NOISE"},
+    {"LFO B", "[K1]RATE[K2]DEPTH[K3]DEST"},
     {"MORPH", "[K1]A[K2]B[K3]MORPH[K4]MUTATE"},        /* (Guru-600: OCT+ MUTATE) */
 };
 #endif

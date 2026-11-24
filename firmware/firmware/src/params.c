@@ -235,6 +235,8 @@ static const param_desc_t GP[G_COUNT] = {
 #if FELUCCA_P600
 /* P600's panel beyond its eight (eng_p600.c): the labels of the DIGITAL operator values it keeps them in, on its
  * FLT ENV, OSC 2 and POLY MOD pages. The ranges stay inside TP's (0..127), as projects and the protocol store them */
+static const char *const N_P6_POLY[] = {"8", "6"};   /* Guru-600 1.4.0: MIXER > POLY, the P600's voices */
+static const char *const N_P6_L2DST[] = {"PITCH", "PW A", "PW B", "FILT", "AMP", "OFF"};   /* LFO B's (OFF last: 127 reads OFF) */
 static const param_desc_t P600_XDESC[P_FM4_LEVEL - P_FM1_ATK + 1] = {
     [P_FM1_ATK - P_FM1_ATK] = PD("ATK", F_TIME, 0, 127, 0),
     [P_FM1_DEC - P_FM1_ATK] = PD("DEC", F_TIME, 0, 127, 70),
@@ -249,6 +251,14 @@ static const param_desc_t P600_XDESC[P_FM4_LEVEL - P_FM1_ATK + 1] = {
     [P_FM3_SUS - P_FM1_ATK] = PE("PM DS", N_P6_PMDST, 0),
     [P_FM3_REL - P_FM1_ATK] = PE("KBD", N_P6_KBD, 2),
     [P_FM4_ATK - P_FM1_ATK] = PD("VINT", F_PCT, 0, 127, 24),
+    [P_FM4_DEC - P_FM1_ATK] = PD("HPF", F_PCT, 0, 127, 0),     /* Guru-600 1.4.0: EXTRAS 2 (eng_p600.c), 0 = off */
+    [P_FM4_SUS - P_FM1_ATK] = PD("SUB", F_INVPCT, 0, 127, 127),   /* (stored 127 - level: DIGITAL's SUS, 127 in
+                                                                    * every stored sound, reads as no SUB) */
+    [P_FM4_REL - P_FM1_ATK] = PD("NOISE", F_PCT, 0, 127, 0),
+    [P_FM1_LEVEL - P_FM1_ATK] = PD("RATE", F_LFOHZ, 0, 127, 60),   /* Guru-600 1.4.0: LFO B (eng_p600.c) */
+    [P_FM2_LEVEL - P_FM1_ATK] = PD("DEPTH", F_INVPCT, 0, 127, 127),   /* (stored 127 - depth) */
+    [P_FM3_LEVEL - P_FM1_ATK] = PE("DEST", N_P6_L2DST, 5),           /* (127, every stored sound: OFF) */
+    [P_FM4_LEVEL - P_FM1_ATK] = PE("POLY", N_P6_POLY, 1),   /* 8 (0) or 6 (1; every stored sound's 127 reads 6) */
 };
 #endif
 
@@ -335,14 +345,25 @@ static const uint8_t DIV_ORDER[10] = {9, 8, 7, 6, 0, 1, 4, 2, 5, 3};   /* 4BAR 2
 static const uint8_t SLDIV_ORDER[6] = {0, 3, 1, 4, 2, 5};              /* 1/8 8T 1/16 16T 1/32 32T */
 static const uint8_t DTIME_ORDER[13] = {9, 8, 7, 6, 12, 0, 10, 1, 11, 4, 2, 5, 3};   /* 4BAR 2BAR 1/1 1/2 1/4D 1/4 1/8D
                                                                                       * 1/8 1/16D 8T 1/16 16T 1/32 */
+#if FELUCCA_P600
+static const uint8_t P6_POLY_ORDER[2] = {1, 0};       /* (Guru-600 1.4.0: MIXER > POLY shown 6 then 8, a turn right = 8) */
+#endif
 static const uint8_t *enum_order(const param_desc_t *d)
 {
+#if FELUCCA_P600
+    if (d->names == N_P6_POLY)
+        return P6_POLY_ORDER;
+#endif
     return d->names == N_DIV ? DIV_ORDER : d->names == N_SLDIV ? SLDIV_ORDER : d->names == N_DTIME ? DTIME_ORDER : 0;
 }
 static int32_t enum_rank(const param_desc_t *d, int32_t v)   /* v's place in the shown order (+ min): the gauges */
 {
     const uint8_t *o = enum_order(d);
     int32_t r;
+#if FELUCCA_P600
+    if (d->names == N_P6_POLY)                        /* (POLY: a stored 127, every older sound, is 6) */
+        v = v ? 1 : 0;
+#endif
     for (r = 0; o && r < d->max - d->min; r++)
         if (o[r] == v - d->min)
             break;
@@ -535,7 +556,7 @@ static const page_t PAGES[] = {
     {"OSC 2", FAM_EDIT, SC_TRACK, GR_NONE, {P_FM2_ATK, P_FM2_DEC, P_FM2_SUS, P_FM2_REL}, ENGI_P600 + 1u},
     /* the panel's middle: MIXER, GLIDE, UNISON (VOICE: UNISON or POLY), then its FILTER as the panel has it: CUTOFF,
      * RESONANCE, ENVELOPE AMOUNT, KEYBOARD (P600 hides EDIT 2, ui.c page_visible) */
-    {"MIXER", FAM_EDIT, SC_TRACK, GR_NONE, {P_E6, P_GLIDE, P_VOICE, 0xFF}, ENGI_P600 + 1u},
+    {"MIXER", FAM_EDIT, SC_TRACK, GR_NONE, {P_E6, P_GLIDE, P_VOICE, P_FM4_LEVEL}, ENGI_P600 + 1u},   /* (1.4.0: POLY) */
     {"FILTER", FAM_EDIT, SC_TRACK, GR_NONE, {P_E4, P_E5, P_E7, P_FM3_REL}, ENGI_P600 + 1u},
 #endif
     {"EDIT 2", FAM_EDIT, SC_ENGINE, GR_NONE, {P_E4, P_E5, P_E6, P_E7}},
@@ -543,6 +564,10 @@ static const page_t PAGES[] = {
     {"FLT ENV", FAM_EDIT, SC_TRACK, GR_ADSR, {P_FM1_ATK, P_FM1_DEC, P_FM1_SUS, P_FM1_REL}, ENGI_P600 + 1u},
     /* not on the Prophet-600: VINTAGE, the mod wheel's vibrato, velocity to the cutoff, the unison's detune */
     {"EXTRAS", FAM_EDIT, SC_TRACK, GR_NONE, {P_FM4_ATK, P_M4AMT, P_M3AMT, P_DETUNE}, ENGI_P600 + 1u},
+    /* Guru-600 1.4.0: what 1982 could not: a high-pass, a sub-oscillator, noise (eng_p600.c EXTRAS 2) */
+    {"EXTRAS 2", FAM_EDIT, SC_TRACK, GR_NONE, {P_FM4_DEC, P_FM4_SUS, P_FM4_REL, 0xFF}, ENGI_P600 + 1u},
+    /* Guru-600 1.4.0: LFO B, a second LFO (eng_p600.c), on LFO's button after the LFO's own pages */
+    {"LFO B", FAM_LFO, SC_TRACK, GR_NONE, {P_FM1_LEVEL, P_FM2_LEVEL, P_FM3_LEVEL, 0xFF}, ENGI_P600 + 1u},
     /* Guru-600: MUTATE (its amount, OCT+), B (a place), MORPH (A to B): ui.c mph_set, mph_mutate */
     {"MORPH", FAM_EDIT, SC_TRACK, GR_P6MORPH, {0xFF, 0xFF, 0xFF, 0xFF}, ENGI_P600 + 1u},
 #endif

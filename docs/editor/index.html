@@ -127,6 +127,9 @@ body.flat #bpm.b1 { background: color-mix(in srgb, var(--trk) 45%, transparent);
 .item { display: flex; flex-direction: column; align-items: center; }
 .item > .tl { font: 600 16px/1.1 "Barlow C"; height: var(--tlh, 26px); display: flex; align-items: center; text-align: center; white-space: pre; }
 .item > .sl { font: 600 var(--slf, 17px)/1 "Barlow C"; margin-top: 6px; white-space: nowrap; }
+.item > .slv { display: flex; align-items: baseline; gap: 6px; margin-top: 6px; white-space: nowrap; }
+.item > .slv > .sl { font: 600 var(--slf, 17px)/1 "Barlow C"; }
+.item > .slv > .v { font: 600 19px/1 "Barlow C"; white-space: nowrap; text-transform: none; }
 .item > .v { font: 600 19px/1 "Barlow C"; margin-top: 4px; white-space: nowrap; text-transform: none; }
 .knob { width: var(--kn, 66px); height: var(--kn, 66px); cursor: ns-resize; touch-action: none; display: block; }
 .sw { width: 26px; height: 46px; border-radius: 5px; box-sizing: border-box; position: relative; cursor: pointer; margin-top: 8px; }
@@ -174,6 +177,13 @@ body.flat #bpm.b1 { background: color-mix(in srgb, var(--trk) 45%, transparent);
   border: 1.5px solid #203024; box-sizing: border-box; box-shadow: inset 0 1px 2px rgba(0, 0, 0, .8); }
 .radio .on i { background: radial-gradient(circle at 40% 35%, #ff8a80, var(--red) 55%, #c4221a); border-color: #ff6a60; box-shadow: 0 0 7px rgba(255, 80, 70, .7); }
 .shape { display: flex; flex-direction: column; align-items: center; gap: 6px; margin-top: 4px; }   /* (Marc 17/11: upright, as the other switches) */
+/* (Marc 24/11: lying down, the triangle wave above on its left, the square wave below on its right) */
+.shape { display: grid; grid-template-columns: 46px; gap: 3px; justify-items: center; }
+.shape > svg:first-child { justify-self: start; }
+.shape > svg:last-child { justify-self: end; }
+.shape > .pill { width: 46px; height: 26px; }
+.shape > .pill::after { top: 50%; margin-top: -6px; left: 7px; margin-left: 0; transition: left .08s; }
+.shape > .pill.r::after { top: 50%; left: 27px; }
 .pill { width: 26px; height: 46px; border-radius: 5px; background: var(--c); position: relative; cursor: pointer; box-sizing: border-box; }   /* (the size of .sw) */
 .pill::after { content: ""; position: absolute; left: 50%; margin-left: -6px; width: 12px; height: 12px; border-radius: 50%; background: #fff; top: 7px; transition: top .08s; }
 .pill.r::after { top: 27px; }
@@ -207,6 +217,18 @@ body.flat .shape svg.lit path { stroke: var(--c); }
 .mix > .part + .part { border-top: var(--rule-w) solid var(--c); padding-top: 22px; }
 .mix > .part { padding-bottom: 14px; }
 .mix .pt { color: var(--c); font: 400 18px/24px "Guru600"; letter-spacing: .02em; -webkit-text-stroke: .6px currentColor; paint-order: stroke fill; margin-bottom: 12px; }
+.mix > .part, .mix > .part + .part { padding-top: 3px; padding-bottom: 3px; }   /* (Guru-600 1.4.0: five parts, SUB and NOISE added) */
+.mix .pt { margin-bottom: 3px; }
+.band { display: flex; flex: 0 0 auto; min-height: 0; }
+.band:not(.b2) > .grp { padding-bottom: 8px; }   /* (Marc 24/11: as high as its content) */   /* (Guru-600 1.4.0: LFO and LFO B) */
+.band.b2 { flex: 1 1 auto; padding-bottom: 0; border-top: var(--rule-w) solid var(--c); align-items: center; padding: 0 8px; gap: 8px; }
+.band.b2 .bt { color: var(--c); font: 400 17px/1.1 "Guru600"; -webkit-text-stroke: .5px currentColor; paint-order: stroke fill; white-space: nowrap; }
+.band.b2 .items { display: flex; flex: 1; justify-content: space-around; gap: 6px; }
+.band.b2 .item { display: flex; flex-direction: column; align-items: center; gap: 0; }
+.band.b2 .item > :first-child { font-size: 16px; }
+.band.b2 .kv { display: flex; align-items: center; gap: 4px; }
+.band.b2 .knob { width: 32px; height: 32px; }
+.band.b2 .v { font: 600 16px/1 "Barlow C"; white-space: nowrap; text-transform: none; }
 :lang(zh) .sec > .ttl, :lang(ja) .sec > .ttl, :lang(zh) .mix .pt, :lang(ja) .mix .pt { font-weight: 700; }   /* (Guru600 has no CJK: the fallback in bold, as before) */
 .mix .ab { display: flex; gap: 10px; font: 600 19px/1 "Barlow C"; margin-top: 6px; text-transform: none; }
 .mix .ab b { font-weight: 600; text-transform: uppercase; }
@@ -214,6 +236,10 @@ body.flat .shape svg.lit path { stroke: var(--c); }
 
 /* EXTRAS column */
 .col { display: flex; flex-direction: column; flex: 1; justify-content: space-evenly; }
+.pager { flex: none; display: flex; justify-content: space-between; align-items: center; padding: 4px 6px 0; color: var(--c);
+         font: 400 17px/22px "Guru600"; user-select: none; }   /* (Guru-600 1.4.0: EXTRAS' pages) */
+.pager .pgarr { cursor: pointer; padding: 2px 8px; font: 700 16px/1 system-ui, sans-serif; }
+.pager .pgarr:hover { color: #fff; }
 .col > .item { padding: 7px 0 7px; }
 .col > .item + .item { border-top: var(--rule-w) solid var(--c); margin: 0 6px; }
 
@@ -612,15 +638,15 @@ body.flat .fdr i { box-shadow: none; }
 </head>
 <body>
 <div id="stage"></div>
-<script src="guru-families.js?v=1.3.1"></script>
-<script src="guru-link.js?v=1.3.1"></script>
+<script src="guru-families.js?v=1.4.0"></script>
+<script src="guru-link.js?v=1.4.0"></script>
 <script>
 "use strict";
 /* ------------------------------------------------------------------ the parameters (core.h P_*, params.c) --- */
 const PE0 = 108;   // P_E0 (INFO says it; 103 since 1.5, 108 with INSERT 2: Guru-600 10/11)
 const P = { LEVEL: 0, DIST: 33, CHOR: 34, DLY: 35, REV: 36, PAN: 39, SPRD: 95, ATK: 1, DEC: 2, SUS: 3, REL: 4, LRATE: 9, LWAVE: 10, LD_PIT: 13, LD_FLT: 14, LD_SHP: 15, VOICE: 37, GLIDE: 38, DETUNE: 44,
   VEL: 57, WHEEL: 60, FATK: 61, FDEC: 62, FSUS: 63, FREL: 64, APW: 66, BPW: 67, BFIN: 68, SYNC: 69, PMENV: 71, PMB: 72, PMDST: 73,
-  KBD: 74, VINT: 76, AWAV: PE0, AFRQ: PE0 + 1, BWAV: PE0 + 2, BFRQ: PE0 + 3, CUT: PE0 + 4, RES: PE0 + 5, MIX: PE0 + 6, FENV: PE0 + 7 };
+  KBD: 74, L2RATE: 65, L2AMT: 70, L2DST: 75, VINT: 76, HPF: 77, SUB: 78, NOIS: 79, POLY: 80, AWAV: PE0, AFRQ: PE0 + 1, BWAV: PE0 + 2, BFRQ: PE0 + 3, CUT: PE0 + 4, RES: PE0 + 5, MIX: PE0 + 6, FENV: PE0 + 7 };
 const F = { INT: 0, PCT: 1, BIPCT: 2, TIME: 3, LFOHZ: 4, CUTOFF: 5, DB: 6, ENUM: 8, ONOFF: 11, PAN: 100 };
 const D = {};   // descriptors: {fmt, min, max, def, unit}
 const dsc = (fmt, min, max, def, unit = "") => ({ fmt, min, max, def, unit });
@@ -631,10 +657,16 @@ Object.assign(D, {
   [P.VEL]: dsc(F.BIPCT, -64, 63, 0), [P.WHEEL]: dsc(F.PCT, 0, 63, 0),
   [P.FATK]: dsc(F.TIME, 0, 127, 0), [P.FDEC]: dsc(F.TIME, 0, 127, 70), [P.FSUS]: dsc(F.PCT, 0, 127, 64), [P.FREL]: dsc(F.TIME, 0, 127, 60),
   [P.APW]: dsc(F.PCT, 0, 127, 64), [P.BPW]: dsc(F.PCT, 0, 127, 64), [P.BFIN]: dsc(F.INT, 0, 127, 0), [P.SYNC]: dsc(F.ONOFF, 0, 1, 0),
-  [P.PMENV]: dsc(F.PCT, 0, 127, 0), [P.PMB]: dsc(F.PCT, 0, 127, 0), [P.PMDST]: dsc(F.ENUM, 0, 3, 0), [P.KBD]: dsc(F.ENUM, 0, 2, 2),
+  [P.PMENV]: dsc(F.PCT, 0, 127, 0), [P.PMB]: dsc(F.PCT, 0, 127, 0), [P.PMDST]: dsc(F.ENUM, 0, 7, 0), [P.KBD]: dsc(F.ENUM, 0, 2, 2),
   [P.VINT]: dsc(F.PCT, 0, 127, 24), [P.AWAV]: dsc(F.ENUM, 0, 7, 1), [P.AFRQ]: dsc(F.INT, 0, 63, 24, "st"), [P.BWAV]: dsc(F.ENUM, 0, 7, 1),
   [P.BFRQ]: dsc(F.INT, 0, 63, 24, "st"), [P.CUT]: dsc(F.CUTOFF, 0, 127, 90), [P.RES]: dsc(F.PCT, 0, 127, 0), [P.MIX]: dsc(F.PCT, 0, 127, 64),
   [P.FENV]: dsc(F.PCT, 0, 127, 40),
+  // Guru-600 1.4.0, EXTRAS 2 (firmware eng_p600.c): SUB stored 127 - level (127: none); POLY 1 = six voices, 0 = eight
+  [P.HPF]: dsc(F.PCT, 0, 127, 0), [P.SUB]: dsc(F.PCT, 0, 127, 127), [P.NOIS]: dsc(F.PCT, 0, 127, 0),
+  [P.POLY]: Object.assign(dsc(F.ENUM, 0, 1, 1), { names: ["8", "6"], order: [1, 0] }),   // (shown 6 then 8: a turn right = 8)
+  // LFO B (1.4.0): its DEPTH stored 127 - depth, its DEST past the names (127, older sounds) = OFF
+  [P.L2RATE]: dsc(F.LFOHZ, 0, 127, 60), [P.L2AMT]: dsc(F.PCT, 0, 127, 127),
+  [P.L2DST]: Object.assign(dsc(F.ENUM, 0, 5, 5), { names: ["PITCH", "PW A", "PW B", "FILT", "AMP", "OFF"] }),
   [P.LEVEL]: dsc(F.DB, 0, 127, 104), [P.PAN]: dsc(F.PAN, -64, 63, 0), [P.SPRD]: dsc(F.PCT, 0, 127, 0),
   [P.DIST]: dsc(F.PCT, 0, 127, 0), [P.CHOR]: dsc(F.PCT, 0, 127, 0), [P.DLY]: dsc(F.PCT, 0, 127, 0), [P.REV]: dsc(F.PCT, 0, 127, 0),
 });
@@ -679,13 +711,14 @@ const DW = 1536, DH = 1024;   // the mockup's size: the stage keeps it, scaled a
 const K = (id, o = {}) => ({ k: "knob", id, ...o });          // a knob (tl: its label above, sl: below)
 const S = (id, bit, o = {}) => ({ k: "sw", id, bit, ...o });   // a switch: bit of id (or id == 1 when bit is 0)
 const SECTIONS = [
-  { id: "pm", t: "POLY-MOD", c: "pm", box: [12, 155, 386, 358], groups: [
-    { t: "SOURCE AMOUNT", items: [K(P.PMENV, { sl: "FIL ENV" }), K(P.PMB, { sl: "OSC B" })] },
-    { t: "DESTINATION", items: [S(P.PMDST, 1, { sl: "FREQ A" }), S(P.PMDST, 2, { sl: "FILTER" })], gtDy: 15, dy: -2 }] },   // (Marc 11/11 : le titre et les interrupteurs à la hauteur de ceux d'OSCILLATOR A)
-  { id: "lfo", t: "LFO", c: "lfo", box: [12, 366, 386, 569], groups: [
+  { id: "pm", t: "POLY-MOD", c: "pm", box: [12, 155, 386, 332], groups: [
+    { t: "SOURCE AMOUNT", items: [K(P.PMENV, { sl: "FIL ENV", slv: 1 }), K(P.PMB, { sl: "OSC B", slv: 1 })], gtDy: -17, dy: 0 },   // (Marc 24/11: the titles near the top, as in VOICE; the knobs stay)
+    { t: "DESTINATION", items: [S(P.PMDST, 1, { sl: "FREQ A" }), S(P.PMDST, 2, { sl: "FILTER" }), S(P.PMDST, 4, { sl: "PW A" })], gtDy: -17, dy: 13 }] },   // (Guru-600 1.4.0: PW A, bit 2)   // (Marc 11/11 : le titre et les interrupteurs à la hauteur de ceux d'OSCILLATOR A)
+  { id: "lfo", t: "LFO", c: "lfo", box: [12, 340, 386, 569], groups: [
     { t: "FREQUENCY", items: [K(P.LRATE)] }, { t: "SHAPE", items: [{ k: "shape" }] },
     // (INITIAL AMOUNT removed, Marc 17/11: the same value as EXTRAS WHEEL, which now reads the same way, 0 nothing, 100 all)
-    { t: "DESTINATION", items: [S(P.LD_PIT, 0, { sl: "FREQ A-B", lfo: 1 }), S(P.LD_SHP, 0, { sl: "PW A-B", lfo: 1 }), S(P.LD_FLT, 0, { sl: "FILTER", lfo: 1 })] }] },
+    { t: "DESTINATION", items: [S(P.LD_PIT, 0, { sl: "FREQ A-B", lfo: 1 }), S(P.LD_SHP, 0, { sl: "PW A-B", lfo: 1 }), S(P.LD_FLT, 0, { sl: "FILTER", lfo: 1 })] }],
+    band2: { t: "LFO B", items: [K(P.L2RATE, { tl: "FREQUENCY" }), K(P.L2AMT, { tl: "DEPTH", inv: true }), K(P.L2DST, { tl: "DESTINATION" })] } },   // (1.4.0, Marc: LFO B under the LFO)
   { id: "osca", t: "OSCILLATOR A", c: "osc", box: [394, 155, 746, 358], groups: [
     { t: "FREQUENCY", items: [K(P.AFRQ)] }, { t: "SYNC", items: [S(P.SYNC, 0)] },
     { t: "", items: [S(P.AWAV, 1, { tl: "SAW" }), S(P.AWAV, 2, { tl: "TRI" }), S(P.AWAV, 4, { tl: "PULSE" })], waves: 1 },
@@ -696,13 +729,13 @@ const SECTIONS = [
     { t: "PULSE WIDTH", items: [K(P.BPW)], flat: 1 }] },
   { id: "mixer", t: "MIXER", c: "osc", box: [754, 155, 852, 648], mixer: 1 },
   { id: "flt", t: "FILTER", c: "flt", box: [860, 155, 1206, 332], groups: [
-    { t: "", items: [K(P.CUT, { tl: "CUTOFF" }), K(P.RES, { tl: "RESONANCE" }), K(P.FENV, { tl: "ENVELOPE<br>AMOUNT" })] },
+    { t: "", items: [K(P.CUT, { tl: "CUTOFF" }), K(P.RES, { tl: "RESONANCE" }), K(P.FENV, { tl: "ENVELOPE<br>AMOUNT" }), K(P.HPF, { tl: "HPF" })] },   // (1.4.0: HPF)
     { t: "KEYBOARD", items: [{ k: "radio", id: P.KBD, names: ["OFF", "HALF", "FULL"] }], narrow: 1 }] },
   { id: "fenv", t: "FILTER ENVELOPE", c: "env", box: [860, 339, 1206, 491], adsr: [P.FATK, P.FDEC, P.FSUS, P.FREL] },
   { id: "amp", t: "AMPLIFIER", c: "env", box: [860, 498, 1206, 648], adsr: [P.ATK, P.DEC, P.SUS, P.REL] },
   { id: "vce", t: "VOICE", c: "vce", box: [12, 577, 336, 648], row: [[P.LEVEL, "LEVEL"], [P.PAN, "PAN"], [P.SPRD, "SPREAD"]] },
   { id: "fxs", t: "FX<br>SENDS", c: "fx", box: [344, 577, 746, 648], row: [[P.DIST, "DIST"], [P.CHOR, "CHORUS"], [P.DLY, "DELAY"], [P.REV, "REVERB"]] },
-  { id: "ext", t: "EXTRAS", c: "ext", box: [1214, 155, 1314, 648], col: [[P.VINT, "VINTAGE"], [P.WHEEL, "WHEEL", { inv: true }], [P.VEL, "VEL &gt; FLT"], [P.DETUNE, "DETUNE"]] },
+  { id: "ext", t: "EXTRAS", c: "ext", box: [1214, 155, 1314, 773], col: [[P.VINT, "VINTAGE"], [P.WHEEL, "WHEEL", { inv: true }], [P.VEL, "VEL &gt; FLT"], [P.DETUNE, "DETUNE"], [P.POLY, "POLY"]] },   // (1.4.0, Marc: down to MORPH's foot, one knob more)
 ];
 const TABS = ["SOUND", "SEQUENCER", "SONG", "ARP", "FX", "MOD", "TRACKS", "PROJECTS", "SAMPLES", "BACKUP", "SETTINGS"];
 const PAGES = ["sound", "seq", "song", "arp", "fx", "mod", "tracks", "projects", "samples", "backup", "settings"];   // (data-page)
@@ -754,8 +787,9 @@ function makeItem(it) {
   if (it.tl) e.appendChild(h("div", "tl", it.tl));
   if (it.k === "knob") {
     const s = knobSvg(); e.appendChild(s);
-    if (it.sl) e.appendChild(h("div", "sl", it.sl));
-    const v = h("div", "v"); e.appendChild(v);
+    const v = h("div", "v");
+    if (it.slv) { const r = h("div", "slv"); r.append(h("div", "sl", it.sl), v); e.appendChild(r); }   // (Marc 24/11: the % after the name)
+    else { if (it.sl) e.appendChild(h("div", "sl", it.sl)); e.appendChild(v); }
     ctl.push({ kind: "knob", id: it.id, svg: s, v, inv: it.inv, bip: it.bip });
   } else if (it.k === "sw") {
     const s = h("div", "sw"); e.appendChild(s);
@@ -790,8 +824,8 @@ function makeGroup(g) {
   return e;
 }
 const METRICS = {   // per section: knob size, space above, title heights (the mockup's)
-  pm: { kn: 68, gth: 26 }, lfo: { kn: 62, gth: 36, slf: 13 }, osca: { kn: 62, gth: 24, tlh: 24 },
-  oscb: { kn: 62, gth: 24, tlh: 24 }, mixer: { kn: 62 }, flt: { kn: 58, gth: 34, tlh: 36 },
+  pm: { kn: 68, gth: 26, pt: 22 }, lfo: { kn: 50, gth: 20, slf: 13, pt: 9 }, osca: { kn: 62, gth: 24, tlh: 24 },
+  oscb: { kn: 62, gth: 24, tlh: 24 }, mixer: { kn: 42 }, flt: { kn: 50, gth: 34, tlh: 36 },   // (1.4.0: mixer 50 and flt 50, were 62 and 58: SUB NOISE, HPF)
   fenv: { kn: 56, tlh: 22 }, amp: { kn: 56, tlh: 22 }, ext: { kn: 54, tlh: 20 } };
 function makeSection(s) {
   const e = h("div", "sec"); e.style.setProperty("--c", `var(--${s.c})`);
@@ -799,11 +833,36 @@ function makeSection(s) {
   e.appendChild(h("div", "ttl", s.t));
   const bd = h("div", "bd"); e.appendChild(bd);
   if (s.groups) s.groups.forEach((g) => bd.appendChild(makeGroup(g)));
+  if (s.band2) {   // (Guru-600 1.4.0) a second band under the groups: its title on its left, its knobs in a row
+    const r1 = h("div", "band"), r2 = h("div", "band b2");
+    while (bd.firstChild) r1.appendChild(bd.firstChild);
+    r2.appendChild(h("div", "bt", s.band2.t));
+    const its = h("div", "items");
+    s.band2.items.forEach((it) => { const e2 = makeItem(it); const v = e2.querySelector(".v"); const w = h("div", "kv"); w.append(e2.querySelector(".knob"), v); e2.appendChild(w); its.appendChild(e2); });
+    r2.appendChild(its);
+    bd.style.flexDirection = "column"; bd.append(r1, r2);
+  }
   if (s.adsr) {
     const g = h("div", "grp");
     const its = h("div", "items");
     ["ATTACK", "DECAY", "SUSTAIN", "RELEASE"].forEach((n, i) => its.appendChild(makeItem(K(s.adsr[i], { tl: n }))));
     g.appendChild(its); bd.appendChild(g);
+  }
+  if (s.pages) {   // (Guru-600 1.4.0) a column of pages: the title as it was, a pager under it (the column is too narrow for both)
+    const cols = [], pager = h("div", "pager");
+    let pg = 0;
+    pager.innerHTML = `<span class="pgarr" data-d="-1">&#9664;</span><span class="pgn"></span><span class="pgarr" data-d="1">&#9654;</span>`;
+    bd.style.flexDirection = "column";
+    bd.appendChild(pager);
+    s.pages.forEach((p) => {
+      const c = h("div", "col");
+      p.col.forEach(([id, n, o]) => c.appendChild(makeItem(K(id, { tl: n, ...o }))));
+      bd.appendChild(c); cols.push(c);
+    });
+    const show = () => { cols.forEach((c, i) => { c.style.display = i === pg ? "" : "none"; }); pager.querySelector(".pgn").textContent = (pg + 1) + "/" + s.pages.length; };
+    pager.querySelectorAll(".pgarr").forEach((a) => a.addEventListener("pointerdown", (ev) => {
+      ev.preventDefault(); pg = (pg + +a.dataset.d + s.pages.length) % s.pages.length; show(); }));
+    show();
   }
   if (s.col) {
     const c = h("div", "col");
@@ -823,7 +882,10 @@ function makeSection(s) {
     const p2 = h("div", "part"); p2.appendChild(h("div", "pt", "GLIDE")); p2.appendChild(makeItem(K(P.GLIDE)));
     const p3 = h("div", "part"); p3.appendChild(h("div", "pt", "UNISON"));
     const u = h("div", "hsw"); p3.appendChild(u); ctl.push({ kind: "unison", id: P.VOICE, el: u });
-    m.append(p1, p2, p3); bd.appendChild(m);
+    // (Guru-600 1.4.0, Marc: SUB and NOISE in the mixer, as a Prophet-6 has them; SUB stored 127 - level)
+    const p4 = h("div", "part"); p4.appendChild(h("div", "pt", "SUB")); p4.appendChild(makeItem(K(P.SUB, { inv: true })));
+    const p5 = h("div", "part"); p5.appendChild(h("div", "pt", "NOISE")); p5.appendChild(makeItem(K(P.NOIS)));
+    m.append(p1, p2, p3, p4, p5); bd.appendChild(m);
   }
   e.id = s.id;
   e.dataset.page = "sound";
@@ -887,7 +949,7 @@ function build() {
   const mb = h("div", "gbtn", "MUTATE"); mb.id = "b-mutate";
   mut.append(mb, mv, kw); g4.appendChild(mut);   // (Marc: the button under its title)
   bd.append(g1, g2, g3, g4);
-  abs(mo, 12, 657, 1314, 773).dataset.page = "sound";
+  abs(mo, 12, 657, 1206, 773).dataset.page = "sound";   // (1.4.0, Marc: it ends where AMPLIFIER does: EXTRAS goes down beside it)
   setMorph(0.4);
 
   // keyboard
@@ -1004,27 +1066,27 @@ document.fonts.ready.then(layout);
 layout();
 addEventListener("resize", layout);
 </script>
-<script src="guru-dialog.js?v=1.3.1"></script>
-<script src="guru-app.js?v=1.3.1"></script>
-<script src="guru-seq.js?v=1.3.1"></script>
-<script src="guru-song.js?v=1.3.1"></script>
-<script src="guru-arp.js?v=1.3.1"></script>
-<script src="guru-fx.js?v=1.3.1"></script>
-<script src="guru-mod.js?v=1.3.1"></script>
-<script src="guru-tracks.js?v=1.3.1"></script>
-<script src="guru-projects.js?v=1.3.1"></script>
-<script src="guru-allsounds.js?v=1.3.1"></script>
-<script src="guru-sampleio.js?v=1.3.1"></script>
-<script src="guru-samples.js?v=1.3.1"></script>
-<script src="guru-backupio.js?v=1.3.1"></script>
-<script src="guru-backup.js?v=1.3.1"></script>
-<script src="guru-settings.js?v=1.3.1"></script>
-<script src="guru-tx.js?v=1.3.1"></script>
-<script src="guru-guide-ch.js?v=1.3.1"></script>
-<script src="guru-tips.js?v=1.3.1"></script>
-<script src="guru-gloss.js?v=1.3.1"></script>
-<script src="guru-labels.js?v=1.3.1"></script>
-<script src="guru-i18n.js?v=1.3.1"></script>
+<script src="guru-dialog.js?v=1.4.0"></script>
+<script src="guru-app.js?v=1.4.0"></script>
+<script src="guru-seq.js?v=1.4.0"></script>
+<script src="guru-song.js?v=1.4.0"></script>
+<script src="guru-arp.js?v=1.4.0"></script>
+<script src="guru-fx.js?v=1.4.0"></script>
+<script src="guru-mod.js?v=1.4.0"></script>
+<script src="guru-tracks.js?v=1.4.0"></script>
+<script src="guru-projects.js?v=1.4.0"></script>
+<script src="guru-allsounds.js?v=1.4.0"></script>
+<script src="guru-sampleio.js?v=1.4.0"></script>
+<script src="guru-samples.js?v=1.4.0"></script>
+<script src="guru-backupio.js?v=1.4.0"></script>
+<script src="guru-backup.js?v=1.4.0"></script>
+<script src="guru-settings.js?v=1.4.0c"></script>
+<script src="guru-tx.js?v=1.4.0"></script>
+<script src="guru-guide-ch.js?v=1.4.0"></script>
+<script src="guru-tips.js?v=1.4.0"></script>
+<script src="guru-gloss.js?v=1.4.0"></script>
+<script src="guru-labels.js?v=1.4.0b"></script>
+<script src="guru-i18n.js?v=1.4.0"></script>
 <script>showPage(new URLSearchParams(location.search).get("tab") || "sound");   // (?tab=seq: a page at once)</script>
 <script>   // (16/11/2026) an installable application that also works offline: the worker at the site's root (site/sw.js)
 if ("serviceWorker" in navigator && location.protocol.startsWith("http")) navigator.serviceWorker.register("../sw.js", { scope: "../" }).catch(() => {});</script>

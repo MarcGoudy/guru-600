@@ -32,8 +32,8 @@ CH("engines", "Felucca's other sound engines", "Les autres moteurs sonores de Fe
  LI([("A DRUM track plays its kit on the keys and shows a grid instead of the piano roll on SEQ › STEP (chapter {ch:seq}). Its sounds ignore the envelope, glide and chord keys.",
       "Une piste DRUM joue son kit sur les touches et affiche une grille au lieu du piano roll sur SEQ › STEP (chapitre {ch:seq}). Ses sons ignorent l'enveloppe, le glide et les accords."),
      ("SLICE plays one slice per key, from the lowest key upward, ignoring the scale.", "SLICE joue une tranche par touche, de la touche la plus grave vers le haut, sans tenir compte de la gamme."),
-     ("VOICE plays four notes at most, GRAIN and PHYS three, P600 and FM6 six, the others eight (within the FM-1's eight voices).",
-      "VOICE joue quatre notes au plus, GRAIN et PHYS trois, P600 et FM6 six, les autres huit (dans la limite des huit voix du FM-1)."),
+     ("VOICE plays four notes at most, GRAIN and PHYS three, FM6 six, P600 six or eight (MIXER › POLY), the others eight (within the FM-1's eight voices).",
+      "VOICE joue quatre notes au plus, GRAIN et PHYS trois, FM6 six, P600 six ou huit (MIXER › POLY), les autres huit (dans la limite des huit voix du FM-1)."),
      ("The FM6 patches are edited in the Felucca web editor; the samples and the full backups are made in the Guru-600 editor (chapter {ch:editor}).", "Les patchs FM6 se règlent dans l'éditeur web Felucca ; les échantillons et les sauvegardes complètes se font dans l'éditeur Guru-600 (chapitre {ch:editor}).")]) +
  felucca("Engines", "Felucca's engines page describes each engine and its settings.",
          "La page des moteurs de Felucca décrit chaque moteur et ses réglages."))

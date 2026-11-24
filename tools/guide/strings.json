@@ -312,8 +312,8 @@
   "fr": "Un court message en bas de la page dit ce qui a été fait, ou pourquoi ce ne l'a pas été (il disparaît de lui-même). Avant tout ce qui remplace ou efface, le navigateur demande confirmation : <b>OK</b> continue, <b>Annuler</b> ne change rien."
  },
  {
-  "en": "The SOUND page shows the sound of the selected track on a panel inspired by the Prophet-600: every knob and switch of the original, plus what the Guru-600 adds (VOICE, FX SENDS, EXTRAS, MORPH). A change is heard at once on the FM-1. On the right, SOUNDS holds every sound the FM-1 can play, and saves and exchanges the 255 P600 sounds.",
-  "fr": "La page SOUND présente le son de la piste choisie sur une façade inspirée du Prophet-600 : chaque bouton et chaque interrupteur de l'original, plus ce qu'ajoute le Guru-600 (VOICE, FX SENDS, EXTRAS, MORPH). Un changement s'entend aussitôt sur le FM-1. À droite, SOUNDS contient tous les sons que peut jouer le FM-1, et enregistre et échange les 255 sons P600."
+  "en": "The SOUND page shows the sound of the selected track on a panel inspired by the Prophet-600: every knob and switch of the original, plus what the Guru-600 adds (HPF, SUB, NOISE, LFO B, POLY, VOICE, FX SENDS, EXTRAS, MORPH). A change is heard at once on the FM-1. On the right, SOUNDS holds every sound the FM-1 can play, and saves and exchanges the 255 P600 sounds.",
+  "fr": "La page SOUND présente le son de la piste choisie sur une façade inspirée du Prophet-600 : chaque bouton et chaque interrupteur de l'original, plus ce qu'ajoute le Guru-600 (HPF, SUB, NOISE, LFO B, POLY, VOICE, FX SENDS, EXTRAS, MORPH). Un changement s'entend aussitôt sur le FM-1. À droite, SOUNDS contient tous les sons que peut jouer le FM-1, et enregistre et échange les 255 sons P600."
  },
  {
   "en": "The SOUND page.",
@@ -336,8 +336,8 @@
   "fr": "POLY-MOD"
  },
  {
-  "en": "In each voice, two sources modulate oscillator A's pitch and/or the filter.",
-  "fr": "Dans chaque voix, deux sources modulent la hauteur de l'oscillateur A et/ou le filtre."
+  "en": "In each voice, two sources modulate oscillator A's pitch, its pulse width and/or the filter.",
+  "fr": "Dans chaque voix, deux sources modulent la hauteur de l'oscillateur A, sa largeur d'impulsion et/ou le filtre."
  },
  {
   "en": "Values",
@@ -352,8 +352,8 @@
   "fr": "OSC B : quantité de modulation par l'oscillateur B, à vitesse audio : sons métalliques, cloches."
  },
  {
-  "en": "DESTINATION: where the modulation goes. Both lit: both; both unlit: nowhere.",
-  "fr": "DESTINATION : où va la modulation. Les deux allumés : les deux ; les deux éteints : nulle part."
+  "en": "DESTINATION: where the modulation goes: oscillator A's pitch, the filter, oscillator A's pulse width (which the Prophet-600 could not do). Any combination; all unlit: nowhere.",
+  "fr": "DESTINATION : où va la modulation : la hauteur de l'oscillateur A, le filtre, la largeur d'impulsion de l'oscillateur A (ce que le Prophet-600 ne faisait pas). Toute combinaison ; tous éteints : nulle part."
  },
  {
   "en": "OFF / ON",
@@ -372,8 +372,8 @@
   "fr": "0,1 … 40 Hz"
  },
  {
-  "en": "Click to choose the triangle wave (top) or the square wave (bottom); the shape chosen glows. Unlit: a shape the Prophet-600 does not have, set on the FM-1.",
-  "fr": "Cliquez pour choisir l'onde triangulaire (en haut) ou l'onde carrée (en bas) ; la forme choisie est lumineuse. Éteint : une forme que le Prophet-600 n'a pas, réglée sur le FM-1."
+  "en": "Click to choose the triangle wave (top left) or the square wave (bottom right); the shape chosen glows. Unlit: a shape the Prophet-600 does not have, set on the FM-1.",
+  "fr": "Cliquez pour choisir l'onde triangulaire (en haut à gauche) ou l'onde carrée (en bas à droite) ; la forme choisie est lumineuse. Éteint : une forme que le Prophet-600 n'a pas, réglée sur le FM-1."
  },
  {
   "en": "TRI / SQR",
@@ -382,6 +382,34 @@
  {
   "en": "DESTINATION: what the LFO moves: the pitch of both oscillators, their pulse widths, the filter. Any combination.",
   "fr": "DESTINATION : ce que fait bouger le LFO : la hauteur des deux oscillateurs, leurs largeurs d'impulsion, le filtre. Toute combinaison."
+ },
+ {
+  "en": "LFO B",
+  "fr": "LFO B"
+ },
+ {
+  "en": "Under the LFO: a second LFO, which the Prophet-600 did not have. A triangle shared by all the voices of the track, as on the original's LFO.",
+  "fr": "Sous le LFO : un second LFO, que le Prophet-600 n'avait pas. Un triangle commun à toutes les voix de la piste, comme le LFO de l'original."
+ },
+ {
+  "en": "Its speed.",
+  "fr": "Sa vitesse."
+ },
+ {
+  "en": "0.05 – 40 Hz",
+  "fr": "0,05 – 40 Hz"
+ },
+ {
+  "en": "How much it moves its destination. 0 %: nothing.",
+  "fr": "De combien il fait bouger sa destination. 0 % : rien."
+ },
+ {
+  "en": "Where it goes: PITCH (both oscillators, up to an octave), PW A or PW B (a pulse width), FILT (the cutoff), AMP (the volume: tremolo), OFF.",
+  "fr": "Où il va : PITCH (les deux oscillateurs, jusqu'à une octave), PW A ou PW B (une largeur d'impulsion), FILT (la coupure), AMP (le volume : trémolo), OFF."
+ },
+ {
+  "en": "6 choices",
+  "fr": "6 choix"
  },
  {
   "en": "OSCILLATOR A, OSCILLATOR B",
@@ -420,8 +448,8 @@
   "fr": "PW B : largeur d'impulsion de B."
  },
  {
-  "en": "MIXER, GLIDE, UNISON",
-  "fr": "MIXER, GLIDE, UNISON"
+  "en": "MIXER, GLIDE, UNISON, SUB, NOISE",
+  "fr": "MIXER, GLIDE, UNISON, SUB, NOISE"
  },
  {
   "en": "MIXER: 0 % only A, 50 % both equally, 100 % only B.",
@@ -436,8 +464,16 @@
   "fr": "1 ms – 10 s"
  },
  {
-  "en": "All the voices on one note, huge. Unlit: the track plays chords (POLY). The other voice modes (MONO, LEGATO) are on the MOD page (chapter {ch:mod}).",
-  "fr": "Toutes les voix sur une note, énorme. Éteint : la piste joue des accords (POLY). Les autres modes de voix (MONO, LEGATO) sont sur la page MODULATION (chapitre {ch:mod})."
+  "en": "Six voices on one note, huge. Unlit: the track plays chords (POLY). The other voice modes (MONO, LEGATO) are on the MOD page (chapter {ch:mod}).",
+  "fr": "Six voix sur une note, énorme. Éteint : la piste joue des accords (POLY). Les autres modes de voix (MONO, LEGATO) sont sur la page MODULATION (chapitre {ch:mod})."
+ },
+ {
+  "en": "SUB OSC: a square wave one octave below oscillator A, added to the mix: weight for basses. 0 %: none.",
+  "fr": "SUB OSC : une onde carrée une octave sous l'oscillateur A, ajoutée au mixage : du poids pour les basses. 0 % : aucune."
+ },
+ {
+  "en": "White noise, added to the mix before the filter: breath, wind, percussion. 0 %: none.",
+  "fr": "Un bruit blanc, ajouté au mixage avant le filtre : souffle, vent, percussions. 0 % : aucun."
  },
  {
   "en": "FILTER, FILTER ENVELOPE",
@@ -458,6 +494,10 @@
  {
   "en": "ENV AMT: how much the filter envelope (page 6) opens the filter.",
   "fr": "ENV AMT : à quel point l'enveloppe du filtre (page 6) ouvre celui-ci."
+ },
+ {
+  "en": "HIGH-PASS: a 12 dB high-pass filter after the 24 dB filter, from about 30 Hz to 3.5 kHz: it thins the sound from below. 0 %: off.",
+  "fr": "HIGH-PASS : un filtre passe-haut 12 dB placé après le filtre 24 dB, d'environ 30 Hz à 3,5 kHz : il allège le son par le bas. 0 % : coupé."
  },
  {
   "en": "Higher notes open the filter: OFF, HALF, FULL (the filter follows the keyboard note for note). Click an option.",
@@ -560,6 +600,10 @@
   "fr": "L'écart des voix en unisson (VOICES = UNI)."
  },
  {
+  "en": "The number of voices: 6, as on the Prophet-600 (the default), or 8. Turn right for 8.",
+  "fr": "Le nombre de voix : 6, comme sur le Prophet-600 (par défaut), ou 8. Tournez vers la droite pour 8."
+ },
+ {
   "en": "Turning the knobs",
   "fr": "Tourner les boutons"
  },
@@ -632,8 +676,8 @@
   "fr": "Ce que garde une place"
  },
  {
-  "en": "<b>Saved with the sound</b>: the oscillators, the mixer, the filter and its envelope, the Poly-Mod, the amplifier envelope, the glide, UNI on or off (with its DETUNE), the LFO's rate, shape and destinations, WHEEL and VEL>FLT. <b>Not saved</b>: VINTAGE (back to 24 at each load), the effect sends (a kept sound plays dry, all sends at 0), the INSERT, MONO and LEG (a kept sound always plays POLY, or UNI if its unison was on), the LFO's PHASE and FADE and the other LFO settings of the MOD page, the ENVELOPE settings of the MOD page, MOD MATRIX slots 1–2, the VOICE settings of the MOD page and SPREAD.",
-  "fr": "<b>Enregistrés avec le son</b> : les oscillateurs, le mixeur, le filtre et son enveloppe, la Poly-Mod, l'enveloppe d'amplitude, le glide, UNI actif ou non (avec son DETUNE), la vitesse, la forme et les destinations du LFO, WHEEL et VEL>FLT. <b>Non enregistrés</b> : VINTAGE (revient à 24 à chaque chargement), les envois d'effets (un son gardé joue sec, tous les envois à 0), l'INSERT, MONO et LEG (un son gardé joue toujours en POLY, ou en UNI si son unisson était actif), PHASE et FADE du LFO et les autres réglages du LFO de la page MODULATION, les réglages ENVELOPE de la page MODULATION, les emplacements 1 et 2 de MOD MATRIX, les réglages VOICE de la page MODULATION et SPREAD."
+  "en": "<b>Saved with the sound</b>: the oscillators, the mixer, the filter and its envelope, the Poly-Mod, the amplifier envelope, the glide, UNI on or off (with its DETUNE), the LFO's rate, shape and destinations, WHEEL and VEL>FLT, and what the Guru-600 adds: HPF, SUB, NOISE, POLY and LFO B. <b>Not saved</b>: VINTAGE (back to 24 at each load), the effect sends (a kept sound plays dry, all sends at 0), the INSERT, MONO and LEG (a kept sound always plays POLY, or UNI if its unison was on), the LFO's PHASE and FADE and the other LFO settings of the MOD page, the ENVELOPE settings of the MOD page, MOD MATRIX slots 1–2, the VOICE settings of the MOD page and SPREAD.",
+  "fr": "<b>Enregistrés avec le son</b> : les oscillateurs, le mixeur, le filtre et son enveloppe, la Poly-Mod, l'enveloppe d'amplitude, le glide, UNI actif ou non (avec son DETUNE), la vitesse, la forme et les destinations du LFO, WHEEL et VEL>FLT, et ce qu'ajoute le Guru-600 : HPF, SUB, NOISE, POLY et LFO B. <b>Non enregistrés</b> : VINTAGE (revient à 24 à chaque chargement), les envois d'effets (un son gardé joue sec, tous les envois à 0), l'INSERT, MONO et LEG (un son gardé joue toujours en POLY, ou en UNI si son unisson était actif), PHASE et FADE du LFO et les autres réglages du LFO de la page MODULATION, les réglages ENVELOPE de la page MODULATION, les emplacements 1 et 2 de MOD MATRIX, les réglages VOICE de la page MODULATION et SPREAD."
  },
  {
   "en": "To keep everything, use STORE THE TRACK'S SOUND on the PROJECTS page (a USER sound), or save the project. The places of your own are 55 at most, shared by the sounds you save and the sounds you import. Beyond: the message <b>The memory of the places is full</b>; free some with BACK TO ORIGINAL.",
@@ -2128,6 +2172,10 @@
   "fr": "L'accord général, en cents. Enregistré avec le projet, pas avec les réglages."
  },
  {
+  "en": "OFF: every track plays dry, to hear the sounds without their effects: the distortion, the INSERTs, the chorus, delay and reverb sends are left out. A sound's EQ stays on, and nothing is changed in the sounds: ON brings everything back.",
+  "fr": "OFF : toutes les pistes jouent à sec, pour entendre les sons sans leurs effets : la distorsion, les INSERT, les envois de chorus, de delay et de réverbération sont laissés de côté. L'égaliseur d'un son reste actif, et rien n'est modifié dans les sons : ON remet tout."
+ },
+ {
   "en": "MIDI",
   "fr": "MIDI"
  },
@@ -2160,8 +2208,8 @@
   "fr": "Des astuces en bas de chaque page et de chaque écran rapide du FM-1."
  },
  {
-  "en": "Uses the chip's second core, starting at the next power-on (2ND CORE ON: RESTART). It switches itself off if it misbehaves.",
-  "fr": "Utilise le second cœur de la puce, au prochain allumage (2ND CORE ON: RESTART). Il se désactive de lui-même en cas de problème."
+  "en": "Uses the chip's second core, starting at the next power-on (2ND CORE ON: RESTART). Version 1.4.0 switches it on once, at its first power-on; switched off afterwards, it stays off. It switches itself off if it misbehaves.",
+  "fr": "Utilise le second cœur de la puce, au prochain allumage (2ND CORE ON: RESTART). La version 1.4.0 l'active une fois, à son premier allumage ; désactivé ensuite, il le reste. Il se désactive de lui-même en cas de problème."
  },
  {
   "en": "Erases everything of yours on the FM-1 (projects, USER sounds, samples, P600 places, settings), after two confirmations; it restarts as new. Make a backup first (chapter {ch:backup}). As MENU › SYSTEM › RESET GURU-600.",

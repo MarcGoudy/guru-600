@@ -441,6 +441,10 @@ if [ -f build/gen/felucca_tables.h ]; then
         $CC -O2 -w -Ibuild/gen -Ifirmware/src -o "$OUT/slice_test" tests/slice_test.c -lm
         run "SLICE: tables, onsets, reverse, keys, modes, MAN slices and their store, demos" "$OUT/slice_test" \
             build/slice_demo/loop build/slice_demo
+    elif grep -q '^#define SLC_PIANO_NOTE ' build/gen/felucca_samples.h; then
+        # Guru-600 1.4.0 (24/11/2026): BREAK retired (tools/gen_samples.py, its flash for the P600 engine); slice_test
+        # checks BREAK's tables and slices throughout: not run. SLICE's PIANO and user slots: ui_test's SLICES checks
+        echo "== SLICE: no BREAK (Guru-600 1.4.0): slice_test skipped; SLICE on PIANO and USR1 in the UI tests"
     else
         echo "== SLICE: build/ was made with FELUCCA_SLICE=0 (no BREAK); run ./build.sh without it first"
         fail=1; echo "STEP FAILED: line $LINENO"

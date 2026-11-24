@@ -1737,10 +1737,10 @@ static int test_menu_tabs(void)
             }
     }
     ui_prefs = 0;
-    bad += check("MENU tabs: DISPLAY CONTROL AUDIO MIDI SYSTEM (8 8 6 8 6 rows, Guru-600: 1.6.1 2ND CORE, a FELUCCA_CPU2=0 build SYSTEM 6; 1.5.5: SELECT, T1..T4 CHANNEL, AUTO SELECT, SCREEN WAKE; Guru-600: SCREEN WAKE in DISPLAY, MIDI KNOBS in MIDI), 1..8 each in a run, fit the page; tab gaps "
+    bad += check("MENU tabs: DISPLAY CONTROL AUDIO MIDI SYSTEM (8 8 7 8 6 rows, Guru-600: 1.4.0 EFFECTS in AUDIO; 1.6.1 2ND CORE, a FELUCCA_CPU2=0 build SYSTEM 6; 1.5.5: SELECT, T1..T4 CHANNEL, AUTO SELECT, SCREEN WAKE; Guru-600: SCREEN WAKE in DISPLAY, MIDI KNOBS in MIDI), 1..8 each in a run, fit the page; tab gaps "
                  "constant (S, LARGE)",
                  ok && MTAB_COUNT == 5u && str_eq(MTAB_NAME[0], "DISPLAY") && str_eq(MTAB_NAME[MTAB_MIDI], "MIDI") &&
-                 mtab_rows(MTAB_DISPLAY) == 8u && MI_TAB[MI_SCOPE] == MTAB_DISPLAY && MI_TAB[MI_SCRWAKE] == MTAB_DISPLAY && mtab_rows(MTAB_CONTROL) == 8u && MI_TAB[MI_SELECT] == MTAB_CONTROL && mtab_rows(MTAB_AUDIO) == 6u &&
+                 mtab_rows(MTAB_DISPLAY) == 8u && MI_TAB[MI_SCOPE] == MTAB_DISPLAY && MI_TAB[MI_SCRWAKE] == MTAB_DISPLAY && mtab_rows(MTAB_CONTROL) == 8u && MI_TAB[MI_SELECT] == MTAB_CONTROL && mtab_rows(MTAB_AUDIO) == 7u && MI_TAB[MI_FXOFF] == MTAB_AUDIO &&   /* (Guru-600 1.4.0: EFFECTS) */
                  mtab_rows(MTAB_MIDI) == 8u && MI_TAB[MI_MFOLLOW] == MTAB_MIDI && MI_TAB[MI_MKNOBS] == MTAB_MIDI && MI_MKNOBS + 1u == MI_LCLEAR && MI_TAB[MI_LCLEAR] == MTAB_MIDI && MI_TAB[MI_TCH4] == MTAB_MIDI && mtab_rows(MTAB_SYSTEM) == 6u + FELUCCA_CPU2 + FELUCCA_P600   /* (Guru-600: RESET GURU-600) */ &&
 #if FELUCCA_CPU2
                  MI_TAB[MI_CPU2] == MTAB_SYSTEM &&
@@ -3847,14 +3847,15 @@ static int test_slices(void)
     int bad = 0, ok;
     uint32_t n, j, p0, k, note;
     ui_power_on();
-    set_engine_of(TSEL, 13u);                        /* SLICE CHOP: BREAK, 16 */
+    set_engine_of(TSEL, 13u);                        /* SLICE (Guru-600 1.4.0: no factory sound, no BREAK: PIANO, 16) */
+    TSEL->p[P_E0] = SLC_BREAK.len ? 0 : 4;
     bad += check("SLICES: SLICE's EDIT cycle EDIT 1 EDIT 2 SLICES VOICE VOICE 2 VOICE 3 EDIT 1", engine_cycle(CYC_S, NELEM(CYC_S)));
     go_page(GR_SLICES); frame();
     n = slice_count();
     p0 = TSEL->p[P_E1];
     turn(EN_K1, 2); turn(EN_K2, 3);
     ok = n == 16u && slice_sel() == 2u && TSEL->p[P_E1] == p0 && msg_is("SRC USR1-3 TO EDIT") && !slice_act_ready(2);
-    bad += check("SLICES on BREAK: its 16 slices shown, KNOB 1 picks; edits need USR1-3 (DIV unchanged)", ok);
+    bad += check("SLICES on BREAK (Guru-600: PIANO, no BREAK): its 16 slices shown, KNOB 1 picks; edits need USR1-3 (DIV unchanged)", ok);
     TSEL->p[P_E0] = 2;                               /* SRC USR2, empty: no slices (a sine plays): NO SAMPLE */
     frame();
     ok = slice_count() == 0u && (msg_is(MSG_NO_SAMPLE) || str_eq(ui.msg2, MSG_NO_SAMPLE));
@@ -5136,7 +5137,14 @@ static int test_fm4_retired(void)
         if (e < NENGINES)
             seen |= 1u << e;
     }
-    bad += check("PRESETS: the list holds every engine's presets but DIGITAL's", seen == all && NENG_SHOWN == NENGINES - 1u);
+    {   /* (Guru-600 1.4.0: an engine with no factory sound, SLICE, has none in the list) */
+        uint32_t listed = all;
+        for (e = 0; e < NENGINES; e++)
+            if (!ENGINES[e]->npresets)
+                listed &= ~(1u << e);
+        bad += check("PRESETS: the list holds every engine's presets but DIGITAL's (and none of SLICE: it has none)",
+                     seen == listed && NENG_SHOWN == NENGINES - 1u);
+    }
     go_page(GR_BROWSE);
     set_engine_of(TSEL, 0);
     for (i = 0, seen = 0; i < NENG_SHOWN; i++) {
@@ -5163,17 +5171,22 @@ static int test_fm4_retired(void)
         for (i = 0; ok && i < NENG_SHOWN; i++)
             ok &= str_eq(ENGINES[eng_vis(i)]->name, ORDER[i]) && eng_rank(eng_vis(i)) == i && eng_ok(eng_vis(i));
         preset_all_pos(&total);
+        uint32_t none = 0;
+        for (i = 0; i < NENG_SHOWN; i++)               /* (Guru-600 1.4.0: SLICE, no factory sound: not in the list) */
+            none += !ENGINES[eng_vis(i)]->npresets;
         for (i = 0; i < total; i++) {                  /* the list's engines, each once, in that order */
             e = preset_all_at(i, &k);
             if (e >= NENGINES || e == last)
                 continue;
+            while (n < NENG_SHOWN && !ENGINES[eng_vis(n)]->npresets)
+                n++;
             ok &= n < NENG_SHOWN && e == eng_vis(n);
             n++;
             last = e;
             r++;
         }
-        bad += check("engines shown ANALOG FM6 PHASE ... NOISE SLICE DRUM (ENGINE_ORDER); PRESETS lists them so",
-                     ok && r == NENG_SHOWN);
+        bad += check("engines shown ANALOG FM6 PHASE ... NOISE SLICE DRUM (ENGINE_ORDER); PRESETS lists them so (SLICE: none)",
+                     ok && r + none == NENG_SHOWN);
     }
     /* a user preset stored with engine 1: kept as it is, it loads as FM6 with the converted patch */
     for (i = 0; i < P_COUNT; i++)
@@ -7809,7 +7822,11 @@ static int test_div_order(void)
             const param_desc_t *d;
             ui_power_on();
             ui.home = 0; ui.page = (uint8_t)id; page_entered();
-            if (!page_visible(id) || !(d = page_desc(cur_page(), c, &vp)) || !vp || !enum_order(d))
+            if (!page_visible(id) || !(d = page_desc(cur_page(), c, &vp)) || !vp || !enum_order(d)
+#if FELUCCA_P600
+                || d->names == N_P6_POLY                  /* (Guru-600 1.4.0: POLY's order, 6 then 8, is no division) */
+#endif
+               )
                 continue;
             found++;
             *vp = d->names != N_SLDIV ? 2 : 1;      /* 1/16 */
@@ -8080,11 +8097,12 @@ static int test_click_menu(void)
     turn(EN_PRESET, 1); ok &= ui.menu_sel == MI_COUNTIN;
     turn(EN_K4, 1); ok &= cin_bars == 1u;
     turn(EN_K4, 1); ok &= cin_bars == 2u;
-    turn(EN_PRESET, 1); ok &= ui.menu_sel == MI_TUNE;     /* (1.2: TUNE, AUDIO's last) */
+    turn(EN_PRESET, 1); ok &= ui.menu_sel == MI_TUNE;     /* (1.2: TUNE) */
+    turn(EN_PRESET, 1); ok &= ui.menu_sel == MI_FXOFF;    /* (Guru-600 1.4.0: EFFECTS, AUDIO's last) */
     turn(EN_PRESET, 1); ok &= ui.menu_sel == MI_LOWCUT;   /* (wraps within AUDIO) */
     press(B_HOME);
     ok &= !ui.menu;
-    bad += check("MENU > AUDIO: PRESETS to CLICK, CLICK LEVEL, COUNT-IN, TUNE; knobs / OCT step them, applied at once", ok);
+    bad += check("MENU > AUDIO: PRESETS to CLICK, CLICK LEVEL, COUNT-IN, TUNE, EFFECTS; knobs / OCT step them, applied at once", ok);
     {
         persist_t p;
         settings_export(&p);
@@ -9442,7 +9460,7 @@ static int test_help(void)
         for (i = 0; i < NPAGES && !(str_eq(PAGES[i].title, "MIXER") && PAGES[i].eng); i++)
             ;
         ui.page = (uint8_t)i;                          /* (the P600's MIXER) */
-        ok &= str_eq(help_page(), "[K1]A / B[K2]GLIDE[K3]VOICES");
+        ok &= str_eq(help_page(), "[K1]A / B[K3]VOICES[K4]POLY");   /* (1.4.0: POLY) */
         for (i = NPAGES; i-- > 0u && !(str_eq(PAGES[i].title, "MIXER") && !PAGES[i].eng);)
             ;
         ui.page = (uint8_t)i;                          /* the tracks' MIXER on a P600 track: its own hint */

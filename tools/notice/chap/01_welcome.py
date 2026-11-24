@@ -6,13 +6,13 @@ CH("welcome", "What the Guru-600 brings", "Ce que le Guru-600 apporte",
     "premiers synthétiseurs MIDI. C'est un firmware : il remplace celui d'origine du FM-1 et peut être retiré à tout moment.") +
  H3("What it adds", "Ce qu'il ajoute") +
  LI([("<b>A P600 sound engine</b> built like the original: two oscillators per voice with sync, a 24 dB filter with its own envelope, "
-      "Poly-Mod, an LFO, unison and six voices (chapter {ch:p600}).",
+      "Poly-Mod, an LFO, unison and six voices (chapter {ch:p600}). It also does what 1982 could not: a high-pass filter, a sub-oscillator, noise, a second LFO, Poly-Mod on pulse width A, and eight voices instead of six.",
       "<b>Un moteur sonore P600</b> construit comme l'original : deux oscillateurs par voix avec synchronisation, un filtre 24 dB avec son "
-      "enveloppe, la Poly-Mod, un LFO, l'unisson et six voix (chapitre {ch:p600})."),
+      "enveloppe, la Poly-Mod, un LFO, l'unisson et six voix (chapitre {ch:p600}). Il fait aussi ce que 1982 ne permettait pas : un filtre passe-haut, un sous-oscillateur, du bruit, un second LFO, la Poly-Mod sur la largeur d'impulsion de A, et huit voix au lieu de six."),
      ("<b>255 sounds</b>: the Prophet-600's 100 factory programs under their real names, 100 free sounds from the Prophet-600 "
-      "community, and 55 sounds made for the Guru-600. With the 71 sounds of Felucca's other engines, the list holds 326 sounds, plus 32 USER slots for yours (chapter {ch:sounds}).",
+      "community, and 55 sounds made for the Guru-600. With the 69 sounds of Felucca's other engines, the list holds 324 sounds, plus 32 USER slots for yours (chapter {ch:sounds}).",
       "<b>255 sons</b> : les 100 programmes d'usine du Prophet-600 sous leurs vrais noms, 100 sons libres de la communauté du "
-      "Prophet-600 et 55 sons créés pour le Guru-600. Avec les 71 sons des autres moteurs de Felucca, la liste compte 326 sons, plus 32 emplacements USER pour les vôtres (chapitre {ch:sounds})."),
+      "Prophet-600 et 55 sons créés pour le Guru-600. Avec les 69 sons des autres moteurs de Felucca, la liste compte 324 sons, plus 32 emplacements USER pour les vôtres (chapitre {ch:sounds})."),
      ("<b>MORPH and MUTATE</b>: gradually turn one sound into another, or create a variation of a sound in one gesture (chapter {ch:morph}).",
       "<b>MORPH et MUTATE</b> : transformer progressivement un son en un autre, ou créer une variante d'un son en un geste (chapitre {ch:morph})."),
      ("<b>55 places of your own</b> for P600 sounds, in addition to the 32 USER places, with the original sound always one gesture away (chapter {ch:keep}).",

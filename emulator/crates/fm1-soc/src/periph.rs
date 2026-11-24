@@ -970,6 +970,10 @@ impl Periph {
                     let id = KEYMAP[row][col];
                     if id >= 0 {
                         self.led_acc[id as usize] += dt;
+                    } else if row == 1 && col == 8 {
+                        // Guru-600 (24/11/2026): PLAY's second, green LED (Felucca ui_input.c LED_PLAY_GREEN: column 8,
+                        // PA9, no key there), lit while it plays: shown on PLAY (fm1-live draws PLAY's light green)
+                        self.led_acc[12] += dt;
                     }
                 }
             }
@@ -983,7 +987,7 @@ impl Periph {
         self.led_since = self.cycles;
         let mut out = [0f32; 41];
         for (o, a) in out.iter_mut().zip(self.led_acc.iter_mut()) {
-            *o = *a as f32 / span;
+            *o = (*a as f32 / span).min(1.0);   // (PLAY: its two LEDs at once count once)
             *a = 0;
         }
         out

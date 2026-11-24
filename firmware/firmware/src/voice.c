@@ -112,7 +112,22 @@ static void track_lfo_tick(track_t *t)                  /* (one core: the whole 
 static uint32_t trk_nvoice(const track_t *t)
 {
     uint32_t c = ENGINES[t->engine]->poly;
+#if FELUCCA_P600
+    if (t->engine == ENGI_P600 && t->p[P_FM4_LEVEL])   /* Guru-600 1.4.0: MIXER > POLY 6 (eng_p600.c P6_POLY), the */
+        c = 6;                                          /* original's; POLY 8 (0) the engine's eight */
+#endif
     return c && c < NVOICE ? c : NVOICE;
+}
+
+/* the voices UNISON stacks: the engine's (trk_nvoice); Guru-600 1.4.0 (24/11/2026): a P600's six, as the original's
+ * UNISON, its POLY having eight (the factory programs in UNISON sound as before) */
+static uint32_t trk_nuni(const track_t *t)
+{
+#if FELUCCA_P600
+    if (t->engine == ENGI_P600)                       /* (POLY 6 or 8: UNISON six) */
+        return trk_nvoice(t) < 6u ? trk_nvoice(t) : 6u;
+#endif
+    return trk_nvoice(t);
 }
 
 /* the part's voice mode: P_VOICE, POLY for an engine of hits (engine_t.oneshot: DRUM) */
@@ -336,7 +351,7 @@ static void voice_start(track_t *t, voice_t *v, uint32_t note, uint32_t vel, int
  * engine's voice cap, spread by DETUNE over the same width) */
 static void mono_play(track_t *t, uint32_t note, uint32_t vel, int retrig, int glide)
 {
-    uint32_t mode = (uint32_t)t->p[P_VOICE], nv = mode == V_UNISON ? trk_nvoice(t) : 1u, i;
+    uint32_t mode = (uint32_t)t->p[P_VOICE], nv = mode == V_UNISON ? trk_nuni(t) : 1u, i;
     for (i = 0; i < nv; i++) {
         voice_t *v = &t->v[i];
         int32_t k = 2 * (int32_t)i - (int32_t)(nv - 1u);   /* -7 .. 7 */
@@ -450,7 +465,7 @@ static void trk_note_off(track_t *t, uint32_t note)
     t->xp_n = (uint8_t)k;
     mono_remove(t, note);                              /* a mode change must not retain a released key */
     if (mode != V_POLY) {
-        uint32_t nv = mode == V_UNISON ? trk_nvoice(t) : 1u;
+        uint32_t nv = mode == V_UNISON ? trk_nuni(t) : 1u;
         if (t->mono_note == note) {
             uint32_t next = mono_pick(t);
             if (next) {                                 /* fall back to a held note, legato */
