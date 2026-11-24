@@ -11,7 +11,7 @@
 
 <br>
 
-<p align="center"><b>A Prophet-600 emulator firmware for the M-VAVE FM-1</b><br>255 sounds · MORPH · a full editor · Mac and Windows applications · 7 languages</p>
+<p align="center"><b>A Prophet-600 emulator firmware for the M-VAVE FM-1</b><br><a href="https://github.com/MarcGoudy/guru-600/releases/tag/v1.4.0"><b>Version 1.4.0</b></a><br>255 sounds · MORPH · a full editor · Mac and Windows applications · 7 languages</p>
 
 <br>
 
