@@ -181,7 +181,7 @@ int main(int argc, char **argv)
           pct_ink() == 0u && ink(LDR_SAY_Y, LDR_SAY_Y + LA_MODE_H, LA_R_INK) > 100u &&
           ink(LDR_SUB_Y, LDR_SUB_Y + LA_WAIT_H, LA_R_SUB) > 50u && ink(LDR_SITE_Y, LDR_SITE_Y + LA_SITE_H, LA_R_SUB) > 30u);
     check("the version under the logo, on the left: the firmware's own (guru_version.h; else run p600/make_ldr_screen.py)",
-          !strcmp(LA_VERSION, GURU_VERSION) && ver_ink() > 20u);
+          !strcmp(LA_VERSION, GURU_VERSION) && ver_ink() > 10u);   /* (1.4.1: 19 px, its thin 1s; 1.4.0: 37) */
     v0 = ver_ink();
     check("only the screen's colours, the background everywhere else", palette_only() && count(0, 0, 240, 10, SW(LA_R_DIM[0])) == 2400u);
     for (ms = 0; ms < 20000u; ms += 10u) {           /* 20 s: the glint crosses the logo left to right, rests, again */

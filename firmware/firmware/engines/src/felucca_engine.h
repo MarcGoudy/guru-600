@@ -73,7 +73,8 @@ typedef struct {
     int32_t env;                 /* Q24 */
     int32_t env_out;             /* last control-rate amplitude, Q15 */
     int32_t pitch16, pitch_cur;  /* 1/16 semitone, with glide */
-    int32_t gstep;               /* glide TIME mode: 1/16 st per control tick, 0 = RATE mode */
+    int32_t gstep;               /* glide TIME mode: 1/4096 st per control tick (Q8 of 1/16), 0 = RATE mode */
+    int32_t gpos;                /* Guru-600 1.4.1: the glide's position in 1/4096 semitone (pitch_cur << 8 + fraction) */
     int32_t fine;                /* unison detune: phase increment * (1 + fine / 4096) */
     uint32_t ph[3];
     int32_t s[8];                /* engine state (filters, envs) */

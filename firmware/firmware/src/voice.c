@@ -291,11 +291,14 @@ static void glide_set(track_t *t, voice_t *v, int glide)
 {
     if (!glide || !v->pitch_cur) {
         v->pitch_cur = v->pitch16;
+        v->gpos = v->pitch16 * 256;
         v->gstep = 0;
         return;
     }
-    if (t->p[P_GLMODE]) {
-        int32_t d = v->pitch16 - v->pitch_cur, ticks = 1 + t->p[P_GLIDE] * t->p[P_GLIDE] / 8;
+    if ((v->gpos >> 8) != v->pitch_cur)                 /* pitch_cur set elsewhere: start from it */
+        v->gpos = v->pitch_cur * 256;
+    if (t->p[P_GLMODE]) {                              /* (1.4.1: in 1/4096 st, so a slow glide no longer jumps) */
+        int32_t d = v->pitch16 * 256 - v->gpos, ticks = 1 + t->p[P_GLIDE] * t->p[P_GLIDE] / 8;
         d = d < 0 ? -d : d;
         v->gstep = d / ticks > 0 ? d / ticks : 1;
     } else {
@@ -683,7 +686,7 @@ static uint32_t track_render(track_t *t, int32_t *out, uint32_t n)
     /* TUNE in cents: whole 1/16 semitones in the pitch, the rest as a fine factor (no dead zone) */
     int32_t tune = song.g[G_TUNE] >= 0 ? song.g[G_TUNE] * 16 / 100 : -((-song.g[G_TUNE] * 16 + 99) / 100);
     int32_t tune_fine = (song.g[G_TUNE] * 16 - tune * 100) * 2367 / 16000;   /* rest, in 1/4096 (1 ct = 2.367) */
-    int32_t bend, bend16, bend_fine;
+    int32_t bend, bend16, bend_fine, gfine;
     uint32_t ti = (uint32_t)(t - trk);
     if (ENGINES[eng_idx(t->eng_req)] == &ENG_DRUM) {
         midi_bend_q8[ti] = midi_bend_target[ti] = 0;
@@ -745,27 +748,32 @@ static uint32_t track_render(track_t *t, int32_t *out, uint32_t n)
             m.amp0 = v->env_out;
             v->env_out = m.amp1;
         }
-        if (v->pitch_cur != v->pitch16) {               /* glide */
-            int32_t d = v->pitch16 - v->pitch_cur;
-            int32_t st = v->gstep ? v->gstep : (int32_t)(ENV_LIN[(p[P_GLIDE] ? p[P_GLIDE] : 40) & 127] >> 14);   /* slide: ~45 ms */
+        gfine = 0;
+        if (v->pitch_cur != v->pitch16 || (v->gpos & 255)) {   /* glide (1.4.1: in 1/4096 semitone: up to 10 s) */
+            int32_t d, st = v->gstep ? v->gstep : (int32_t)(ENV_LIN[(p[P_GLIDE] ? p[P_GLIDE] : 40) & 127] >> 6);   /* slide: ~45 ms */
+            if ((v->gpos >> 8) != v->pitch_cur)
+                v->gpos = v->pitch_cur * 256;           /* pitch_cur set elsewhere (a stolen voice) */
+            d = v->pitch16 * 256 - v->gpos;
             if (st < 1)
                 st = 1;
-            v->pitch_cur += d > 0 ? (d < st ? d : st) : (-d < st ? d : -st);
+            v->gpos += d > 0 ? (d < st ? d : st) : (-d < st ? d : -st);
+            v->pitch_cur = v->gpos >> 8;
+            gfine = (v->gpos & 255) * 1479 / 25600;     /* the fraction of 1/16 st, in 1/4096 (1 ct = 2.367) */
         }
         if (!env && !m.amp0 && v->stage == 2 && !e->sampled)
             continue;                                   /* held at a silent sustain (SUS 0): nothing to render */
         pitch = v->pitch_cur + tune + bend16 + ((lfo * p[P_LD_PIT] * 3) >> 15) + ((m.envq15 * p[P_ED_PIT] * 3) >> 15);
         m.pitch16 = clamp(pitch, 0, 2047);
         m.inc = pitch_inc(m.pitch16);
-        m.fine = v->fine + tune_fine + bend_fine;
-        if (v->fine + tune_fine + bend_fine)             /* residual below 1/16 semitone */
-            m.inc += (uint32_t)((int32_t)(m.inc >> 12) * (v->fine + tune_fine + bend_fine));
+        m.fine = v->fine + tune_fine + bend_fine + gfine;
+        if (m.fine)                                     /* residual below 1/16 semitone */
+            m.inc += (uint32_t)((int32_t)(m.inc >> 12) * m.fine);
         m.cutoff = ((lfo * p[P_LD_FLT]) >> 7) + ((m.envq15 * p[P_ED_FLT]) >> 7);
         if (v->vel > 110)                               /* accent opens the filter with the env */
             m.cutoff += (m.envq15 * 24) >> 7;
         m.shape = (64 << 8) + ((lfo * p[P_LD_SHP]) >> 7) + ((m.envq15 * p[P_ED_SHP]) >> 7);
         if (MOD(t).on)                                  /* the modulation matrix (mod.c) */
-            mod_voice(t, v, &m, v->fine + tune_fine + bend_fine);
+            mod_voice(t, v, &m, m.fine);
         e->render(t, v, T_SPREAD(t) > v->side ? SPREAD_BUF(t) : out, n, &m);   /* (SPREAD: the left ones) */
         nr++;
     }
